@@ -1,0 +1,38 @@
+<!-- Header Navigation -->
+<header class="header no-print">
+    <div class="container">
+        <nav class="nav">
+            <a href="{{ '/' | relative_url }}" class="nav-brand">
+                <img src="{{ '/images/AIS-logo.png' | relative_url }}" alt="Durham AI Safety Society Logo">
+                <div>
+                    <h1>
+                        {% if page.url == "/" %}
+                            Durham <span class="gradient-text">AI Safety</span> Initiative
+                        {% else %}
+                            Durham AISI
+                        {% endif %}
+                    </h1>
+                </div>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+                <a href="{{ '/' | append: '#about' | relative_url }}" class="nav-link">About Us</a>
+                <a href="{{ '/' | append: '#events' | relative_url }}" class="nav-link">Events</a>
+                
+                <div class="dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">
+                        More <i class="fas fa-chevron-down text-sm"></i>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="{{ '/our-team.html' | relative_url }}">Our Team</a>
+                        <a href="{{ '/programs.html' | relative_url }}">Programs</a>
+                        <a href="{{ '/research.html' | relative_url }}">Research</a>
+                        <a href="{{ '/what-is-ai-safety.html' | relative_url }}">What is AI Safety?</a>
+                        <a href="{{ '/get-involved.html' | relative_url }}">Get Involved</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

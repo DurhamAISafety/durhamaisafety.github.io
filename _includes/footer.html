@@ -1,0 +1,112 @@
+<!-- Footer -->
+<footer class="footer no-print">
+    <div class="container">
+        <div class="social-links">
+            <a href="{{ site.social.instagram | default: 'https://www.instagram.com/ais_durham' }}" 
+               aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="{{ site.social.linktree | default: 'https://linktr.ee/aisdurham' }}" 
+               aria-label="Linktree">
+                <i class="fas fa-link"></i>
+            </a>
+        </div>
+        
+        <div class="text-lg mb-3">
+            {{ site.title | default: "Durham AI Safety Initiative" }}
+        </div>
+        
+        <div class="mb-8">
+            <p class="text-lg mb-2">
+                <a href="mailto:{{ site.email | default: 'aisdurham@googlegroups.com' }}" 
+                   class="text-emerald hover:text-mint font-medium transition-colors">
+                    {{ site.email | default: "aisdurham@googlegroups.com" }}
+                </a>
+            </p>
+            <p class="text-base text-white/80">
+                Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
+            </p>
+        </div>
+        
+        <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
+            <p class="mb-2">
+                Durham AI Safety Initiative is a registered student society with Durham Students' Union.
+            </p>
+            <p class="mb-2">
+                Durham Students' Union is registered in England as a company limited by guarantee (07689815) 
+                and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
+            </p>
+            {% if site.show_edit_link %}
+            <p class="mt-4">
+                <a href="{{ site.repository }}/edit/main/{{ page.path }}" 
+                   class="text-teal hover:text-emerald transition-colors">
+                    <i class="fas fa-edit"></i> Edit this page
+                </a>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</footer>
+
+<!-- Additional CSS for components -->
+<style>
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #14b8a6, #10b981);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-success {
+    background: linear-gradient(135deg, #10b981, #84cc16);
+}
+
+.notification-error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.notification-info {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+</style>

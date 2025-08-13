@@ -1,23 +1,131 @@
-# https://jekyll.github.io/minima/
+# Durham AI Safety Initiative Website Configuration
+# ==============================================
 
-# Site-wide settings
-# ------------------
-#
-title: Your awesome title
-#
+# Site Information
+title: "Durham AI Safety Initiative"
+description: >-
+  Durham AI Safety Initiative (AISI) is a student-led organization at Durham University 
+  dedicated to advancing AI safety research, education, and community engagement.
+
+# Contact Information
+email: aisdurham@googlegroups.com
+baseurl: "" # Leave empty for GitHub Pages main domain
+url: "https://ai-safety-durham.github.io" # Your GitHub Pages URL
+
+# Social Media Links
+social:
+  instagram: "https://www.instagram.com/ais_durham"
+  linktree: "https://linktr.ee/aisdurham"
+
+# Repository Information (for edit links)
+repository: "AI-Safety-Durham/AI-Safety-Durham.github.io"
+show_edit_link: false # Set to true to show "Edit this page" links
+
+# SEO and Analytics
+google_analytics: # Add your GA tracking ID here if needed
+google_site_verification: # Add your Google Search Console verification code
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Navigation (for automatic menu generation)
+nav_pages:
+  - title: "Home"
+    url: "/"
+  - title: "About Us"
+    url: "/#about"
+  - title: "Events"
+    url: "/#events"
+
+dropdown_pages:
+  - title: "Our Team"
+    url: "/our-team.html"
+  - title: "Programs"
+    url: "/programs.html"
+  - title: "Research"
+    url: "/research.html"
+  - title: "What is AI Safety?"
+    url: "/what-is-ai-safety.html"
+  - title: "Get Involved"
+    url: "/get-involved.html"
+
+# Content Collections
+collections:
+  team_members:
+    output: false
+  research_projects:
+    output: false
+  events:
+    output: false
+
+# Default page settings
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Sass Configuration
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .bundle/
+  - .git/
+  - .gitignore
+  - README.md
+  - package.json
+  - package-lock.json
+  - gulpfile.js
+  - .DS_Store
+
+# Include hidden files/folders (if needed)
+include:
+  - .htaccess
+
+# Timezone
+timezone: Europe/London
+
+# Pagination (if blog is added)
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# SEO Plugin Settings
+webmaster_verifications:
+  google: # Google Search Console verification code
+  bing: # Bing Webmaster Tools verification code
+
+# Site Author (for SEO)
 author:
-  name: AIS Durham
-  # email: your-email@domain.com
-#
-# The `>` after `description:` means to ignore line-breaks until next key. If
-#   you wish to omit the line-break after the end of text, use `>-` instead.
-# description: >
-#   Write an awesome description for your new site here. You can edit this line
-#   in _config.yml. It will appear in your document head meta (for Google search
-#   results) and in your feed.xml site description.
-
-
-# Build settings
+  name: "Durham AI Safety Initiative"
+  email: "aisdurham@googlegroups.com"
+  
+# Organization Schema
+organization:
+  name: "Durham AI Safety Initiative"
+  url: "https://ai-safety-durham.github.io"
+  logo: "https://ai-safety-durham.github.io/images/AIS-logo.png"
+  sameAs:
+    - "https://www.instagram.com/ais_durham"
+    - "https://linktr.ee/aisdurham"
 # --------------
 #
 # If you wish to use the gem-version of Minima with or without a Gemfile, use
