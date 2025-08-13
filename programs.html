@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs - Durham AISI</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ocean-blue': '#0891b2',
+                        'deep-blue': '#0e4a5c',
+                        'teal': '#14b8a6',
+                        'emerald': '#10b981',
+                        'sage': '#84cc16',
+                        'mint': '#6ee7b7',
+                        'warm-blue': '#3b82f6',
+                        'navy': '#1e3a8a'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #14b8a6, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #14b8a6, #10b981);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(14, 74, 92, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(20, 184, 166, 0.2);
+            color: #14b8a6;
+            padding-left: 25px;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dropdown-toggle i {
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+        
+        .program-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+    </style>
+</head>
+<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                <a href="index.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
+                    <img src="images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
+                    <div>
+                        <h1 class="text-2xl lg:text-3xl font-bold">Durham AISI</h1>
+                    </div>
+                </a>
+                <div class="flex gap-8">
+                    <a href="index.html" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
+                    <a href="index.html#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
+                    <a href="index.html#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
+                    <div class="dropdown">
+                        <a href="#" class="nav-link text-lg font-medium hover:text-teal transition-colors dropdown-toggle">
+                            More <i class="fas fa-chevron-down text-sm"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="our-team.html">Our Team</a>
+                            <a href="programs.html">Programs</a>
+                            <a href="research.html">Research</a>
+                            <a href="what-is-ai-safety.html">What is AI Safety?</a>
+                            <a href="get-involved.html">Get Involved</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-6">Our Programs</h2>
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+                    Comprehensive initiatives designed to advance AI safety research, education, and community engagement
+                </p>
+            </div>
+        </section>
+
+        <!-- Core Programs -->
+        <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Core Programs</h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-book-open text-2xl text-white"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold">Reading Groups</h4>
+                        </div>
+                        <p class="text-white/80 mb-6 leading-relaxed">
+                            Weekly discussions of seminal AI safety papers, covering topics from alignment theory to 
+                            interpretability research. Perfect for both beginners and advanced researchers.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-teal mr-2"></i>
+                                <span class="text-sm">Thursdays, 6:00 PM</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-emerald mr-2"></i>
+                                <span class="text-sm">All experience levels welcome</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold">Workshop Series</h4>
+                        </div>
+                        <p class="text-white/80 mb-6 leading-relaxed">
+                            Hands-on workshops covering practical AI safety techniques, from robustness testing to 
+                            interpretability tools. Led by experts and graduate students.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar text-emerald mr-2"></i>
+                                <span class="text-sm">Monthly workshops</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-laptop-code text-sage mr-2"></i>
+                                <span class="text-sm">Programming experience helpful</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-flask text-2xl text-white"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold">Research Projects</h4>
+                        </div>
+                        <p class="text-white/80 mb-6 leading-relaxed">
+                            Collaborative research initiatives where students work on cutting-edge AI safety problems 
+                            under faculty supervision, contributing to the global research community.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap text-ocean-blue mr-2"></i>
+                                <span class="text-sm">Open to all year groups</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-award text-warm-blue mr-2"></i>
+                                <span class="text-sm">Publication opportunities</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mr-4">
+                                <i class="fas fa-microphone text-2xl text-white"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold">Speaker Series</h4>
+                        </div>
+                        <p class="text-white/80 mb-6 leading-relaxed">
+                            Regular talks by leading AI safety researchers, industry experts, and policy makers, 
+                            providing insights into the latest developments and career opportunities.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-mint mr-2"></i>
+                                <span class="text-sm">Industry leaders & academics</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-question-circle text-teal mr-2"></i>
+                                <span class="text-sm">Q&A sessions included</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Initiatives -->
+        <section class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Special Initiatives</h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="program-card rounded-2xl p-6 card-hover">
+                        <div class="w-16 h-16 bg-gradient-to-br from-sage to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-handshake text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-center mb-4">Mentorship Program</h4>
+                        <p class="text-white/80 text-center text-sm leading-relaxed">
+                            Connecting students with experienced researchers and professionals in AI safety for 
+                            guidance and career development.
+                        </p>
+                    </div>
+                    
+                    <div class="program-card rounded-2xl p-6 card-hover">
+                        <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-navy rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-trophy text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-center mb-4">AI Safety Challenge</h4>
+                        <p class="text-white/80 text-center text-sm leading-relaxed">
+                            Annual competition where teams develop innovative solutions to AI safety problems, 
+                            with prizes and recognition for outstanding work.
+                        </p>
+                    </div>
+                    
+                    <div class="program-card rounded-2xl p-6 card-hover">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal to-ocean-blue rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-globe text-2xl text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-center mb-4">Global Collaboration</h4>
+                        <p class="text-white/80 text-center text-sm leading-relaxed">
+                            Partnerships with other AI safety organizations worldwide, facilitating student 
+                            exchanges and collaborative research projects.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Join -->
+        <section class="py-20 bg-gradient-to-r from-navy/90 to-deep-blue/90">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">How to Join Our Programs</h3>
+                    <p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+                        Most programs are open to all students, regardless of background. Some research projects 
+                        may have specific requirements, but we're committed to making AI safety accessible to everyone.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">1</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Attend an Event</h4>
+                        <p class="text-white/80 text-sm">Join one of our reading groups or workshops to get started</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">2</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Connect with Us</h4>
+                        <p class="text-white/80 text-sm">Reach out via email or social media to express your interests</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-sage to-mint rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-white">3</span>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Get Involved</h4>
+                        <p class="text-white/80 text-sm">Choose programs that match your interests and availability</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <a href="get-involved.html" class="inline-block bg-gradient-to-r from-teal to-emerald hover:from-emerald hover:to-mint text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Get Started Today
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="https://www.instagram.com/ais_durham" 
+                   class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
+                   aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linktr.ee/aisdurham" 
+                   class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
+                   aria-label="Linktree">
+                    <i class="fas fa-link"></i>
+                </a>
+            </div>
+            <div class="text-lg text-white/80 mb-3">
+                Durham AI Safety Initiative
+            </div>
+            <div class="mb-8">
+                <p class="text-lg text-white mb-2">
+                    <a href="mailto:aisdurham@googlegroups.com" class="text-emerald hover:text-mint font-medium transition-colors">
+                        aisdurham@googlegroups.com
+                    </a>
+                </p>
+                <p class="text-base text-white/80">
+                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
+                </p>
+            </div>
+            <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
+                <p class="mb-2">
+                    Durham AI Safety Initiative is a registered student society with Durham Students' Union.
+                </p>
+                <p class="mb-2">
+                    Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -156,6 +156,70 @@
         .calendar-iframe.loaded {
             opacity: 1;
         }
+        
+        /* Dropdown menu styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(14, 74, 92, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(20, 184, 166, 0.2);
+            color: #14b8a6;
+            padding-left: 25px;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dropdown-toggle i {
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
@@ -163,18 +227,30 @@
     <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
         <div class="container mx-auto px-6 py-4">
             <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-4">
+                <a href="index.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
                     <img src="images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
                     <div>
                         <h1 class="text-2xl lg:text-3xl font-bold">
                             Durham <span class="gradient-text">AI Safety</span> Initiative
                         </h1>
                     </div>
-                </div>
+                </a>
                 <div class="flex gap-8">
                     <a href="#home" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
                     <a href="#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
                     <a href="#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
+                    <div class="dropdown">
+                        <a href="#" class="nav-link text-lg font-medium hover:text-teal transition-colors dropdown-toggle">
+                            More <i class="fas fa-chevron-down text-sm"></i>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="our-team.html">Our Team</a>
+                            <a href="programs.html">Programs</a>
+                            <a href="research.html">Research</a>
+                            <a href="what-is-ai-safety.html">What is AI Safety?</a>
+                            <a href="get-involved.html">Get Involved</a>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
