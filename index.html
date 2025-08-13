@@ -3,500 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Durham's AI Safety Group</title>
+    <title>DAISI</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ocean-blue': '#0891b2',
+                        'deep-blue': '#0e4a5c',
+                        'teal': '#14b8a6',
+                        'emerald': '#10b981',
+                        'sage': '#84cc16',
+                        'mint': '#6ee7b7',
+                        'warm-blue': '#3b82f6',
+                        'navy': '#1e3a8a'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #00e6e6;
-            --secondary-color: #9932CC;
-            --accent-color: #8A2BE2;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
+    <style>
+        /* Custom animations and transitions */
+        .gradient-text {
+            background: linear-gradient(135deg, #14b8a6, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif; /* Using Inter for modern look */
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
         }
-
-        body {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, #5d1b7c 100%);
-            color: var(--light-color);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+        
+        .card-hover {
+            transition: all 0.3s ease;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
         }
-
-        /* Header & Navigation */
-        header {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-        }
-
-        .site-title h1 {
-            font-size: 2.2rem;
-            color: var(--light-color);
-            margin: 0;
-        }
-
-        .site-title h1 span {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--light-color);
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 5px 0;
+        
+        .nav-link {
             position: relative;
             transition: color 0.3s ease;
         }
-
-        .nav-links a::after {
+        
+        .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
+            bottom: -4px;
             left: 0;
-            bottom: 0;
+            background: linear-gradient(90deg, #14b8a6, #10b981);
             transition: width 0.3s ease;
         }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a:hover::after {
+        
+        .nav-link:hover::after {
             width: 100%;
         }
         
-        /* Main Content Sections */
-        .section {
-            padding: 80px 0;
-            text-align: center;
-            min-height: calc(100vh - 100px); /* Adjust based on header/footer height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .section:nth-child(even) {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .section h2 {
-            font-size: 3.5rem;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 5px;
-        }
-
-        .section p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-        }
-
-        /* Hero Section (from Coming Soon) */
-        #home {
-            padding-top: calc(80px + 60px); /* Adjust for header */
-        }
-
-        .hero-question {
-            font-size: 3rem;
-            margin-bottom: 30px;
-        }
-
-        .hero-values {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            font-style: italic;
-            max-width: 800px;
-        }
-
-        .hero-answer {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin: 60px 0;
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
         }
         
-        .hero-tagline {
-            font-size: 1.8rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        .email-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-        
-        .email-input {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-        }
-        
-        .email-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: var(--dark-color);
-            border: none;
-            border-radius: 50px;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .submit-btn:hover {
-            background-color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Calendar Specific Styles */
-        .calendar-container {
-            width: 100%;
-            max-width: 900px; /* Max width for the calendar */
-            height: 600px; /* Fixed height for the calendar */
-            margin: 40px auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--accent-color);
-            background-color: white; /* Google Calendar iframe will show on this */
-        }
-
-        .calendar-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 30px 0;
-            text-align: center;
-            margin-top: auto; /* Pushes footer to the bottom */
-        }
-        
-        .social-icons {
-            margin-bottom: 20px;
-        }
-
-        .social-icon {
-            font-size: 2.5rem;
-            margin: 0 15px;
-            color: var(--light-color);
-            transition: color 0.3s;
-        }
-        
-        .social-icon:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-        
-        .footer-text {
-            margin-top: 10px;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .nav-links {
-                gap: 15px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .site-title h1 {
-                font-size: 1.8rem;
-            }
-            .site-title h1 span {
-                font-size: 2rem;
-            }
-            .section h2 {
-                font-size: 3rem;
-            }
-            .hero-question {
-                font-size: 2.5rem;
-            }
-            .hero-values {
-                font-size: 1.8rem;
-            }
-            .hero-answer {
-                font-size: 3rem;
-            }
-            .hero-tagline {
-                font-size: 1.5rem;
-            }
-            .calendar-container {
-                height: 500px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav-links a {
-                padding: 8px 0;
-            }
-            .section {
-                padding: 60px 0;
-            }
-            .section h2 {
-                font-size: 2.5rem;
-            }
-            .hero-question {
-                font-size: 2rem;
-            }
-            .hero-values {
-                font-size: 1.5rem;
-            }
-            .hero-answer {
-                font-size: 2.5rem;
-            }
-            .hero-tagline {
-                font-size: 1.2rem;
-            }
-            .email-input {
-                padding: 12px;
-                font-size: 1rem;
-            }
-            .submit-btn {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-            .social-icon {
-                font-size: 2rem;
-                margin: 0 10px;
-            }
-            .calendar-container {
-                height: 400px;
-                border-radius: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .site-title h1 {
-                font-size: 1.5rem;
-            }
-            .site-title h1 span {
-                font-size: 1.8rem;
-            }
-            .section h2 {
-                font-size: 2rem;
-            }
-            .section p {
-                font-size: 1rem;
-            }
-            .hero-question {
-                font-size: 1.8rem;
-            }
-            .hero-values {
-                font-size: 1.2rem;
-            }
-            .hero-answer {
-                font-size: 2rem;
-            }
-            .hero-tagline {
-                font-size: 1rem;
-            }
-            .calendar-container {
-                height: 300px;
-            }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(20, 184, 166, 0.8); }
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container navbar">
-            <div class="logo-section">
-                <!-- Using placeholder for now; replace with actual logo if available -->
-                <img src="https://placehold.co/50x50/9932CC/ffffff?text=AI" alt="Durham AI Safety Society Logo" class="logo">
-                <div class="site-title">
-                    <h1>Durham's <span>AI Safety</span> Group</h1>
+<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <img src="images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
+                    <div>
+                        <h1 class="text-2xl lg:text-3xl font-bold">
+                            Durham <span class="gradient-text">AI Safety</span> Initiative
+                        </h1>
+                    </div>
                 </div>
-            </div>
-            <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#events">Events</a>
-                <a href="#contact">Contact</a>
+                <div class="flex gap-8">
+                    <a href="#home" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
+                    <a href="#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
+                    <a href="#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
+                    <a href="#contact" class="nav-link text-lg font-medium hover:text-teal transition-colors">Contact</a>
+                </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- Home Section - Adapted from your original "Coming Soon" -->
-        <section id="home" class="section">
-            <div class="container">
-                <div class="hero-question">
-                    Do you want AI to be
-                </div>
-                <div class="hero-values">aligned with humanity's goals?</div>
-                <div class="hero-values">under control?</div>
-                <div class="hero-values">transparent?</div>
-                <div class="hero-values">robust?</div>
-                <div class="hero-values">fair?</div>
-                
-                <div class="hero-answer">
-                    So do we.
-                </div>
-                
-                <div class="hero-tagline">
-                    <strong>Whatever your expertise,</strong> you can contribute to the conversation and make a difference.
-                </div>
-                
-                <div class="join-us">
-                    <form class="email-form">
-                        <input type="email" class="email-input" placeholder="Enter your email for updates" aria-label="Enter your email for updates">
-                        <button type="submit" class="submit-btn">Keep Me Updated</button>
-                    </form>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center hero-gradient relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <div class="max-w-4xl mx-auto space-y-8">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-light">
+                        Do you want AI to be
+                    </h2>
+                    
+                    <div class="space-y-4 text-2xl md:text-3xl lg:text-4xl font-medium text-mint">
+                        <div class="italic">aligned with humanity's goals?</div>
+                        <div class="italic">under control?</div>
+                        <div class="italic">transparent?</div>
+                        <div class="italic">robust?</div>
+                        <div class="italic">fair?</div>
+                    </div>
+                    
+                    <div class="text-4xl md:text-5xl lg:text-7xl font-bold gradient-text py-8">
+                        So do we.
+                    </div>
+                    
+                    <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed">
+                        <span class="font-semibold text-emerald">Whatever your expertise,</span> 
+                        you can contribute to the conversation and make a difference.
+                    </p>
+                    
+                    <div class="pt-8">
+                        <form class="max-w-md mx-auto space-y-4">
+                            <input type="email" 
+                                   placeholder="Enter your email for updates" 
+                                   class="w-full px-6 py-4 rounded-full bg-white/10 backdrop-blur border border-teal/30 text-white placeholder-white/70 text-lg focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                            <button type="submit" 
+                                    class="w-full px-8 py-4 bg-gradient-to-r from-teal to-emerald text-deep-blue font-bold text-lg rounded-full hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 pulse-glow">
+                                Keep Me Updated
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- About Us Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2>About Us</h2>
-                <p>Welcome to Durham's AI Safety Group! We are a student-led society dedicated to exploring and promoting the safe, beneficial, and ethical development of artificial intelligence.</p>
-                <p>Our mission is to foster a community of students and researchers passionate about understanding the long-term impacts of advanced AI, identifying potential risks, and contributing to solutions that ensure AI aligns with human values.</p>
-                <p>We host regular discussions, workshops, and speaker events, covering topics such as AI alignment, existential risk, AI ethics, and responsible innovation. Whether you're a beginner curious about AI safety or an experienced researcher, you'll find a welcoming environment to learn, collaborate, and make a difference.</p>
+        <section id="about" class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">About Us</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid gap-8">
+                        <!-- Main description -->
+                        <div class="bg-white/10 backdrop-blur rounded-2xl p-8 card-hover border border-teal/20">
+                            <p class="text-lg md:text-xl leading-relaxed mb-6">
+                                Welcome to DAISI! We are a student-led initiative that aims to empower students and academics to reduce risk from advanced AI, by:
+                            </p>
+                        </div>
+                        
+                        <!-- Three pillars -->
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-teal/20 to-emerald/20 backdrop-blur rounded-2xl p-6 card-hover border border-teal/30">
+                                <div class="text-2xl mb-4 text-center">🎯</div>
+                                <h3 class="text-xl font-bold text-teal mb-4 text-center">Raising Awareness</h3>
+                                <p class="text-lg leading-relaxed text-center">
+                                    Through discussion groups and speaker events
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-emerald/20 to-sage/20 backdrop-blur rounded-2xl p-6 card-hover border border-emerald/30">
+                                <div class="text-2xl mb-4 text-center">🛠️</div>
+                                <h3 class="text-xl font-bold text-emerald mb-4 text-center">Upskilling Members</h3>
+                                <p class="text-lg leading-relaxed text-center">
+                                    In safety techniques through workshops and 1-1 support
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ocean-blue/20 to-teal/20 backdrop-blur rounded-2xl p-6 card-hover border border-ocean-blue/30">
+                                <div class="text-2xl mb-4 text-center">🤝</div>
+                                <h3 class="text-xl font-bold text-ocean-blue mb-4 text-center">Fostering Community</h3>
+                                <p class="text-lg leading-relaxed text-center">
+                                    For high-quality discussion, support and connections to the wider field of AI safety
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Achievements -->
+                        <div class="bg-gradient-to-r from-deep-blue/20 to-navy/20 backdrop-blur rounded-2xl p-8 card-hover border border-mint/30">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-bold gradient-text mb-6">Our Impact</h3>
+                                <p class="text-lg md:text-xl leading-relaxed">
+                                    Our members have published in top AI and law conferences, participated in MATS and gone on to study AI ethics at Cambridge.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional context -->
+                        <div class="bg-white/10 backdrop-blur rounded-2xl p-8 card-hover border border-teal/20">
+                            <p class="text-lg md:text-xl leading-relaxed">
+                                Whether you're a beginner curious about AI safety or an experienced researcher, you'll find a welcoming environment to learn, collaborate, and make a difference in ensuring AI development aligns with human values.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Events Section with Google Calendar -->
-        <section id="events" class="section">
-            <div class="container">
-                <h2>Our Events</h2>
-                <p>Stay updated with our latest events, workshops, and discussions. We regularly host talks from experts, collaborative study sessions, and social gatherings.</p>
-                <div class="calendar-container">
-                    <!-- Embed your Google Calendar here -->
-                    <iframe src="https://calendar.google.com/calendar/embed?src=896edcf4f9cd47305232b2c78cc06d4d1365a18dabbace749bde237cfd92bea6%40group.calendar.google.com&ctz=Europe%2FLondon" 
-                            style="border: 0" 
-                            width="800" 
-                            height="600" 
-                            frameborder="0" 
-                            scrolling="no"
-                            aria-label="Google Calendar displaying AI Safety Durham events"></iframe>
+        <!-- Events Section -->
+        <section id="events" class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Our Events</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+                    <p class="text-lg md:text-xl mt-8 max-w-3xl mx-auto">
+                        Stay updated with our latest events, workshops, and discussions. We regularly host talks from experts, collaborative study sessions, and social gatherings.
+                    </p>
                 </div>
-                <p>Don't miss out on our upcoming activities!</p>
+                
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-4 border border-teal/20 card-hover">
+                        <div class="overflow-hidden rounded-xl">
+                            <iframe src="https://calendar.google.com/calendar/embed?src=896edcf4f9cd47305232b2c78cc06d4d1365a18dabbace749bde237cfd92bea6%40group.calendar.google.com&ctz=Europe%2FLondon" 
+                                    class="w-full h-96 md:h-[500px] lg:h-[600px] border-0" 
+                                    frameborder="0" 
+                                    scrolling="no"
+                                    aria-label="Google Calendar displaying AI Safety Durham events">
+                            </iframe>
+                        </div>
+                    </div>
+                    <p class="text-center text-lg mt-8 text-mint font-medium">
+                        Don't miss out on our upcoming activities!
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="container">
-                <h2>Get in Touch</h2>
-                <p>Have questions, suggestions, or want to collaborate? Feel free to reach out to us!</p>
-                <p>You can connect with us through our social media channels or send us an email.</p>
-                <p>Email: <a href="mailto:contact@aisafetydurham.org" style="color: var(--primary-color); text-decoration: none;">contact@aisafetydurham.org</a></p>
-                <!-- Add contact form or more details if desired -->
-                <div class="join-us" style="margin-top: 40px;">
-                    <form class="email-form">
-                        <input type="email" class="email-input" placeholder="Join our mailing list" aria-label="Join our mailing list">
-                        <button type="submit" class="submit-btn">Subscribe</button>
-                    </form>
+        <section id="contact" class="py-20 bg-gradient-to-r from-navy/90 to-deep-blue/90">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Get in Touch</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur rounded-2xl p-8 card-hover border border-teal/20 text-center">
+                        <p class="text-lg md:text-xl leading-relaxed mb-6">
+                            Have questions, suggestions, or want to collaborate? Feel free to reach out to us!
+                        </p>
+                        <p class="text-lg md:text-xl leading-relaxed mb-6">
+                            You can connect with us through our social media channels or send us an email.
+                        </p>
+                        <p class="text-lg md:text-xl mb-8">
+                            Email: <a href="mailto:contact@aisafetydurham.org" class="text-teal hover:text-emerald font-semibold transition-colors">contact@aisafetydurham.org</a>
+                        </p>
+                        
+                        <div class="max-w-md mx-auto">
+                            <form class="space-y-4">
+                                <input type="email" 
+                                       placeholder="Join our mailing list" 
+                                       class="w-full px-6 py-4 rounded-full bg-white/10 backdrop-blur border border-teal/30 text-white placeholder-white/70 text-lg focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent">
+                                <button type="submit" 
+                                        class="w-full px-8 py-4 bg-gradient-to-r from-teal to-emerald text-deep-blue font-bold text-lg rounded-full hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                                    Subscribe
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="social-icons">
-                <a href="https://www.instagram.com/ais_durham" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <!-- Replace with actual links -->
-                <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="https://www.instagram.com/ais_durham" 
+                   class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
+                   aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linktr.ee/aisdurham" 
+                   class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
+                   aria-label="Linktree">
+                    <i class="fas fa-link"></i>
+                </a>
             </div>
-            <div class="footer-text">
-                &copy; 2025 Durham's AI Safety Group. All rights reserved.
+            <div class="text-lg text-white/80">
+                &copy; 2025 Durham AI Safety Initiative.
             </div>
         </div>
     </footer>
