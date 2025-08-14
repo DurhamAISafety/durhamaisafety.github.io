@@ -34,8 +34,9 @@ jobs:
           bundler: 'latest'
           bundler-cache: false
 
-      - name: Install dependencies
+      - name: Delete old Gemfile.lock and install dependencies
         run: |
+          rm -f Gemfile.lock
           gem install bundler
           bundle install
 
