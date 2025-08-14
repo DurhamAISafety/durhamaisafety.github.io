@@ -32,12 +32,14 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler-cache: true
-          bundler: 'latest'
+
+      - name: Install dependencies
+        run: bundle install
 
       - name: Build Jekyll site
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --verbose
+        run: bundle exec jekyll build
 
       - name: HTML Proofer
         run: bundle exec htmlproofer ./_site --config .htmlproofer.yml
