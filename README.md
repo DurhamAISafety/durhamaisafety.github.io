@@ -1,103 +1,83 @@
-# Durham AISI Website Maintenance Guide
+# Durham AI Safety Initiative Website
 
-## Overview
-This guide provides information for maintaining and updating the Durham AI Safety Initiative website.
+This is the official repository for the Durham AI Safety Initiative (DAISI) website. The site is built using HTML, Tailwind CSS, and JavaScript, and is deployed using GitHub Pages.
 
 ## Site Structure
 
+The repository is structured as follows:
+
 ```
-├── _config.yml              # Site configuration
-├── _layouts/                 # Page templates
-│   └── default.html         # Main layout template
-├── _includes/               # Reusable components
-│   ├── header.html         # Navigation header
-│   └── footer.html         # Site footer
-├── _sass/                  # Sass/SCSS files (if added)
-├── assets/                 # Static assets
+.
+├── .github/
+│   └── workflows/
+│       └── build-and-deploy.yml  # GitHub Actions workflow
+├── _data/
+│   └── team.yml                  # Team member data
+├── _includes/
+│   ├── footer.html               # Site footer
+│   └── header.html               # Site header
+├── _layouts/
+│   └── default.html              # Default page layout
+├── assets/
 │   ├── css/
-│   │   └── styles.css      # Main stylesheet
+│   │   └── styles.css            # Custom styles
 │   └── js/
-│       └── main.js         # Main JavaScript file
-├── images/                 # Image assets
-├── *.html                  # Main content pages
-└── README.md              # This file
+│       └── main.js               # Custom JavaScript
+├── images/                       # Site images and logos
+├── pages/                        # Sub-pages of the site
+├── .gitignore
+├── _config.yml                   # Jekyll configuration
+├── Gemfile                       # Ruby dependencies
+├── index.html                    # Home page
+└── README.md                     # This file
 ```
+
+## Local Development
+
+To run the website locally, you'll need Ruby and Bundler installed.
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io.git
+    cd AI-Safety-Durham.github.io
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    bundle install
+    ```
+
+3.  **Run the Jekyll server:**
+    ```bash
+    bundle exec jekyll serve
+    ```
+
+4.  Open your browser and navigate to `http://localhost:4000`.
 
 ## Making Changes
 
-### 1. Content Updates
+-   **Content:** Edit the HTML files in the root directory and `pages/` directory.
+-   **Styling:** Most styling is done with Tailwind CSS utility classes directly in the HTML. For custom styles, edit `assets/css/styles.css`.
+-   **Team Members:** To update the team page, edit the `_data/team.yml` file.
+-   **Layout:** The main page structure is in `_layouts/default.html`. The header and footer are in `_includes/`.
 
-#### Text Changes
-- Edit the relevant `.html` files directly
-- For consistent changes across pages, update the includes in `_includes/`
+## Testing
 
-#### Adding New Pages
-1. Create a new `.html` file in the root directory
-2. Add front matter at the top:
-   ```yaml
-   ---
-   layout: default
-   title: "Page Title"
-   description: "Page description for SEO"
-   ---
-   ```
-3. Add the page to navigation in `_includes/header.html`
+This repository uses `html-proofer` to check for broken links and images. The checks are run automatically via GitHub Actions when you push changes. To run the checks locally:
 
-#### Updating Team Information
-- Edit the team cards in `our-team.html`
-- Consider creating a `_data/team.yml` file for easier management
+1.  Build the site:
+    ```bash
+    bundle exec jekyll build
+    ```
+2.  Run `html-proofer`:
+    ```bash
+    bundle exec htmlproofer ./_site
+    ```
 
-### 2. Design Changes
+## Deployment
 
-#### Global Styles
-- Edit `assets/css/styles.css` for site-wide styling changes
-- CSS variables at the top of the file control colors and spacing
+The website is automatically deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment workflow is defined in `.github/workflows/build-and-deploy.yml`.
 
-#### Component Styles
-- Component-specific styles are in the individual include files
-- Common utilities are in the main stylesheet
-
-### 3. Configuration
-
-#### Site Settings
-Edit `_config.yml` to update:
-- Site title and description
-- Contact information
-- Social media links
-- SEO settings
-
-#### Navigation
-- Main navigation: `_includes/header.html`
-- Dropdown menu items can be managed in `_config.yml` under `dropdown_pages`
-
-## Development Setup
-
-### Local Development
-Prereqs: Ruby 3.1.x (see `.ruby-version`). Use rbenv/asdf to install the right version.
-
-1. Install Ruby toolchain (macOS): Xcode CLT, then a Ruby version manager (rbenv/asdf)
-2. Install Jekyll toolchain: `gem install bundler jekyll`
-3. Install deps: `bundle install`
-4. Serve locally: `bundle exec jekyll serve`
-5. Visit `http://localhost:4000`
-
-Optional: run link checks locally after a build
-`bundle exec htmlproofer ./_site --config .htmlproofer.yml`
-
-### CI/CD (GitHub Actions + Pages)
-- Pull Requests: build the site and run HTML Proofer; failures block merge
-- Main branch: on push, the site is built, validated, and deployed via GitHub Pages
-- Workflow lives in `.github/workflows/build-and-deploy.yml`
-
-## Best Practices
-
-### Content Management
-1. **Consistent Formatting**: Use the established design patterns
-2. **Image Optimization**: Compress images before uploading
-3. **Alt Text**: Always include descriptive alt text for images
-4. **Mobile Testing**: Test changes on mobile devices
-
-### Code Maintenance
 1. **Comments**: Add comments to complex CSS or JavaScript
 2. **Validation**: Validate HTML and check for broken links
 3. **Performance**: Monitor page load times
