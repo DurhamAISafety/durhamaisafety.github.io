@@ -21,7 +21,6 @@ leadership:
     icon: "fas fa-chart-line"
     color: "ocean-blue-warm-blue"
 
-committee:
   - name: "Treasurer"
     role: "Financial Management"
     icon: "fas fa-dollar-sign"

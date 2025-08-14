@@ -177,6 +177,40 @@ title: "What is AI Safety? - Durham AISI"
         .timeline-item:last-child::after {
             display: none;
         }
+        
+        /* Back to top button styles */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #14b8a6, #10b981);
+            color: white;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
+        }
     </style>
 </head>
 <body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
@@ -216,7 +250,7 @@ title: "What is AI Safety? - Durham AISI"
         <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
             <div class="absolute inset-0 bg-black/20"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-6">What is AI Safety?</h2>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">What is AI Safety?</h2>
                 <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
                     Understanding the challenges and opportunities in building safe, beneficial artificial intelligence
                 </p>
@@ -227,7 +261,7 @@ title: "What is AI Safety? - Durham AISI"
         <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">The Foundation</h3>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">The Foundation</h3>
                     <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
                 </div>
                 
@@ -279,7 +313,7 @@ title: "What is AI Safety? - Durham AISI"
         <section class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Key Challenges</h3>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Key Challenges</h3>
                     <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
                 </div>
                 
@@ -385,7 +419,7 @@ title: "What is AI Safety? - Durham AISI"
         <section class="py-20 bg-gradient-to-r from-navy/90 to-deep-blue/90">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Why AI Safety Matters</h3>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Why AI Safety Matters</h3>
                     <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
                 </div>
                 
@@ -442,7 +476,7 @@ title: "What is AI Safety? - Durham AISI"
         <section class="py-20 bg-gradient-to-l from-deep-blue/90 to-navy/90">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Learn More</h3>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Learn More</h3>
                     <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
                 </div>
                 
@@ -534,5 +568,32 @@ title: "What is AI Safety? - Durham AISI"
             </div>
         </div>
     </footer>
+    
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>

@@ -4,3 +4,4 @@ HOME PAGE
 * smooth out gradient background betwen sections (i.e one continuous)
 * add a link from '...student-led...' in about us to 'our-team' page
 
+* add discord
