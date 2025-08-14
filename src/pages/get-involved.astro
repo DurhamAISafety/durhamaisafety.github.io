@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Get Involved - Durham AISI">
+  <style>
+    .involvement-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+    }
+    
+    .form-input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      color: white;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #14b8a6;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+    }
+    
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .checkbox-custom {
+      appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid rgba(20, 184, 166, 0.5);
+      border-radius: 0.25rem;
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .checkbox-custom:checked {
+      background: linear-gradient(135deg, #14b8a6, #10b981);
+      border-color: #14b8a6;
+    }
+    
+    .checkbox-custom:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 0.875rem;
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-6">Get Involved</h2>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+        Join our community and help shape the future of AI safety at Durham University
+      </p>
+    </div>
+  </section>
+
+  <!-- Ways to Get Involved -->
+  <section class="py-20" style="background: linear-gradient(to right, rgba(14, 74, 92, 0.9), rgba(30, 58, 138, 0.9));">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Ways to Get Involved</h3>
+        <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #14b8a6, #10b981);"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="involvement-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #14b8a6, #10b981);">
+            <i class="fas fa-calendar-alt text-2xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Attend Events</h4>
+          <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
+            Join our weekly reading groups, workshops, and speaker events. Perfect for beginners 
+            and experts alike.
+          </p>
+          <div class="text-center">
+            <span class="text-teal font-semibold">Drop-in friendly</span>
+          </div>
+        </div>
+        
+        <div class="involvement-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #10b981, #84cc16);">
+            <i class="fas fa-flask text-2xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Join Research</h4>
+          <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
+            Participate in cutting-edge research projects with faculty supervision and 
+            publication opportunities.
+          </p>
+          <div class="text-center">
+            <span class="text-emerald font-semibold">All levels welcome</span>
+          </div>
+        </div>
+        
+        <div class="involvement-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #0891b2, #3b82f6);">
+            <i class="fas fa-users text-2xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Leadership Roles</h4>
+          <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
+            Take on leadership positions in organizing events, managing projects, 
+            or community outreach.
+          </p>
+          <div class="text-center">
+            <span class="text-ocean-blue font-semibold">Applications open</span>
+          </div>
+        </div>
+        
+        <div class="involvement-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #6ee7b7, #14b8a6);">
+            <i class="fas fa-lightbulb text-2xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Share Ideas</h4>
+          <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
+            Propose new initiatives, suggest speakers, or share interesting papers 
+            with the community.
+          </p>
+          <div class="text-center">
+            <span class="text-mint font-semibold">Always welcome</span>
+          </div>
+        </div>
+        
+        <div class="involvement-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #84cc16, #10b981);">
+            <i class="fas fa-handshake text-2xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Mentorship</h4>
+          <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
+            Get paired with experienced researchers or mentor newcomers to AI safety.
+          </p>
+          <div class="text-center">
+            <span class="text-sage font-semibold">Both ways possible</span>
+          </div>
+        </div>
+        
+        <div class="involvement-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4" style="background: linear-gradient(135deg, #3b82f6, #1e3a8a);">
+            <i class="fas fa-globe text-2xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Outreach</h4>
+          <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
+            Help spread awareness about AI safety through social media, 
+            presentations, and community engagement.
+          </p>
+          <div class="text-center">
+            <span style="color: #3b82f6;" class="font-semibold">Creative opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interest Form -->
+  <section class="py-20" style="background: linear-gradient(to left, rgba(8, 145, 178, 0.9), rgba(14, 74, 92, 0.9));">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Express Your Interest</h3>
+        <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #14b8a6, #10b981);"></div>
+        <p class="text-xl mt-6 max-w-3xl mx-auto">
+          Tell us about your interests and we'll help you find the best way to get involved with Durham AISI.
+        </p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto">
+        <div class="involvement-card rounded-2xl p-8 space-y-6">
+          <div class="text-center">
+            <p class="text-lg mb-6">
+              We'd love to hear from you! Reach out to us directly to get involved:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div class="space-y-4">
+                <h4 class="text-xl font-bold text-teal">Email Us</h4>
+                <p class="text-white/80">
+                  <a href="mailto:aisdurham@googlegroups.com" 
+                     class="text-emerald hover:text-mint font-medium transition-colors">
+                    aisdurham@googlegroups.com
+                  </a>
+                </p>
+                <p class="text-sm text-white/60">
+                  Send us a message with your interests and availability
+                </p>
+              </div>
+              
+              <div class="space-y-4">
+                <h4 class="text-xl font-bold text-teal">Follow Us</h4>
+                <div class="flex justify-center gap-6">
+                  <a href="https://www.instagram.com/ais_durham" 
+                     class="text-3xl text-white hover:text-emerald transition-colors" 
+                     aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://linktr.ee/aisdurham" 
+                     class="text-3xl text-white hover:text-teal transition-colors" 
+                     aria-label="Linktree">
+                    <i class="fas fa-link"></i>
+                  </a>
+                </div>
+                <p class="text-sm text-white/60">
+                  Stay updated with our latest events and opportunities
+                </p>
+              </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-teal/20 to-emerald/20 rounded-xl p-6">
+              <h4 class="text-lg font-bold mb-3">Quick Start</h4>
+              <p class="text-white/80 text-sm leading-relaxed">
+                New to AI safety? No problem! Join our next reading group or attend a workshop. 
+                Check our events calendar on the home page or follow us on social media for updates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

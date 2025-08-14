@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Our Team - Durham AISI">
+  <style>
+    .team-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(20, 184, 166, 0.2);
+    }
+    
+    .team-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+      border-color: rgba(20, 184, 166, 0.4);
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-6">Our Team</h2>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+        Meet the passionate individuals driving AI safety research and education at Durham University
+      </p>
+    </div>
+  </section>
+
+  <!-- Leadership Team -->
+  <section class="py-20" style="background: linear-gradient(to right, rgba(14, 74, 92, 0.9), rgba(30, 58, 138, 0.9));">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Leadership Team</h3>
+        <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #14b8a6, #10b981);"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Team member cards -->
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #14b8a6, #10b981);">
+            <i class="fas fa-user text-3xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-2">President</h4>
+          <p class="text-teal text-center mb-3">Society Leader</p>
+          <p class="text-white/80 text-center text-sm">
+            Leading the society's vision and coordinating our AI safety initiatives across Durham University.
+          </p>
+        </div>
+        
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #10b981, #84cc16);">
+            <i class="fas fa-users text-3xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-2">Vice President</h4>
+          <p class="text-emerald text-center mb-3">Operations & Events</p>
+          <p class="text-white/80 text-center text-sm">
+            Organizing events, workshops, and managing day-to-day operations of the society.
+          </p>
+        </div>
+        
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #0891b2, #3b82f6);">
+            <i class="fas fa-chart-line text-3xl text-white"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-2">Research Lead</h4>
+          <p class="text-ocean-blue text-center mb-3">Research Coordination</p>
+          <p class="text-white/80 text-center text-sm">
+            Coordinating research projects and connecting members with AI safety research opportunities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Committee Members -->
+  <section class="py-20" style="background: linear-gradient(to left, rgba(8, 145, 178, 0.9), rgba(14, 74, 92, 0.9));">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Committee Members</h3>
+        <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #14b8a6, #10b981);"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #6ee7b7, #14b8a6);">
+            <i class="fas fa-dollar-sign text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-2">Treasurer</h4>
+          <p class="text-mint text-center mb-3">Financial Management</p>
+        </div>
+        
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #84cc16, #10b981);">
+            <i class="fas fa-pen text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-2">Secretary</h4>
+          <p class="text-sage text-center mb-3">Documentation & Records</p>
+        </div>
+        
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #3b82f6, #1e3a8a);">
+            <i class="fas fa-bullhorn text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-2">Outreach Lead</h4>
+          <p class="text-center mb-3" style="color: #3b82f6;">Community & Partnerships</p>
+        </div>
+        
+        <div class="team-card rounded-2xl p-6 card-hover">
+          <div class="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #14b8a6, #0891b2);">
+            <i class="fas fa-share-alt text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-2">Social Media</h4>
+          <p class="text-teal text-center mb-3">Digital Presence</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Our Team -->
+  <section class="py-20" style="background: linear-gradient(to right, rgba(30, 58, 138, 0.9), rgba(14, 74, 92, 0.9));">
+    <div class="container mx-auto px-6 text-center">
+      <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Join Our Team</h3>
+      <p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+        We're always looking for passionate individuals to join our mission. Whether you're interested in research, 
+        event organization, or community outreach, there's a place for you in DAISI.
+      </p>
+      <a href="/get-involved/" 
+         class="inline-block font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-white hover:shadow-2xl hover:-translate-y-1"
+         style="background: linear-gradient(to right, #14b8a6, #10b981);">
+        Get Involved
+      </a>
+    </div>
+  </section>
+</Layout>
