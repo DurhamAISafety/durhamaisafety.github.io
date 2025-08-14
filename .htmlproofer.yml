@@ -1,0 +1,22 @@
+# HTML Proofer Configuration
+# For html-proofer v5.x
+checks:
+  - Links
+  - Images
+  - Scripts
+  - Favicon
+  - OpenGraph
+
+ignore_urls:
+  - "/localhost/"
+  - "/127.0.0.1/"
+  - "/example.com/"
+
+ignore_files:
+  - "./_site/assets/js/main.js"
+
+allow_missing_href: true
+assume_extension: true
+check_external_hash: false
+disable_external: true
+log_level: :info

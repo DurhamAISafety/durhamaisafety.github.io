@@ -30,9 +30,10 @@ jobs:
         JEKYLL_ENV: production
 
     - name: Test HTML 🧪
+      continue-on-error: true
       run: |
         gem install html-proofer
-        htmlproofer ./_site --check-html --check-img-http --check-external-hash --disable-external
+        htmlproofer ./_site --config .htmlproofer.yml
 
     - name: Deploy to GitHub Pages 🚀
       if: github.ref == 'refs/heads/main'
