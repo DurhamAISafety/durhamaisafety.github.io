@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Durham AI Safety Initiative">
+  <style>
+    /*
+     * Custom CSS for gradient text and other styles.
+     * This ensures the hero section title has the desired look.
+     */
+    .gradient-text {
+      background: linear-gradient(135deg, #14b8a6, #0891b2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    /* Custom style for the mint text */
+    .text-mint {
+      color: #6ee7b7;
+    }
+
+    /* Custom style for the emerald text */
+    .text-emerald {
+      color: #10b981;
+    }
+
+    /* Custom style for the teal text */
+    .text-teal {
+      color: #14b8a6;
+    }
+
+    /* Custom style for the ocean-blue text */
+    .text-ocean-blue {
+      color: #0891b2;
+    }
+
+    /* Custom style for the deep-blue text */
+    .text-deep-blue {
+      color: #0e4a5c;
+    }
+
+    /* Custom style for the button background */
+    .get-involved-button {
+      background: linear-gradient(to right, #14b8a6, #10b981);
+    }
+    
+    /* Keyframes for the spinner in the events section */
+    @keyframes spinner {
+      to { transform: rotate(360deg); }
+    }
+    
+    .spinner:before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      margin-left: -20px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #3b82f6; /* Blue */
+      border-right-color: #3b82f6;
+      animation: spinner .8s linear infinite;
+    }
+
+    .calendar-container {
+      position: relative;
+    }
+    
+    .calendar-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      background-color: rgba(14, 74, 92, 0.9);
+      border-radius: 1rem;
+    }
+    
+    .calendar-iframe.loaded {
+      opacity: 1;
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section id="home" class="py-16 md:py-24 lg:py-32 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #0891b2 100%);">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
+        <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed">
+          <span class="gradient-text">Durham students and academics for </span><span class="text-mint italic font-medium">reducing catastrophic risks from advanced AI</span>
+        </h2>
+        
+        <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8">
+          <span class="font-semibold text-emerald">Whatever your expertise,</span> 
+          you can contribute to the conversation and make a difference.
+        </p>
+        
+        <div class="pt-2 md:pt-4">
+          <a href="https://linktr.ee/aisdurham" 
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-block px-12 py-4 text-deep-blue font-bold text-lg rounded-full hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 get-involved-button">
+            Get Involved
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="py-24" style="background: linear-gradient(to right, rgba(14, 74, 92, 0.9), rgba(30, 58, 138, 0.9));">
+    <div class="container mx-auto px-6 text-white">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">About Us</h2>
+        <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #14b8a6, #10b981);"></div>
+      </div>
+      
+      <div class="max-w-5xl mx-auto">
+        <div class="grid gap-8">
+          <!-- Main description -->
+          <p class="text-lg md:text-xl leading-relaxed mb-6 text-center"> 
+            We are a student-led initiative that aims to empower students and academics to reduce risk from advanced AI, by:
+          </p>
+          
+          <!-- Three pillars -->
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="backdrop-blur rounded-2xl p-6 card-hover border"
+                 style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(16, 185, 129, 0.2)); border-color: rgba(20, 184, 166, 0.3);">
+              <div class="text-2xl mb-4 text-center">🎯</div>
+              <h3 class="text-xl font-bold text-teal mb-4 text-center">Raising Awareness</h3>
+              <p class="text-lg leading-relaxed text-center">
+                Through discussion groups and speaker events
+              </p>
+            </div>
+            
+            <div class="backdrop-blur rounded-2xl p-6 card-hover border"
+                 style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(132, 204, 22, 0.2)); border-color: rgba(16, 185, 129, 0.3);">
+              <div class="text-2xl mb-4 text-center">🛠️</div>
+              <h3 class="text-xl font-bold text-emerald mb-4 text-center">Upskilling Members</h3>
+              <p class="text-lg leading-relaxed text-center">
+                In safety techniques through workshops and 1-1 support
+              </p>
+            </div>
+            
+            <div class="backdrop-blur rounded-2xl p-6 card-hover border"
+                 style="background: linear-gradient(135deg, rgba(8, 145, 178, 0.2), rgba(20, 184, 166, 0.2)); border-color: rgba(8, 145, 178, 0.3);">
+              <div class="text-2xl mb-4 text-center">🤝</div>
+              <h3 class="text-xl font-bold text-ocean-blue mb-4 text-center">Fostering Community</h3>
+              <p class="text-lg leading-relaxed text-center">
+                For high-quality discussion, support and connections to the wider field of AI safety
+              </p>
+            </div>
+          </div>
+          
+          <!-- Achievements -->
+          <div class="backdrop-blur rounded-2xl p-8 card-hover border"
+               style="background: linear-gradient(to right, rgba(14, 74, 92, 0.2), rgba(30, 58, 138, 0.2)); border-color: rgba(110, 231, 183, 0.3);">
+            <div class="text-center">
+              <h3 class="text-2xl font-bold gradient-text mb-6">Our Impact</h3>
+              <p class="text-lg md:text-xl leading-relaxed">
+                Our members have published in top AI and law conferences, participated in MATS and gone on to study AI ethics at Cambridge.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Additional context -->
+          <p class="text-lg md:text-xl leading-relaxed text-center mt-8">
+            Whether you're a beginner curious about AI safety or an experienced researcher, you'll find a welcoming environment to learn, collaborate, and make a difference in ensuring AI development aligns with human values.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="py-20" style="background: linear-gradient(to left, rgba(8, 145, 178, 0.9), rgba(14, 74, 92, 0.9));">
+    <div class="container mx-auto px-6 text-white">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Our Events</h2>
+        <div class="w-24 h-1 mx-auto rounded-full" style="background: linear-gradient(to right, #14b8a6, #10b981);"></div>
+      </div>
+      
+      <div class="max-w-5xl mx-auto">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-4 border card-hover calendar-container"
+             style="border-color: rgba(20, 184, 166, 0.2);">
+          <!-- Loading state -->
+          <div id="calendar-loading" class="calendar-loading">
+            <div class="text-center">
+              <div class="spinner mx-auto mb-4"></div>
+              <p class="text-teal font-medium">Loading calendar...</p>
+            </div>
+          </div>
+          
+          <!-- Calendar iframe -->
+          <div class="overflow-hidden rounded-xl">
+            <iframe id="calendar-iframe"
+                    src="https://calendar.google.com/calendar/embed?src=896edcf4f9cd47305232b2c78cc06d4d1365a18dabbace749bde237cfd92bea6%40group.calendar.google.com&ctz=Europe%2FLondon" 
+                    class="w-full h-96 md:h-[500px] lg:h-[600px] border-0 calendar-iframe opacity-0 transition-opacity duration-500" 
+                    frameborder="0" 
+                    scrolling="no"
+                    aria-label="Google Calendar displaying AI Safety Durham events">
+            </iframe>
+          </div>
+        </div>
+        <p class="text-center text-lg mt-8 text-mint font-medium">
+          Don't miss out on our upcoming activities!
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Calendar loading state
+  const calendarIframe = document.getElementById('calendar-iframe');
+  const calendarLoading = document.getElementById('calendar-loading');
+  
+  // Hide loading state when calendar is loaded
+  if (calendarIframe && calendarLoading) {
+    calendarIframe.addEventListener('load', () => {
+      calendarIframe.classList.add('loaded');
+      calendarLoading.style.display = 'none';
+    });
+    
+    // Fallback to hide loading state after 5 seconds
+    setTimeout(() => {
+      calendarLoading.style.display = 'none';
+      calendarIframe?.classList.add('loaded');
+    }, 5000);
+  }
+</script>

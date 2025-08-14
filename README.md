@@ -1,148 +1,126 @@
 # Durham AI Safety Initiative Website
 
-This is the official repository for the Durham AI Safety Initiative (DAISI) website. The site is built using HTML, Tailwind CSS, and JavaScript, and is deployed using GitHub Pages.
+The official website for Durham AI Safety Initiative, built with Astro and hosted on Netlify.
 
-## Site Structure
+## 🌐 Live Site
 
-The repository is structured as follows:
+- **Production**: [https://durhamaisafety.netlify.app/](https://durhamaisafety.netlify.app/)
+- **Development**: Available on multiple branches for testing
 
+## 🏗️ Tech Stack
+
+- **Framework**: [Astro](https://astro.build/) - Modern static site generator
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- **Hosting**: [Netlify](https://netlify.com/) - JAMstack deployment platform
+- **Package Manager**: npm
+
+## 🚀 Development
+
+### Prerequisites
+- Node.js 18+ 
+- npm
+
+### Getting Started
+
+1. **Clone the repository**
+   ```sh
+   git clone https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io.git
+   cd AI-Safety-Durham.github.io
+   ```
+
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
+
+3. **Start development server**
+   ```sh
+   npm run dev
+   ```
+   
+   The site will be available at `http://localhost:4000`
+
+### Available Commands
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4000`     |
+| `npm run build`           | Build your production site to `./dist/`         |
+| `npm run preview`         | Preview your build locally, before deploying    |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+
+## 📁 Project Structure
+
+```text
+/
+├── public/                 # Static assets (images, fonts, etc.)
+│   └── images/            # Website images and logos
+├── src/
+│   ├── layouts/           # Page layouts and templates
+│   │   └── Layout.astro   # Main layout with header/footer
+│   ├── pages/             # Website pages (auto-routed)
+│   │   ├── index.astro    # Redirects to /home/
+│   │   ├── home.astro     # Homepage
+│   │   ├── our-team.astro # Team page
+│   │   └── ...           # Other pages
+│   └── styles/            # Global CSS and styling
+│       └── global.css     # Tailwind imports and custom styles
+├── astro.config.mjs       # Astro configuration
+├── tailwind.config.mjs    # Tailwind CSS configuration
+└── package.json           # Dependencies and scripts
 ```
-.
-├── .github/
-│   └── workflows/
-│       └── build-and-deploy.yml  # GitHub Actions workflow
-├── _data/
-│   └── team.yml                  # Team member data
-├── _includes/
-│   ├── footer.html               # Site footer
-│   └── header.html               # Site header
-├── _layouts/
-│   └── default.html              # Default page layout
-├── assets/
-│   ├── css/
-│   │   └── styles.css            # Custom styles
-│   └── js/
-│       └── main.js               # Custom JavaScript
-├── images/                       # Site images and logos
-├── pages/                        # Sub-pages of the site
-├── .gitignore
-├── _config.yml                   # Jekyll configuration
-├── Gemfile                       # Ruby dependencies
-├── index.html                    # Home page
-└── README.md                     # This file
+
+## 🎨 Styling
+
+The website uses a custom color scheme defined in `tailwind.config.mjs`:
+
+- **Ocean Blue**: `#0891b2`
+- **Deep Blue**: `#0e4a5c`
+- **Navy**: `#1e3a8a`
+- **Teal**: `#14b8a6`
+- **Emerald**: `#10b981`
+- **Sage**: `#84cc16`
+- **Mint**: `#6ee7b7`
+
+## 🌍 Deployment
+
+The site is automatically deployed to Netlify when changes are pushed to the main branch. The build command used is:
+
+```sh
+npm run build
 ```
 
-## Local Development
+## 🔗 Clean URLs
 
-To run the website locally, you'll need Ruby and Bundler installed.
+The site is configured to use clean URLs (no `.html` extensions):
+- `/home/` instead of `/home.html`
+- `/our-team/` instead of `/our-team.html`
+- etc.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io.git
-    cd AI-Safety-Durham.github.io
-    ```
+This is handled by Astro's `format: 'directory'` configuration in `astro.config.mjs`.
 
-2.  **Install dependencies:**
-    ```bash
-    bundle install
-    ```
+## 📧 Contact
 
-3.  **Run the Jekyll server:**
-    ```bash
-    bundle exec jekyll serve
-    ```
+For questions about the website or to get involved with Durham AI Safety Initiative:
 
-4.  Open your browser and navigate to `http://localhost:4000`.
+- **Email**: [aisdurham@googlegroups.com](mailto:aisdurham@googlegroups.com)
+- **Instagram**: [@ais_durham](https://www.instagram.com/ais_durham)
+- **Linktree**: [linktr.ee/aisdurham](https://linktr.ee/aisdurham)
 
-## Making Changes
+---
 
--   **Content:** Edit the HTML files in the root directory and `pages/` directory.
--   **Styling:** Most styling is done with Tailwind CSS utility classes directly in the HTML. For custom styles, edit `assets/css/styles.css`.
--   **Team Members:** To update the team page, edit the `_data/team.yml` file.
--   **Layout:** The main page structure is in `_layouts/default.html`. The header and footer are in `_includes/`.
+Durham AI Safety Initiative is a registered student society with Durham Students' Union.
 
-## Testing
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-This repository uses `html-proofer` to check for broken links and images. The checks are run automatically via GitHub Actions when you push changes. To run the checks locally:
+## 👀 Want to learn more?
 
-1.  Build the site:
-    ```bash
-    bundle exec jekyll build
-    ```
-2.  Run `html-proofer`:
-    ```bash
-    bundle exec htmlproofer ./_site
-    ```
-
-## Deployment
-
-The website is automatically deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment workflow is defined in `.github/workflows/build-and-deploy.yml`.
-
-1. **Comments**: Add comments to complex CSS or JavaScript
-2. **Validation**: Validate HTML and check for broken links
-3. **Performance**: Monitor page load times
-4. **Accessibility**: Ensure WCAG compliance
-
-### SEO Best Practices
-1. **Meta Descriptions**: Update page descriptions in front matter
-2. **Title Tags**: Use descriptive, unique titles
-3. **Structured Data**: Consider adding JSON-LD for events
-4. **Internal Linking**: Link between related pages
-
-## Common Tasks
-
-### Adding a New Event
-1. Update the events section in `index.html`
-2. Consider creating an events data file for easier management
-
-### Updating Contact Information
-1. Edit `_config.yml` for global contact info
-2. Update footer in `_includes/footer.html` if needed
-
-### Adding New Research Projects
-1. Update `research.html`
-2. Follow the existing card structure
-3. Use consistent status badges
-
-### Form Updates
-1. Forms currently show notifications only
-2. To make functional, integrate with services like Netlify Forms or Formspree
-3. Update the JavaScript in `assets/js/main.js`
-
-## Troubleshooting
-
-### Common Issues
-1. **Changes not appearing**: Check GitHub Pages build status
-2. **Styling broken**: Verify CSS file paths
-3. **Navigation not working**: Check include file syntax
-4. **Images not loading**: Verify image paths and file names
-
-### Build Errors
-- Check Jekyll build logs in GitHub Actions
-- Validate YAML front matter syntax
-- Ensure all required files are present
-
-## Future Improvements
-
-### Recommended Enhancements
-1. **Content Management**: Add Jekyll collections for team members and events
-2. **Blog System**: Add a blog for regular updates
-3. **Search**: Implement site search functionality
-4. **Contact Forms**: Integrate with form handling service
-5. **Analytics**: Add Google Analytics for visitor insights
-
-### Performance Optimizations
-1. **Image Optimization**: Implement responsive images
-2. **CSS Minification**: Use Jekyll plugins for asset optimization
-3. **Caching**: Add cache headers via GitHub Pages settings
-
-## Resources
-
-- [Jekyll Documentation](https://jekyllrb.com/docs/)
-- [GitHub Pages Documentation](https://pages.github.com/)
-- [Liquid Template Language](https://shopify.github.io/liquid/)
-- [YAML Front Matter](https://jekyllrb.com/docs/front-matter/)
-
-## Contact
-
-For technical questions about the website, contact the web team or create an issue in the GitHub repository.
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

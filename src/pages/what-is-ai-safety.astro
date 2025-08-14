@@ -1,0 +1,326 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="What is AI Safety? - Durham AISI">
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-6">What is AI Safety?</h2>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+        Understanding the challenges and opportunities in building safe, beneficial artificial intelligence
+      </p>
+    </div>
+  </section>
+
+  <!-- Definition Section -->
+  <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">The Foundation</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="info-card rounded-2xl p-8 mb-8">
+          <p class="text-xl md:text-2xl leading-relaxed text-center mb-6">
+            AI Safety is the field focused on ensuring that artificial intelligence systems are 
+            <span class="gradient-text font-semibold">safe, beneficial, and aligned with human values</span> 
+            as they become increasingly capable.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="info-card rounded-2xl p-6 card-hover">
+            <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-alt text-2xl text-white"></i>
+            </div>
+            <h4 class="text-xl font-bold text-center mb-4">Safety</h4>
+            <p class="text-white/80 text-center text-sm leading-relaxed">
+              Ensuring AI systems operate reliably and don't cause unintended harm to humans or society.
+            </p>
+          </div>
+          
+          <div class="info-card rounded-2xl p-6 card-hover">
+            <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-heart text-2xl text-white"></i>
+            </div>
+            <h4 class="text-xl font-bold text-center mb-4">Beneficial</h4>
+            <p class="text-white/80 text-center text-sm leading-relaxed">
+              Designing AI to actively promote human welfare and contribute positively to society.
+            </p>
+          </div>
+          
+          <div class="info-card rounded-2xl p-6 card-hover">
+            <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-balance-scale text-2xl text-white"></i>
+            </div>
+            <h4 class="text-xl font-bold text-center mb-4">Aligned</h4>
+            <p class="text-white/80 text-center text-sm leading-relaxed">
+              Ensuring AI systems understand and pursue goals that align with human values and intentions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Challenges -->
+  <section class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Key Challenges</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="info-card rounded-2xl p-8 card-hover">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mr-4">
+                <i class="fas fa-crosshairs text-2xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-bold">The Alignment Problem</h4>
+            </div>
+            <p class="text-white/80 leading-relaxed mb-4">
+              How do we ensure AI systems pursue the goals we actually want them to pursue, 
+              rather than just optimizing for what we tell them to optimize for?
+            </p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>
+                <span>Reward hacking and Goodhart's Law</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>
+                <span>Specification gaming and mesa-optimization</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-card rounded-2xl p-8 card-hover">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mr-4">
+                <i class="fas fa-eye text-2xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-bold">Interpretability</h4>
+            </div>
+            <p class="text-white/80 leading-relaxed mb-4">
+              AI systems, especially deep neural networks, often function as "black boxes" 
+              where we can't understand how they make decisions.
+            </p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fas fa-question-circle text-blue-400 mr-2"></i>
+                <span>Understanding model reasoning</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-question-circle text-blue-400 mr-2"></i>
+                <span>Detecting and preventing bias</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-card rounded-2xl p-8 card-hover">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mr-4">
+                <i class="fas fa-chart-line text-2xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-bold">Capability Control</h4>
+            </div>
+            <p class="text-white/80 leading-relaxed mb-4">
+              As AI systems become more capable, how do we maintain meaningful human oversight 
+              and control over their actions and decisions?
+            </p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fas fa-user-shield text-green-400 mr-2"></i>
+                <span>Human oversight mechanisms</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-user-shield text-green-400 mr-2"></i>
+                <span>Containment and monitoring</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-card rounded-2xl p-8 card-hover">
+            <div class="flex items-center mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mr-4">
+                <i class="fas fa-globe text-2xl text-white"></i>
+              </div>
+              <h4 class="text-2xl font-bold">Robustness</h4>
+            </div>
+            <p class="text-white/80 leading-relaxed mb-4">
+              Ensuring AI systems perform reliably across diverse conditions, including 
+              situations they weren't specifically trained for.
+            </p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center">
+                <i class="fas fa-bug text-red-400 mr-2"></i>
+                <span>Adversarial attacks and defenses</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-bug text-red-400 mr-2"></i>
+                <span>Distribution shift and generalization</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="py-20 bg-gradient-to-r from-navy/90 to-deep-blue/90">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Why AI Safety Matters</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-8">
+          <div class="timeline-item">
+            <div class="info-card rounded-2xl p-6">
+              <h4 class="text-xl font-bold mb-3 text-teal">Near-term Impacts</h4>
+              <p class="text-white/80 leading-relaxed">
+                AI systems are already being deployed in critical areas like healthcare, transportation, 
+                and criminal justice. Ensuring these systems are safe and fair is crucial for 
+                preventing harm today.
+              </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="info-card rounded-2xl p-6">
+              <h4 class="text-xl font-bold mb-3 text-emerald">Medium-term Considerations</h4>
+              <p class="text-white/80 leading-relaxed">
+                As AI becomes more autonomous and capable, the potential for both positive 
+                and negative impacts grows. We need robust safety measures to maximize benefits 
+                while minimizing risks.
+              </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="info-card rounded-2xl p-6">
+              <h4 class="text-xl font-bold mb-3 text-sage">Long-term Futures</h4>
+              <p class="text-white/80 leading-relaxed">
+                Advanced AI systems could fundamentally transform society. Working on AI safety 
+                now helps ensure that transformation is positive and aligned with human flourishing.
+              </p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="info-card rounded-2xl p-6">
+              <h4 class="text-xl font-bold mb-3 text-mint">Global Coordination</h4>
+              <p class="text-white/80 leading-relaxed">
+                AI safety requires international cooperation and coordination. Building a community 
+                of researchers and practitioners helps ensure safety considerations are integrated 
+                into AI development worldwide.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="py-20 bg-gradient-to-l from-deep-blue/90 to-navy/90">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h3 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Learn More</h3>
+        <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+        <div class="info-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-book text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-4">Essential Reading</h4>
+          <ul class="text-white/80 text-sm space-y-2">
+            <li>• Stuart Russell - "Human Compatible"</li>
+            <li>• Nick Bostrom - "Superintelligence"</li>
+            <li>• AI Safety research papers</li>
+          </ul>
+        </div>
+        
+        <div class="info-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-laptop-code text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-4">Online Courses</h4>
+          <ul class="text-white/80 text-sm space-y-2">
+            <li>• AGI Safety Fundamentals</li>
+            <li>• AI Safety reading groups</li>
+            <li>• Machine Learning courses</li>
+          </ul>
+        </div>
+        
+        <div class="info-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-2xl text-white"></i>
+          </div>
+          <h4 class="text-lg font-bold text-center mb-4">Join the Community</h4>
+          <ul class="text-white/80 text-sm space-y-2">
+            <li>• Durham AISI reading groups</li>
+            <li>• AI Safety conferences</li>
+            <li>• Online forums and discussions</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <p class="text-xl mb-8 leading-relaxed">
+          Ready to dive deeper into AI safety? Join our community and start making a difference.
+        </p>
+        <a href="/get-involved/" class="inline-block bg-gradient-to-r from-teal to-emerald hover:from-emerald hover:to-mint text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+          Get Involved
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .info-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+  }
+  
+  .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #14b8a6, #10b981);
+    border-radius: 50%;
+  }
+  
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1.25rem;
+    width: 2px;
+    height: calc(100% - 0.75rem);
+    background: linear-gradient(180deg, #14b8a6, transparent);
+  }
+  
+  .timeline-item:last-child::after {
+    display: none;
+  }
+</style>

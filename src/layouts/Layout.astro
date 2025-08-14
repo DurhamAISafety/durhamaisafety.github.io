@@ -1,0 +1,265 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Durham AI Safety Initiative (AISI) is a student-led organization at Durham University dedicated to advancing AI safety research, education, and community engagement." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://durhamaisafety.netlify.app/images/AIS-logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://durhamaisafety.netlify.app/images/AIS-logo.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <title>{title}</title>
+    
+    <!-- Import Tailwind styles -->
+    <style>
+      @import '../styles/global.css';
+    </style>
+  </head>
+  <body class="font-inter text-white min-h-screen" style="background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #0891b2 100%);">
+    <!-- Header Navigation -->
+    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50" style="border-bottom: 1px solid rgba(20, 184, 166, 0.2);">
+      <div class="container mx-auto px-6 py-4">
+        <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
+          <a href="/home/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
+            <img src="/images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
+            <div>
+              <h1 class="text-2xl lg:text-3xl font-bold text-white">
+                {Astro.url.pathname === '/home/' ? 
+                  <>Durham <span class="gradient-text">AI Safety</span> Initiative</> :
+                  'Durham AISI'
+                }
+              </h1>
+            </div>
+          </a>
+          
+          <div class="flex gap-6">
+            <a href="/home/" class="nav-link text-lg font-medium text-white hover:text-teal transition-colors">Home</a>
+            <a href="/home/#about" class="nav-link text-lg font-medium text-white hover:text-teal transition-colors">About Us</a>
+            <a href="/home/#events" class="nav-link text-lg font-medium text-white hover:text-teal transition-colors">Events</a>
+            
+            <div class="dropdown">
+              <a href="#" class="nav-link text-lg font-medium text-white hover:text-teal transition-colors dropdown-toggle">
+                More <i class="fas fa-chevron-down text-sm"></i>
+              </a>
+              <div class="dropdown-content">
+                <a href="/our-team/">Our Team</a>
+                <a href="/programs/">Programs</a>
+                <a href="/research/">Research</a>
+                <a href="/what-is-ai-safety/">What is AI Safety?</a>
+                <a href="/get-involved/">Get Involved</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/30 backdrop-blur py-12" style="border-top: 1px solid rgba(20, 184, 166, 0.2);">
+      <div class="container mx-auto px-6 text-center">
+        <div class="flex justify-center gap-8 mb-8">
+          <a href="https://www.instagram.com/ais_durham" 
+             aria-label="Instagram"
+             class="text-3xl text-white hover:text-teal transition-colors">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://linktr.ee/aisdurham" 
+             aria-label="Linktree"
+             class="text-3xl text-white hover:text-teal transition-colors">
+            <i class="fas fa-link"></i>
+          </a>
+        </div>
+        
+        <div class="text-lg text-white/80 mb-3">
+          Durham AI Safety Initiative
+        </div>
+        
+        <div class="mb-8">
+          <p class="text-lg mb-2">
+            <a href="mailto:aisdurham@googlegroups.com" 
+               class="text-emerald hover:text-mint font-medium transition-colors">
+              aisdurham@googlegroups.com
+            </a>
+          </p>
+          <p class="text-base text-white/80">
+            Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
+          </p>
+        </div>
+        
+        <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
+          <p class="mb-2">
+            Durham AI Safety Initiative is a registered student society with Durham Students' Union.
+          </p>
+          <p class="mb-2">
+            Durham Students' Union is registered in England as a company limited by guarantee (07689815) 
+            and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      /* Ensure no white backgrounds or borders */
+      * {
+        box-sizing: border-box;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #0891b2 100%);
+        min-height: 100vh;
+      }
+      
+      /* Global styles */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, #14b8a6, #0891b2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* Custom color classes that work with our CSS variables */
+      .hover\:text-teal:hover {
+        color: #14b8a6 !important;
+      }
+      
+      .text-emerald {
+        color: #10b981 !important;
+      }
+      
+      .hover\:text-mint:hover {
+        color: #6ee7b7 !important;
+      }
+      
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(90deg, #14b8a6, #10b981);
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(14, 74, 92, 0.95);
+        backdrop-filter: blur(10px);
+        min-width: 200px;
+        border-radius: 0.75rem;
+        border: 1px solid rgba(20, 184, 166, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        overflow: hidden;
+      }
+      
+      .dropdown-content a {
+        display: block;
+        padding: 12px 20px;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+      }
+      
+      .dropdown-content a:last-child {
+        border-bottom: none;
+      }
+      
+      .dropdown-content a:hover {
+        background: rgba(20, 184, 166, 0.2);
+        color: #14b8a6;
+        padding-left: 25px;
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .dropdown-toggle i {
+        transition: transform 0.3s ease;
+      }
+      
+      .dropdown:hover .dropdown-toggle i {
+        transform: rotate(180deg);
+      }
+      
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
+      }
+    </style>
+  </body>
+</html>

@@ -1,40 +1,31 @@
-# Jekyll build artifacts
-_site/
-.jekyll-cache/
-.sass-cache/
-.jekyll-metadata
+# build output
+dist/
+# generated types
+.astro/
 
-# Ruby / Bundler
-vendor/bundle/
-.bundle/
-
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-.Spotlight-V100
-.Trashes
-._*
-
-# Node (if ever used locally)
+# dependencies
 node_modules/
 
-# Editors/IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-.history/
-.env.local
-.env.*.local
-
-# Logs
-*.log
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Coverage and test artifacts
-coverage/
-tmp/
+# environment variables
+.env
+.env.production
 
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# Jekyll specific
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/

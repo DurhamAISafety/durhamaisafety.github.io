@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+/* Define custom CSS variables for our colors */
+:root {
+  --color-ocean-blue: #0891b2;
+  --color-deep-blue: #0e4a5c;
+  --color-navy: #1e3a8a;
+  --color-teal: #14b8a6;
+  --color-emerald: #10b981;
+  --color-sage: #84cc16;
+  --color-mint: #6ee7b7;
+}
+
+/* Custom classes using CSS variables */
+.gradient-text {
+  background: linear-gradient(to right, var(--color-teal), var(--color-emerald));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.text-mint {
+  color: var(--color-mint);
+}
+
+.text-emerald {
+  color: var(--color-emerald);
+}
+
+.text-teal {
+  color: var(--color-teal);
+}
+
+.text-ocean-blue {
+  color: var(--color-ocean-blue);
+}
+
+.text-deep-blue {
+  color: var(--color-deep-blue);
+}
+
+/* Calendar specific styles */
+.calendar-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid var(--color-teal);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.calendar-container {
+  position: relative;
+}
+
+.calendar-iframe {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.calendar-iframe.loaded {
+  opacity: 1;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(to right, var(--color-teal), var(--color-emerald));
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  border: none;
+  cursor: pointer;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: scale(1.1);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #14b8a6, #0891b2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(14, 74, 92, 0.95);
+  backdrop-filter: blur(10px);
+  min-width: 200px;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background: rgba(20, 184, 166, 0.2);
+  color: #14b8a6;
+  padding-left: 25px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdown-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-toggle i {
+  transform: rotate(180deg);
+}
