@@ -35,6 +35,11 @@
             scroll-behavior: smooth;
         }
         
+        /* Smooth section transition */
+        .section-transition {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%);
+        }
+        
         /* Custom animations and transitions */
         .gradient-text {
             background: linear-gradient(135deg, #14b8a6, #0891b2);
@@ -224,7 +229,7 @@
 </head>
 <body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
     <!-- Header -->
-    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
         <div class="container mx-auto px-6 py-4">
             <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
                 <a href="/home/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
@@ -262,12 +267,12 @@
             <div class="absolute inset-0 bg-black/20"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
                 <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
-                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed">
-                        <span class="gradient-text">Durham students and academics for </span><span class="text-mint italic font-medium">reducing catastrophic risks from advanced AI</span>
+                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed drop-shadow-lg">
+                        <span class="gradient-text">Durham students and academics for </span><span class="text-mint italic font-medium drop-shadow-lg">reducing catastrophic risks from advanced AI</span>
                     </h2>
                     
-                    <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8">
-                        <span class="font-semibold text-emerald">Whatever your expertise,</span> 
+                    <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8 drop-shadow-lg">
+                        <span class="font-semibold text-emerald drop-shadow-lg">Whatever your expertise,</span> 
                         you can contribute to the conversation and make a difference.
                     </p>
                     
@@ -284,59 +289,59 @@
         </section>
 
         <!-- About Us Section -->
-        <section id="about" class="py-24 bg-gradient-to-r from-deep-blue/90 to-navy/90">
-            <div class="container mx-auto px-6">
+        <section id="about" class="py-24 relative section-transition">
+            <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">About Us</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">About Us</h2>
                     <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
                 </div>
                 
                 <div class="max-w-5xl mx-auto">
                     <div class="grid gap-8">
                         <!-- Main description -->
-                        <p class="text-lg md:text-xl leading-relaxed mb-6 text-center"> 
+                        <p class="text-lg md:text-xl leading-relaxed mb-6 text-center text-white drop-shadow"> 
                             We are a student-led initiative that aims to empower students and academics to reduce risk from advanced AI, by:
                         </p>
                         
                         <!-- Three pillars -->
                         <div class="grid md:grid-cols-3 gap-6">
-                            <div class="bg-gradient-to-br from-teal/20 to-emerald/20 backdrop-blur rounded-2xl p-6 card-hover border border-teal/30">
+                            <div class="bg-gradient-to-br from-teal/30 to-emerald/30 backdrop-blur rounded-2xl p-6 card-hover border border-teal/50">
                                 <div class="text-2xl mb-4 text-center">🎯</div>
-                                <h3 class="text-xl font-bold text-teal mb-4 text-center">Raising Awareness</h3>
-                                <p class="text-lg leading-relaxed text-center">
+                                <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Raising Awareness</h3>
+                                <p class="text-lg leading-relaxed text-center text-white drop-shadow">
                                     Through discussion groups and speaker events
                                 </p>
                             </div>
                             
-                            <div class="bg-gradient-to-br from-emerald/20 to-sage/20 backdrop-blur rounded-2xl p-6 card-hover border border-emerald/30">
+                            <div class="bg-gradient-to-br from-emerald/30 to-sage/30 backdrop-blur rounded-2xl p-6 card-hover border border-emerald/50">
                                 <div class="text-2xl mb-4 text-center">🛠️</div>
-                                <h3 class="text-xl font-bold text-emerald mb-4 text-center">Upskilling Members</h3>
-                                <p class="text-lg leading-relaxed text-center">
+                                <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Upskilling Members</h3>
+                                <p class="text-lg leading-relaxed text-center text-white drop-shadow">
                                     In safety techniques through workshops and 1-1 support
                                 </p>
                             </div>
                             
-                            <div class="bg-gradient-to-br from-ocean-blue/20 to-teal/20 backdrop-blur rounded-2xl p-6 card-hover border border-ocean-blue/30">
+                            <div class="bg-gradient-to-br from-ocean-blue/30 to-teal/30 backdrop-blur rounded-2xl p-6 card-hover border border-ocean-blue/50">
                                 <div class="text-2xl mb-4 text-center">🤝</div>
-                                <h3 class="text-xl font-bold text-ocean-blue mb-4 text-center">Fostering Community</h3>
-                                <p class="text-lg leading-relaxed text-center">
+                                <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Fostering Community</h3>
+                                <p class="text-lg leading-relaxed text-center text-white drop-shadow">
                                     For high-quality discussion, support and connections to the wider field of AI safety
                                 </p>
                             </div>
                         </div>
                         
                         <!-- Achievements -->
-                        <div class="bg-gradient-to-r from-deep-blue/20 to-navy/20 backdrop-blur rounded-2xl p-8 card-hover border border-mint/30">
+                        <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8 card-hover border border-mint/50">
                             <div class="text-center">
-                                <h3 class="text-2xl font-bold gradient-text mb-6">Our Impact</h3>
-                                <p class="text-lg md:text-xl leading-relaxed">
+                                <h3 class="text-2xl font-bold gradient-text mb-6 drop-shadow-lg">Our Impact</h3>
+                                <p class="text-lg md:text-xl leading-relaxed text-white drop-shadow">
                                     Our members have published in top AI and law conferences, participated in MATS and gone on to study AI ethics at Cambridge.
                                 </p>
                             </div>
                         </div>
                         
                         <!-- Additional context -->
-                        <p class="text-lg md:text-xl leading-relaxed text-center mt-8">
+                        <p class="text-lg md:text-xl leading-relaxed text-center mt-8 text-white drop-shadow">
                             Whether you're a beginner curious about AI safety or an experienced researcher, you'll find a welcoming environment to learn, collaborate, and make a difference in ensuring AI development aligns with human values.
                         </p>
                     </div>
@@ -345,15 +350,16 @@
         </section>
 
         <!-- Events Section -->
-        <section id="events" class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
-            <div class="container mx-auto px-6">
+        <section id="events" class="py-20 relative">
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Our Events</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">Our Events</h2>
                     <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
                 </div>
                 
                 <div class="max-w-5xl mx-auto">
-                    <div class="bg-white/10 backdrop-blur rounded-2xl p-4 border border-teal/20 card-hover calendar-container">
+                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-teal/40 card-hover calendar-container">
                         <!-- Loading state -->
                         <div id="calendar-loading" class="calendar-loading">
                             <div class="text-center">
@@ -373,7 +379,7 @@
                             </iframe>
                         </div>
                     </div>
-                    <p class="text-center text-lg mt-8 text-mint font-medium">
+                    <p class="text-center text-lg mt-8 text-white font-medium drop-shadow-lg">
                         Don't miss out on our upcoming activities!
                     </p>
                 </div>
@@ -382,8 +388,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20">
-        <div class="container mx-auto px-6 text-center">
+    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20 relative">
+        <div class="container mx-auto px-6 text-center relative z-10">
             <div class="flex justify-center gap-8 mb-8">
                 <a href="https://www.instagram.com/ais_durham" 
                    class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
@@ -422,6 +428,7 @@
                 </p>
             </div>
         </div>
+    </footer>
     <!-- Back to top button -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
