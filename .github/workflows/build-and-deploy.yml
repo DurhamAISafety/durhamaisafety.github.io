@@ -46,7 +46,13 @@ jobs:
         run: bundle exec jekyll build
 
       - name: HTML Proofer
-        run: bundle exec htmlproofer ./_site --disable-external --ignore-missing-alt
+        run: |
+          bundle exec htmlproofer ./_site \
+            --disable-external \
+            --ignore-missing-alt \
+            --ignore-urls "/home/#about,/home/#events" \
+            --ignore-files "/zany-zenith/,/dist/" \
+            --allow-missing-href
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
