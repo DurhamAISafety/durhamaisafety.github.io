@@ -29,6 +29,7 @@ google_site_verification: # Add your Google Search Console verification code
 markdown: kramdown
 highlighter: rouge
 theme: minima
+permalink: pretty
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -37,23 +38,23 @@ plugins:
 # Navigation (for automatic menu generation)
 nav_pages:
   - title: "Home"
-    url: "/"
+    url: "/home/"
   - title: "About Us"
-    url: "/#about"
+    url: "/home/#about"
   - title: "Events"
-    url: "/#events"
+    url: "/home/#events"
 
 dropdown_pages:
   - title: "Our Team"
-    url: "/our-team.html"
+    url: "/our-team/"
   - title: "Programs"
-    url: "/programs.html"
+    url: "/programs/"
   - title: "Research"
-    url: "/research.html"
+    url: "/research/"
   - title: "What is AI Safety?"
-    url: "/what-is-ai-safety.html"
+    url: "/what-is-ai-safety/"
   - title: "Get Involved"
-    url: "/get-involved.html"
+    url: "/get-involved/"
 
 # Content Collections
 collections:
