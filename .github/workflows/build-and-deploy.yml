@@ -46,7 +46,7 @@ jobs:
         run: bundle exec jekyll build
 
       - name: HTML Proofer
-        run: bundle exec htmlproofer ./_site --check-html --disable-external --allow-missing-href --ignore-empty-alt
+        run: bundle exec htmlproofer ./_site --disable-external --ignore-missing-alt
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-# Keep Ruby version aligned with CI and GitHub Pages
-ruby "~> 3.2.0"
+# Keep Ruby version compatible with local dev and CI
+ruby ">= 3.2.0"
 
 # Use the GitHub Pages meta-gem to match the Pages build environment
 # This brings in Jekyll and the supported plugins with compatible versions
