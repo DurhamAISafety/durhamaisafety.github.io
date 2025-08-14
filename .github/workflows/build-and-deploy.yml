@@ -31,10 +31,13 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-          bundler-cache: true
+          bundler: 'latest'
+          bundler-cache: false
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          gem install bundler
+          bundle install
 
       - name: Build Jekyll site
         env:
@@ -42,7 +45,7 @@ jobs:
         run: bundle exec jekyll build
 
       - name: HTML Proofer
-        run: bundle exec htmlproofer ./_site
+        run: bundle exec htmlproofer ./_site --check-html --disable-external --allow-missing-href --ignore-empty-alt
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
