@@ -2,46 +2,47 @@ name: Build, Test, and Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 permissions:
   contents: read
   pages: write
+  id-token: write
 
-      - name: Setup Ruby 💎
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
           bundler: 'latest'
 
-      - name: Build Jekyll site �
+      - name: Build Jekyll site
         env:
           JEKYLL_ENV: production
         run: bundle exec jekyll build --verbose
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-    - name: Setup Ruby 💎
-        uses: ruby/setup-ruby@v1
-        with:
-      ruby-version: '3.2'
-          bundler-cache: true
-      bundler: 'latest'
-
-      - name: Build Jekyll site �
-        env:
-          JEKYLL_ENV: production
-        run: bundle exec jekyll build --verbose
-
-      - name: HTML Proofer 🧪
-        # Keep link checking quick & reliable per .htmlproofer.yml
+      - name: HTML Proofer
         run: bundle exec htmlproofer ./_site --config .htmlproofer.yml
 
-      - name: Upload artifact 📦
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
@@ -51,63 +52,9 @@ permissions:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: Build, Test, and Deploy
-
-      on:
-        push:
-          branches:
-            - main
-        pull_request:
-          branches:
-            - main
-
-      permissions:
-        contents: read
-        pages: write
-        id-token: write
-
-      concurrency:
-        group: pages
-        cancel-in-progress: true
-
-      jobs:
-        build:
-          runs-on: ubuntu-latest
-          steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Setup Pages
-              uses: actions/configure-pages@v5
-
-            - name: Setup Ruby
-              uses: ruby/setup-ruby@v1
-              with:
-                ruby-version: '3.2'
-                bundler-cache: true
-                bundler: 'latest'
-
-            - name: Build Jekyll site
-              env:
-                JEKYLL_ENV: production
-              run: bundle exec jekyll build --verbose
-
-            - name: HTML Proofer
-              run: bundle exec htmlproofer ./_site --config .htmlproofer.yml
-
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                path: ./_site
-
-        deploy:
-          if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-          needs: build
-          runs-on: ubuntu-latest
-          environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-          steps:
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
