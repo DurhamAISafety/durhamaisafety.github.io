@@ -1,18 +1,16 @@
 source "https://rubygems.org"
 
-# Jekyll and GitHub Pages
+# Keep Ruby version aligned with CI and local dev
+ruby "3.1"
+
+# Use the GitHub Pages meta-gem to match the Pages build environment
+# This brings in Jekyll and the supported plugins with compatible versions
 gem "github-pages", group: :jekyll_plugins
 
-# Jekyll plugins
-group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
-  gem "jekyll-sitemap"
-  gem "jekyll-seo-tag"
-end
-
-# Development dependencies
-group :development do
-  gem "webrick" # Required for Ruby 3.0+
+# Development & test dependencies
+group :development, :test do
+  gem "webrick"          # Required for `jekyll serve` on Ruby 3+
+  gem "html-proofer", "~> 5.0" # HTML linting in CI and locally
 end
 
 # Windows and JRuby support (only include if developing on those platforms)

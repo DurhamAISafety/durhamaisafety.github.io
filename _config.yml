@@ -96,6 +96,8 @@ exclude:
   - package-lock.json
   - gulpfile.js
   - .DS_Store
+  - public/
+  - src/
 
 # Include hidden files/folders (if needed)
 include:
@@ -127,27 +129,8 @@ organization:
     - "https://www.instagram.com/ais_durham"
     - "https://linktr.ee/aisdurham"
 # --------------
-#
-# If you wish to use the gem-version of Minima with or without a Gemfile, use
-#   the following setting:
-theme: minima
-#
-# **OR** if you wish to use the theme directly from the GitHub repository by
-#   bypassing a Gemfile, use the following setting instead.
-#   It is best that you lock to a particular commit and update if uptream changes
-#   do not affect your site adversely.
-# remote_theme: jekyll/minima@d4d779a
-#
-# Minima requires the following plugins:
-plugins:
- - jekyll-feed
- - jekyll-seo-tag
-#
-# Uncomment the following setting if you wish to disable deprecation warnings
-#   from newer versions of sass converter. Adapt as required.
-# sass:
-#   quiet_deps: true
-#   silence_deprecations: [import]
+## Minima theme is enabled above via `theme: minima` and the required plugins
+## are included in the `plugins` list already.
 
 
 # Minima-specific settings (applicable to Minima v3 and above only)

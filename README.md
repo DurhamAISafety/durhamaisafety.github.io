@@ -73,16 +73,21 @@ Edit `_config.yml` to update:
 ## Development Setup
 
 ### Local Development
-1. Install Jekyll: `gem install bundler jekyll`
-2. Clone the repository
-3. Run `bundle install` (if Gemfile exists)
-4. Run `bundle exec jekyll serve` or `jekyll serve`
+Prereqs: Ruby 3.1.x (see `.ruby-version`). Use rbenv/asdf to install the right version.
+
+1. Install Ruby toolchain (macOS): Xcode CLT, then a Ruby version manager (rbenv/asdf)
+2. Install Jekyll toolchain: `gem install bundler jekyll`
+3. Install deps: `bundle install`
+4. Serve locally: `bundle exec jekyll serve`
 5. Visit `http://localhost:4000`
 
-### GitHub Pages Deployment
-- Push changes to the `main` branch
-- GitHub Pages automatically builds and deploys the site
-- Changes may take 5-10 minutes to appear
+Optional: run link checks locally after a build
+`bundle exec htmlproofer ./_site --config .htmlproofer.yml`
+
+### CI/CD (GitHub Actions + Pages)
+- Pull Requests: build the site and run HTML Proofer; failures block merge
+- Main branch: on push, the site is built, validated, and deployed via GitHub Pages
+- Workflow lives in `.github/workflows/build-and-deploy.yml`
 
 ## Best Practices
 
