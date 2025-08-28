@@ -16,6 +16,8 @@ function initializeCommonFeatures() {
     initializeFormHandling();
     initializeBackToTop();
     initializeAnalytics();
+    // Animate elements as they enter the viewport
+    initializeScrollAnimations();
 }
 
 /**

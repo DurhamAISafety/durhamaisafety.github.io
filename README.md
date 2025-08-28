@@ -122,6 +122,11 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 - Validate YAML front matter syntax
 - Ensure all required files are present
 
+## Maintenance & Contributing
+
+- See CONTRIBUTING.md for guidelines on structure, checks, and conventions.
+- CI runs builds and link checks on every PR and push to `main`.
+
 ## Future Improvements
 
 ### Recommended Enhancements

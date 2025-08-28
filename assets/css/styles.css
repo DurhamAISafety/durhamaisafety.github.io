@@ -305,6 +305,12 @@ body {
     box-shadow: var(--shadow-card-hover);
 }
 
+/* Team card helper */
+.team-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(20, 184, 166, 0.25);
+}
+
 /* Grid layouts */
 .grid {
     display: grid;

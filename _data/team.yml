@@ -3,40 +3,25 @@
 # To use this, update the our-team.html page to loop through this data
 
 leadership:
-  - name: "President"
-    role: "Society Leader"
+  - name: "Theo"
+    role: "Co-President"
     description: "Leading the society's vision and coordinating our AI safety initiatives across Durham University."
     icon: "fas fa-user"
     color: "teal-emerald"
     
-  - name: "Vice President"
-    role: "Operations & Events"
+  - name: "Eve"
+    role: "Co-President & Treasurer"
     description: "Organizing events, workshops, and managing day-to-day operations of the society."
     icon: "fas fa-users"
     color: "emerald-sage"
     
-  - name: "Research Lead"
-    role: "Research Coordination"
+  - name: "Quinn"
+    role: "Co-President & Secretary"
     description: "Coordinating research projects and connecting members with AI safety research opportunities."
     icon: "fas fa-chart-line"
     color: "ocean-blue-warm-blue"
-
-  - name: "Treasurer"
-    role: "Financial Management"
-    icon: "fas fa-dollar-sign"
-    color: "mint-teal"
     
-  - name: "Secretary"
-    role: "Documentation & Records"
-    icon: "fas fa-pen"
-    color: "sage-emerald"
-    
-  - name: "Outreach Lead"
-    role: "Community & Partnerships"
-    icon: "fas fa-bullhorn"
-    color: "warm-blue-navy"
-    
-  - name: "Social Media"
-    role: "Digital Presence"
+  - name: "Bella"
+    role: "Social Media Manager"
     icon: "fas fa-share-alt"
     color: "teal-ocean-blue"

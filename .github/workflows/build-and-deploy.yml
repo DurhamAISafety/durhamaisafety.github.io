@@ -32,13 +32,9 @@ jobs:
         with:
           ruby-version: '3.2'
           bundler: 'latest'
-          bundler-cache: false
+          bundler-cache: true
 
-      - name: Delete old Gemfile.lock and install dependencies
-        run: |
-          rm -f Gemfile.lock
-          gem install bundler
-          bundle install
+      # Dependencies are installed via bundler-cache above
 
       - name: Build Jekyll site
         env:
@@ -46,13 +42,7 @@ jobs:
         run: bundle exec jekyll build
 
       - name: HTML Proofer
-        run: |
-          bundle exec htmlproofer ./_site \
-            --disable-external \
-            --ignore-missing-alt \
-            --ignore-urls "/home/#about,/home/#events" \
-            --ignore-files "/zany-zenith/,/dist/" \
-            --allow-missing-href
+        run: bundle exec htmlproofer ./_site --config ./.htmlproofer.yml
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,428 +1,65 @@
 ---
-layout: none
+layout: default
 permalink: /our-team/
 title: "Our Team - Durham AISI"
+description: "Meet the leadership team of the Durham AI Safety Initiative."
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team - Durham AISI</title>
-    <link rel="icon" type="image/png" href="../images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'ocean-blue': '#0891b2',
-                        'deep-blue': '#0e4a5c',
-                        'teal': '#14b8a6',
-                        'emerald': '#10b981',
-                        'sage': '#84cc16',
-                        'mint': '#6ee7b7',
-                        'warm-blue': '#3b82f6',
-                        'navy': '#1e3a8a'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #14b8a6, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #14b8a6, #10b981);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(14, 74, 92, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 200px;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            overflow: hidden;
-        }
-        
-        .dropdown-content a {
-            display: block;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background: rgba(20, 184, 166, 0.2);
-            color: #14b8a6;
-            padding-left: 25px;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .dropdown-toggle i {
-            transition: transform 0.3s ease;
-        }
-        
-        .dropdown:hover .dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-        
-        .team-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 184, 166, 0.3);
-        }
-        
-        /* Back to top button styles */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #14b8a6, #10b981);
-            color: white;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
-        
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
-        }
-    </style>
-</head>
-<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
-    <!-- Header -->
-    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
-        <div class="container mx-auto px-6 py-4">
-            <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
-                <a href="/home/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                    <img src="../images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
-                    <div>
-                        <h1 class="text-2xl lg:text-3xl font-bold">Durham AISI</h1>
-                    </div>
-                </a>
-                <div class="flex gap-8">
-                    <a href="/home/" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
-                    <a href="/home/#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
-                    <a href="/home/#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link text-lg font-medium hover:text-teal transition-colors dropdown-toggle">
-                            More <i class="fas fa-chevron-down text-sm"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="/our-team/">Our Team</a>
-                            <a href="/programs/">Programs</a>
-                            <a href="/research/">Research</a>
-                            <a href="/what-is-ai-safety/">What is AI Safety?</a>
-                            <a href="/get-involved/">Get Involved</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+<section class="hero">
+    <div class="hero-content container">
+        <h2 class="text-4xl md:text-6xl font-bold mb-4">Leadership Team</h2>
+        <div class="section-divider"></div>
+    </div>
+    <div class="hidden absolute inset-0 bg-black/20"></div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
+            {% assign top_roles = site.data.team.leadership | slice: 0,4 %}
+            {% for person in top_roles %}
+                        <div class="card team-card text-center animate-on-scroll">
+                                <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden" aria-hidden="true" style="background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));">
+                                    <i class="{{ person.icon | default: 'fas fa-user' }} text-3xl text-white"></i>
+                                </div>
+                <h4 class="text-xl font-bold mb-2">{{ person.name }}</h4>
+                <p class="text-teal font-semibold mb-3 text-sm">{{ person.role }}</p>
+                {% if person.description %}
+                <p class="text-white/80 text-sm leading-relaxed">
+                    {{ person.description }}
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
         </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">Leadership Team</h2>
-            </div>
-        </section>
-
-        <!-- Leadership Team -->
-        <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
-            <div class="container mx-auto px-6">
-
-
-                <!-- Top Row - 4 cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
-                    <!-- President -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-teal to-emerald rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-president.jpg" alt="President" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-user text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">Alex Johnson</h4>
-                        <p class="text-teal font-semibold mb-3 text-sm">Co-Director</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Leading our society's mission to engage Durham students with AI safety.
-                        </p>
-                    </div>
-                    
-                    <!-- Vice President -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-emerald to-sage rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-vp.jpg" alt="Vice President" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-users text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">Sarah Chen</h4>
-                        <p class="text-emerald font-semibold mb-3 text-sm">Co-Director</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Coordinates events and manages partnerships with research institutions.
-                        </p>
-                    </div>
-                    
-                    <!-- Research Lead -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-research.jpg" alt="Research Lead" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-chart-line text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">Michael Rodriguez</h4>
-                        <p class="text-ocean-blue font-semibold mb-3 text-sm">Co-Director</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Connects members with research opportunities and technical workshops.
-                        </p>
-                    </div>
-
-                    <!-- Treasurer -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-mint to-teal rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-treasurer.jpg" alt="Treasurer" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-dollar-sign text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">Emma Thompson</h4>
-                        <p class="text-mint font-semibold mb-3 text-sm">Social Media Manager</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Manages society finances and funding applications for events.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Bottom Row - 3 cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <!-- Secretary -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-sage to-emerald rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-secretary.jpg" alt="Secretary" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-pen text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">James Wilson</h4>
-                        <p class="text-sage font-semibold mb-3 text-sm">Facilitator</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Maintains meeting records and manages society documentation.
-                        </p>
-                    </div>
-                    
-                    <!-- Outreach Lead -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-warm-blue to-navy rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-outreach.jpg" alt="Outreach Lead" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-bullhorn text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">Lisa Park</h4>
-                        <p class="text-warm-blue font-semibold mb-3 text-sm">Outreach Lead</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Builds partnerships and represents the society externally.
-                        </p>
-                    </div>
-                    
-                    <!-- Social Media -->
-                    <div class="team-card rounded-2xl p-6 card-hover text-center">
-                        <div class="w-24 h-24 bg-gradient-to-br from-teal to-ocean-blue rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-                            <img src="../images/team/placeholder-social.jpg" alt="Social Media Manager" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="w-full h-full flex items-center justify-center" style="display: none;">
-                                <i class="fas fa-share-alt text-3xl text-white"></i>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-white mb-2">David Kim</h4>
-                        <p class="text-teal font-semibold mb-3 text-sm">Secretary</p>
-                        <p class="text-white/80 text-xs leading-relaxed">
-                            Manages online presence and digital community engagement.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        
-
-        <!-- Join Our Team -->
-        <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
-            <div class="container mx-auto px-6 text-center">
-                <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Join Our Team</h3>
-                <p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
-                    We're always looking for passionate individuals to join our mission. Whether you're interested in research, 
-                    event organization, or community outreach, there's a place for you in DAISI.
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {% assign bottom_roles = site.data.team.leadership | slice: 4,3 %}
+            {% for person in bottom_roles %}
+                        <div class="card team-card text-center animate-on-scroll">
+                                <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden" aria-hidden="true" style="background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));">
+                                    <i class="{{ person.icon | default: 'fas fa-user' }} text-3xl text-white"></i>
+                                </div>
+                <h4 class="text-xl font-bold mb-2">{{ person.name }}</h4>
+                <p class="text-teal font-semibold mb-3 text-sm">{{ person.role }}</p>
+                {% if person.description %}
+                <p class="text-white/80 text-sm leading-relaxed">
+                    {{ person.description }}
                 </p>
-                <a href="/get-involved/" class="inline-block bg-gradient-to-r from-teal to-emerald hover:from-emerald hover:to-mint text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Get Involved
-                </a>
+                {% endif %}
             </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex justify-center gap-8 mb-8">
-                <a href="https://www.instagram.com/ais_durham" 
-                   class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/aisdurham" 
-                   class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Linktree">
-                    <i class="fas fa-link"></i>
-                </a>
-            </div>
-            <div class="text-lg text-white/80 mb-3">
-                Durham AI Safety Initiative
-            </div>
-            <div class="mb-8">
-                <p class="text-lg text-white mb-2">
-                    <a href="mailto:aisdurham@googlegroups.com" class="text-emerald hover:text-mint font-medium transition-colors">
-                        aisdurham@googlegroups.com
-                    </a>
-                </p>
-                <p class="text-base text-white/80">
-                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
-                </p>
-            </div>
-            <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
-                <p class="mb-2">
-                    Durham AI Safety Initiative is a registered student society with Durham Students' Union.
-                </p>
-                <p class="mb-2">
-                    Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
-                </p>
-            </div>
+            {% endfor %}
         </div>
-    </footer>
-    
-    <!-- Back to top button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    </div>
+</section>
 
-    <script>
-        // Back to top button functionality
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        // Scroll to top when button is clicked
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-</body>
-</html>
+<section class="section section-alt-2">
+    <div class="container text-center">
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">Join Our Team</h3>
+        <p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+            We're always looking for passionate individuals to join our mission. Whether you're interested in research,
+            event organization, or community outreach, there's a place for you in DAISI.
+        </p>
+        <a href="{{ '/get-involved/' | relative_url }}" class="btn btn-primary">Get Involved</a>
+    </div>
+</section>
+

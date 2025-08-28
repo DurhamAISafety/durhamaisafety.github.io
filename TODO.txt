@@ -4,4 +4,4 @@ HOME PAGE
 * smooth out gradient background betwen sections (i.e one continuous)
 * add a link from '...student-led...' in about us to 'our-team' page
 
-* add discord
+* add discord (link: https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl)
