@@ -59,7 +59,6 @@
     top: 0;
     z-index: 60;
     box-shadow: 0 2px 10px rgba(220, 38, 38, 0.3);
-    animation: pulse-red 2s infinite;
 }
 
 @keyframes pulse-red {
