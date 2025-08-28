@@ -42,7 +42,16 @@ jobs:
         run: bundle exec jekyll build
 
       - name: HTML Proofer
-        run: bundle exec htmlproofer ./_site --config-file ./.htmlproofer.yml
+        run: |
+          bundle exec htmlproofer ./_site \
+            --checks Links,Images,Scripts,Favicon,OpenGraph \
+            --ignore-urls '/localhost/,/127.0.0.1/,/example.com/' \
+            --ignore-files './_site/assets/js/main.js' \
+            --allow-missing-href \
+            --assume-extension .html \
+            --no-check-external-hash \
+            --disable-external \
+            --log-level :info
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
