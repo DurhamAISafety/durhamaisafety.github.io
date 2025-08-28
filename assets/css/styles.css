@@ -305,11 +305,78 @@ body {
     box-shadow: var(--shadow-card-hover);
 }
 
+/* Bounce animation for hoverable cards */
+@keyframes hover-bounce {
+    0% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    65% { transform: translateY(-6px); }
+    100% { transform: translateY(-8px); }
+}
+
+/* Apply bounce on hover to elements marked as card-hover */
+.card-hover:hover {
+    animation: hover-bounce 0.6s ease-out;
+}
+
 /* Team card helper */
 .team-card {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(20, 184, 166, 0.25);
 }
+
+/* Page-specific card helpers */
+.program-card,
+.research-card,
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+    border-radius: var(--radius-xl);
+}
+
+/* Status badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.status-ongoing {
+    background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+    color: white;
+}
+.status-completed {
+    background: linear-gradient(135deg, var(--color-sage), var(--color-emerald));
+    color: white;
+}
+.status-planning {
+    background: linear-gradient(135deg, var(--color-warm-blue), var(--color-ocean-blue));
+    color: white;
+}
+
+/* Timeline */
+.timeline-item { position: relative; padding-left: 2rem; }
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+    border-radius: 50%;
+}
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1.25rem;
+    width: 2px;
+    height: calc(100% - 0.75rem);
+    background: linear-gradient(180deg, var(--color-teal), transparent);
+}
+.timeline-item:last-child::after { display: none; }
 
 /* Grid layouts */
 .grid {

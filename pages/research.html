@@ -1,588 +1,139 @@
 ---
-layout: none
+layout: default
 permalink: /research/
 title: "Research - Durham AISI"
+description: "Our research initiatives, projects, and opportunities in AI safety."
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research - Durham AISI</title>
-    <link rel="icon" type="image/png" href="../images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'ocean-blue': '#0891b2',
-                        'deep-blue': '#0e4a5c',
-                        'teal': '#14b8a6',
-                        'emerald': '#10b981',
-                        'sage': '#84cc16',
-                        'mint': '#6ee7b7',
-                        'warm-blue': '#3b82f6',
-                        'navy': '#1e3a8a'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #14b8a6, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #14b8a6, #10b981);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(14, 74, 92, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 200px;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            overflow: hidden;
-        }
-        
-        .dropdown-content a {
-            display: block;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background: rgba(20, 184, 166, 0.2);
-            color: #14b8a6;
-            padding-left: 25px;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .dropdown-toggle i {
-            transition: transform 0.3s ease;
-        }
-        
-        .dropdown:hover .dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-        
-        .research-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 184, 166, 0.3);
-        }
-        
-        .status-badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .status-ongoing {
-            background: linear-gradient(135deg, #14b8a6, #10b981);
-            color: white;
-        }
-        
-        .status-completed {
-            background: linear-gradient(135deg, #84cc16, #10b981);
-            color: white;
-        }
-        
-        .status-planning {
-            background: linear-gradient(135deg, #3b82f6, #0891b2);
-            color: white;
-        }
-        
-        /* Back to top button styles */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #14b8a6, #10b981);
-            color: white;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
-        
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
-        }
-    </style>
-</head>
-<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
-    <!-- Header -->
-    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
-        <div class="container mx-auto px-6 py-4">
-            <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
-                <a href="/home/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                    <img src="../images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
-                    <div>
-                        <h1 class="text-2xl lg:text-3xl font-bold">Durham AISI</h1>
-                    </div>
-                </a>
-                <div class="flex gap-8">
-                    <a href="/home/" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
-                    <a href="/home/#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
-                    <a href="/home/#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link text-lg font-medium hover:text-teal transition-colors dropdown-toggle">
-                            More <i class="fas fa-chevron-down text-sm"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="/our-team/">Our Team</a>
-                            <a href="/programs/">Programs</a>
-                            <a href="/research/">Research</a>
-                            <a href="/what-is-ai-safety/">What is AI Safety?</a>
-                            <a href="/get-involved/">Get Involved</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content container">
+    <h2 class="text-4xl md:text-6xl font-bold mb-4">Research</h2>
+    <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+      Our current and upcoming AI safety research initiatives and opportunities
+    </p>
+  </div>
+</section>
+
+<!-- Research Areas -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center mb-12">
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Areas</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="research-card rounded-2xl p-6 card-hover">
+        <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-align-center text-2xl text-white"></i>
         </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">Research</h2>
-                <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-                    Advancing the frontiers of AI safety through collaborative research and innovation
-                </p>
-            </div>
-        </section>
-
-        <!-- Research Areas -->
-        <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Research Areas</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="research-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-align-center text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">AI Alignment</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed">
-                            Ensuring AI systems pursue intended goals and remain beneficial as they become more capable.
-                        </p>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-search text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Interpretability</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed">
-                            Understanding how AI systems make decisions and what they learn from data.
-                        </p>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-shield-alt text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Robustness</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed">
-                            Building AI systems that perform reliably under diverse and challenging conditions.
-                        </p>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-gavel text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">AI Governance</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed">
-                            Developing frameworks for responsible AI development and deployment.
-                        </p>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-sage to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-brain text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Machine Learning Safety</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed">
-                            Addressing safety concerns in current ML systems and training processes.
-                        </p>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-navy rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-microscope text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Empirical Research</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed">
-                            Conducting experiments to test AI safety theories and validate proposed solutions.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Current Projects -->
-        <section class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Current Projects</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <div class="research-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="text-xl font-bold">Neural Network Interpretability</h4>
-                            <span class="status-badge status-ongoing">Ongoing</span>
-                        </div>
-                        <p class="text-white/80 mb-4 leading-relaxed">
-                            Developing new techniques to understand decision-making processes in deep neural networks, 
-                            with applications to computer vision and natural language processing.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-users text-teal mr-2"></i>
-                                <span class="text-sm">6 student researchers</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-calendar text-emerald mr-2"></i>
-                                <span class="text-sm">Sept 2024 - June 2025</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-teal/20 text-teal rounded-full text-xs">Machine Learning</span>
-                            <span class="px-3 py-1 bg-emerald/20 text-emerald rounded-full text-xs">Interpretability</span>
-                            <span class="px-3 py-1 bg-mint/20 text-mint rounded-full text-xs">Deep Learning</span>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="text-xl font-bold">Adversarial Robustness Study</h4>
-                            <span class="status-badge status-ongoing">Ongoing</span>
-                        </div>
-                        <p class="text-white/80 mb-4 leading-relaxed">
-                            Investigating how different training methods affect model robustness to adversarial attacks, 
-                            with focus on practical defense mechanisms.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-users text-ocean-blue mr-2"></i>
-                                <span class="text-sm">4 student researchers</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-calendar text-warm-blue mr-2"></i>
-                                <span class="text-sm">Oct 2024 - May 2025</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-ocean-blue/20 text-ocean-blue rounded-full text-xs">Robustness</span>
-                            <span class="px-3 py-1 bg-warm-blue/20 text-warm-blue rounded-full text-xs">Security</span>
-                            <span class="px-3 py-1 bg-navy/20 text-blue-300 rounded-full text-xs">Adversarial ML</span>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="text-xl font-bold">AI Alignment Mechanisms</h4>
-                            <span class="status-badge status-planning">Planning</span>
-                        </div>
-                        <p class="text-white/80 mb-4 leading-relaxed">
-                            Theoretical and empirical investigation of reward modeling and constitutional AI approaches 
-                            for aligning large language models with human values.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-users text-sage mr-2"></i>
-                                <span class="text-sm">8 student researchers (planned)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-calendar text-emerald mr-2"></i>
-                                <span class="text-sm">Jan 2025 - Aug 2025</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-sage/20 text-sage rounded-full text-xs">Alignment</span>
-                            <span class="px-3 py-1 bg-emerald/20 text-emerald rounded-full text-xs">LLMs</span>
-                            <span class="px-3 py-1 bg-mint/20 text-mint rounded-full text-xs">Ethics</span>
-                        </div>
-                    </div>
-                    
-                    <div class="research-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="text-xl font-bold">AI Safety Benchmarking</h4>
-                            <span class="status-badge status-completed">Completed</span>
-                        </div>
-                        <p class="text-white/80 mb-4 leading-relaxed">
-                            Comprehensive evaluation of existing AI safety benchmarks and development of new metrics 
-                            for measuring progress in AI safety research.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-users text-teal mr-2"></i>
-                                <span class="text-sm">5 student researchers</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-calendar text-emerald mr-2"></i>
-                                <span class="text-sm">Feb 2024 - Nov 2024</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-external-link-alt text-mint mr-2"></i>
-                                <span class="text-sm">Published in AI Safety Workshop</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-teal/20 text-teal rounded-full text-xs">Benchmarking</span>
-                            <span class="px-3 py-1 bg-emerald/20 text-emerald rounded-full text-xs">Evaluation</span>
-                            <span class="px-3 py-1 bg-mint/20 text-mint rounded-full text-xs">Metrics</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Research Opportunities -->
-        <section class="py-20 bg-gradient-to-r from-navy/90 to-deep-blue/90">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Research Opportunities</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="max-w-4xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                        <div class="research-card rounded-2xl p-6 card-hover">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-teal to-emerald rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-graduation-cap text-white"></i>
-                                </div>
-                                <h4 class="text-lg font-bold">Undergraduate Research</h4>
-                            </div>
-                            <p class="text-white/80 text-sm leading-relaxed">
-                                Structured research projects for undergraduates with faculty mentorship and 
-                                opportunities for publication and conference presentation.
-                            </p>
-                        </div>
-                        
-                        <div class="research-card rounded-2xl p-6 card-hover">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-emerald to-sage rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-user-graduate text-white"></i>
-                                </div>
-                                <h4 class="text-lg font-bold">Graduate Collaboration</h4>
-                            </div>
-                            <p class="text-white/80 text-sm leading-relaxed">
-                                Opportunities for graduate students to lead research initiatives and 
-                                collaborate with faculty on cutting-edge AI safety problems.
-                            </p>
-                        </div>
-                        
-                        <div class="research-card rounded-2xl p-6 card-hover">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-handshake text-white"></i>
-                                </div>
-                                <h4 class="text-lg font-bold">Industry Partnerships</h4>
-                            </div>
-                            <p class="text-white/80 text-sm leading-relaxed">
-                                Collaborative projects with AI companies and research institutes, 
-                                providing real-world applications for AI safety research.
-                            </p>
-                        </div>
-                        
-                        <div class="research-card rounded-2xl p-6 card-hover">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-mint to-teal rounded-lg flex items-center justify-center mr-4">
-                                    <i class="fas fa-globe text-white"></i>
-                                </div>
-                                <h4 class="text-lg font-bold">International Collaboration</h4>
-                            </div>
-                            <p class="text-white/80 text-sm leading-relaxed">
-                                Research exchanges and joint projects with AI safety groups at universities 
-                                worldwide, expanding global research networks.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center">
-                        <p class="text-xl mb-8 leading-relaxed">
-                            Interested in contributing to AI safety research? Join our research community and 
-                            help shape the future of safe AI development.
-                        </p>
-                        <a href="/get-involved/" class="inline-block bg-gradient-to-r from-teal to-emerald hover:from-emerald hover:to-mint text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            Join Our Research
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex justify-center gap-8 mb-8">
-                <a href="https://www.instagram.com/ais_durham" 
-                   class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/aisdurham" 
-                   class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Linktree">
-                    <i class="fas fa-link"></i>
-                </a>
-            </div>
-            <div class="text-lg text-white/80 mb-3">
-                Durham AI Safety Initiative
-            </div>
-            <div class="mb-8">
-                <p class="text-lg text-white mb-2">
-                    <a href="mailto:aisdurham@googlegroups.com" class="text-emerald hover:text-mint font-medium transition-colors">
-                        aisdurham@googlegroups.com
-                    </a>
-                </p>
-                <p class="text-base text-white/80">
-                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
-                </p>
-            </div>
-            <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
-                <p class="mb-2">
-                    Durham AI Safety Initiative is a registered student society with Durham Students' Union.
-                </p>
-                <p class="mb-2">
-                    Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
-                </p>
-            </div>
+        <h4 class="text-xl font-bold text-center mb-4">AI Alignment</h4>
+        <p class="text-white/80 text-center text-sm leading-relaxed">Ensuring AI systems pursue intended goals and remain beneficial as they become more capable.</p>
+      </div>
+      <div class="research-card rounded-2xl p-6 card-hover">
+        <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-search text-2xl text-white"></i>
         </div>
-    </footer>
-    
-    <!-- Back to top button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+        <h4 class="text-xl font-bold text-center mb-4">Interpretability</h4>
+        <p class="text-white/80 text-center text-sm leading-relaxed">Understanding how AI systems make decisions and what they learn from data.</p>
+      </div>
+      <div class="research-card rounded-2xl p-6 card-hover">
+        <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-shield-alt text-2xl text-white"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center mb-4">Robustness</h4>
+        <p class="text-white/80 text-center text-sm leading-relaxed">Building AI systems that perform reliably under diverse and challenging conditions.</p>
+      </div>
+      <div class="research-card rounded-2xl p-6 card-hover">
+        <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-gavel text-2xl text-white"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center mb-4">AI Governance</h4>
+        <p class="text-white/80 text-center text-sm leading-relaxed">Developing frameworks for responsible AI development and deployment.</p>
+      </div>
+      <div class="research-card rounded-2xl p-6 card-hover">
+        <div class="w-16 h-16 bg-gradient-to-br from-sage to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-brain text-2xl text-white"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center mb-4">Machine Learning Safety</h4>
+        <p class="text-white/80 text-center text-sm leading-relaxed">Addressing safety concerns in current ML systems and training processes.</p>
+      </div>
+      <div class="research-card rounded-2xl p-6 card-hover">
+        <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-navy rounded-xl flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-microscope text-2xl text-white"></i>
+        </div>
+        <h4 class="text-xl font-bold text-center mb-4">Empirical Research</h4>
+        <p class="text-white/80 text-center text-sm leading-relaxed">Conducting experiments to test AI safety theories and validate solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Back to top button functionality
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        // Scroll to top when button is clicked
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-</body>
-</html>
+<!-- Current Projects -->
+<section class="section section-alt-2">
+  <div class="container">
+    <div class="text-center mb-12">
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Current Projects</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <div class="research-card rounded-2xl p-8 card-hover">
+        <div class="flex items-center justify-between mb-4">
+          <h4 class="text-xl font-bold">Neural Network Interpretability</h4>
+          <span class="status-badge status-ongoing">Ongoing</span>
+        </div>
+        <p class="text-white/80 mb-4 leading-relaxed">Developing techniques to understand decision-making in deep neural networks.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-emerald/20 text-emerald rounded-full text-xs">Interpretability</span>
+          <span class="px-3 py-1 bg-mint/20 text-mint rounded-full text-xs">Deep Learning</span>
+        </div>
+      </div>
+      <div class="research-card rounded-2xl p-8 card-hover">
+        <div class="flex items-center justify-between mb-4">
+          <h4 class="text-xl font-bold">Adversarial Robustness Study</h4>
+          <span class="status-badge status-ongoing">Ongoing</span>
+        </div>
+        <p class="text-white/80 mb-4 leading-relaxed">Investigating how training methods affect model robustness to adversarial attacks.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-ocean-blue/20 text-ocean-blue rounded-full text-xs">Robustness</span>
+          <span class="px-3 py-1 bg-warm-blue/20 text-warm-blue rounded-full text-xs">Security</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Opportunities -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center mb-12">
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
+      <div class="section-divider"></div>
+    </div>
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-teal to-emerald rounded-lg flex items-center justify-center mr-4">
+              <i class="fas fa-graduation-cap text-white"></i>
+            </div>
+            <h4 class="text-lg font-bold">Undergraduate Research</h4>
+          </div>
+          <p class="text-white/80 text-sm leading-relaxed">Structured projects with faculty mentorship and opportunities for publication.</p>
+        </div>
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-emerald to-sage rounded-lg flex items-center justify-center mr-4">
+              <i class="fas fa-user-graduate text-white"></i>
+            </div>
+            <h4 class="text-lg font-bold">Graduate Collaboration</h4>
+          </div>
+          <p class="text-white/80 text-sm leading-relaxed">Lead initiatives and collaborate with faculty on cutting-edge problems.</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <a href="{{ '/get-involved/' | relative_url }}" class="btn btn-primary">Join Our Research</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -60,6 +60,7 @@ dropdown_pages:
 collections:
   team_members:
     output: false
+    sort_by: order
   research_projects:
     output: false
   events:

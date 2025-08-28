@@ -17,7 +17,7 @@ description: "Meet the leadership team of the Durham AI Safety Initiative."
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             {% assign top_roles = site.data.team.leadership | slice: 0,4 %}
             {% for person in top_roles %}
-                        <div class="card team-card text-center animate-on-scroll">
+                        <div class="card team-card text-center animate-on-scroll card-hover">
                                 <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden" aria-hidden="true" style="background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));">
                                     <i class="{{ person.icon | default: 'fas fa-user' }} text-3xl text-white"></i>
                                 </div>
@@ -35,7 +35,7 @@ description: "Meet the leadership team of the Durham AI Safety Initiative."
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {% assign bottom_roles = site.data.team.leadership | slice: 4,3 %}
             {% for person in bottom_roles %}
-                        <div class="card team-card text-center animate-on-scroll">
+                        <div class="card team-card text-center animate-on-scroll card-hover">
                                 <div class="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden" aria-hidden="true" style="background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));">
                                     <i class="{{ person.icon | default: 'fas fa-user' }} text-3xl text-white"></i>
                                 </div>
