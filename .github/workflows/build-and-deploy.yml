@@ -42,7 +42,7 @@ jobs:
         run: bundle exec jekyll build
 
       - name: HTML Proofer
-        run: bundle exec htmlproofer ./_site --config ./.htmlproofer.yml
+        run: bundle exec htmlproofer ./_site --config-file ./.htmlproofer.yml
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

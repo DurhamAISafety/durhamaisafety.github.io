@@ -2,6 +2,7 @@ based on https://stanfordaialignment.org/
 
 HOME PAGE
 * smooth out gradient background betwen sections (i.e one continuous)
+* put some text above the events calendar but below the heading, saying "Check out our programs here" and link to the programs page
 * add a link from '...student-led...' in about us to 'our-team' page
 
 FOOTER
@@ -11,3 +12,4 @@ FOOTER
 PROGRAMS
 * Add a 'find out more and apply' link to some cards
 * Base off of https://www.aisi.dev/education and https://haist.ai/tech-fellowship
+* Use 'data' to store different programs like in team page

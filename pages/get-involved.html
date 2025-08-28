@@ -1,632 +1,271 @@
 ---
-layout: none
+layout: default
 permalink: /get-involved/
 title: "Get Involved - Durham AISI"
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Involved - Durham AISI</title>
-    <link rel="icon" type="image/png" href="../images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'ocean-blue': '#0891b2',
-                        'deep-blue': '#0e4a5c',
-                        'teal': '#14b8a6',
-                        'emerald': '#10b981',
-                        'sage': '#84cc16',
-                        'mint': '#6ee7b7',
-                        'warm-blue': '#3b82f6',
-                        'navy': '#1e3a8a'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #14b8a6, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #14b8a6, #10b981);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(14, 74, 92, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 200px;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            overflow: hidden;
-        }
-        
-        .dropdown-content a {
-            display: block;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background: rgba(20, 184, 166, 0.2);
-            color: #14b8a6;
-            padding-left: 25px;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .dropdown-toggle i {
-            transition: transform 0.3s ease;
-        }
-        
-        .dropdown:hover .dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-        
-        .involvement-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 184, 166, 0.3);
-        }
-        
-        .form-input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            color: white;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #14b8a6;
-            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
-        }
-        
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .checkbox-custom {
-            appearance: none;
-            width: 1.25rem;
-            height: 1.25rem;
-            border: 2px solid rgba(20, 184, 166, 0.5);
-            border-radius: 0.25rem;
-            background: rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .checkbox-custom:checked {
-            background: linear-gradient(135deg, #14b8a6, #10b981);
-            border-color: #14b8a6;
-        }
-        
-        .checkbox-custom:checked::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 0.875rem;
-            font-weight: bold;
-        }
-        
-        /* Back to top button styles */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #14b8a6, #10b981);
-            color: white;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
-        
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
-        }
-    </style>
-</head>
-<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
-    <!-- Header -->
-    <header class="bg-black/20 backdrop-blur-sm sticky top-0 z-50 border-b border-teal/20">
-        <div class="container mx-auto px-6 py-4">
-            <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
-                <a href="/home/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                    <img src="../images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container hero-content">
+        <h2>Get Involved</h2>
+        <p>Join our community and help shape the future of AI safety at Durham University</p>
+    </div>
+</section>
+
+<!-- Ways to Get Involved -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="text-center mb-16">
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">Ways to Get Involved</h3>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="involvement-card card p-6 card-hover text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-calendar-alt text-2xl text-white"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4">Attend Events</h4>
+                <p class="text-white/80 text-sm leading-relaxed mb-4">
+                    Join our weekly reading groups, workshops, and speaker events. Perfect for beginners and experts alike.
+                </p>
+                <div class="text-center">
+                    <span class="text-teal font-semibold">Drop-in friendly</span>
+                </div>
+            </div>
+
+            <div class="involvement-card card p-6 card-hover text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-flask text-2xl text-white"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4">Join Research</h4>
+                <p class="text-white/80 text-sm leading-relaxed mb-4">
+                    Participate in cutting-edge research projects with faculty supervision and publication opportunities.
+                </p>
+                <div class="text-center">
+                    <span class="text-emerald font-semibold">All levels welcome</span>
+                </div>
+            </div>
+
+            <div class="involvement-card card p-6 card-hover text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-users text-2xl text-white"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4">Leadership Roles</h4>
+                <p class="text-white/80 text-sm leading-relaxed mb-4">
+                    Take on leadership positions in organizing events, managing projects, or community outreach.
+                </p>
+                <div class="text-center">
+                    <span class="text-ocean-blue font-semibold">Applications open</span>
+                </div>
+            </div>
+
+            <div class="involvement-card card p-6 card-hover text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-lightbulb text-2xl text-white"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4">Share Ideas</h4>
+                <p class="text-white/80 text-sm leading-relaxed mb-4">
+                    Propose new initiatives, suggest speakers, or share interesting papers with the community.
+                </p>
+                <div class="text-center">
+                    <span class="text-mint font-semibold">Always welcome</span>
+                </div>
+            </div>
+
+            <div class="involvement-card card p-6 card-hover text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-sage to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-handshake text-2xl text-white"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4">Mentorship</h4>
+                <p class="text-white/80 text-sm leading-relaxed mb-4">
+                    Get paired with experienced researchers or mentor newcomers to AI safety.
+                </p>
+                <div class="text-center">
+                    <span class="text-sage font-semibold">Both ways possible</span>
+                </div>
+            </div>
+
+            <div class="involvement-card card p-6 card-hover text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-navy rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-globe text-2xl text-white"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-4">Outreach</h4>
+                <p class="text-white/80 text-sm leading-relaxed mb-4">
+                    Help spread awareness about AI safety through social media, presentations, and community engagement.
+                </p>
+                <div class="text-center">
+                    <span class="text-warm-blue font-semibold">Creative opportunities</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interest Form -->
+<section class="section section-alt-2">
+    <div class="container">
+        <div class="text-center mb-16">
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">Express Your Interest</h3>
+            <div class="section-divider"></div>
+            <p class="text-xl mt-6 max-w-3xl mx-auto">
+                Tell us about your interests and we'll help you find the best way to get involved with Durham AISI.
+            </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <form class="involvement-card card p-8 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <h1 class="text-2xl lg:text-3xl font-bold">Durham AISI</h1>
+                        <label for="firstName" class="block text-sm font-medium mb-2">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Your first name" required>
                     </div>
-                </a>
-                <div class="flex gap-8">
-                    <a href="/home/" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
-                    <a href="/home/#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
-                    <a href="/home/#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link text-lg font-medium hover:text-teal transition-colors dropdown-toggle">
-                            More <i class="fas fa-chevron-down text-sm"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="/our-team/">Our Team</a>
-                            <a href="/programs/">Programs</a>
-                            <a href="/research/">Research</a>
-                            <a href="/what-is-ai-safety/">What is AI Safety?</a>
-                            <a href="/get-involved/">Get Involved</a>
-                        </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium mb-2">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Your last name" required>
                     </div>
                 </div>
-            </nav>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="your.email@durham.ac.uk" required>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="year" class="block text-sm font-medium mb-2">Year of Study</label>
+                        <select id="year" name="year" class="form-input" required>
+                            <option value="">Select year</option>
+                            <option value="1st">1st Year</option>
+                            <option value="2nd">2nd Year</option>
+                            <option value="3rd">3rd Year</option>
+                            <option value="4th">4th Year</option>
+                            <option value="masters">Masters</option>
+                            <option value="phd">PhD</option>
+                            <option value="postdoc">Postdoc</option>
+                            <option value="staff">Staff</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="department" class="block text-sm font-medium mb-2">Department/College</label>
+                        <input type="text" id="department" name="department" class="form-input" placeholder="e.g., Computer Science, Philosophy">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-4">Areas of Interest (check all that apply)</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="interests" value="reading-groups" class="checkbox-custom">
+                            <span>Reading Groups</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="interests" value="research" class="checkbox-custom">
+                            <span>Research Projects</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="interests" value="workshops" class="checkbox-custom">
+                            <span>Workshops</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="interests" value="events" class="checkbox-custom">
+                            <span>Event Organization</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="interests" value="outreach" class="checkbox-custom">
+                            <span>Outreach & Marketing</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="interests" value="leadership" class="checkbox-custom">
+                            <span>Leadership Roles</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="experience" class="block text-sm font-medium mb-2">AI/ML Experience Level</label>
+                    <select id="experience" name="experience" class="form-input" required>
+                        <option value="">Select experience level</option>
+                        <option value="none">No experience (curious to learn!)</option>
+                        <option value="beginner">Beginner (some coursework/self-study)</option>
+                        <option value="intermediate">Intermediate (projects, internships)</option>
+                        <option value="advanced">Advanced (research, industry experience)</option>
+                        <option value="expert">Expert (publications, deep expertise)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="motivation" class="block text-sm font-medium mb-2">What motivates your interest in AI safety?</label>
+                    <textarea id="motivation" name="motivation" rows="4" class="form-input" placeholder="Tell us what draws you to AI safety and what you hope to contribute or learn..."></textarea>
+                </div>
+
+                <div>
+                    <label for="questions" class="block text-sm font-medium mb-2">Questions or Additional Information</label>
+                    <textarea id="questions" name="questions" rows="3" class="form-input" placeholder="Any questions about Durham AISI or additional information you'd like to share..."></textarea>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <input type="checkbox" id="newsletter" name="newsletter" class="checkbox-custom" checked>
+                    <label for="newsletter" class="text-sm">I'd like to receive updates about Durham AISI events and opportunities</label>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit Interest Form</button>
+                </div>
+            </form>
         </div>
-    </header>
+    </div>
+</section>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="py-16 md:py-24 hero-gradient relative overflow-hidden">
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">Get Involved</h2>
-                <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-                    Join our community and help shape the future of AI safety at Durham University
-                </p>
-            </div>
-        </section>
+<!-- Quick Start Guide -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="text-center mb-16">
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">Quick Start Guide</h3>
+            <div class="section-divider"></div>
+        </div>
 
-        <!-- Ways to Get Involved -->
-        <section class="py-20 bg-gradient-to-r from-deep-blue/90 to-navy/90">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Ways to Get Involved</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-teal to-emerald rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl font-bold text-white">1</span>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="involvement-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-calendar-alt text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Attend Events</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
-                            Join our weekly reading groups, workshops, and speaker events. Perfect for beginners 
-                            and experts alike.
-                        </p>
-                        <div class="text-center">
-                            <span class="text-teal font-semibold">Drop-in friendly</span>
-                        </div>
-                    </div>
-                    
-                    <div class="involvement-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-flask text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Join Research</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
-                            Participate in cutting-edge research projects with faculty supervision and 
-                            publication opportunities.
-                        </p>
-                        <div class="text-center">
-                            <span class="text-emerald font-semibold">All levels welcome</span>
-                        </div>
-                    </div>
-                    
-                    <div class="involvement-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-users text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Leadership Roles</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
-                            Take on leadership positions in organizing events, managing projects, 
-                            or community outreach.
-                        </p>
-                        <div class="text-center">
-                            <span class="text-ocean-blue font-semibold">Applications open</span>
-                        </div>
-                    </div>
-                    
-                    <div class="involvement-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-lightbulb text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Share Ideas</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
-                            Propose new initiatives, suggest speakers, or share interesting papers 
-                            with the community.
-                        </p>
-                        <div class="text-center">
-                            <span class="text-mint font-semibold">Always welcome</span>
-                        </div>
-                    </div>
-                    
-                    <div class="involvement-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-sage to-emerald rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-handshake text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Mentorship</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
-                            Get paired with experienced researchers or mentor newcomers to AI safety.
-                        </p>
-                        <div class="text-center">
-                            <span class="text-sage font-semibold">Both ways possible</span>
-                        </div>
-                    </div>
-                    
-                    <div class="involvement-card rounded-2xl p-6 card-hover">
-                        <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-navy rounded-xl flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-globe text-2xl text-white"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-4">Outreach</h4>
-                        <p class="text-white/80 text-center text-sm leading-relaxed mb-4">
-                            Help spread awareness about AI safety through social media, 
-                            presentations, and community engagement.
-                        </p>
-                        <div class="text-center">
-                            <span class="text-warm-blue font-semibold">Creative opportunities</span>
-                        </div>
-                    </div>
-                </div>
+                <h4 class="text-lg font-bold mb-3">Fill the Form</h4>
+                <p class="text-white/80 text-sm">Complete the interest form above to tell us about yourself</p>
             </div>
-        </section>
 
-        <!-- Interest Form -->
-        <section class="py-20 bg-gradient-to-l from-ocean-blue/90 to-deep-blue/90">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Express Your Interest</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
-                    <p class="text-xl mt-6 max-w-3xl mx-auto">
-                        Tell us about your interests and we'll help you find the best way to get involved with Durham AISI.
-                    </p>
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-emerald to-sage rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl font-bold text-white">2</span>
                 </div>
-                
-                <div class="max-w-3xl mx-auto">
-                    <form class="involvement-card rounded-2xl p-8 space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="firstName" class="block text-sm font-medium mb-2">First Name</label>
-                                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Your first name" required>
-                            </div>
-                            <div>
-                                <label for="lastName" class="block text-sm font-medium mb-2">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Your last name" required>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="email" class="block text-sm font-medium mb-2">Email Address</label>
-                            <input type="email" id="email" name="email" class="form-input" placeholder="your.email@durham.ac.uk" required>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="year" class="block text-sm font-medium mb-2">Year of Study</label>
-                                <select id="year" name="year" class="form-input" required>
-                                    <option value="">Select year</option>
-                                    <option value="1st">1st Year</option>
-                                    <option value="2nd">2nd Year</option>
-                                    <option value="3rd">3rd Year</option>
-                                    <option value="4th">4th Year</option>
-                                    <option value="masters">Masters</option>
-                                    <option value="phd">PhD</option>
-                                    <option value="postdoc">Postdoc</option>
-                                    <option value="staff">Staff</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="department" class="block text-sm font-medium mb-2">Department/College</label>
-                                <input type="text" id="department" name="department" class="form-input" placeholder="e.g., Computer Science, Philosophy">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium mb-4">Areas of Interest (check all that apply)</label>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="checkbox" name="interests" value="reading-groups" class="checkbox-custom">
-                                    <span>Reading Groups</span>
-                                </label>
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="checkbox" name="interests" value="research" class="checkbox-custom">
-                                    <span>Research Projects</span>
-                                </label>
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="checkbox" name="interests" value="workshops" class="checkbox-custom">
-                                    <span>Workshops</span>
-                                </label>
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="checkbox" name="interests" value="events" class="checkbox-custom">
-                                    <span>Event Organization</span>
-                                </label>
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="checkbox" name="interests" value="outreach" class="checkbox-custom">
-                                    <span>Outreach & Marketing</span>
-                                </label>
-                                <label class="flex items-center space-x-3 cursor-pointer">
-                                    <input type="checkbox" name="interests" value="leadership" class="checkbox-custom">
-                                    <span>Leadership Roles</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label for="experience" class="block text-sm font-medium mb-2">AI/ML Experience Level</label>
-                            <select id="experience" name="experience" class="form-input" required>
-                                <option value="">Select experience level</option>
-                                <option value="none">No experience (curious to learn!)</option>
-                                <option value="beginner">Beginner (some coursework/self-study)</option>
-                                <option value="intermediate">Intermediate (projects, internships)</option>
-                                <option value="advanced">Advanced (research, industry experience)</option>
-                                <option value="expert">Expert (publications, deep expertise)</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="motivation" class="block text-sm font-medium mb-2">What motivates your interest in AI safety?</label>
-                            <textarea id="motivation" name="motivation" rows="4" class="form-input" placeholder="Tell us what draws you to AI safety and what you hope to contribute or learn..."></textarea>
-                        </div>
-                        
-                        <div>
-                            <label for="questions" class="block text-sm font-medium mb-2">Questions or Additional Information</label>
-                            <textarea id="questions" name="questions" rows="3" class="form-input" placeholder="Any questions about Durham AISI or additional information you'd like to share..."></textarea>
-                        </div>
-                        
-                        <div class="flex items-center space-x-3">
-                            <input type="checkbox" id="newsletter" name="newsletter" class="checkbox-custom" checked>
-                            <label for="newsletter" class="text-sm">I'd like to receive updates about Durham AISI events and opportunities</label>
-                        </div>
-                        
-                        <div class="text-center">
-                            <button type="submit" class="bg-gradient-to-r from-teal to-emerald hover:from-emerald hover:to-mint text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                Submit Interest Form
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <h4 class="text-lg font-bold mb-3">Get Connected</h4>
+                <p class="text-white/80 text-sm">We'll reach out with relevant opportunities and invites</p>
             </div>
-        </section>
 
-        <!-- Quick Start -->
-        <section class="py-20 bg-gradient-to-r from-navy/90 to-deep-blue/90">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">Quick Start Guide</h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-sage to-mint rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl font-bold text-white">3</span>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-gradient-to-br from-teal to-emerald rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl font-bold text-white">1</span>
-                        </div>
-                        <h4 class="text-lg font-bold mb-3">Fill the Form</h4>
-                        <p class="text-white/80 text-sm">Complete the interest form above to tell us about yourself</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-gradient-to-br from-emerald to-sage rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl font-bold text-white">2</span>
-                        </div>
-                        <h4 class="text-lg font-bold mb-3">Get Connected</h4>
-                        <p class="text-white/80 text-sm">We'll reach out with relevant opportunities and invites</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-gradient-to-br from-sage to-mint rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl font-bold text-white">3</span>
-                        </div>
-                        <h4 class="text-lg font-bold mb-3">Attend Events</h4>
-                        <p class="text-white/80 text-sm">Join reading groups, workshops, or speaker events</p>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="w-20 h-20 bg-gradient-to-br from-mint to-teal rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-2xl font-bold text-white">4</span>
-                        </div>
-                        <h4 class="text-lg font-bold mb-3">Make Impact</h4>
-                        <p class="text-white/80 text-sm">Contribute to research, organize events, or lead initiatives</p>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-12">
-                    <p class="text-lg mb-6">
-                        Can't wait to get started? Follow us on social media or send us an email!
-                    </p>
-                    <div class="flex justify-center gap-8">
-                        <a href="https://www.instagram.com/ais_durham" 
-                           class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
-                           aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="mailto:aisdurham@googlegroups.com" 
-                           class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
-                           aria-label="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://linktr.ee/aisdurham" 
-                           class="text-3xl text-white hover:text-mint transform hover:scale-110 transition-all duration-300" 
-                           aria-label="Linktree">
-                            <i class="fas fa-link"></i>
-                        </a>
-                    </div>
-                </div>
+                <h4 class="text-lg font-bold mb-3">Attend Events</h4>
+                <p class="text-white/80 text-sm">Join reading groups, workshops, or speaker events</p>
             </div>
-        </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20">
-        <div class="container mx-auto px-6 text-center">
-            <div class="flex justify-center gap-8 mb-8">
-                <a href="https://www.instagram.com/ais_durham" 
-                   class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/aisdurham" 
-                   class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Linktree">
-                    <i class="fas fa-link"></i>
-                </a>
-            </div>
-            <div class="text-lg text-white/80 mb-3">
-                Durham AI Safety Initiative
-            </div>
-            <div class="mb-8">
-                <p class="text-lg text-white mb-2">
-                    <a href="mailto:aisdurham@googlegroups.com" class="text-emerald hover:text-mint font-medium transition-colors">
-                        aisdurham@googlegroups.com
-                    </a>
-                </p>
-                <p class="text-base text-white/80">
-                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
-                </p>
-            </div>
-            <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
-                <p class="mb-2">
-                    Durham AI Safety Initiative is a registered student society with Durham Students' Union.
-                </p>
-                <p class="mb-2">
-                    Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
-                </p>
+            <div class="text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-mint to-teal rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-2xl font-bold text-white">4</span>
+                </div>
+                <h4 class="text-lg font-bold mb-3">Make Impact</h4>
+                <p class="text-white/80 text-sm">Contribute to research, organize events, or lead initiatives</p>
             </div>
         </div>
-    </footer>
 
-    <script>
-        // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically handle the form submission
-            // For now, just show a confirmation message
-            alert('Thank you for your interest! We will be in touch soon.');
-        });
-        
-        // Back to top button functionality
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        // Scroll to top when button is clicked
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-    
-    <!-- Back to top button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-</body>
-</html>
+        <div class="text-center mt-12">
+            <p class="text-lg mb-6">Can't wait to get started? Follow us on social media or send us an email!</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/ais_durham" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:aisdurham@googlegroups.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linktr.ee/aisdurham" aria-label="Linktree"><i class="fas fa-link"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
