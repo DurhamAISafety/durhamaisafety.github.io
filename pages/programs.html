@@ -8,110 +8,334 @@ description: "AISI programs: reading groups, workshops, research projects, and s
 <section class="hero">
     <div class="hero-content container">
         <h2 class="text-4xl md:text-6xl font-bold mb-4">Our Programs</h2>
-        <!-- <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
             Comprehensive initiatives designed to advance AI safety research, education, and community engagement
-        </p> -->
+        </p>
     </div>
 </section>
-            <!-- Core Programs -->
-            <section class="section section-alt">
-                <div class="container">
-                    <!-- <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-6">Core Programs</h3>
-                        <div class="section-divider"></div>
-                    </div> -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        <div class="program-card rounded-2xl p-8 card-hover">
-                            <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mr-4">
-                                    <i class="fas fa-book-open text-2xl text-white"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Intro Seminars</h4>
+
+<!-- Intro Seminars Section -->
+<section id="intro-seminars" class="section section-alt">
+    <div class="container">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-book-open text-3xl text-white"></i>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-6">Intro Seminars</h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div>
+                    <h4 class="text-2xl font-bold mb-4">What are they?</h4>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Our intro seminars are weekly sessions designed to make AI safety accessible to everyone. 
+                        We explore fundamental concepts like alignment problems, capability control, and AI governance 
+                        through interactive discussions, case studies, and practical examples.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        No technical background is required - these sessions are perfect for students from any discipline 
+                        who want to understand the challenges and opportunities in AI safety.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-teal/20 to-emerald/20 backdrop-blur rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4">What to expect:</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald mr-3 mt-1"></i>
+                            <span>Interactive presentations on core AI safety topics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald mr-3 mt-1"></i>
+                            <span>Group discussions and Q&A sessions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald mr-3 mt-1"></i>
+                            <span>Real-world case studies and examples</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald mr-3 mt-1"></i>
+                            <span>Networking with like-minded students</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8">
+                <h4 class="text-xl font-bold mb-4">Recent Topics</h4>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="text-center p-4 bg-white/10 rounded-lg">
+                        <h5 class="font-semibold mb-2">AI Alignment Basics</h5>
+                        <p class="text-sm text-white/80">Understanding why AI systems might not do what we want</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/10 rounded-lg">
+                        <h5 class="font-semibold mb-2">Governance & Policy</h5>
+                        <p class="text-sm text-white/80">How society can shape AI development</p>
+                    </div>
+                    <div class="text-center p-4 bg-white/10 rounded-lg">
+                        <h5 class="font-semibold mb-2">Existential Risk</h5>
+                        <p class="text-sm text-white/80">Understanding long-term risks from advanced AI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reading Groups Section -->
+<section id="reading-groups" class="section">
+    <div class="container">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-chalkboard-teacher text-3xl text-white"></i>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-6">In-Depth Reading Groups</h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-emerald to-sage mx-auto rounded-full mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div class="bg-gradient-to-br from-emerald/20 to-sage/20 backdrop-blur rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4">Who should join?</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-graduation-cap text-sage mr-3 mt-1"></i>
+                            <span>Students with some technical background in CS, maths, or related fields</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-brain text-sage mr-3 mt-1"></i>
+                            <span>Those interested in the technical details of AI safety research</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-users text-sage mr-3 mt-1"></i>
+                            <span>Anyone wanting to engage with cutting-edge research</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-bold mb-4">Deep Dive into Research</h4>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Our reading groups provide an opportunity to engage deeply with the latest AI safety research. 
+                        Led by PhD students and faculty members, these sessions focus on understanding technical papers, 
+                        discussing methodologies, and exploring the implications of recent findings.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        We cover both technical alignment research and AI governance/policy papers, ensuring a 
+                        well-rounded understanding of the field.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8">
+                <h4 class="text-xl font-bold mb-4">Current Focus Areas</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3 text-emerald">Technical Alignment</h5>
+                        <ul class="space-y-2 text-sm">
+                            <li>• Interpretability and explainability</li>
+                            <li>• Reward modeling and RLHF</li>
+                            <li>• Robustness and adversarial examples</li>
+                            <li>• Constitutional AI and value learning</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3 text-sage">Governance & Policy</h5>
+                        <ul class="space-y-2 text-sm">
+                            <li>• AI governance frameworks</li>
+                            <li>• International cooperation on AI safety</li>
+                            <li>• Risk assessment methodologies</li>
+                            <li>• Ethics and fairness in AI systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research Projects Section -->
+<section id="research-projects" class="section section-alt">
+    <div class="container">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-flask text-3xl text-white"></i>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Projects</h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-ocean-blue to-warm-blue mx-auto rounded-full mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div>
+                    <h4 class="text-2xl font-bold mb-4">Contribute to the Future</h4>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Our research program connects motivated students with faculty supervisors to work on 
+                        cutting-edge AI safety problems. Whether you're an undergraduate looking for your first 
+                        research experience or a graduate student seeking to specialize in AI safety, we provide 
+                        structured opportunities to make meaningful contributions.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Projects range from theoretical work on alignment algorithms to empirical studies on 
+                        AI behavior, and policy research on governance frameworks.
+                    </p>
+                </div>
+                <div class="bg-gradient-to-br from-ocean-blue/20 to-warm-blue/20 backdrop-blur rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4">Opportunities include:</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-microscope text-warm-blue mr-3 mt-1"></i>
+                            <span>Independent research projects with faculty mentorship</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-users text-warm-blue mr-3 mt-1"></i>
+                            <span>Collaborative team projects with other students</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-conference text-warm-blue mr-3 mt-1"></i>
+                            <span>Opportunities to present at conferences</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-file-alt text-warm-blue mr-3 mt-1"></i>
+                            <span>Publication in peer-reviewed venues</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-ocean-blue/30 to-warm-blue/30 backdrop-blur rounded-xl p-6 text-center">
+                    <i class="fas fa-code text-3xl text-warm-blue mb-4"></i>
+                    <h5 class="text-lg font-bold mb-2">Technical Research</h5>
+                    <p class="text-sm text-white/80">Developing new algorithms and methods for AI safety</p>
+                </div>
+                <div class="bg-gradient-to-br from-ocean-blue/30 to-warm-blue/30 backdrop-blur rounded-xl p-6 text-center">
+                    <i class="fas fa-chart-line text-3xl text-warm-blue mb-4"></i>
+                    <h5 class="text-lg font-bold mb-2">Empirical Studies</h5>
+                    <p class="text-sm text-white/80">Testing and evaluating AI systems for safety properties</p>
+                </div>
+                <div class="bg-gradient-to-br from-ocean-blue/30 to-warm-blue/30 backdrop-blur rounded-xl p-6 text-center">
+                    <i class="fas fa-balance-scale text-3xl text-warm-blue mb-4"></i>
+                    <h5 class="text-lg font-bold mb-2">Policy Research</h5>
+                    <p class="text-sm text-white/80">Analyzing governance frameworks and regulatory approaches</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8">
+                <h4 class="text-xl font-bold mb-4">Success Stories</h4>
+                <p class="text-lg leading-relaxed">
+                    Our members have published papers at top-tier conferences including NeurIPS, ICML, and FAccT. 
+                    Several students have gone on to PhD programs in AI safety, internships at leading AI labs, 
+                    and positions in AI governance organizations. Our collaborative environment ensures that 
+                    every participant gains valuable research experience and contributes to the global effort 
+                    to ensure AI safety.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Speaker Series Section -->
+<section id="speaker-series" class="section">
+    <div class="container">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="w-20 h-20 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-microphone text-3xl text-white"></i>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold mb-6">Speaker Series</h3>
+                <div class="w-24 h-1 bg-gradient-to-r from-mint to-teal mx-auto rounded-full mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
+                <div class="bg-gradient-to-br from-mint/20 to-teal/20 backdrop-blur rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4">Why attend?</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-lightbulb text-teal mr-3 mt-1"></i>
+                            <span>Gain insights from leading researchers and practitioners</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-network-wired text-teal mr-3 mt-1"></i>
+                            <span>Network with professionals in the AI safety field</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-compass text-teal mr-3 mt-1"></i>
+                            <span>Explore career paths and opportunities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-comments text-teal mr-3 mt-1"></i>
+                            <span>Ask questions and engage in discussions</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-bold mb-4">Learn from the Best</h4>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Our speaker series brings together leading voices in AI safety, from academic researchers 
+                        to industry practitioners and policy makers. Each event features a presentation followed 
+                        by an interactive Q&A session, providing unique opportunities to engage directly with 
+                        experts in the field.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        Speakers share their latest research, discuss career journeys, and provide insights 
+                        into the current challenges and future directions of AI safety.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-mint/30 to-teal/30 backdrop-blur rounded-xl p-6 text-center">
+                    <i class="fas fa-university text-3xl text-teal mb-4"></i>
+                    <h5 class="text-lg font-bold mb-2">Academic Researchers</h5>
+                    <p class="text-sm text-white/80">Professors and researchers from top universities worldwide</p>
+                </div>
+                <div class="bg-gradient-to-br from-mint/30 to-teal/30 backdrop-blur rounded-xl p-6 text-center">
+                    <i class="fas fa-building text-3xl text-teal mb-4"></i>
+                    <h5 class="text-lg font-bold mb-2">Industry Leaders</h5>
+                    <p class="text-sm text-white/80">Safety researchers from leading AI companies and labs</p>
+                </div>
+                <div class="bg-gradient-to-br from-mint/30 to-teal/30 backdrop-blur rounded-xl p-6 text-center">
+                    <i class="fas fa-gavel text-3xl text-teal mb-4"></i>
+                    <h5 class="text-lg font-bold mb-2">Policy Experts</h5>
+                    <p class="text-sm text-white/80">Government officials and think tank researchers</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8">
+                <h4 class="text-xl font-bold mb-4">Upcoming & Recent Speakers</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3 text-mint">Recent Talks</h5>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <p class="font-medium">"Constitutional AI and Value Alignment"</p>
+                                <p class="text-white/70">Dr. Sarah Chen, Anthropic</p>
                             </div>
-                            <p class="text-white/80 mb-6 leading-relaxed">
-                                Weekly discussions of seminal AI safety papers, covering topics from alignment theory to interpretability research. Perfect for both beginners and advanced researchers.
-                            </p>
-                            <div class="space-y-2">
-                                <!-- <div class="flex items-center">
-                                    <i class="fas fa-clock text-teal mr-2"></i>
-                                    <span class="text-sm">Thursdays, 6:00 PM</span>
-                                </div> -->
-                                <div class="flex items-center">
-                                    <i class="fas fa-users text-emerald mr-2"></i>
-                                    <span class="text-sm">All experience levels welcome</span>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    <div class="program-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold">In-Depth Reading Groups</h4>
-                        </div>
-                        <p class="text-white/80 mb-6 leading-relaxed">
-                            Discuss AI safety papers, covering topics from alignment theory to interpretability research. Perfect for both beginners and advanced researchers.
-                        </p>
-                        <div class="space-y-2">
-                            <!-- <div class="flex items-center">
-                                <i class="fas fa-calendar text-emerald mr-2"></i>
-                                <span class="text-sm">Monthly workshops</span>
-                            </div> -->
-                            <div class="flex items-center">
-                                <i class="fas fa-laptop-code text-sage mr-2"></i>
-                                <span class="text-sm">Programming experience helpful</span>
+                            <div>
+                                <p class="font-medium">"AI Governance in Practice"</p>
+                                <p class="text-white/70">Prof. Michael Roberts, Oxford</p>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="program-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-flask text-2xl text-white"></i>
+                    <div>
+                        <h5 class="text-lg font-semibold mb-3 text-teal">Coming Soon</h5>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <p class="font-medium">"Interpretability in Large Language Models"</p>
+                                <p class="text-white/70">To be announced</p>
                             </div>
-                            <h4 class="text-2xl font-bold">Research Projects</h4>
-                        </div>
-                        <p class="text-white/80 mb-6 leading-relaxed">
-                            Collaborative research initiatives where students work on cutting-edge AI safety problems 
-                            under faculty supervision, contributing to the global research community.
-                        </p>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <i class="fas fa-graduation-cap text-ocean-blue mr-2"></i>
-                                <span class="text-sm">Open to all year groups</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-award text-warm-blue mr-2"></i>
-                                <span class="text-sm">Publication opportunities</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="program-card rounded-2xl p-8 card-hover">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mr-4">
-                                <i class="fas fa-microphone text-2xl text-white"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold">Speaker Series</h4>
-                        </div>
-                        <p class="text-white/80 mb-6 leading-relaxed">
-                            Regular talks by leading AI safety researchers, industry experts, and policy makers, 
-                            providing insights into the latest developments and career opportunities.
-                        </p>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-mint mr-2"></i>
-                                <span class="text-sm">Industry leaders & academics</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-question-circle text-teal mr-2"></i>
-                                <span class="text-sm">Q&A sessions included</span>
+                            <div>
+                                <p class="font-medium">"International AI Safety Cooperation"</p>
+                                <p class="text-white/70">To be announced</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Special Initiatives -->
     <!-- <section class="section section-alt-2">
