@@ -41,6 +41,22 @@
     --transition-fast: all 0.2s ease;
 }
 
+/* Hero section with fixed background */
+.hero-background {
+    background-image: url('/images/hero-picture.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Fallback for mobile devices that don't support background-attachment: fixed well */
+@media (max-width: 768px) {
+    .hero-background {
+        background-attachment: scroll;
+    }
+}
+
 /* Reset and base styles */
 * {
     margin: 0;
