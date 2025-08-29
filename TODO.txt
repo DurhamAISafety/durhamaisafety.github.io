@@ -4,6 +4,7 @@ HOME PAGE
 * smooth out gradient background betwen sections (i.e one continuous)
 * put some text above the events calendar but below the heading, saying "Check out our programs here" and link to the programs page
 * add a link from '...student-led...' in about us to 'our-team' page
+* add a link from '...risks from advanced AI...' in about us to 'what-is-ai-safety' page
 
 FOOTER
 * add discord (link: https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl)
