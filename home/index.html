@@ -1,431 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAISI</title>
-    <link rel="icon" type="image/png" href="../images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'ocean-blue': '#0891b2',
-                        'deep-blue': '#0e4a5c',
-                        'teal': '#14b8a6',
-                        'emerald': '#10b981',
-                        'sage': '#84cc16',
-                        'mint': '#6ee7b7',
-                        'warm-blue': '#3b82f6',
-                        'navy': '#1e3a8a'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Smooth scrolling for the entire page */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Smooth section transition */
-        .section-transition {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%);
-        }
-        
-        /* Custom animations and transitions */
-        .gradient-text {
-            background: linear-gradient(135deg, #14b8a6, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0e4a5c 0%, #1e3a8a 50%, #14b8a6 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(14, 74, 92, 0.3);
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #14b8a6, #10b981);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .pulse-glow {
-            animation: pulse-glow 2s infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.4); }
-            50% { box-shadow: 0 0 40px rgba(20, 184, 166, 0.8); }
-        }
-        
-        /* Back to top button styles */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #14b8a6, #10b981);
-            color: white;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1);
-        }
-        
-        .back-to-top:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
-        }
-        
-        /* Loading state for calendar */
-        .calendar-loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 0.75rem;
-            backdrop-filter: blur(10px);
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(20, 184, 166, 0.3);
-            border-left: 4px solid #14b8a6;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .calendar-container {
-            position: relative;
-        }
-        
-        .calendar-iframe {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .calendar-iframe.loaded {
-            opacity: 1;
-        }
-        
-        /* Dropdown menu styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: rgba(14, 74, 92, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 200px;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            overflow: hidden;
-        }
-        
-        .dropdown-content a {
-            display: block;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(20, 184, 166, 0.2);
-        }
-        
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-        
-        .dropdown-content a:hover {
-            background: rgba(20, 184, 166, 0.2);
-            color: #14b8a6;
-            padding-left: 25px;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .dropdown-toggle i {
-            transition: transform 0.3s ease;
-        }
-        
-        .dropdown:hover .dropdown-toggle i {
-            transform: rotate(180deg);
-        }
-        
-        /* Scroll down prompt styles */
-        .scroll-prompt {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .scroll-prompt:hover {
-            transform: translateX(-50%) scale(1.1);
-        }
-        
-        /* Program card styles */
-        .program-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 184, 166, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .program-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(20, 184, 166, 0.5);
-        }
-        
-        /* Construction banner styles */
-        .construction-banner {
-            background: linear-gradient(90deg, #dc2626, #b91c1c);
-            color: white;
-            padding: 12px 0;
-            text-align: center;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            z-index: 60;
-            box-shadow: 0 2px 10px rgba(220, 38, 38, 0.3);
-        }
-        
-        @keyframes pulse-red {
-            0%, 100% { background: linear-gradient(90deg, #dc2626, #b91c1c); }
-            50% { background: linear-gradient(90deg, #ef4444, #dc2626); }
-        }
-        
-        .construction-banner .disclaimer {
-            font-size: 0.875rem;
-            font-weight: normal;
-            opacity: 0.9;
-            margin-top: 4px;
-        }
-    </style>
-</head>
-<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
-    <!-- Construction Banner -->
-    <div class="construction-banner">
-        <div class="container mx-auto px-6">
-            <div class="text-lg">
-                🚧 Site currently under construction! 🚧
-            </div>
-            <div class="disclaimer">
-                All details and information are subject to change as we finalize our website.
-            </div>
-        </div>
-    </div>
-    
-    <!-- Header -->
-    <header class="bg-black/30 backdrop-blur-sm border-b border-teal/20 relative z-50">
-        <div class="container mx-auto px-6 py-4">
-            <nav class="flex flex-col lg:flex-row items-center justify-between gap-4">
-                <a href="/home/" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                    <img src="../images/AIS-logo.png" alt="Durham AI Safety Society Logo" class="w-12 h-12 rounded-xl">
-                    <div>
-                        <h1 class="text-2xl lg:text-3xl font-bold">
-                            Durham <span class="gradient-text">AI Safety</span> Initiative
-                        </h1>
-                    </div>
-                </a>
-                <div class="flex gap-8">
-                    <a href="#home" class="nav-link text-lg font-medium hover:text-teal transition-colors">Home</a>
-                    <a href="#about" class="nav-link text-lg font-medium hover:text-teal transition-colors">About Us</a>
-                    <a href="#events" class="nav-link text-lg font-medium hover:text-teal transition-colors">Events</a>
-                    <div class="dropdown">
-                        <a href="#" class="nav-link text-lg font-medium hover:text-teal transition-colors dropdown-toggle">
-                            More <i class="fas fa-chevron-down text-sm"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="/our-team/">Our Team</a>
-                            <a href="/programs/">Programs</a>
-                            <a href="/research/">Research</a>
-                            <a href="/what-is-ai-safety/">What is AI Safety?</a>
-                            <a href="/get-involved/">Get Involved</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+---
+layout: default
+title: Home
+---
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-start justify-center hero-gradient relative overflow-hidden pt-32">
-            <div class="absolute inset-0 bg-black/20"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
-                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed drop-shadow-lg">
-                        <span class="text-white drop-shadow-lg">Durham students and academics for </span><span class="text-mint italic font-medium drop-shadow-lg">reducing catastrophic risks from advanced AI</span>
-                    </h2>
-                    
-                    <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8 drop-shadow-lg">
-                        <span class="font-semibold text-emerald drop-shadow-lg">Whatever your expertise,</span> 
-                        you can contribute to the conversation and make a difference.
-                    </p>
-                    
-                    <div class="pt-2 md:pt-4">
-                        <a href="https://linktr.ee/aisdurham" 
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="inline-block px-12 py-4 bg-gradient-to-r from-teal to-emerald text-deep-blue font-bold text-lg rounded-full hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 pulse-glow">
-                            Get Involved
-                        </a>
-                    </div>
-                    
-                    <!-- Scroll down prompt -->
-                    <div class="mt-12 md:mt-16" onclick="scrollToAbout()">
-                        <div class="text-center cursor-pointer transition-all duration-300 hover:scale-110">
-                            <p class="text-white/80 text-sm mb-2 drop-shadow">Scroll down to learn more</p>
-                            <div class="text-white text-2xl">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section id="about" class="py-24 relative section-transition">
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">About Us</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-start justify-center hero-gradient relative overflow-hidden pt-32">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
+                <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed drop-shadow-lg">
+                    <span class="text-white drop-shadow-lg">Durham students and academics for </span><span class="text-mint italic font-medium drop-shadow-lg">reducing catastrophic risks from advanced AI</span>
+                </h2>
+                
+                <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8 drop-shadow-lg">
+                    <span class="font-semibold text-emerald drop-shadow-lg">Whatever your expertise,</span> 
+                    you can contribute to the conversation and make a difference.
+                </p>
+                
+                <div class="pt-2 md:pt-4">
+                    <a href="/get-involved/"
+                       class="inline-block px-12 py-4 bg-gradient-to-r from-teal to-emerald text-deep-blue font-bold text-lg rounded-full hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 pulse-glow">
+                        Get Involved
+                    </a>
                 </div>
                 
-                <div class="max-w-5xl mx-auto">
-                    <div class="grid gap-8">
-                        <!-- Main description -->
-                        <p class="text-lg md:text-xl leading-relaxed mb-6 text-center text-white drop-shadow"> 
-                            We are a student-led initiative that aims to empower students and academics to reduce risk from advanced AI, by:
-                        </p>
-                        
-                        <!-- Three pillars -->
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="bg-gradient-to-br from-teal/30 to-emerald/30 backdrop-blur rounded-2xl p-6 card-hover border border-teal/50">
-                                <div class="text-2xl mb-4 text-center">🎯</div>
-                                <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Raising Awareness</h3>
-                                <p class="text-lg leading-relaxed text-center text-white drop-shadow">
-                                    Through discussion groups and speaker events
-                                </p>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-emerald/30 to-sage/30 backdrop-blur rounded-2xl p-6 card-hover border border-emerald/50">
-                                <div class="text-2xl mb-4 text-center">🛠️</div>
-                                <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Upskilling Members</h3>
-                                <p class="text-lg leading-relaxed text-center text-white drop-shadow">
-                                    In safety techniques through workshops and 1-1 support
-                                </p>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ocean-blue/30 to-teal/30 backdrop-blur rounded-2xl p-6 card-hover border border-ocean-blue/50">
-                                <div class="text-2xl mb-4 text-center">🤝</div>
-                                <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Fostering Community</h3>
-                                <p class="text-lg leading-relaxed text-center text-white drop-shadow">
-                                    For high-quality discussion, support and connections to the wider field of AI safety
-                                </p>
-                            </div>
+                <!-- Scroll down prompt -->
+                <div class="mt-12 md:mt-16" onclick="scrollToAbout()">
+                    <div class="text-center cursor-pointer transition-all duration-300 hover:scale-110">
+                        <p class="text-white/80 text-sm mb-2 drop-shadow">Scroll down to learn more</p>
+                        <div class="text-white text-2xl">
+                            <i class="fas fa-chevron-down"></i>
                         </div>
-                        
-                        <!-- Achievements -->
-                        <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8 border border-mint/50">
-                            <div class="text-center">
-                                <!-- <h3 class="text-2xl font-bold gradient-text mb-6 drop-shadow-lg">Our Impact</h3> -->
-                                <p class="text-lg md:text-xl leading-relaxed text-white drop-shadow">
-                                    Our members have published in top AI and law conferences, participated in MATS and gone on to study AI ethics at Cambridge.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Additional context
-                        <p class="text-lg md:text-xl leading-relaxed text-center mt-8 text-white drop-shadow">
-                            Whether you're a beginner curious about AI safety or an experienced researcher, you'll find a welcoming environment to learn, collaborate, and make a difference in ensuring AI development aligns with human values.
-                        </p> -->
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <!-- About Us & Events Section -->
+    <section id="about" class="py-24 relative section-transition">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">About Us</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="grid gap-8">
+                    <!-- Main description -->
+                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-center text-white drop-shadow"> 
+                        We are a <a href="/our-team/" class="text-emerald hover:text-mint font-medium transition-colors">student-led</a> initiative that aims to empower students and academics to <a href="/what-is-ai-safety/" class="text-emerald hover:text-mint font-medium transition-colors">reduce risk from advanced AI</a>, by:
+                    </p>
+                    
+                    <!-- Three pillars -->
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-gradient-to-br from-teal/30 to-emerald/30 backdrop-blur rounded-2xl p-6 card-hover border border-teal/50">
+                            <div class="text-2xl mb-4 text-center">🎯</div>
+                            <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Raising Awareness</h3>
+                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                                Through discussion groups and speaker events
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-emerald/30 to-sage/30 backdrop-blur rounded-2xl p-6 card-hover border border-emerald/50">
+                            <div class="text-2xl mb-4 text-center">🛠️</div>
+                            <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Upskilling Members</h3>
+                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                                In safety techniques through workshops and 1-1 support
+                            </p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-ocean-blue/30 to-teal/30 backdrop-blur rounded-2xl p-6 card-hover border border-ocean-blue/50">
+                            <div class="text-2xl mb-4 text-center">🤝</div>
+                            <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Fostering Community</h3>
+                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                                For high-quality discussion, support and connections to the wider field of AI safety
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Achievements -->
+                    <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8 border border-mint/50">
+                        <div class="text-center">
+                            <!-- <h3 class="text-2xl font-bold gradient-text mb-6 drop-shadow-lg">Our Impact</h3> -->
+                            <p class="text-lg md:text-xl leading-relaxed text-white drop-shadow">
+                                Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-emerald hover:text-mint font-medium transition-colors">MATS</a> and gone on to study AI ethics at Cambridge.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Events Section -->
-        <section id="events" class="py-20 relative">
-            <div class="absolute inset-0 bg-black/20"></div>
+        <div id="events" class="pt-20 relative">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">Our Events</h2>
@@ -532,6 +201,9 @@
                 </div>
                 
                 <div class="max-w-5xl mx-auto">
+                    <p class="text-center text-lg mb-8 text-white font-medium drop-shadow-lg">
+                        We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
+                    </p>
                     <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-teal/40 card-hover calendar-container">
                         <!-- Loading state -->
                         <div id="calendar-loading" class="calendar-loading">
@@ -551,128 +223,82 @@
                             ></iframe>
                         </div>
                     </div>
-                    <p class="text-center text-lg mt-8 text-white font-medium drop-shadow-lg">
-                        We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
-                    </p>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur py-12 border-t border-teal/20 relative">
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="flex justify-center gap-8 mb-8">
-                <a href="https://www.instagram.com/ais_durham" 
-                   class="text-3xl text-white hover:text-teal transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://linktr.ee/aisdurham" 
-                   class="text-3xl text-white hover:text-emerald transform hover:scale-110 transition-all duration-300" 
-                   aria-label="Linktree">
-                    <i class="fas fa-link"></i>
-                </a>
-            </div>
-            <div class="text-lg text-white/80 mb-3">
-                Durham AI Safety Initiative
-            </div>
-            
-            <!-- Contact Information -->
-            <div class="mb-8">
-                <p class="text-lg text-white mb-2">
-                    <a href="mailto:aisdurham@googlegroups.com" class="text-emerald hover:text-mint font-medium transition-colors">
-                        aisdurham@googlegroups.com
-                    </a>
-                </p>
-                <p class="text-base text-white/80">
-                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
-                </p>
-            </div>
-            
-            <!-- Small print -->
-            <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
-                <p class="mb-2">
-                    Durham AI Safety Initiative is a registered student society with Durham Students' Union.
-                </p>
-                <p class="mb-2">
-                    Durham Students' Union is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Our registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
-                </p>
-            </div>
         </div>
-    </footer>
-    <!-- Back to top button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    </section>
+</main>
 
-    <script>
-        // Back to top button functionality
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        
-        // Scroll to top when button is clicked
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Scroll to about section function
-        function scrollToAbout() {
-            const aboutSection = document.getElementById('about');
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = aboutSection.offsetTop - headerHeight - 20;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+<!-- Back to top button -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
         }
+    });
+    
+    // Scroll to top when button is clicked
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Scroll to about section function
+    function scrollToAbout() {
+        const aboutSection = document.getElementById('about');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = aboutSection.offsetTop - headerHeight - 20;
         
-        // Calendar loading state
-        const calendarIframe = document.getElementById('calendar-iframe');
-        const calendarLoading = document.getElementById('calendar-loading');
-        
-        // Hide loading state when calendar is loaded
-        calendarIframe.addEventListener('load', () => {
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Calendar loading state
+    const calendarIframe = document.getElementById('calendar-iframe');
+    const calendarLoading = document.getElementById('calendar-loading');
+    
+    // Hide loading state when calendar is loaded
+    calendarIframe.addEventListener('load', () => {
+        calendarLoading.style.display = 'none';
+        calendarIframe.classList.add('loaded');
+    });
+    
+    // Fallback to hide loading state after 5 seconds if load event doesn't fire
+    setTimeout(() => {
+        if (!calendarIframe.classList.contains('loaded')) {
             calendarLoading.style.display = 'none';
             calendarIframe.classList.add('loaded');
-        });
-        
-        // Fallback to hide loading state after 5 seconds if load event doesn't fire
-        setTimeout(() => {
-            if (!calendarIframe.classList.contains('loaded')) {
-                calendarLoading.style.display = 'none';
-                calendarIframe.classList.add('loaded');
+        }
+    }, 5000);
+    
+    // Enhanced smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20; // Extra 20px padding
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
             }
-        }, 5000);
-        
-        // Enhanced smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = document.querySelector('header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20; // Extra 20px padding
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
-    </script>
-</body>
-</html>
+    });
+</script>

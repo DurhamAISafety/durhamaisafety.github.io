@@ -1,16 +1,9 @@
 HOME PAGE
-* smooth out gradient background between about us and events sections (i.e one continuous background)
-* move the text from below the events calendar to above it (between program cards and calendar)
-* Link from get involved button to get involved page
-* add a link from '...student-led...' in about us to 'our-team' page
-* add a link from '...risks from advanced AI...' in about us to 'what-is-ai-safety' page
-* link from "MATS" to https://www.matsprogram.org/
-
-FOOTER
-* add discord (link: https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl)
- ^ use <i class="fa-brands fa-discord"></i>
 
 PROGRAMS
 * Add a 'find out more and apply' link to some cards
 * Base off of https://www.aisi.dev/education and https://haist.ai/tech-fellowship
 * Use 'data' to store different programs like in team page
+
+OUR TEAM
+* Merge the two sections on the page
