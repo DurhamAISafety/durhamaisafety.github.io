@@ -3,14 +3,14 @@
 
 members:
   - name: "Theo"
-    role: "Co-lead Organiser"
+    role: "Lead Organiser"
     photoo: "https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/39871310/d7d04086.jpeg"
 
   - name: "Eve"
-    role: "Co-lead Organiser and Treasurer"
+    role: "Co-organiser and Treasurer"
 
   - name: "Quinn"
-    role: "Co-lead Organiser and Secretary"
+    role: "Co-organiser and Secretary"
 
   - name: "Bella"
     role: "Social Media Manager"

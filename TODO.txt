@@ -1,5 +1,5 @@
 HOME PAGE
-* smooth out gradient background betwen sections (i.e one continuous)
+* smooth out gradient background between sections (i.e one continuous)
 * move the text from below the events calendar to above it (between program cards and calendar)
 * add a link from '...student-led...' in about us to 'our-team' page
 * add a link from '...risks from advanced AI...' in about us to 'what-is-ai-safety' page
