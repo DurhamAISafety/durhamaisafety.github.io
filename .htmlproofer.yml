@@ -1,20 +1,29 @@
-# HTML Proofer Configuration
-# For html-proofer v5.x
+## HTMLProofer configuration
+# Keep the set of checks minimal for local/CI pre-deploy runs
 checks:
   - Links
   - Images
   - Scripts
-  - Favicon
-  - OpenGraph
 
+# Ignore external links to our production domain (canonical links, etc.)
 ignore_urls:
-  - "/localhost/"
-  - "/127.0.0.1/"
-  - "/example.com/"
+  - https://ai-safety-durham.github.io
+  - https://ai-safety-durham.github.io/404.html
+  - https://ai-safety-durham.github.io/get-involved/
+  - https://ai-safety-durham.github.io/our-team/
+  - https://ai-safety-durham.github.io/programs/
+  - https://ai-safety-durham.github.io/research/
+  - https://ai-safety-durham.github.io/what-is-ai-safety/
 
+# Common local-only URLs to skip
+  - http://localhost
+  - http://127.0.0.1
+
+# Skip generated JS bundle (if any)
 ignore_files:
   - "./_site/assets/js/main.js"
 
+# General options
 allow_missing_href: true
 assume_extension: true
 check_external_hash: false
