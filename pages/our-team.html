@@ -14,7 +14,7 @@ description: "Meet the team behind the Durham AI Safety Initiative."
 
 <section class="section section-alt">
     <div class="container">
-        {% assign members = site.team_members | sort: 'order' %}
+    {% assign members = site.data.team.members %}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-12">
             {% assign top_members = members | slice: 0,4 %}
             {% for person in top_members %}

@@ -58,9 +58,6 @@ dropdown_pages:
 
 # Content Collections
 collections:
-  team_members:
-    output: false
-    sort_by: order
   research_projects:
     output: false
   events:

@@ -1,27 +1,31 @@
-# Team Members Data
-# This file can be used to manage team information centrally
-# To use this, update the our-team.html page to loop through this data
+# Central team roster used by pages/our-team.html
+# Add members in the desired display order. Optional fields: photo
 
-leadership:
+members:
   - name: "Theo"
-    role: "Co-President"
-    description: "Leading the society's vision and coordinating our AI safety initiatives across Durham University."
-    icon: "fas fa-user"
-    color: "teal-emerald"
-    
+    role: "Co-lead Organiser"
+    # photo: 
+
   - name: "Eve"
-    role: "Co-President & Treasurer"
-    description: "Organizing events, workshops, and managing day-to-day operations of the society."
-    icon: "fas fa-users"
-    color: "emerald-sage"
-    
+    role: "Co-lead Organiser and Treasurer"
+    # photo: 
+
   - name: "Quinn"
-    role: "Co-President & Secretary"
-    description: "Coordinating research projects and connecting members with AI safety research opportunities."
-    icon: "fas fa-chart-line"
-    color: "ocean-blue-warm-blue"
-    
+    role: "Co-lead Organiser and Secretary"
+    # photo: 
+
   - name: "Bella"
     role: "Social Media Manager"
-    icon: "fas fa-share-alt"
-    color: "teal-ocean-blue"
+    # photo: 
+
+  - name: "Patrick"
+    role: "PhD Researcher (Mechinterp)"
+    # photo: 
+
+  - name: "Leonie"
+    role: "PhD Researcher (Law)"
+    # photo: 
+
+  - name: "Ariz"
+    role: ""
+    # photo: 

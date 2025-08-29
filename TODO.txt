@@ -1,8 +1,6 @@
-based on https://stanfordaialignment.org/
-
 HOME PAGE
 * smooth out gradient background betwen sections (i.e one continuous)
-* put some text above the events calendar but below the heading, saying "Check out our programs here" and link to the programs page
+* move the text from below the events calendar to above it (between program cards and calendar)
 * add a link from '...student-led...' in about us to 'our-team' page
 * add a link from '...risks from advanced AI...' in about us to 'what-is-ai-safety' page
 * link from "MATS" to https://www.matsprogram.org/
