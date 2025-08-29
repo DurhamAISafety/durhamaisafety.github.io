@@ -4,6 +4,7 @@ HOME PAGE
 * add a link from '...student-led...' in about us to 'our-team' page
 * add a link from '...risks from advanced AI...' in about us to 'what-is-ai-safety' page
 * link from "MATS" to https://www.matsprogram.org/
+* add supported by section with pathfinder fellowship https://pathfinder.kairos-project.org/ (clickable icon)
 
 FOOTER
 * add discord (link: https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl)

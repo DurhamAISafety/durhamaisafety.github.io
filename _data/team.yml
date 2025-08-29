@@ -1,31 +1,28 @@
 # Central team roster used by pages/our-team.html
-# Add members in the desired display order. Optional fields: photo
+# Add members in the desired display order. Optional fields: link, photo
 
 members:
   - name: "Theo"
     role: "Co-lead Organiser"
-    # photo: 
+    photoo: "https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/39871310/d7d04086.jpeg"
 
   - name: "Eve"
     role: "Co-lead Organiser and Treasurer"
-    # photo: 
 
   - name: "Quinn"
     role: "Co-lead Organiser and Secretary"
-    # photo: 
 
   - name: "Bella"
     role: "Social Media Manager"
-    # photo: 
 
   - name: "Patrick"
     role: "PhD Researcher (Mechinterp)"
-    # photo: 
+    link: "https://www.durham.ac.uk/staff/patrick-leask/"
 
   - name: "Leonie"
     role: "PhD Researcher (Law)"
-    # photo: 
+    link: "https://www.durham.ac.uk/staff/leonie-a-stuessi/"
+    photo: "https://apps.dur.ac.uk/biography/image/4854"
 
   - name: "Ariz"
     role: ""
-    # photo: 
