@@ -114,9 +114,9 @@ body {
     line-height: 1.6;
 }
 
-/* Light section wrapper for home page (warm lavender background area) */
+/* Light section wrapper for home page (now solid white for continuous background) */
 .home-light {
-    background: linear-gradient(135deg, var(--color-blush) 0%, var(--color-soft-pink) 100%);
+    background: #ffffff;
     color: var(--color-deep-plum);
 }
 
@@ -903,5 +903,10 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-palatinate), var(--color-lavender), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+}
+
+/* Make the divider extra subtle on white home sections */
+.home-light.section-transition::before {
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);
 }
