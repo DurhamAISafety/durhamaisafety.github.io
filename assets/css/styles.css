@@ -488,6 +488,132 @@ body {
     );
 }
 
+/* Neutral background for sections below hero */
+.section-neutral {
+    background: linear-gradient(135deg, 
+        rgba(248, 250, 252, 0.95), 
+        rgba(241, 245, 249, 0.95)
+    );
+    color: #1e293b; /* Dark slate for better contrast */
+}
+
+/* Ensure proper text contrast in neutral sections */
+.section-neutral h1,
+.section-neutral h2,
+.section-neutral h3,
+.section-neutral h4,
+.section-neutral h5,
+.section-neutral h6 {
+    color: #0f172a; /* Slate 900 */
+}
+
+.section-neutral p,
+.section-neutral span,
+.section-neutral li {
+    color: #334155; /* Slate 700 */
+}
+
+/* Adjust card styling in neutral sections */
+.section-neutral .program-card,
+.section-neutral .info-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-neutral .program-card h4,
+.section-neutral .info-card h3 {
+    color: #0f172a;
+}
+
+.section-neutral .program-card p,
+.section-neutral .info-card p {
+    color: #475569; /* Slate 600 */
+}
+
+.section-neutral .program-card i {
+    color: #0f172a; /* Dark icons on light cards by default */
+}
+
+.section-neutral .program-card .text-sm {
+    color: #64748b; /* Slate 500 for small text */
+}
+
+/* Ensure button text remains white in neutral sections */
+.section-neutral .program-card a,
+.section-neutral .info-card a {
+    color: white !important;
+}
+
+/* Fix icon visibility in neutral sections - default dark icons on light cards */
+.section-neutral .program-card i {
+    color: #0f172a; /* Default; specific icons below override with brand colors */
+}
+
+/* Keep large header icons (inside gradient squares) white for contrast */
+.section-neutral .program-card .bg-gradient-to-br i {
+    color: #ffffff !important;
+}
+
+/* Fix small detail icons in program cards to have appropriate colors */
+.section-neutral .fa-users {
+    color: #10b981 !important; /* Emerald */
+}
+
+/* Social events fa-users icon uses emerald on light cards for contrast */
+.section-neutral .program-card .fa-users {
+    color: #10b981 !important; /* Emerald for visibility */
+}
+
+.section-neutral .fa-laptop-code {
+    color: #84cc16 !important; /* Sage */
+}
+
+.section-neutral .fa-graduation-cap {
+    color: #3b82f6 !important; /* Warm blue */
+}
+
+.section-neutral .fa-heart {
+    color: #3b82f6 !important; /* Warm blue for heart icon */
+}
+
+.section-neutral .fa-chalkboard-teacher {
+    color: #10b981 !important; /* Emerald for intro seminars */
+}
+
+.section-neutral .fa-book-open {
+    color: #84cc16 !important; /* Sage for reading groups */
+}
+
+.section-neutral .fa-microscope {
+    color: #3b82f6 !important; /* Warm blue for research */
+}
+
+.section-neutral .fa-microphone {
+    color: #14b8a6 !important; /* Teal for speaker events */
+}
+
+/* Ensure 3 pillars cards have white text */
+.section-neutral .grid .bg-gradient-to-br h3,
+.section-neutral .grid .bg-gradient-to-br p {
+    color: white !important;
+}
+
+/* Adjust calendar container in neutral section */
+.section-neutral .calendar-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+}
+
+/* Adjust links in neutral sections */
+.section-neutral a {
+    color: #0891b2; /* Ocean blue for links */
+}
+
+.section-neutral a:hover {
+    color: #0e7490; /* Darker ocean blue on hover */
+}
+
 /* Footer */
 .footer {
     background: rgba(0, 0, 0, 0.3);
