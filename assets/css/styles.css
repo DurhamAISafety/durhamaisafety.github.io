@@ -1,25 +1,32 @@
 /* Durham AISI Website Styles */
 /* ========================== */
 
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Fonts are loaded in layout head via <link>; removed @import to improve performance */
 
 /* CSS Variables for consistent theming */
 :root {
-    --color-ocean-blue: #0891b2;
-    --color-deep-blue: #0e4a5c;
-    --color-teal: #14b8a6;
-    --color-emerald: #10b981;
-    --color-sage: #84cc16;
-    --color-mint: #6ee7b7;
-    --color-warm-blue: #3b82f6;
-    --color-navy: #1e3a8a;
+    /* New purple palette */
+    --color-deep-purple: #39144F;
+    --color-bright-purple: #EB80FD;
+    --color-light-purple: #E2ACFE;
+    --color-lavender: #B8BBFE;
+    --color-pure-white: #FFFFFF;
+
+    /* Legacy for compatibility (mapped to purples where sensible) */
+    --color-ocean-blue: #6F3FA7; /* mapped to a mid-purple */
+    --color-deep-blue: #3E1A59; /* deep purple-leaning */
+    --color-teal: #A562E8; /* mapped to bright purple */
+    --color-emerald: #D49BFF; /* mapped to light purple */
+    --color-sage: #C2B6FF; /* lavender-ish */
+    --color-mint: #E6D1FF; /* pale purple */
+    --color-warm-blue: #A080FF; /* violet */
+    --color-navy: #2B0F40; /* darkest purple */
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
-    --gradient-text: linear-gradient(135deg, var(--color-teal), var(--color-ocean-blue));
-    --gradient-hero: linear-gradient(135deg, var(--color-deep-blue) 0%, var(--color-navy) 50%, var(--color-teal) 100%);
-    --gradient-bg: linear-gradient(to bottom right, var(--color-deep-blue), var(--color-navy), var(--color-ocean-blue));
+    /* Gradients updated to purple theme */
+    --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
+    --gradient-text: linear-gradient(135deg, var(--color-bright-purple), var(--color-lavender));
+    --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
+    --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
     
     /* Spacing */
     --section-padding: 5rem 0;
@@ -41,19 +48,44 @@
     --transition-fast: all 0.2s ease;
 }
 
+/* Pulse glow animation for CTA buttons */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(235, 128, 253, 0.6);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
+        transform: scale(1);
+    }
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s infinite;
+}
+
+.pulse-glow:hover {
+    animation-play-state: paused;
+}
+
 /* Hero section with fixed background */
 .hero-background {
     background-image: url('/images/hero-picture.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* Avoid fixed attachment to reduce repaint/jank on some devices */
+    background-attachment: scroll;
 }
 
 /* Fallback for mobile devices that don't support background-attachment: fixed well */
 @media (max-width: 768px) {
     .hero-background {
-        background-attachment: scroll;
+    background-attachment: scroll;
     }
 }
 
@@ -96,6 +128,7 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
+    /* Use site-wide purple gradient background; Tailwind body gradient in layout is compatible */
     background: var(--gradient-bg);
     color: white;
     min-height: 100vh;
@@ -123,12 +156,12 @@ body {
 
 /* Header styles */
 .header {
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
+    background: rgba(57, 20, 79, 0.5); /* Darker frosting for better contrast */
+    backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 50;
-    border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.5);
 }
 
 .nav {
@@ -192,7 +225,7 @@ body {
 }
 
 .nav-link:hover {
-    color: var(--color-teal);
+    color: var(--color-bright-purple);
 }
 
 .nav-link::after {
@@ -236,11 +269,11 @@ body {
     position: absolute;
     top: 100%;
     right: 0;
-    background: rgba(14, 74, 92, 0.95);
+    background: rgba(57, 20, 79, 0.95);
     backdrop-filter: blur(10px);
     min-width: 200px;
     border-radius: var(--radius-xl);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    border: 1px solid rgba(235, 128, 253, 0.3);
     box-shadow: var(--shadow-card);
     z-index: 1000;
     overflow: hidden;
@@ -257,7 +290,7 @@ body {
     text-decoration: none;
     color: white;
     transition: var(--transition-default);
-    border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.2);
 }
 
 .dropdown-content a:last-child {
@@ -265,8 +298,8 @@ body {
 }
 
 .dropdown-content a:hover {
-    background: rgba(20, 184, 166, 0.2);
-    color: var(--color-teal);
+    background: rgba(235, 128, 253, 0.2);
+    color: var(--color-bright-purple);
     padding-left: 1.5rem;
 }
 
@@ -335,29 +368,25 @@ body {
 .card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    border: 1px solid rgba(235, 128, 253, 0.3);
     border-radius: var(--radius-xl);
     padding: var(--card-padding);
     transition: var(--transition-default);
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-card-hover);
+    /* Disabled expensive transform on hover for performance */
+    transform: none;
+    box-shadow: none;
 }
 
 /* Bounce animation for hoverable cards */
 @keyframes hover-bounce {
-    0% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    65% { transform: translateY(-6px); }
-    100% { transform: translateY(-8px); }
+    /* Disabled */
 }
 
 /* Apply bounce on hover to elements marked as card-hover */
-.card-hover:hover {
-    animation: hover-bounce 0.6s ease-out;
-}
+.card-hover:hover { animation: none; }
 
 /* Team card helper */
 .team-card {
@@ -384,15 +413,15 @@ body {
     text-transform: uppercase;
 }
 .status-ongoing {
-    background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+    background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     color: white;
 }
 .status-completed {
-    background: linear-gradient(135deg, var(--color-sage), var(--color-emerald));
+    background: linear-gradient(135deg, var(--color-lavender), var(--color-light-purple));
     color: white;
 }
 .status-planning {
-    background: linear-gradient(135deg, var(--color-warm-blue), var(--color-ocean-blue));
+    background: linear-gradient(135deg, var(--color-bright-purple), var(--color-ocean-blue));
     color: white;
 }
 
@@ -405,7 +434,7 @@ body {
     top: 0.5rem;
     width: 12px;
     height: 12px;
-    background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+    background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     border-radius: 50%;
 }
 .timeline-item::after {
@@ -415,7 +444,7 @@ body {
     top: 1.25rem;
     width: 2px;
     height: calc(100% - 0.75rem);
-    background: linear-gradient(180deg, var(--color-teal), transparent);
+    background: linear-gradient(180deg, var(--color-bright-purple), transparent);
 }
 .timeline-item:last-child::after { display: none; }
 
@@ -468,31 +497,191 @@ body {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-emerald), var(--color-mint));
-    transform: scale(1.05);
-    box-shadow: var(--shadow-card);
+    background: linear-gradient(135deg, var(--color-light-purple), var(--color-lavender));
+    /* Remove transform to avoid layout thrash */
+    /* transform: scale(1.05); */
+    /* box-shadow: var(--shadow-card); */
+}
+
+/* Viewport height utilities for stable hero sizing across mobile browsers */
+.min-h-100dvh {
+    min-height: 100dvh; /* Dynamic viewport to account for mobile UI */
+}
+.min-h-100svh {
+    min-height: 100svh; /* Small viewport height fallback */
+}
+.min-h-100vh {
+    min-height: 100vh; /* Fallback for older browsers */
+}
+
+/* Defer offscreen rendering where safe */
+.defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
 }
 
 /* Section backgrounds */
 .section-alt {
     background: linear-gradient(135deg, 
-        rgba(14, 74, 92, 0.9), 
-        rgba(30, 58, 138, 0.9)
+        rgba(57, 20, 79, 0.9), 
+        rgba(184, 132, 254, 0.15)
     );
 }
 
 .section-alt-2 {
     background: linear-gradient(135deg, 
-        rgba(8, 145, 178, 0.9), 
-        rgba(14, 74, 92, 0.9)
+        rgba(235, 128, 253, 0.15), 
+        rgba(57, 20, 79, 0.9)
     );
+}
+
+/* Neutral background for sections below hero */
+.section-neutral {
+    /* Unified background across all neutral sections */
+    background: #f8fafc; /* Solid light neutral */
+    color: #1e293b; /* Dark slate for better contrast */
+}
+
+/* -------------------------------------------
+   Fix: Ensure header icons are white on cards
+   Context: Programs page gradient header squares
+   Reason: Avoid affecting smaller icons inside gradient content boxes
+-------------------------------------------- */
+/* Only force white on the big header squares */
+.section-neutral .w-16.h-16.bg-gradient-to-br > i,
+.section-neutral .w-20.h-20.bg-gradient-to-br > i,
+.section-neutral .w-16.h-16.bg-gradient-to-r > i,
+.section-neutral .w-20.h-20.bg-gradient-to-r > i {
+    color: var(--color-pure-white) !important;
+}
+
+/* Default icons in neutral sections to purple for visibility */
+.section-neutral i {
+    color: var(--color-bright-purple) !important;
+}
+
+/* Override for icons that should stay white (in gradient backgrounds) */
+/* Restrict white icons to only large header squares (handled above). */
+
+/* Make smaller list icons inside "Who's this for?" gradient cards darker for contrast */
+.section-neutral .bg-gradient-to-br .flex.items-start > i,
+.section-neutral .bg-gradient-to-r .flex.items-start > i {
+    color: var(--color-deep-purple) !important;
+}
+
+/* Ensure proper text contrast in neutral sections */
+.section-neutral h1,
+.section-neutral h2,
+.section-neutral h3,
+.section-neutral h4,
+.section-neutral h5,
+.section-neutral h6 {
+    color: #0f172a; /* Slate 900 */
+}
+
+.section-neutral p,
+.section-neutral span,
+.section-neutral li {
+    color: #334155; /* Slate 700 */
+}
+
+/* Adjust card styling in neutral sections */
+.section-neutral .program-card,
+.section-neutral .info-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(235, 128, 253, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-neutral .program-card h4,
+.section-neutral .info-card h3 {
+    color: #0f172a;
+}
+
+.section-neutral .program-card p,
+.section-neutral .info-card p {
+    color: #475569; /* Slate 600 */
+}
+
+.section-neutral .program-card i {
+    color: #0f172a; /* Dark icons on light cards by default */
+}
+
+.section-neutral .program-card .text-sm {
+    color: #64748b; /* Slate 500 for small text */
+}
+
+/* Ensure only button-like or gradient anchors are white in neutral sections */
+.section-neutral a.btn,
+.section-neutral a[class*="bg-gradient-to-"] {
+    color: #ffffff !important;
+}
+.section-neutral a.btn:hover,
+.section-neutral a[class*="bg-gradient-to-"]:hover {
+    color: #ffffff !important;
+}
+
+/* Icons inside links should match the link color */
+.section-neutral a i {
+    color: currentColor !important;
+}
+
+/* Fix icon visibility in neutral sections - simplified rules */
+.section-neutral .program-card i {
+    color: var(--color-bright-purple) !important; /* Default purple for all icons */
+}
+
+/* Keep large header icons (inside gradient squares) white for contrast */
+.section-neutral .program-card .bg-gradient-to-br i,
+.section-neutral .program-card .bg-gradient-to-r i {
+    color: #ffffff !important;
+}
+
+/* Ensure 3 pillars cards have white text (scope to home about section only)
+   Note: The #about element itself has class .section-neutral, so target the same element
+   rather than a descendant to ensure the selector matches. */
+#about.section-neutral .grid .bg-gradient-to-br h3,
+#about.section-neutral .grid .bg-gradient-to-br p {
+    color: #ffffff !important;
+}
+
+/* Adjust calendar container in neutral section */
+.section-neutral .calendar-container {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(235, 128, 253, 0.2);
+}
+
+/* Adjust links in neutral sections */
+.section-neutral a {
+    color: #8b5cf6; /* Violet for links */
+}
+
+.section-neutral a:hover {
+    color: #a78bfa; /* Lighter violet on hover */
+}
+
+/* -------------------------------------------
+   Fixes for Programs page: Research Support
+   - Improve contrast and brand color mapping
+-------------------------------------------- */
+/* Headings darker for strong contrast */
+.section-neutral #research-projects .bg-gradient-to-br h5 {
+    color: #0f172a !important; /* Slate 900 */
+}
+/* Body text to slate for readability */
+.section-neutral #research-projects .bg-gradient-to-br p {
+    color: #334155 !important; /* Slate 700 */
+}
+/* Icons should be brand purple */
+.section-neutral #research-projects .bg-gradient-to-br i {
+    color: #7c3aed !important; /* Purple */
 }
 
 /* Footer */
 .footer {
-    background: rgba(0, 0, 0, 0.3);
+    background: #39144F;
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(20, 184, 166, 0.2);
+    border-top: 1px solid rgba(235, 128, 253, 0.2);
     padding: 3rem 0;
     text-align: center;
 }
@@ -511,7 +700,7 @@ body {
 }
 
 .social-links a:hover {
-    color: var(--color-teal);
+    color: #EB80FD;
     transform: scale(1.1);
 }
 
@@ -550,6 +739,12 @@ body {
 
 .mx-auto { margin-left: auto; margin-right: auto; }
 
+/* Icon color utilities (use to override context defaults) */
+.icon-current { color: currentColor !important; }
+.icon-white { color: #ffffff !important; }
+.icon-bright-purple { color: var(--color-bright-purple) !important; }
+.icon-light-purple { color: var(--color-light-purple) !important; }
+
 /* Section divider */
 .section-divider {
     width: 6rem;
@@ -562,7 +757,7 @@ body {
 /* Form styles */
 .form-input {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    border: 1px solid rgba(235, 128, 253, 0.3);
     color: white;
     border-radius: var(--radius-xl);
     padding: 1rem;
@@ -573,8 +768,8 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: var(--color-teal);
-    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+    border-color: var(--color-bright-purple);
+    box-shadow: 0 0 0 3px rgba(235, 128, 253, 0.2);
 }
 
 .form-input::placeholder {
@@ -585,7 +780,7 @@ body {
     appearance: none;
     width: 1.25rem;
     height: 1.25rem;
-    border: 2px solid rgba(20, 184, 166, 0.5);
+    border: 2px solid rgba(235, 128, 253, 0.5);
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
@@ -595,7 +790,7 @@ body {
 
 .checkbox-custom:checked {
     background: var(--gradient-primary);
-    border-color: var(--color-teal);
+    border-color: var(--color-bright-purple);
 }
 
 .checkbox-custom:checked::after {

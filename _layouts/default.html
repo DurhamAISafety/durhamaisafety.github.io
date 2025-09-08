@@ -8,16 +8,17 @@
     {% seo %}
     
     <!-- Favicon & App Icons -->
-    <link rel="icon" type="image/x-icon" href="{{ '/images/favicon.ico' | relative_url }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/favicon/apple-touch-icon.png' | relative_url }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon/favicon-32x32.png' | relative_url }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon/favicon-16x16.png' | relative_url }}">
-    <link rel="manifest" href="{{ '/images/favicon/site.webmanifest' | relative_url }}">
-    <meta name="theme-color" content="#0e4a5c">
+    <link rel="icon" type="image/x-icon" href="{{ '/images/new_favicon/favicon.ico' | relative_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/new_favicon/apple-touch-icon.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/new_favicon/favicon-32x32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/new_favicon/favicon-16x16.png' | relative_url }}">
+    <link rel="manifest" href="{{ '/images/new_favicon/site.webmanifest' | relative_url }}">
+    <meta name="theme-color" content="#39144F">
     
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Tailwind CSS (for development) -->
@@ -27,6 +28,12 @@
             theme: {
                 extend: {
                     colors: {
+                        'deep-purple': '#39144F',
+                        'bright-purple': '#EB80FD',
+                        'light-purple': '#E2ACFE',
+                        'lavender': '#B8BBFE',
+                        'pure-white': '#FFFFFF',
+                        // Legacy colors for compatibility
                         'ocean-blue': '#0891b2',
                         'deep-blue': '#0e4a5c',
                         'teal': '#14b8a6',
@@ -46,6 +53,10 @@
     
     <!-- Site CSS (loaded after Tailwind to avoid utility class conflicts) -->
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+
+    {% if page.hero_image %}
+    <link rel="preload" as="image" href="{{ page.hero_image | relative_url }}" imagesrcset="{{ page.hero_image | relative_url }} 1200w" imagesizes="100vw">
+    {% endif %}
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
@@ -62,7 +73,7 @@
     <!-- Additional page-specific head content -->
     {% if page.extra_head %}{{ page.extra_head }}{% endif %}
 </head>
-<body class="font-inter bg-gradient-to-br from-deep-blue via-navy to-ocean-blue text-white min-h-screen">
+<body class="font-inter bg-gradient-to-br from-deep-purple via-deep-purple to-lavender text-white min-h-screen">
     <!-- Construction Banner -->
     <div class="construction-banner">
         <div class="container mx-auto px-6">

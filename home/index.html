@@ -1,26 +1,27 @@
 ---
 layout: default
 title: Home
+hero_image: /images/hero-picture.jpeg
 ---
 
 <main>
     <!-- Hero Section -->
-    <section id="home" class="h-[80vh] flex items-start justify-center relative overflow-hidden pt-32 hero-background">
+    <section id="home" class="min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden pt-28 md:pt-32 hero-background">
         <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
             <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
                 <h2 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.6);">
-                    <span class="text-white">Durham students and academics for </span><span class="text-mint italic font-medium">reducing catastrophic risks from advanced AI</span>
+                    <span class="text-white">Durham students and academics for </span><span class="text-bright-purple italic font-medium">reducing catastrophic risks from advanced AI</span>
                 </h2>
                 
                 <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5);">
-                    <span class="font-semibold text-emerald">Whatever your expertise,</span> 
+                    <span class="font-semibold text-light-purple">Whatever your expertise,</span> 
                     <span class="text-white">you can contribute to the conversation and make a difference.</span>
                 </p>
                 
-                <div class="pt-2 md:pt-4">
+          <div class="pt-2 md:pt-4">
                     <a href="{{ '/get-involved/' | relative_url }}"
-                       class="inline-block px-12 py-4 bg-gradient-to-r from-teal to-emerald text-deep-blue font-bold text-lg rounded-full hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 pulse-glow">
+              class="inline-block px-12 py-4 bg-gradient-to-r from-bright-purple to-light-purple text-white font-bold text-lg rounded-full transition-colors duration-300 pulse-glow">
                         Get Involved
                     </a>
                 </div>
@@ -28,8 +29,8 @@ title: Home
                 <!-- Scroll down prompt -->
                 <div class="mt-12 md:mt-16">
                     <button type="button" onclick="scrollToAbout()" aria-label="Scroll to About section"
-                            class="text-center cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emerald/70 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg">
-                        <span class="block text-white/90 text-sm mb-2" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Scroll down to learn more</span>
+                            class="text-center cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-bright-purple/70 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg">
+                        <!-- <span class="block text-white/90 text-sm mb-2" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Scroll down to learn more</span> -->
                         <span class="block text-white text-2xl" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);" aria-hidden="true">
                             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </span>
@@ -40,53 +41,53 @@ title: Home
     </section>
 
     <!-- About Us & Events Section -->
-    <section id="about" class="py-24 relative section-transition">
+    <section id="about" class="py-16 relative section-transition section-neutral">
         <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">About Us</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-4xl mx-auto">
                 <div class="grid gap-8">
-                    <!-- Main description -->
-                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-center text-white drop-shadow"> 
-                        We are a <a href="{{ '/our-team/' | relative_url }}" class="text-emerald hover:text-mint font-medium transition-colors">student-led</a> initiative that aims to empower students and academics to <a href="{{ '/what-is-ai-safety/' | relative_url }}" class="text-emerald hover:text-mint font-medium transition-colors">reduce risk from advanced AI</a>, by:
-                    </p>
+                    <!-- Main description with enhanced styling -->
+                    <div class="text-center">
+                        <p class="text-lg md:text-xl leading-relaxed mb-6 max-w-3xl mx-auto font-medium"> 
+                            We are a <a href="{{ '/our-team/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="{{ '/what-is-ai-safety/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:
+                        </p>
+                    </div>
                     
-                    <!-- Three pillars -->
+                    <!-- Three pillars with enhanced styling -->
                     <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-gradient-to-br from-teal/30 to-emerald/30 backdrop-blur rounded-2xl p-6 card-hover border border-teal/50">
-                            <div class="text-2xl mb-4 text-center">🎯</div>
+                        <div class="group bg-gradient-to-br from-deep-purple via-bright-purple/150 to-bright-purple backdrop-blur rounded-2xl p-6 border border-bright-purple/60 shadow-lg transition-colors duration-300">
+                            <div class="text-3xl mb-4 text-center transform group-hover:scale-110 transition-transform duration-300">🎯</div>
                             <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Raising Awareness</h3>
-                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                            <p class="text-base leading-relaxed text-center text-white/90 drop-shadow">
                                 Through discussion groups and speaker events
                             </p>
+                            <div class="mt-4 h-1 w-12 bg-white/30 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                         </div>
                         
-                        <div class="bg-gradient-to-br from-emerald/30 to-sage/30 backdrop-blur rounded-2xl p-6 card-hover border border-emerald/50">
-                            <div class="text-2xl mb-4 text-center">🛠️</div>
+                        <div class="group bg-gradient-to-br from-bright-purple to-light-purple backdrop-blur rounded-2xl p-6 border border-light-purple/60 shadow-lg transition-colors duration-300">
+                            <div class="text-3xl mb-4 text-center transform group-hover:scale-110 transition-transform duration-300">🛠️</div>
                             <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Upskilling Members</h3>
-                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                            <p class="text-base leading-relaxed text-center text-white/90 drop-shadow">
                                 In safety techniques through workshops and 1-1 support
                             </p>
+                            <div class="mt-4 h-1 w-12 bg-white/30 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                         </div>
                         
-                        <div class="bg-gradient-to-br from-ocean-blue/30 to-teal/30 backdrop-blur rounded-2xl p-6 card-hover border border-ocean-blue/50">
-                            <div class="text-2xl mb-4 text-center">🤝</div>
+                        <div class="group bg-gradient-to-br from-light-purple to-lavender backdrop-blur rounded-2xl p-6 border border-lavender/60 shadow-lg transition-colors duration-300">
+                            <div class="text-3xl mb-4 text-center transform group-hover:scale-110 transition-transform duration-300">🤝</div>
                             <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Fostering Community</h3>
-                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                            <p class="text-base leading-relaxed text-center text-white/90 drop-shadow">
                                 For high-quality discussion, support and connections to the wider field of AI safety
                             </p>
+                            <div class="mt-4 h-1 w-12 bg-white/30 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                         </div>
                     </div>
                     
-                    <!-- Achievements -->
-                    <div class="bg-gradient-to-r from-deep-blue/40 to-navy/40 backdrop-blur rounded-2xl p-8 border border-mint/50">
+                    <!-- Achievements with simplified design -->
+                    <div class="bg-gradient-to-br from-bright-purple/80 to-lavender/100 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl">
                         <div class="text-center">
-                            <!-- <h3 class="text-2xl font-bold gradient-text mb-6 drop-shadow-lg">Our Impact</h3> -->
-                            <p class="text-lg md:text-xl leading-relaxed text-white drop-shadow">
-                                Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-emerald hover:text-mint font-medium transition-colors">MATS</a> and gone on to study AI ethics at Cambridge.
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-4 drop-shadow-lg">Our Impact</h3>
+                            <p class="text-lg md:text-xl leading-relaxed font-medium max-w-3xl mx-auto text-white/95">
+                                Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 font-semibold transition-colors underline decoration-white/50 hover:decoration-white/80">MATS</a> and gone on to study AI ethics at Cambridge.
                             </p>
                         </div>
                     </div>
@@ -95,56 +96,56 @@ title: Home
         </div>
 
         <!-- Events Section -->
-        <div id="events" class="pt-20 relative">
+    <div id="events" class="pt-20 relative defer-render">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">Our Events</h2>
-                    <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Events</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
                 </div>
                 
                 <!-- Program Cards -->
                 <div class="max-w-6xl mx-auto mb-16">
                     <!-- First row: 2 main cards -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="program-card rounded-2xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-chalkboard-teacher text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Intro Seminars</h4>
                             </div>
-                            <p class="text-white/80 mb-6 leading-relaxed">
+                            <p class="mb-6 leading-relaxed text-slate-600">
                                 Regular sessions exploring core AI safety concepts in an accessible, interactive format.
                             </p>
                             <div class="space-y-2 mb-6">
                                 <div class="flex items-center">
-                                    <i class="fa-solid fa-users text-emerald mr-2" aria-hidden="true"></i>
-                                    <span class="text-sm">No technical background needed</span>
+                                    <i class="fa-solid fa-users text-bright-purple mr-2" aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">No technical background needed</span>
                                 </div>
                             </div>
-                <a href="{{ '/programs/#intro-seminars' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-teal to-emerald text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#intro-seminars' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg transition-colors duration-300">
                                 Learn More
                             </a>
                         </div>
                     
-                        <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="program-card rounded-2xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-light-purple to-lavender rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-book-open text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">In-Depth Reading Groups</h4>
                             </div>
-                            <p class="text-white/80 mb-6 leading-relaxed">
+                            <p class="mb-6 leading-relaxed text-slate-600">
                                 Deeper discussion on AI safety papers with PhD students specialising in the areas. 
                                 Open to anyone - aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
                             </p>
                             <div class="space-y-2 mb-6">
                                 <div class="flex items-center">
-                                    <i class="fa-solid fa-laptop-code text-sage mr-2" aria-hidden="true"></i>
-                                    <span class="text-sm">Some prior knowledge useful</span>
+                                    <i class="fa-solid fa-laptop-code text-bright-purple mr-2" aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">Some prior knowledge useful</span>
                                 </div>
                             </div>
-                <a href="{{ '/programs/#reading-groups' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-emerald to-sage text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#reading-groups' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg transition-colors duration-300">
                                 Learn More
                             </a>
                         </div>
@@ -152,61 +153,61 @@ title: Home
                     
                     <!-- Second row: 3 cards -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="program-card rounded-2xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-microscope text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Research Project Support</h4>
                             </div>
-                            <p class="text-white/80 mb-6 leading-relaxed">
+                            <p class="mb-6 leading-relaxed text-slate-600">
                                 We support you to pursue AI safety research. 
                                 We can support applications for fellowships and funding,
                                 and advise students on dissertation and independent study projects.
                             </p>
                             <div class="space-y-2 mb-6">
                                 <div class="flex items-center">
-                    <i class="fa-solid fa-graduation-cap text-warm-blue mr-2" aria-hidden="true"></i>
-                                    <span class="text-sm">Faculty & Students</span>
+                    <i class="fa-solid fa-graduation-cap text-bright-purple mr-2" aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">Faculty & Students</span>
                                 </div>
                             </div>
-                <a href="{{ '/programs/#research-projects' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-ocean-blue to-warm-blue text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#research-projects' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg transition-colors duration-300">
                                 Learn More
                             </a>
                         </div>
                         
-                        <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="program-card rounded-2xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-lavender to-bright-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-microphone text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Speaker Events</h4>
                             </div>
-                            <p class="text-white/80 mb-6 leading-relaxed">
+                            <p class="mb-6 leading-relaxed text-slate-600">
                                Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.
                             </p>
-                <a href="{{ '/programs/#speaker-series' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-mint to-teal text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#speaker-series' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg transition-colors duration-300">
                                 Learn More
                             </a>
                         </div>
                         
-                        <div class="program-card rounded-2xl p-8 card-hover">
+                        <div class="program-card rounded-2xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-ocean-blue rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-users text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Social Events</h4>
                             </div>
-                            <p class="text-white/80 mb-6 leading-relaxed">
+                            <p class="mb-6 leading-relaxed text-slate-600">
                                 Relaxed socials to connect and build community.
                             </p>
                             <div class="space-y-2 mb-6">
                                 <div class="flex items-center">
-                                    <i class="fa-solid fa-heart text-warm-blue mr-2" aria-hidden="true"></i>
-                                    <span class="text-sm">Everyone welcome</span>
+                                    <i class="fa-solid fa-heart text-bright-purple mr-2" aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">Everyone welcome</span>
                                 </div>
                             </div>
-                <a href="{{ '/programs/#socials' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-warm-blue to-ocean-blue text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#socials' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg transition-colors duration-300">
                                 Learn More
                             </a>
                         </div>
@@ -214,15 +215,15 @@ title: Home
                 </div>
                 
                 <div class="max-w-5xl mx-auto">
-                    <p class="text-center text-lg mb-8 text-white font-medium drop-shadow-lg">
+                    <p class="text-center text-lg mb-8 font-medium">
                         We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
                     </p>
-                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-teal/40 card-hover calendar-container">
+                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
                         <!-- Loading state -->
                         <div id="calendar-loading" class="calendar-loading">
                             <div class="text-center">
                                 <div class="spinner mx-auto mb-4"></div>
-                                <p class="text-teal font-medium">Loading calendar...</p>
+                                <p class="text-bright-purple font-medium">Loading calendar...</p>
                             </div>
                         </div>
                         
@@ -239,28 +240,28 @@ title: Home
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Proudly Supported By Section -->
-    <section id="supported-by" class="py-16">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 drop-shadow-lg">Proudly Supported By</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-teal to-emerald mx-auto rounded-full"></div>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-                <a href="https://pathfinder.kairos-project.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
-                    <div class="bg-white rounded-xl p-4 mb-3 drop-shadow-lg transition-transform group-hover:scale-105">
-                        <img src="https://img.notionusercontent.com/ext/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fpublic.notion-static.com%2Fd0b2cb2a-bf6f-4dff-a3ca-0494e7202b1c%2Fsvgviewer-output-9.svg/size/?exp=1756560185&sig=hvnRJrql73UngBju8kSKlvBBiILOsBEpnuQ1t-G_K3I&id=246b1284-725b-8022-93dc-007a2d3ced28&table=custom_emoji" alt="Pathfinder Fellowship logo" class="h-16 w-auto" style="max-width:140px;" loading="lazy" />
-                    </div>
-                    <span class="text-white text-lg font-semibold">Pathfinder Fellowship</span>
-                </a>
-                <a href="https://www.openphilanthropy.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
-                    <div class="bg-white rounded-xl p-4 mb-3 drop-shadow-lg transition-transform group-hover:scale-105">
-                        <img src="https://www.openphilanthropy.org/wp-content/uploads/GT-logo-smaller.jpg" alt="Open Philanthropy logo" class="h-16 w-auto" style="max-width:140px;" loading="lazy" />
-                    </div>
-                    <span class="text-white text-lg font-semibold">Open Philanthropy</span>
-                </a>
+        
+        <!-- Proudly Supported By Section (merged into about section) -->
+        <div class="pt-20 relative">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6">Proudly Supported By</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <a href="https://pathfinder.kairos-project.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                        <div class="bg-white rounded-xl p-4 mb-3 drop-shadow-lg transition-transform group-hover:scale-105">
+                            <img src="https://img.notionusercontent.com/ext/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fpublic.notion-static.com%2Fd0b2cb2a-bf6f-4dff-a3ca-0494e7202b1c%2Fsvgviewer-output-9.svg/size/?exp=1756560185&sig=hvnRJrql73UngBju8kSKlvBBiILOsBEpnuQ1t-G_K3I&id=246b1284-725b-8022-93dc-007a2d3ced28&table=custom_emoji" alt="Pathfinder Fellowship logo" class="h-16 w-auto" style="max-width:140px;" loading="lazy" />
+                        </div>
+                        <span class="text-lg font-semibold text-slate-700">Pathfinder Fellowship</span>
+                    </a>
+                    <a href="https://www.openphilanthropy.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                        <div class="bg-white rounded-xl p-4 mb-3 drop-shadow-lg transition-transform group-hover:scale-105">
+                            <img src="https://www.openphilanthropy.org/wp-content/uploads/GT-logo-smaller.jpg" alt="Open Philanthropy logo" class="h-16 w-auto" style="max-width:140px;" loading="lazy" />
+                        </div>
+                        <span class="text-lg font-semibold text-slate-700">Open Philanthropy</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -282,7 +283,7 @@ title: Home
         } else {
             backToTopButton.classList.remove('show');
         }
-    });
+    }, { passive: true });
     
     // Scroll to top when button is clicked
     backToTopButton.addEventListener('click', () => {
@@ -310,14 +311,16 @@ title: Home
     const calendarLoading = document.getElementById('calendar-loading');
     
     // Hide loading state when calendar is loaded
-    calendarIframe.addEventListener('load', () => {
-        calendarLoading.style.display = 'none';
-        calendarIframe.classList.add('loaded');
-    });
+    if (calendarIframe && calendarLoading) {
+        calendarIframe.addEventListener('load', () => {
+            calendarLoading.style.display = 'none';
+            calendarIframe.classList.add('loaded');
+        });
+    }
     
     // Fallback to hide loading state after 5 seconds if load event doesn't fire
     setTimeout(() => {
-        if (!calendarIframe.classList.contains('loaded')) {
+        if (calendarIframe && calendarLoading && !calendarIframe.classList.contains('loaded')) {
             calendarLoading.style.display = 'none';
             calendarIframe.classList.add('loaded');
         }
@@ -342,3 +345,4 @@ title: Home
         });
     });
 </script>
+
