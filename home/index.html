@@ -29,7 +29,7 @@ title: Home
                 <div class="mt-12 md:mt-16">
                     <button type="button" onclick="scrollToAbout()" aria-label="Scroll to About section"
                             class="text-center cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-bright-purple/70 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg">
-                        <span class="block text-white/90 text-sm mb-2" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Scroll down to learn more</span>
+                        <!-- <span class="block text-white/90 text-sm mb-2" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Scroll down to learn more</span> -->
                         <span class="block text-white text-2xl" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);" aria-hidden="true">
                             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </span>
@@ -40,48 +40,53 @@ title: Home
     </section>
 
     <!-- About Us & Events Section -->
-    <section id="about" class="py-24 relative section-transition section-neutral">
+    <section id="about" class="py-16 relative section-transition section-neutral">
         <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-4xl mx-auto">
                 <div class="grid gap-8">
-                    <!-- Main description -->
-                    <p class="text-lg md:text-xl leading-relaxed mb-6 text-center"> 
-                        We are a <a href="{{ '/our-team/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-medium transition-colors">student-led</a> initiative that aims to empower students and academics to <a href="{{ '/what-is-ai-safety/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-medium transition-colors">reduce risk from advanced AI</a>, by:
-                    </p>
+                    <!-- Main description with enhanced styling -->
+                    <div class="text-center">
+                        <p class="text-lg md:text-xl leading-relaxed mb-6 max-w-3xl mx-auto font-medium"> 
+                            We are a <a href="{{ '/our-team/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="{{ '/what-is-ai-safety/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:
+                        </p>
+                    </div>
                     
-                    <!-- Three pillars -->
+                    <!-- Three pillars with enhanced styling -->
                     <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-gradient-to-br from-deep-purple to-bright-purple backdrop-blur rounded-2xl p-6 card-hover border border-bright-purple/60">
-                            <div class="text-2xl mb-4 text-center">🎯</div>
+                        <div class="group bg-gradient-to-br from-deep-purple via-bright-purple/150 to-bright-purple backdrop-blur rounded-2xl p-6 card-hover border border-bright-purple/60 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="text-3xl mb-4 text-center transform group-hover:scale-110 transition-transform duration-300">🎯</div>
                             <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Raising Awareness</h3>
-                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                            <p class="text-base leading-relaxed text-center text-white/90 drop-shadow">
                                 Through discussion groups and speaker events
                             </p>
+                            <div class="mt-4 h-1 w-12 bg-white/30 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                         </div>
                         
-                        <div class="bg-gradient-to-br from-bright-purple to-light-purple backdrop-blur rounded-2xl p-6 card-hover border border-light-purple/60">
-                            <div class="text-2xl mb-4 text-center">🛠️</div>
+                        <div class="group bg-gradient-to-br from-bright-purple to-light-purple backdrop-blur rounded-2xl p-6 card-hover border border-light-purple/60 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 md:scale-105">
+                            <div class="text-3xl mb-4 text-center transform group-hover:scale-110 transition-transform duration-300">🛠️</div>
                             <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Upskilling Members</h3>
-                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                            <p class="text-base leading-relaxed text-center text-white/90 drop-shadow">
                                 In safety techniques through workshops and 1-1 support
                             </p>
+                            <div class="mt-4 h-1 w-12 bg-white/30 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                         </div>
                         
-                        <div class="bg-gradient-to-br from-light-purple to-lavender backdrop-blur rounded-2xl p-6 card-hover border border-lavender/60">
-                            <div class="text-2xl mb-4 text-center">🤝</div>
+                        <div class="group bg-gradient-to-br from-light-purple to-lavender backdrop-blur rounded-2xl p-6 card-hover border border-lavender/60 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="text-3xl mb-4 text-center transform group-hover:scale-110 transition-transform duration-300">🤝</div>
                             <h3 class="text-xl font-bold text-white mb-4 text-center drop-shadow-lg">Fostering Community</h3>
-                            <p class="text-lg leading-relaxed text-center text-white drop-shadow">
+                            <p class="text-base leading-relaxed text-center text-white/90 drop-shadow">
                                 For high-quality discussion, support and connections to the wider field of AI safety
                             </p>
+                            <div class="mt-4 h-1 w-12 bg-white/30 rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
                         </div>
                     </div>
                     
-                    <!-- Achievements -->
-                    <div class="bg-gradient-to-r from-deep-purple/20 to-bright-purple/20 backdrop-blur rounded-2xl p-8 border border-light-purple/30">
+                    <!-- Achievements with simplified design -->
+                    <div class="bg-gradient-to-br from-bright-purple/80 via-light-purple/70 to-lavender/60 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl">
                         <div class="text-center">
-                            <!-- <h3 class="text-2xl font-bold gradient-text mb-6 drop-shadow-lg">Our Impact</h3> -->
-                            <p class="text-lg md:text-xl leading-relaxed">
-                                Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:text-light-purple font-medium transition-colors">MATS</a> and gone on to study AI ethics at Cambridge.
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-4 drop-shadow-lg">Our Impact</h3>
+                            <p class="text-lg md:text-xl leading-relaxed font-medium max-w-3xl mx-auto text-white/95">
+                                Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 font-semibold transition-colors underline decoration-white/50 hover:decoration-white/80">MATS</a> and gone on to study AI ethics at Cambridge.
                             </p>
                         </div>
                     </div>
@@ -103,7 +108,7 @@ title: Home
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                         <div class="program-card rounded-2xl p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-teal to-emerald rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-chalkboard-teacher text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Intro Seminars</h4>
@@ -124,7 +129,7 @@ title: Home
                     
                         <div class="program-card rounded-2xl p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-emerald to-sage rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-book-open text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">In-Depth Reading Groups</h4>
@@ -135,11 +140,11 @@ title: Home
                             </p>
                             <div class="space-y-2 mb-6">
                                 <div class="flex items-center">
-                                    <i class="fa-solid fa-laptop-code text-sage mr-2" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-laptop-code text-bright-purple mr-2" aria-hidden="true"></i>
                                     <span class="text-sm text-slate-600">Some prior knowledge useful</span>
                                 </div>
                             </div>
-                <a href="{{ '/programs/#reading-groups' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-light-purple to-lavender text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#reading-groups' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
                                 Learn More
                             </a>
                         </div>
@@ -149,7 +154,7 @@ title: Home
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div class="program-card rounded-2xl p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-ocean-blue to-warm-blue rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-microscope text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Research Project Support</h4>
@@ -165,14 +170,14 @@ title: Home
                                     <span class="text-sm text-slate-600">Faculty & Students</span>
                                 </div>
                             </div>
-                <a href="{{ '/programs/#research-projects' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-deep-purple to-bright-purple text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#research-projects' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
                                 Learn More
                             </a>
                         </div>
                         
                         <div class="program-card rounded-2xl p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-microphone text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Speaker Events</h4>
@@ -180,14 +185,14 @@ title: Home
                             <p class="mb-6 leading-relaxed text-slate-600">
                                Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.
                             </p>
-                <a href="{{ '/programs/#speaker-series' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-lavender to-light-purple text-deep-purple font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                <a href="{{ '/programs/#speaker-series' | relative_url }}" class="inline-block px-6 py-2 bg-gradient-to-r from-bright-purple to-light-purple text-white font-medium text-sm rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
                                 Learn More
                             </a>
                         </div>
                         
                         <div class="program-card rounded-2xl p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-warm-blue to-ocean-blue rounded-xl flex items-center justify-center mr-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center mr-4">
                                     <i class="fa-solid fa-users text-2xl text-white" aria-hidden="true"></i>
                                 </div>
                                 <h4 class="text-2xl font-bold">Social Events</h4>
@@ -212,12 +217,12 @@ title: Home
                     <p class="text-center text-lg mb-8 font-medium">
                         We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
                     </p>
-                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-teal/40 card-hover calendar-container">
+                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 card-hover calendar-container">
                         <!-- Loading state -->
                         <div id="calendar-loading" class="calendar-loading">
                             <div class="text-center">
                                 <div class="spinner mx-auto mb-4"></div>
-                                <p class="text-teal font-medium">Loading calendar...</p>
+                                <p class="text-bright-purple font-medium">Loading calendar...</p>
                             </div>
                         </div>
                         

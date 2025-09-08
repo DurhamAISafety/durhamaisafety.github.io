@@ -6,20 +6,28 @@
 
 /* CSS Variables for consistent theming */
 :root {
-    --color-ocean-blue: #0891b2;
-    --color-deep-blue: #0e4a5c;
-    --color-teal: #14b8a6;
-    --color-emerald: #10b981;
-    --color-sage: #84cc16;
-    --color-mint: #6ee7b7;
-    --color-warm-blue: #3b82f6;
-    --color-navy: #1e3a8a;
+    /* New purple palette */
+    --color-deep-purple: #39144F;
+    --color-bright-purple: #EB80FD;
+    --color-light-purple: #E2ACFE;
+    --color-lavender: #B8BBFE;
+    --color-pure-white: #FFFFFF;
+
+    /* Legacy for compatibility (mapped to purples where sensible) */
+    --color-ocean-blue: #6F3FA7; /* mapped to a mid-purple */
+    --color-deep-blue: #3E1A59; /* deep purple-leaning */
+    --color-teal: #A562E8; /* mapped to bright purple */
+    --color-emerald: #D49BFF; /* mapped to light purple */
+    --color-sage: #C2B6FF; /* lavender-ish */
+    --color-mint: #E6D1FF; /* pale purple */
+    --color-warm-blue: #A080FF; /* violet */
+    --color-navy: #2B0F40; /* darkest purple */
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
-    --gradient-text: linear-gradient(135deg, var(--color-teal), var(--color-ocean-blue));
-    --gradient-hero: linear-gradient(135deg, var(--color-deep-blue) 0%, var(--color-navy) 50%, var(--color-teal) 100%);
-    --gradient-bg: linear-gradient(to bottom right, var(--color-deep-blue), var(--color-navy), var(--color-ocean-blue));
+    /* Gradients updated to purple theme */
+    --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
+    --gradient-text: linear-gradient(135deg, var(--color-bright-purple), var(--color-lavender));
+    --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
+    --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
     
     /* Spacing */
     --section-padding: 5rem 0;
@@ -39,6 +47,30 @@
     /* Transitions */
     --transition-default: all 0.3s ease;
     --transition-fast: all 0.2s ease;
+}
+
+/* Pulse glow animation for CTA buttons */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(235, 128, 253, 0.6);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
+        transform: scale(1);
+    }
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s infinite;
+}
+
+.pulse-glow:hover {
+    animation-play-state: paused;
 }
 
 /* Hero section with fixed background */
@@ -96,6 +128,7 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
+    /* Use site-wide purple gradient background; Tailwind body gradient in layout is compatible */
     background: var(--gradient-bg);
     color: white;
     min-height: 100vh;
@@ -123,12 +156,12 @@ body {
 
 /* Header styles */
 .header {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(57, 20, 79, 0.1);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 50;
-    border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.2);
 }
 
 .nav {
@@ -192,7 +225,7 @@ body {
 }
 
 .nav-link:hover {
-    color: var(--color-teal);
+    color: var(--color-bright-purple);
 }
 
 .nav-link::after {
@@ -236,11 +269,11 @@ body {
     position: absolute;
     top: 100%;
     right: 0;
-    background: rgba(14, 74, 92, 0.95);
+    background: rgba(57, 20, 79, 0.95);
     backdrop-filter: blur(10px);
     min-width: 200px;
     border-radius: var(--radius-xl);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    border: 1px solid rgba(235, 128, 253, 0.3);
     box-shadow: var(--shadow-card);
     z-index: 1000;
     overflow: hidden;
@@ -257,7 +290,7 @@ body {
     text-decoration: none;
     color: white;
     transition: var(--transition-default);
-    border-bottom: 1px solid rgba(20, 184, 166, 0.2);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.2);
 }
 
 .dropdown-content a:last-child {
@@ -265,8 +298,8 @@ body {
 }
 
 .dropdown-content a:hover {
-    background: rgba(20, 184, 166, 0.2);
-    color: var(--color-teal);
+    background: rgba(235, 128, 253, 0.2);
+    color: var(--color-bright-purple);
     padding-left: 1.5rem;
 }
 
@@ -335,7 +368,7 @@ body {
 .card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    border: 1px solid rgba(235, 128, 253, 0.3);
     border-radius: var(--radius-xl);
     padding: var(--card-padding);
     transition: var(--transition-default);
@@ -384,15 +417,15 @@ body {
     text-transform: uppercase;
 }
 .status-ongoing {
-    background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+    background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     color: white;
 }
 .status-completed {
-    background: linear-gradient(135deg, var(--color-sage), var(--color-emerald));
+    background: linear-gradient(135deg, var(--color-lavender), var(--color-light-purple));
     color: white;
 }
 .status-planning {
-    background: linear-gradient(135deg, var(--color-warm-blue), var(--color-ocean-blue));
+    background: linear-gradient(135deg, var(--color-bright-purple), var(--color-ocean-blue));
     color: white;
 }
 
@@ -405,7 +438,7 @@ body {
     top: 0.5rem;
     width: 12px;
     height: 12px;
-    background: linear-gradient(135deg, var(--color-teal), var(--color-emerald));
+    background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     border-radius: 50%;
 }
 .timeline-item::after {
@@ -415,7 +448,7 @@ body {
     top: 1.25rem;
     width: 2px;
     height: calc(100% - 0.75rem);
-    background: linear-gradient(180deg, var(--color-teal), transparent);
+    background: linear-gradient(180deg, var(--color-bright-purple), transparent);
 }
 .timeline-item:last-child::after { display: none; }
 
@@ -468,7 +501,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-emerald), var(--color-mint));
+    background: linear-gradient(135deg, var(--color-light-purple), var(--color-lavender));
     transform: scale(1.05);
     box-shadow: var(--shadow-card);
 }
@@ -476,15 +509,15 @@ body {
 /* Section backgrounds */
 .section-alt {
     background: linear-gradient(135deg, 
-        rgba(14, 74, 92, 0.9), 
-        rgba(30, 58, 138, 0.9)
+        rgba(57, 20, 79, 0.9), 
+        rgba(184, 132, 254, 0.15)
     );
 }
 
 .section-alt-2 {
     background: linear-gradient(135deg, 
-        rgba(8, 145, 178, 0.9), 
-        rgba(14, 74, 92, 0.9)
+        rgba(235, 128, 253, 0.15), 
+        rgba(57, 20, 79, 0.9)
     );
 }
 
@@ -517,7 +550,7 @@ body {
 .section-neutral .program-card,
 .section-neutral .info-card {
     background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(20, 184, 166, 0.2);
+    border: 1px solid rgba(235, 128, 253, 0.2);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -556,41 +589,42 @@ body {
 }
 
 /* Fix small detail icons in program cards to have appropriate colors */
+/* Icon accents mapped to purple palette where used in neutral sections */
 .section-neutral .fa-users {
-    color: #10b981 !important; /* Emerald */
+    color: #7c3aed !important; /* Purple */
 }
 
 /* Social events fa-users icon uses emerald on light cards for contrast */
 .section-neutral .program-card .fa-users {
-    color: #10b981 !important; /* Emerald for visibility */
+    color: #7c3aed !important; /* Purple for visibility */
 }
 
 .section-neutral .fa-laptop-code {
-    color: #84cc16 !important; /* Sage */
+    color: #6d28d9 !important; /* Deep purple */
 }
 
 .section-neutral .fa-graduation-cap {
-    color: #3b82f6 !important; /* Warm blue */
+    color: #8b5cf6 !important; /* Violet */
 }
 
 .section-neutral .fa-heart {
-    color: #3b82f6 !important; /* Warm blue for heart icon */
+    color: #8b5cf6 !important; /* Violet for heart icon */
 }
 
 .section-neutral .fa-chalkboard-teacher {
-    color: #10b981 !important; /* Emerald for intro seminars */
+    color: #7c3aed !important; /* Purple for intro seminars */
 }
 
 .section-neutral .fa-book-open {
-    color: #84cc16 !important; /* Sage for reading groups */
+    color: #6d28d9 !important; /* Deep purple for reading groups */
 }
 
 .section-neutral .fa-microscope {
-    color: #3b82f6 !important; /* Warm blue for research */
+    color: #8b5cf6 !important; /* Violet for research */
 }
 
 .section-neutral .fa-microphone {
-    color: #14b8a6 !important; /* Teal for speaker events */
+    color: #A562E8 !important; /* Bright purple for speaker events */
 }
 
 /* Ensure 3 pillars cards have white text */
@@ -602,23 +636,23 @@ body {
 /* Adjust calendar container in neutral section */
 .section-neutral .calendar-container {
     background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(20, 184, 166, 0.2);
+    border: 1px solid rgba(235, 128, 253, 0.2);
 }
 
 /* Adjust links in neutral sections */
 .section-neutral a {
-    color: #0891b2; /* Ocean blue for links */
+    color: #8b5cf6; /* Violet for links */
 }
 
 .section-neutral a:hover {
-    color: #0e7490; /* Darker ocean blue on hover */
+    color: #a78bfa; /* Lighter violet on hover */
 }
 
 /* Footer */
 .footer {
-    background: rgba(0, 0, 0, 0.3);
+    background: #39144F;
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(20, 184, 166, 0.2);
+    border-top: 1px solid rgba(235, 128, 253, 0.2);
     padding: 3rem 0;
     text-align: center;
 }
@@ -637,7 +671,7 @@ body {
 }
 
 .social-links a:hover {
-    color: var(--color-teal);
+    color: #EB80FD;
     transform: scale(1.1);
 }
 
@@ -688,7 +722,7 @@ body {
 /* Form styles */
 .form-input {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(20, 184, 166, 0.3);
+    border: 1px solid rgba(235, 128, 253, 0.3);
     color: white;
     border-radius: var(--radius-xl);
     padding: 1rem;
@@ -699,8 +733,8 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: var(--color-teal);
-    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+    border-color: var(--color-bright-purple);
+    box-shadow: 0 0 0 3px rgba(235, 128, 253, 0.2);
 }
 
 .form-input::placeholder {
@@ -711,7 +745,7 @@ body {
     appearance: none;
     width: 1.25rem;
     height: 1.25rem;
-    border: 2px solid rgba(20, 184, 166, 0.5);
+    border: 2px solid rgba(235, 128, 253, 0.5);
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
@@ -721,7 +755,7 @@ body {
 
 .checkbox-custom:checked {
     background: var(--gradient-primary);
-    border-color: var(--color-teal);
+    border-color: var(--color-bright-purple);
 }
 
 .checkbox-custom:checked::after {
