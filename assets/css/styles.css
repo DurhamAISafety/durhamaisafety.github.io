@@ -654,6 +654,30 @@ body {
     color: #ffffff !important;
 }
 
+/* -------------------------------------------
+   Research page: Research Opportunities icons
+   Goal: Ensure sufficient contrast against gradient squares
+-------------------------------------------- */
+/* Bright-purple square: keep icon white, add subtle shadow for definition */
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-bright-purple.to-bright-purple > i {
+    color: #ffffff !important;
+    /* Slight shadow improves visibility on gradients */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+/* Light-purple square: switch icon to deep purple for contrast */
+/* Light-purple square: make icon white for consistency and add subtle shadow for definition */
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-light-purple.to-light-purple > i {
+    color: #ffffff !important;
+    /* Slight shadow improves visibility on light gradients */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+/* Subtle outline on the small gradient squares to separate from light cards */
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
 /* Adjust calendar container in neutral section */
 .section-neutral .calendar-container {
     background: rgba(255, 255, 255, 0.8);

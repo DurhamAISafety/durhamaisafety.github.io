@@ -1,9 +1,0 @@
-HOME PAGE
-
-PROGRAMS
-* Add a 'find out more and apply' link to some cards
-* Base off of https://www.aisi.dev/education and https://haist.ai/tech-fellowship
-* Use 'data' to store different programs like in team page
-
-OUR TEAM
-* Merge the two sections on the page
