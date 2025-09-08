@@ -156,12 +156,12 @@ body {
 
 /* Header styles */
 .header {
-    background: rgba(57, 20, 79, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(57, 20, 79, 0.35); /* Darker frosting for better contrast */
+    backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 50;
-    border-bottom: 1px solid rgba(235, 128, 253, 0.2);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.35);
 }
 
 .nav {
@@ -537,11 +537,26 @@ body {
 
 /* Neutral background for sections below hero */
 .section-neutral {
-    background: linear-gradient(135deg, 
-        rgba(248, 250, 252, 0.95), 
-        rgba(241, 245, 249, 0.95)
-    );
+    /* Unified background across all neutral sections */
+    background: #f8fafc; /* Solid light neutral */
     color: #1e293b; /* Dark slate for better contrast */
+}
+
+/* -------------------------------------------
+   Fix: Ensure header icons are white on cards
+   Context: Programs page gradient header squares
+   Reason: Avoid affecting smaller icons inside gradient content boxes
+-------------------------------------------- */
+/* Only force white on the big header squares */
+.section-neutral .w-20.h-20.bg-gradient-to-br > i,
+.section-neutral .w-20.h-20.bg-gradient-to-r > i {
+    color: var(--color-pure-white) !important;
+}
+
+/* Default small feature-list icons to deep purple within gradient content cards */
+.section-neutral .bg-gradient-to-br.backdrop-blur.rounded-2xl i:not(.text-white),
+.section-neutral .bg-gradient-to-r.backdrop-blur.rounded-2xl i:not(.text-white) {
+    color: var(--color-deep-purple) !important;
 }
 
 /* Ensure proper text contrast in neutral sections */
@@ -641,9 +656,9 @@ body {
     color: #A562E8 !important; /* Bright purple for speaker events */
 }
 
-/* Ensure 3 pillars cards have white text */
-.section-neutral .grid .bg-gradient-to-br h3,
-.section-neutral .grid .bg-gradient-to-br p {
+/* Ensure 3 pillars cards have white text (scope to home about section only) */
+.section-neutral #about .grid .bg-gradient-to-br h3,
+.section-neutral #about .grid .bg-gradient-to-br p {
     color: white !important;
 }
 
@@ -660,6 +675,23 @@ body {
 
 .section-neutral a:hover {
     color: #a78bfa; /* Lighter violet on hover */
+}
+
+/* -------------------------------------------
+   Fixes for Programs page: Research Support
+   - Improve contrast and brand color mapping
+-------------------------------------------- */
+/* Headings darker for strong contrast */
+.section-neutral #research-projects .bg-gradient-to-br h5 {
+    color: #0f172a !important; /* Slate 900 */
+}
+/* Body text to slate for readability */
+.section-neutral #research-projects .bg-gradient-to-br p {
+    color: #334155 !important; /* Slate 700 */
+}
+/* Icons should be brand purple */
+.section-neutral #research-projects .bg-gradient-to-br i {
+    color: #7c3aed !important; /* Purple */
 }
 
 /* Footer */
