@@ -1,8 +1,7 @@
 /* Durham AISI Website Styles */
 /* ========================== */
 
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Fonts are loaded in layout head via <link>; removed @import to improve performance */
 
 /* CSS Variables for consistent theming */
 :root {
@@ -79,13 +78,14 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* Avoid fixed attachment to reduce repaint/jank on some devices */
+    background-attachment: scroll;
 }
 
 /* Fallback for mobile devices that don't support background-attachment: fixed well */
 @media (max-width: 768px) {
     .hero-background {
-        background-attachment: scroll;
+    background-attachment: scroll;
     }
 }
 
@@ -375,22 +375,18 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-card-hover);
+    /* Disabled expensive transform on hover for performance */
+    transform: none;
+    box-shadow: none;
 }
 
 /* Bounce animation for hoverable cards */
 @keyframes hover-bounce {
-    0% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    65% { transform: translateY(-6px); }
-    100% { transform: translateY(-8px); }
+    /* Disabled */
 }
 
 /* Apply bounce on hover to elements marked as card-hover */
-.card-hover:hover {
-    animation: hover-bounce 0.6s ease-out;
-}
+.card-hover:hover { animation: none; }
 
 /* Team card helper */
 .team-card {
@@ -502,8 +498,26 @@ body {
 
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--color-light-purple), var(--color-lavender));
-    transform: scale(1.05);
-    box-shadow: var(--shadow-card);
+    /* Remove transform to avoid layout thrash */
+    /* transform: scale(1.05); */
+    /* box-shadow: var(--shadow-card); */
+}
+
+/* Viewport height utilities for stable hero sizing across mobile browsers */
+.min-h-100dvh {
+    min-height: 100dvh; /* Dynamic viewport to account for mobile UI */
+}
+.min-h-100svh {
+    min-height: 100svh; /* Small viewport height fallback */
+}
+.min-h-100vh {
+    min-height: 100vh; /* Fallback for older browsers */
+}
+
+/* Defer offscreen rendering where safe */
+.defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
 }
 
 /* Section backgrounds */
