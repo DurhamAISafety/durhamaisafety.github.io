@@ -6,6 +6,7 @@
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', function() {
     initializeCommonFeatures();
+    initializeThemeToggle();
 });
 
 /**
@@ -18,6 +19,37 @@ function initializeCommonFeatures() {
     initializeAnalytics();
     // Animate elements as they enter the viewport
     initializeScrollAnimations();
+}
+
+/**
+ * Theme toggle with persistence and system-preference sync
+ */
+function initializeThemeToggle() {
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    // Apply initial theme from data attribute
+    const applyTheme = (theme) => {
+        root.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch(e) {}
+    };
+
+    // Click to toggle
+    btn.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+    });
+
+    // Sync with system preference if user hasn't explicitly chosen
+    try {
+        const stored = localStorage.getItem('theme');
+        if (!stored) {
+            const mq = window.matchMedia('(prefers-color-scheme: dark)');
+            mq.addEventListener('change', (e) => applyTheme(e.matches ? 'dark' : 'light'));
+        }
+    } catch (e) {}
 }
 
 /**

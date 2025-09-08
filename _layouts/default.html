@@ -74,7 +74,20 @@
     <!-- Additional page-specific head content -->
     {% if page.extra_head %}{{ page.extra_head }}{% endif %}
 </head>
-<body class="font-inter bg-gradient-to-br from-deep-purple via-deep-purple to-lavender text-white min-h-screen">
+<script>
+// Prevent theme flash: set data-theme ASAP based on localStorage or prefers-color-scheme
+(function() {
+    try {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+})();
+</script>
+<body class="font-inter text-white min-h-screen">
     <!-- Construction Banner -->
     <div class="construction-banner">
         <div class="container mx-auto px-6">
