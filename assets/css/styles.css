@@ -89,6 +89,15 @@
     }
 }
 
+/* Enable fixed background on desktop/laptops for subtle parallax-like effect */
+@media (min-width: 1024px), (hover: hover) and (pointer: fine) {
+    .hero-background {
+        background-attachment: fixed;
+        /* Keep focal point stable while scrolling */
+        background-position: center top;
+    }
+}
+
 /* Reset and base styles */
 * {
     margin: 0;
