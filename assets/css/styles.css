@@ -156,12 +156,12 @@ body {
 
 /* Header styles */
 .header {
-    background: rgba(57, 20, 79, 0.35); /* Darker frosting for better contrast */
+    background: rgba(57, 20, 79, 0.5); /* Darker frosting for better contrast */
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 50;
-    border-bottom: 1px solid rgba(235, 128, 253, 0.35);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.5);
 }
 
 .nav {
@@ -656,10 +656,12 @@ body {
     color: #A562E8 !important; /* Bright purple for speaker events */
 }
 
-/* Ensure 3 pillars cards have white text (scope to home about section only) */
-.section-neutral #about .grid .bg-gradient-to-br h3,
-.section-neutral #about .grid .bg-gradient-to-br p {
-    color: white !important;
+/* Ensure 3 pillars cards have white text (scope to home about section only)
+   Note: The #about element itself has class .section-neutral, so target the same element
+   rather than a descendant to ensure the selector matches. */
+#about.section-neutral .grid .bg-gradient-to-br h3,
+#about.section-neutral .grid .bg-gradient-to-br p {
+    color: #ffffff !important;
 }
 
 /* Adjust calendar container in neutral section */
