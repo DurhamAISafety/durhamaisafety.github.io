@@ -18,7 +18,7 @@ description: "Meet the team behind the Durham AI Safety Initiative."
             {% assign top_members = members | slice: 0,4 %}
             {% for person in top_members %}
             <div class="text-center animate-on-scroll">
-                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));">
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
                     {% if person.photo %}
                         <img src="{{ person.photo | relative_url }}" alt="{{ person.name }}" style="width:100%; height:100%; object-fit: cover;" onerror="this.parentElement.querySelector('.fallback-icon').style.display='flex'; this.remove();">
                         <div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
@@ -33,7 +33,7 @@ description: "Meet the team behind the Durham AI Safety Initiative."
                 {% if person.link %}
                 <a href="{{ person.link }}" target="_blank" rel="noopener" class="inline-flex items-center text-bright-purple hover:text-light-purple transition-colors text-sm">
                     <span class="underline">Learn more</span>
-                    <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                    <i class="fas fa-external-link-alt ml-2 text-xs icon-current"></i>
                 </a>
                 {% endif %}
             </div>
@@ -46,7 +46,7 @@ description: "Meet the team behind the Durham AI Safety Initiative."
             {% assign bottom_members = members | slice: 4, remaining_count %}
             {% for person in bottom_members %}
             <div class="text-center animate-on-scroll">
-                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));">
+                <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
                     {% if person.photo %}
                         <img src="{{ person.photo | relative_url }}" alt="{{ person.name }}" style="width:100%; height:100%; object-fit: cover;" onerror="this.parentElement.querySelector('.fallback-icon').style.display='flex'; this.remove();">
                         <div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
@@ -61,7 +61,7 @@ description: "Meet the team behind the Durham AI Safety Initiative."
                 {% if person.link %}
                 <a href="{{ person.link }}" target="_blank" rel="noopener" class="inline-flex items-center text-bright-purple hover:text-light-purple transition-colors text-sm">
                     <span class="underline">Learn more</span>
-                    <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                    <i class="fas fa-external-link-alt ml-2 text-xs icon-current"></i>
                 </a>
                 {% endif %}
             </div>

@@ -548,14 +548,24 @@ body {
    Reason: Avoid affecting smaller icons inside gradient content boxes
 -------------------------------------------- */
 /* Only force white on the big header squares */
+.section-neutral .w-16.h-16.bg-gradient-to-br > i,
 .section-neutral .w-20.h-20.bg-gradient-to-br > i,
+.section-neutral .w-16.h-16.bg-gradient-to-r > i,
 .section-neutral .w-20.h-20.bg-gradient-to-r > i {
     color: var(--color-pure-white) !important;
 }
 
-/* Default small feature-list icons to deep purple within gradient content cards */
-.section-neutral .bg-gradient-to-br.backdrop-blur.rounded-2xl i:not(.text-white),
-.section-neutral .bg-gradient-to-r.backdrop-blur.rounded-2xl i:not(.text-white) {
+/* Default icons in neutral sections to purple for visibility */
+.section-neutral i {
+    color: var(--color-bright-purple) !important;
+}
+
+/* Override for icons that should stay white (in gradient backgrounds) */
+/* Restrict white icons to only large header squares (handled above). */
+
+/* Make smaller list icons inside "Who's this for?" gradient cards darker for contrast */
+.section-neutral .bg-gradient-to-br .flex.items-start > i,
+.section-neutral .bg-gradient-to-r .flex.items-start > i {
     color: var(--color-deep-purple) !important;
 }
 
@@ -601,59 +611,30 @@ body {
     color: #64748b; /* Slate 500 for small text */
 }
 
-/* Ensure button text remains white in neutral sections */
-.section-neutral .program-card a,
-.section-neutral .info-card a {
-    color: white !important;
+/* Ensure only button-like or gradient anchors are white in neutral sections */
+.section-neutral a.btn,
+.section-neutral a[class*="bg-gradient-to-"] {
+    color: #ffffff !important;
 }
-
-/* Fix icon visibility in neutral sections - default dark icons on light cards */
-.section-neutral .program-card i {
-    color: #0f172a; /* Default; specific icons below override with brand colors */
-}
-
-/* Keep large header icons (inside gradient squares) white for contrast */
-.section-neutral .program-card .bg-gradient-to-br i {
+.section-neutral a.btn:hover,
+.section-neutral a[class*="bg-gradient-to-"]:hover {
     color: #ffffff !important;
 }
 
-/* Fix small detail icons in program cards to have appropriate colors */
-/* Icon accents mapped to purple palette where used in neutral sections */
-.section-neutral .fa-users {
-    color: #7c3aed !important; /* Purple */
+/* Icons inside links should match the link color */
+.section-neutral a i {
+    color: currentColor !important;
 }
 
-/* Social events fa-users icon uses emerald on light cards for contrast */
-.section-neutral .program-card .fa-users {
-    color: #7c3aed !important; /* Purple for visibility */
+/* Fix icon visibility in neutral sections - simplified rules */
+.section-neutral .program-card i {
+    color: var(--color-bright-purple) !important; /* Default purple for all icons */
 }
 
-.section-neutral .fa-laptop-code {
-    color: #6d28d9 !important; /* Deep purple */
-}
-
-.section-neutral .fa-graduation-cap {
-    color: #8b5cf6 !important; /* Violet */
-}
-
-.section-neutral .fa-heart {
-    color: #8b5cf6 !important; /* Violet for heart icon */
-}
-
-.section-neutral .fa-chalkboard-teacher {
-    color: #7c3aed !important; /* Purple for intro seminars */
-}
-
-.section-neutral .fa-book-open {
-    color: #6d28d9 !important; /* Deep purple for reading groups */
-}
-
-.section-neutral .fa-microscope {
-    color: #8b5cf6 !important; /* Violet for research */
-}
-
-.section-neutral .fa-microphone {
-    color: #A562E8 !important; /* Bright purple for speaker events */
+/* Keep large header icons (inside gradient squares) white for contrast */
+.section-neutral .program-card .bg-gradient-to-br i,
+.section-neutral .program-card .bg-gradient-to-r i {
+    color: #ffffff !important;
 }
 
 /* Ensure 3 pillars cards have white text (scope to home about section only)
@@ -757,6 +738,12 @@ body {
 .max-w-6xl { max-width: 72rem; }
 
 .mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Icon color utilities (use to override context defaults) */
+.icon-current { color: currentColor !important; }
+.icon-white { color: #ffffff !important; }
+.icon-bright-purple { color: var(--color-bright-purple) !important; }
+.icon-light-purple { color: var(--color-light-purple) !important; }
 
 /* Section divider */
 .section-divider {

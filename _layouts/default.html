@@ -53,6 +53,10 @@
     
     <!-- Site CSS (loaded after Tailwind to avoid utility class conflicts) -->
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+
+    {% if page.hero_image %}
+    <link rel="preload" as="image" href="{{ page.hero_image | relative_url }}" imagesrcset="{{ page.hero_image | relative_url }} 1200w" imagesizes="100vw">
+    {% endif %}
     
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
