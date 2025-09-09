@@ -17,15 +17,14 @@
             
             <div class="nav-menu">
                 <a href="{{ '/home/' | relative_url }}" class="nav-link">Home</a>
-                <a href="{{ '/home/' | append: '#about' | relative_url }}" class="nav-link">About</a>
                 <a href="{{ '/home/' | append: '#events' | relative_url }}" class="nav-link">Events</a>
+                <a href="{{ '/about/' | relative_url }}" class="nav-link">About Us</a>
                 
                 <div class="dropdown">
                     <a href="#" class="nav-link dropdown-toggle">
                         More <i class="fas fa-chevron-down text-sm"></i>
                     </a>
                     <div class="dropdown-content">
-                        <a href="{{ '/our-team/' | relative_url }}">Our Team</a>
                         <a href="{{ '/programs/' | relative_url }}">Programs</a>
                         <a href="{{ '/research/' | relative_url }}">Research</a>
                         <a href="{{ '/what-is-ai-safety/' | relative_url }}">What is AI Safety?</a>
