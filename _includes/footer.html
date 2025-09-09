@@ -1,49 +1,55 @@
-<!-- Footer -->
+<!-- Footer (condensed layout) -->
 <footer class="footer no-print">
-    <div class="container">
-        <div class="social-links">
-            <a href="{{ site.social.discord | default: 'https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl' }}" 
-               aria-label="Discord">
-                <i class="fa-brands fa-discord"></i>
-            </a>
-            <a href="{{ site.social.linktree | default: 'https://linktr.ee/aisdurham' }}" 
-               aria-label="Linktree">
-                <i class="fa-solid fa-link"></i>
-            </a>
+    <div class="container py-10 md:py-8">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+            <!-- Left: Brand & Social -->
+            <div class="flex flex-col gap-4 min-w-[220px]">
+                <div class="flex items-center gap-4">
+                    <div class="social-links flex gap-4">
+                        <a href="{{ site.social.discord | default: 'https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl' }}" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                        <a href="{{ site.social.linktree | default: 'https://linktr.ee/aisdurham' }}" aria-label="Linktree"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="text-base md:text-lg font-semibold">
+                    {{ site.title | default: "Durham AI Safety Initiative" }}
+                </div>
+            </div>
+
+            <!-- Right: Contact & Feedback -->
+            <div class="flex-1 grid gap-3 text-sm md:text-base max-w-xl">
+                <div>
+                    <a href="mailto:{{ site.email | default: 'aisdurham@googlegroups.com' }}" class="text-bright-purple hover:text-light-purple font-medium transition-colors">
+                        {{ site.email | default: "aisdurham@googlegroups.com" }}
+                    </a>
+                </div>
+                <p class="text-white/70 leading-snug">
+                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or our socials!
+                </p>
+                <div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1e1H4DnI1xWvjtpO4pZCAQiUq1mtdYYiDnJUBHb8yb72xMQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-bright-purple hover:text-light-purple font-medium transition-colors">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Send anonymous feedback / report an issue</span>
+                        
+                    </a>
+                </div>
+                {% if site.show_edit_link %}
+                <div>
+                    <a href="{{ site.repository }}/edit/main/{{ page.path }}" class="text-bright-purple hover:text-light-purple transition-colors text-sm inline-flex items-center gap-2">
+                        <i class="fas fa-edit"></i><span>Edit this page</span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
         </div>
-        
-        <div class="text-lg mb-3">
-            {{ site.title | default: "Durham AI Safety Initiative" }}
-        </div>
-        
-        <div class="mb-8">
-            <p class="text-lg mb-2">
-                <a href="mailto:{{ site.email | default: 'aisdurham@googlegroups.com' }}" 
-                   class="text-bright-purple hover:text-light-purple font-medium transition-colors">
-                    {{ site.email | default: "aisdurham@googlegroups.com" }}
-                </a>
+
+        <!-- Legal / fine print condensed -->
+        <div class="mt-8 text-[11px] md:text-xs text-white/50 leading-relaxed max-w-4xl">
+            <p>
+                Durham AI Safety Initiative is a registered student society with Durham Students' Union. 
             </p>
-            <p class="text-base text-white/80">
-                Questions, suggestions, or want to collaborate? Feel free to reach out via email or Instagram!
+            <p>
+                Durham Students' Union (Dunelm House, New Elvet, Durham, DH1 3AN) is registered in England as a company limited by guarantee (07689815) and a charity (1145400).
             </p>
-        </div>
-        
-        <div class="text-sm text-white/60 max-w-3xl mx-auto leading-relaxed">
-            <p class="mb-2">
-                Durham AI Safety Initiative is a registered student society with Durham Students' Union.
-            </p>
-            <p class="mb-2">
-                Durham Students' Union is registered in England as a company limited by guarantee (07689815) 
-                and a charity (1145400). Their registered office is located at Dunelm House, New Elvet, Durham, DH1 3AN.
-            </p>
-            {% if site.show_edit_link %}
-            <p class="mt-4">
-                <a href="{{ site.repository }}/edit/main/{{ page.path }}" 
-                   class="text-bright-purple hover:text-light-purple transition-colors">
-                    <i class="fas fa-edit"></i> Edit this page
-                </a>
-            </p>
-            {% endif %}
         </div>
     </div>
 </footer>
