@@ -512,6 +512,25 @@ body {
     /* box-shadow: var(--shadow-card); */
 }
 
+/* Secondary button (used on light / neutral backgrounds) */
+.btn-secondary {
+    background: transparent;
+    color: var(--color-deep-purple);
+    border: 2px solid var(--color-bright-purple);
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background: var(--gradient-primary);
+    color: #ffffff;
+}
+
+/* Small button size utility */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
 /* Viewport height utilities for stable hero sizing across mobile browsers */
 .min-h-100dvh {
     min-height: 100dvh; /* Dynamic viewport to account for mobile UI */
@@ -620,14 +639,22 @@ body {
     color: #64748b; /* Slate 500 for small text */
 }
 
-/* Ensure only button-like or gradient anchors are white in neutral sections */
-.section-neutral a.btn,
+/* Ensure only PRIMARY or gradient buttons are forced white in neutral sections */
+.section-neutral a.btn-primary,
 .section-neutral a[class*="bg-gradient-to-"] {
     color: #ffffff !important;
 }
-.section-neutral a.btn:hover,
+.section-neutral a.btn-primary:hover,
 .section-neutral a[class*="bg-gradient-to-"]:hover {
     color: #ffffff !important;
+}
+
+/* Allow secondary buttons to retain dark text for contrast */
+.section-neutral a.btn-secondary {
+    color: var(--color-deep-purple) !important;
+}
+.section-neutral a.btn-secondary:hover {
+    color: #ffffff !important; /* becomes white when background gradient applied on hover */
 }
 
 /* Icons inside links should match the link color */
