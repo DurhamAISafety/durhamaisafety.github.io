@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 <!-- About Section moved from home page -->
-<section id="about" class="section section-neutral">
+<section id="about" class="section section-neutral about-page-override">
     <div class="container">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-8">
@@ -19,27 +19,36 @@ redirect_from:
             <p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto">
                 We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="{{ '/what-is-ai-safety/' | relative_url }}" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:
             </p>
+            <style>
+                /* Local override so only About page cards show white text on deep-purple */
+                .about-page-override .about-card h3,
+                .about-page-override .about-card p,
+                .about-page-override .impact-card h3,
+                .about-page-override .impact-card p { color: #ffffff !important; }
+                .about-page-override .about-card p { opacity: 0.9; }
+                .about-page-override .impact-card p { opacity: 0.9; }
+            </style>
             <div class="grid md:grid-cols-3 gap-6 mb-12">
-                <div class="group bg-gradient-to-br from-deep-purple via-bright-purple/150 to-bright-purple backdrop-blur rounded-2xl p-6 border border-bright-purple/60 shadow-lg transition-colors duration-300">
+                <div class="about-card group bg-deep-purple rounded-2xl p-6 border border-bright-purple/60 shadow-lg transition-colors duration-300">
                     <div class="text-3xl mb-4 text-center">🎯</div>
-                    <h3 class="text-xl font-bold text-deep-purple mb-4 text-center">Raising Awareness</h3>
-                    <p class="text-base leading-relaxed text-center text-slate-700">Through discussion groups and speaker events</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Raising Awareness</h3>
+                    <p class="text-base leading-relaxed text-center">Through discussion groups and speaker events</p>
                 </div>
-                <div class="group bg-gradient-to-br from-bright-purple to-light-purple backdrop-blur rounded-2xl p-6 border border-light-purple/60 shadow-lg transition-colors duration-300">
+                <div class="about-card group bg-deep-purple rounded-2xl p-6 border border-light-purple/60 shadow-lg transition-colors duration-300">
                     <div class="text-3xl mb-4 text-center">🛠️</div>
-                    <h3 class="text-xl font-bold text-deep-purple mb-4 text-center">Upskilling Members</h3>
-                    <p class="text-base leading-relaxed text-center text-slate-700">In safety techniques through workshops and 1-1 support</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Upskilling Members</h3>
+                    <p class="text-base leading-relaxed text-center">In safety techniques through workshops and 1-1 support</p>
                 </div>
-                <div class="group bg-gradient-to-br from-light-purple to-lavender backdrop-blur rounded-2xl p-6 border border-lavender/60 shadow-lg transition-colors duration-300">
+                <div class="about-card group bg-deep-purple rounded-2xl p-6 border border-lavender/60 shadow-lg transition-colors duration-300">
                     <div class="text-3xl mb-4 text-center">🤝</div>
-                    <h3 class="text-xl font-bold text-deep-purple mb-4 text-center">Fostering Community</h3>
-                    <p class="text-base leading-relaxed text-center text-slate-700">For high-quality discussion, support and connections to the wider field of AI safety</p>
+                    <h3 class="text-xl font-bold mb-4 text-center">Fostering Community</h3>
+                    <p class="text-base leading-relaxed text-center">For high-quality discussion, support and connections to the wider field of AI safety</p>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-bright-purple/80 to-lavender/100 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-xl mb-8">
+            <div class="impact-card bg-deep-purple rounded-2xl p-8 border border-white/20 shadow-xl mb-8">
                 <div class="text-center">
-                    <h3 class="text-2xl font-bold text-deep-purple mb-4">Our Impact</h3>
-                    <p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto text-slate-700">
+                    <h3 class="text-2xl font-bold mb-4">Our Impact</h3>
+                    <p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto">
                         Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">MATS</a> and gone on to study AI ethics at Cambridge.
                     </p>
                 </div>
