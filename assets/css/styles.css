@@ -639,6 +639,12 @@ body {
     color: #64748b; /* Slate 500 for small text */
 }
 
+/* Home page (#events) specific: make ONLY the large leading icon inside the 64px (w-16 h-16) square white.
+   Keeps generic rule for other icons (e.g., list/detail icons) intact. */
+#events.section-neutral .program-card .w-16.h-16 > i {
+    color: #ffffff !important;
+}
+
 /* Ensure only PRIMARY or gradient buttons are forced white in neutral sections */
 .section-neutral a.btn-primary,
 .section-neutral a[class*="bg-gradient-to-"] {
@@ -646,6 +652,13 @@ body {
 }
 .section-neutral a.btn-primary:hover,
 .section-neutral a[class*="bg-gradient-to-"]:hover {
+    color: #ffffff !important;
+}
+
+/* Ensure deep-purple solid buttons have white text in neutral sections */
+.section-neutral a.bg-deep-purple,
+.section-neutral a.bg-deep-purple:hover,
+.section-neutral a.bg-deep-purple:focus {
     color: #ffffff !important;
 }
 
