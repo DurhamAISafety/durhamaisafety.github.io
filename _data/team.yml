@@ -8,9 +8,11 @@ members:
 
   - name: "Eve"
     role: "Co-organiser and Treasurer"
+    photo: "./images/team/eve.jpeg"
 
   - name: "Quinn"
     role: "Co-organiser and Secretary"
+    photo: "./images/team/quinn.jpeg"
 
   - name: "Bella"
     role: "Social Media Manager"
@@ -19,6 +21,7 @@ members:
   - name: "Patrick"
     role: "PhD Researcher (Mechinterp)"
     link: "https://www.durham.ac.uk/staff/patrick-leask/"
+    photo: "./images/team/patrick.jpeg"
 
   - name: "Leonie"
     role: "PhD Researcher (Law)"
