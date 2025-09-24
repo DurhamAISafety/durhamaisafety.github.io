@@ -10,7 +10,7 @@ description: >-
 # Contact Information
 email: aisdurham@googlegroups.com
 baseurl: "" # Leave empty for GitHub Pages main domain
-url: "" # Your GitHub Pages URL
+url: "https://durhamaisafety.github.io/" # Your GitHub Pages URL
 
 # Social Media Links
 social:
