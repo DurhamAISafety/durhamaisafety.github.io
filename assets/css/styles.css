@@ -11,6 +11,8 @@
     --color-light-purple: #E2ACFE;
     --color-lavender: #B8BBFE;
     --color-pure-white: #FFFFFF;
+    /* CTA mid purple (between deep and bright) */
+    --color-cta-purple: #60266F; /* slightly brighter than deep-purple */
 
     /* Legacy for compatibility (mapped to purples where sensible) */
     --color-ocean-blue: #6F3FA7; /* mapped to a mid-purple */
@@ -503,6 +505,18 @@ body {
 .btn-primary {
     background: var(--gradient-primary);
     color: white;
+}
+
+/* New solid CTA button (darker than bright, lighter than deep) */
+.btn-cta {
+    background: var(--color-cta-purple);
+    color: #ffffff;
+}
+
+.btn-cta:hover,
+.btn-cta:focus {
+    background: #6d2d7f; /* hover shade: a bit lighter for feedback */
+    color: #ffffff;
 }
 
 .btn-primary:hover {
