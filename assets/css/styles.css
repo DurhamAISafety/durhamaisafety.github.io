@@ -293,6 +293,12 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
+/* Mobile / JS toggled state */
+.dropdown-content.open {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
 .dropdown-content a {
     display: block;
     padding: 0.75rem 1.25rem;

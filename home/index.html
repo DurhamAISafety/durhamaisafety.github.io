@@ -246,23 +246,5 @@ hero_image: /images/hero-picture.jpeg
         }
     }, 5000);
     
-    // Enhanced smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetSelector = this.getAttribute('href');
-            const target = document.querySelector(targetSelector);
-            if (!target) return; // Let default behavior occur if target not found
-
-            e.preventDefault();
-            const header = document.querySelector('header');
-            const headerHeight = header ? header.offsetHeight : 0;
-            const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20; // Extra 20px padding
-            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: prefersReduced ? 'auto' : 'smooth'
-            });
-        });
-    });
 </script>
 

@@ -21,9 +21,9 @@
                 <a href="{{ '/about/' | relative_url }}" class="nav-link">About Us</a>
                 
                 <div class="dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">
-                        More <i class="fas fa-chevron-down text-sm"></i>
-                    </a>
+                    <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
+                    </button>
                     <div class="dropdown-content">
                         <a href="{{ '/programs/' | relative_url }}">Programs</a>
                         <a href="{{ '/research/' | relative_url }}">Research</a>

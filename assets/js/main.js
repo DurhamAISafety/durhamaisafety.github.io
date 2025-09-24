@@ -18,6 +18,7 @@ function initializeCommonFeatures() {
     initializeAnalytics();
     // Animate elements as they enter the viewport
     initializeScrollAnimations();
+    initializeNavDropdowns();
 }
 
 /**
@@ -27,7 +28,16 @@ function initializeSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            // Skip if it's just '#' (no target id) to avoid SyntaxError in querySelector('#')
+            if (!href || href === '#') {
+                return; // Could optionally scroll to top or do nothing
+            }
+            // Extract the id (supports fragments like '#section')
+            const id = href.slice(1);
+            if (!id) return;
+            // Use attribute selector to be safer; escape not strictly needed for simple ids
+            const target = document.getElementById(id) || document.querySelector(href);
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -203,6 +213,75 @@ function initializeScrollAnimations() {
     
     animateElements.forEach(element => {
         observer.observe(element);
+    });
+}
+
+/**
+ * Initialize navigation dropdowns for mobile (tap interaction)
+ * Ensures the 'More' link (href="#") toggles its dropdown instead of navigating
+ */
+function initializeNavDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const openDropdowns = new Set();
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-content');
+        if (!toggle || !menu) return;
+
+        // For accessibility
+        if (toggle.tagName.toLowerCase() !== 'button') {
+            toggle.setAttribute('role', 'button');
+        }
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-haspopup', 'true');
+
+        // Click / tap handler
+        toggle.addEventListener('click', (e) => {
+            // Prevent default if it was an anchor previously
+            if (toggle.tagName.toLowerCase() === 'a') {
+                const href = toggle.getAttribute('href');
+                if (!href || href === '#') e.preventDefault();
+            }
+
+            const isOpen = menu.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            if (isOpen) {
+                openDropdowns.add(dropdown);
+                // Focus first link for keyboard users
+                const firstLink = menu.querySelector('a');
+                if (firstLink) {
+                    setTimeout(() => firstLink.focus(), 10);
+                }
+            } else {
+                openDropdowns.delete(dropdown);
+            }
+        });
+
+        // Close when clicking outside (mobile / any viewport)
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                if (menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    openDropdowns.delete(dropdown);
+                }
+            }
+        });
+    });
+
+    // Close all dropdowns on ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            openDropdowns.forEach(d => {
+                const t = d.querySelector('.dropdown-toggle');
+                const m = d.querySelector('.dropdown-content');
+                if (m && m.classList.contains('open')) {
+                    m.classList.remove('open');
+                    if (t) t.setAttribute('aria-expanded', 'false');
+                }
+            });
+            openDropdowns.clear();
+        }
     });
 }
 
