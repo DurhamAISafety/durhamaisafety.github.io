@@ -4,7 +4,7 @@
 members:
   - name: "Theo"
     role: "Lead Organiser"
-    photo: "https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/39871310/d7d04086.jpeg"
+    photo: "./images/team/theo.jpeg"
 
   - name: "Eve"
     role: "Co-organiser and Treasurer"
@@ -26,4 +26,4 @@ members:
   - name: "Leonie"
     role: "PhD Researcher (Law)"
     link: "https://www.durham.ac.uk/staff/leonie-a-stuessi/"
-    photo: "https://apps.dur.ac.uk/biography/image/4854"
+    photo: "./images/team/leonie.png"
