@@ -8,7 +8,7 @@ description: >-
   dedicated to advancing AI safety research, education, and community engagement.
 
 # Contact Information
-email: aisdurham@googlegroups.com
+email: durhamaisi@durham.ac.uk
 baseurl: "" # Leave empty for GitHub Pages main domain
 url: "https://durhamaisafety.github.io/" # Your GitHub Pages URL
 
@@ -119,7 +119,7 @@ webmaster_verifications:
 # Site Author (for SEO)
 author:
   name: "Durham AI Safety Initiative"
-  email: "aisdurham@googlegroups.com"
+  email: "durhamaisi@durham.ac.uk"
   
 # Organization Schema
 organization:
