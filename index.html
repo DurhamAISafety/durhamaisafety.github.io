@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=/home/">
-    <link rel="canonical" href="/home/">
+    <meta http-equiv="refresh" content="0; url={{ '/home/' | absolute_url }}">
+    <meta name="robots" content="noindex,follow">
+    <link rel="canonical" href="{{ '/home/' | absolute_url }}">
     <title>Durham AI Safety Initiative</title>
     <style>
         * {
@@ -100,13 +101,13 @@
         <div class="text">Durham AI Safety Initiative</div>
         <div class="spinner"></div>
         <p style="font-size: 12px; opacity: 0.6; margin-top: 20px;">
-            If you are not redirected, <a href="/home/" class="fallback-link">click here</a>
+            If you are not redirected, <a href="{{ '/home/' | relative_url }}" class="fallback-link">click here</a>
         </p>
     </div>
     
     <script>
         // Immediate redirect - no delay
-        window.location.replace('/home/');
+    window.location.replace('{{ '/home/' | relative_url }}');
     </script>
 </body>
 </html>

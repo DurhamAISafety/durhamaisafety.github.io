@@ -10,15 +10,22 @@ description: >-
 # Contact Information
 email: durhamaisi@durham.ac.uk
 baseurl: "" # Leave empty for GitHub Pages main domain
-url: "https://durhamaisafety.github.io/" # Your GitHub Pages URL
+url: "https://durhamaisafety.github.io" # Your GitHub Pages URL (no trailing slash)
+lang: en_GB
 
 # Social Media Links
 social:
+  # Used by templates and jekyll-seo-tag JSON-LD (when name/links present)
+  name: "Durham AI Safety Initiative"
+  links:
+    - "https://www.instagram.com/ais_durham"
+    - "https://linktr.ee/aisdurham"
+  # Convenience keys used elsewhere in templates
   instagram: "https://www.instagram.com/ais_durham"
   linktree: "https://linktr.ee/aisdurham"
 
 # Repository Information (for edit links)
-repository: "AI-Safety-Durham/AI-Safety-Durham.github.io"
+repository: "DurhamAISafety/durhamaisafety.github.io"
 show_edit_link: false # Set to true to show "Edit this page" links
 
 # SEO and Analytics
@@ -40,7 +47,7 @@ nav_pages:
   - title: "Home"
     url: "/home/"
   - title: "About Us"
-    url: "/home/#about"
+    url: "/about/"
   - title: "Events"
     url: "/home/#events"
 
@@ -70,11 +77,13 @@ defaults:
       type: "pages"
     values:
       layout: "default"
+      image: "/images/AIS-logo.png"
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
+      image: "/images/AIS-logo.png"
 
 # Sass Configuration
 sass:
@@ -124,11 +133,13 @@ author:
 # Organization Schema
 organization:
   name: "Durham AI Safety Initiative"
-  url: "https://ai-safety-durham.github.io"
-  logo: "https://ai-safety-durham.github.io/images/AIS-logo.png"
+  url: "https://durhamaisafety.github.io"
+  logo: "https://durhamaisafety.github.io/images/AIS-logo.png"
   sameAs:
     - "https://www.instagram.com/ais_durham"
     - "https://linktr.ee/aisdurham"
+# Site-wide logo used by jekyll-seo-tag
+logo: "/images/AIS-logo.png"
 # --------------
 ## Minima theme is enabled above via `theme: minima` and the required plugins
 ## are included in the `plugins` list already.
