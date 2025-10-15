@@ -4,7 +4,7 @@
 # Site Information
 title: "Durham AI Safety Initiative"
 description: >-
-  Durham AI Safety Initiative (AISI) is a student-led organization at Durham University 
+  Durham AI Safety Initiative (DAISI) is a student-led organization at Durham University 
   dedicated to advancing AI safety research, education, and community engagement.
 
 # Contact Information
@@ -23,6 +23,7 @@ social:
   # Convenience keys used elsewhere in templates
   instagram: "https://www.instagram.com/ais_durham"
   linktree: "https://linktr.ee/aisdurham"
+  # can add discord too which is in footer
 
 # Repository Information (for edit links)
 repository: "DurhamAISafety/durhamaisafety.github.io"
@@ -140,6 +141,8 @@ organization:
     - "https://linktr.ee/aisdurham"
 # Site-wide logo used by jekyll-seo-tag
 logo: "/images/AIS-logo.png"
+# Favicon/site icons (used by some crawlers and jekyll-seo-tag)
+favicon: "/favicon.ico"
 # --------------
 ## Minima theme is enabled above via `theme: minima` and the required plugins
 ## are included in the `plugins` list already.
