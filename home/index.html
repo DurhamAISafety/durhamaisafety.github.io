@@ -49,6 +49,31 @@ description: "Durham AI Safety Initiative (DAISI) – students and academics at 
                     <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
                 </div>
                 
+                <div id="calendar" class="max-w-5xl mx-auto mb-16">
+                    <p class="text-center text-lg mb-8 font-medium">
+                        We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
+                    </p>
+                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
+                        <!-- Loading state -->
+                        <div id="calendar-loading" class="calendar-loading">
+                            <div class="text-center">
+                                <div class="spinner mx-auto mb-4"></div>
+                                <p class="text-bright-purple font-medium">Loading calendar...</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Calendar iframe -->
+                        <div class="overflow-hidden rounded-xl">                            
+                            <iframe 
+                                id="calendar-iframe" 
+                                src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FLondon&showPrint=0&title=Durham%20AISI%20Events&showCalendars=0&mode=AGENDA&hl=en_GB&src=ODk2ZWRjZjRmOWNkNDczMDUyMzJiMmM3OGNjMDZkNGQxMzY1YTE4ZGFiYmFjZTc0OWJkZTIzN2NmZDkyYmVhNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%238e24aa"
+                                class="w-full h-96 md:h-[500px] lg:h-[600px] border-0 calendar-iframe" 
+                                style="border-width:0" frameborder="0" scrolling="no" loading="lazy"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Program Cards -->
                 <div class="max-w-6xl mx-auto mb-16">
                     <!-- First row: 2 main cards -->
@@ -160,30 +185,7 @@ description: "Durham AI Safety Initiative (DAISI) – students and academics at 
                     </div>
                 </div>
                 
-                <div id="calendar" class="max-w-5xl mx-auto">
-                    <p class="text-center text-lg mb-8 font-medium">
-                        We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
-                    </p>
-                    <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
-                        <!-- Loading state -->
-                        <div id="calendar-loading" class="calendar-loading">
-                            <div class="text-center">
-                                <div class="spinner mx-auto mb-4"></div>
-                                <p class="text-bright-purple font-medium">Loading calendar...</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Calendar iframe -->
-                        <div class="overflow-hidden rounded-xl">                            
-                            <iframe 
-                                id="calendar-iframe" 
-                                src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FLondon&showPrint=0&title=Durham%20AISI%20Events&showCalendars=0&mode=AGENDA&hl=en_GB&src=ODk2ZWRjZjRmOWNkNDczMDUyMzJiMmM3OGNjMDZkNGQxMzY1YTE4ZGFiYmFjZTc0OWJkZTIzN2NmZDkyYmVhNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%238e24aa"
-                                class="w-full h-96 md:h-[500px] lg:h-[600px] border-0 calendar-iframe" 
-                                style="border-width:0" frameborder="0" scrolling="no" loading="lazy"
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
+                
         </div>
     </section>
 </main>
