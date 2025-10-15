@@ -45,11 +45,11 @@ plugins:
 # Navigation (for automatic menu generation)
 nav_pages:
   - title: "Home"
-    url: "/home/"
+    url: "/"
   - title: "About Us"
     url: "/about/"
   - title: "Events"
-    url: "/home/#events"
+    url: "/#events"
 
 dropdown_pages:
   - title: "Our Team"
