@@ -7,6 +7,47 @@
     <meta name="description" content="{{ page.description | default: site.description }}">
     {% seo %}
     
+        {%- comment -%}
+        Additional Organization structured data to improve brand-level search visibility.
+        Uses keys from _config.yml: site.organization and fallbacks to site.* when missing.
+        {%- endcomment -%}
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "{{ site.url | append: '/#org' }}",
+            "name": "{{ site.organization.name | default: site.title | escape }}",
+            "url": "{{ site.organization.url | default: site.url | escape }}",
+            "logo": "{{ site.organization.logo | default: site.logo | absolute_url | escape }}",
+            {% if site.organization.sameAs %}
+            "sameAs": {{ site.organization.sameAs | jsonify }},
+            {% elsif site.social and site.social.links %}
+            "sameAs": {{ site.social.links | jsonify }},
+            {% endif %}
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "email": "{{ site.author.email | default: site.email | escape }}",
+                "contactType": "customer service"
+            }]
+        }
+        </script>
+
+            {%- if page.url == '/home/' or page.url == '/' -%}
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "url": "{{ site.url }}",
+                "name": "{{ site.title | escape }}",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "{{ site.url }}/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+            </script>
+            {%- endif -%}
+    
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/x-icon" href="{{ '/images/new_favicon/favicon.ico' | relative_url }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/new_favicon/apple-touch-icon.png' | relative_url }}">

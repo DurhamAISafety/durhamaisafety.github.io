@@ -30,7 +30,7 @@ show_edit_link: false # Set to true to show "Edit this page" links
 
 # SEO and Analytics
 google_analytics: # Add your GA tracking ID here if needed
-google_site_verification: # Add your Google Search Console verification code
+google_site_verification: BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw
 
 # Build Settings
 markdown: kramdown
@@ -122,7 +122,7 @@ paginate_path: "/blog/page:num/"
 
 # SEO Plugin Settings
 webmaster_verifications:
-  google: # Google Search Console verification code
+  google: BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw
   bing: # Bing Webmaster Tools verification code
 
 # Site Author (for SEO)
