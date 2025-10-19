@@ -11,8 +11,9 @@
                         <a href="{{ site.social.linktree | default: 'https://linktr.ee/aisdurham' }}" aria-label="Linktree" title="Linktree"><i class="fa-solid fa-link"></i></a>
                     </div>
                 </div>
-                <div class="text-base md:text-lg font-semibold">
-                    {{ site.title | default: "Durham AI Safety Initiative" }}
+                <div class="text-base md:text-lg font-semibold inline-flex items-center gap-2">
+                    <span>{{ site.title | default: "Durham AI Safety Initiative" }}</span>
+                    <span class="text-[10px] md:text-xs font-normal text-white/60 align-middle">2025</span>
                 </div>
             </div>
 
@@ -51,6 +52,20 @@
             <p>
                 Durham AI Safety Initiative follows Durham Students' Union's privacy policy and code of conduct.
             </p>
+        </div>
+
+        <!-- Bottom-right: Open-source link -->
+        <div class="mt-4 flex justify-end">
+            <a
+                href="https://github.com/DurhamAISafety/durhamaisafety.github.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="This site is open-source on GitHub"
+                class="inline-flex items-center gap-2 text-white/60 hover:text-white text-xs md:text-sm font-medium transition-colors"
+            >
+                <i class="fa-brands fa-github"></i>
+                <span>This site is open-source</span>
+            </a>
         </div>
     </div>
 </footer>
