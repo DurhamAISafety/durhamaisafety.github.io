@@ -27,3 +27,11 @@ Pull requests
 -------------
 - Branch from `main`, open a PR, and ensure CI is green.
 - Include screenshots for visual changes where useful.
+
+Privacy, data, and assets
+-------------------------
+
+- Do not commit personal or sensitive data without explicit consent. Treat `_data/team.yml` as site-only data and do not republish it elsewhere.
+- Only include member photos if you have permission from the individuals. Member photos in `images/team/` and any images of identifiable individuals are excluded from reuse.
+- The Durham AI Safety Initiative logo, logomark, wordmark, and other brand assets (e.g., `images/AIS-logo.png`, assets under `public/images/`) are not open-licensed; do not reuse outside this site without permission.
+- Code (HTML/CSS/JS/templates) is MIT-licensed. Non-code content is CC BY 4.0 with the exclusions above. See `LICENSE.md` and `CONTENT_LICENSE.md`.

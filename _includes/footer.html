@@ -54,18 +54,33 @@
             </p>
         </div>
 
-        <!-- Bottom-right: Open-source link -->
+        <!-- Bottom-right: Open-source + content license links -->
         <div class="mt-4 flex justify-end">
-            <a
-                href="https://github.com/DurhamAISafety/durhamaisafety.github.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="This site is open-source on GitHub"
-                class="inline-flex items-center gap-2 text-white/60 hover:text-white text-xs md:text-sm font-medium transition-colors"
-            >
-                <i class="fa-brands fa-github"></i>
-                <span>This site is open-source</span>
-            </a>
+            <div class="inline-flex items-center gap-3 text-xs md:text-sm">
+                <a
+                    href="https://github.com/DurhamAISafety/durhamaisafety.github.io"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="This site is open-source on GitHub"
+                    class="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium transition-colors"
+                >
+                    <i class="fa-brands fa-github"></i>
+                    <span>This site is open-source</span>
+                </a>
+                <span aria-hidden="true" class="text-white/30">•</span>
+                <a
+                    href="https://creativecommons.org/licenses/by/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Content licensed under Creative Commons Attribution 4.0"
+                    title="Content licensed CC BY 4.0 (except photos, team data, and logo)"
+                    class="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                >
+                    <i class="fa-brands fa-creative-commons"></i>
+                    <i class="fa-brands fa-creative-commons-by -ml-1"></i>
+                    <span>CC BY 4.0</span>
+                </a>
+            </div>
         </div>
     </div>
 </footer>

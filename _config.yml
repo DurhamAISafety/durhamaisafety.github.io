@@ -27,7 +27,7 @@ social:
 
 # Repository Information (for edit links)
 repository: "DurhamAISafety/durhamaisafety.github.io"
-show_edit_link: false # Set to true to show "Edit this page" links
+show_edit_link: true # Show "Edit this page" links in footer
 
 # SEO and Analytics
 google_analytics: # Add your GA tracking ID here if needed

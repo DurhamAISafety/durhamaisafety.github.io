@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest an idea for this project
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest an improvement!
+  - type: input
+    id: problem
+    attributes:
+      label: Related problem
+      description: Is your feature request related to a problem? Please describe.
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the solution you'd like
+      placeholder: I would like...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
