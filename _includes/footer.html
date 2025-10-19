@@ -34,9 +34,9 @@
                         
                     </a>
                 </div>
-                {% if site.show_edit_link %}
+                {% if site.show_edit_link and page.path %}
                 <div>
-                    <a href="{{ site.repository }}/edit/main/{{ page.path }}" class="text-bright-purple hover:text-light-purple transition-colors text-sm inline-flex items-center gap-2">
+                    <a href="https://github.com/{{ site.repository }}/edit/main/{{ page.path }}" class="text-bright-purple hover:text-light-purple transition-colors text-sm inline-flex items-center gap-2" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-edit"></i><span>Edit this page</span>
                     </a>
                 </div>
