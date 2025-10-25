@@ -66,18 +66,28 @@ To run the website locally, you'll need Ruby and Bundler installed.
 
 ## Testing
 
-This repository uses `html-proofer` to check for broken links and images. The checks are run automatically via GitHub Actions when you push changes. To run the checks locally:
+This repository uses `html-proofer` to check for broken links, images, favicons, and Open Graph metadata. CI runs a specific configuration that skips external link validation to avoid flaky failures (e.g., fonts/CDNs). To match CI locally, either run the helper script or use the equivalent command.
 
-1. Build the site:
+Option A — use the helper script:
 
-    ```bash
-    bundle exec jekyll build
-    ```
-2. Run `html-proofer`:
+```bash
+bin/proof
+```
 
-    ```bash
-    bundle exec htmlproofer ./_site
-    ```
+Option B — run the commands explicitly:
+
+```bash
+bundle exec jekyll build
+bundle exec htmlproofer ./_site \
+    --checks Links,Images,Scripts,Favicon,OpenGraph \
+    --ignore-urls '/localhost/,/127.0.0.1/,/example.com/' \
+    --ignore-files './_site/assets/js/main.js' \
+    --allow-missing-href \
+    --assume-extension .html \
+    --no-check-external-hash \
+    --disable-external \
+    --log-level :info
+```
 
 
 ## Deployment

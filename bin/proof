@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Build the site
+bundle exec jekyll build
+
+# Run HTML-Proofer with the same flags as CI
+bundle exec htmlproofer ./_site \
+  --checks Links,Images,Scripts,Favicon,OpenGraph \
+  --ignore-urls '/localhost/,/127.0.0.1/,/example.com/' \
+  --ignore-files './_site/assets/js/main.js' \
+  --allow-missing-href \
+  --assume-extension .html \
+  --no-check-external-hash \
+  --disable-external \
+  --log-level :info
