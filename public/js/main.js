@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeCommonFeatures() {
     initializeSmoothScrolling();
     initializeFormHandling();
-    initializeBackToTop();
+    // NOTE: Back-to-top button is provided within the site footer component now.
+    // Disable the old floating button injected by JS to avoid duplicate UI.
+    // initializeBackToTop();
     initializeAnalytics();
     // Animate elements as they enter the viewport
     initializeScrollAnimations();
