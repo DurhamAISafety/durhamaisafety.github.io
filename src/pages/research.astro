@@ -1,0 +1,170 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const page = {
+  title: "Research",
+  description: "Research by Durham AISI Members",
+};
+---
+
+<Layout title={page.title} description={page.description}>
+  <section class="section section-neutral">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Research</h1>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+    </div>
+  </section>
+
+  {/* Research Areas & Recent Research */}
+  <section class="section  section-neutral">
+    <div class="container">
+      {/* Research Areas */}
+      <div class="text-center mb-12">
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Areas</h3>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-bright-purple to-bright-purple rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-search text-2xl text-white" aria-hidden="true"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Interpretability</h4>
+    <p class="text-center text-sm leading-relaxed">Understanding how AI systems make decisions and what they learn from data.</p>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-light-purple to-light-purple rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-gavel text-2xl text-white" aria-hidden="true"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Governance</h4>
+    <p class="text-center text-sm leading-relaxed">Developing frameworks for responsible AI development and deployment.</p>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-deep-purple to-deep-purple rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-clipboard-check text-2xl text-white" aria-hidden="true"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Evaluations</h4>
+    <p class="text-center text-sm leading-relaxed">Developing methods to assess AI capabilities, alignment, and safety properties.</p>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-lavender to-lavender rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-user-shield text-2xl text-white" aria-hidden="true"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Oversight / Control</h4>
+    <p class="text-center text-sm leading-relaxed">Ensuring meaningful human oversight and control over AI systems.</p>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-violet-600 to-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-robot text-2xl text-white" aria-hidden="true"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">AI Agency</h4>
+    <p class="text-center text-sm leading-relaxed">Understanding and managing autonomous AI behavior and decision-making.</p>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <div class="w-16 h-16 bg-gradient-to-br from-fuchsia-600 to-fuchsia-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-shield-alt text-2xl text-white" aria-hidden="true"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center mb-4">Security</h4>
+    <p class="text-center text-sm leading-relaxed">Protecting AI systems from adversarial attacks and malicious use.</p>
+        </div>
+      </div>
+
+      {/* Recent Research */}
+      <div class="text-center mb-12">
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">Recent Research by Durham AISI Members</h3>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto space-y-8">
+        <div class="info-card p-8 rounded-2xl">
+          <h4 class="text-xl font-bold mb-4 text-bright-purple">
+            <a href="https://durham-repository.worktribe.com/output/4012842" target="_blank" rel="noopener noreferrer" class="hover:text-light-purple transition-colors inline-flex items-center">
+              Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models
+              <i class="fas fa-external-link-alt ml-2 text-sm" aria-hidden="true"></i>
+            </a>
+          </h4>
+    <p class="leading-relaxed">
+            <strong>Leask, P.</strong>, &amp; Al Moubayed, N. (2025, July). Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models. Presented at International Conference on Machine Learning (ICML 2025), Vancouver, Canada
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-3 py-1 bg-bright-purple/20 text-bright-purple rounded-full text-xs">Interpretability</span>
+            <span class="px-3 py-1 bg-slate-200 text-slate-800 rounded-full text-xs">ICML 2025</span>
+          </div>
+        </div>
+
+        <div class="info-card p-8 rounded-2xl">
+          <h4 class="text-xl font-bold mb-4 text-light-purple">
+            <a href="https://durham-repository.worktribe.com/output/3475474" target="_blank" rel="noopener noreferrer" class="hover:text-bright-purple transition-colors inline-flex items-center">
+              Sparse Autoencoders Do Not Find Canonical Units of Analysis
+              <i class="fas fa-external-link-alt ml-2 text-sm" aria-hidden="true"></i>
+            </a>
+          </h4>
+          <p class="leading-relaxed">
+            <strong>Leask, P.</strong>, Bussmann, B., Pearce, M. T., Isaac Bloom, J., Tigges, C., Al Moubayed, N., Sharkey, L., &amp; Nanda, N. (2025, April). Sparse Autoencoders Do Not Find Canonical Units of Analysis. Presented at The Thirteenth International Conference on Learning Representations, Singapore
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-3 py-1 bg-bright-purple/20 text-bright-purple rounded-full text-xs">Interpretability</span>
+            <span class="px-3 py-1 bg-slate-200 text-slate-800 rounded-full text-xs">ICLR 2025</span>
+          </div>
+        </div>
+
+        <div class="info-card p-8 rounded-2xl">
+          <h4 class="text-xl font-bold mb-4 text-bright-purple">
+            <a href="https://openreview.net/forum?id=IhI1qGyk6S" target="_blank" rel="noopener noreferrer" class="hover:text-light-purple transition-colors inline-flex items-center">
+              Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization
+              <i class="fas fa-external-link-alt ml-2 text-sm" aria-hidden="true"></i>
+            </a>
+          </h4>
+          <p class="leading-relaxed">
+            <strong>Leask, P.</strong>, &amp; Al Moubayed, N. (2025). Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization. Presented at Mechanistic Interpretability Workshop at NeurIPS 2025.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-3 py-1 bg-bright-purple/20 text-bright-purple rounded-full text-xs">Interpretability</span>
+            <span class="px-3 py-1 bg-slate-200 text-slate-800 rounded-full text-xs">NeurIPS 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Research Opportunities */}
+  <section class="section  section-neutral">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
+        <div class="section-divider"></div>
+      </div>
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div class="research-card rounded-2xl p-6 card-hover">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-bright-purple to-bright-purple rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-graduation-cap text-white" aria-hidden="true"></i>
+              </div>
+              <h4 class="text-lg font-bold">Undergraduates</h4>
+            </div>
+            <p class="text-sm leading-relaxed">We can advise and support you on dissertation and individual study projects.</p>
+          </div>
+          <div class="research-card rounded-2xl p-6 card-hover">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-light-purple to-light-purple rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-user-graduate text-white" aria-hidden="true"></i>
+              </div>
+              <h4 class="text-lg font-bold">Faculty</h4>
+            </div>
+            <p class="text-sm leading-relaxed">We can signpost promising research directions and funding opportunities, and support you throughout.</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <a href="/programs/#research-projects" class="btn btn-primary">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
