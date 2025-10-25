@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { team } from '../data/team';
+---
+
+<Layout 
+	title="About Us - Durham AISI"
+	description="Learn about the Durham AI Safety Initiative (DAISI), our mission, impact, and the team behind it."
+>
+	<!-- About Section -->
+	<section id="about" class="section section-neutral about-page-override">
+		<div class="container">
+			<div class="max-w-5xl mx-auto">
+				<div class="text-center mb-8">
+					<h1 class="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
+					<div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+				</div>
+				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto">
+					We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/what-is-ai-safety/" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:
+				</p>
+
+				<style>
+					/* Local override so only About page cards show white text on deep-purple */
+					.about-page-override .about-card h3,
+					.about-page-override .about-card p,
+					.about-page-override .impact-card h3,
+					.about-page-override .impact-card p { color: #ffffff !important; }
+					.about-page-override .about-card p { opacity: 0.9; }
+					.about-page-override .impact-card p { opacity: 0.9; }
+				</style>
+
+				<div class="grid md:grid-cols-3 gap-6 mb-12">
+					<div class="about-card group bg-deep-purple rounded-2xl p-6 border border-bright-purple/60 shadow-lg transition-colors duration-300">
+						<div class="text-3xl mb-4 text-center">🎯</div>
+						<h3 class="text-xl font-bold mb-4 text-center">Raising Awareness</h3>
+						<p class="text-base leading-relaxed text-center">Through discussion groups and speaker events</p>
+					</div>
+					<div class="about-card group bg-deep-purple rounded-2xl p-6 border border-light-purple/60 shadow-lg transition-colors duration-300">
+						<div class="text-3xl mb-4 text-center">🛠️</div>
+						<h3 class="text-xl font-bold mb-4 text-center">Upskilling Members</h3>
+						<p class="text-base leading-relaxed text-center">In safety techniques through workshops and 1-1 support</p>
+					</div>
+					<div class="about-card group bg-deep-purple rounded-2xl p-6 border border-lavender/60 shadow-lg transition-colors duration-300">
+						<div class="text-3xl mb-4 text-center">🤝</div>
+						<h3 class="text-xl font-bold mb-4 text-center">Fostering Community</h3>
+						<p class="text-base leading-relaxed text-center">For high-quality discussion, support and connections to the wider field of AI safety</p>
+					</div>
+				</div>
+
+				<div class="impact-card bg-deep-purple rounded-2xl p-8 border border-white/20 shadow-xl mb-8">
+					<div class="text-center">
+						<h3 class="text-2xl font-bold mb-4">Our Impact</h3>
+						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto">
+							Our members have published in top AI and law conferences, participated in 
+							<a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">MATS</a>
+							and gone on to study AI ethics at Cambridge.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Team Heading -->
+	<section class="section-neutral pt-2 pb-2" id="team">
+		<div class="container text-center">
+			<h2 class="text-3xl md:text-4xl font-bold mb-2">Our Team</h2>
+			<div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-2"></div>
+		</div>
+	</section>
+
+	<!-- Team Grid -->
+	<section class="section-neutral pt-2 pb-12">
+		<div class="container">
+			{(() => {
+				const topMembers = team.slice(0, 4);
+				const bottomMembers = team.slice(4);
+				return (
+					<>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-12">
+							{topMembers.map((person) => (
+								<div class="text-center animate-on-scroll">
+									<div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
+										{person.photo ? (
+											<img src={person.photo} alt={person.name} style="width:100%; height:100%; object-fit: cover;" onerror="this.parentElement.querySelector('.fallback-icon').style.display='flex'; this.remove();" />
+										) : (
+											<i class="fas fa-user text-3xl text-white"></i>
+										)}
+										<div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
+											<i class="fas fa-user text-3xl text-white"></i>
+										</div>
+									</div>
+									<h4 class="text-xl font-bold mb-2">{person.name}</h4>
+									<p class="font-semibold mb-2 text-sm" style="color:#7c3aed;">{person.role}</p>
+									{person.link && (
+										<a href={person.link} target="_blank" rel="noopener" class="inline-flex items-center text-bright-purple hover:text-light-purple transition-colors text-sm">
+											<span class="underline">Learn more</span>
+											<i class="fas fa-external-link-alt ml-2 text-xs icon-current"></i>
+										</a>
+									)}
+								</div>
+							))}
+						</div>
+
+						{bottomMembers.length > 0 && (
+							<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+								{bottomMembers.map((person) => (
+									<div class="text-center animate-on-scroll">
+										<div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
+											{person.photo ? (
+												<img src={person.photo} alt={person.name} style="width:100%; height:100%; object-fit: cover;" onerror="this.parentElement.querySelector('.fallback-icon').style.display='flex'; this.remove();" />
+											) : (
+												<i class="fas fa-user text-3xl text-white"></i>
+											)}
+											<div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
+												<i class="fas fa-user text-3xl text-white"></i>
+											</div>
+										</div>
+										<h4 class="text-xl font-bold mb-2">{person.name}</h4>
+										<p class="font-semibold mb-2 text-sm" style="color:#7c3aed;">{person.role}</p>
+										{person.link && (
+											<a href={person.link} target="_blank" rel="noopener" class="inline-flex items-center text-bright-purple hover:text-light-purple transition-colors text-sm">
+												<span class="underline">Learn more</span>
+												<i class="fas fa-external-link-alt ml-2 text-xs icon-current"></i>
+											</a>
+										)}
+									</div>
+								))}
+							</div>
+						)}
+					</>
+				);
+			})()}
+		</div>
+	</section>
+
+	<!-- Join Section -->
+	<section class="section section-neutral">
+		<div class="container text-center">
+			<h3 class="text-3xl md:text-4xl font-bold mb-6">Join Our Team</h3>
+			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+				If you want to help organise and shape Durham AISI, contact 
+				<a href="mailto:durhamaisi@durham.ac.uk" class="text-bright-purple hover:text-light-purple font-semibold transition-colors">durhamaisi@durham.ac.uk</a> and we'll be in touch!
+			</p>
+		</div>
+	</section>
+</Layout>
+
