@@ -1,0 +1,101 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/config';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  heroImage?: string;
+}
+
+const { title, description, heroImage } = Astro.props;
+
+const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
+const pageDescription = description || siteConfig.description;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang={siteConfig.lang}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription}>
+    <link rel="canonical" href={canonicalURL}>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#org`,
+      "name": siteConfig.social.name,
+      "url": siteConfig.url,
+      "sameAs": siteConfig.social.links,
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "email": siteConfig.email,
+        "contactType": "customer service"
+      }]
+    })}></script>
+
+    {Astro.url.pathname === '/' && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": siteConfig.url,
+        "name": siteConfig.title,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${siteConfig.url}/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      })}></script>
+    )}
+    
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/new_favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/new_favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/new_favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/new_favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#39144F">
+    <meta name="google-site-verification" content={siteConfig.googleSiteVerification}>
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Custom Site Styles -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+    {heroImage && (
+      <link rel="preload" as="image" href={heroImage} imagesrcset={`${heroImage} 1200w`} imagesizes="100vw">
+    )}
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonicalURL}>
+    <meta property="og:title" content={pageTitle}>
+    <meta property="og:description" content={pageDescription}>
+    <meta property="og:site_name" content={siteConfig.title}>
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={pageTitle}>
+    <meta name="twitter:description" content={pageDescription}>
+</head>
+<body class="font-inter bg-gradient-to-br from-deep-purple via-deep-purple to-lavender text-white min-h-screen">
+    <Header />
+    
+    <main>
+        <slot />
+    </main>
+    
+    <Footer />
+    
+    <script is:inline src="/assets/js/main.js"></script>
+</body>
+</html>

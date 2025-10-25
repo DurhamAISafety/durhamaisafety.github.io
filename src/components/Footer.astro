@@ -1,0 +1,144 @@
+---
+import { siteConfig } from '../data/config';
+---
+
+<footer class="footer no-print">
+    <div class="container py-10 md:py-8">
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+            <!-- Left: Brand & Social -->
+            <div class="flex flex-col gap-4 min-w-[220px] items-center md:items-start text-center md:text-left">
+                <div class="flex items-center gap-4 justify-center md:justify-start w-full">
+                    <div class="social-links flex gap-4 justify-center md:justify-start">
+                        <a href={siteConfig.social.instagram} aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href={siteConfig.social.discord} aria-label="Discord" title="Discord">
+                            <i class="fa-brands fa-discord"></i>
+                        </a>
+                        <a href={siteConfig.social.linktree} aria-label="Linktree" title="Linktree">
+                            <i class="fa-solid fa-link"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-base md:text-lg font-semibold inline-flex items-center gap-2">
+                    <span>{siteConfig.title}</span>
+                    <span class="text-[10px] md:text-xs font-normal text-white/60 align-middle">2025</span>
+                </div>
+            </div>
+
+            <!-- Right: Contact & Feedback -->
+            <div class="flex-1 grid gap-3 text-sm md:text-base max-w-xl">
+                <div>
+                    <a href={`mailto:${siteConfig.email}`} class="text-bright-purple hover:text-light-purple font-medium transition-colors">
+                        {siteConfig.email}
+                    </a>
+                </div>
+                <p class="text-white/70 leading-snug">
+                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or our socials!
+                </p>
+                <div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1e1H4DnI1xWvjtpO4pZCAQiUq1mtdYYiDnJUBHb8yb72xMQ/viewform?usp=dialog" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-2 text-bright-purple hover:text-light-purple font-medium transition-colors">
+                        <i class="fas fa-user-secret"></i>
+                        <span>Send anonymous feedback / report an issue</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal / fine print condensed -->
+        <div class="mt-8 text-[11px] md:text-xs text-white/50 leading-relaxed max-w-4xl">
+            <p>
+                Durham AI Safety Initiative is a student group affiliated with Durham Students' Union, which is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Durham Students' Union's registered office is Dunelm House, New Elvet, Durham, DH1 3AN.
+            </p>
+            <p>
+                Durham AI Safety Initiative follows Durham Students' Union's privacy policy and code of conduct.
+            </p>
+        </div>
+
+        <!-- Bottom-right: Open-source + content license links -->
+        <div class="mt-4 flex justify-end">
+            <div class="inline-flex items-center gap-3 text-xs md:text-sm">
+                <a
+                    href={`https://github.com/${siteConfig.repository}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="This site is open-source on GitHub"
+                    class="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium transition-colors"
+                >
+                    <i class="fa-brands fa-github"></i>
+                    <span>This site is open-source</span>
+                </a>
+                <span aria-hidden="true" class="text-white/30">•</span>
+                <a
+                    href="https://creativecommons.org/licenses/by/4.0/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Content licensed under Creative Commons Attribution 4.0"
+                    title="Content licensed CC BY 4.0 (except photos, team data, and logo)"
+                    class="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                >
+                    <i class="fa-brands fa-creative-commons"></i>
+                    <i class="fa-brands fa-creative-commons-by -ml-1"></i>
+                    <span>CC BY 4.0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #EB80FD, #E2ACFE);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+</style>
+
+<script>
+// Back to top button functionality
+const backToTopButton = document.createElement('button');
+backToTopButton.className = 'back-to-top';
+backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+backToTopButton.setAttribute('aria-label', 'Back to top');
+document.body.appendChild(backToTopButton);
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+    } else {
+        backToTopButton.classList.remove('visible');
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>

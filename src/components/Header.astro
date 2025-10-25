@@ -1,0 +1,43 @@
+---
+import { siteConfig } from '../data/config';
+
+const { pathname } = Astro.url;
+const isHome = pathname === '/';
+---
+
+<header class="header no-print">
+    <div class="container">
+        <nav class="nav">
+            <a href="/" class="nav-brand">
+                <img src="/images/new_favicon/apple-touch-icon.png" alt="Durham AISI Logo">
+                <div>
+                    <h1>
+                        {isHome ? (
+                            <>Durham <span class="gradient-text">AI Safety</span> Initiative</>
+                        ) : (
+                            <>Durham AISI</>
+                        )}
+                    </h1>
+                </div>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#events" class="nav-link">Events</a>
+                <a href="/about/" class="nav-link">About Us</a>
+                
+                <div class="dropdown">
+                    <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="/programs/">Programs</a>
+                        <a href="/research/">Research</a>
+                        <a href="/what-is-ai-safety/">What is AI Safety?</a>
+                        <a href="/get-involved/">Get Involved</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
