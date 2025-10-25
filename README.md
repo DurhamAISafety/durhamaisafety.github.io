@@ -140,11 +140,6 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 - See CONTRIBUTING.md for guidelines on structure, checks, and conventions.
 - CI runs builds and link checks on every PR and push to `main`.
 
-## Governance, Conduct and Security
-
-- Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) before participating.
-- For security issues, see our [Security Policy](./SECURITY.md) and email security reports to <durhamaisi@durham.ac.uk>.
-
 ## License (split)
 
 - Code (HTML, CSS, JS, templates, configuration) is licensed under the [MIT License](./LICENSE.md).
@@ -155,29 +150,3 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 
 If you’re unsure whether a particular file is covered, please open an issue.
 
-## Future Improvements
-
-### Recommended Enhancements
-
-1. **Content Management**: Add Jekyll collections for team members and events
-2. **Blog System**: Add a blog for regular updates
-3. **Search**: Implement site search functionality
-4. **Contact Forms**: Integrate with form handling service
-5. **Analytics**: Add Google Analytics for visitor insights
-
-### Performance Optimizations
-
-1. **Image Optimization**: Implement responsive images
-2. **CSS Minification**: Use Jekyll plugins for asset optimization
-3. **Caching**: Add cache headers via GitHub Pages settings
-
-## Resources
-
-- [Jekyll Documentation](https://jekyllrb.com/docs/)
-- [GitHub Pages Documentation](https://pages.github.com/)
-- [Liquid Template Language](https://shopify.github.io/liquid/)
-- [YAML Front Matter](https://jekyllrb.com/docs/front-matter/)
-
-## Contact
-
-For technical questions about the website, contact the web team or create an issue in the GitHub repository.
