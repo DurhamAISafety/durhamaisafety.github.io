@@ -34,6 +34,15 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 
+# Astro cache and build artifacts
+.astro/
+
+# Local backup directories
+.backup_deleted/
+
+# Legacy/experimental project directories
+zany-zenith/
+
 # Editors/IDE
 .vscode/
 .idea/
