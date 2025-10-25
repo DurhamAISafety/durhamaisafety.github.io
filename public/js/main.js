@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeCommonFeatures() {
     initializeSmoothScrolling();
     initializeFormHandling();
-    // NOTE: Back-to-top button is provided within the site footer component now.
-    // Disable the old floating button injected by JS to avoid duplicate UI.
-    // initializeBackToTop();
+    // Back-to-top is provided by the footer link; no floating button injected here.
     initializeAnalytics();
     // Animate elements as they enter the viewport
     initializeScrollAnimations();
@@ -91,35 +89,6 @@ function handleFormSubmission(e) {
 }
 
 /**
- * Initialize back to top button
- */
-function initializeBackToTop() {
-    // Create back to top button
-    const backToTopButton = document.createElement('button');
-    backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTopButton.className = 'back-to-top';
-    backToTopButton.setAttribute('aria-label', 'Back to top');
-    document.body.appendChild(backToTopButton);
-    
-    // Show/hide based on scroll position
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-    });
-    
-    // Scroll to top on click
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-/**
  * Show notification to user
  * @param {string} message - The message to display
  * @param {string} type - The type of notification (success, error, info)
@@ -164,38 +133,7 @@ function initializeAnalytics() {
     });
 }
 
-/**
- * Utility function to debounce function calls
- * @param {Function} func - Function to debounce
- * @param {number} wait - Wait time in milliseconds
- * @returns {Function} Debounced function
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-/**
- * Utility function to check if element is in viewport
- * @param {Element} element - Element to check
- * @returns {boolean} Whether element is in viewport
- */
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
+// (Removed unused helpers: debounce, isInViewport)
 
 /**
  * Animate elements when they come into view
@@ -291,8 +229,6 @@ function initializeNavDropdowns() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         initializeCommonFeatures,
-        showNotification,
-        debounce,
-        isInViewport
+        showNotification
     };
 }

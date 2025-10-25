@@ -90,6 +90,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <slot name="head" />
 </head>
 <body class="font-inter bg-gradient-to-br from-deep-purple via-deep-purple to-lavender text-white min-h-screen">
+  <!-- Anchor target for footer's Back to top link -->
+  <div id="top" aria-hidden="true"></div>
     <Header />
     
     <main>

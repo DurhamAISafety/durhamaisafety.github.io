@@ -62,7 +62,7 @@ import { siteConfig } from '../data/config';
         <div class="mt-4 flex justify-between items-center">
             <!-- Back to top link (left side) -->
             <a 
-                href="#" 
+                href="#top" 
                 id="back-to-top-link"
                 class="inline-flex items-center gap-2 text-white/60 hover:text-bright-purple font-medium transition-colors text-xs md:text-sm"
                 aria-label="Back to top"
@@ -101,14 +101,5 @@ import { siteConfig } from '../data/config';
     </div>
 </footer>
 
-<script>
-// Back to top link smooth scroll
-document.getElementById('back-to-top-link')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-</script>
+
 
