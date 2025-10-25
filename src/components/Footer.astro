@@ -59,7 +59,19 @@ import { siteConfig } from '../data/config';
         </div>
 
         <!-- Bottom-right: Open-source + content license links -->
-        <div class="mt-4 flex justify-end">
+        <div class="mt-4 flex justify-between items-center">
+            <!-- Back to top link (left side) -->
+            <a 
+                href="#" 
+                id="back-to-top-link"
+                class="inline-flex items-center gap-2 text-white/60 hover:text-bright-purple font-medium transition-colors text-xs md:text-sm"
+                aria-label="Back to top"
+            >
+                <i class="fas fa-arrow-up"></i>
+                <span>Back to top</span>
+            </a>
+            
+            <!-- License links (right side) -->
             <div class="inline-flex items-center gap-3 text-xs md:text-sm">
                 <a
                     href={`https://github.com/${siteConfig.repository}`}
@@ -89,56 +101,14 @@ import { siteConfig } from '../data/config';
     </div>
 </footer>
 
-<style>
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, #EB80FD, #E2ACFE);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-to-top:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-</style>
-
 <script>
-// Back to top button functionality
-const backToTopButton = document.createElement('button');
-backToTopButton.className = 'back-to-top';
-backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-backToTopButton.setAttribute('aria-label', 'Back to top');
-document.body.appendChild(backToTopButton);
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopButton.classList.add('visible');
-    } else {
-        backToTopButton.classList.remove('visible');
-    }
-});
-
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Back to top link smooth scroll
+document.getElementById('back-to-top-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
 </script>
+
