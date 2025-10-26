@@ -8,6 +8,40 @@ import { Image } from 'astro:assets';
 	title="About Us - Durham AISI"
 	description="Learn about the Durham AI Safety Initiative (DAISI), our mission, impact, and the team behind it."
 >
+	<script
+		type="application/ld+json"
+		slot="head"
+		set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What is the Durham AI Safety Initiative?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Durham AI Safety Initiative (DAISI) is a student-led initiative at Durham University that empowers students and academics to reduce risk from advanced AI through raising awareness, upskilling members in safety techniques, and fostering community for high-quality discussion and connections to the wider field of AI safety."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What does Durham AISI do?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "DAISI raises awareness through discussion groups and speaker events, upskills members in safety techniques through workshops and 1-1 support, and fosters community for high-quality discussion, support and connections to the wider field of AI safety."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Who can join Durham AI Safety Initiative?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "DAISI is open to all Durham University students and academics interested in AI safety, regardless of their background or prior knowledge. We welcome members from all disciplines who want to learn about and contribute to reducing risks from advanced AI."
+					}
+				}
+			]
+		})}
+	/>
 	<!-- About Section -->
 	<section id="about" class="section section-neutral about-page-override">
 		<div class="site-container">

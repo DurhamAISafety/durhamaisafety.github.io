@@ -6,6 +6,40 @@ import Layout from "../layouts/Layout.astro";
   title="Get Involved"
   description="Join Durham AI Safety Initiative: attend events, join our Discord, start a research project, and connect with our community."
 >
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can I get involved with Durham AI Safety Initiative?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can get involved by attending our events (reading groups, workshops, and speaker events), joining our Discord community, starting a research project with our support, or reaching out directly via email at durhamaisafety@gmail.com."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need prior knowledge to join Durham AISI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No prior knowledge is required! We welcome members from all backgrounds and disciplines. Our intro seminars and reading groups are designed to help you learn about AI safety from the ground up."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I join the Durham AISI Discord?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can join our Discord community through the link on our Get Involved page. Our Discord is the hub for announcements, discussions, and connecting with other members interested in AI safety."
+          }
+        }
+      ]
+    })}
+  />
   <section class="section section-neutral">
     <div class="site-container text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Get Involved</h1>

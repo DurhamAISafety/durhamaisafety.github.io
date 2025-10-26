@@ -9,6 +9,32 @@ import heroImage from '../assets/hero-picture.jpeg';
   description="Durham AI Safety Initiative (DAISI) at Durham University: events, research, seminars and community focused on reducing catastrophic risks from advanced AI."
     heroImage={heroImage.src}
 >
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Durham AI Safety Initiative",
+      "alternateName": "DAISI",
+      "url": "https://durhamaisafety.com",
+      "description": "Student-led initiative at Durham University focused on reducing catastrophic risks from advanced AI through education, research, and community building.",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Durham University",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Durham",
+          "addressCountry": "UK"
+        }
+      },
+      "areaServed": "Durham University",
+      "memberOf": {
+        "@type": "EducationalOrganization",
+        "name": "Durham University"
+      }
+    })}
+  />
     <!-- Hero Section -->
     <section id="home" class="min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden pt-28 md:pt-32">
         <!-- Hero Image -->

@@ -6,6 +6,48 @@ import Layout from '../layouts/Layout.astro';
   title="Programs - Durham AISI"
   description="Explore Durham AISI programs: intro seminars, in-depth reading groups, research project support, and ways to develop AI safety skills."
 >
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What programs does Durham AISI offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Durham AISI offers intro seminars for newcomers to AI safety, in-depth reading groups on advanced topics, research project support with mentorship and funding connections, workshops and skill-building sessions, and speaker events with experts in the field."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are Durham AISI intro seminars?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Intro seminars are beginner-friendly sessions that introduce core concepts in AI safety. They cover topics like AI alignment, governance, interpretability, and catastrophic risks. No prior knowledge is required, making them perfect for students new to the field."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I start a research project with Durham AISI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Durham AISI supports research projects by helping you find mentors, connecting you to funding opportunities and fellowships, and providing guidance throughout your project. We support dissertation topics and can help you get involved with research in technical AI safety, governance, policy, and related areas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What topics do Durham AISI reading groups cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reading groups cover in-depth topics including AI alignment, mechanistic interpretability, AI governance and policy, safety evaluations, and current research papers. These groups are designed for members who want to dive deeper into specific areas of AI safety."
+          }
+        }
+      ]
+    })}
+  />
   <!-- Title Section -->
   <section class="section section-neutral">
   <div class="site-container text-center">
