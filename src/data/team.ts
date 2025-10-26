@@ -1,41 +1,50 @@
+import type { ImageMetadata } from 'astro';
+
 export interface TeamMember {
   name: string;
   role: string;
-  photo?: string;
+  photo?: string | ImageMetadata;
   link?: string;
 }
+
+import theo from '../assets/team/theo.jpeg';
+import eve from '../assets/team/eve.jpeg';
+import quinn from '../assets/team/quinn.jpeg';
+import bella from '../assets/team/bella-pic.jpg';
+import patrick from '../assets/team/patrick.jpeg';
+import leonie from '../assets/team/leonie.png';
 
 export const team: TeamMember[] = [
   {
     name: "Theo",
     role: "Lead Organiser",
-    photo: "/images/team/theo.jpeg"
+    photo: theo
   },
   {
     name: "Eve",
     role: "Co-organiser and Treasurer",
-    photo: "/images/team/eve.jpeg"
+    photo: eve
   },
   {
     name: "Quinn",
     role: "Co-organiser and Secretary",
-    photo: "/images/team/quinn.jpeg"
+    photo: quinn
   },
   {
     name: "Bella",
     role: "Publicity Officer",
-    photo: "/images/team/bella-pic.jpg"
+    photo: bella
   },
   {
     name: "Patrick",
     role: "PhD Researcher (Mechinterp)",
     link: "https://www.durham.ac.uk/staff/patrick-leask/",
-    photo: "/images/team/patrick.jpeg"
+    photo: patrick
   },
   {
     name: "Leonie",
     role: "PhD Researcher (Law)",
     link: "https://www.durham.ac.uk/staff/leonie-a-stuessi/",
-    photo: "/images/team/leonie.png"
+    photo: leonie
   }
 ];

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { team } from '../data/team';
+import { Image } from 'astro:assets';
 ---
 
 <Layout 
@@ -80,9 +81,32 @@ import { team } from '../data/team';
 						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-12">
 							{topMembers.map((person) => (
 								<div class="text-center animate-on-scroll">
-									<div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
+									<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
 										{person.photo ? (
-											<img src={person.photo} alt={person.name} style="width:100%; height:100%; object-fit: cover;" onerror="this.parentElement.querySelector('.fallback-icon').style.display='flex'; this.remove();" />
+											typeof person.photo === 'string' ? (
+												<img
+													src={person.photo}
+													alt={person.name}
+													loading="lazy"
+													decoding="async"
+													class="w-full h-full object-cover"
+													onerror="const f=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(f){f.style.display='flex'}; this.remove();"
+													style="width:100%; height:100%; object-fit: cover;"
+												/>
+											) : (
+												<Image
+													src={person.photo}
+													alt={person.name}
+													widths={[128,160,200,320]}
+													sizes="(min-width: 1024px) 160px, (min-width: 768px) 160px, 128px"
+													aspectRatio="1:1"
+													fit="cover"
+													loading="lazy"
+													decoding="async"
+													class="w-full h-full object-cover"
+													onerror="const f=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(f){f.style.display='flex'}; this.remove();"
+												/>
+											)
 										) : (
 											<i class="fas fa-user text-3xl text-white"></i>
 										)}
@@ -106,9 +130,32 @@ import { team } from '../data/team';
 							<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
 								{bottomMembers.map((person) => (
 									<div class="text-center animate-on-scroll">
-										<div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
+										<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
 											{person.photo ? (
-												<img src={person.photo} alt={person.name} style="width:100%; height:100%; object-fit: cover;" onerror="this.parentElement.querySelector('.fallback-icon').style.display='flex'; this.remove();" />
+												typeof person.photo === 'string' ? (
+													<img
+														src={person.photo}
+														alt={person.name}
+														loading="lazy"
+														decoding="async"
+														class="w-full h-full object-cover"
+														onerror="const f=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(f){f.style.display='flex'}; this.remove();"
+														style="width:100%; height:100%; object-fit: cover;"
+													/>
+												) : (
+													<Image
+														src={person.photo}
+														alt={person.name}
+														widths={[128,160,200,320]}
+														sizes="(min-width: 1024px) 160px, (min-width: 768px) 160px, 128px"
+														aspectRatio="1:1"
+														fit="cover"
+														loading="lazy"
+														decoding="async"
+														class="w-full h-full object-cover"
+														onerror="const f=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(f){f.style.display='flex'}; this.remove();"
+													/>
+												)
 											) : (
 												<i class="fas fa-user text-3xl text-white"></i>
 											)}
