@@ -12,6 +12,8 @@ The repository is structured as follows:
 │   └── workflows/
 │       └── deploy-astro.yml      # GitHub Actions workflow
 ├── src/
+│   ├── assets/
+│   │   └── team/                 # Team member photos (optimized by Astro)
 │   ├── components/
 │   │   ├── Footer.astro          # Site footer
 │   │   └── Header.astro          # Site header
@@ -72,9 +74,10 @@ To run the website locally, you'll need Node.js (v18+) and npm installed.
 
 - **Content:** Edit the `.astro` files in the `src/pages/` directory.
 - **Styling:** Most styling is done with Tailwind CSS utility classes. For custom global styles, edit `public/css/styles.css` or add styles to `src/layouts/Layout.astro`.
-- **Team Members:** To update the team page, edit `src/data/team.ts`.
+- **Team Members:** To update the team page, edit `src/data/team.ts` and add photos to `src/assets/team/`.
 - **Layout:** The main page structure is in `src/layouts/Layout.astro`. The header and footer components are in `src/components/`.
 - **Configuration:** Site-wide settings are in `src/data/config.ts`.
+- **Images:** Add optimized images to `src/assets/` (they'll be processed by Astro) or static files to `public/images/`.
 
 ## Building for Production
 
@@ -126,9 +129,12 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 
 ### Adding New Team Members
 
-1. Edit `src/data/team.ts`
-2. Follow the existing TypeScript interface structure
-3. Add team member photos to `public/images/team/`
+1. Add the team member photo to `src/assets/team/`
+2. Edit `src/data/team.ts`:
+   - Import the photo at the top of the file (e.g., `import newMember from '../assets/team/newMember.jpg';`)
+   - Add the team member to the `team` array following the existing structure
+   - Use the imported photo variable for the `photo` property
+3. The photo will be automatically optimized by Astro during build
 
 ### Adding New Research Projects
 
@@ -158,28 +164,15 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 - Ensure all required frontmatter properties are present
 - Run `npm run build` locally to catch errors before pushing
 
-## Migration Notes
-
-This site was migrated from Jekyll to Astro in October 2025. Benefits include:
-
-- 🚀 Faster builds and hot module reloading
-- 📦 Modern JavaScript/TypeScript tooling
-- 🎯 Type-safe data handling
-- ⚡ Zero JS by default for better performance
-- 🔧 Better developer experience
-
-See `ASTRO_MIGRATION.md` for detailed migration documentation.
-
 ## Maintenance & Contributing
 
-- See CONTRIBUTING.md for guidelines on structure, checks, and conventions.
 - CI runs builds on every PR and push to `main`.
 
 ## License (split)
 
 - Code (HTML, CSS, JS, templates, configuration) is licensed under the [MIT License](./LICENSE.md).
 - Non-code content is licensed under [CC BY 4.0](./CONTENT_LICENSE.md), except:
-- Member photos in `public/images/team/` and any images depicting identifiable individuals.
+- Member photos in `src/assets/team/` and any images depicting identifiable individuals.
 - Personal/sensitive data in `src/data/team.ts` (names, emails, bios, links) — not for reuse or republication.
 - The Durham AI Safety Initiative logo, logomark, wordmark, and other brand assets under `public/images/` (e.g., `public/images/AIS-logo.png`) — all rights reserved.
 
