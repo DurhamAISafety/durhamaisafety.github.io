@@ -179,9 +179,9 @@ See `ASTRO_MIGRATION.md` for detailed migration documentation.
 
 - Code (HTML, CSS, JS, templates, configuration) is licensed under the [MIT License](./LICENSE.md).
 - Non-code content is licensed under [CC BY 4.0](./CONTENT_LICENSE.md), except:
-- Member photos in `images/team/` and any images depicting identifiable individuals.
-- Personal/sensitive data in `_data/team.yml` (names, emails, bios, links) — not for reuse or republication.
-- The Durham AI Safety Initiative logo, logomark, wordmark, and other brand assets (e.g., `images/AIS-logo.png`, assets under `public/images/`) — all rights reserved.
+- Member photos in `public/images/team/` and any images depicting identifiable individuals.
+- Personal/sensitive data in `src/data/team.ts` (names, emails, bios, links) — not for reuse or republication.
+- The Durham AI Safety Initiative logo, logomark, wordmark, and other brand assets under `public/images/` (e.g., `public/images/AIS-logo.png`) — all rights reserved.
 
 If you’re unsure whether a particular file is covered, please open an issue.
 
