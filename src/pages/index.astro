@@ -1,16 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/hero-picture.jpeg';
 ---
 
 <Layout 
   title="Durham AI Safety Initiative"
   description="Durham AI Safety Initiative (DAISI) at Durham University: events, research, seminars and community focused on reducing catastrophic risks from advanced AI."
-  heroImage="/images/hero-picture.jpeg"
+    heroImage={heroImage.src}
 >
     <!-- Hero Section -->
-    <section id="home" class="min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden pt-28 md:pt-32 hero-background">
+    <section id="home" class="min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden pt-28 md:pt-32">
+        <!-- Hero Image -->
+        <Image
+            src={heroImage}
+            alt="Durham Cathedral"
+            class="absolute inset-0 w-full h-full object-cover"
+            widths={[640, 768, 1024, 1280, 1536, 1920]}
+            sizes="100vw"
+            loading="eager"
+            decoding="async"
+        />
         <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
+    <div class="site-container mx-auto px-6 text-center relative z-10">
             <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
                 <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.6);">
                     <span class="text-white">Durham students and academics for </span><span class="text-bright-purple italic font-medium">reducing catastrophic risks from advanced AI</span>
@@ -43,7 +55,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Events Section -->
     <section id="events" class="py-16 section-neutral">
-        <div class="container mx-auto px-6 relative z-10">
+    <div class="site-container mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Events</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
@@ -212,7 +224,7 @@ import Layout from '../layouts/Layout.astro';
     // Hide loading state when calendar is loaded
     if (calendarIframe && calendarLoading) {
         calendarIframe.addEventListener('load', () => {
-            (calendarLoading as HTMLElement).style.display = 'none';
+            calendarLoading.style.display = 'none';
             calendarIframe.classList.add('loaded');
         });
     }
@@ -220,7 +232,7 @@ import Layout from '../layouts/Layout.astro';
     // Fallback to hide loading state after 5 seconds if load event doesn't fire
     setTimeout(() => {
         if (calendarIframe && calendarLoading && !calendarIframe.classList.contains('loaded')) {
-            (calendarLoading as HTMLElement).style.display = 'none';
+            calendarLoading.style.display = 'none';
             calendarIframe.classList.add('loaded');
         }
     }, 5000);

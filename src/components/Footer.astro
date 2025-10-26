@@ -3,7 +3,7 @@ import { siteConfig } from '../data/config';
 ---
 
 <footer class="footer no-print">
-    <div class="container py-10 md:py-8">
+    <div class="site-container py-10 md:py-8">
         <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
             <!-- Left: Brand & Social -->
             <div class="flex flex-col gap-4 min-w-[220px] items-center md:items-start text-center md:text-left">
@@ -59,20 +59,20 @@ import { siteConfig } from '../data/config';
         </div>
 
         <!-- Bottom-right: Open-source + content license links -->
-        <div class="mt-4 flex justify-between items-center">
-            <!-- Back to top link (left side) -->
+        <div class="mt-4 flex flex-col gap-3 items-start md:flex-row md:items-center md:justify-between">
+            <!-- Back to top link (left on desktop, below on mobile) -->
             <a 
                 href="#top" 
                 id="back-to-top-link"
-                class="inline-flex items-center gap-2 text-white/60 hover:text-bright-purple font-medium transition-colors text-xs md:text-sm"
+                class="order-2 md:order-1 inline-flex items-center gap-2 text-white/60 hover:text-bright-purple font-medium transition-colors text-xs md:text-sm"
                 aria-label="Back to top"
             >
                 <i class="fas fa-arrow-up"></i>
                 <span>Back to top</span>
             </a>
             
-            <!-- License links (right side) -->
-            <div class="inline-flex items-center gap-3 text-xs md:text-sm">
+            <!-- License links (right on desktop, above on mobile) -->
+            <div class="order-1 md:order-2 inline-flex items-center gap-3 text-xs md:text-sm">
                 <a
                     href={`https://github.com/${siteConfig.repository}`}
                     target="_blank"

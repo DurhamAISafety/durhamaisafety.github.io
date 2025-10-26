@@ -14,7 +14,7 @@ Content includes, for example: page copy, blog posts, documentation text, and ot
 
 The following items are NOT covered by CC BY 4.0 and may not be redistributed or reused without explicit permission from Durham AI Safety Initiative:
 
-- Member photos under `public/images/team/` and any other photos depicting identifiable individuals.
+- Member photos under `src/assets/team/` and any other photos depicting identifiable individuals.
 - Personal or sensitive information contained in `src/data/team.ts` (e.g., names, emails, bios, links). Treat this file as data provided for the site only; do not reuse or republish.
 - Durham AI Safety Initiative logo, logomark, wordmark, or other brand assets under `public/images/` (e.g., `public/images/AIS-logo.png`). These are © Durham AI Safety Initiative and all rights are reserved.
 
