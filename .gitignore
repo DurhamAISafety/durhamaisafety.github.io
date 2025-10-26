@@ -1,13 +1,16 @@
-# Jekyll build artifacts
-_site/
-.jekyll-cache/
-.sass-cache/
-.jekyll-metadata
+# Astro
+.astro/
+dist/
+.env
+.env.local
+.env.*.local
 
-# Ruby / Bundler
-vendor/bundle/
-.bundle/
-Gemfile.lock
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
 
 # macOS
 .DS_Store
@@ -27,22 +30,6 @@ $RECYCLE.BIN/
 # Linux
 *~
 
-# Node (if ever used locally)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-
-# Astro cache and build artifacts
-.astro/
-
-# Local backup directories
-.backup_deleted/
-
-# Legacy/experimental project directories
-zany-zenith/
-
 # Editors/IDE
 .vscode/
 .idea/
@@ -51,9 +38,6 @@ zany-zenith/
 *.bak
 *.tmp
 .history/
-.env
-.env.local
-.env.*.local
 
 # Logs
 *.log
@@ -68,7 +52,6 @@ test-results/
 .parcel-cache/
 
 # Build outputs
-dist/
 build/
 out/
 
@@ -78,4 +61,3 @@ bower_components/
 # Temporary files
 *.tmp
 *.temp
-

@@ -1,6 +1,6 @@
 # Durham AI Safety Initiative Website
 
-This is the official repository for the Durham AI Safety Initiative (DAISI) website. The site is built using HTML, Tailwind CSS, and JavaScript, and is deployed using GitHub Pages.
+This is the official repository for the Durham AI Safety Initiative (DAISI) website. The site is built using **Astro**, **Tailwind CSS**, and **TypeScript**, and is deployed using GitHub Pages.
 
 ## Site Structure
 
@@ -10,31 +10,42 @@ The repository is structured as follows:
 .
 ├── .github/
 │   └── workflows/
-│       └── build-and-deploy.yml  # GitHub Actions workflow
-├── _data/
-│   └── team.yml                  # Team member data
-├── _includes/
-│   ├── footer.html               # Site footer
-│   └── header.html               # Site header
-├── _layouts/
-│   └── default.html              # Default page layout
-├── assets/
+│       └── deploy-astro.yml      # GitHub Actions workflow
+├── src/
+│   ├── components/
+│   │   ├── Footer.astro          # Site footer
+│   │   └── Header.astro          # Site header
+│   ├── data/
+│   │   ├── config.ts             # Site configuration
+│   │   └── team.ts               # Team member data (TypeScript)
+│   ├── layouts/
+│   │   └── Layout.astro          # Main page layout
+│   └── pages/
+│       ├── index.astro           # Home page
+│       ├── about.astro           # About page
+│       ├── get-involved.astro    # Get Involved page
+│       ├── programs.astro        # Programs page
+│       ├── research.astro        # Research page
+│       ├── what-is-ai-safety.astro
+│       └── 404.astro             # 404 error page
+├── public/
 │   ├── css/
 │   │   └── styles.css            # Custom styles
-│   └── js/
-│       └── main.js               # Custom JavaScript
-├── images/                       # Site images and logos
-├── pages/                        # Sub-pages of the site
+│   ├── js/
+│   │   └── main.js               # Custom JavaScript
+│   ├── images/                   # Site images and logos
+│   └── robots.txt
 ├── .gitignore
-├── _config.yml                   # Jekyll configuration
-├── Gemfile                       # Ruby dependencies
-├── index.html                    # Home page
+├── astro.config.mjs              # Astro configuration
+├── tailwind.config.mjs           # Tailwind configuration
+├── tsconfig.json                 # TypeScript configuration
+├── package.json                  # Node dependencies
 └── README.md                     # This file
 ```
 
 ## Local Development
 
-To run the website locally, you'll need Ruby and Bundler installed.
+To run the website locally, you'll need Node.js (v18+) and npm installed.
 
 1. **Clone the repository:**
 
@@ -46,81 +57,82 @@ To run the website locally, you'll need Ruby and Bundler installed.
 2. **Install dependencies:**
 
     ```bash
-    bundle install
+    npm install
     ```
 
-3. **Run the Jekyll server:**
+3. **Run the development server:**
 
     ```bash
-    bundle exec jekyll serve
+    npm run dev
     ```
 
-4. Open your browser and navigate to `http://localhost:4000`.
+4. Open your browser and navigate to `http://localhost:4321`.
 
 ## Making Changes
 
-- **Content:** Edit the HTML files in the root directory and `pages/` directory.
-- **Styling:** Most styling is done with Tailwind CSS utility classes directly in the HTML. For custom styles, edit `assets/css/styles.css`.
-- **Team Members:** To update the team page, edit the `_data/team.yml` file.
-- **Layout:** The main page structure is in `_layouts/default.html`. The header and footer are in `_includes/`.
+- **Content:** Edit the `.astro` files in the `src/pages/` directory.
+- **Styling:** Most styling is done with Tailwind CSS utility classes. For custom global styles, edit `public/css/styles.css` or add styles to `src/layouts/Layout.astro`.
+- **Team Members:** To update the team page, edit `src/data/team.ts`.
+- **Layout:** The main page structure is in `src/layouts/Layout.astro`. The header and footer components are in `src/components/`.
+- **Configuration:** Site-wide settings are in `src/data/config.ts`.
 
-## Testing
+## Building for Production
 
-This repository uses `html-proofer` to check for broken links, images, favicons, and Open Graph metadata. CI runs a specific configuration that skips external link validation to avoid flaky failures (e.g., fonts/CDNs). To match CI locally, either run the helper script or use the equivalent command.
-
-Option A — use the helper script:
-
-```bash
-bin/proof
-```
-
-Option B — run the commands explicitly:
+To build the site for production:
 
 ```bash
-bundle exec jekyll build
-bundle exec htmlproofer ./_site \
-    --checks Links,Images,Scripts,Favicon,OpenGraph \
-    --ignore-urls '/localhost/,/127.0.0.1/,/example.com/' \
-    --ignore-files './_site/assets/js/main.js' \
-    --allow-missing-href \
-    --assume-extension .html \
-    --no-check-external-hash \
-    --disable-external \
-    --log-level :info
+npm run build
 ```
 
+The built site will be in the `dist/` directory.
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
 
 ## Deployment
 
-The website is automatically deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment workflow is defined in `.github/workflows/build-and-deploy.yml`.
+The website is automatically deployed to GitHub Pages when changes are pushed to the `main` branch. The deployment workflow is defined in `.github/workflows/deploy-astro.yml`.
 
-1. **Comments**: Add comments to complex CSS or JavaScript
-2. **Validation**: Validate HTML and check for broken links
-3. **Performance**: Monitor page load times
-4. **Accessibility**: Ensure WCAG compliance
+## Best Practices
+
+### Code Quality
+
+1. **TypeScript**: Use TypeScript for type safety in data files
+2. **Components**: Break down complex UI into reusable components
+3. **Validation**: Test builds locally before pushing
+4. **Performance**: Astro automatically optimizes assets
 
 ### SEO Best Practices
 
-1. **Meta Descriptions**: Update page descriptions in front matter
-2. **Title Tags**: Use descriptive, unique titles
-3. **Structured Data**: Consider adding JSON-LD for events
+1. **Meta Descriptions**: Update page descriptions in Layout frontmatter
+2. **Title Tags**: Use descriptive, unique titles for each page
+3. **Structured Data**: JSON-LD structured data is included in Layout.astro
 4. **Internal Linking**: Link between related pages
 
 ## Common Tasks
 
 ### Adding a New Event
 
-1. Update the events section in `index.html`
-2. Consider creating an events data file for easier management
+1. Update the events section in `src/pages/index.astro`
+2. Consider creating an events data file in `src/data/events.ts` for easier management
 
 ### Updating Contact Information
 
-1. Edit `_config.yml` for global contact info
-2. Update footer in `_includes/footer.html` if needed
+1. Edit `src/data/config.ts` for global contact info
+2. Update footer in `src/components/Footer.astro` if needed
+
+### Adding New Team Members
+
+1. Edit `src/data/team.ts`
+2. Follow the existing TypeScript interface structure
+3. Add team member photos to `public/images/team/`
 
 ### Adding New Research Projects
 
-1. Update `research.html`
+1. Update `src/pages/research.astro`
 2. Follow the existing card structure
 3. Use consistent status badges
 
@@ -128,27 +140,40 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 
 1. Forms currently show notifications only
 2. To make functional, integrate with services like Netlify Forms or Formspree
-3. Update the JavaScript in `assets/js/main.js`
+3. Update the JavaScript in `public/js/main.js`
 
 ## Troubleshooting
 
 ### Common Issues
 
-1. **Changes not appearing**: Check GitHub Pages build status
-2. **Styling broken**: Verify CSS file paths
-3. **Navigation not working**: Check include file syntax
-4. **Images not loading**: Verify image paths and file names
+1. **Changes not appearing**: Check GitHub Pages build status in Actions tab
+2. **Styling broken**: Verify Tailwind classes and CSS file paths
+3. **Build errors**: Run `npm run build` locally to see detailed errors
+4. **Images not loading**: Verify image paths start with `/` for public assets
 
 ### Build Errors
 
-- Check Jekyll build logs in GitHub Actions
-- Validate YAML front matter syntax
-- Ensure all required files are present
+- Check GitHub Actions logs for detailed error messages
+- Validate TypeScript types in data files
+- Ensure all required frontmatter properties are present
+- Run `npm run build` locally to catch errors before pushing
+
+## Migration Notes
+
+This site was migrated from Jekyll to Astro in October 2025. Benefits include:
+
+- 🚀 Faster builds and hot module reloading
+- 📦 Modern JavaScript/TypeScript tooling
+- 🎯 Type-safe data handling
+- ⚡ Zero JS by default for better performance
+- 🔧 Better developer experience
+
+See `ASTRO_MIGRATION.md` for detailed migration documentation.
 
 ## Maintenance & Contributing
 
 - See CONTRIBUTING.md for guidelines on structure, checks, and conventions.
-- CI runs builds and link checks on every PR and push to `main`.
+- CI runs builds on every PR and push to `main`.
 
 ## License (split)
 
