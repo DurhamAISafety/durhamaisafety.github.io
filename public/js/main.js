@@ -3,10 +3,14 @@
  * Common functionality shared across all pages
  */
 
-// DOM Content Loaded Event
-document.addEventListener('DOMContentLoaded', function() {
+// Robust DOM ready: run immediately if DOM is already parsed, otherwise on DOMContentLoaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeCommonFeatures();
+    }, { once: true });
+} else {
     initializeCommonFeatures();
-});
+}
 
 /**
  * Initialize all common features
