@@ -29,23 +29,20 @@ function initializeDarkMode() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const html = document.documentElement;
     
-    // Check for saved dark mode preference or default to light mode
-    const darkMode = localStorage.getItem('darkMode');
+    // Saved preference only; default to light (no OS detection)
+    const saved = localStorage.getItem('darkMode');
     
-    // Set initial state
-    if (darkMode === 'enabled') {
+    // Set initial state (handle both 'enabled' and 'disabled')
+    if (saved === 'enabled') {
         html.classList.add('dark');
         updateDarkModeIcon(true);
+    } else if (saved === 'disabled') {
+        html.classList.remove('dark');
+        updateDarkModeIcon(false);
     } else {
-        // If not saved, infer from system preference
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (prefersDark) {
-            html.classList.add('dark');
-            updateDarkModeIcon(true);
-        } else {
-            html.classList.remove('dark');
-            updateDarkModeIcon(false);
-        }
+        // No saved preference: default to light
+        html.classList.remove('dark');
+        updateDarkModeIcon(false);
     }
     
     // Toggle dark mode on button click

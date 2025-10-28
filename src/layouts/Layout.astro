@@ -89,21 +89,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   <!-- Dark mode initialization (prevents FOUC) -->
   <script is:inline>
-    // Apply user's saved preference, or fall back to system preference on first load
+    // Apply user's saved preference only; default is light for everyone
     try {
       const saved = localStorage.getItem('darkMode');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const shouldDark = saved ? (saved === 'enabled') : prefersDark;
-      if (shouldDark) {
+      if (saved === 'enabled') {
         document.documentElement.classList.add('dark');
       } else {
         document.documentElement.classList.remove('dark');
       }
     } catch (e) {
-      // If localStorage is blocked, gracefully fall back to system preference
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      }
+      // If localStorage is blocked, default to light mode
+      document.documentElement.classList.remove('dark');
     }
   </script>
 

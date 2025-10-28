@@ -545,10 +545,32 @@ body {
     color: #475569; /* Slate 600 */
 }
 
+/* Dark mode overrides for card text inside neutral sections (ensure readable on dark surfaces) */
+.dark .section-neutral .research-card h4,
+.dark .section-neutral .info-card h4,
+.dark .section-neutral .program-card h4 {
+    color: var(--text-primary);
+}
+.dark .section-neutral .research-card p,
+.dark .section-neutral .info-card p,
+.dark .section-neutral .program-card p {
+    color: var(--text-secondary);
+}
+
 /* Dark mode variant for cards in neutral sections: elevated dark surfaces */
 .dark .section-neutral .program-card,
 .dark .section-neutral .research-card,
 .dark .section-neutral .info-card {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(157, 78, 221, 0.35);
+}
+
+/* Get Involved: involvement cards surfaces */
+.section-neutral .involvement-card {
+    background: #ffffff;
+    border: 1px solid rgba(57, 20, 79, 0.15);
+}
+.dark .section-neutral .involvement-card {
     background: rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(157, 78, 221, 0.35);
 }
@@ -745,6 +767,12 @@ body {
     color: var(--color-deep-purple) !important;
 }
 
+/* In dark mode, those icons should be light for contrast */
+.dark .section-neutral .bg-gradient-to-br .flex.items-start > i,
+.dark .section-neutral .bg-gradient-to-r .flex.items-start > i {
+    color: #ffffff !important;
+}
+
 /* Ensure proper text contrast in neutral sections */
 .section-neutral h1,
 .section-neutral h2,
@@ -775,6 +803,30 @@ body {
 .dark .section-neutral li {
     color: var(--text-secondary);
 }
+
+/* Get Involved cards: ensure readable headings & paragraphs */
+.section-neutral .involvement-card h4 { color: #0f172a; }
+.section-neutral .involvement-card p { color: #475569; }
+.dark .section-neutral .involvement-card h4 { color: var(--text-primary); }
+.dark .section-neutral .involvement-card p { color: var(--text-secondary); }
+
+/* Research page badges: improve contrast in dark mode */
+.dark .section-neutral .info-card span[class*="bg-bright-purple/20"] {
+    background: rgba(157, 78, 221, 0.4) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(157, 78, 221, 0.5);
+}
+.dark .section-neutral .info-card span[class*="bg-slate-200"] {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Timeline blocks (What is AI Safety): force readable text in dark mode */
+.dark .section-neutral .info-card h4 { color: var(--text-primary) !important; }
+.dark .section-neutral .info-card .text-slate-600 { color: var(--text-secondary) !important; }
+.dark .section-neutral .info-card a { color: var(--color-light-purple) !important; }
+.dark .section-neutral .info-card a:hover { color: var(--color-bright-purple) !important; }
 
 /* Adjust card styling in neutral sections */
 .section-neutral .program-card,
@@ -810,6 +862,12 @@ body {
     color: #64748b; /* Slate 500 for small text */
 }
 
+.dark .section-neutral .program-card .text-sm,
+.dark .section-neutral .research-card .text-sm,
+.dark .section-neutral .involvement-card .text-sm {
+    color: var(--text-secondary);
+}
+
 /* Home page (#events) specific: make ONLY the large leading icon inside the 64px (w-16 h-16) square white.
    Keeps generic rule for other icons (e.g., list/detail icons) intact. */
 #events.section-neutral .program-card .w-16.h-16 > i {
@@ -839,6 +897,12 @@ body {
 }
 .section-neutral a.btn-secondary:hover {
     color: #ffffff !important; /* becomes white when background gradient applied on hover */
+}
+
+/* Dark mode: secondary buttons should be light for contrast on dark surfaces */
+.dark .section-neutral a.btn-secondary {
+    color: #ffffff !important;
+    border-color: var(--color-bright-purple) !important;
 }
 
 /* Icons inside links should match the link color */
@@ -903,6 +967,13 @@ body {
 
 .section-neutral a:hover {
     color: #a78bfa; /* Lighter violet on hover */
+}
+
+.dark .section-neutral a {
+    color: var(--color-light-purple);
+}
+.dark .section-neutral a:hover {
+    color: var(--color-bright-purple);
 }
 
 /* -------------------------------------------
