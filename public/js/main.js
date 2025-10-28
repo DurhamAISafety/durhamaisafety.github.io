@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * Initialize all common features
  */
 function initializeCommonFeatures() {
+    initializeDarkMode();
     initializeSmoothScrolling();
     initializeFormHandling();
     // Back-to-top is provided by the footer link; no floating button injected here.
@@ -19,6 +20,59 @@ function initializeCommonFeatures() {
     // Animate elements as they enter the viewport
     initializeScrollAnimations();
     initializeNavDropdowns();
+}
+
+/**
+ * Initialize dark mode functionality
+ */
+function initializeDarkMode() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const html = document.documentElement;
+    
+    // Saved preference only; default to light (no OS detection)
+    const saved = localStorage.getItem('darkMode');
+    
+    // Set initial state (handle both 'enabled' and 'disabled')
+    if (saved === 'enabled') {
+        html.classList.add('dark');
+        updateDarkModeIcon(true);
+    } else if (saved === 'disabled') {
+        html.classList.remove('dark');
+        updateDarkModeIcon(false);
+    } else {
+        // No saved preference: default to light
+        html.classList.remove('dark');
+        updateDarkModeIcon(false);
+    }
+    
+    // Toggle dark mode on button click
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            const isDark = html.classList.toggle('dark');
+            
+            // Save preference
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            
+            // Update icon
+            updateDarkModeIcon(isDark);
+        });
+    }
+}
+
+/**
+ * Update dark mode toggle icon
+ * @param {boolean} isDark - Whether dark mode is enabled
+ */
+function updateDarkModeIcon(isDark) {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        const icon = darkModeToggle.querySelector('i');
+        if (icon) {
+            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        darkModeToggle.setAttribute('aria-pressed', String(isDark));
+        darkModeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
 }
 
 /**

@@ -28,6 +28,15 @@
     --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
     --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
     
+    /* Text colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    
+    /* Background colors */
+    --bg-primary: var(--color-deep-purple);
+    --bg-secondary: var(--color-navy);
+    --bg-card: rgba(57, 20, 79, 0.5);
+    
     /* Spacing */
     --section-padding: 5rem 0;
     --container-padding: 0 1.5rem;
@@ -46,6 +55,45 @@
     /* Transitions */
     --transition-default: all 0.3s ease;
     --transition-fast: all 0.2s ease;
+}
+
+/* Dark mode variables */
+.dark {
+    /* Dark mode purple palette - darker and more muted */
+    --color-deep-purple: #1a0a24;
+    --color-bright-purple: #9d4edd;
+    --color-light-purple: #c77dff;
+    --color-lavender: #7b68ee;
+    --color-pure-white: #e0e0e0;
+
+    /* Legacy colors adjusted for dark mode */
+    --color-ocean-blue: #5a3a8f;
+    --color-deep-blue: #150a23;
+    --color-teal: #7c3eb8;
+    --color-emerald: #9b67d8;
+    --color-sage: #9b8adb;
+    --color-mint: #c4b5fd;
+    --color-warm-blue: #7c5dce;
+    --color-navy: #0d0414;
+    
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, #9d4edd, #c77dff);
+    --gradient-text: linear-gradient(135deg, #c77dff, #7b68ee);
+    --gradient-hero: linear-gradient(135deg, #1a0a24 0%, #0d0414 50%, #9d4edd 100%);
+    --gradient-bg: linear-gradient(to bottom right, #0d0414, #1a0a24, #2d1b3d);
+    
+    /* Dark mode text colors */
+    --text-primary: #e0e0e0;
+    --text-secondary: rgba(224, 224, 224, 0.7);
+    
+    /* Dark mode backgrounds */
+    --bg-primary: #0d0414;
+    --bg-secondary: #1a0a24;
+    --bg-card: rgba(26, 10, 36, 0.7);
+    
+    /* Dark mode shadows */
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* Pulse glow animation for CTA buttons */
@@ -139,9 +187,10 @@ body {
     font-family: 'Inter', sans-serif;
     /* Use site-wide purple gradient background; Tailwind body gradient in layout is compatible */
     background: var(--gradient-bg);
-    color: white;
+    color: var(--text-primary);
     min-height: 100vh;
     line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
@@ -165,12 +214,17 @@ body {
 
 /* Header styles */
 .header {
-    background: rgba(57, 20, 79, 0.5); /* Darker frosting for better contrast */
+    background: var(--bg-card);
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
     z-index: 50;
     border-bottom: 1px solid rgba(235, 128, 253, 0.5);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .header {
+    border-bottom: 1px solid rgba(157, 78, 221, 0.3);
 }
 
 .nav {
@@ -186,6 +240,35 @@ body {
     .nav {
         flex-direction: row;
     }
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    background: var(--bg-card);
+    border: 2px solid var(--color-bright-purple);
+    color: var(--text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition-default);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.dark-mode-toggle:hover {
+    background: var(--color-bright-purple);
+    transform: scale(1.05);
+}
+
+.dark-mode-toggle:active {
+    transform: scale(0.95);
+}
+
+.dark-mode-toggle i {
+    font-size: 1.125rem;
 }
 
 .nav-brand {
@@ -286,6 +369,11 @@ body {
     box-shadow: var(--shadow-card);
     z-index: 1000;
     overflow: hidden;
+}
+
+.dark .dropdown-content {
+    background: rgba(13, 4, 20, 0.95);
+    border: 1px solid rgba(157, 78, 221, 0.4);
 }
 
 .dropdown:hover .dropdown-content {
@@ -389,6 +477,11 @@ body {
     transition: var(--transition-default);
 }
 
+.dark .card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(157, 78, 221, 0.4);
+}
+
 .card:hover {
     /* Disabled expensive transform on hover for performance */
     transform: none;
@@ -409,6 +502,11 @@ body {
     border: 1px solid rgba(20, 184, 166, 0.25);
 }
 
+.dark .team-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(124, 93, 206, 0.3);
+}
+
 /* Page-specific card helpers */
 .program-card,
 .research-card,
@@ -418,6 +516,69 @@ body {
     /* Use purple-accent border by default */
     border: 1px solid rgba(235, 128, 253, 0.3);
     border-radius: var(--radius-xl);
+}
+
+.dark .program-card,
+.dark .research-card,
+.dark .info-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(157, 78, 221, 0.4);
+}
+
+/* Research/info/program cards inside neutral (light) sections: solid light surfaces */
+.section-neutral .program-card,
+.section-neutral .research-card,
+.section-neutral .info-card {
+    background: #ffffff;
+    border: 1px solid rgba(57, 20, 79, 0.15);
+}
+
+/* Ensure headings and body text have proper contrast on light cards */
+.section-neutral .research-card h4,
+.section-neutral .info-card h4,
+.section-neutral .program-card h4 {
+    color: #0f172a; /* Slate 900 */
+}
+.section-neutral .research-card p,
+.section-neutral .info-card p,
+.section-neutral .program-card p {
+    color: #475569; /* Slate 600 */
+}
+
+/* Dark mode overrides for card text inside neutral sections (ensure readable on dark surfaces) */
+.dark .section-neutral .research-card h4,
+.dark .section-neutral .info-card h4,
+.dark .section-neutral .program-card h4 {
+    color: var(--text-primary);
+}
+.dark .section-neutral .research-card p,
+.dark .section-neutral .info-card p,
+.dark .section-neutral .program-card p {
+    color: var(--text-secondary);
+}
+
+/* Dark mode variant for cards in neutral sections: elevated dark surfaces */
+.dark .section-neutral .program-card,
+.dark .section-neutral .research-card,
+.dark .section-neutral .info-card {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(157, 78, 221, 0.35);
+}
+
+/* Get Involved: involvement cards surfaces */
+.section-neutral .involvement-card {
+    background: #ffffff;
+    border: 1px solid rgba(57, 20, 79, 0.15);
+}
+.dark .section-neutral .involvement-card {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(157, 78, 221, 0.35);
+}
+
+/* Calendar container in neutral sections: add dark mode surface */
+.dark .section-neutral .calendar-container {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(157, 78, 221, 0.2);
 }
 
 /* Strong border utilities for priority cards */
@@ -506,6 +667,10 @@ body {
     font-weight: 600;
 }
 
+.dark .btn-secondary {
+    color: var(--color-bright-purple);
+}
+
 .btn-secondary:hover {
     background: var(--gradient-primary);
     color: #ffffff;
@@ -542,10 +707,24 @@ body {
     );
 }
 
+.dark .section-alt {
+    background: linear-gradient(135deg, 
+        rgba(13, 4, 20, 0.95), 
+        rgba(157, 78, 221, 0.2)
+    );
+}
+
 .section-alt-2 {
     background: linear-gradient(135deg, 
         rgba(235, 128, 253, 0.15), 
         rgba(57, 20, 79, 0.9)
+    );
+}
+
+.dark .section-alt-2 {
+    background: linear-gradient(135deg, 
+        rgba(157, 78, 221, 0.2), 
+        rgba(13, 4, 20, 0.95)
     );
 }
 
@@ -554,6 +733,11 @@ body {
     /* Unified background across all neutral sections */
     background: #f8fafc; /* Solid light neutral */
     color: #1e293b; /* Dark slate for better contrast */
+}
+
+.dark .section-neutral {
+    background: rgba(13, 4, 20, 0.6);
+    color: var(--text-primary);
 }
 
 /* -------------------------------------------
@@ -583,6 +767,12 @@ body {
     color: var(--color-deep-purple) !important;
 }
 
+/* In dark mode, those icons should be light for contrast */
+.dark .section-neutral .bg-gradient-to-br .flex.items-start > i,
+.dark .section-neutral .bg-gradient-to-r .flex.items-start > i {
+    color: #ffffff !important;
+}
+
 /* Ensure proper text contrast in neutral sections */
 .section-neutral h1,
 .section-neutral h2,
@@ -593,11 +783,50 @@ body {
     color: #0f172a; /* Slate 900 */
 }
 
+.dark .section-neutral h1,
+.dark .section-neutral h2,
+.dark .section-neutral h3,
+.dark .section-neutral h4,
+.dark .section-neutral h5,
+.dark .section-neutral h6 {
+    color: var(--text-primary);
+}
+
 .section-neutral p,
 .section-neutral span,
 .section-neutral li {
     color: #334155; /* Slate 700 */
 }
+
+.dark .section-neutral p,
+.dark .section-neutral span,
+.dark .section-neutral li {
+    color: var(--text-secondary);
+}
+
+/* Get Involved cards: ensure readable headings & paragraphs */
+.section-neutral .involvement-card h4 { color: #0f172a; }
+.section-neutral .involvement-card p { color: #475569; }
+.dark .section-neutral .involvement-card h4 { color: var(--text-primary); }
+.dark .section-neutral .involvement-card p { color: var(--text-secondary); }
+
+/* Research page badges: improve contrast in dark mode */
+.dark .section-neutral .info-card span[class*="bg-bright-purple/20"] {
+    background: rgba(157, 78, 221, 0.4) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(157, 78, 221, 0.5);
+}
+.dark .section-neutral .info-card span[class*="bg-slate-200"] {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Timeline blocks (What is AI Safety): force readable text in dark mode */
+.dark .section-neutral .info-card h4 { color: var(--text-primary) !important; }
+.dark .section-neutral .info-card .text-slate-600 { color: var(--text-secondary) !important; }
+.dark .section-neutral .info-card a { color: var(--color-light-purple) !important; }
+.dark .section-neutral .info-card a:hover { color: var(--color-bright-purple) !important; }
 
 /* Adjust card styling in neutral sections */
 .section-neutral .program-card,
@@ -633,6 +862,12 @@ body {
     color: #64748b; /* Slate 500 for small text */
 }
 
+.dark .section-neutral .program-card .text-sm,
+.dark .section-neutral .research-card .text-sm,
+.dark .section-neutral .involvement-card .text-sm {
+    color: var(--text-secondary);
+}
+
 /* Home page (#events) specific: make ONLY the large leading icon inside the 64px (w-16 h-16) square white.
    Keeps generic rule for other icons (e.g., list/detail icons) intact. */
 #events.section-neutral .program-card .w-16.h-16 > i {
@@ -662,6 +897,12 @@ body {
 }
 .section-neutral a.btn-secondary:hover {
     color: #ffffff !important; /* becomes white when background gradient applied on hover */
+}
+
+/* Dark mode: secondary buttons should be light for contrast on dark surfaces */
+.dark .section-neutral a.btn-secondary {
+    color: #ffffff !important;
+    border-color: var(--color-bright-purple) !important;
 }
 
 /* Icons inside links should match the link color */
@@ -728,6 +969,13 @@ body {
     color: #a78bfa; /* Lighter violet on hover */
 }
 
+.dark .section-neutral a {
+    color: var(--color-light-purple);
+}
+.dark .section-neutral a:hover {
+    color: var(--color-bright-purple);
+}
+
 /* -------------------------------------------
    Fixes for Programs page: Research Support
    - Improve contrast and brand color mapping
@@ -752,6 +1000,12 @@ body {
     border-top: 1px solid rgba(235, 128, 253, 0.2);
     padding: 3rem 0;
     text-align: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .footer {
+    background: rgba(13, 4, 20, 0.95);
+    border-top: 1px solid rgba(157, 78, 221, 0.3);
 }
 
 .social-links {
@@ -794,12 +1048,18 @@ body {
 .form-input {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(235, 128, 253, 0.3);
-    color: white;
+    color: var(--text-primary);
     border-radius: var(--radius-xl);
     padding: 1rem;
     width: 100%;
     transition: var(--transition-default);
     font-family: inherit;
+}
+
+.dark .form-input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(157, 78, 221, 0.4);
+    color: var(--text-primary);
 }
 
 .form-input:focus {
@@ -808,8 +1068,16 @@ body {
     box-shadow: 0 0 0 3px rgba(235, 128, 253, 0.2);
 }
 
+.dark .form-input:focus {
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.3);
+}
+
 .form-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-secondary);
+}
+
+.dark .form-input::placeholder {
+    color: rgba(224, 224, 224, 0.5);
 }
 
 .checkbox-custom {
@@ -822,6 +1090,43 @@ body {
     cursor: pointer;
     position: relative;
     transition: var(--transition-default);
+}
+
+/* Form styles on neutral (light) sections */
+.section-neutral .form-input {
+    background: #ffffff;
+    color: #0f172a; /* Slate 900 */
+    border: 1px solid rgba(57, 20, 79, 0.2);
+}
+
+.section-neutral .form-input::placeholder {
+    color: #64748b; /* Slate 500 */
+}
+
+.section-neutral .checkbox-custom {
+    border-color: rgba(57, 20, 79, 0.35);
+    background: #ffffff;
+}
+
+/* Dark mode variant inside neutral sections */
+.dark .section-neutral .form-input {
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+    border: 1px solid rgba(157, 78, 221, 0.35);
+}
+
+.dark .section-neutral .form-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.dark .section-neutral .checkbox-custom {
+    border-color: rgba(157, 78, 221, 0.45);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.dark .checkbox-custom {
+    border: 2px solid rgba(157, 78, 221, 0.5);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .checkbox-custom:checked {
