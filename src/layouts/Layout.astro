@@ -87,9 +87,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:title" content={pageTitle}>
     <meta name="twitter:description" content={pageDescription}>
 
+  <!-- Dark mode initialization (prevents FOUC) -->
+  <script is:inline>
+    // Apply user's saved preference, or fall back to system preference on first load
+    try {
+      const saved = localStorage.getItem('darkMode');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldDark = saved ? (saved === 'enabled') : prefersDark;
+      if (shouldDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      // If localStorage is blocked, gracefully fall back to system preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      }
+    }
+  </script>
+
   <slot name="head" />
 </head>
-<body class="font-inter bg-gradient-to-br from-deep-purple via-deep-purple to-lavender text-white min-h-screen">
+<body class="font-inter min-h-screen">
   <!-- Anchor target for footer's Back to top link -->
   <div id="top" aria-hidden="true"></div>
     <Header />
