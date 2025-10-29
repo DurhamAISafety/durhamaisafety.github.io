@@ -23,10 +23,10 @@ export const siteConfig = {
   navigation: [
     { title: "Home", url: "/" },
     { title: "Events", url: "/#events" },
-    { title: "About Us", url: "/about/" },
     { 
       title: "More",
       dropdown: [
+        { title: "About Us", url: "/about/" },
         { title: "Programs", url: "/programs/" },
         { title: "Research", url: "/research/" },
         { title: "What is AI Safety?", url: "/what-is-ai-safety/" },
