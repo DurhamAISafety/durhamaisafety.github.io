@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../data/config';
+import Logo from '../assets/DAISI-logo.svg';
 
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
@@ -9,7 +10,7 @@ const isHome = pathname === '/';
     <div class="site-container">
         <nav class="nav">
             <a href="/" class="nav-brand">
-                <img src="/images/new_favicon/apple-touch-icon.png" alt="Durham AISI Logo" loading="lazy" decoding="async">
+                <img src={Logo.src} alt="Durham AISI Logo" class="h-8 w-auto md:h-10" loading="lazy" decoding="async" />
                 <div>
                     <h1>
                         {isHome ? (
