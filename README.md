@@ -19,7 +19,8 @@ The repository is structured as follows:
 │   │   └── Header.astro          # Site header
 │   ├── data/
 │   │   ├── config.ts             # Site configuration
-│   │   └── team.ts               # Team member data (TypeScript)
+│   │   ├── team.ts               # Team member data (TypeScript)
+│   │   └── research.ts           # Research papers data (TypeScript)
 │   ├── layouts/
 │   │   └── Layout.astro          # Main page layout
 │   └── pages/
@@ -75,6 +76,7 @@ To run the website locally, you'll need Node.js (v18+) and npm installed.
 - **Content:** Edit the `.astro` files in the `src/pages/` directory.
 - **Styling:** Most styling is done with Tailwind CSS utility classes. For custom global styles, edit `public/css/styles.css` or add styles to `src/layouts/Layout.astro`.
 - **Team Members:** To update the team page, edit `src/data/team.ts` and add photos to `src/assets/team/`.
+- **Research:** Add new papers in `src/data/research.ts`. Authors who are also listed in `src/data/team.ts` are bolded automatically (you can override per-author with `team: true | false`).
 - **Layout:** The main page structure is in `src/layouts/Layout.astro`. The header and footer components are in `src/components/`.
 - **Configuration:** Site-wide settings are in `src/data/config.ts`.
 - **Images:** Add optimized images to `src/assets/` (they'll be processed by Astro) or static files to `public/images/`.
@@ -138,9 +140,35 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 
 ### Adding New Research Projects
 
-1. Update `src/pages/research.astro`
-2. Follow the existing card structure
-3. Use consistent status badges
+The research page is data-driven. To add a new paper:
+
+1. Edit `src/data/research.ts` and append a new object to the exported `research` array.
+2. Provide `title`, `url`, `authors`, `year`, optional `month`, `venue`, and `tags`.
+3. Authors who are team members will be bolded automatically. If the displayed author name doesn't match a team member exactly, you can explicitly set `team: true` on that author; set `false` to prevent bolding.
+4. Save; the page will update automatically.
+
+Example:
+
+```ts
+{
+    title: "Paper title here",
+    url: "https://link-to-paper",
+    authors: [
+        { name: "Surname, F.", team: true }, // bold explicitly (team member)
+        { name: "Coauthor, A." }
+    ],
+    year: 2025,
+    month: "November", // optional
+    venue: "Conference or Workshop Name, Location",
+    tags: ["Interpretability", "ICLR 2025"]
+}
+```
+
+Tag colors:
+
+- Conference/workshop tags (e.g., include a year like `2025` or keywords such as `ICML`, `ICLR`, `NeurIPS`, `AAAI`, `ACL`, `EMNLP`, `CVPR`, `ECCV`, `ICCV`, `KDD`, `workshop`, `conference`) render as a light grey/white bubble.
+- Other topical tags remain purple.
+
 
 ### Form Updates
 
