@@ -32,7 +32,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Bella",
-    role: "Publicity Officer",
+    role: "Co-organiser and Publicity Officer",
     photo: bella
   },
   {
