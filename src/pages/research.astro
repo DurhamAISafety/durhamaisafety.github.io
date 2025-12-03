@@ -133,54 +133,12 @@ const isConferenceTag = (tag: string) => {
         </div>
       </div>
 
-      {/* Recent Research */}
-      <div class="text-center mb-12">
-        <h3 class="text-3xl md:text-4xl font-bold mb-6">Recent Research by Durham AISI Members</h3>
-        <div class="section-divider"></div>
-      </div>
-
-      <div class="max-w-5xl mx-auto space-y-8">
-        {research.map((item, idx) => {
-          const classes = headingClasses(idx);
-          return (
-            <div class="info-card p-8 rounded-2xl">
-              <h4 class={classes.h4}>
-                <a href={item.url} target="_blank" rel="noopener noreferrer" class={`transition-colors inline-flex items-center ${classes.a}`}>
-                  {item.title}
-                  <i class="fas fa-external-link-alt ml-2 text-sm" aria-hidden="true"></i>
-                </a>
-              </h4>
-              <p class="leading-relaxed">
-                {item.authors.map((a, i) => (
-                  <Fragment>
-                    {authorIsTeam(a) ? <strong>{a.name}</strong> : a.name}
-                    {authorSep(i, item.authors.length)}
-                  </Fragment>
-                ))}
-                {` (${item.year}${item.month ? ", " + item.month : ""}). ${item.title}. Presented at ${item.venue}.`}
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                {item.tags.map((tag) => (
-                  <span class={`px-3 py-1 rounded-full text-xs ${isConferenceTag(tag) ? "bg-slate-200 text-slate-800" : "bg-bright-purple/20 text-bright-purple"}`}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-
-  {/* Research Opportunities */}
-  <section class="section  section-neutral">
-    <div class="site-container">
+      {/* Research Opportunities */}
       <div class="text-center mb-12">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
         <div class="section-divider"></div>
       </div>
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-4xl mx-auto mb-20">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div class="research-card rounded-2xl p-6 card-hover">
             <div class="flex items-center mb-4">
@@ -205,6 +163,86 @@ const isConferenceTag = (tag: string) => {
           <a href="/programs/#research-projects" class="btn btn-primary">I'm Interested</a>
         </div>
       </div>
+
+      {/* Recent Research */}
+      <div class="text-center mb-12">
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">Recent Research by Durham AISI Members</h3>
+        <div class="section-divider"></div>
+      </div>
+
+      {/* Academic Publications */}
+      <div class="mb-12">
+        <h4 class="text-2xl font-bold mb-6 text-center text-bright-purple">Academic Publications</h4>
+        <div class="max-w-5xl mx-auto space-y-8">
+          {research.filter(r => r.type !== 'non-academic').map((item, idx) => {
+            const classes = headingClasses(idx);
+            return (
+              <div class="info-card p-8 rounded-2xl">
+                <h4 class={classes.h4}>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" class={`transition-colors inline-flex items-center ${classes.a}`}>
+                    {item.title}
+                    <i class="fas fa-external-link-alt ml-2 text-sm" aria-hidden="true"></i>
+                  </a>
+                </h4>
+                <p class="leading-relaxed">
+                  {item.authors.map((a, i) => (
+                    <Fragment>
+                      {authorIsTeam(a) ? <strong>{a.name}</strong> : a.name}
+                      {authorSep(i, item.authors.length)}
+                    </Fragment>
+                  ))}
+                  {` (${item.year}${item.month ? ", " + item.month : ""}). ${item.title}. Presented at ${item.venue}.`}
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  {item.tags.map((tag) => (
+                    <span class={`px-3 py-1 rounded-full text-xs ${isConferenceTag(tag) ? "bg-slate-200 text-slate-800" : "bg-bright-purple/20 text-bright-purple"}`}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Other Research & Projects */}
+      <div>
+        <h4 class="text-2xl font-bold mb-6 text-center text-bright-purple">Other Research & Projects</h4>
+        <div class="max-w-5xl mx-auto space-y-8">
+          {research.filter(r => r.type === 'non-academic').map((item, idx) => {
+            const classes = headingClasses(idx);
+            return (
+              <div class="info-card p-8 rounded-2xl">
+                <h4 class={classes.h4}>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" class={`transition-colors inline-flex items-center ${classes.a}`}>
+                    {item.title}
+                    <i class="fas fa-external-link-alt ml-2 text-sm" aria-hidden="true"></i>
+                  </a>
+                </h4>
+                <p class="leading-relaxed">
+                  {item.authors.map((a, i) => (
+                    <Fragment>
+                      {authorIsTeam(a) ? <strong>{a.name}</strong> : a.name}
+                      {authorSep(i, item.authors.length)}
+                    </Fragment>
+                  ))}
+                  {` (${item.year}${item.month ? ", " + item.month : ""}). ${item.title}. Presented at ${item.venue}.`}
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  {item.tags.map((tag) => (
+                    <span class={`px-3 py-1 rounded-full text-xs ${isConferenceTag(tag) ? "bg-slate-200 text-slate-800" : "bg-bright-purple/20 text-bright-purple"}`}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   </section>
+
+
 </Layout>

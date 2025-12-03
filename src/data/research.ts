@@ -13,6 +13,7 @@ export interface ResearchPaper {
   month?: string; // e.g., "April", "July"
   venue: string; // e.g., "International Conference on Machine Learning (ICML 2025), Vancouver, Canada"
   tags: string[];
+  type?: 'academic' | 'non-academic';
 }
 
 export const research: ResearchPaper[] = [
@@ -29,6 +30,7 @@ export const research: ResearchPaper[] = [
     venue:
       "International Conference on Machine Learning (ICML 2025), Vancouver, Canada",
     tags: ["Interpretability", "ICML 2025"],
+    type: 'academic',
   },
   {
     title: "Sparse Autoencoders Do Not Find Canonical Units of Analysis",
@@ -48,6 +50,7 @@ export const research: ResearchPaper[] = [
     venue:
       "The Thirteenth International Conference on Learning Representations (ICLR 2025), Singapore",
     tags: ["Interpretability", "ICLR 2025"],
+    type: 'academic',
   },
   {
     title:
@@ -61,6 +64,7 @@ export const research: ResearchPaper[] = [
     venue:
       "Mechanistic Interpretability Workshop at NeurIPS 2025",
     tags: ["Interpretability", "NeurIPS 2025"],
+    type: 'academic',
   },
   {
     title:
@@ -75,5 +79,22 @@ export const research: ResearchPaper[] = [
     venue:
       "Socially Responsible and Trustworthy Foundation Models at NeurIPS 2025",
     tags: ["Interpretability", "NeurIPS 2025"],
+    type: 'academic',
+  },
+  {
+    title:
+      "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring",
+    url: "https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c",
+    authors: [
+      { name: "Sherratt-Cross, E.", team: true },
+      { name: "Farrell, T.", team: true },
+      { name: "Ogden, S.", team: true },
+      { name: "Ryley, O.", team: true },
+    ],
+    year: 2025,
+    month: "November",
+    venue: "Apart Research Sprint",
+    tags: ["Watermarking", "Apart Research"],
+    type: 'non-academic',
   },
 ];
