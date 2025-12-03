@@ -94,7 +94,7 @@ export const research: ResearchPaper[] = [
     year: 2025,
     month: "November",
     venue: "Apart Research Sprint",
-    tags: ["Watermarking", "Apart Research"],
+    tags: ["Security", "Apart Research"],
     type: 'non-academic',
   },
 ];
