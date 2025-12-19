@@ -13,7 +13,7 @@ The repository is structured as follows:
 │       └── deploy-astro.yml      # GitHub Actions workflow
 ├── src/
 │   ├── assets/
-│   │   └── team/                 # Team member photos (optimized by Astro)
+│   │   └── team/                 # Team member photos
 │   ├── components/
 │   │   ├── Footer.astro          # Site footer
 │   │   └── Header.astro          # Site header
