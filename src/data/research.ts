@@ -16,6 +16,7 @@ export interface ResearchPaper {
   type?: 'academic' | 'non-academic';
 }
 
+// TODO order by most recent first
 export const research: ResearchPaper[] = [
   {
     title:

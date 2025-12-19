@@ -15,9 +15,14 @@ import patrick from '../assets/team/patrick.jpeg';
 import leonie from '../assets/team/leonie.png';
 
 export const team: TeamMember[] = [
+    {
+    name: "Bella",
+    role: "Lead Organiser and Publicity",
+    photo: bella
+  },
   {
     name: "Theo",
-    role: "Lead Organiser",
+    role: "Co-organiser",
     photo: theo
   },
   {
@@ -30,11 +35,7 @@ export const team: TeamMember[] = [
     role: "Co-organiser and Secretary",
     photo: quinn
   },
-  {
-    name: "Bella",
-    role: "Co-organiser and Publicity Officer",
-    photo: bella
-  },
+
   {
     name: "Patrick",
     role: "PhD Researcher (Mechinterp)",
