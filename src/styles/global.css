@@ -1,57 +1,20 @@
+/* ==========================================================================
+   Tailwind CSS with proper layer ordering
+   Using @layer to establish specificity hierarchy so Tailwind utilities
+   always win over base styles without needing !important
+   ========================================================================== */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ==========================================================================
-   Critical utility fixes for specificity conflicts with styles.css
-   The styles.css file has "* { padding: 0; margin: 0; }" which overrides
-   Tailwind utilities. These explicit rules ensure proper styling.
-   ========================================================================== */
-
-/* Text alignment utilities */
-.text-center {
-  text-align: center !important;
-}
-
-/* Center alignment with mx-auto */
-.mx-auto {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Button padding - specific values used in hero */
-.px-12 {
-  padding-left: 3rem !important;
-  padding-right: 3rem !important;
-}
-
-.py-4 {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
-}
-
-/* Text sizes for button */
-.text-lg {
-  font-size: 1.125rem !important;
-  line-height: 1.75rem !important;
-}
-
-.text-xl {
-  font-size: 1.25rem !important;
-  line-height: 1.75rem !important;
-}
-
-/* Font weights */
-.font-bold {
-  font-weight: 700 !important;
-}
-
-/* Rounded full for pill buttons */
-.rounded-full {
-  border-radius: 9999px !important;
-}
-
-/* Inline-block display */
-.inline-block {
-  display: inline-block !important;
-}
+/* 
+   Note: The custom styles.css reset (* { margin: 0; padding: 0 }) has been 
+   moved to the Tailwind base layer to ensure proper specificity ordering.
+   
+   If you still experience conflicts, Tailwind utilities should now take 
+   precedence due to the layer cascade order:
+   1. Base (resets and global styles)
+   2. Components  
+   3. Utilities (highest priority)
+*/

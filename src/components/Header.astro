@@ -22,7 +22,21 @@ const isHome = pathname === '/';
                 </div>
             </a>
             
-            <div class="nav-menu">
+            <!-- Mobile hamburger button (Saarland-style) -->
+            <button 
+                type="button" 
+                class="burger" 
+                id="burgerBtn" 
+                aria-label="Toggle mobile menu"
+                aria-expanded="false"
+            >
+                <div class="burger-box">
+                    <div class="burger-inner"></div>
+                </div>
+            </button>
+            
+            <!-- Desktop navigation -->
+            <div class="nav-menu nav-menu-desktop">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/#events" class="nav-link">Events</a>
                 
@@ -46,3 +60,117 @@ const isHome = pathname === '/';
         </nav>
     </div>
 </header>
+
+<!-- Full-screen mobile menu overlay - MUST be outside header to avoid backdrop-filter containment -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <button 
+        type="button" 
+        class="mobile-nav-close burger burger--active" 
+        id="mobileNavClose" 
+        aria-label="Close mobile menu"
+    >
+        <div class="burger-box">
+            <div class="burger-inner"></div>
+        </div>
+    </button>
+    
+    <div class="mobile-nav-content">
+        <a href="/" class="mobile-nav-link">Home</a>
+        <a href="/#events" class="mobile-nav-link">Events</a>
+        <a href="/about/" class="mobile-nav-link">About Us</a>
+        <a href="/programs/" class="mobile-nav-link">Programs</a>
+        <a href="/research/" class="mobile-nav-link">Research</a>
+        <a href="/what-is-ai-safety/" class="mobile-nav-link">What is AI Safety?</a>
+        <a href="/get-involved/" class="mobile-nav-link mobile-nav-cta">Get Involved</a>
+        
+        <div class="mobile-nav-footer">
+            <div class="mobile-social-links">
+                <a href={siteConfig.social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href={siteConfig.social.linktree} aria-label="Linktree">
+                    <i class="fa-solid fa-link"></i>
+                </a>
+            </div>
+            
+            <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode">
+                <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Mobile menu toggle
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+    
+    function openMobileMenu() {
+        if (burgerBtn && mobileNav) {
+            burgerBtn.classList.add('burger--active');
+            mobileNav.classList.add('mobile-nav--active');
+            burgerBtn.setAttribute('aria-expanded', 'true');
+            mobileNav.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeMobileMenu() {
+        if (burgerBtn && mobileNav) {
+            burgerBtn.classList.remove('burger--active');
+            mobileNav.classList.remove('mobile-nav--active');
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    if (burgerBtn) {
+        burgerBtn.addEventListener('click', () => {
+            const isOpen = mobileNav?.classList.contains('mobile-nav--active');
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+    
+    if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close menu when clicking a link
+    if (mobileNav) {
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav?.classList.contains('mobile-nav--active')) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Sync dark mode toggle for mobile
+    const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+    if (darkModeToggleMobile) {
+        darkModeToggleMobile.addEventListener('click', () => {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+            
+            // Update all dark mode icons
+            document.querySelectorAll('.dark-mode-toggle i').forEach(icon => {
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            });
+        });
+        
+        // Sync initial state
+        const isDark = document.documentElement.classList.contains('dark');
+        darkModeToggleMobile.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    }
+</script>

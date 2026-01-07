@@ -13,45 +13,53 @@
     --color-pure-white: #FFFFFF;
 
     /* Legacy for compatibility (mapped to purples where sensible) */
-    --color-ocean-blue: #6F3FA7; /* mapped to a mid-purple */
-    --color-deep-blue: #3E1A59; /* deep purple-leaning */
-    --color-teal: #A562E8; /* mapped to bright purple */
-    --color-emerald: #D49BFF; /* mapped to light purple */
-    --color-sage: #C2B6FF; /* lavender-ish */
-    --color-mint: #E6D1FF; /* pale purple */
-    --color-warm-blue: #A080FF; /* violet */
-    --color-navy: #2B0F40; /* darkest purple */
-    
+    --color-ocean-blue: #6F3FA7;
+    /* mapped to a mid-purple */
+    --color-deep-blue: #3E1A59;
+    /* deep purple-leaning */
+    --color-teal: #A562E8;
+    /* mapped to bright purple */
+    --color-emerald: #D49BFF;
+    /* mapped to light purple */
+    --color-sage: #C2B6FF;
+    /* lavender-ish */
+    --color-mint: #E6D1FF;
+    /* pale purple */
+    --color-warm-blue: #A080FF;
+    /* violet */
+    --color-navy: #2B0F40;
+    /* darkest purple */
+
     /* Gradients updated to purple theme */
     --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     --gradient-text: linear-gradient(135deg, var(--color-bright-purple), var(--color-lavender));
     --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
     --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
-    
+
     /* Text colors */
     --text-primary: #FFFFFF;
     --text-secondary: rgba(255, 255, 255, 0.8);
-    
+
     /* Background colors */
     --bg-primary: var(--color-deep-purple);
     --bg-secondary: var(--color-navy);
     --bg-card: rgba(57, 20, 79, 0.5);
-    
+
     /* Spacing */
     --section-padding: 5rem 0;
     --container-padding: 0 1.5rem;
     --card-padding: 2rem;
-    
+
     /* Border radius */
     --radius-sm: 0.5rem;
     --radius-md: 0.75rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
-    
+
     /* Shadows */
     --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.2);
     --shadow-card-hover: 0 20px 40px rgba(14, 74, 92, 0.3);
-    
+
     /* Transitions */
     --transition-default: all 0.3s ease;
     --transition-fast: all 0.2s ease;
@@ -75,25 +83,47 @@
     --color-mint: #c4b5fd;
     --color-warm-blue: #7c5dce;
     --color-navy: #0d0414;
-    
+
     /* Dark mode gradients */
     --gradient-primary: linear-gradient(135deg, #9d4edd, #c77dff);
     --gradient-text: linear-gradient(135deg, #c77dff, #7b68ee);
     --gradient-hero: linear-gradient(135deg, #1a0a24 0%, #0d0414 50%, #9d4edd 100%);
     --gradient-bg: linear-gradient(to bottom right, #0d0414, #1a0a24, #2d1b3d);
-    
+
     /* Dark mode text colors */
     --text-primary: #e0e0e0;
     --text-secondary: rgba(224, 224, 224, 0.7);
-    
+
     /* Dark mode backgrounds */
     --bg-primary: #0d0414;
     --bg-secondary: #1a0a24;
     --bg-card: rgba(26, 10, 36, 0.7);
-    
+
     /* Dark mode shadows */
     --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
     --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-bright-purple);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 1rem;
+    outline: 3px solid var(--color-light-purple);
+    outline-offset: 2px;
 }
 
 /* Pulse glow animation for CTA buttons */
@@ -102,10 +132,12 @@
         box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
         transform: scale(1);
     }
+
     50% {
         box-shadow: 0 0 30px rgba(235, 128, 253, 0.6);
         transform: scale(1.02);
     }
+
     100% {
         box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
         transform: scale(1);
@@ -133,12 +165,13 @@
 /* Fallback for mobile devices that don't support background-attachment: fixed well */
 @media (max-width: 768px) {
     .hero-background {
-    background-attachment: scroll;
+        background-attachment: scroll;
     }
 }
 
 /* Enable fixed background on desktop/laptops for subtle parallax-like effect */
-@media (min-width: 1024px), (hover: hover) and (pointer: fine) {
+@media (min-width: 1024px),
+(hover: hover) and (pointer: fine) {
     .hero-background {
         background-attachment: fixed;
         /* Keep focal point stable while scrolling */
@@ -146,11 +179,35 @@
     }
 }
 
-/* Reset and base styles */
-* {
+/* Reset and base styles - targeted approach to avoid conflicts with Tailwind */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Only reset margin/padding on elements that need it (not utility-styled elements) */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+ul,
+ol {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    list-style: none;
 }
 
 /* Construction banner styles */
@@ -167,8 +224,15 @@
 }
 
 @keyframes pulse-red {
-    0%, 100% { background: linear-gradient(90deg, #dc2626, #b91c1c); }
-    50% { background: linear-gradient(90deg, #ef4444, #dc2626); }
+
+    0%,
+    100% {
+        background: linear-gradient(90deg, #dc2626, #b91c1c);
+    }
+
+    50% {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
 }
 
 .construction-banner .disclaimer {
@@ -229,7 +293,7 @@ body {
 
 .nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
@@ -237,9 +301,7 @@ body {
 }
 
 @media (min-width: 1024px) {
-    .nav {
-        flex-direction: row;
-    }
+    .nav {}
 }
 
 /* Dark mode toggle button */
@@ -335,6 +397,205 @@ body {
     width: 100%;
 }
 
+/* ==========================================================================
+   Saarland-style Mobile Menu
+   Full-screen overlay with hamburger-to-X animation
+   ========================================================================== */
+
+/* Hamburger button - two lines that become X */
+.burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0;
+}
+
+.burger-box {
+    position: relative;
+    width: 28px;
+    height: 20px;
+}
+
+/* Saarland uses 2 lines - we keep just ::before and ::after for the lines */
+.burger-inner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    /* No middle line - just use pseudo-elements */
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+.burger-inner::before,
+.burger-inner::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.burger-inner::before {
+    top: -8px;
+}
+
+.burger-inner::after {
+    top: 8px;
+}
+
+/* Hamburger to X animation */
+.burger--active .burger-inner {
+    background: transparent;
+}
+
+.burger--active .burger-inner::before {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger--active .burger-inner::after {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 768px) {
+    .burger {
+        display: none;
+    }
+}
+
+/* Desktop navigation - hidden on mobile */
+.nav-menu-desktop {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .nav-menu-desktop {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+}
+
+/* Full-screen mobile navigation overlay */
+.mobile-nav {
+    position: fixed;
+    inset: 0;
+    background: #39144F;
+    /* Solid background - no transparency */
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+    /* Enable scrolling if content overflows */
+}
+
+.dark .mobile-nav {
+    background: #0d0414;
+    /* Solid dark background */
+}
+
+.mobile-nav--active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Close button positioned in top-right of mobile menu */
+.mobile-nav-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+}
+
+.mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 5rem 2rem 2rem;
+    /* Extra top padding to avoid overlap with burger button */
+    gap: 0.5rem;
+}
+
+/* Mobile nav links - centered, large text */
+.mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: var(--radius-md);
+    transition: var(--transition-default);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+    color: var(--color-bright-purple);
+    transform: scale(1.05);
+}
+
+/* CTA link styling */
+.mobile-nav-cta {
+    margin-top: 1rem;
+    background: var(--gradient-primary);
+    color: white !important;
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+}
+
+.mobile-nav-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
+}
+
+/* Mobile nav footer with social links */
+.mobile-nav-footer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.mobile-social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.mobile-social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: var(--transition-default);
+}
+
+.mobile-social-links a:hover {
+    color: var(--color-bright-purple);
+    transform: scale(1.1);
+}
+
+/* Hide mobile nav on desktop */
+@media (min-width: 768px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+
 /* Dropdown styles */
 .dropdown {
     position: relative;
@@ -407,13 +668,14 @@ body {
 }
 
 @keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(-10px); 
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -448,7 +710,7 @@ body {
     .hero {
         padding: 6rem 0 8rem;
     }
-    
+
     .hero h2 {
         font-size: 3.75rem;
     }
@@ -494,7 +756,9 @@ body {
 }
 
 /* Apply bounce on hover to elements marked as card-hover */
-.card-hover:hover { animation: none; }
+.card-hover:hover {
+    animation: none;
+}
 
 /* Team card helper */
 .team-card {
@@ -537,12 +801,15 @@ body {
 .section-neutral .research-card h4,
 .section-neutral .info-card h4,
 .section-neutral .program-card h4 {
-    color: #0f172a; /* Slate 900 */
+    color: #0f172a;
+    /* Slate 900 */
 }
+
 .section-neutral .research-card p,
 .section-neutral .info-card p,
 .section-neutral .program-card p {
-    color: #475569; /* Slate 600 */
+    color: #475569;
+    /* Slate 600 */
 }
 
 /* Dark mode overrides for card text inside neutral sections (ensure readable on dark surfaces) */
@@ -551,6 +818,7 @@ body {
 .dark .section-neutral .program-card h4 {
     color: var(--text-primary);
 }
+
 .dark .section-neutral .research-card p,
 .dark .section-neutral .info-card p,
 .dark .section-neutral .program-card p {
@@ -570,6 +838,7 @@ body {
     background: #ffffff;
     border: 1px solid rgba(57, 20, 79, 0.15);
 }
+
 .dark .section-neutral .involvement-card {
     background: rgba(0, 0, 0, 0.35);
     border: 1px solid rgba(157, 78, 221, 0.35);
@@ -582,10 +851,22 @@ body {
 }
 
 /* Strong border utilities for priority cards */
-.border-strong { border-width: 3px !important; border-style: solid !important; }
-.border-bright-purple-50 { border-color: #EB80FD80 !important; }
-.border-light-purple-50 { border-color: #E2ACFE80 !important; }
-.border-lavender-50 { border-color: #B8BBFE80 !important; }
+.border-strong {
+    border-width: 3px !important;
+    border-style: solid !important;
+}
+
+.border-bright-purple-50 {
+    border-color: #EB80FD80 !important;
+}
+
+.border-light-purple-50 {
+    border-color: #E2ACFE80 !important;
+}
+
+.border-lavender-50 {
+    border-color: #B8BBFE80 !important;
+}
 
 /* Status badges */
 .status-badge {
@@ -595,21 +876,28 @@ body {
     font-weight: 600;
     text-transform: uppercase;
 }
+
 .status-ongoing {
     background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     color: white;
 }
+
 .status-completed {
     background: linear-gradient(135deg, var(--color-lavender), var(--color-light-purple));
     color: white;
 }
+
 .status-planning {
     background: linear-gradient(135deg, var(--color-bright-purple), var(--color-ocean-blue));
     color: white;
 }
 
 /* Timeline */
-.timeline-item { position: relative; padding-left: 2rem; }
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+}
+
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -620,6 +908,7 @@ body {
     background: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
     border-radius: 50%;
 }
+
 .timeline-item::after {
     content: '';
     position: absolute;
@@ -629,7 +918,10 @@ body {
     height: calc(100% - 0.75rem);
     background: linear-gradient(180deg, var(--color-bright-purple), transparent);
 }
-.timeline-item:last-child::after { display: none; }
+
+.timeline-item:last-child::after {
+    display: none;
+}
 
 /* Grid utilities removed (use Tailwind's grid classes) */
 
@@ -684,13 +976,18 @@ body {
 
 /* Viewport height utilities for stable hero sizing across mobile browsers */
 .min-h-100dvh {
-    min-height: 100dvh; /* Dynamic viewport to account for mobile UI */
+    min-height: 100dvh;
+    /* Dynamic viewport to account for mobile UI */
 }
+
 .min-h-100svh {
-    min-height: 100svh; /* Small viewport height fallback */
+    min-height: 100svh;
+    /* Small viewport height fallback */
 }
+
 .min-h-100vh {
-    min-height: 100vh; /* Fallback for older browsers */
+    min-height: 100vh;
+    /* Fallback for older browsers */
 }
 
 /* Defer offscreen rendering where safe */
@@ -701,38 +998,36 @@ body {
 
 /* Section backgrounds */
 .section-alt {
-    background: linear-gradient(135deg, 
-        rgba(57, 20, 79, 0.9), 
-        rgba(184, 132, 254, 0.15)
-    );
+    background: linear-gradient(135deg,
+            rgba(57, 20, 79, 0.9),
+            rgba(184, 132, 254, 0.15));
 }
 
 .dark .section-alt {
-    background: linear-gradient(135deg, 
-        rgba(13, 4, 20, 0.95), 
-        rgba(157, 78, 221, 0.2)
-    );
+    background: linear-gradient(135deg,
+            rgba(13, 4, 20, 0.95),
+            rgba(157, 78, 221, 0.2));
 }
 
 .section-alt-2 {
-    background: linear-gradient(135deg, 
-        rgba(235, 128, 253, 0.15), 
-        rgba(57, 20, 79, 0.9)
-    );
+    background: linear-gradient(135deg,
+            rgba(235, 128, 253, 0.15),
+            rgba(57, 20, 79, 0.9));
 }
 
 .dark .section-alt-2 {
-    background: linear-gradient(135deg, 
-        rgba(157, 78, 221, 0.2), 
-        rgba(13, 4, 20, 0.95)
-    );
+    background: linear-gradient(135deg,
+            rgba(157, 78, 221, 0.2),
+            rgba(13, 4, 20, 0.95));
 }
 
 /* Neutral background for sections below hero */
 .section-neutral {
     /* Unified background across all neutral sections */
-    background: #f8fafc; /* Solid light neutral */
-    color: #1e293b; /* Dark slate for better contrast */
+    background: #f8fafc;
+    /* Solid light neutral */
+    color: #1e293b;
+    /* Dark slate for better contrast */
 }
 
 .dark .section-neutral {
@@ -746,10 +1041,10 @@ body {
    Reason: Avoid affecting smaller icons inside gradient content boxes
 -------------------------------------------- */
 /* Only force white on the big header squares */
-.section-neutral .w-16.h-16.bg-gradient-to-br > i,
-.section-neutral .w-20.h-20.bg-gradient-to-br > i,
-.section-neutral .w-16.h-16.bg-gradient-to-r > i,
-.section-neutral .w-20.h-20.bg-gradient-to-r > i {
+.section-neutral .w-16.h-16.bg-gradient-to-br>i,
+.section-neutral .w-20.h-20.bg-gradient-to-br>i,
+.section-neutral .w-16.h-16.bg-gradient-to-r>i,
+.section-neutral .w-20.h-20.bg-gradient-to-r>i {
     color: var(--color-pure-white) !important;
 }
 
@@ -762,14 +1057,14 @@ body {
 /* Restrict white icons to only large header squares (handled above). */
 
 /* Make smaller list icons inside "Who's this for?" gradient cards darker for contrast */
-.section-neutral .bg-gradient-to-br .flex.items-start > i,
-.section-neutral .bg-gradient-to-r .flex.items-start > i {
+.section-neutral .bg-gradient-to-br .flex.items-start>i,
+.section-neutral .bg-gradient-to-r .flex.items-start>i {
     color: var(--color-deep-purple) !important;
 }
 
 /* In dark mode, those icons should be light for contrast */
-.dark .section-neutral .bg-gradient-to-br .flex.items-start > i,
-.dark .section-neutral .bg-gradient-to-r .flex.items-start > i {
+.dark .section-neutral .bg-gradient-to-br .flex.items-start>i,
+.dark .section-neutral .bg-gradient-to-r .flex.items-start>i {
     color: #ffffff !important;
 }
 
@@ -780,7 +1075,8 @@ body {
 .section-neutral h4,
 .section-neutral h5,
 .section-neutral h6 {
-    color: #0f172a; /* Slate 900 */
+    color: #0f172a;
+    /* Slate 900 */
 }
 
 .dark .section-neutral h1,
@@ -795,7 +1091,8 @@ body {
 .section-neutral p,
 .section-neutral span,
 .section-neutral li {
-    color: #334155; /* Slate 700 */
+    color: #334155;
+    /* Slate 700 */
 }
 
 .dark .section-neutral p,
@@ -805,10 +1102,21 @@ body {
 }
 
 /* Get Involved cards: ensure readable headings & paragraphs */
-.section-neutral .involvement-card h4 { color: #0f172a; }
-.section-neutral .involvement-card p { color: #475569; }
-.dark .section-neutral .involvement-card h4 { color: var(--text-primary); }
-.dark .section-neutral .involvement-card p { color: var(--text-secondary); }
+.section-neutral .involvement-card h4 {
+    color: #0f172a;
+}
+
+.section-neutral .involvement-card p {
+    color: #475569;
+}
+
+.dark .section-neutral .involvement-card h4 {
+    color: var(--text-primary);
+}
+
+.dark .section-neutral .involvement-card p {
+    color: var(--text-secondary);
+}
 
 /* Research page badges: improve contrast in dark mode */
 .dark .section-neutral .info-card span[class*="bg-bright-purple/20"] {
@@ -816,6 +1124,7 @@ body {
     color: #ffffff !important;
     border: 1px solid rgba(157, 78, 221, 0.5);
 }
+
 .dark .section-neutral .info-card span[class*="bg-slate-200"] {
     background: rgba(255, 255, 255, 0.12) !important;
     color: var(--text-primary) !important;
@@ -823,10 +1132,21 @@ body {
 }
 
 /* Timeline blocks (What is AI Safety): force readable text in dark mode */
-.dark .section-neutral .info-card h4 { color: var(--text-primary) !important; }
-.dark .section-neutral .info-card .text-slate-600 { color: var(--text-secondary) !important; }
-.dark .section-neutral .info-card a { color: var(--color-light-purple) !important; }
-.dark .section-neutral .info-card a:hover { color: var(--color-bright-purple) !important; }
+.dark .section-neutral .info-card h4 {
+    color: var(--text-primary) !important;
+}
+
+.dark .section-neutral .info-card .text-slate-600 {
+    color: var(--text-secondary) !important;
+}
+
+.dark .section-neutral .info-card a {
+    color: var(--color-light-purple) !important;
+}
+
+.dark .section-neutral .info-card a:hover {
+    color: var(--color-bright-purple) !important;
+}
 
 /* Adjust card styling in neutral sections */
 .section-neutral .program-card,
@@ -848,18 +1168,21 @@ body {
 .section-neutral .research-card p,
 .section-neutral .info-card p,
 .section-neutral .involvement-card p {
-    color: #475569; /* Slate 600 */
+    color: #475569;
+    /* Slate 600 */
 }
 
 .section-neutral .program-card i,
 .section-neutral .research-card i {
-    color: #0f172a; /* Dark icons on light cards by default */
+    color: #0f172a;
+    /* Dark icons on light cards by default */
 }
 
 .section-neutral .program-card .text-sm,
 .section-neutral .research-card .text-sm,
 .section-neutral .involvement-card .text-sm {
-    color: #64748b; /* Slate 500 for small text */
+    color: #64748b;
+    /* Slate 500 for small text */
 }
 
 .dark .section-neutral .program-card .text-sm,
@@ -870,7 +1193,7 @@ body {
 
 /* Home page (#events) specific: make ONLY the large leading icon inside the 64px (w-16 h-16) square white.
    Keeps generic rule for other icons (e.g., list/detail icons) intact. */
-#events.section-neutral .program-card .w-16.h-16 > i {
+#events.section-neutral .program-card .w-16.h-16>i {
     color: #ffffff !important;
 }
 
@@ -879,6 +1202,7 @@ body {
 .section-neutral a[class*="bg-gradient-to-"] {
     color: #ffffff !important;
 }
+
 .section-neutral a.btn-primary:hover,
 .section-neutral a[class*="bg-gradient-to-"]:hover {
     color: #ffffff !important;
@@ -895,8 +1219,10 @@ body {
 .section-neutral a.btn-secondary {
     color: var(--color-deep-purple) !important;
 }
+
 .section-neutral a.btn-secondary:hover {
-    color: #ffffff !important; /* becomes white when background gradient applied on hover */
+    color: #ffffff !important;
+    /* becomes white when background gradient applied on hover */
 }
 
 /* Dark mode: secondary buttons should be light for contrast on dark surfaces */
@@ -913,7 +1239,8 @@ body {
 /* Fix icon visibility in neutral sections - simplified rules */
 .section-neutral .program-card i,
 .section-neutral .research-card i {
-    color: var(--color-bright-purple) !important; /* Default purple for all icons */
+    color: var(--color-bright-purple) !important;
+    /* Default purple for all icons */
 }
 
 /* Keep large header icons (inside gradient squares) white for contrast */
@@ -935,7 +1262,7 @@ body {
    Goal: Ensure sufficient contrast against gradient squares
 -------------------------------------------- */
 /* Bright-purple square: keep icon white, add subtle shadow for definition */
-.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-bright-purple.to-bright-purple > i {
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-bright-purple.to-bright-purple>i {
     color: #ffffff !important;
     /* Slight shadow improves visibility on gradients */
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
@@ -943,7 +1270,7 @@ body {
 
 /* Light-purple square: switch icon to deep purple for contrast */
 /* Light-purple square: make icon white for consistency and add subtle shadow for definition */
-.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-light-purple.to-light-purple > i {
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-light-purple.to-light-purple>i {
     color: #ffffff !important;
     /* Slight shadow improves visibility on light gradients */
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
@@ -962,16 +1289,19 @@ body {
 
 /* Adjust links in neutral sections */
 .section-neutral a {
-    color: #8b5cf6; /* Violet for links */
+    color: #8b5cf6;
+    /* Violet for links */
 }
 
 .section-neutral a:hover {
-    color: #a78bfa; /* Lighter violet on hover */
+    color: #a78bfa;
+    /* Lighter violet on hover */
 }
 
 .dark .section-neutral a {
     color: var(--color-light-purple);
 }
+
 .dark .section-neutral a:hover {
     color: var(--color-bright-purple);
 }
@@ -982,15 +1312,20 @@ body {
 -------------------------------------------- */
 /* Headings darker for strong contrast */
 .section-neutral #research-projects .bg-gradient-to-br h5 {
-    color: #0f172a !important; /* Slate 900 */
+    color: #0f172a !important;
+    /* Slate 900 */
 }
+
 /* Body text to slate for readability */
 .section-neutral #research-projects .bg-gradient-to-br p {
-    color: #334155 !important; /* Slate 700 */
+    color: #334155 !important;
+    /* Slate 700 */
 }
+
 /* Icons should be brand purple */
 .section-neutral #research-projects .bg-gradient-to-br i {
-    color: #7c3aed !important; /* Purple */
+    color: #7c3aed !important;
+    /* Purple */
 }
 
 /* Footer */
@@ -1030,10 +1365,21 @@ body {
     text alignment, font weight, font sizes, margins, max-width, centering */
 
 /* Icon color utilities (use to override context defaults) */
-.icon-current { color: currentColor !important; }
-.icon-white { color: #ffffff !important; }
-.icon-bright-purple { color: var(--color-bright-purple) !important; }
-.icon-light-purple { color: var(--color-light-purple) !important; }
+.icon-current {
+    color: currentColor !important;
+}
+
+.icon-white {
+    color: #ffffff !important;
+}
+
+.icon-bright-purple {
+    color: var(--color-bright-purple) !important;
+}
+
+.icon-light-purple {
+    color: var(--color-light-purple) !important;
+}
 
 /* Section divider */
 .section-divider {
@@ -1095,12 +1441,14 @@ body {
 /* Form styles on neutral (light) sections */
 .section-neutral .form-input {
     background: #ffffff;
-    color: #0f172a; /* Slate 900 */
+    color: #0f172a;
+    /* Slate 900 */
     border: 1px solid rgba(57, 20, 79, 0.2);
 }
 
 .section-neutral .form-input::placeholder {
-    color: #64748b; /* Slate 500 */
+    color: #64748b;
+    /* Slate 500 */
 }
 
 .section-neutral .checkbox-custom {
@@ -1147,11 +1495,15 @@ body {
 
 /* Responsive utilities */
 @media (max-width: 767px) {
-    .hidden-mobile { display: none; }
+    .hidden-mobile {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) {
-    .hidden-desktop { display: none; }
+    .hidden-desktop {
+        display: none;
+    }
 }
 
 /* Print styles */
@@ -1163,8 +1515,13 @@ body {
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

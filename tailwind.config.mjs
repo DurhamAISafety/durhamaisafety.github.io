@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'deep-purple': '#68246D',
+        'deep-purple': '#39144F',
         'bright-purple': '#EB80FD',
         'light-purple': '#E2ACFE',
         'lavender': '#B8BBFE',
