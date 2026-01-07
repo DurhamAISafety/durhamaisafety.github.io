@@ -36,17 +36,19 @@ import heroImage from '../assets/hero-picture.jpeg';
     })}
   />
     <!-- Hero Section -->
-    <section id="home" class="min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden pt-28 md:pt-32">
-        <!-- Hero Image -->
-        <Image
-            src={heroImage}
-            alt="Durham Cathedral"
-            class="absolute inset-0 w-full h-full object-cover"
-            widths={[640, 768, 1024, 1280, 1536, 1920]}
-            sizes="100vw"
-            loading="eager"
-            decoding="async"
-        />
+    <section id="home" class="hero-section min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden pt-28 md:pt-32">
+        <!-- Hero Image with Parallax -->
+        <div class="hero-parallax-container">
+            <Image
+                src={heroImage}
+                alt="Durham Cathedral"
+                class="hero-parallax-image"
+                widths={[640, 768, 1024, 1280, 1536, 1920]}
+                sizes="100vw"
+                loading="eager"
+                decoding="async"
+            />
+        </div>
         <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
     <div class="site-container mx-auto px-6 text-center relative z-10">
             <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
@@ -252,6 +254,40 @@ import heroImage from '../assets/hero-picture.jpeg';
 </Layout>
 
 <script>
+    // Parallax effect for hero image
+    const parallaxContainer = document.querySelector('.hero-parallax-container');
+    const heroSection = document.querySelector('.hero-section');
+    
+    if (parallaxContainer && heroSection) {
+        // Only enable on desktop with fine pointer (mouse)
+        const isDesktop = window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (isDesktop && !prefersReducedMotion) {
+            let ticking = false;
+            
+            const updateParallax = () => {
+                const scrolled = window.scrollY;
+                const heroHeight = heroSection.offsetHeight;
+                
+                // Only apply parallax while hero is visible
+                if (scrolled < heroHeight * 1.5) {
+                    // Move at 40% of scroll speed for subtle effect
+                    const yPos = scrolled * 0.4;
+                    parallaxContainer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                }
+                ticking = false;
+            };
+            
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }, { passive: true });
+        }
+    }
+
     // Scroll to events section
     document.getElementById('scroll-to-events')?.addEventListener('click', () => {
         const eventsSection = document.getElementById('events');

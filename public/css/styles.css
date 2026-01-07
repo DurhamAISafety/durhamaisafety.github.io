@@ -152,30 +152,40 @@
     animation-play-state: paused;
 }
 
-/* Hero section with fixed background */
-.hero-background {
-    background-image: url('/images/hero-picture.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Avoid fixed attachment to reduce repaint/jank on some devices */
-    background-attachment: scroll;
+/* Hero section with parallax effect */
+.hero-section {
+    position: relative;
+    overflow: hidden;
 }
 
-/* Fallback for mobile devices that don't support background-attachment: fixed well */
-@media (max-width: 768px) {
-    .hero-background {
-        background-attachment: scroll;
+.hero-parallax-container {
+    position: absolute;
+    inset: -20%;
+    /* Extend beyond viewport for parallax movement room */
+    z-index: 0;
+}
+
+.hero-parallax-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+}
+
+/* Parallax effect - disable on mobile for performance */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .hero-parallax-container {
+        /* The parallax will be controlled by JavaScript */
+        transition: transform 0.1s ease-out;
     }
 }
 
-/* Enable fixed background on desktop/laptops for subtle parallax-like effect */
-@media (min-width: 1024px),
-(hover: hover) and (pointer: fine) {
-    .hero-background {
-        background-attachment: fixed;
-        /* Keep focal point stable while scrolling */
-        background-position: center top;
+/* Fallback for mobile - no parallax, just static image */
+@media (max-width: 767px),
+(hover: none) {
+    .hero-parallax-container {
+        inset: 0;
     }
 }
 
@@ -780,6 +790,24 @@ body {
     /* Use purple-accent border by default */
     border: 1px solid rgba(235, 128, 253, 0.3);
     border-radius: var(--radius-xl);
+}
+
+/* Icon box utility - ensures consistent icon sizing in cards */
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Force all icons in icon containers to be consistent size */
+.icon-box i,
+.icon-box svg,
+.w-16.h-16>i,
+.w-16.h-16>svg {
+    /* Fixed width like FA's fa-fw class */
+    width: 1em;
+    text-align: center;
 }
 
 .dark .program-card,
