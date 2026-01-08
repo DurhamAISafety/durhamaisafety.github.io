@@ -54,40 +54,47 @@ import { Image } from 'astro:assets';
 					We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/what-is-ai-safety/" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:
 				</p>
 
-				<style>
-					/* Local override so only About page cards show white text on deep-purple */
-					.about-page-override .about-card h3,
-					.about-page-override .about-card p,
-					.about-page-override .impact-card h3,
-					.about-page-override .impact-card p { color: #ffffff !important; }
-					.about-page-override .about-card p { opacity: 0.9; }
-					.about-page-override .impact-card p { opacity: 0.9; }
+					<style>
+					/* Local override so About page cards have proper text colors */
+					.about-page-override .about-card h3 { color: #0f172a !important; }
+					.about-page-override .about-card p { color: #475569 !important; }
+					.about-page-override .impact-card h3 { color: #0f172a !important; }
+					.about-page-override .impact-card p { color: #475569 !important; }
 				</style>
 
 				<div class="grid md:grid-cols-3 gap-6 mb-12">
-					<div class="about-card group bg-deep-purple rounded-2xl p-6 border border-bright-purple/60 shadow-lg transition-colors duration-300">
-						<div class="text-3xl mb-4 text-center">🎯</div>
+					<div class="about-card group bg-white rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
+						<div class="text-center mb-4">
+							<i class="fas fa-bullhorn text-4xl text-durham-purple"></i>
+						</div>
 						<h3 class="text-xl font-bold mb-4 text-center">Raising Awareness</h3>
 						<p class="text-base leading-relaxed text-center">Through discussion groups and speaker events</p>
 					</div>
-					<div class="about-card group bg-deep-purple rounded-2xl p-6 border border-light-purple/60 shadow-lg transition-colors duration-300">
-						<div class="text-3xl mb-4 text-center">🛠️</div>
+					<div class="about-card group bg-white rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
+						<div class="text-center mb-4">
+							<i class="fas fa-tools text-4xl text-durham-purple"></i>
+						</div>
 						<h3 class="text-xl font-bold mb-4 text-center">Upskilling Members</h3>
 						<p class="text-base leading-relaxed text-center">In safety techniques through workshops and 1-1 support</p>
 					</div>
-					<div class="about-card group bg-deep-purple rounded-2xl p-6 border border-lavender/60 shadow-lg transition-colors duration-300">
-						<div class="text-3xl mb-4 text-center">🤝</div>
+					<div class="about-card group bg-white rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
+						<div class="text-center mb-4">
+							<i class="fas fa-users text-4xl text-durham-purple"></i>
+						</div>
 						<h3 class="text-xl font-bold mb-4 text-center">Fostering Community</h3>
 						<p class="text-base leading-relaxed text-center">For high-quality discussion, support and connections to the wider field of AI safety</p>
 					</div>
 				</div>
 
-				<div class="impact-card bg-deep-purple rounded-2xl p-8 border border-white/20 shadow-xl mb-8">
+				<div class="impact-card bg-white rounded-2xl p-8 border border-durham-purple/30 shadow-lg mb-8">
 					<div class="text-center">
+						<div class="mb-4">
+							<i class="fas fa-chart-line text-4xl text-durham-purple"></i>
+						</div>
 						<h3 class="text-2xl font-bold mb-4">Our Impact</h3>
 						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto">
 							Our members have published in top AI and law conferences, participated in 
-							<a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">MATS</a>
+							<a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple font-semibold transition-colors underline">MATS</a>
 							and gone on to study AI ethics at Cambridge.
 						</p>
 					</div>
