@@ -192,6 +192,38 @@ Tag colors:
 - Ensure all required frontmatter properties are present
 - Run `npm run build` locally to catch errors before pushing
 
+## Maintainability & Handoff
+
+### Known Technical Debt
+
+1. **CSS Complexity**: `public/css/styles.css` is 1,500+ lines with many `!important` overrides. Consider gradually migrating to pure Tailwind classes.
+
+2. **Color System**: Colors are defined in three places - use `tailwind.config.mjs` as the single source of truth:
+   - `durham-purple` (#68246D) - Primary brand color
+   - `deep-purple` (#39144F) - Secondary dark
+   - `bright-purple` (#EB80FD) - Accent
+   - `light-purple` (#E2ACFE) - Light accent
+   - `lavender` (#B8BBFE) - Tertiary
+
+3. **CSS Overrides**: `.section-neutral i` in styles.css forces icon colors - specific Tailwind classes like `text-durham-purple` need matching CSS overrides.
+
+### Quick Reference for Content Updates
+
+| What | Where |
+|------|-------|
+| Team members | `src/data/team.ts` |
+| Research papers | `src/data/research.ts` |
+| Navigation links | `src/components/Header.astro` |
+| Footer & social links | `src/components/Footer.astro` |
+| Site config | `src/data/config.ts` |
+
+### Recommended Improvements
+
+- [ ] Consolidate CSS into Tailwind utilities
+- [ ] Create reusable card components
+- [ ] Add component documentation
+- [ ] Remove unused CSS rules
+
 ## Maintenance & Contributing
 
 - CI runs builds on every PR and push to `main`.
