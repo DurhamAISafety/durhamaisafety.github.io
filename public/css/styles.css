@@ -1081,6 +1081,58 @@ body {
     color: var(--color-bright-purple) !important;
 }
 
+/* Allow specific Tailwind icon color classes to override default */
+.section-neutral i.text-durham-purple {
+    color: #68246D !important;
+}
+
+.section-neutral i.text-teal {
+    color: #14b8a6 !important;
+}
+
+.section-neutral i.text-emerald {
+    color: #10b981 !important;
+}
+
+.section-neutral i.text-ocean-blue {
+    color: #0891b2 !important;
+}
+
+.section-neutral i.text-deep-purple {
+    color: #39144F !important;
+}
+
+.section-neutral i.text-bright-purple {
+    color: #EB80FD !important;
+}
+
+.section-neutral i.text-light-purple {
+    color: #E2ACFE !important;
+}
+
+.section-neutral i.text-lavender {
+    color: #B8BBFE !important;
+}
+
+.section-neutral i.text-violet-600 {
+    color: #7c3aed !important;
+}
+
+.section-neutral i.text-fuchsia-600 {
+    color: #c026d3 !important;
+}
+
+/* Durham purple background buttons should have white text */
+.section-neutral a.bg-durham-purple,
+.section-neutral a[class*="bg-durham-purple"] {
+    color: #ffffff !important;
+}
+
+.section-neutral a.bg-durham-purple:hover,
+.section-neutral a[class*="bg-durham-purple"]:hover {
+    color: #ffffff !important;
+}
+
 /* Override for icons that should stay white (in gradient backgrounds) */
 /* Restrict white icons to only large header squares (handled above). */
 
