@@ -222,10 +222,32 @@ body {
     top: 0;
     z-index: 50;
     border-bottom: 1px solid rgba(235, 128, 253, 0.5);
-    transition: background 0.3s ease, border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 .dark .header {
+    border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+}
+
+/* Transparent header for home page - overlays hero image */
+.header--transparent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+}
+
+/* When scrolled, add background to transparent header */
+.header--transparent.header--scrolled {
+    position: fixed;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.5);
+}
+
+.dark .header--transparent.header--scrolled {
     border-bottom: 1px solid rgba(157, 78, 221, 0.3);
 }
 
