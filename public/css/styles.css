@@ -238,10 +238,6 @@ body {
     padding: 1rem 0;
 }
 
-@media (min-width: 1024px) {
-    .nav {}
-}
-
 /* Dark mode toggle button */
 .dark-mode-toggle {
     background: var(--bg-card);
@@ -309,7 +305,7 @@ body {
         width: 4rem;
         height: 4rem;
     }
-    
+
     .nav-title {
         font-size: 1.25rem;
     }
@@ -320,16 +316,59 @@ body {
         width: 4.5rem;
         height: 4.5rem;
     }
-    
+
     .nav-title {
         font-size: 1.5rem;
     }
 }
 
-.nav-menu {
+/* Navigation center section */
+.nav-center {
     display: flex;
     gap: 2rem;
     align-items: center;
+    margin-left: auto;
+}
+
+/* Navigation right section */
+.nav-right {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Social links in nav */
+.nav-social {
+    color: white;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    transition: var(--transition-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-social:hover {
+    color: var(--color-bright-purple);
+    transform: scale(1.1);
+}
+
+/* CTA button in nav */
+.nav-cta {
+    background: var(--color-bright-purple);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: var(--transition-default);
+    white-space: nowrap;
+}
+
+.nav-cta:hover {
+    background: #d060e0;
+    transform: scale(1.05);
 }
 
 .nav-link {

@@ -47,27 +47,43 @@ const isHome = pathname === '/';
                 </div>
             </button>
             
-            <!-- Desktop navigation -->
-            <div class="nav-menu nav-menu-desktop">
+            <!-- Desktop navigation - center -->
+            <div class="nav-center nav-menu-desktop">
                 <a href="/" class="nav-link">Home</a>
                 <a href="/#events" class="nav-link">Events</a>
+                <a href="/about/" class="nav-link">About</a>
                 
                 <div class="dropdown">
                     <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
                         More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="/about/">About Us</a>
                         <a href="/programs/">Programs</a>
                         <a href="/research/">Research</a>
                         <a href="/what-is-ai-safety/">What is AI Safety?</a>
-                        <a href="/get-involved/">Get Involved</a>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Desktop right section: social, dark mode, CTA -->
+            <div class="nav-right nav-menu-desktop">
+                <a href={siteConfig.social.instagram} class="nav-social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href={siteConfig.social.discord} class="nav-social" aria-label="Discord" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-discord" aria-hidden="true"></i>
+                </a>
+                <a href={siteConfig.social.linktree} class="nav-social" aria-label="Linktree" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-link" aria-hidden="true"></i>
+                </a>
                 
                 <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
+                
+                <a href="/get-involved/" class="nav-cta">
+                    Get Involved
+                </a>
             </div>
         </nav>
     </div>
@@ -100,7 +116,10 @@ const isHome = pathname === '/';
                 <a href={siteConfig.social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-                <a href={siteConfig.social.linktree} aria-label="Linktree">
+                <a href={siteConfig.social.discord} aria-label="Discord" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <a href={siteConfig.social.linktree} aria-label="Linktree" target="_blank" rel="noopener noreferrer">
                     <i class="fa-solid fa-link"></i>
                 </a>
             </div>
