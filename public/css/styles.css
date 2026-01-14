@@ -108,31 +108,7 @@
     outline-offset: 2px;
 }
 
-/* Pulse glow animation for CTA buttons */
-@keyframes pulse-glow {
-    0% {
-        box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
-        transform: scale(1);
-    }
 
-    50% {
-        box-shadow: 0 0 30px rgba(235, 128, 253, 0.6);
-        transform: scale(1.02);
-    }
-
-    100% {
-        box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
-        transform: scale(1);
-    }
-}
-
-.pulse-glow {
-    animation: pulse-glow 2s infinite;
-}
-
-.pulse-glow:hover {
-    animation-play-state: paused;
-}
 
 /* Hero section with parallax effect */
 .hero-section {
@@ -202,37 +178,7 @@ ol {
     list-style: none;
 }
 
-/* Construction banner styles */
-.construction-banner {
-    background: linear-gradient(90deg, #dc2626, #b91c1c);
-    color: white;
-    padding: 12px 0;
-    text-align: center;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 60;
-    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.3);
-}
 
-@keyframes pulse-red {
-
-    0%,
-    100% {
-        background: linear-gradient(90deg, #dc2626, #b91c1c);
-    }
-
-    50% {
-        background: linear-gradient(90deg, #ef4444, #dc2626);
-    }
-}
-
-.construction-banner .disclaimer {
-    font-size: 0.875rem;
-    font-weight: normal;
-    opacity: 0.9;
-    margin-top: 4px;
-}
 
 html {
     scroll-behavior: smooth;
@@ -752,16 +698,7 @@ body {
     animation: none;
 }
 
-/* Team card helper */
-.team-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(20, 184, 166, 0.25);
-}
 
-.dark .team-card {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(124, 93, 206, 0.3);
-}
 
 /* Page-specific card helpers */
 .program-card,

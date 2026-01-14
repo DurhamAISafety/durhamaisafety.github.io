@@ -1,0 +1,53 @@
+---
+/**
+ * IconCard component - Reusable card with centered icon, title, and description
+ * 
+ * @prop {string} icon - Font Awesome icon class (e.g., "fas fa-bullhorn")
+ * @prop {string} title - Card heading text
+ * @prop {string} [description] - Optional card body text
+ * @prop {string} [iconColor="text-durham-purple"] - Tailwind color class for icon
+ * @prop {string} [variant="default"] - Card style variant: "default" or "bordered"
+ * @prop {string} [class] - Additional CSS classes to apply
+ * 
+ * @example
+ * <IconCard 
+ *   icon="fas fa-bullhorn" 
+ *   title="Raising Awareness" 
+ *   description="Through discussion groups and speaker events"
+ * />
+ */
+
+interface Props {
+  icon: string;
+  title: string;
+  description?: string;
+  iconColor?: string;
+  variant?: 'default' | 'bordered';
+  class?: string;
+}
+
+const { 
+  icon, 
+  title, 
+  description,
+  iconColor = 'text-durham-purple',
+  variant = 'default',
+  class: className = ''
+} = Astro.props;
+
+const baseClasses = 'rounded-2xl p-6 transition-all duration-300';
+const variantClasses = variant === 'bordered' 
+  ? 'program-card border border-durham-purple/30 shadow-lg hover:shadow-xl hover:border-durham-purple/50' 
+  : 'info-card';
+---
+
+<div class:list={[baseClasses, variantClasses, className]}>
+  <div class="text-center mb-4">
+    <i class:list={[icon, 'text-4xl', iconColor]} aria-hidden="true"></i>
+  </div>
+  <h4 class="text-xl font-bold mb-4 text-center">{title}</h4>
+  {description && (
+    <p class="text-base leading-relaxed text-center">{description}</p>
+  )}
+  <slot />
+</div>
