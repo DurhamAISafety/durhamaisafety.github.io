@@ -26,12 +26,10 @@ const isHome = pathname === '/';
             <a href="/" class="nav-brand">
                 <img src={Logo.src} alt="Durham AISI Logo" class="h-8 w-auto md:h-10" loading="lazy" decoding="async" />
                 <div>
-                    <h1>
-                        {isHome ? (
-                            <>Durham <span class="gradient-text">AI Safety</span> Initiative</>
-                        ) : (
-                            <>Durham AISI</>
-                        )}
+                    <h1 class="nav-title">
+                        <span>Durham</span>
+                        <span class="gradient-text">AI Safety</span>
+                        <span>Initiative</span>
                     </h1>
                 </div>
             </a>

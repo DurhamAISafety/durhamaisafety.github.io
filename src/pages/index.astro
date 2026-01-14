@@ -67,16 +67,6 @@ import heroImage from '../assets/hero-picture.jpeg';
                         Get Involved
                     </a>
                 </div>
-                
-                <!-- Scroll down prompt -->
-                <div class="mt-12 md:mt-16">
-                    <button type="button" id="scroll-to-events" aria-label="Scroll to Events section"
-                            class="text-center cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-bright-purple/70 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg">
-                        <span class="block text-white text-2xl" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);" aria-hidden="true">
-                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
             </div>
         </div>
     </section>
@@ -275,20 +265,7 @@ import heroImage from '../assets/hero-picture.jpeg';
         }
     }
 
-    // Scroll to events section
-    document.getElementById('scroll-to-events')?.addEventListener('click', () => {
-        const eventsSection = document.getElementById('events');
-        const header = document.querySelector('header');
-        const headerHeight = header ? header.offsetHeight : 0;
-        if (eventsSection) {
-            const targetPosition = eventsSection.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
-            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: prefersReduced ? 'auto' : 'smooth'
-            });
-        }
-    });
+
     
     // Calendar loading state
     const calendarIframe = document.getElementById('calendar-iframe');
