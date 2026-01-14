@@ -196,16 +196,14 @@ Tag colors:
 
 ### Known Technical Debt
 
-1. **CSS Complexity**: `public/css/styles.css` is 1,500+ lines with many `!important` overrides. Consider gradually migrating to pure Tailwind classes.
+1. **CSS Complexity**: `public/css/styles.css` is ~1,500 lines. Most `!important` overrides for icon colors have been removed (Jan 2026). Icons now use Tailwind classes directly.
 
-2. **Color System**: Colors are defined in three places - use `tailwind.config.mjs` as the single source of truth:
+2. **Color System**: Colors are defined in `tailwind.config.mjs` (single source of truth):
    - `durham-purple` (#68246D) - Primary brand color
    - `deep-purple` (#39144F) - Secondary dark
    - `bright-purple` (#EB80FD) - Accent
    - `light-purple` (#E2ACFE) - Light accent
    - `lavender` (#B8BBFE) - Tertiary
-
-3. **CSS Overrides**: `.section-neutral i` in styles.css forces icon colors - specific Tailwind classes like `text-durham-purple` need matching CSS overrides.
 
 ### Quick Reference for Content Updates
 
@@ -219,7 +217,7 @@ Tag colors:
 
 ### Recommended Improvements
 
-- [ ] Consolidate CSS into Tailwind utilities
+- [x] Remove broad CSS icon color overrides (completed Jan 2026)
 - [ ] Create reusable card components
 - [ ] Add component documentation
 - [ ] Remove unused CSS rules

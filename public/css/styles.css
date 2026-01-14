@@ -12,23 +12,11 @@
     --color-lavender: #B8BBFE;
     --color-pure-white: #FFFFFF;
 
-    /* Legacy for compatibility (mapped to purples where sensible) */
+    /* Legacy colors - only keeping those still in use */
     --color-ocean-blue: #6F3FA7;
-    /* mapped to a mid-purple */
-    --color-deep-blue: #3E1A59;
-    /* deep purple-leaning */
-    --color-teal: #A562E8;
-    /* mapped to bright purple */
-    --color-emerald: #D49BFF;
-    /* mapped to light purple */
-    --color-sage: #C2B6FF;
-    /* lavender-ish */
-    --color-mint: #E6D1FF;
-    /* pale purple */
-    --color-warm-blue: #A080FF;
-    /* violet */
+    /* used in gradient */
     --color-navy: #2B0F40;
-    /* darkest purple */
+    /* darkest purple - used in gradients */
 
     /* Gradients updated to purple theme */
     --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
@@ -74,14 +62,8 @@
     --color-lavender: #7b68ee;
     --color-pure-white: #e0e0e0;
 
-    /* Legacy colors adjusted for dark mode */
+    /* Legacy colors - only keeping those still in use */
     --color-ocean-blue: #5a3a8f;
-    --color-deep-blue: #150a23;
-    --color-teal: #7c3eb8;
-    --color-emerald: #9b67d8;
-    --color-sage: #9b8adb;
-    --color-mint: #c4b5fd;
-    --color-warm-blue: #7c5dce;
     --color-navy: #0d0414;
 
     /* Dark mode gradients */
@@ -1076,51 +1058,12 @@ body {
     color: var(--color-pure-white) !important;
 }
 
-/* Default icons in neutral sections to purple for visibility */
-.section-neutral i {
-    color: var(--color-bright-purple) !important;
-}
-
-/* Allow specific Tailwind icon color classes to override default */
-.section-neutral i.text-durham-purple {
-    color: #68246D !important;
-}
-
-.section-neutral i.text-teal {
-    color: #14b8a6 !important;
-}
-
-.section-neutral i.text-emerald {
-    color: #10b981 !important;
-}
-
-.section-neutral i.text-ocean-blue {
-    color: #0891b2 !important;
-}
-
-.section-neutral i.text-deep-purple {
-    color: #39144F !important;
-}
-
-.section-neutral i.text-bright-purple {
-    color: #EB80FD !important;
-}
-
-.section-neutral i.text-light-purple {
-    color: #E2ACFE !important;
-}
-
-.section-neutral i.text-lavender {
-    color: #B8BBFE !important;
-}
-
-.section-neutral i.text-violet-600 {
-    color: #7c3aed !important;
-}
-
-.section-neutral i.text-fuchsia-600 {
-    color: #c026d3 !important;
-}
+/* Icons in neutral sections now inherit color from their parent or use explicit Tailwind classes.
+   The previous .section-neutral i rule forced all icons to pink, requiring many !important overrides.
+   Removed: .section-neutral i { color: ... !important }
+   Removed: .section-neutral i.text-* counter-overrides
+   
+   Tailwind classes like text-durham-purple now work naturally without CSS fighting. */
 
 /* Durham purple background buttons should have white text */
 .section-neutral a.bg-durham-purple,
@@ -1146,6 +1089,12 @@ body {
 .dark .section-neutral .bg-gradient-to-br .flex.items-start>i,
 .dark .section-neutral .bg-gradient-to-r .flex.items-start>i {
     color: #ffffff !important;
+}
+
+/* In dark mode, deep-purple icons on gradient cards need to be lighter */
+.dark .section-neutral .bg-gradient-to-br i.text-deep-purple,
+.dark .section-neutral .bg-gradient-to-r i.text-deep-purple {
+    color: var(--color-light-purple) !important;
 }
 
 /* Ensure proper text contrast in neutral sections */
@@ -1252,10 +1201,19 @@ body {
     /* Slate 600 */
 }
 
-.section-neutral .program-card i,
-.section-neutral .research-card i {
-    color: #0f172a;
-    /* Dark icons on light cards by default */
+/* Icons in program/research cards now use Tailwind classes (e.g., text-durham-purple).
+   Dark mode: icons without explicit color classes will be light for contrast. */
+.dark .section-neutral .program-card i,
+.dark .section-neutral .research-card i,
+.dark .section-neutral .info-card i {
+    color: var(--color-light-purple);
+}
+
+/* Override dark mode for icons with specific legacy colors (what-is-ai-safety page) */
+.dark .section-neutral .info-card i.text-teal,
+.dark .section-neutral .info-card i.text-emerald,
+.dark .section-neutral .info-card i.text-ocean-blue {
+    color: var(--color-light-purple);
 }
 
 .section-neutral .program-card .text-sm,
@@ -1316,12 +1274,8 @@ body {
     color: currentColor !important;
 }
 
-/* Fix icon visibility in neutral sections - simplified rules */
-.section-neutral .program-card i,
-.section-neutral .research-card i {
-    color: var(--color-bright-purple) !important;
-    /* Default purple for all icons */
-}
+/* NOTE: Removed duplicate ".section-neutral .program-card i" bright-purple rule.
+   Icons now use Tailwind classes (e.g., text-durham-purple) or inherit color naturally. */
 
 /* Keep large header icons (inside gradient squares) white for contrast */
 .section-neutral .program-card .bg-gradient-to-br i,
