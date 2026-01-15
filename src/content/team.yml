@@ -16,18 +16,6 @@
 # - Indentation matters! Use 2 spaces, not tabs
 # - Keep the dash (-) at the start of each person
 
-# - name: Bella
-#   role: Lead Organiser and Publicity
-#   photo: bella-pic.jpg
-
-# - name: Bella
-#   role: Lead Organiser and Publicity
-#   photo: bella-pic.jpg
-
-# - name: Bella
-#   role: Lead Organiser and Publicity
-#   photo: bella-pic.jpg
-
 - name: Bella
   role: Lead Organiser and Publicity
   photo: bella-pic.jpg
