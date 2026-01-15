@@ -1,5 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+const tocSections = [
+  { id: 'intro-seminars', title: 'Intro Seminars' },
+  { id: 'reading-groups', title: 'Reading Groups' },
+  { id: 'research-projects', title: 'Research Projects' },
+  { id: 'speaker-series', title: 'Speaker Events' },
+  { id: 'socials', title: 'Social Events' },
+];
 ---
 
 <Layout 
@@ -48,6 +57,9 @@ import Layout from '../layouts/Layout.astro';
       ]
     })}
   />
+  
+  <TableOfContents sections={tocSections} />
+  
   <!-- Title Section -->
   <section class="section section-neutral">
   <div class="site-container text-center">

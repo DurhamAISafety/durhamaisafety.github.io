@@ -1,0 +1,64 @@
+---
+/**
+ * TableOfContents component - Sticky sidebar navigation
+ * 
+ * Shows section headings on the left side, highlights current section as user scrolls.
+ * Hidden on mobile, visible on desktop (lg breakpoint).
+ * 
+ * Props:
+ * - sections: Array of { id: string, title: string }
+ */
+
+export interface Props {
+  sections: Array<{ id: string; title: string }>;
+}
+
+const { sections } = Astro.props;
+---
+
+<nav class="toc-sidebar" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+  <ul class="toc-list">
+    {sections.map((section) => (
+      <li>
+        <a href={`#${section.id}`} class="toc-link" data-section={section.id}>
+          {section.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<script>
+  // Intersection Observer for highlighting active section
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const sections = document.querySelectorAll('section[id]');
+  
+  if (sections.length > 0 && tocLinks.length > 0) {
+    const observerOptions = {
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+    
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Remove active class from all links
+          tocLinks.forEach((link) => link.classList.remove('toc-link--active'));
+          
+          // Add active class to corresponding link
+          const activeLink = document.querySelector(`.toc-link[data-section="${entry.target.id}"]`);
+          if (activeLink) {
+            activeLink.classList.add('toc-link--active');
+          }
+        }
+      });
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  }
+</script>

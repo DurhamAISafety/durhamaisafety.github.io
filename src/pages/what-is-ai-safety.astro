@@ -1,5 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TableOfContents from '../components/TableOfContents.astro';
+
+const tocSections = [
+  { id: 'what-is-ais', title: 'What is AI Safety?' },
+  { id: 'why-it-matters', title: 'Why It Matters' },
+  { id: 'getting-started', title: 'Getting Started' },
+];
 ---
 
 <Layout 
@@ -41,6 +48,8 @@ import Layout from "../layouts/Layout.astro";
     })}
   />
 
+  <TableOfContents sections={tocSections} />
+
   <section class="section section-neutral">
     <div class="site-container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">AI Safety and Why It Matters</h1>
@@ -49,7 +58,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   {/* The Foundation */}
-  <section class="section section-neutral">
+  <section id="what-is-ais" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-16">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">What is AI Safety?</h3>
@@ -95,7 +104,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   {/* Why It Matters & Getting Started */}
-  <section class="section section-neutral">
+  <section id="why-it-matters" class="section section-neutral">
     <div class="site-container">
       {/* Why AI Safety Matters */}
       <div class="text-center mb-16">
@@ -249,7 +258,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       {/* Links for Getting Started */}
-      <div class="text-center mb-16">
+      <div id="getting-started" class="text-center mb-16">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Links for Getting Started</h3>
         <div class="section-divider"></div>
       </div>
