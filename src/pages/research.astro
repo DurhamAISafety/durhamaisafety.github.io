@@ -21,12 +21,12 @@ const page = {
           <i class="fas fa-flask mr-1" aria-hidden="true"></i> Research Areas
         </a>
         <span class="text-slate-400" aria-hidden="true">•</span>
-        <a href="#opportunities" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-door-open mr-1" aria-hidden="true"></i> Opportunities
-        </a>
-        <span class="text-slate-400" aria-hidden="true">•</span>
         <a href="#recent-research" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
           <i class="fas fa-file-alt mr-1" aria-hidden="true"></i> Recent Research
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#opportunities" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-door-open mr-1" aria-hidden="true"></i> Opportunities
         </a>
       </nav>
     </div>
@@ -109,33 +109,6 @@ const page = {
         </div>
       </div>
 
-      {/* Research Opportunities */}
-      <div id="opportunities" class="text-center mb-12">
-        <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
-        <div class="section-divider"></div>
-      </div>
-      <div class="max-w-4xl mx-auto mb-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div class="research-card rounded-2xl p-6 card-hover">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-graduation-cap text-3xl text-bright-purple mr-4" aria-hidden="true"></i>
-              <h4 class="text-lg font-bold">Undergraduates</h4>
-            </div>
-            <p class="text-sm leading-relaxed">We can advise and support you on dissertation and individual study projects.</p>
-          </div>
-          <div class="research-card rounded-2xl p-6 card-hover">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-user-graduate text-3xl text-light-purple mr-4" aria-hidden="true"></i>
-              <h4 class="text-lg font-bold">Faculty</h4>
-            </div>
-            <p class="text-sm leading-relaxed">We can signpost promising research directions and funding opportunities, and support you throughout.</p>
-          </div>
-        </div>
-        <div class="text-center">
-          <a href="/programs/#research-projects" class="btn btn-primary">I'm Interested</a>
-        </div>
-      </div>
-
       {/* Recent Research */}
       <div id="recent-research" class="text-center mb-12">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Recent Research involving DAISI Members</h3>
@@ -157,6 +130,33 @@ const page = {
           id="non-academic-carousel"
         />
       )}
+
+      {/* Research Opportunities */}
+      <div id="opportunities" class="text-center mb-12 mt-20">
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
+        <div class="section-divider"></div>
+      </div>
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div class="research-card rounded-2xl p-6 card-hover">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-graduation-cap text-3xl text-bright-purple mr-4" aria-hidden="true"></i>
+              <h4 class="text-lg font-bold">Undergraduates</h4>
+            </div>
+            <p class="text-sm leading-relaxed">We can advise and support you on dissertation and individual study projects.</p>
+          </div>
+          <div class="research-card rounded-2xl p-6 card-hover">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-user-graduate text-3xl text-light-purple mr-4" aria-hidden="true"></i>
+              <h4 class="text-lg font-bold">Faculty</h4>
+            </div>
+            <p class="text-sm leading-relaxed">We can signpost promising research directions and funding opportunities, and support you throughout.</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <a href="/programs/#research-projects" class="btn btn-primary">I'm Interested</a>
+        </div>
+      </div>
     </div>
   </section>
 
