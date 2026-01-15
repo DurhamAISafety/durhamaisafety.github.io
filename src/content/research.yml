@@ -1,6 +1,6 @@
 # Research Papers
 # Edit this file to update research publications on the Research page
-# Order: most recent first (newest at top)
+# Order: most recent first (newest at top) - sorted by year then month
 #
 # ┌─────────────────────────────────────────────────────────────────┐
 # │ EXAMPLE - Copy this template and uncomment to add a new paper  │
@@ -8,40 +8,40 @@
 #
 # - title: "Your Paper Title Here"
 #   url: https://link-to-paper.com
+#   thumbnail: paper-thumbnail.png   # Optional: image in src/assets/research/
 #   authors:
-#     - name: "Surname, F."        # External author (not bolded)
-#       team: false                # Optional, defaults to false
-#     - name: "Member, A."         # DAISI member (will be bolded)
-#       team: true
-#   year: 2025                     # Required: Publication year
-#   month: January                 # Optional: Publication month
-#   venue: "Conference Name (CONF 2025), City, Country"
-#   tags:                          # For filtering/display
+#     - name: "Surname, F."
+#     - name: "Member, A."
+#       team: true                   # Bold DAISI member names
+#   year: 2025
+#   month: 7                         # 1-12 for ordering (1=Jan, 12=Dec)
+#   venue: "ICML 2025"               # Short venue name (shown in grey)
+#   tags:                            # For colored badges
 #     - Interpretability
-#     - CONF 2025
-#   type: academic                 # 'academic' or 'non-academic'
+#   type: academic                   # 'academic' or 'non-academic'
 #
 # Notes:
-# - Indentation matters! Use 2 spaces, not tabs
-# - Wrap titles in quotes if they contain colons or special characters
-# - Set 'team: true' for DAISI member authors to bold their name
+# - Papers are auto-sorted by year then month (newest first)
+# - Thumbnails: screenshot the PDF first page, save to src/assets/research/
+# - If no thumbnail provided, a placeholder will show
 
 - title: "Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models"
-  url: https://durham-repository.worktribe.com/output/4012842
+  url: https://openreview.net/forum?id=4WMZqAoYi4
+  thumbnail: itdas.png
   authors:
     - name: "Leask, P."
       team: true
     - name: "Al Moubayed, N."
   year: 2025
-  month: July
-  venue: "International Conference on Machine Learning (ICML 2025), Vancouver, Canada"
+  month: 7
+  venue: "ICML 2025"
   tags:
     - Interpretability
-    - ICML 2025
   type: academic
 
 - title: "Sparse Autoencoders Do Not Find Canonical Units of Analysis"
-  url: https://durham-repository.worktribe.com/output/3475474
+  url: https://openreview.net/forum?id=9ca9eHNrdH
+  thumbnail: sae_canonical.png
   authors:
     - name: "Leask, P."
       team: true
@@ -53,28 +53,29 @@
     - name: "Sharkey, L."
     - name: "Nanda, N."
   year: 2025
-  month: April
-  venue: "The Thirteenth International Conference on Learning Representations (ICLR 2025), Singapore"
+  month: 4
+  venue: "ICLR 2025"
   tags:
     - Interpretability
-    - ICLR 2025
   type: academic
 
 - title: "Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization"
   url: https://openreview.net/forum?id=IhI1qGyk6S
+  thumbnail: probing.png
   authors:
     - name: "Leask, P."
       team: true
     - name: "Al Moubayed, N."
   year: 2025
-  venue: "Mechanistic Interpretability Workshop at NeurIPS 2025"
+  month: 9
+  venue: "NeurIPS 2025 Workshop"
   tags:
     - Interpretability
-    - NeurIPS 2025
   type: academic
 
 - title: "Order by Scale: Relative-Magnitude Relational Composition in Attention-Only Transformers"
   url: https://openreview.net/forum?id=vWRVzNtk7W
+  thumbnail: order-by-scale.png
   authors:
     - name: "Farrell, T."
       team: true
@@ -82,14 +83,15 @@
       team: true
     - name: "Al Moubayed, N."
   year: 2025
-  venue: "Socially Responsible and Trustworthy Foundation Models at NeurIPS 2025"
+  month: 9
+  venue: "NeurIPS 2025 Workshop"
   tags:
     - Interpretability
-    - NeurIPS 2025
   type: academic
 
 - title: "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring"
   url: https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c
+  thumbnail: ghost-marks.png
   authors:
     - name: "Sherratt-Cross, E."
       team: true
@@ -100,9 +102,8 @@
     - name: "Ryley, O."
       team: true
   year: 2025
-  month: November
-  venue: "Apart Research Sprint"
+  month: 11
+  venue: "Apart def/acc Hackathon"
   tags:
     - Security
-    - Apart Research
   type: non-academic

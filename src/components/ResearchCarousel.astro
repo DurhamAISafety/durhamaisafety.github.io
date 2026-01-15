@@ -1,0 +1,115 @@
+---
+/**
+ * ResearchCarousel component - Horizontal scrolling carousel with navigation arrows
+ * 
+ * Props:
+ * - papers: Array of ResearchPaper objects
+ * - title: Section title
+ * - id: Unique ID for this carousel (for JS targeting)
+ */
+import type { ResearchPaper } from '../data/research';
+import type { ImageMetadata } from 'astro';
+import ResearchCard from './ResearchCard.astro';
+
+export interface Props {
+  papers: ResearchPaper[];
+  title: string;
+  id: string;
+}
+
+const { papers, title, id } = Astro.props;
+const showArrows = papers.length > 4;
+
+// Auto-import all thumbnails from research folder
+const thumbnailModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/research/*.{png,jpg,jpeg,webp}',
+  { eager: true }
+);
+
+// Build map of filename -> ImageMetadata
+const thumbnailMap: Record<string, ImageMetadata> = {};
+for (const [path, module] of Object.entries(thumbnailModules)) {
+  const filename = path.split('/').pop()!;
+  thumbnailMap[filename] = module.default;
+}
+---
+
+<div class="research-carousel-section mb-12">
+  <div class="flex items-center justify-between mb-6">
+    <h4 class="text-2xl font-bold">{title}</h4>
+    
+    {showArrows && (
+      <div class="flex gap-2">
+        <button 
+          class="carousel-arrow carousel-prev p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          data-carousel={id}
+          data-direction="prev"
+          aria-label="Previous papers"
+        >
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button 
+          class="carousel-arrow carousel-next p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          data-carousel={id}
+          data-direction="next"
+          aria-label="Next papers"
+        >
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    )}
+  </div>
+  
+  <div class="relative">
+    <div 
+      id={id}
+      class="carousel-track flex gap-6 overflow-x-auto scroll-smooth pb-4 snap-x snap-mandatory scrollbar-hide"
+    >
+      {papers.map(paper => (
+        <div class="carousel-item flex-shrink-0 w-72 snap-start">
+          <ResearchCard 
+            paper={paper} 
+            thumbnailImage={paper.thumbnail ? thumbnailMap[paper.thumbnail] : undefined}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Responsive card widths */
+  @media (max-width: 640px) {
+    .carousel-item {
+      width: 85vw;
+      max-width: 280px;
+    }
+  }
+</style>
+
+<script>
+  // Carousel navigation
+  document.querySelectorAll('.carousel-arrow').forEach(button => {
+    button.addEventListener('click', () => {
+      const carouselId = button.getAttribute('data-carousel');
+      const direction = button.getAttribute('data-direction');
+      const track = document.getElementById(carouselId);
+      
+      if (!track) return;
+      
+      const cardWidth = 288 + 24; // w-72 (288px) + gap-6 (24px)
+      const scrollAmount = direction === 'next' ? cardWidth * 4 : -cardWidth * 4;
+      
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  });
+</script>
