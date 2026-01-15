@@ -18,8 +18,8 @@ The official website for Durham AISI, built with Astro and deployed to GitHub Pa
 
 | To update... | Edit this file |
 |--------------|----------------|
-| Team members | `src/data/team.ts` + add photo to `src/assets/team/` |
-| Research papers | `src/data/research.ts` |
+| Team members | `src/content/team.yml` + add photo to `src/assets/team/` |
+| Research papers | `src/content/research.yml` |
 | Navigation links | `src/components/Header.astro` |
 | Footer & social links | `src/components/Footer.astro` |
 | Site config (email, title) | `src/data/config.ts` |
@@ -27,29 +27,36 @@ The official website for Durham AISI, built with Astro and deployed to GitHub Pa
 
 ### Adding a Team Member
 
-1. Add their photo to `src/assets/team/`
-2. Edit `src/data/team.ts`:
-   ```ts
-   import newPhoto from '../assets/team/photo.jpg';
-   
-   // Add to the team array:
-   { name: "Name", role: "Role", photo: newPhoto, link: "https://..." }
+1. Add their photo to `src/assets/team/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
+2. Edit `src/content/team.yml` and add:
+   ```yaml
+   - name: Alice Smith
+     role: Co-organiser
+     photo: alice.jpg
+     link: https://example.com   # optional
    ```
+
+See the example template at the top of `team.yml` for more details.
 
 ### Adding a Research Paper
 
-Edit `src/data/research.ts` and add:
-```ts
-{
-  title: "Paper Title",
-  url: "https://link-to-paper",
-  authors: [{ name: "Surname, F." }],
-  year: 2025,
-  venue: "Conference Name",
-  tags: ["Topic", "Conference 2025"]
-}
+Edit `src/content/research.yml` and add at the top (most recent first):
+```yaml
+- title: "Paper Title"
+  url: https://link-to-paper
+  authors:
+    - name: "Surname, F."
+    - name: "Member, A."
+      team: true           # Bold DAISI member names
+  year: 2025
+  venue: "Conference Name"
+  tags:
+    - Topic
+    - Conference 2025
+  type: academic           # or 'non-academic'
 ```
-Team member authors are auto-bolded.
+
+See the example template at the top of `research.yml` for all options.
 
 ## Deployment
 
@@ -67,6 +74,7 @@ Defined in `tailwind.config.mjs`:
 - **Build errors**: Run `npm run build` locally to see details
 - **Changes not appearing**: Check the Actions tab on GitHub for build status
 - **Images not loading**: Paths should start with `/` for public assets
+- **YAML errors**: Check indentation (use 2 spaces, not tabs)
 
 ## License
 

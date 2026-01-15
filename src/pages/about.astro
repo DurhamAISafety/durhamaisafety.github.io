@@ -149,14 +149,17 @@ import { Image } from 'astro:assets';
 											<i class="fas fa-user text-3xl text-white"></i>
 										</div>
 									</div>
-									<h4 class="text-xl font-bold mb-2">{person.name}</h4>
-									<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
-									{person.link && (
-										<a href={person.link} target="_blank" rel="noopener" class="inline-flex items-center text-bright-purple hover:text-light-purple transition-colors text-sm">
-											<span class="underline">Learn more</span>
-											<i class="fas fa-external-link-alt ml-2 text-xs icon-current"></i>
-										</a>
+									{person.link ? (
+										<h4 class="text-xl font-bold mb-2">
+											<a href={person.link} target="_blank" rel="noopener" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center">
+												{person.name}
+												<i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+											</a>
+										</h4>
+									) : (
+										<h4 class="text-xl font-bold mb-2">{person.name}</h4>
 									)}
+									<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
 								</div>
 							))}
 						</div>
@@ -198,14 +201,17 @@ import { Image } from 'astro:assets';
 												<i class="fas fa-user text-3xl text-white"></i>
 											</div>
 										</div>
-										<h4 class="text-xl font-bold mb-2">{person.name}</h4>
-										<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
-										{person.link && (
-											<a href={person.link} target="_blank" rel="noopener" class="inline-flex items-center text-bright-purple hover:text-light-purple transition-colors text-sm">
-												<span class="underline">Learn more</span>
-												<i class="fas fa-external-link-alt ml-2 text-xs icon-current"></i>
-											</a>
+										{person.link ? (
+											<h4 class="text-xl font-bold mb-2">
+												<a href={person.link} target="_blank" rel="noopener" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center">
+													{person.name}
+													<i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+												</a>
+											</h4>
+										) : (
+											<h4 class="text-xl font-bold mb-2">{person.name}</h4>
 										)}
+										<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
 									</div>
 								))}
 							</div>

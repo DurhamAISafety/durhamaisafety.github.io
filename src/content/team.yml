@@ -1,0 +1,43 @@
+# Team Members
+# Edit this file to update team members on the About page
+# Photos are stored in src/assets/team/
+#
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ EXAMPLE - Copy this template and uncomment to add a new member │
+# └─────────────────────────────────────────────────────────────────┘
+#
+# - name: Alice Smith              # Required: Display name
+#   role: Co-organiser             # Required: Their role in DAISI
+#   photo: alice.jpg               # Optional: Filename in src/assets/team/
+#   link: https://example.com      # Optional: Personal website or profile
+#
+# Notes:
+# - Add photos to: src/assets/team/ (supported: .jpg, .jpeg, .png, .webp)
+# - Indentation matters! Use 2 spaces, not tabs
+# - Keep the dash (-) at the start of each person
+
+- name: Bella
+  role: Lead Organiser and Publicity
+  photo: bella-pic.jpg
+
+- name: Theo
+  role: Co-organiser
+  photo: theo.jpeg
+
+- name: Eve
+  role: Co-organiser and Treasurer
+  photo: eve.jpeg
+
+- name: Quinn
+  role: Co-organiser and Secretary
+  photo: quinn.jpeg
+
+- name: Patrick
+  role: PhD Researcher (Mechinterp)
+  photo: patrick.jpeg
+  link: https://www.durham.ac.uk/staff/patrick-leask/
+
+- name: Leonie
+  role: PhD Researcher (Law)
+  photo: leonie.png
+  link: https://www.durham.ac.uk/staff/leonie-a-stuessi/
