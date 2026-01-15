@@ -239,6 +239,10 @@ body {
     border-bottom: none;
 }
 
+.dark .header--transparent {
+    border-bottom: none;
+}
+
 /* When scrolled, add background to transparent header */
 .header--transparent.header--scrolled {
     position: fixed;
