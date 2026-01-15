@@ -44,16 +44,17 @@ Edit `src/content/research.yml` and add at the top (most recent first):
 ```yaml
 - title: "Paper Title"
   url: https://link-to-paper
+  thumbnail: paper.png          # Optional: image in src/assets/research/
   authors:
     - name: "Surname, F."
     - name: "Member, A."
-      team: true           # Bold DAISI member names
+      team: true                # Bold DAISI member names
   year: 2025
-  venue: "Conference Name"
+  month: 7                      # 1-12 for sorting (most recent first)
+  venue: "ICML 2025"            # Shown as grey tag
   tags:
-    - Topic
-    - Conference 2025
-  type: academic           # or 'non-academic'
+    - Interpretability          # Purple topic tags
+  type: academic                # or 'non-academic'
 ```
 
 See the example template at the top of `research.yml` for all options.
