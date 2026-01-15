@@ -52,7 +52,30 @@ import Layout from '../layouts/Layout.astro';
   <section class="section section-neutral">
   <div class="site-container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Programs</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+      
+      <!-- Jump Navigation -->
+      <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
+        <a href="#intro-seminars" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-chalkboard-teacher mr-1" aria-hidden="true"></i> Intro Seminars
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#reading-groups" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-book-open mr-1" aria-hidden="true"></i> Reading Groups
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#research-projects" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-terminal mr-1" aria-hidden="true"></i> Research Support
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#speaker-series" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-microphone mr-1" aria-hidden="true"></i> Speaker Events
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#socials" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-users mr-1" aria-hidden="true"></i> Socials
+        </a>
+      </nav>
     </div>
   </section>
 

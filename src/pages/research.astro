@@ -50,7 +50,22 @@ const isConferenceTag = (tag: string) => {
   <section class="section section-neutral">
     <div class="site-container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Research</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+      
+      {/* Jump Navigation */}
+      <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
+        <a href="#research-areas" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-flask mr-1" aria-hidden="true"></i> Research Areas
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#opportunities" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-door-open mr-1" aria-hidden="true"></i> Opportunities
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#recent-research" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-file-alt mr-1" aria-hidden="true"></i> Recent Research
+        </a>
+      </nav>
     </div>
   </section>
 
@@ -58,7 +73,7 @@ const isConferenceTag = (tag: string) => {
   <section class="section  section-neutral">
     <div class="site-container">
       {/* Research Areas */}
-      <div class="text-center mb-12">
+      <div id="research-areas" class="text-center mb-12">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Areas</h3>
         <div class="section-divider"></div>
       </div>
@@ -132,7 +147,7 @@ const isConferenceTag = (tag: string) => {
       </div>
 
       {/* Research Opportunities */}
-      <div class="text-center mb-12">
+      <div id="opportunities" class="text-center mb-12">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
         <div class="section-divider"></div>
       </div>
@@ -159,7 +174,7 @@ const isConferenceTag = (tag: string) => {
       </div>
 
       {/* Recent Research */}
-      <div class="text-center mb-12">
+      <div id="recent-research" class="text-center mb-12">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Recent Research by Durham AISI Members</h3>
         <div class="section-divider"></div>
       </div>

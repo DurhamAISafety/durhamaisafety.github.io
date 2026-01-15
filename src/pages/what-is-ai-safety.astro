@@ -44,12 +44,27 @@ import Layout from "../layouts/Layout.astro";
   <section class="section section-neutral">
     <div class="site-container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">AI Safety and Why It Matters</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+      
+      {/* Jump Navigation */}
+      <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
+        <a href="#what-is-ais" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i> What is AI Safety?
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#why-it-matters" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-exclamation-circle mr-1" aria-hidden="true"></i> Why It Matters
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#getting-started" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-rocket mr-1" aria-hidden="true"></i> Getting Started
+        </a>
+      </nav>
     </div>
   </section>
 
   {/* The Foundation */}
-  <section class="section section-neutral">
+  <section id="what-is-ais" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-16">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">What is AI Safety?</h3>
@@ -95,7 +110,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   {/* Why It Matters & Getting Started */}
-  <section class="section section-neutral">
+  <section id="why-it-matters" class="section section-neutral">
     <div class="site-container">
       {/* Why AI Safety Matters */}
       <div class="text-center mb-16">
@@ -249,14 +264,14 @@ import Layout from "../layouts/Layout.astro";
       </div>
 
       {/* Links for Getting Started */}
-      <div class="text-center mb-16">
+      <div id="getting-started" class="text-center mb-16">
         <h3 class="text-3xl md:text-4xl font-bold mb-6">Links for Getting Started</h3>
         <div class="section-divider"></div>
       </div>
 
-      {/* Featured: aisafety.com hub */}
+      {/* Featured: AISafety.com hub */}
       <div class="max-w-4xl mx-auto mb-12">
-        <a href="https://www.aisafety.com/" target="_blank" rel="noopener noreferrer" 
+        <a href="https://www.AISafety.com/" target="_blank" rel="noopener noreferrer" 
            class="info-card block p-8 transition-all duration-300 hover:scale-[1.02] group">
           <div class="flex flex-col md:flex-row items-center gap-6">
             <div class="flex-shrink-0">
@@ -266,14 +281,14 @@ import Layout from "../layouts/Layout.astro";
             </div>
             <div class="text-center md:text-left flex-1">
               <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                aisafety.com
+                AISafety.com
                 <i class="fas fa-external-link-alt ml-2 text-sm opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
               </h4>
               <p class="text-bright-purple text-lg font-medium mb-3">
                 The central hub for all things AI safety
               </p>
               <p class="text-slate-600 dark:text-slate-300 text-sm">
-                Courses • Training events • Career resources • News • Project opportunities • and more
+                Events • Training • Career Advice • News • Projects • and more
               </p>
             </div>
             <div class="flex-shrink-0 hidden md:block">
@@ -287,42 +302,38 @@ import Layout from "../layouts/Layout.astro";
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
         <div class="info-card p-6 text-center">
-          <i class="fas fa-book text-5xl text-teal mb-4" aria-hidden="true"></i>
-          <h4 class="text-lg font-bold mb-4">Reading &amp; Watching</h4>
+          <i class="fas fa-lightbulb text-5xl text-teal mb-4" aria-hidden="true"></i>
+          <h4 class="text-lg font-bold mb-4">Build Intuition</h4>
           <ul class="text-sm space-y-2 text-left">
-            <li>• <a href="https://www.youtube.com/watch?v=pYXy-A4siMw" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Intro to AI Safety (18m video)
+            <li>• <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
+              Intro to the maths behind LLMs (7 min)
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
             <li>• <a href="https://aisafety.info/questions/NM3T" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              The Case for AI Safety (article)
+              Intuition behind AI Safety (17 min read)
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
-            <li>• <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Intro to LLMs (7m video)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.aisafety.com/" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              &amp; more
+            <li>• <a href="https://youtu.be/pYXy-A4siMw?si=0laypankgPGVryW2&t=15" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
+              ...or in video form (18 min watch)
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
           </ul>
         </div>
 
         <div class="info-card p-6 text-center">
-          <i class="fas fa-laptop-code text-5xl text-emerald mb-4" aria-hidden="true"></i>
+          <i class="fas fa-graduation-cap text-5xl text-emerald mb-4" aria-hidden="true"></i>
           <h4 class="text-lg font-bold mb-4">Upskilling</h4>
           <ul class="text-sm space-y-2 text-left">
+            <li>• <a href="https://bluedot.org/courses" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
+              Courses with certificates (from 2hrs)
+              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a></li>
             <li>• <a href="https://www.aisafety.com/events-and-training" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Events and Training
+              Events and training (newsletter)
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
-            <li>• <a href="https://www.aisafety.com/courses" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Courses
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.aisafety.com/projects" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Projects
+            <li>• <a href="https://www.aisafety.com/jobs" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
+              Jobs and internships
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
           </ul>
@@ -332,20 +343,16 @@ import Layout from "../layouts/Layout.astro";
           <i class="fas fa-newspaper text-5xl text-ocean-blue mb-4" aria-hidden="true"></i>
           <h4 class="text-lg font-bold mb-4">In the News</h4>
           <ul class="text-sm space-y-2 text-left">
-            <li>• <a href="https://www.theverge.com/2023/5/30/23742005/ai-risk-warning-22-word-statement-google-deepmind-openai" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Top AI researchers warn of extinction risk
+            <li>• <a href="https://www.nbcnews.com/tech/tech-news/un-general-assembly-opens-plea-binding-ai-safeguards-red-lines-nobel-rcna231973" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500">
+              UN pleads for binding AI safeguards (Sep 2025, NBC)
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
-            <li>• <a href="https://www.transformernews.ai/p/ai-psychosis-stories-roundup" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              AI psychosis stories roundup
+            <li>• <a href="https://www.theguardian.com/technology/2026/jan/04/world-may-not-have-time-to-prepare-for-ai-safety-risks-says-leading-researcher" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500">
+              "World may not have time to prepare" (Jan 2026, Guardian)
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
-            <li>• <a href="https://www.technologyreview.com/2023/05/02/1072528/geoffrey-hinton-google-why-scared-ai/" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Geoffrey Hinton on why he's scared of AI
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.aisafety.com/stay-informed" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Stay informed
+            <li>• <a href="https://www.transformernews.ai/about" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500">
+              Stay informed with Transformer News
               <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
             </a></li>
           </ul>
