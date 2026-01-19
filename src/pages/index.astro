@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-picture.jpeg';
 import { research } from '../data/research';
+import { supporters } from '../data/supporters';
 import ResearchCarousel from '../components/ResearchCarousel.astro';
 ---
 
@@ -234,39 +235,17 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <a href="https://pathfinder.kairos-project.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
-                    <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
-                        <img src="/images/supporters/pathfinder.svg" alt="Pathfinder Fellowship logo" class="max-h-16 max-w-16 object-contain" />
-                    </div>
-                    <div class="text-center min-h-[3rem] flex flex-col justify-start">
-                        <span class="text-base md:text-lg font-semibold">Pathfinder Fellowship</span>
-                    </div>
-                </a>
-                <a href="https://coefficientgiving.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
-                    <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
-                        <img src="/images/supporters/Coefficient_Logo_Green.jpeg" alt="Coefficient Giving logo" class="max-h-16 max-w-16 object-contain" />
-                    </div>
-                    <div class="text-center min-h-[3rem] flex flex-col justify-start">
-                        <span class="text-base md:text-lg font-semibold">Coefficient Giving</span>
-                        <span class="text-sm text-slate-500">(fmr. Open Philanthropy)</span>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/effectivealtruismdurham/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
-                    <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
-                        <img src="/images/supporters/eadurham.jpg" alt="EA Durham logo" class="max-h-16 max-w-16 object-contain" />
-                    </div>
-                    <div class="text-center min-h-[3rem] flex flex-col justify-start">
-                        <span class="text-base md:text-lg font-semibold">EA Durham</span>
-                    </div>
-                </a>
-                <a href="https://www.durhamsu.com/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
-                    <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
-                        <img src="/images/supporters/durham-su.png" alt="Durham Student Union logo" class="max-h-16 max-w-16 object-contain" />
-                    </div>
-                    <div class="text-center min-h-[3rem] flex flex-col justify-start">
-                        <span class="text-base md:text-lg font-semibold">Durham SU</span>
-                    </div>
-                </a>
+                {supporters.map((supporter) => (
+                    <a href={supporter.link} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                        <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
+                            <img src={`/images/supporters/${supporter.logo}`} alt={`${supporter.name} logo`} class="max-h-16 max-w-16 object-contain" />
+                        </div>
+                        <div class="text-center min-h-[3rem] flex flex-col justify-start">
+                            <span class="text-base md:text-lg font-semibold">{supporter.name}</span>
+                            {supporter.subtitle && <span class="text-sm text-slate-500">{supporter.subtitle}</span>}
+                        </div>
+                    </a>
+                ))}
             </div>
         </div>
     </section>
