@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-picture.jpeg';
+import { research } from '../data/research';
+import ResearchCarousel from '../components/ResearchCarousel.astro';
 ---
 
 <Layout 
@@ -205,6 +207,25 @@ import heroImage from '../assets/hero-picture.jpeg';
         </div>
     </section>
 
+    <!-- Research Section -->
+    <section id="research" class="py-16 section-neutral">
+        <div class="site-container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Research</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+            </div>
+
+            <ResearchCarousel 
+                papers={research} 
+                title="Latest Publications & Projects" 
+                id="home-research-carousel" 
+            />
+            <div class="text-center mb-16">
+                <a href="/research" class="btn btn-secondary mb-12">View All Research</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Proudly Supported By Section -->
     <section id="supported-by" class="py-16 section-neutral">
         <div class="site-container mx-auto px-6">
@@ -212,7 +233,7 @@ import heroImage from '../assets/hero-picture.jpeg';
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Proudly Supported By</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
                 <a href="https://pathfinder.kairos-project.org/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
                     <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
                         <img src="/images/supporters/pathfinder.svg" alt="Pathfinder Fellowship logo" class="max-h-16 max-w-16 object-contain" />
@@ -236,6 +257,14 @@ import heroImage from '../assets/hero-picture.jpeg';
                     </div>
                     <div class="text-center min-h-[3rem] flex flex-col justify-start">
                         <span class="text-base md:text-lg font-semibold">EA Durham</span>
+                    </div>
+                </a>
+                <a href="https://www.durhamsu.com/" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                    <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
+                        <img src="/images/supporters/durham-su.png" alt="Durham Student Union logo" class="max-h-16 max-w-16 object-contain" />
+                    </div>
+                    <div class="text-center min-h-[3rem] flex flex-col justify-start">
+                        <span class="text-base md:text-lg font-semibold">Durham SU</span>
                     </div>
                 </a>
             </div>
