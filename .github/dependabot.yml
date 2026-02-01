@@ -3,4 +3,23 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
+    groups:
+      # Group all Astro-related packages together
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+      # Group development dependencies
+      dev-dependencies:
+        dependency-type: "development"
+    # Ignore major version updates that need manual review
+    ignore:
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@astrojs/tailwind"
+        update-types: ["version-update:semver-major"]
+    labels:
+      - "dependencies"
+      - "automated"
+    open-pull-requests-limit: 5

@@ -1,5 +1,11 @@
 # Durham AI Safety Initiative Website
 
+[![Deploy Astro site to GitHub Pages](https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io/actions/workflows/deploy-astro.yml/badge.svg)](https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io/actions/workflows/deploy-astro.yml)
+[![PR Validation](https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io/actions/workflows/pr-validation.yml)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
+[![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 The official website for Durham AISI, built with Astro and deployed to GitHub Pages.
 
 ## Quick Start
