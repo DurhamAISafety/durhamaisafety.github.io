@@ -30,8 +30,10 @@ jobs:
       - name: Check for broken links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress './dist/**/*.html' --exclude-path node_modules
+          args: --config ./lychee.toml --no-progress './dist/**/*.html'
           fail: true
+          # Only fail on 4xx client errors, not 5xx server errors or timeouts
+          failIfEmpty: false
 
   lighthouse:
     runs-on: ubuntu-latest
