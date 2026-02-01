@@ -43,6 +43,7 @@ The official website for Durham AISI, built with Astro and deployed to GitHub Pa
    ```
 
 See the example template at the top of `team.yml` for more details.
+`src/content/alum.yml` works similarly for alumni.
 
 ### Adding a Research Paper
 
