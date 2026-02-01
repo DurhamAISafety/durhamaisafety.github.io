@@ -1,0 +1,23 @@
+# Alumni
+# Edit this file to update alumni on the About page
+# Photos are stored in src/assets/team/
+#
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ EXAMPLE - Copy this template and uncomment to add a new member │
+# └─────────────────────────────────────────────────────────────────┘
+#
+# - name: Alice Smith              # Required: Display name
+#   role: Former Co-organiser      # Required: Their role in DAISI
+#   photo: alice.jpg               # Optional: Filename in src/assets/team/
+#   link: https://example.com      # Optional: Personal website or profile
+#
+# Notes:
+# - Add photos to: src/assets/team/ (supported: .jpg, .jpeg, .png, .webp)
+# - Indentation matters! Use 2 spaces, not tabs
+# - Keep the dash (-) at the start of each person
+# - Alumni are displayed below the "Join Our Team" section
+
+# Add alumni here (uncomment and replace with actual alumni data)
+# - name: Example Alumni
+#   role: Former Organiser
+#   photo: example.jpg
