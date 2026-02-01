@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
-    "baseline-browser-mapping": "^2.9.15"
+    "baseline-browser-mapping": "^2.9.19"
   }
 }
