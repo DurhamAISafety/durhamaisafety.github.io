@@ -12,7 +12,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^5.17.1",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.18",
     "yaml": "^2.8.2"
   },
   "devDependencies": {
