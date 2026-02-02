@@ -13,8 +13,8 @@ The official website for Durham AISI, built with Astro and deployed to GitHub Pa
 1. Install [Node.js](https://nodejs.org/) (v18+)
 2. Clone and run:
    ```bash
-   git clone https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io.git
-   cd AI-Safety-Durham.github.io
+   git clone https://github.com/DurhamAISafety/durhamaisafety.github.io.git
+   cd durhamaisafety.github.io
    npm install
    npm run dev
    ```
