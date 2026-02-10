@@ -83,8 +83,11 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
             </div>
             
             <div id="calendar" class="max-w-5xl mx-auto mb-16">
-                <p class="text-center text-lg mb-8 font-medium">
-                    We'll update this calendar with upcoming events and deadlines. Sync this to yours and watch out for updates!
+                <p class="text-center text-lg mb-4 font-medium">
+                    We'll update this calendar with upcoming events. Subscribe <a href="https://luma.com/daisi" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">here</a> to sync with your calendar!
+                </p>
+                <p class="text-center text-sm mb-8 text-slate-600">
+                    If you prefer the classic Google Calendar, you can find that <a href="https://calendar.google.com/calendar/embed?src=896edcf4f9cd47305232b2c78cc06d4d1365a18dabbace749bde237cfd92bea6%40group.calendar.google.com&ctz=Europe%2FLondon" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">here</a>.
                 </p>
                 <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
                     <!-- Loading state -->
@@ -96,13 +99,17 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
                     </div>
                     
                     <!-- Calendar iframe -->
-                    <div class="overflow-hidden rounded-xl">                            
-                        <iframe 
+                    <div class="overflow-hidden rounded-xl luma-calendar-wrapper">                            
+                        <iframe
                             id="calendar-iframe" 
                             title="Durham AISI Events Calendar"
-                            src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FLondon&showPrint=0&title=Durham%20AISI%20Events&showCalendars=0&mode=AGENDA&hl=en_GB&src=ODk2ZWRjZjRmOWNkNDczMDUyMzJiMmM3OGNjMDZkNGQxMzY1YTE4ZGFiYmFjZTc0OWJkZTIzN2NmZDkyYmVhNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%238e24aa"
-                            class="w-full h-96 md:h-[500px] lg:h-[600px] border-0 calendar-iframe" 
-                            style="border-width:0" frameborder="0" scrolling="no" loading="lazy"
+                            src="https://luma.com/embed/calendar/cal-lvIwlKjJGAceOBN/events"
+                            frameborder="0"
+                            class="calendar-iframe"
+                            loading="lazy"
+                            allowfullscreen=""
+                            aria-hidden="false"
+                            tabindex="0"
                         ></iframe>
                     </div>
                 </div>
@@ -343,6 +350,29 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
 
 .calendar-container {
     position: relative;
+}
+
+/* Luma calendar responsive wrapper */
+.luma-calendar-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+.luma-calendar-wrapper .calendar-iframe {
+    width: 100%;
+    min-height: 450px;
+    height: 600px;
+    border: 1px solid rgba(191, 203, 218, 0.533);
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .luma-calendar-wrapper .calendar-iframe {
+        height: 500px;
+        min-height: 400px;
+    }
 }
 </style>
 
