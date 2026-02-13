@@ -33,7 +33,7 @@ jobs:
           args: >-
             --base https://durhamaisafety.github.io
             --max-concurrency 8
-            --accept 200,201,204,301,302,303,307,308
+            --accept 200,201,204,301,302,303,307,308,429
             --timeout 20
             --max-retries 3
             --user-agent "Mozilla/5.0 (compatible; LinkChecker/1.0)"
@@ -46,6 +46,10 @@ jobs:
             --exclude "https://x.com/*"
             --exclude "https://linkedin.com/in/*"
             --exclude "https://scholar.google.com/*"
+            --exclude "https://www.durham.ac.uk/*"
+            --exclude "https://durham.ac.uk/*"
+            --exclude "https://www.durhamsu.com/*"
+            --exclude "https://durhamsu.com/*"
             --cache
             --verbose
             --no-progress

@@ -1074,7 +1074,7 @@ body {
 
 /* -------------------------------------------
    Fix: Ensure header icons are white on cards
-   Context: Programs page gradient header squares
+   Context: Programmes page gradient header squares
    Reason: Avoid affecting smaller icons inside gradient content boxes
 -------------------------------------------- */
 /* Only force white on the big header squares */
@@ -1368,7 +1368,7 @@ body {
 }
 
 /* -------------------------------------------
-   Fixes for Programs page: Research Support
+   Fixes for Programmes page: Research Support
    - Improve contrast and brand color mapping
 -------------------------------------------- */
 /* Headings darker for strong contrast */

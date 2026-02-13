@@ -28,7 +28,7 @@ export const siteConfig = {
       title: "More",
       dropdown: [
         { title: "About Us", url: "/about/" },
-        { title: "Programs", url: "/programs/" },
+        { title: "Programmes", url: "/programmes/" },
         { title: "Research", url: "/research/" },
         { title: "What is AI Safety?", url: "/what-is-ai-safety/" },
         { title: "Get Involved", url: "/get-involved/" }

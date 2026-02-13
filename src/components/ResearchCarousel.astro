@@ -102,6 +102,8 @@ for (const [path, module] of Object.entries(thumbnailModules)) {
     button.addEventListener('click', () => {
       const carouselId = button.getAttribute('data-carousel');
       const direction = button.getAttribute('data-direction');
+      
+      if (!carouselId) return;
       const track = document.getElementById(carouselId);
       
       if (!track) return;

@@ -58,7 +58,7 @@ const isHome = pathname === '/';
                         More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="/programs/">Programs</a>
+                        <a href="/programmes/">Programmes</a>
                         <a href="/research/">Research</a>
                         <a href="/what-is-ai-safety/">What is AI Safety?</a>
                     </div>
@@ -117,7 +117,7 @@ const isHome = pathname === '/';
         <a href="/" class="mobile-nav-link">Home</a>
         <a href="/#events" class="mobile-nav-link">Events</a>
         <a href="/about/" class="mobile-nav-link">About Us</a>
-        <a href="/programs/" class="mobile-nav-link">Programs</a>
+        <a href="/programmes/" class="mobile-nav-link">Programmes</a>
         <a href="/research/" class="mobile-nav-link">Research</a>
         <a href="/what-is-ai-safety/" class="mobile-nav-link">What is AI Safety?</a>
         <a href="/get-involved/" class="mobile-nav-link bg-durham-purple text-white rounded-lg px-4 py-2 font-semibold hover:bg-[#7a2d80] transition-colors">Get Involved</a>
@@ -213,7 +213,10 @@ const isHome = pathname === '/';
         
         // Sync initial state
         const isDark = document.documentElement.classList.contains('dark');
-        darkModeToggleMobile.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        const icon = darkModeToggleMobile.querySelector('i');
+        if (icon) {
+            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
     }
     
     // Transparent header scroll effect

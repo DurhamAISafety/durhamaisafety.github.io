@@ -197,7 +197,7 @@ import { Image } from 'astro:assets';
 												loading="lazy"
 												decoding="async"
 												class="w-full h-full object-cover"
-												onerror="const f=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(f){f.style.display='flex'}; this.remove();"
+												onerror="const fb2=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb2){fb2.style.display='flex'}; this.remove();"
 												style="width:100%; height:100%; object-fit: cover;"
 											/>
 										) : (
@@ -206,12 +206,11 @@ import { Image } from 'astro:assets';
 												alt={person.name}
 												widths={[128,160,200,320]}
 												sizes="(min-width: 1024px) 160px, (min-width: 768px) 160px, 128px"
-												aspectRatio="1:1"
 												fit="cover"
 												loading="lazy"
 												decoding="async"
 												class="w-full h-full object-cover"
-												onerror="const f=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(f){f.style.display='flex'}; this.remove();"
+												onerror="const fb3=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb3){fb3.style.display='flex'}; this.remove();"
 											/>
 										)
 									) : (
