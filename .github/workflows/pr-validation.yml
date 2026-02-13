@@ -30,7 +30,25 @@ jobs:
       - name: Check for broken links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config ./lychee.toml --no-progress './dist/**/*.html'
+          args: >-
+            --max-concurrency 8
+            --accept 200,201,204,301,302,303,307,308
+            --timeout 20
+            --max-retries 3
+            --user-agent "Mozilla/5.0 (compatible; LinkChecker/1.0)"
+            --exclude "http://localhost*"
+            --exclude "https://localhost*"
+            --exclude "http://127.0.0.1*"
+            --exclude "http://example.com*"
+            --exclude "https://example.com*"
+            --exclude "https://twitter.com/*"
+            --exclude "https://x.com/*"
+            --exclude "https://linkedin.com/in/*"
+            --exclude "https://scholar.google.com/*"
+            --cache
+            --verbose
+            --no-progress
+            './dist/**/*.html'
           fail: true
           # Only fail on 4xx client errors, not 5xx server errors or timeouts
           failIfEmpty: false
