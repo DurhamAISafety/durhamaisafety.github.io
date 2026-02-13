@@ -215,7 +215,10 @@ const isHome = pathname === '/';
         
         // Sync initial state
         const isDark = document.documentElement.classList.contains('dark');
-        darkModeToggleMobile.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        const icon = darkModeToggleMobile.querySelector('i');
+        if (icon) {
+            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
     }
     
     // Transparent header scroll effect
