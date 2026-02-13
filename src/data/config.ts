@@ -28,15 +28,12 @@ export const siteConfig = {
       { title: "Research", url: "/research/" }
     ],
     dropdown: {
-      label: "More",
+      title: "More",
       items: [
         { title: "Programmes", url: "/programmes/" },
         { title: "What is AI Safety?", url: "/what-is-ai-safety/" }
       ]
     },
-    cta: {
-      title: "Get Involved",
-      url: "/get-involved/"
-    }
+    cta: { title: "Get Involved", url: "/get-involved/" }
   }
 };

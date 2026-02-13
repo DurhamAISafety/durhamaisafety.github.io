@@ -49,13 +49,13 @@ const isHome = pathname === '/';
             
             <!-- Desktop navigation - center -->
             <div class="nav-center nav-menu-desktop">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#events" class="nav-link">Events</a>
-                <a href="/about/" class="nav-link">About</a>
+                {siteConfig.navigation.main.map((item) => (
+                    <a href={item.url} class="nav-link">{item.title}</a>
+                ))}
                 
                 <div class="dropdown">
                     <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-                        More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
+                        {siteConfig.navigation.dropdown.title} <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-content">
                         {siteConfig.navigation.dropdown.items.map((item) => (
@@ -84,8 +84,8 @@ const isHome = pathname === '/';
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
                 
-                <a href="/get-involved/" class="nav-cta">
-                    Get Involved
+                <a href={siteConfig.navigation.cta.url} class="nav-cta">
+                    {siteConfig.navigation.cta.title}
                 </a>
             </div>
         </nav>
