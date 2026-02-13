@@ -31,6 +31,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           args: >-
+            --base https://durhamaisafety.github.io
             --max-concurrency 8
             --accept 200,201,204,301,302,303,307,308
             --timeout 20
