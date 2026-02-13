@@ -58,9 +58,9 @@ const isHome = pathname === '/';
                         More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="/programmes/">Programmes</a>
-                        <a href="/research/">Research</a>
-                        <a href="/what-is-ai-safety/">What is AI Safety?</a>
+                        {siteConfig.navigation.dropdown.items.map((item) => (
+                            <a href={item.url}>{item.title}</a>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -114,13 +114,15 @@ const isHome = pathname === '/';
                 <span class="text-lg font-bold"> Initiative</span>
             </div>
         </a>
-        <a href="/" class="mobile-nav-link">Home</a>
-        <a href="/#events" class="mobile-nav-link">Events</a>
-        <a href="/about/" class="mobile-nav-link">About Us</a>
-        <a href="/programmes/" class="mobile-nav-link">Programmes</a>
-        <a href="/research/" class="mobile-nav-link">Research</a>
-        <a href="/what-is-ai-safety/" class="mobile-nav-link">What is AI Safety?</a>
-        <a href="/get-involved/" class="mobile-nav-link bg-durham-purple text-white rounded-lg px-4 py-2 font-semibold hover:bg-[#7a2d80] transition-colors">Get Involved</a>
+        {siteConfig.navigation.main.map((item) => (
+            <a href={item.url} class="mobile-nav-link">{item.title}</a>
+        ))}
+        {siteConfig.navigation.dropdown.items.map((item) => (
+            <a href={item.url} class="mobile-nav-link">{item.title}</a>
+        ))}
+        <a href={siteConfig.navigation.cta.url} class="mobile-nav-link bg-durham-purple text-white rounded-lg px-4 py-2 font-semibold hover:bg-[#7a2d80] transition-colors">
+            {siteConfig.navigation.cta.title}
+        </a>
         
         <div class="mobile-nav-footer">
             <div class="mobile-social-links">

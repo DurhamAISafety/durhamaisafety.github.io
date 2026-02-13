@@ -21,18 +21,22 @@ export const siteConfig = {
   showEditLink: false,
   googleSiteVerification: "BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw",
 
-  navigation: [
-    { title: "Home", url: "/" },
-    { title: "Events", url: "/#events" },
-    {
-      title: "More",
-      dropdown: [
-        { title: "About Us", url: "/about/" },
+  navigation: {
+    main: [
+      { title: "Events", url: "/#events" },
+      { title: "About", url: "/about/" },
+      { title: "Research", url: "/research/" }
+    ],
+    dropdown: {
+      label: "More",
+      items: [
         { title: "Programmes", url: "/programmes/" },
-        { title: "Research", url: "/research/" },
-        { title: "What is AI Safety?", url: "/what-is-ai-safety/" },
-        { title: "Get Involved", url: "/get-involved/" }
+        { title: "What is AI Safety?", url: "/what-is-ai-safety/" }
       ]
+    },
+    cta: {
+      title: "Get Involved",
+      url: "/get-involved/"
     }
-  ]
+  }
 };

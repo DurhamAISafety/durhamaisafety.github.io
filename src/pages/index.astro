@@ -104,7 +104,6 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
                             id="calendar-iframe" 
                             title="Durham AISI Events Calendar"
                             src="https://luma.com/embed/calendar/cal-lvIwlKjJGAceOBN/events"
-                            frameborder="0"
                             class="calendar-iframe"
                             allowfullscreen=""
                             aria-hidden="false"
@@ -276,13 +275,13 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
             
             const updateParallax = () => {
                 const scrolled = window.scrollY;
-                const heroHeight = heroSection.offsetHeight;
+                const heroHeight = (heroSection as HTMLElement).offsetHeight;
                 
                 // Only apply parallax while hero is visible
                 if (scrolled < heroHeight * 1.5) {
                     // Move at 40% of scroll speed for subtle effect
                     const yPos = scrolled * 0.4;
-                    parallaxContainer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                    (parallaxContainer as HTMLElement).style.transform = `translate3d(0, ${yPos}px, 0)`;
                 }
                 ticking = false;
             };
