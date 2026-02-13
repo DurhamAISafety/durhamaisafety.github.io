@@ -50,6 +50,7 @@ jobs:
             --exclude "https://durham.ac.uk/*"
             --exclude "https://www.durhamsu.com/*"
             --exclude "https://durhamsu.com/*"
+            --exclude "https://durhamaisafety.github.io/404*"
             --cache
             --verbose
             --no-progress
