@@ -496,7 +496,7 @@ body {
 }
 
 /* Hide hamburger on desktop */
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
     .burger {
         display: none;
     }
@@ -507,7 +507,7 @@ body {
     display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
     .nav-menu-desktop {
         display: flex;
         gap: 2rem;
@@ -618,7 +618,7 @@ body {
 }
 
 /* Hide mobile nav on desktop */
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
     .mobile-nav {
         display: none;
     }
@@ -1074,7 +1074,7 @@ body {
 
 /* -------------------------------------------
    Fix: Ensure header icons are white on cards
-   Context: Programs page gradient header squares
+   Context: Programmes page gradient header squares
    Reason: Avoid affecting smaller icons inside gradient content boxes
 -------------------------------------------- */
 /* Only force white on the big header squares */
@@ -1368,7 +1368,7 @@ body {
 }
 
 /* -------------------------------------------
-   Fixes for Programs page: Research Support
+   Fixes for Programmes page: Research Support
    - Improve contrast and brand color mapping
 -------------------------------------------- */
 /* Headings darker for strong contrast */

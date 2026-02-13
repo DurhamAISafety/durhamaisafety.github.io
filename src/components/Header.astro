@@ -49,18 +49,18 @@ const isHome = pathname === '/';
             
             <!-- Desktop navigation - center -->
             <div class="nav-center nav-menu-desktop">
-                <a href="/" class="nav-link">Home</a>
-                <a href="/#events" class="nav-link">Events</a>
-                <a href="/about/" class="nav-link">About</a>
+                {siteConfig.navigation.main.map((item) => (
+                    <a href={item.url} class="nav-link">{item.title}</a>
+                ))}
                 
                 <div class="dropdown">
                     <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-                        More <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
+                        {siteConfig.navigation.dropdown.title} <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="/programs/">Programs</a>
-                        <a href="/research/">Research</a>
-                        <a href="/what-is-ai-safety/">What is AI Safety?</a>
+                        {siteConfig.navigation.dropdown.items.map((item) => (
+                            <a href={item.url}>{item.title}</a>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -84,8 +84,8 @@ const isHome = pathname === '/';
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
                 
-                <a href="/get-involved/" class="nav-cta">
-                    Get Involved
+                <a href={siteConfig.navigation.cta.url} class="nav-cta">
+                    {siteConfig.navigation.cta.title}
                 </a>
             </div>
         </nav>
@@ -114,13 +114,15 @@ const isHome = pathname === '/';
                 <span class="text-lg font-bold"> Initiative</span>
             </div>
         </a>
-        <a href="/" class="mobile-nav-link">Home</a>
-        <a href="/#events" class="mobile-nav-link">Events</a>
-        <a href="/about/" class="mobile-nav-link">About Us</a>
-        <a href="/programs/" class="mobile-nav-link">Programs</a>
-        <a href="/research/" class="mobile-nav-link">Research</a>
-        <a href="/what-is-ai-safety/" class="mobile-nav-link">What is AI Safety?</a>
-        <a href="/get-involved/" class="mobile-nav-link bg-durham-purple text-white rounded-lg px-4 py-2 font-semibold hover:bg-[#7a2d80] transition-colors">Get Involved</a>
+        {siteConfig.navigation.main.map((item) => (
+            <a href={item.url} class="mobile-nav-link">{item.title}</a>
+        ))}
+        {siteConfig.navigation.dropdown.items.map((item) => (
+            <a href={item.url} class="mobile-nav-link">{item.title}</a>
+        ))}
+        <a href={siteConfig.navigation.cta.url} class="mobile-nav-link bg-durham-purple text-white rounded-lg px-4 py-2 font-semibold hover:bg-[#7a2d80] transition-colors">
+            {siteConfig.navigation.cta.title}
+        </a>
         
         <div class="mobile-nav-footer">
             <div class="mobile-social-links">
