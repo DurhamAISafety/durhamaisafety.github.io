@@ -187,6 +187,7 @@ import { Image } from 'astro:assets';
 				<div class="site-container">
 					<div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
 						{alumni.map((person) => (
+							
 							<div class="text-center animate-on-scroll w-40 md:w-48">
 								<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
 									{person.photo ? (
@@ -231,6 +232,9 @@ import { Image } from 'astro:assets';
 									<h4 class="text-xl font-bold mb-2">{person.name}</h4>
 								)}
 								<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
+								{person.years_active && (
+								<p class="text-xs text-gray-500">{person.years_active}</p>
+								)}
 							</div>
 						))}
 					</div>

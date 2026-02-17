@@ -4,6 +4,7 @@ import type { ImageMetadata } from 'astro';
 export interface AlumniMember {
   name: string;
   role: string;
+  years_active?: string;
   photo?: string | ImageMetadata;
   link?: string;
 }
@@ -29,6 +30,7 @@ import alumYaml from '../content/alum.yml?raw';
 const rawAlum = parse(alumYaml) as Array<{
   name: string;
   role: string;
+  years_active?: string;
   photo?: string;
   link?: string;
 }> | null;

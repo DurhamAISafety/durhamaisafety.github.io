@@ -21,3 +21,18 @@
 # - name: Example Alumni
 #   role: Former Organiser
 #   photo: example.jpg
+
+- name: Ben Kehoe
+  role: Co-founder
+  years_active: "2024-2025"
+  link: https://www.linkedin.com/in/ben-kehoe/
+
+- name: Raja Ikhlaq
+  role: Co-founder
+  years_active: "2023-2024"
+  link: https://www.linkedin.com/in/raja-ikhlaq/
+
+- name: Adriana Tihan
+  role: Co-founder
+  years_active: "2023-2024"
+  link: https://www.linkedin.com/in/adriana-tihan-9939741b9/
