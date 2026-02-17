@@ -84,12 +84,45 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
             
             <div id="calendar" class="max-w-5xl mx-auto mb-16">
                 <p class="text-center text-lg mb-4 font-medium">
-                    We'll update this calendar with upcoming events. Go <a href="https://luma.com/daisi" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">here</a> and click <i class="fa-solid fa-square-rss"></i> to sync with your calendar!
-                    Click on and RSVP to any event to receive email updates for that event.
+                    We'll update this calendar with upcoming events. Sync with your calendar:
                 </p>
+
+                <!-- Calendar sync buttons -->
+                <div class="flex items-center justify-center gap-4 mb-6">
+                    <!-- Google Calendar -->
+                    <a href="https://www.google.com/calendar/render?cid=http%3A%2F%2Fapi2.luma.com%2Fics%2Fget%3Fentity%3Dcalendar%26id%3Dcal-lvIwlKjJGAceOBN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cal-sync-btn"
+                    aria-label="Add to Google Calendar">
+                        <img src="/images/calendar-icons/google.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <span class="cal-label">Google Calendar</span>
+                    </a>
+
+                    <!-- Outlook Calendar -->
+                    <a href="https://outlook.live.com/calendar/0/addcalendar?url=webcal%3A%2F%2Fapi2.luma.com%2Fics%2Fget%3Fentity%3Dcalendar%26id%3Dcal-lvIwlKjJGAceOBN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cal-sync-btn"
+                    aria-label="Add to Outlook Calendar">
+                        <img src="/images/calendar-icons/outlook.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <span class="cal-label">Outlook Calendar</span>
+                    </a>
+
+                    <!-- Apple Calendar -->
+                    <a href="webcal://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
+                    class="cal-sync-btn"
+                    aria-label="Add to Apple Calendar">
+                        <img src="/images/calendar-icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <span class="cal-label">Apple Calendar</span>
+                    </a>
+                </div>
+
                 <p class="text-center text-sm mb-8 text-slate-600">
-                    If you prefer the classic Google Calendar, you can find that <a href="https://calendar.google.com/calendar/u/0/embed?src=896edcf4f9cd47305232b2c78cc06d4d1365a18dabbace749bde237cfd92bea6@group.calendar.google.com&ctz=Europe/London&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">here</a>.
+                    Click on and RSVP to any event to receive email updates for that event.
+                    If you prefer the old Google Calendar, you can find that <a href="https://calendar.google.com/calendar/u/0/embed?src=896edcf4f9cd47305232b2c78cc06d4d1365a18dabbace749bde237cfd92bea6@group.calendar.google.com&ctz=Europe/London&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">here</a>.
                 </p>
+
                 <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
                     <!-- Loading state -->
                     <div id="calendar-loading" class="calendar-loading">
@@ -320,6 +353,58 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
 </script>
 
 <style>
+/* Calendar sync buttons */
+.cal-sync-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(128, 0, 128, 0.2);
+    background: white;
+    color: #4a4a4a;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 2.75rem; /* icon-only width */
+    transition: max-width 0.3s ease, padding 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.cal-sync-btn:hover,
+.cal-sync-btn:focus-visible {
+    max-width: 12rem; /* expanded width */
+    padding: 0.5rem 1rem 0.5rem 0.65rem;
+    border-color: var(--color-durham-purple, #6b1a6e);
+    box-shadow: 0 2px 8px rgba(107, 26, 110, 0.18);
+    outline: none;
+}
+
+.cal-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
+    display: block;
+}
+
+.cal-label {
+    overflow: hidden;
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 0.3s ease, opacity 0.25s ease, margin-left 0.3s ease;
+    margin-left: 0;
+    pointer-events: none;
+}
+
+.cal-sync-btn:hover .cal-label,
+.cal-sync-btn:focus-visible .cal-label {
+    max-width: 8rem;
+    opacity: 1;
+    margin-left: 0.5rem;
+    pointer-events: auto;
+}
 /* Calendar loading styles */
 .calendar-loading {
     display: flex;
