@@ -27,7 +27,7 @@
      --color-bright-purple: #EB80FD;
      --color-light-purple: #E2ACFE;
      --color-lavender: #B8BBFE;
-     --font-display: 'DM Serif Display', serif;
+     --font-display: 'IBM Plex Sans', sans-serif;
      --font-body: 'IBM Plex Sans', sans-serif;
    }
    ```
@@ -44,3 +44,63 @@
 Tailwind v4 uses CSS custom properties and modern CSS features more aggressively.
 Check [caniuse.com](https://caniuse.com) for `@property`, `color-mix()`, and cascade layers
 before migrating if older browser support is required.
+
+---
+
+## Replace `styles.css` with Tailwind Utilities
+
+**Status:** Not started — do this during (or after) the Tailwind v4 migration  
+**Priority:** Medium
+
+`public/css/styles.css` is ~1,700 lines. Much of it can move into Tailwind utilities, but a full migration requires more than search/replace:
+
+### What can be deleted outright
+- All `.dark { … }` rules (~400 lines) — dark mode is disabled; these are dead code. Delete them before doing anything else.
+
+### What converts cleanly to Tailwind
+- **Simple component classes** (`.btn-cta`, `.section-heading`, `.gradient-text`, `.hero-heading`, `.reveal`) — replace with `@apply` blocks in a small `src/styles/components.css`, or move the classes inline onto each element.
+- **CSS custom properties** (`:root { --color-* … }`) — move a minimal set into `@theme {}` (v4) or keep in a tiny `src/styles/tokens.css`. Most are already duplicated in `tailwind.config.mjs`.
+- **Animation keyframes** (`@keyframes fade-up`, `.reveal`) — define via `theme.extend.keyframes` / `theme.extend.animation` in `tailwind.config.mjs` and use `animate-*` utilities, or keep in a tiny CSS file.
+
+### What requires Astro component refactoring (the hard part)
+The ~350-line block of `.section-neutral .program-card`, `.section-light .research-card` etc. are CSS context selectors that change card colours based on the parent section's background. To remove these, each card component needs a `variant` prop:
+
+```astro
+<!-- Before: CSS context selector does the work -->
+<section class="section-neutral">
+  <div class="program-card">…</div>
+</section>
+
+<!-- After: variant prop drives conditional Tailwind classes -->
+<ProgramCard variant="neutral" />
+```
+
+This is the biggest chunk of work and should be done page-by-page after the v4 migration is stable.
+
+### Suggested order
+1. Delete all `.dark` rules (quick win, ~400 lines gone)
+2. Migrate simple component classes to `@apply` or inline utilities
+3. Move `:root` tokens to `@theme` (during v4 migration)
+4. Refactor card components to accept a `variant` prop, then delete context selectors
+
+---
+
+## Add a CMS
+
+**Status:** Not started  
+**Priority:** Low — current YAML workflow is sufficient while the team stays technical
+
+### Options to evaluate
+- **[Decap CMS](https://decapcms.org/)** (formerly Netlify CMS) — Git-based, no backend, edits commit directly to the repo. Works well with Astro + GitHub Pages. Config lives in `public/admin/config.yml`.
+- **[Keystatic](https://keystatic.com/)** — purpose-built for Astro, stores content in the repo as Markdown/YAML, local UI at `localhost:4321/keystatic`. No external service needed.
+- **[Tina CMS](https://tina.io/)** — visual editing with live preview; requires a Tina Cloud account for the hosted UI but content stays in git.
+
+### Recommendation
+Keystatic is the lowest-friction option: it reads the existing `src/content/*.yml` files directly and adds a local admin UI with no deployment changes. Decap CMS is a good alternative if an online editing UI (without running dev server) is needed.
+
+### What would need doing (Keystatic example)
+1. `npm install @keystatic/core @keystatic/astro`
+2. Add `keystatic()` to `astro.config.mjs` integrations
+3. Create `keystatic.config.ts` mapping existing YAML collections (`team`, `research`, `supporters`, `alum`) to Keystatic schema
+4. Add `src/pages/keystatic/[...params].astro` route for the admin UI
+5. Test that existing `src/data/*.ts` imports still work (they should — Keystatic doesn't change file format)
