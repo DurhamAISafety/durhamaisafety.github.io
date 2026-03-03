@@ -1118,17 +1118,64 @@ body {
 
 /* Neutral background for sections below hero */
 .section-neutral {
-    /* Unified background across all neutral sections */
     background: #f8fafc;
-    /* Solid light neutral */
     color: #1e293b;
-    /* Dark slate for better contrast */
 }
 
 .dark .section-neutral {
     background: rgba(13, 4, 20, 0.6);
     color: var(--text-primary);
 }
+
+/* Slightly lavender-tinted off-white — visually distinct from section-neutral
+   without being jarring. Use for alternating sections. */
+.section-light {
+    background: #f5f3ff;
+    color: #1e293b;
+}
+
+.dark .section-light {
+    background: rgba(30, 10, 40, 0.65);
+    color: var(--text-primary);
+}
+
+/* Cards inside section-light get the same treatment as section-neutral */
+.section-light .program-card,
+.section-light .research-card,
+.section-light .info-card {
+    background: #ffffff;
+}
+
+.dark .section-light .program-card,
+.dark .section-light .research-card,
+.dark .section-light .info-card {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4,
+.section-light h5,
+.section-light h6 {
+    color: #1e293b;
+}
+
+.dark .section-light h1,
+.dark .section-light h2,
+.dark .section-light h3,
+.dark .section-light h4,
+.dark .section-light h5,
+.dark .section-light h6 {
+    color: var(--text-primary);
+}
+
+/* Ensure btn-cta text is white in section-light too */
+.section-light a.btn-cta,
+.section-light a.btn-cta:hover {
+    color: #ffffff !important;
+}
+
 
 /* -------------------------------------------
    Fix: Ensure header icons are white on cards
