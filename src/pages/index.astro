@@ -5,6 +5,52 @@ import heroImage from '../assets/hero-picture.jpeg';
 import { research } from '../data/research';
 import { supporters } from '../data/supporters';
 import ResearchCarousel from '../components/ResearchCarousel.astro';
+
+interface ProgramBadge { icon: string; label: string; }
+interface Program {
+    icon: string;
+    title: string;
+    description: string;
+    badge?: ProgramBadge;
+    href: string;
+}
+
+const programs: Program[] = [
+    {
+        icon: 'fa-chalkboard-teacher',
+        title: 'AIS101',
+        description: 'Regular sessions exploring core AI safety concepts in an accessible, interactive format.',
+        badge: { icon: 'fa-users', label: 'No technical background needed' },
+        href: '/programmes/#ais101',
+    },
+    {
+        icon: 'fa-book-open',
+        title: 'In-Depth Reading Groups',
+        description: 'Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone - aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.',
+        badge: { icon: 'fa-laptop-code', label: 'Some prior knowledge useful' },
+        href: '/programmes/#reading-groups',
+    },
+    {
+        icon: 'fa-terminal',
+        title: 'Research Project Support',
+        description: 'We support you to pursue AI safety research. We can support applications for fellowships and funding, and advise students on dissertation and independent study projects.',
+        badge: { icon: 'fa-graduation-cap', label: 'Faculty & Students' },
+        href: '/programmes/#research-projects',
+    },
+    {
+        icon: 'fa-microphone',
+        title: 'Speaker Events',
+        description: 'Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.',
+        href: '/programmes/#speaker-series',
+    },
+    {
+        icon: 'fa-users',
+        title: 'Social Events',
+        description: 'Relaxed socials to connect and build community.',
+        badge: { icon: 'fa-heart', label: 'Everyone welcome' },
+        href: '/programmes/#socials',
+    },
+];
 ---
 
 <Layout 
@@ -152,99 +198,26 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
             
             <!-- Program Cards -->
             <div class="max-w-6xl mx-auto mb-16">
-                <!-- First row: 2 main cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-chalkboard-teacher text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">AIS101</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            Regular sessions exploring core AI safety concepts in an accessible, interactive format.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-users text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">No technical background needed</span>
-                        </div>
-                        <a href="/programmes/#ais101" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-book-open text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">In-Depth Reading Groups</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            Deeper discussion on AI safety papers with PhD students specialising in the areas. 
-                            Open to anyone - aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-laptop-code text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">Some prior knowledge useful</span>
-                        </div>
-                        <a href="/programmes/#reading-groups" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Second row: 3 cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-terminal text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">Research Project Support</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                    {programs.map((program) => (
+                        <div class="program-card rounded-2xl p-8 text-center">
+                            <div class="mb-6">
+                                <i class={`fas ${program.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <h4 class="text-2xl font-bold">{program.title}</h4>
+                                <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                            </div>
+                            <p class="mb-6 leading-relaxed text-slate-600">{program.description}</p>
+                            {program.badge && (
+                                <div class="flex items-center justify-center gap-2 mb-6">
+                                    <i class={`fa-solid ${program.badge.icon} text-durham-purple`} aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">{program.badge.label}</span>
+                                </div>
+                            )}
+                            <a href={program.href} class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
+                                Learn More
+                            </a>
                         </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            We support you to pursue AI safety research. 
-                            We can support applications for fellowships and funding,
-                            and advise students on dissertation and independent study projects.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-graduation-cap text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">Faculty &amp; Students</span>
-                        </div>
-                        <a href="/programmes/#research-projects" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                    
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-microphone text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">Speaker Events</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                           Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.
-                        </p>
-                        <a href="/programmes/#speaker-series" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                    
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-users text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">Social Events</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            Relaxed socials to connect and build community.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-heart text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">Everyone welcome</span>
-                        </div>
-                        <a href="/programmes/#socials" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
