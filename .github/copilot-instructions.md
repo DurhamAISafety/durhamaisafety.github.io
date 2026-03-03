@@ -65,6 +65,12 @@ npm run build    # run after every change and before pushing — catches build e
 ```
 After making any change to the codebase, always run `npx astro check` and then `npm run build` to verify there are no type errors or build failures before considering the task complete.
 
+After **significant changes** (adding pages, updating navigation, adding/removing links), also run the link checker:
+```
+lychee --base https://durhamaisafety.github.io --max-concurrency 8 --accept 200,201,204,301,302,303,307,308,429 --timeout 20 --max-retries 3 --user-agent "Mozilla/5.0 (compatible; LinkChecker/1.0)" --exclude "http://localhost*" --exclude "https://localhost*" --exclude "http://127.0.0.1*" --exclude "https://example.com*" --exclude "https://twitter.com/*" --exclude "https://x.com/*" --exclude "https://linkedin.com/in/*" --exclude "https://www.linkedin.com/in/*" --exclude "https://scholar.google.com/*" --exclude "https://www.durham.ac.uk/*" --exclude "https://durham.ac.uk/*" --exclude "https://www.durhamsu.com/*" --exclude "https://durhamsu.com/*" --exclude "https://durhamaisafety.github.io/404*" --exclude "https://durhamaisafety.github.io/_astro/*" --cache --verbose './dist/**/*.html'
+```
+Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` first to generate `dist/`. 404s for `durhamaisafety.github.io/` paths that exist in the PR but not yet on the live site are expected false positives.
+
 Push to `main` → GitHub Actions deploys to GitHub Pages automatically.
 
 ## Common Tasks

@@ -45,12 +45,14 @@ jobs:
             --exclude "https://twitter.com/*"
             --exclude "https://x.com/*"
             --exclude "https://linkedin.com/in/*"
+            --exclude "https://www.linkedin.com/in/*"
             --exclude "https://scholar.google.com/*"
             --exclude "https://www.durham.ac.uk/*"
             --exclude "https://durham.ac.uk/*"
             --exclude "https://www.durhamsu.com/*"
             --exclude "https://durhamsu.com/*"
             --exclude "https://durhamaisafety.github.io/404*"
+            --exclude "https://durhamaisafety.github.io/_astro/*"
             --cache
             --verbose
             --no-progress
