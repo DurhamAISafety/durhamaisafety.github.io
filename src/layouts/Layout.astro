@@ -100,6 +100,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <script is:inline>
     // Always light: ensure no stale 'dark' class from a previous visit
     document.documentElement.classList.remove('dark');
+    // Mark JS as active for progressive-enhancement CSS hooks (e.g. .reveal)
+    document.documentElement.classList.add('js-enabled');
   </script>
 
   <slot name="head" />

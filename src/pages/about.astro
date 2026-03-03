@@ -106,8 +106,8 @@ import { Image } from 'astro:assets';
 				<div class="section-divider"></div>
 			</div>
 			<div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-				{team.map((person) => (
-					<div class="text-center animate-on-scroll w-40 md:w-48">
+				{team.map((person, i) => (
+					<div class="text-center reveal w-40 md:w-48" style={`--reveal-delay: ${(i % 4) * 80}ms`}>
 						<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
 							{person.photo ? (
 								typeof person.photo === 'string' ? (
@@ -142,7 +142,7 @@ import { Image } from 'astro:assets';
 						</div>
 						{person.link ? (
 							<h4 class="text-xl font-bold mb-2">
-								<a href={person.link} target="_blank" rel="noopener" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center justify-center">
+								<a href={person.link} target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center justify-center">
 									{person.name}
 									<i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
 								</a>

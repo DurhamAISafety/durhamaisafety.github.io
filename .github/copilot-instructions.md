@@ -34,7 +34,7 @@ Two parallel systems work together — don't conflate them:
 | `.reveal` | Scroll-triggered fade-up entrance animation (observer in `public/js/main.js`) |
 | `.hero-heading` / `.hero-subheading` | Text-shadow utilities for hero text overlaid on images |
 
-Pages alternate `.section-neutral` / `.section-light` to create visual rhythm. Add `.reveal` to section headings and cards for entrance animations; stagger with inline `style="animation-delay: Xms"`.
+Pages alternate `.section-neutral` / `.section-light` to create visual rhythm. Add `.reveal` to section headings and cards for entrance animations; stagger with inline `style="--reveal-delay: Xms"`.
 
 ### Typography
 Single font family throughout: **IBM Plex Sans** (loaded via Google Fonts in `src/layouts/Layout.astro`).
@@ -82,6 +82,23 @@ Push to `main` → GitHub Actions deploys to GitHub Pages automatically.
 **Add new page:** create `src/pages/pagename.astro` — Astro file-based routing gives `/pagename/` automatically. Pass `title`, `description`, `heroImage` props to `Layout`.
 
 **Update config (email, social links):** edit `src/data/config.ts`.
+
+## Code Standards
+
+### Links
+- All `target="_blank"` links must use `rel="noopener noreferrer"` — never `rel="noopener"` alone.
+
+### CSS
+- Never hardcode brand hex values in new CSS rules. Use CSS custom properties from `:root` in `styles.css`: `var(--color-durham-purple)`, `var(--color-bright-purple)`, `var(--color-deep-purple)`, etc.
+- Do not introduce new hex values for brand colours — add a CSS variable to `:root` first if one doesn't exist.
+
+### Scroll animations
+- Use `.reveal` (not the removed `.animate-on-scroll`) for entrance animations. Stagger with `style="--reveal-delay: Xms"` (not `animation-delay`).
+- `.reveal` is hidden only when `html.js-enabled` is present (set in `Layout.astro`). Content is visible by default — keep this progressive-enhancement contract intact.
+- `IntersectionObserver` usage in `main.js` already includes a feature-detect fallback. Do not add new `IntersectionObserver` calls without a similar fallback.
+
+### Inline event handlers
+- Inline `onerror="..."` attributes on `<img>` tags must use `var` (not `const`/`let`) for any variables — `const`/`let` in sibling handlers share a TypeScript scope and trigger `ts(2451)` redeclaration errors.
 
 ## Gotchas
 - YAML: 2-space indent, no tabs. Arrays use `-` prefix.

@@ -11,6 +11,8 @@
     --color-light-purple: #E2ACFE;
     --color-lavender: #B8BBFE;
     --color-pure-white: #FFFFFF;
+    --color-durham-purple: #68246D;
+    --color-durham-purple-hover: #7a2d80;
 
     /* Legacy colors - only keeping those still in use */
     --color-ocean-blue: #6F3FA7;
@@ -1042,8 +1044,7 @@ body {
 .btn-cta {
     display: inline-block;
     padding: 1rem 3rem;
-    background-color: #68246D;
-    /* durham-purple */
+    background-color: var(--color-durham-purple);
     color: #ffffff;
     font-weight: 700;
     font-size: 1.125rem;
@@ -1055,7 +1056,7 @@ body {
 }
 
 .btn-cta:hover {
-    background-color: #7a2d80;
+    background-color: var(--color-durham-purple-hover);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
     color: #ffffff;
@@ -1696,7 +1697,8 @@ body {
     }
 }
 
-.reveal {
+/* Only hide .reveal when JS is active — default-visible for progressive enhancement */
+html.js-enabled .reveal {
     opacity: 0;
     transform: translateY(28px);
 }

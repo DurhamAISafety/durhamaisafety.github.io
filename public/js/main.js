@@ -155,26 +155,14 @@ function initializeAnalytics() {
 
 /**
  * Animate elements when they come into view.
- * Handles both legacy .animate-on-scroll and new .reveal elements.
+ * Uses .reveal + .visible CSS pattern with --reveal-delay custom property for stagger.
  */
 function initializeScrollAnimations() {
-    // Legacy: team photo cards etc.
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    const legacyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, { threshold: 0.1 });
-    animateElements.forEach(el => legacyObserver.observe(el));
-
-    // Step 3: .reveal elements — fade-up on scroll
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealElements = document.querySelectorAll('.reveal');
 
-    if (prefersReducedMotion) {
-        // Skip animation entirely — make everything visible immediately
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        // Skip animation — make everything visible immediately
         revealElements.forEach(el => {
             el.style.opacity = '1';
             el.style.transform = 'none';
