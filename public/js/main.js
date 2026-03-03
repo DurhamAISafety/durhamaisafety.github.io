@@ -27,56 +27,16 @@ function initializeCommonFeatures() {
 }
 
 /**
- * Initialize dark mode functionality
+ * Dark mode — disabled until Tailwind v4 migration.
+ * Functions are stubs so no call-site errors occur.
+ * All .dark CSS rules remain in styles.css as reference.
  */
 function initializeDarkMode() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const html = document.documentElement;
-    
-    // Saved preference only; default to light (no OS detection)
-    const saved = localStorage.getItem('darkMode');
-    
-    // Set initial state (handle both 'enabled' and 'disabled')
-    if (saved === 'enabled') {
-        html.classList.add('dark');
-        updateDarkModeIcon(true);
-    } else if (saved === 'disabled') {
-        html.classList.remove('dark');
-        updateDarkModeIcon(false);
-    } else {
-        // No saved preference: default to light
-        html.classList.remove('dark');
-        updateDarkModeIcon(false);
-    }
-    
-    // Toggle dark mode on button click
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', () => {
-            const isDark = html.classList.toggle('dark');
-            
-            // Save preference
-            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-            
-            // Update icon
-            updateDarkModeIcon(isDark);
-        });
-    }
+    // no-op: dark mode disabled
 }
 
-/**
- * Update dark mode toggle icon
- * @param {boolean} isDark - Whether dark mode is enabled
- */
-function updateDarkModeIcon(isDark) {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    if (darkModeToggle) {
-        const icon = darkModeToggle.querySelector('i');
-        if (icon) {
-            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-        darkModeToggle.setAttribute('aria-pressed', String(isDark));
-        darkModeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
+function updateDarkModeIcon(_isDark) {
+    // no-op: dark mode disabled
 }
 
 /**

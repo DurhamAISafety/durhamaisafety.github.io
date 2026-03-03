@@ -80,7 +80,8 @@ const isHome = pathname === '/';
                     <i class="fa-solid fa-link" aria-hidden="true"></i>
                 </a>
                 
-                <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+                <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
+                <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" style="display:none" aria-hidden="true">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
                 
@@ -137,7 +138,8 @@ const isHome = pathname === '/';
                 </a>
             </div>
             
-            <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode">
+            <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
+            <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode" style="display:none" aria-hidden="true">
                 <i class="fas fa-moon" aria-hidden="true"></i>
             </button>
         </div>

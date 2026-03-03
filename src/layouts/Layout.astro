@@ -95,20 +95,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={heroImage ? new URL(heroImage, siteConfig.url).href : new URL(siteConfig.ogImage, siteConfig.url).href}>
     <meta name="twitter:image:alt" content={pageDescription}>
 
-  <!-- Dark mode initialization (prevents FOUC) -->
+  <!-- Dark mode disabled — to be re-enabled during Tailwind v4 migration.
+       All .dark CSS rules are preserved as reference. -->
   <script is:inline>
-    // Apply user's saved preference only; default is light for everyone
-    try {
-      const saved = localStorage.getItem('darkMode');
-      if (saved === 'enabled') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } catch (e) {
-      // If localStorage is blocked, default to light mode
-      document.documentElement.classList.remove('dark');
-    }
+    // Always light: ensure no stale 'dark' class from a previous visit
+    document.documentElement.classList.remove('dark');
   </script>
 
   <slot name="head" />
