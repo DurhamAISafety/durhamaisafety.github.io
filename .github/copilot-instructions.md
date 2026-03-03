@@ -60,8 +60,11 @@ Centralised in `src/data/config.ts` under `siteConfig.navigation`. The Header co
 ## Development Workflow
 ```
 npm run dev      # http://localhost:4321
-npm run build    # always run before pushing — catches type and build errors
+npx astro check  # run after every change — catches type errors in .astro files
+npm run build    # run after every change and before pushing — catches build errors
 ```
+After making any change to the codebase, always run `npx astro check` and then `npm run build` to verify there are no type errors or build failures before considering the task complete.
+
 Push to `main` → GitHub Actions deploys to GitHub Pages automatically.
 
 ## Common Tasks
