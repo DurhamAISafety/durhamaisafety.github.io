@@ -1040,6 +1040,35 @@ body {
     font-size: 0.875rem;
 }
 
+/* Primary CTA button — matches the hero pill style.
+   Use for top-level calls to action: Get Involved, Back to Home, etc. */
+.btn-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: #68246D;
+    /* durham-purple */
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: #7a2d80;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+.dark .btn-cta {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+
 /* Viewport height utilities for stable hero sizing across mobile browsers */
 .min-h-100dvh {
     min-height: 100dvh;
@@ -1293,11 +1322,13 @@ body {
 
 /* Ensure only PRIMARY or gradient buttons are forced white in neutral sections */
 .section-neutral a.btn-primary,
+.section-neutral a.btn-cta,
 .section-neutral a[class*="bg-gradient-to-"] {
     color: #ffffff !important;
 }
 
 .section-neutral a.btn-primary:hover,
+.section-neutral a.btn-cta:hover,
 .section-neutral a[class*="bg-gradient-to-"]:hover {
     color: #ffffff !important;
 }
