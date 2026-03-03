@@ -5,7 +5,7 @@ import ResearchCarousel from "../components/ResearchCarousel.astro";
 
 const page = {
   title: "Research",
-  description: "Research by Durham AISI Members",
+  description: "Research by DAISI Members",
 };
 ---
 
@@ -33,11 +33,11 @@ const page = {
   </section>
 
   {/* Research Areas & Recent Research */}
-  <section class="section  section-neutral">
+  <section class="section section-light">
     <div class="site-container">
       {/* Research Areas */}
       <div id="research-areas" class="text-center mb-12">
-        <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Areas</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Areas</h3>
         <div class="section-divider"></div>
       </div>
 
@@ -111,7 +111,7 @@ const page = {
 
       {/* Recent Research */}
       <div id="recent-research" class="text-center mb-12">
-        <h3 class="text-3xl md:text-4xl font-bold mb-6">Recent Research involving DAISI Members</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6">Recent Research involving DAISI Members</h3>
         <div class="section-divider"></div>
       </div>
 
@@ -131,9 +131,14 @@ const page = {
         />
       )}
 
-      {/* Research Opportunities */}
-      <div id="opportunities" class="text-center mb-12 mt-20">
-        <h3 class="text-3xl md:text-4xl font-bold mb-6">Research Opportunities</h3>
+    </div>
+  </section>
+
+  {/* Research Opportunities */}
+  <section id="opportunities" class="section section-neutral">
+    <div class="site-container">
+      <div class="text-center mb-12">
+        <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Opportunities</h3>
         <div class="section-divider"></div>
       </div>
       <div class="max-w-4xl mx-auto">
@@ -154,7 +159,7 @@ const page = {
           </div>
         </div>
         <div class="text-center">
-          <a href="/programmes/#research-projects" class="btn btn-primary">I'm Interested</a>
+          <a href="/programmes/#research-projects" class="btn-cta">I'm Interested</a>
         </div>
       </div>
     </div>

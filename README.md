@@ -6,7 +6,7 @@
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for Durham AISI, built with Astro and deployed to GitHub Pages.
+The official website for DAISI, built with Astro and deployed to GitHub Pages.
 
 ## Quick Start
 

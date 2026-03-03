@@ -1,5 +1,5 @@
 /**
- * Durham AISI Website JavaScript
+ * DAISI Website JavaScript
  * Common functionality shared across all pages
  */
 
@@ -27,56 +27,16 @@ function initializeCommonFeatures() {
 }
 
 /**
- * Initialize dark mode functionality
+ * Dark mode — disabled until Tailwind v4 migration.
+ * Functions are stubs so no call-site errors occur.
+ * All .dark CSS rules remain in styles.css as reference.
  */
 function initializeDarkMode() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const html = document.documentElement;
-    
-    // Saved preference only; default to light (no OS detection)
-    const saved = localStorage.getItem('darkMode');
-    
-    // Set initial state (handle both 'enabled' and 'disabled')
-    if (saved === 'enabled') {
-        html.classList.add('dark');
-        updateDarkModeIcon(true);
-    } else if (saved === 'disabled') {
-        html.classList.remove('dark');
-        updateDarkModeIcon(false);
-    } else {
-        // No saved preference: default to light
-        html.classList.remove('dark');
-        updateDarkModeIcon(false);
-    }
-    
-    // Toggle dark mode on button click
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', () => {
-            const isDark = html.classList.toggle('dark');
-            
-            // Save preference
-            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-            
-            // Update icon
-            updateDarkModeIcon(isDark);
-        });
-    }
+    // no-op: dark mode disabled
 }
 
-/**
- * Update dark mode toggle icon
- * @param {boolean} isDark - Whether dark mode is enabled
- */
-function updateDarkModeIcon(isDark) {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    if (darkModeToggle) {
-        const icon = darkModeToggle.querySelector('i');
-        if (icon) {
-            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-        darkModeToggle.setAttribute('aria-pressed', String(isDark));
-        darkModeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
+function updateDarkModeIcon(_isDark) {
+    // no-op: dark mode disabled
 }
 
 /**
@@ -122,25 +82,25 @@ function initializeFormHandling() {
  */
 function handleFormSubmission(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const formData = new FormData(form);
-    
+
     // Show loading state
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.textContent = 'Submitting...';
     submitButton.disabled = true;
-    
+
     // Simulate form submission (replace with actual endpoint)
     setTimeout(() => {
         // Reset button
         submitButton.textContent = originalText;
         submitButton.disabled = false;
-        
+
         // Show success message
         showNotification('Thank you for your interest! We will be in touch soon.', 'success');
-        
+
         // Reset form
         form.reset();
     }, 1000);
@@ -155,13 +115,13 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     // Add to page
     document.body.appendChild(notification);
-    
+
     // Show with animation
     setTimeout(() => notification.classList.add('show'), 100);
-    
+
     // Remove after 5 seconds
     setTimeout(() => {
         notification.classList.remove('show');
@@ -180,10 +140,10 @@ function initializeAnalytics() {
             page_location: window.location.href
         });
     }
-    
+
     // Track button clicks
     document.querySelectorAll('.btn, .nav-link').forEach(element => {
-        element.addEventListener('click', function() {
+        element.addEventListener('click', function () {
             const action = this.textContent.trim();
             console.log('User clicked:', action);
             // Add actual analytics tracking here
@@ -194,24 +154,35 @@ function initializeAnalytics() {
 // (Removed unused helpers: debounce, isInViewport)
 
 /**
- * Animate elements when they come into view
+ * Animate elements when they come into view.
+ * Uses .reveal + .visible CSS pattern with --reveal-delay custom property for stagger.
  */
 function initializeScrollAnimations() {
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
-    const observer = new IntersectionObserver((entries) => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealElements = document.querySelectorAll('.reveal');
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        // Skip animation — make everything visible immediately
+        revealElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+        return;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target); // fire once
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px',
     });
-    
-    animateElements.forEach(element => {
-        observer.observe(element);
-    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
 }
 
 /**

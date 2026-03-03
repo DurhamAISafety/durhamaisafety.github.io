@@ -5,6 +5,52 @@ import heroImage from '../assets/hero-picture.jpeg';
 import { research } from '../data/research';
 import { supporters } from '../data/supporters';
 import ResearchCarousel from '../components/ResearchCarousel.astro';
+
+interface ProgramBadge { icon: string; label: string; }
+interface Program {
+    icon: string;
+    title: string;
+    description: string;
+    badge?: ProgramBadge;
+    href: string;
+}
+
+const programs: Program[] = [
+    {
+        icon: 'fa-chalkboard-teacher',
+        title: 'AIS101',
+        description: 'Regular sessions exploring core AI safety concepts in an accessible, interactive format.',
+        badge: { icon: 'fa-users', label: 'No technical background needed' },
+        href: '/programmes/#ais101',
+    },
+    {
+        icon: 'fa-book-open',
+        title: 'In-Depth Reading Groups',
+        description: 'Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone - aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.',
+        badge: { icon: 'fa-laptop-code', label: 'Some prior knowledge useful' },
+        href: '/programmes/#reading-groups',
+    },
+    {
+        icon: 'fa-terminal',
+        title: 'Research Project Support',
+        description: 'We support you to pursue AI safety research. We can support applications for fellowships and funding, and advise students on dissertation and independent study projects.',
+        badge: { icon: 'fa-graduation-cap', label: 'Faculty & Students' },
+        href: '/programmes/#research-projects',
+    },
+    {
+        icon: 'fa-microphone',
+        title: 'Speaker Events',
+        description: 'Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.',
+        href: '/programmes/#speaker-series',
+    },
+    {
+        icon: 'fa-users',
+        title: 'Social Events',
+        description: 'Relaxed socials to connect and build community.',
+        badge: { icon: 'fa-heart', label: 'Everyone welcome' },
+        href: '/programmes/#socials',
+    },
+];
 ---
 
 <Layout 
@@ -55,18 +101,18 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
         <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
     <div class="site-container mx-auto px-6 text-center relative z-10">
             <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
-                <h1 class="text-3xl md:text-4xl lg:text-6xl font-bold leading-relaxed" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.6);">
-                    <span class="text-white">Durham students and academics for </span><span class="text-bright-purple italic font-medium">reducing catastrophic risks from advanced AI</span>
+                <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight">
+                    Durham students and academics for <em>reducing catastrophic risks from advanced AI</em>
                 </h1>
                 
-                <p class="text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5);">
-                    <span class="font-semibold text-light-purple">Whatever your expertise,</span> 
+                <p class="hero-subheading text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8">
+                    <span class="font-semibold text-light-purple">Whatever your expertise,</span>
                     <span class="text-white">you can contribute to the conversation and make a difference.</span>
                 </p>
                 
                 <div class="pt-2 md:pt-4">
                     <a href="/get-involved/"
-                       class="inline-block px-12 py-4 bg-durham-purple hover:bg-[#7a2d80] text-white font-bold text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-white/20">
+                       class="btn-cta">
                         Get Involved
                     </a>
                 </div>
@@ -77,8 +123,8 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
     <!-- Events Section -->
     <section id="events" class="py-16 section-neutral">
     <div class="site-container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Events</h2>
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-heading text-4xl md:text-5xl mb-6">Our Events</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
             </div>
             
@@ -135,7 +181,7 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
                     <div class="overflow-hidden rounded-xl luma-calendar-wrapper">                            
                         <iframe
                             id="calendar-iframe" 
-                            title="Durham AISI Events Calendar"
+                            title="DAISI Events Calendar"
                             src="https://luma.com/embed/calendar/cal-lvIwlKjJGAceOBN/events"
                             class="calendar-iframe"
                             allowfullscreen=""
@@ -149,102 +195,62 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
                     <a href="https://luma.com/daisi?period=past" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events here</a>.
                 </p>
             </div>
-            
+        </div>
+    </section>
+
+    <!-- Programmes Section -->
+    <section id="programmes" class="py-16 section-light">
+        <div class="site-container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-heading text-4xl md:text-5xl mb-6">Our Programmes</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+            </div>
+
             <!-- Program Cards -->
             <div class="max-w-6xl mx-auto mb-16">
-                <!-- First row: 2 main cards -->
+                <!-- First two: wider 2-column layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-chalkboard-teacher text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">AIS101</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                    {programs.slice(0, 2).map((program, i) => (
+                        <div class="program-card rounded-2xl p-8 text-center reveal" style={`--reveal-delay: ${i * 100}ms`}>
+                            <div class="mb-6">
+                                <i class={`fas ${program.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <h4 class="text-2xl font-bold">{program.title}</h4>
+                                <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                            </div>
+                            <p class="mb-6 leading-relaxed text-slate-600">{program.description}</p>
+                            {program.badge && (
+                                <div class="flex items-center justify-center gap-2 mb-6">
+                                    <i class={`fa-solid ${program.badge.icon} text-durham-purple`} aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">{program.badge.label}</span>
+                                </div>
+                            )}
+                            <a href={program.href} class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
+                                Learn More
+                            </a>
                         </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            Regular sessions exploring core AI safety concepts in an accessible, interactive format.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-users text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">No technical background needed</span>
-                        </div>
-                        <a href="/programmes/#ais101" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-book-open text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">In-Depth Reading Groups</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            Deeper discussion on AI safety papers with PhD students specialising in the areas. 
-                            Open to anyone - aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-laptop-code text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">Some prior knowledge useful</span>
-                        </div>
-                        <a href="/programmes/#reading-groups" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
+                    ))}
                 </div>
-                
-                <!-- Second row: 3 cards -->
+                <!-- Last three: 3-column layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-terminal text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">Research Project Support</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                    {programs.slice(2).map((program, i) => (
+                        <div class="program-card rounded-2xl p-8 text-center reveal" style={`--reveal-delay: ${(i + 2) * 100}ms`}>
+                            <div class="mb-6">
+                                <i class={`fas ${program.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <h4 class="text-2xl font-bold">{program.title}</h4>
+                                <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                            </div>
+                            <p class="mb-6 leading-relaxed text-slate-600">{program.description}</p>
+                            {program.badge && (
+                                <div class="flex items-center justify-center gap-2 mb-6">
+                                    <i class={`fa-solid ${program.badge.icon} text-durham-purple`} aria-hidden="true"></i>
+                                    <span class="text-sm text-slate-600">{program.badge.label}</span>
+                                </div>
+                            )}
+                            <a href={program.href} class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
+                                Learn More
+                            </a>
                         </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            We support you to pursue AI safety research. 
-                            We can support applications for fellowships and funding,
-                            and advise students on dissertation and independent study projects.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-graduation-cap text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">Faculty &amp; Students</span>
-                        </div>
-                        <a href="/programmes/#research-projects" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                    
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-microphone text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">Speaker Events</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                           Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.
-                        </p>
-                        <a href="/programmes/#speaker-series" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
-                    
-                    <div class="program-card rounded-2xl p-8 text-center">
-                        <div class="mb-6">
-                            <i class="fas fa-users text-5xl text-durham-purple mb-4"></i>
-                            <h4 class="text-2xl font-bold">Social Events</h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p class="mb-6 leading-relaxed text-slate-600">
-                            Relaxed socials to connect and build community.
-                        </p>
-                        <div class="flex items-center justify-center gap-2 mb-6">
-                            <i class="fa-solid fa-heart text-durham-purple" aria-hidden="true"></i>
-                            <span class="text-sm text-slate-600">Everyone welcome</span>
-                        </div>
-                        <a href="/programmes/#socials" class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
-                            Learn More
-                        </a>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
@@ -253,18 +259,20 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
     <!-- Research Section -->
     <section id="research" class="py-16 section-neutral">
         <div class="site-container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Research</h2>
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-heading text-4xl md:text-5xl mb-6">Research</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
             </div>
 
-            <ResearchCarousel 
-                papers={research} 
-                title="Latest Publications & Projects" 
-                id="home-research-carousel" 
-            />
-            <div class="text-center mb-16">
-                <a href="/research" class="btn btn-secondary mb-12">View All Research</a>
+            <div class="reveal">
+                <ResearchCarousel 
+                    papers={research} 
+                    title="Latest Publications & Projects" 
+                    id="home-research-carousel" 
+                />
+            </div>
+            <div class="text-center mb-16 reveal" style="--reveal-delay: 150ms">
+                <a href="/research" class="btn-cta mb-12">View All Research</a>
             </div>
         </div>
     </section>
@@ -272,13 +280,13 @@ import ResearchCarousel from '../components/ResearchCarousel.astro';
     <!-- Proudly Supported By Section -->
     <section id="supported-by" class="py-16 section-neutral">
         <div class="site-container mx-auto px-6">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Proudly Supported By</h2>
+            <div class="text-center mb-10 reveal">
+                <h2 class="section-heading text-4xl md:text-5xl mb-6">Proudly Supported By</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                {supporters.map((supporter) => (
-                    <a href={supporter.link} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group">
+                {supporters.map((supporter, i) => (
+                    <a href={supporter.link} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group reveal" style={`--reveal-delay: ${i * 80}ms`}>
                         <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
                             <img src={`/images/supporters/${supporter.logo}`} alt={`${supporter.name} logo`} class="max-h-16 max-w-16 object-contain" />
                         </div>

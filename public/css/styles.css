@@ -1,4 +1,4 @@
-/* Durham AISI Website Styles */
+/* DAISI Website Styles */
 /* ========================== */
 
 /* Fonts are loaded in layout head via <link>; removed @import to improve performance */
@@ -11,6 +11,8 @@
     --color-light-purple: #E2ACFE;
     --color-lavender: #B8BBFE;
     --color-pure-white: #FFFFFF;
+    --color-durham-purple: #68246D;
+    --color-durham-purple-hover: #7a2d80;
 
     /* Legacy colors - only keeping those still in use */
     --color-ocean-blue: #6F3FA7;
@@ -147,6 +149,23 @@
     }
 }
 
+/* Hero heading & subheading: text-shadow extracted from inline styles */
+.hero-heading {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* Italic accent phrase inside the hero h1 */
+.hero-heading em {
+    color: var(--color-bright-purple);
+    font-style: italic;
+    font-weight: inherit;
+}
+
+.hero-subheading {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
 /* Reset and base styles - targeted approach to avoid conflicts with Tailwind */
 *,
 *::before,
@@ -186,7 +205,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     /* Use site-wide purple gradient background; Tailwind body gradient in layout is compatible */
     background: var(--gradient-bg);
     color: var(--text-primary);
@@ -201,6 +220,15 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Section heading: IBM Plex Sans semibold for all h2/h3 section titles.
+   Consistent with the body font — no serif mismatch, high legibility at all sizes. */
+.section-heading {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
 }
 
 /* Layout utilities */
@@ -1011,6 +1039,34 @@ body {
     font-size: 0.875rem;
 }
 
+/* Primary CTA button — matches the hero pill style.
+   Use for top-level calls to action: Get Involved, Back to Home, etc. */
+.btn-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: var(--color-durham-purple);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: var(--color-durham-purple-hover);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+.dark .btn-cta {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+
 /* Viewport height utilities for stable hero sizing across mobile browsers */
 .min-h-100dvh {
     min-height: 100dvh;
@@ -1060,17 +1116,64 @@ body {
 
 /* Neutral background for sections below hero */
 .section-neutral {
-    /* Unified background across all neutral sections */
     background: #f8fafc;
-    /* Solid light neutral */
     color: #1e293b;
-    /* Dark slate for better contrast */
 }
 
 .dark .section-neutral {
     background: rgba(13, 4, 20, 0.6);
     color: var(--text-primary);
 }
+
+/* Slightly lavender-tinted off-white — visually distinct from section-neutral
+   without being jarring. Use for alternating sections. */
+.section-light {
+    background: #f5f3ff;
+    color: #1e293b;
+}
+
+.dark .section-light {
+    background: rgba(30, 10, 40, 0.65);
+    color: var(--text-primary);
+}
+
+/* Cards inside section-light get the same treatment as section-neutral */
+.section-light .program-card,
+.section-light .research-card,
+.section-light .info-card {
+    background: #ffffff;
+}
+
+.dark .section-light .program-card,
+.dark .section-light .research-card,
+.dark .section-light .info-card {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4,
+.section-light h5,
+.section-light h6 {
+    color: #1e293b;
+}
+
+.dark .section-light h1,
+.dark .section-light h2,
+.dark .section-light h3,
+.dark .section-light h4,
+.dark .section-light h5,
+.dark .section-light h6 {
+    color: var(--text-primary);
+}
+
+/* Ensure btn-cta text is white in section-light too */
+.section-light a.btn-cta,
+.section-light a.btn-cta:hover {
+    color: #ffffff !important;
+}
+
 
 /* -------------------------------------------
    Fix: Ensure header icons are white on cards
@@ -1264,11 +1367,13 @@ body {
 
 /* Ensure only PRIMARY or gradient buttons are forced white in neutral sections */
 .section-neutral a.btn-primary,
+.section-neutral a.btn-cta,
 .section-neutral a[class*="bg-gradient-to-"] {
     color: #ffffff !important;
 }
 
 .section-neutral a.btn-primary:hover,
+.section-neutral a.btn-cta:hover,
 .section-neutral a[class*="bg-gradient-to-"]:hover {
     color: #ffffff !important;
 }
@@ -1572,6 +1677,35 @@ body {
     .no-print {
         display: none !important;
     }
+}
+
+/* ==========================================================================
+   Step 3 — Scroll-triggered entrance animations
+   .reveal = initial hidden state  |  .reveal.visible = triggered (animated in)
+   Staggered delays set via --reveal-delay custom property on child elements.
+   ========================================================================== */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Only hide .reveal when JS is active — default-visible for progressive enhancement */
+html.js-enabled .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal.visible {
+    animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
 }
 
 /* Respect reduced motion preferences */

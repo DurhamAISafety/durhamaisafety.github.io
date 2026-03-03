@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 ---
 
 <Layout 
-	title="About Us - Durham AISI"
+	title="About Us - DAISI"
 	description="Learn about the Durham AI Safety Initiative (DAISI), our mission, impact, and the team behind it."
 >
 	<script
@@ -26,7 +26,7 @@ import { Image } from 'astro:assets';
 				},
 				{
 					"@type": "Question",
-					"name": "What does Durham AISI do?",
+					"name": "What does DAISI do?",
 					"acceptedAnswer": {
 						"@type": "Answer",
 						"text": "DAISI raises awareness through discussion groups and speaker events, upskills members in safety techniques through workshops and 1-1 support, and fosters community for high-quality discussion, support and connections to the wider field of AI safety."
@@ -98,20 +98,16 @@ import { Image } from 'astro:assets';
 		</div>
 	</section>
 
-	<!-- Team Heading -->
-	<section class="section-neutral pt-2 pb-2" id="team">
-		<div class="site-container text-center">
-			<h2 class="text-3xl md:text-4xl font-bold mb-2">Our Team</h2>
-			<div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-2"></div>
-		</div>
-	</section>
-
-	<!-- Team Grid -->
-	<section class="section-neutral pt-2 pb-12">
+	<!-- Team Section -->
+	<section id="team" class="section section-light">
 		<div class="site-container">
+			<div class="text-center mb-12">
+				<h2 class="section-heading text-3xl md:text-4xl mb-6">Our Team</h2>
+				<div class="section-divider"></div>
+			</div>
 			<div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-				{team.map((person) => (
-					<div class="text-center animate-on-scroll w-40 md:w-48">
+				{team.map((person, i) => (
+					<div class="text-center reveal w-40 md:w-48" style={`--reveal-delay: ${(i % 4) * 80}ms`}>
 						<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
 							{person.photo ? (
 								typeof person.photo === 'string' ? (
@@ -130,7 +126,6 @@ import { Image } from 'astro:assets';
 										alt={person.name}
 										widths={[128,160,200,320]}
 										sizes="(min-width: 1024px) 160px, (min-width: 768px) 160px, 128px"
-	
 										fit="cover"
 										loading="lazy"
 										decoding="async"
@@ -147,7 +142,7 @@ import { Image } from 'astro:assets';
 						</div>
 						{person.link ? (
 							<h4 class="text-xl font-bold mb-2">
-								<a href={person.link} target="_blank" rel="noopener" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center justify-center">
+								<a href={person.link} target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center justify-center">
 									{person.name}
 									<i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
 								</a>
@@ -159,88 +154,26 @@ import { Image } from 'astro:assets';
 					</div>
 				))}
 			</div>
+			{alumni.length > 0 && (
+				<div class="text-center mt-10">
+					<a href="/alumni/" class="inline-flex items-center gap-2 text-durham-purple hover:text-bright-purple font-medium transition-colors text-base">
+						See alumni &amp; past exec
+						<i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
+					</a>
+				</div>
+			)}
 		</div>
 	</section>
 
 	<!-- Join Section -->
 	<section class="section section-neutral">
 		<div class="site-container text-center">
-			<h3 class="text-3xl md:text-4xl font-bold mb-6">Join Our Team</h3>
+			<h3 class="section-heading text-3xl md:text-4xl mb-6">Join Our Team</h3>
 			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
-				If you want to help organise and shape Durham AISI, contact 
+				If you want to help organise and shape DAISI, contact 
 				<a href="mailto:durhamaisi@durham.ac.uk" class="text-bright-purple hover:text-light-purple font-semibold transition-colors">durhamaisi@durham.ac.uk</a> and we'll be in touch!
 			</p>
 		</div>
 	</section>
-
-	<!-- Alumni Section -->
-	{alumni.length > 0 && (
-		<>
-			<section class="section-neutral pt-2 pb-2" id="alumni">
-				<div class="site-container text-center">
-					<h2 class="text-3xl md:text-4xl font-bold mb-2">Alumni</h2>
-					<div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-2"></div>
-				</div>
-			</section>
-
-			<section class="section-neutral pt-2 pb-12">
-				<div class="site-container">
-					<div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-						{alumni.map((person) => (
-							
-							<div class="text-center animate-on-scroll w-40 md:w-48">
-								<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
-									{person.photo ? (
-										typeof person.photo === 'string' ? (
-											<img
-												src={person.photo}
-												alt={person.name}
-												loading="lazy"
-												decoding="async"
-												class="w-full h-full object-cover"
-												onerror="const fb2=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb2){fb2.style.display='flex'}; this.remove();"
-												style="width:100%; height:100%; object-fit: cover;"
-											/>
-										) : (
-											<Image
-												src={person.photo}
-												alt={person.name}
-												widths={[128,160,200,320]}
-												sizes="(min-width: 1024px) 160px, (min-width: 768px) 160px, 128px"
-												fit="cover"
-												loading="lazy"
-												decoding="async"
-												class="w-full h-full object-cover"
-												onerror="const fb3=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb3){fb3.style.display='flex'}; this.remove();"
-											/>
-										)
-									) : (
-										<i class="fas fa-user text-3xl text-white"></i>
-									)}
-									<div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
-										<i class="fas fa-user text-3xl text-white"></i>
-									</div>
-								</div>
-								{person.link ? (
-									<h4 class="text-xl font-bold mb-2">
-										<a href={person.link} target="_blank" rel="noopener" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center justify-center">
-											{person.name}
-											<i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
-										</a>
-									</h4>
-								) : (
-									<h4 class="text-xl font-bold mb-2">{person.name}</h4>
-								)}
-								<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
-								{person.years_active && (
-								<p class="text-xs text-gray-500">{person.years_active}</p>
-								)}
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-		</>
-	)}
 </Layout>
 
