@@ -23,7 +23,7 @@ export default {
       },
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
-        'display': ['DM Serif Display', 'serif'],
+        'display': ['IBM Plex Sans', 'sans-serif'],
         'body': ['IBM Plex Sans', 'sans-serif']
       }
     }

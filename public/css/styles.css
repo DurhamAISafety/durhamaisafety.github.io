@@ -220,15 +220,12 @@ body {
     background-clip: text;
 }
 
-/* Section heading: uses DM Serif Display for all h2 section titles.
-   WARNING: DM Serif Display is a display typeface — only use this class
-   on elements rendered at 28px or larger (h2 and above). Do NOT apply
-   to h3, h4, card titles, or any sub-heading that renders below ~28px,
-   as its letterforms look loose and spindly at small sizes. */
+/* Section heading: IBM Plex Sans semibold for all h2/h3 section titles.
+   Consistent with the body font — no serif mismatch, high legibility at all sizes. */
 .section-heading {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     line-height: 1.15;
 }
 
