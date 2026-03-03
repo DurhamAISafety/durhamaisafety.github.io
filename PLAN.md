@@ -3,18 +3,23 @@
 ## Overview
 
 Five focused improvements to `index.astro` and `styles.css` (plus a small addition to `main.js`).
-No pages other than `index.astro` are touched. All changes are backwards-compatible with Tailwind v3.
+All changes are backwards-compatible with Tailwind v3.
+
+Design reference: [aiscu.org](https://aiscu.org/) — editorial typography, clean section rhythm, subtle animations.
 
 ---
 
-## Step 1 — Typography upgrade
+## Step 1 — Typography upgrade ✅
 
-**Files:** `src/layouts/Layout.astro`, `public/css/styles.css`, `tailwind.config.mjs`
+**Files:** `src/layouts/Layout.astro`, `public/css/styles.css`, `tailwind.config.mjs`, all `src/pages/*.astro`
 
-- Add **DM Serif Display** (headings) and **IBM Plex Sans** (body) to the Google Fonts `<link>` in `Layout.astro`, replacing the current Inter-only import.
-- Declare both font families in `tailwind.config.mjs` under `fontFamily` so they're available as `font-display` and `font-body` Tailwind utilities.
-- In `styles.css`, update `body` to use `IBM Plex Sans` and add a `.section-heading` utility class that applies `DM Serif Display` — used on all `<h2>` section titles in `index.astro`.
-- Remove the `font-inter` class from `<body>` in `Layout.astro` and replace with `font-body`.
+- Added **DM Serif Display** (headings) and **IBM Plex Sans** (body) to the Google Fonts `<link>` in `Layout.astro`, alongside Inter.
+- Declared both font families in `tailwind.config.mjs` under `fontFamily` as `font-display` and `font-body` Tailwind utilities.
+- `body` updated to IBM Plex Sans; `font-inter` → `font-body` on `<body>` in `Layout.astro`.
+- Added `.section-heading` utility class (DM Serif Display, weight 400) with a **28px+ minimum size rule** — applied to `<h2>`/`<h3>` section titles at `text-3xl` or larger across all pages. h4/h5 elements stay IBM Plex Sans.
+- Applied `section-heading` consistently across all 7 pages (`index`, `about`, `programmes`, `research`, `what-is-ai-safety`, `get-involved`, `404`).
+
+> **Accessibility note:** DM Serif Display is a display typeface. The `.section-heading` class must not be used below ~28px. Card titles and sub-headings (`h4`/`h5`) intentionally remain IBM Plex Sans for legibility.
 
 ---
 
@@ -60,20 +65,20 @@ No pages other than `index.astro` are touched. All changes are backwards-compati
 
 ---
 
-## Step 5 — Hero markup cleanup
+## Step 5 — Hero markup cleanup ✅
 
 **Files:** `src/pages/index.astro`, `public/css/styles.css`
 
-- Move both inline `text-shadow` styles from the `<h1>` and `<p>` into CSS classes `.hero-heading` and `.hero-subheading` in `styles.css`.
-- Simplify the `<h1>` from two `<span>` elements with conflicting font-weight classes to a single clean element — the italic accent on "reducing catastrophic risks..." is kept but applied via a `<em>` tag styled in CSS rather than mixed inline weight utilities.
-- Remove the redundant `font-medium` / `font-bold` conflict on adjacent spans.
+- Moved both inline `text-shadow` styles from the `<h1>` and `<p>` into CSS classes `.hero-heading` and `.hero-subheading` in `styles.css`.
+- Simplified the `<h1>` from two `<span>` elements with conflicting font-weight classes to a single clean element — the italic accent on "reducing catastrophic risks..." is applied via an `<em>` tag styled in CSS (`color: bright-purple; font-style: italic; font-weight: inherit`).
+- Removed the redundant `font-medium` / `font-bold` conflict on adjacent spans.
 
 ---
 
 ## Implementation order
 
-1. Step 1 (typography) — lays the foundation for all headings
-2. Step 5 (hero cleanup) — CSS classes depend on step 1 being in place
+1. ~~Step 1 (typography)~~ ✅ — lays the foundation for all headings
+2. ~~Step 5 (hero cleanup)~~ ✅ — CSS classes depend on step 1 being in place
 3. Step 4 (DRY cards) — purely structural, no style dependencies
 4. Step 2 (section rhythm) — needs step 4 done so section contents are final
 5. Step 3 (animations) — applied last so `.reveal` classes go on final markup
@@ -82,6 +87,5 @@ No pages other than `index.astro` are touched. All changes are backwards-compati
 
 ## Out of scope
 
-- Other pages (`about.astro`, `programmes.astro`, etc.) — untouched
 - Dark mode migration to `dark:` Tailwind utilities — deferred (see `TODO.md`)
 - Tailwind v4 upgrade — deferred (see `TODO.md`)

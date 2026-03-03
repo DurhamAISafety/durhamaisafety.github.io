@@ -147,6 +147,23 @@
     }
 }
 
+/* Hero heading & subheading: text-shadow extracted from inline styles */
+.hero-heading {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* Italic accent phrase inside the hero h1 */
+.hero-heading em {
+    color: var(--color-bright-purple);
+    font-style: italic;
+    font-weight: inherit;
+}
+
+.hero-subheading {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
 /* Reset and base styles - targeted approach to avoid conflicts with Tailwind */
 *,
 *::before,
