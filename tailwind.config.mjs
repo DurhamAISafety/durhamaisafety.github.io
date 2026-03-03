@@ -22,7 +22,9 @@ export default {
         'navy': '#1e3a8a'
       },
       fontFamily: {
-        'inter': ['Inter', 'sans-serif']
+        'inter': ['Inter', 'sans-serif'],
+        'display': ['DM Serif Display', 'serif'],
+        'body': ['IBM Plex Sans', 'sans-serif']
       }
     }
   },

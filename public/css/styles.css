@@ -186,7 +186,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     /* Use site-wide purple gradient background; Tailwind body gradient in layout is compatible */
     background: var(--gradient-bg);
     color: var(--text-primary);
@@ -201,6 +201,14 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+/* Section heading: uses DM Serif Display for all h2 section titles */
+.section-heading {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
 }
 
 /* Layout utilities */
