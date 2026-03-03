@@ -77,14 +77,14 @@ Disabled until Tailwind v4 migration. All `.dark { ... }` CSS rules preserved as
 
 ---
 
-## Step 3 — Scroll-triggered entrance animations
+## Step 3 — Scroll-triggered entrance animations ✅
 
 **Files:** `public/css/styles.css`, `public/js/main.js`, `src/pages/index.astro`
 
-- Add `@keyframes fade-up` and `.reveal` / `.reveal.visible` classes in `styles.css`.
-- Extend `initializeScrollAnimations()` in `main.js` to observe `.reveal` elements.
-- Respect `prefers-reduced-motion`.
-- Apply `.reveal` to section headings, program cards (staggered `animation-delay`), research carousel, supporters grid.
+- Added `@keyframes fade-up` and `.reveal` / `.reveal.visible` classes in `styles.css`.
+- Extended `initializeScrollAnimations()` in `main.js` to observe `.reveal` elements (fire-once via `unobserve`).
+- Respects `prefers-reduced-motion` — immediately sets opacity/transform on all reveals.
+- Applied `.reveal` to section headings, all 5 program cards (staggered 0–400 ms delays), research carousel, and supporters grid items (staggered 0–240 ms).
 
 ---
 
@@ -94,7 +94,7 @@ Disabled until Tailwind v4 migration. All `.dark { ... }` CSS rules preserved as
 2. ~~Step 5 (hero cleanup)~~ ✅
 3. ~~Step 4 (DRY cards)~~ ✅
 4. ~~Step 2 (section rhythm)~~ ✅
-5. Step 3 (animations) — applied last so `.reveal` classes go on final markup
+5. ~~Step 3 (animations)~~ ✅
 
 ---
 

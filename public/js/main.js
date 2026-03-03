@@ -1,5 +1,5 @@
 /**
- * Durham AISI Website JavaScript
+ * DAISI Website JavaScript
  * Common functionality shared across all pages
  */
 
@@ -82,25 +82,25 @@ function initializeFormHandling() {
  */
 function handleFormSubmission(e) {
     e.preventDefault();
-    
+
     const form = e.target;
     const formData = new FormData(form);
-    
+
     // Show loading state
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.textContent = 'Submitting...';
     submitButton.disabled = true;
-    
+
     // Simulate form submission (replace with actual endpoint)
     setTimeout(() => {
         // Reset button
         submitButton.textContent = originalText;
         submitButton.disabled = false;
-        
+
         // Show success message
         showNotification('Thank you for your interest! We will be in touch soon.', 'success');
-        
+
         // Reset form
         form.reset();
     }, 1000);
@@ -115,13 +115,13 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     // Add to page
     document.body.appendChild(notification);
-    
+
     // Show with animation
     setTimeout(() => notification.classList.add('show'), 100);
-    
+
     // Remove after 5 seconds
     setTimeout(() => {
         notification.classList.remove('show');
@@ -140,10 +140,10 @@ function initializeAnalytics() {
             page_location: window.location.href
         });
     }
-    
+
     // Track button clicks
     document.querySelectorAll('.btn, .nav-link').forEach(element => {
-        element.addEventListener('click', function() {
+        element.addEventListener('click', function () {
             const action = this.textContent.trim();
             console.log('User clicked:', action);
             // Add actual analytics tracking here
@@ -154,24 +154,47 @@ function initializeAnalytics() {
 // (Removed unused helpers: debounce, isInViewport)
 
 /**
- * Animate elements when they come into view
+ * Animate elements when they come into view.
+ * Handles both legacy .animate-on-scroll and new .reveal elements.
  */
 function initializeScrollAnimations() {
+    // Legacy: team photo cards etc.
     const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
-    const observer = new IntersectionObserver((entries) => {
+    const legacyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
             }
         });
+    }, { threshold: 0.1 });
+    animateElements.forEach(el => legacyObserver.observe(el));
+
+    // Step 3: .reveal elements — fade-up on scroll
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealElements = document.querySelectorAll('.reveal');
+
+    if (prefersReducedMotion) {
+        // Skip animation entirely — make everything visible immediately
+        revealElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+        return;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target); // fire once
+            }
+        });
     }, {
-        threshold: 0.1
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px',
     });
-    
-    animateElements.forEach(element => {
-        observer.observe(element);
-    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
 }
 
 /**

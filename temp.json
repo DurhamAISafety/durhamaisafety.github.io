@@ -1713,8 +1713,8 @@
                                 "width": 49,
                                 "height": 40
                             },
-                            "snippet": "<img src=\"/_astro/DAISI-logo.C-0sQAJc.svg\" alt=\"Durham AISI Logo\" class=\"h-10 w-auto\">",
-                            "nodeLabel": "Durham AISI Logo"
+                            "snippet": "<img src=\"/_astro/DAISI-logo.C-0sQAJc.svg\" alt=\"DAISI Logo\" class=\"h-10 w-auto\">",
+                            "nodeLabel": "DAISI Logo"
                         }
                     }
                 ]
@@ -3752,7 +3752,7 @@
                                 "height": 823
                             },
                             "snippet": "<div class=\"mobile-nav-content\">",
-                            "nodeLabel": "Durham AISI Logo"
+                            "nodeLabel": "DAISI Logo"
                         },
                         "value": {
                             "type": "numeric",

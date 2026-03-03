@@ -1,4 +1,4 @@
-/* Durham AISI Website Styles */
+/* DAISI Website Styles */
 /* ========================== */
 
 /* Fonts are loaded in layout head via <link>; removed @import to improve performance */
@@ -1679,6 +1679,34 @@ body {
     .no-print {
         display: none !important;
     }
+}
+
+/* ==========================================================================
+   Step 3 — Scroll-triggered entrance animations
+   .reveal = initial hidden state  |  .reveal.visible = triggered (animated in)
+   Staggered delays set via --reveal-delay custom property on child elements.
+   ========================================================================== */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal.visible {
+    animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
 }
 
 /* Respect reduced motion preferences */
