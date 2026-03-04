@@ -32,10 +32,12 @@
 - name: Eve
   role: Co-organiser and Treasurer
   photo: eve.jpeg
+  linkedin: https://www.linkedin.com/in/eve-sherratt/
 
 - name: Quinn
   role: Co-organiser and Secretary
   photo: quinn.jpeg
+  linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
 
 - name: Patrick
   role: PhD Researcher (Mechinterp)
