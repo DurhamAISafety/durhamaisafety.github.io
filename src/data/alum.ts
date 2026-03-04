@@ -6,6 +6,8 @@ export interface AlumniMember {
   role: string;
   years_active?: string;
   photo?: string | ImageMetadata;
+  linkedin?: string;
+  'durham-staff-link'?: string;
   link?: string;
 }
 
@@ -32,6 +34,8 @@ const rawAlum = parse(alumYaml) as Array<{
   role: string;
   years_active?: string;
   photo?: string;
+  linkedin?: string;
+  'durham-staff-link'?: string;
   link?: string;
 }> | null;
 

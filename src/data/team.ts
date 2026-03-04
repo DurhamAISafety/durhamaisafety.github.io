@@ -5,6 +5,8 @@ export interface TeamMember {
   name: string;
   role: string;
   photo?: string | ImageMetadata;
+  linkedin?: string;
+  'durham-staff-link'?: string;
   link?: string;
 }
 
@@ -30,6 +32,8 @@ const rawTeam = parse(teamYaml) as Array<{
   name: string;
   role: string;
   photo?: string;
+  linkedin?: string;
+  'durham-staff-link'?: string;
   link?: string;
 }>;
 

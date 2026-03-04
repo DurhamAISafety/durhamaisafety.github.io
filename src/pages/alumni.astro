@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { alumni } from '../data/alum';
 import { Image } from 'astro:assets';
+import durhamLogo from '../assets/durham-logo.png';
 ---
 
 <Layout
@@ -58,15 +59,25 @@ import { Image } from 'astro:assets';
                   <i class="fas fa-user text-3xl text-white"></i>
                 </div>
               </div>
-              {person.link ? (
-                <h4 class="text-xl font-bold mb-2">
-                  <a href={person.link} target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:text-light-purple transition-colors inline-flex items-center justify-center">
-                    {person.name}
-                    <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
-                  </a>
-                </h4>
-              ) : (
-                <h4 class="text-xl font-bold mb-2">{person.name}</h4>
+              <h4 class="text-xl font-bold mb-2">{person.name}</h4>
+              {(person.linkedin || person['durham-staff-link'] || person.link) && (
+                <div class="flex items-center justify-center gap-3 mb-2">
+                  {person.linkedin && (
+                    <a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} on LinkedIn`}>
+                      <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+                    </a>
+                  )}
+                  {person['durham-staff-link'] && (
+                    <a href={person['durham-staff-link']} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:opacity-70 transition-opacity" aria-label={`${person.name} Durham staff page`}>
+                      <Image src={durhamLogo} alt="Durham University" width={40} height={40} format="png" class="inline-block w-5 h-5" />
+                    </a>
+                  )}
+                  {person.link && (
+                    <a href={person.link} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} website`}>
+                      <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
+                    </a>
+                  )}
+                </div>
               )}
               <p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
               {person.years_active && (
