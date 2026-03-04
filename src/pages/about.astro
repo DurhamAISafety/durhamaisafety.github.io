@@ -142,8 +142,9 @@ import durhamLogo from '../assets/durham-logo.png';
 							</div>
 						</div>
 					<h4 class="text-xl font-bold mb-2">{person.name}</h4>
+					<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
 					{(person.linkedin || person['durham-staff-link'] || person.link) && (
-						<div class="flex items-center justify-center gap-3 mb-2">
+						<div class="flex items-center justify-center gap-3">
 							{person.linkedin && (
 								<a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} on LinkedIn`}>
 									<i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
@@ -161,7 +162,6 @@ import durhamLogo from '../assets/durham-logo.png';
 							)}
 						</div>
 						)}
-						<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
 					</div>
 				))}
 			</div>
