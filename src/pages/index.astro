@@ -191,11 +191,18 @@ const programs: Program[] = [
                         ></iframe>
                     </div>
                 </div>
-                <p class="text-center text-sm mt-8 text-slate-600">
-                    Not Loading? <a href="https://calendar.google.com/calendar/embed?src=b7bo0qsj27l7ahfaqgqiavjom9etg7sb%40import.calendar.google.com&ctz=Europe%2FLondon&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See the calendar here</a>.
-                </p>
-                <p class="text-center text-sm text-slate-600">
-                    <a href="https://luma.com/daisi?period=past" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events here</a>.
+                <div class="mt-6 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3 text-slate-700">
+                        <i class="fa-solid fa-triangle-exclamation text-durham-purple text-lg flex-shrink-0" aria-hidden="true"></i>
+                        <span class="text-sm font-medium">Calendar not loading? Some browsers block embedded calendars.</span>
+                    </div>
+                    <a href="https://calendar.google.com/calendar/embed?src=b7bo0qsj27l7ahfaqgqiavjom9etg7sb%40import.calendar.google.com&ctz=Europe%2FLondon&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-durham-purple text-white text-sm font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200 flex-shrink-0">
+                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                        View calendar
+                    </a>
+                </div>
+                <p class="text-center text-sm mt-4 text-slate-600">
+                    <a href="https://luma.com/daisi?period=past" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events</a>
                 </p>
             </div>
         </div>
