@@ -100,6 +100,7 @@ Push to `main` → GitHub Actions deploys to GitHub Pages automatically.
 
 ### Links
 - All `target="_blank"` links must use `rel="noopener noreferrer"` — never `rel="noopener"` alone.
+- Add a Font Awesome external link icon after the text of every external link: `<i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>`
 
 ### CSS
 - Never hardcode brand hex values in new CSS rules. Use CSS custom properties from `:root` in `styles.css`: `var(--color-durham-purple)`, `var(--color-bright-purple)`, `var(--color-deep-purple)`, etc.
