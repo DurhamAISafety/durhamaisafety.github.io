@@ -15,7 +15,18 @@ Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **GitHub
 
 `src/data/team.ts` resolves filenames automatically via `import.meta.glob('../assets/team/*.{jpeg,jpg,png,webp,gif}', { eager: true })`. Alumni photos share the same folder.
 
-When adding a **new asset type**, update the glob pattern in the relevant `src/data/*.ts` file and add the filename → `ImageMetadata` mapping.
+Optional link fields for a team member (all shown as icons): `linkedin`, `durham-staff-link`, `link` (generic). Example:
+```yaml
+- name: Alice Smith
+  role: Advisor
+  photo: alice.jpg
+  linkedin: https://www.linkedin.com/in/alice-smith/
+  durham-staff-link: https://www.durham.ac.uk/staff/alice-smith/
+```
+
+**Supporters logos** are different: they live in `public/images/supporters/` and are referenced with a plain `/images/supporters/logo.svg` path — no `import.meta.glob()` needed.
+
+When adding a **new asset type** that needs Astro image optimisation, update the glob pattern in the relevant `src/data/*.ts` file. For assets that don't need optimisation, use `public/` instead.
 
 ## Styling Architecture
 
@@ -75,7 +86,9 @@ Push to `main` → GitHub Actions deploys to GitHub Pages automatically.
 
 ## Common Tasks
 
-**Add team member:** photo → `src/assets/team/`, entry → `src/content/team.yml`
+**Add team member:** photo → `src/assets/team/`, entry → `src/content/team.yml` (optional link fields: `linkedin`, `durham-staff-link`, `link`)
+
+**Add supporter:** logo → `public/images/supporters/`, entry → `src/content/supporters.yml`
 
 **Add research paper:** entry at **top** of `src/content/research.yml` (sorted newest-first by `year` then `month`). Required fields: `title`, `url`, `authors`, `year`, `venue`, `tags`, `type`. Mark DAISI members with `team: true` in the authors array.
 

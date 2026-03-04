@@ -25,9 +25,11 @@ The official website for DAISI, built with Astro and deployed to GitHub Pages.
 | To update... | Edit this file |
 |--------------|----------------|
 | Team members | `src/content/team.yml` + add photo to `src/assets/team/` |
+| Alumni | `src/content/alum.yml` + add photo to `src/assets/team/` |
+| Supporters | `src/content/supporters.yml` + add logo to `public/images/supporters/` |
 | Research papers | `src/content/research.yml` |
-| Navigation links | `src/components/Header.astro` |
-| Footer & social links | `src/components/Footer.astro` |
+| Navigation links | `src/data/config.ts` (`siteConfig.navigation`) |
+| Footer & social links | `src/data/config.ts` (`siteConfig.social`) |
 | Site config (email, title) | `src/data/config.ts` |
 | Page content | `src/pages/[pagename].astro` |
 
@@ -39,11 +41,13 @@ The official website for DAISI, built with Astro and deployed to GitHub Pages.
    - name: Alice Smith
      role: Co-organiser
      photo: alice.jpg
-     link: https://example.com   # optional
+     linkedin: https://www.linkedin.com/in/alice-smith/        # optional
+     durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
+     link: https://example.com                                 # optional (generic)
    ```
 
 See the example template at the top of `team.yml` for more details.
-`src/content/alum.yml` works similarly for alumni.
+`src/content/alum.yml` works the same way; alumni also support a `years_active` field.
 
 ### Adding a Research Paper
 
@@ -86,5 +90,5 @@ Defined in `tailwind.config.mjs`:
 
 ## License
 
-- Code: [MIT License](./LICENSE.md)
+- Code: [MIT License](./LICENSE)
 - Content: [CC BY 4.0](./CONTENT_LICENSE.md) (except team photos, personal data, and logos)
