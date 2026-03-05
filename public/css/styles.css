@@ -414,6 +414,18 @@ body {
     transform: scale(1.1);
 }
 
+.nav-social svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+}
+
+.mobile-social-links a svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+}
+
 /* CTA button in nav */
 .nav-cta {
     background: var(--color-bright-purple);
@@ -530,7 +542,7 @@ body {
 }
 
 /* Hide hamburger on desktop */
-@media (min-width: 1100px) {
+@media (min-width: 1300px) {
     .burger {
         display: none;
     }
@@ -541,7 +553,7 @@ body {
     display: none;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1300px) {
     .nav-menu-desktop {
         display: flex;
         gap: 2rem;
