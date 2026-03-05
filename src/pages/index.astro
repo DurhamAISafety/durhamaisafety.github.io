@@ -147,6 +147,19 @@ const programs: Program[] = [
             </div>
             
             <div id="calendar" class="max-w-5xl mx-auto mb-16">
+
+                <!-- University wifi warning -->
+                <div class="mb-6 rounded-xl border border-amber-400/60 bg-amber-50 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-start gap-3 text-slate-700">
+                        <i class="fa-solid fa-wifi text-amber-500 text-lg flex-shrink-0 mt-0.5" aria-hidden="true"></i>
+                        <span class="text-sm font-medium">The calendar is currently not loading on university Wi-Fi (eduroam, DU Student). We're working to resolve this — in the meantime, please view this page on a different network (e.g. mobile data), or view the calendar using the button here. Sorry for the inconvenience!</span>
+                    </div>
+                    <a href="https://calendar.google.com/calendar/u/0/embed?src=b7bo0qsj27l7ahfaqgqiavjom9etg7sb@import.calendar.google.com&ctz=Europe/London&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500 text-sm font-medium rounded-lg hover:bg-amber-600 transition-colors duration-200 flex-shrink-0" style="color: #ffffff !important;">
+                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                        View calendar
+                    </a>
+                </div>
+
                 <p class="text-center text-lg mb-4 font-medium">
                     We'll update <a href="https://luma.com/daisi" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">this calendar</a> with upcoming events. You can add it to yours:
                 </p>
@@ -507,4 +520,3 @@ const programs: Program[] = [
     }
 }
 </style>
-
