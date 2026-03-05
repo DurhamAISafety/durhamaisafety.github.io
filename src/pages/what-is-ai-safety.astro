@@ -18,7 +18,7 @@ import Layout from "../layouts/Layout.astro";
           "name": "What is AI safety?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "AI Safety is the field focused on ensuring that artificial intelligence systems are safe, beneficial, and aligned with human values as they become increasingly capable."
+            "text": "AI safety is the field working to ensure that increasingly capable AI systems remain beneficial and under meaningful human oversight — covering technical research, governance, and policy."
           }
         },
         {
@@ -26,7 +26,7 @@ import Layout from "../layouts/Layout.astro";
           "name": "Why is AI safety important?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "As capabilities accelerate toward frontier and potentially superhuman systems, small design mistakes or misaligned objectives can scale into large harms. AI safety reduces risks of unintended behavior, misuse, and systemic failures, protecting people and institutions while enabling responsible progress and the upside of powerful AI."
+            "text": "AI capabilities are advancing faster than our ability to understand or control these systems. Even experts who are sceptical of near-term timelines think human-level AI could arrive within a decade or two — which means the time to build safety foundations is now, not later."
           }
         },
         {
@@ -34,339 +34,382 @@ import Layout from "../layouts/Layout.astro";
           "name": "How can I get involved in AI safety at Durham?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Start by attending our intro AIS101 sessions, join an in‑depth reading group, and talk to us about research or policy projects. We support dissertation topics and applications to fellowships and funding from external orgs. See the Programmes and Get Involved pages for upcoming activities and ways to contribute, regardless of background."
+            "text": "Start by attending our intro AIS101 sessions, join an in-depth reading group, and talk to us about research or policy projects. We support dissertation topics and applications to fellowships and external funding. See the Programmes and Get Involved pages for upcoming activities."
           }
         }
       ]
     })}
   />
 
+  <!-- Hero / Title -->
   <section class="section section-neutral">
     <div class="site-container text-center">
-      <h1 class="section-heading text-4xl md:text-5xl mb-4">AI Safety and Why It Matters</h1>
+      <h1 class="section-heading text-4xl md:text-5xl mb-4">What is AI Safety — and why does it matter?</h1>
       <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
-      
-      {/* Jump Navigation */}
-      <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
-        <a href="#what-is-ais" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i> What is AI Safety?
+      <p class="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-slate-600">
+        A plain-language introduction — no prior knowledge needed, no hype.
+      </p>
+
+      <!-- Jump Navigation -->
+      <nav class="flex flex-wrap justify-center gap-4 text-sm mt-8" aria-label="Page sections">
+        <a href="#not-sci-fi" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i> Not science fiction
         </a>
         <span class="text-slate-400" aria-hidden="true">•</span>
-        <a href="#why-it-matters" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-exclamation-circle mr-1" aria-hidden="true"></i> Why It Matters
+        <a href="#the-problem" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-exclamation-circle mr-1" aria-hidden="true"></i> The core problem
+        </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#what-is-being-done" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-tools mr-1" aria-hidden="true"></i> What's being done
         </a>
         <span class="text-slate-400" aria-hidden="true">•</span>
         <a href="#getting-started" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-rocket mr-1" aria-hidden="true"></i> Getting Started
+          <i class="fas fa-rocket mr-1" aria-hidden="true"></i> Getting started
         </a>
       </nav>
     </div>
   </section>
 
-  {/* The Foundation */}
-  <section id="what-is-ais" class="section section-neutral">
+  <!-- Section 1: Not science fiction -->
+  <section id="not-sci-fi" class="section section-neutral">
     <div class="site-container">
-      <div class="text-center mb-16">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">What is AI Safety?</h3>
-        <div class="section-divider"></div>
-      </div>
-
       <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-12">
+          <h2 class="section-heading text-3xl md:text-4xl mb-6">This isn't science fiction</h2>
+          <div class="section-divider"></div>
+        </div>
+
         <div class="info-card p-8 mb-8">
-          <p class="text-xl md:text-2xl leading-relaxed text-center mb-6">
-            AI Safety is the field focused on ensuring that artificial intelligence systems are
-            <span class="gradient-text font-semibold"> safe, beneficial, and aligned with human values</span>
-            as they become increasingly capable.
+          <p class="text-lg md:text-xl leading-relaxed mb-0">
+            A reasonable first reaction to "AI safety" is scepticism. Talk of superintelligence and existential risk can sound like science fiction — the kind of thing tech evangelists use to make their products sound important.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="info-card p-6 card-hover text-center">
-            <i class="fas fa-shield-alt text-5xl text-teal mb-4" aria-hidden="true"></i>
-            <h4 class="text-xl font-bold mb-4">Safety</h4>
-            <p class="text-sm leading-relaxed">
-              Ensuring AI systems operate reliably and don't cause unintended harm to humans or society.
-            </p>
-          </div>
-
-          <div class="info-card p-6 card-hover text-center">
-            <i class="fas fa-heart text-5xl text-emerald mb-4" aria-hidden="true"></i>
-            <h4 class="text-xl font-bold mb-4">Beneficial</h4>
-            <p class="text-sm leading-relaxed">
-              Designing AI to actively promote human welfare and contribute positively to society.
-            </p>
-          </div>
-
-          <div class="info-card p-6 card-hover text-center">
-            <i class="fas fa-balance-scale text-5xl text-ocean-blue mb-4" aria-hidden="true"></i>
-            <h4 class="text-xl font-bold mb-4">Aligned</h4>
-            <p class="text-sm leading-relaxed">
-              Ensuring AI systems understand and pursue goals that align with human values and intentions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* Why It Matters & Getting Started */}
-  <section id="why-it-matters" class="section section-light">
-    <div class="site-container">
-      {/* Why AI Safety Matters */}
-      <div class="text-center mb-16">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Why AI Safety Matters</h3>
-        <div class="section-divider"></div>
-      </div>
-      <div class="max-w-6xl mx-auto mb-20">
-        <div class="space-y-12">
-          <div class="timeline-item">
-            <div class="info-card p-8">
-              <h4 class="text-2xl font-bold mb-4 text-bright-purple">1. AI systems far smarter than us may be created soon.</h4>
-              <p class="text-slate-600 leading-relaxed mb-6">
-                AI is advancing fast, and this progress may result in human-level AI. But human-level is not the limit, and shortly after, there's a good chance we'd see superintelligent AI.
-              </p>
-
-              <div class="mb-6">
-                <iframe
-                  width="100%"
-                  height="315"
-                  src="https://www.youtube.com/embed/fa8k8IQ1_X0"
-                  title="Superintelligence - AI Safety Video"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  class="rounded-lg"
-                ></iframe>
-              </div>
-
-              <div class="space-y-3 mb-4">
-                <div class="flex items-center">
-                  <i class="fas fa-chart-line mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Rapid advances in AI capabilities</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-rocket mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Potential for explosive intelligence growth</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-clock mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Timeline uncertainty but potentially soon</span>
-                </div>
-              </div>
-
-              <a href="https://aisafety.info/questions/NM37/1%3A%20AI%20is%20advancing%20fast" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-700 hover:text-purple-500 transition-colors">
-                <span class="underline">Learn more about AI advancement</span>
-                <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="info-card p-8">
-              <h4 class="text-2xl font-bold mb-4 text-light-purple">2. These systems may end up opposed to us.</h4>
-              <p class="text-slate-600 leading-relaxed mb-6">
-                AI systems may pursue their own goals, those goals may not match ours, and that may bring them into conflict with us.
-              </p>
-
-              <div class="space-y-3 mb-4">
-                <div class="flex items-center">
-                  <i class="fas fa-crosshairs mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">The alignment problem: ensuring AI goals match human values</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-eye mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Interpretability: understanding how AI systems make decisions</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-exclamation-triangle mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Goal misalignment and unintended optimization</span>
-                </div>
-              </div>
-
-              <a href="https://aisafety.info/questions/NM3J/5%3A%20AI%20may%20pursue%20goals" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-700 hover:text-purple-500 transition-colors">
-                <span class="underline">Learn more about AI goal pursuit</span>
-                <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="info-card p-8">
-              <h4 class="text-2xl font-bold mb-4 text-lavender">3. Consequences could be catastrophic, including human extinction.</h4>
-              <p class="text-slate-600 leading-relaxed mb-6">
-                AI may defeat us and take over, leading to humanity's extinction or permanent ruin. If we avoid this outcome, AI still has huge implications for the world, including great benefits if it's developed safely.
-              </p>
-
-              <div class="space-y-3 mb-4">
-                <div class="flex items-center">
-                  <i class="fas fa-skull-crossbones mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Catastrophic risk to humanity</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-globe mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Potential for irreversible global consequences</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-balance-scale mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">High stakes: enormous benefits if done right, catastrophe if done wrong</span>
-                </div>
-              </div>
-
-              <a href="https://aisafety.info/questions/NM3O/8%3A%20AI%20can%20win%20a%20conflict%20against%20us" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-700 hover:text-purple-500 transition-colors">
-                <span class="underline">Learn more about AI conflict scenarios</span>
-                <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="info-card p-8">
-              <h4 class="text-2xl font-bold mb-4 text-deep-purple">4. We need to get our act together.</h4>
-              <p class="text-slate-600 leading-relaxed mb-6">
-                Experts are worried, but humanity doesn't have a real plan to avert disaster, and you may be able to help.
-              </p>
-
-              <div class="space-y-3 mb-4">
-                <div class="flex items-center">
-                  <i class="fas fa-university mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">AI governance: developing policies and regulations</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-users mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">International coordination and cooperation</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-brain mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Technical research and safety solutions</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-hand-paper mr-3" aria-hidden="true"></i>
-                  <span class="text-slate-600">Individual action and community building</span>
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <a href="https://aisafety.info/questions/NM3D/12%3A%20Experts%20are%20highly%20concerned" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-700 hover:text-purple-500 transition-colors">
-                  <span class="underline">Learn more about expert concerns</span>
-                  <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
-                </a>
-                <br />
-                <a href="https://www.aisafety.com/map" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-purple-700 hover:text-purple-500 transition-colors">
-                  <span class="underline">Map of AI Safety Landscape</span>
-                  <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Links for Getting Started */}
-      <div id="getting-started" class="text-center mb-16">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Links for Getting Started</h3>
-        <div class="section-divider"></div>
-      </div>
-
-      {/* Featured: AISafety.com hub */}
-      <div class="max-w-4xl mx-auto mb-12">
-        <a href="https://www.AISafety.com/" target="_blank" rel="noopener noreferrer" 
-           class="info-card block p-8 transition-all duration-300 hover:scale-[1.02] group">
-          <div class="flex flex-col md:flex-row items-center gap-6">
-            <div class="flex-shrink-0">
-              <div class="w-20 h-20 bg-gradient-to-br from-durham-purple to-bright-purple rounded-xl flex items-center justify-center">
-                <i class="fas fa-compass text-4xl text-white" aria-hidden="true"></i>
-              </div>
-            </div>
-            <div class="text-center md:text-left flex-1">
-              <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                AISafety.com
-                <i class="fas fa-external-link-alt ml-2 text-sm opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
-              </h4>
-              <p class="text-bright-purple text-lg font-medium mb-3">
-                The central hub for all things AI safety
-              </p>
-              <p class="text-slate-600 dark:text-slate-300 text-sm">
-                Events • Training • Career Advice • News • Projects • and more
-              </p>
-            </div>
-            <div class="flex-shrink-0 hidden md:block">
-              <span class="btn btn-primary btn-sm">
-                ✨ Start here
-              </span>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-        <div class="info-card p-6 text-center">
-          <i class="fas fa-lightbulb text-5xl text-teal mb-4" aria-hidden="true"></i>
-          <h4 class="text-lg font-bold mb-4">Build Intuition</h4>
-          <ul class="text-sm space-y-2 text-left">
-            <li>• <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Intro to the maths behind LLMs (7 min)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://aisafety.info/questions/NM3T" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Intuition behind AI Safety (17 min read)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://youtu.be/pYXy-A4siMw?si=0laypankgPGVryW2&t=15" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              ...or in video form (18 min watch)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-          </ul>
-        </div>
-
-        <div class="info-card p-6 text-center">
-          <i class="fas fa-graduation-cap text-5xl text-emerald mb-4" aria-hidden="true"></i>
-          <h4 class="text-lg font-bold mb-4">Upskilling</h4>
-          <ul class="text-sm space-y-2 text-left">
-            <li>• <a href="https://bluedot.org/courses" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Courses with certificates (from 2hrs)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.aisafety.com/events-and-training" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Events and training (newsletter)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.aisafety.com/jobs" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500 inline-flex items-center">
-              Jobs and internships
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-          </ul>
-        </div>
-
-        <div class="info-card p-6 text-center">
-          <i class="fas fa-newspaper text-5xl text-ocean-blue mb-4" aria-hidden="true"></i>
-          <h4 class="text-lg font-bold mb-4">In the News</h4>
-          <ul class="text-sm space-y-2 text-left">
-            <li>• <a href="https://www.nbcnews.com/tech/tech-news/un-general-assembly-opens-plea-binding-ai-safeguards-red-lines-nobel-rcna231973" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500">
-              UN pleads for binding AI safeguards (Sep 2025, NBC)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.theguardian.com/technology/2026/jan/04/world-may-not-have-time-to-prepare-for-ai-safety-risks-says-leading-researcher" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500">
-              "World may not have time to prepare" (Jan 2026, Guardian)
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-            <li>• <a href="https://www.transformernews.ai/about" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-500 transition-colors underline decoration-purple-700/50 hover:decoration-purple-500">
-              Stay informed with Transformer News
-              <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="text-center">
-        <p class="text-xl mb-6 leading-relaxed">
-          Ready to dive deeper into AI safety? Join our community and start making a difference.
+        <p class="text-lg leading-relaxed mb-6 text-slate-700">
+          That scepticism is worth taking seriously. But the people raising these concerns aren't fringe bloggers. Geoffrey Hinton and Yoshua Bengio — both Turing Award winners and two of the most cited AI researchers in the world — have shifted focus toward warning about the risks of the systems they helped create. Hinton left Google in 2023 specifically so he could speak freely about those risks. When he was awarded the Nobel Prize in Physics in 2024, he used the platform to raise the alarm about AI. These are not people prone to hype.
         </p>
-        <a href="/get-involved/" class="btn-cta">
-          Get Involved
-        </a>
+
+        <p class="text-lg leading-relaxed mb-6 text-slate-700">
+          Governments have reached similar conclusions. The UK and EU have both established dedicated AI safety bodies. In 2023, over 350 AI researchers and executives — including the CEOs of OpenAI, Anthropic, and Google DeepMind — signed a statement declaring that "mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war."
+        </p>
+
+        <p class="text-lg leading-relaxed mb-8 text-slate-700">
+          And crucially, even experts who push back hard on the most dramatic near-term claims still think advanced AI could arrive within a decade or two. Helen Toner — a former OpenAI board member and director at Georgetown's Center for Security and Emerging Technology — put it plainly:
+        </p>
+
+        <!-- Toner blockquote -->
+        <blockquote class="info-card p-8 mb-8 border-l-4 border-bright-purple">
+          <p class="text-lg md:text-xl leading-relaxed italic mb-4">
+            "Dismissing discussion of AGI, human-level AI, transformative AI, superintelligence, etc. as 'science fiction' should be seen as a sign of total unseriousness. Time travel is science fiction. Martians are science fiction. 'Even many sceptical experts think we may well build it in the next decade or two' is not science fiction."
+          </p>
+          <footer class="text-sm text-slate-500 not-italic">
+            — Helen Toner, <a href="https://helentoner.substack.com/p/long-timelines-to-advanced-ai-have?utm_source=bluedot-impact" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-center gap-1">"Long timelines to advanced AI have gotten crazy short" <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i></a>, Rising Tide, April 2025
+          </footer>
+        </blockquote>
+
+        <p class="text-lg leading-relaxed text-slate-700">
+          In other words: you don't have to believe the most dramatic forecasts to conclude that something important is happening, and that we are underprepared for it.
+        </p>
+
       </div>
     </div>
   </section>
+
+  <!-- Section 2: The core problem -->
+  <section id="the-problem" class="section section-light">
+    <div class="site-container">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-12">
+          <h2 class="section-heading text-3xl md:text-4xl mb-6">So what's the actual problem?</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-8 text-slate-700">
+          AI safety isn't one problem — it's a cluster of related engineering and governance challenges that get harder as these systems become more capable. Here are the three that researchers focus on most.
+        </p>
+
+        <!-- Three problems -->
+        <div class="space-y-6 mb-12">
+
+          <div class="info-card p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-14 h-14 bg-gradient-to-br from-bright-purple to-light-purple rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-search text-2xl text-white" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-3">Nobody really knows how these systems work</h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  Modern AI systems aren't built the way a bridge or a smartphone is. They're <em>grown</em> — trained on vast amounts of data through a process that adjusts billions of internal numbers until the outputs look right. Nobody designed those numbers; they emerged from training. And we have no reliable way to look inside and understand what the system has actually learned, or why it produces any given output.
+                </p>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  This isn't just a theoretical concern. Researchers once found that a medical AI trained to assess pneumonia risk had learned to associate asthma with <em>lower</em> risk — not because asthma patients are healthier, but because they typically receive more aggressive care and so had better outcomes in the training data. The model had learned a pattern that was statistically real but medically backwards. Had it been deployed, it would have sent high-risk patients home.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                  If you can't understand what a system has learned, you can't reliably catch these failures before they cause harm — and catching them after the fact may be too late.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-14 h-14 bg-gradient-to-br from-light-purple to-lavender rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-crosshairs text-2xl text-white" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-3">Getting AI to reliably do what you actually want is harder than it sounds</h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  When you train an AI system, you can only reward it for behaviours you can measure. But what you can measure is never quite the same as what you actually care about — and capable systems find the gap. This is sometimes called <em>specification gaming</em>: the system achieves the metric you set while missing the point entirely.
+                </p>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  A simple example: researchers trained an AI to win a boat racing game by collecting points. Rather than finishing the race, it learned to spin in circles crashing into point-scoring objects — technically optimal, completely useless. A higher-stakes version of the same problem: social media algorithms trained to maximise engagement learned that outrage and anxiety drive clicks, producing effects on mental health that were never anyone's objective but were a direct consequence of optimising for the wrong thing.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                  As AI systems become more capable and more autonomous — making decisions over longer timeframes without human review — the gap between "what we measured" and "what we wanted" can produce increasingly serious consequences.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card p-8">
+            <div class="flex items-start gap-6">
+              <div class="w-14 h-14 bg-gradient-to-br from-durham-purple to-bright-purple rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-balance-scale text-2xl text-white" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-3">Governance hasn't kept up with capability</h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  Even if the engineering problems were solved, hard questions would remain: who decides how these systems get deployed? Who is legally liable when they cause harm? How do governments regulate technology that moves faster than legislation, built almost entirely by a handful of private companies with no legal obligation to publish safety evaluations before release?
+                </p>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                  There is also a coordination problem between major powers. The US, China, and EU are developing AI under different regulatory regimes and with different strategic incentives. If any country believes that slowing down for safety means falling behind, the pressure to cut corners is enormous — regardless of what individual researchers or companies want. This dynamic can produce bad outcomes even when nobody is acting in bad faith.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                  This is where political scientists, lawyers, economists, and policy thinkers are just as needed as computer scientists. The governance problem is not a technical one.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Why "just keep it under control" doesn't cut it -->
+        <div class="bg-gradient-to-br from-bright-purple/15 to-light-purple/15 rounded-2xl p-8">
+          <h3 class="text-xl font-bold mb-4">Why can't we just keep it under control?</h3>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            The most common pushback: if AI systems are tools we build and operate, surely we can design them carefully and switch them off if something goes wrong?
+          </p>
+          <p class="text-slate-700 leading-relaxed mb-4">
+            The honest answer is that this gets harder the more capable and autonomous a system is. A chess engine is easy to control because it only plays chess. A system that can browse the web, write and run code, send emails, and delegate subtasks to other AI systems is genuinely different — and that is roughly where frontier AI sits today, with capabilities still advancing.
+          </p>
+          <p class="text-slate-700 leading-relaxed">
+            There are also strong commercial incentives pulling towards more autonomy, not less. The most economically valuable AI is AI that can handle complex tasks with minimal human supervision. Companies building the most capable systems are under pressure to deploy quickly. That pressure doesn't resolve on its own — which is exactly why governance matters.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: What's being done -->
+  <section id="what-is-being-done" class="section section-neutral">
+    <div class="site-container">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-12">
+          <h2 class="section-heading text-3xl md:text-4xl mb-6">What's actually being done about it?</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <p class="text-lg leading-relaxed mb-8 text-slate-700">
+          Quite a lot — though not yet enough. AI safety has grown from a niche concern into a serious field with significant funding, dedicated institutions, and real influence on how frontier AI labs operate.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-10">
+
+          <div class="program-card rounded-2xl p-6 text-center">
+            <i class="fas fa-flask text-4xl text-durham-purple mb-4"></i>
+            <h4 class="text-lg font-bold mb-3">Technical Research</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Interpretability (understanding what AI systems have actually learned), alignment, evaluations, and oversight — active research areas at academic labs and organisations like METR and Redwood Research, as well as within the major AI companies themselves.
+            </p>
+          </div>
+
+          <div class="program-card rounded-2xl p-6 text-center">
+            <i class="fas fa-university text-4xl text-durham-purple mb-4"></i>
+            <h4 class="text-lg font-bold mb-3">Policy & Governance</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              The UK's AI Safety Institute, the EU AI Office, and a growing body of academic work on liability, mandatory safety evaluations, and international coordination — trying to build frameworks that can actually keep pace with the technology.
+            </p>
+          </div>
+
+          <div class="program-card rounded-2xl p-6 text-center">
+            <i class="fas fa-users text-4xl text-durham-purple mb-4"></i>
+            <h4 class="text-lg font-bold mb-3">Community & Education</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              University groups like DAISI, training programmes, fellowships, and online courses — building a generation of people who understand both the technology and what's at stake.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="info-card p-8">
+          <h3 class="text-xl font-bold mb-4">Where you fit in</h3>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            AI safety is genuinely short of people — not just ML engineers, but economists, philosophers, lawyers, political scientists, psychologists, and anyone who can think carefully about complex systems and hard tradeoffs. The field is young enough that people coming in now, from any background, can do work that actually shapes how things go.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            You don't need to be a programmer to start. You need to be willing to engage seriously with difficult questions and take the stakes seriously.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Getting Started -->
+  <section id="getting-started" class="section section-light">
+    <div class="site-container">
+      <div class="max-w-4xl mx-auto">
+
+        <div class="text-center mb-12">
+          <h2 class="section-heading text-3xl md:text-4xl mb-6">Want to go further?</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        {/* Featured hub */}
+        <div class="max-w-4xl mx-auto mb-10">
+          <a href="https://www.AISafety.com/" target="_blank" rel="noopener noreferrer"
+             class="info-card block p-8 transition-all duration-300 hover:scale-[1.02] group">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+              <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-gradient-to-br from-durham-purple to-bright-purple rounded-xl flex items-center justify-center">
+                  <i class="fas fa-compass text-4xl text-white" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="text-center md:text-left flex-1">
+                <h4 class="text-2xl font-bold text-slate-900 mb-2">
+                  AISafety.com
+                  <i class="fas fa-external-link-alt ml-2 text-sm opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true"></i>
+                </h4>
+                <p class="text-bright-purple text-lg font-medium mb-2">
+                  The central hub for all things AI safety
+                </p>
+                <p class="text-slate-600 text-sm">
+                  Events · Training · Career advice · News · Projects · and more
+                </p>
+              </div>
+              <div class="flex-shrink-0 hidden md:block">
+                <span class="btn btn-primary btn-sm">✨ Start here</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+          <div class="info-card p-6">
+            <i class="fas fa-lightbulb text-4xl text-durham-purple mb-4 block text-center" aria-hidden="true"></i>
+            <h4 class="text-lg font-bold mb-4 text-center">Build intuition</h4>
+            <ul class="text-sm space-y-3">
+              <li>
+                <a href="https://aisafety.info/questions/NM3T" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  A case for AI safety (17 min read, aisafety.info)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  The maths behind LLMs in 7 minutes
+                </a>
+              </li>
+              <li>
+                <a href="https://youtu.be/pYXy-A4siMw?si=0laypankgPGVryW2&t=15" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  Why AI safety matters — video intro (18 min)
+                </a>
+              </li>
+              <li>
+                <a href="https://helentoner.substack.com" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  Helen Toner's Substack — clear writing on the big picture
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="info-card p-6">
+            <i class="fas fa-graduation-cap text-4xl text-durham-purple mb-4 block text-center" aria-hidden="true"></i>
+            <h4 class="text-lg font-bold mb-4 text-center">Upskill</h4>
+            <ul class="text-sm space-y-3">
+              <li>
+                <a href="https://bluedot.org/courses" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  Courses with certificates (from 2 hrs)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.aisafety.com/events-and-training" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  Events and training newsletter
+                </a>
+              </li>
+              <li>
+                <a href="https://www.aisafety.com/jobs" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  Jobs and internships
+                </a>
+              </li>
+              <li>
+                <a href="/programmes/" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-arrow-right text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  DAISI programmes — including our intro AIS101 sessions
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="info-card p-6">
+            <i class="fas fa-newspaper text-4xl text-durham-purple mb-4 block text-center" aria-hidden="true"></i>
+            <h4 class="text-lg font-bold mb-4 text-center">Stay informed</h4>
+            <ul class="text-sm space-y-3">
+              <li>
+                <a href="https://www.nbcnews.com/tech/tech-news/un-general-assembly-opens-plea-binding-ai-safeguards-red-lines-nobel-rcna231973" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  UN pleads for binding AI safeguards (Sep 2025, NBC)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.theguardian.com/technology/2026/jan/04/world-may-not-have-time-to-prepare-for-ai-safety-risks-says-leading-researcher" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  "World may not have time to prepare" (Jan 2026, Guardian)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.transformernews.ai" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline inline-flex items-start gap-1">
+                  <i class="fas fa-external-link-alt text-xs mt-1 flex-shrink-0" aria-hidden="true"></i>
+                  Transformer News — regular AI safety coverage
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center">
+          <p class="text-lg mb-6 text-slate-700 leading-relaxed">
+            The best way to learn is alongside other people working through the same questions.
+          </p>
+          <a href="/get-involved/" class="btn-cta">Get Involved</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </Layout>
