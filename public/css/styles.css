@@ -289,7 +289,13 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1.4rem 0;
+}
+
+/* Give the header container more breathing room */
+.header .site-container {
+    max-width: 1500px;
+    padding: 0 2.5rem;
 }
 
 /* Dark mode toggle button */
@@ -379,7 +385,7 @@ body {
 /* Navigation center section */
 .nav-center {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     align-items: center;
     margin-left: auto;
 }
@@ -1060,6 +1066,17 @@ body {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
     color: #ffffff;
+}
+
+.btn-cta-white {
+    background-color: #ffffff;
+    color: var(--color-durham-purple);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-cta-white:hover {
+    background-color: #f0e8f1;
+    color: var(--color-durham-purple);
 }
 
 .dark .btn-cta {

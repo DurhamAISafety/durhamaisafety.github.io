@@ -85,7 +85,7 @@ const programs: Program[] = [
     })}
   />
     <!-- Hero Section -->
-    <section id="home" class="hero-section min-h-100dvh min-h-100svh min-h-100vh flex items-center justify-center relative overflow-hidden">
+    <section id="home" class="hero-section min-h-100dvh min-h-100svh min-h-100vh flex items-center relative overflow-hidden">
         <!-- Hero Image with Parallax -->
         <div class="hero-parallax-container">
             <Image
@@ -98,23 +98,35 @@ const programs: Program[] = [
                 decoding="async"
             />
         </div>
-        <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/40"></div>
-    <div class="site-container mx-auto px-6 text-center relative z-10">
-            <div class="max-w-6xl mx-auto space-y-6 md:space-y-8">
+        <div class="absolute inset-0 bg-gradient-to-br from-black/65 via-black/50 to-black/30"></div>
+    <div class="site-container mx-auto px-6 relative z-10 w-full">
+            <div class="max-w-2xl pt-28 md:pt-36 pb-16 space-y-6 md:space-y-8">
                 <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight">
                     Durham students and academics for <em>reducing catastrophic risks from advanced AI</em>
                 </h1>
                 
-                <p class="hero-subheading text-xl md:text-2xl lg:text-3xl max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8">
+                <p class="hero-subheading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 md:mb-8">
                     <span class="font-semibold text-light-purple">Whatever your expertise,</span>
                     <span class="text-white">you can contribute to the conversation and make a difference.</span>
                 </p>
                 
-                <div class="pt-2 md:pt-4">
-                    <a href="/get-involved/"
-                       class="btn-cta">
-                        Get Involved
-                    </a>
+                <div class="pt-2 md:pt-4 flex flex-wrap gap-4">
+                    <a href="/get-involved/" class="btn-cta">Get Involved</a>
+                    <a href="/about/" class="btn-cta btn-cta-white">About</a>
+                </div>
+
+                <!-- Supporters strip -->
+                <div class="pt-8 border-t border-white/20">
+                    <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-4">Proudly supported by</p>
+                    <div class="flex flex-wrap items-center gap-3">
+                        {supporters.map((supporter) => (
+                            <a href={supporter.link} target="_blank" rel="noopener noreferrer"
+                               class="flex items-center justify-center bg-white/90 hover:bg-white rounded-lg px-3 py-2 transition-all duration-200 hover:scale-105"
+                               title={supporter.name}>
+                                <img src={`/images/supporters/${supporter.logo}`} alt={supporter.name} class="h-7 max-w-[100px] object-contain" />
+                            </a>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

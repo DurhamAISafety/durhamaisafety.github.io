@@ -25,15 +25,10 @@ export const siteConfig = {
     main: [
       { title: "Events", url: "/#events" },
       { title: "About", url: "/about/" },
-      { title: "Research", url: "/research/" }
+      { title: "Research", url: "/research/" },
+      { title: "Programmes", url: "/programmes/" },
+      { title: "What is AI Safety?", url: "/what-is-ai-safety/" }
     ],
-    dropdown: {
-      title: "More",
-      items: [
-        { title: "Programmes", url: "/programmes/" },
-        { title: "What is AI Safety?", url: "/what-is-ai-safety/" }
-      ]
-    },
     cta: { title: "Get Involved", url: "/get-involved/" }
   }
 };

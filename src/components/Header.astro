@@ -52,17 +52,6 @@ const isHome = pathname === '/';
                 {siteConfig.navigation.main.map((item) => (
                     <a href={item.url} class="nav-link">{item.title}</a>
                 ))}
-                
-                <div class="dropdown">
-                    <button type="button" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-                        {siteConfig.navigation.dropdown.title} <i class="fas fa-chevron-down text-sm" aria-hidden="true"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        {siteConfig.navigation.dropdown.items.map((item) => (
-                            <a href={item.url}>{item.title}</a>
-                        ))}
-                    </div>
-                </div>
             </div>
             
             <!-- Desktop right section: social, dark mode, CTA -->
@@ -116,9 +105,6 @@ const isHome = pathname === '/';
             </div>
         </a>
         {siteConfig.navigation.main.map((item) => (
-            <a href={item.url} class="mobile-nav-link">{item.title}</a>
-        ))}
-        {siteConfig.navigation.dropdown.items.map((item) => (
             <a href={item.url} class="mobile-nav-link">{item.title}</a>
         ))}
         <a href={siteConfig.navigation.cta.url} class="btn-cta" style="padding: 0.75rem 2rem; font-size: 1rem;">
