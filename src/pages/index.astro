@@ -132,6 +132,12 @@ const programs: Program[] = [
         </div>
     </section>
 
+    <!-- Scroll indicator -->
+    <a href="#events" aria-label="Scroll to events" class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors duration-200">
+        <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
+        <i class="fa-solid fa-chevron-down text-lg animate-bounce"></i>
+    </a>
+
     <!-- Events Section -->
     <section id="events" class="py-16 section-neutral">
     <div class="site-container mx-auto px-6 relative z-10">
@@ -379,6 +385,15 @@ const programs: Program[] = [
             calendarIframe.classList.add('loaded');
         }
     }, 5000);
+
+    // Fade scroll indicator on scroll
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        window.addEventListener('scroll', () => {
+            const opacity = Math.max(0, 1 - window.scrollY / 150);
+            (scrollIndicator as HTMLElement).style.opacity = String(opacity);
+        }, { passive: true });
+    }
 </script>
 
 <style>
