@@ -8,6 +8,7 @@
 #
 # - name: Alice Smith              # Required: Display name
 #   role: Co-organiser             # Required: Their role in DAISI
+#   start_year: 2024               # Optional: Year they joined (displays as "2024-present" on the About page)
 #   photo: alice.jpg               # Optional: Filename in src/assets/team/
 #   linkedin: https://www.linkedin.com/in/alice-smith/   # Optional: LinkedIn profile URL
 #   durham-staff-link: https://www.durham.ac.uk/staff/alice-smith/  # Optional: Durham staff page URL
@@ -20,32 +21,38 @@
 
 - name: Bella
   role: Lead Organiser & Publicity
+  start_year: 2025
   photo: bella-pic.jpg
   linkedin: https://www.linkedin.com/in/isabella-towers-8937b4381/
 
 - name: Theo
   role: Co-organiser & Co-founder
+  start_year: 2023
   photo: theo.jpeg
   linkedin: https://www.linkedin.com/in/theofarrell/
   # link: https://linktr.ee/theofarrell
 
 - name: Eve
   role: Co-organiser & Treasurer
+  start_year: 2025
   photo: eve.jpeg
   linkedin: https://www.linkedin.com/in/eve-sherratt/
 
 - name: Quinn
   role: Co-organiser & Secretary
+  start_year: 2025
   photo: quinn.jpeg
   linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
 
 - name: Patrick
   role: Advisor (Technical AI Safety)
+  start_year: 2024
   photo: patrick.jpeg
   durham-staff-link: https://www.durham.ac.uk/staff/patrick-leask/
   link: https://linktr.ee/patrickleask
 
 - name: Leonie
   role: Advisor (AI & Law)
+  start_year: 2024
   photo: leonie.png
   durham-staff-link: https://www.durham.ac.uk/staff/leonie-a-stuessi/

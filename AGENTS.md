@@ -70,7 +70,6 @@ Centralised in `src/data/config.ts` under `siteConfig.navigation`. The Header co
 
 ## Development Workflow
 ```
-npm run dev      # http://localhost:4321
 npx astro check  # run after every change — catches type errors in .astro files
 npm run build    # run after every change and before pushing — catches build errors
 ```

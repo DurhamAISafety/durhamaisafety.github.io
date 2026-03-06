@@ -141,28 +141,31 @@ import durhamLogo from '../assets/durham-logo.png';
 								<i class="fas fa-user text-3xl text-white"></i>
 							</div>
 						</div>
-					<h4 class="text-xl font-bold mb-2">{person.name}</h4>
-					<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
-					{(person.linkedin || person['durham-staff-link'] || person.link) && (
-						<div class="flex items-center justify-center gap-3">
-							{person.linkedin && (
-								<a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} on LinkedIn`}>
-									<i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
-								</a>
-							)}
-							{person['durham-staff-link'] && (
-								<a href={person['durham-staff-link']} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:opacity-70 transition-opacity" aria-label={`${person.name} Durham staff page`}>
-									<Image src={durhamLogo} alt="Durham University" width={40} height={40} format="png" class="inline-block w-5 h-5" />
-								</a>
-							)}
-							{person.link && (
-								<a href={person.link} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} website`}>
-									<i class="fas fa-link text-sm" aria-hidden="true"></i>
-								</a>
-							)}
-						</div>
+				<h4 class="text-xl font-bold mb-2">{person.name}</h4>
+				<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
+				{person.start_year && (
+					<p class="text-xs text-gray-500 mb-2">{person.start_year}–present</p>
+				)}
+				{(person.linkedin || person['durham-staff-link'] || person.link) && (
+					<div class="flex items-center justify-center gap-3">
+						{person.linkedin && (
+							<a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} on LinkedIn`}>
+								<i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+							</a>
+						)}
+						{person['durham-staff-link'] && (
+							<a href={person['durham-staff-link']} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:opacity-70 transition-opacity" aria-label={`${person.name} Durham staff page`}>
+								<Image src={durhamLogo} alt="Durham University" width={40} height={40} format="png" class="inline-block w-5 h-5" />
+							</a>
+						)}
+						{person.link && (
+							<a href={person.link} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} website`}>
+								<i class="fas fa-link text-sm" aria-hidden="true"></i>
+							</a>
 						)}
 					</div>
+				)}
+			</div>
 				))}
 			</div>
 			{alumni.length > 0 && (

@@ -4,6 +4,7 @@ import type { ImageMetadata } from 'astro';
 export interface TeamMember {
   name: string;
   role: string;
+  start_year?: number;
   photo?: string | ImageMetadata;
   linkedin?: string;
   'durham-staff-link'?: string;
@@ -31,6 +32,7 @@ import teamYaml from '../content/team.yml?raw';
 const rawTeam = parse(teamYaml) as Array<{
   name: string;
   role: string;
+  start_year?: number;
   photo?: string;
   linkedin?: string;
   'durham-staff-link'?: string;
