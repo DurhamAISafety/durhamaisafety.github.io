@@ -1,11 +1,13 @@
 name: CMS Auto-Merge
 
-# Automatically merges PRs opened by the CMS (Sveltia) from the `cms` branch
-# into `main`. The existing PR Validation workflow runs first; this workflow
-# uses `--auto` so the merge only happens once all required checks pass.
+# Automatically merges PRs from the `cms` branch into `main` once all
+# required checks pass, then resyncs `cms` from `main` so it's ready
+# for the next CMS edit.
 
 on:
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
 
 permissions:
@@ -13,9 +15,10 @@ permissions:
   pull-requests: write
 
 jobs:
+  # ── Step 1: Auto-approve and merge the cms → main PR ──────────────────────
   auto-merge:
     runs-on: ubuntu-latest
-    if: github.head_ref == 'cms'
+    if: github.event_name == 'pull_request' && github.head_ref == 'cms'
     steps:
       - name: Auto-approve PR
         run: gh pr review --approve "$PR_URL"
@@ -28,3 +31,22 @@ jobs:
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Step 2: After merge lands on main, resync cms from main ───────────────
+  resync-cms:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Reset cms branch to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout cms
+          git reset --hard origin/main
+          git push --force origin cms
