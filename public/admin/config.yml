@@ -16,19 +16,18 @@ collections:
         label: Team
         file: src/content/team.yml
         fields:
-          - label: Members
-            name: members
+          - label: Member
+            name: ""
             widget: list
-            # Sveltia treats a root-level array as an unnamed list.
-            # The YAML root IS the list, so set identifier_field and use list widget directly.
+            identifier_field: name
             fields:
               - { label: Name,               name: name,              widget: string }
               - { label: Role,               name: role,              widget: string }
               - { label: Start Year,         name: start_year,        widget: number, required: false }
               - { label: Photo,              name: photo,             widget: string, required: false, hint: "Filename in src/assets/team/ e.g. alice.jpg" }
               - { label: LinkedIn URL,       name: linkedin,          widget: string, required: false }
-              - { label: Durham Staff Link,  name: durham-staff-link, widget: string, required: false, hint: "https://www.durham.ac.uk/staff/..." }
-              - { label: Personal Website,   name: link,              widget: string, required: false, hint: "Any other personal website" }
+              - { label: Durham Staff Link,  name: durham-staff-link, widget: string, required: false }
+              - { label: Personal Website,   name: link,              widget: string, required: false }
 
   # ── Alumni ──────────────────────────────────────────────────────────────────
   # src/content/alum.yml is a root-level YAML array (no named wrapper key)
@@ -40,7 +39,7 @@ collections:
         file: src/content/alum.yml
         fields:
           - label: Alumni
-            name: alumni
+            name: ""
             widget: list
             fields:
               - { label: Name,              name: name,              widget: string }
@@ -61,7 +60,7 @@ collections:
         file: src/content/research.yml
         fields:
           - label: Papers
-            name: papers
+            name: ""
             widget: list
             fields:
               - { label: Title,     name: title,     widget: string }
@@ -95,7 +94,7 @@ collections:
         file: src/content/supporters.yml
         fields:
           - label: Supporters
-            name: supporters
+            name: ""
             widget: list
             fields:
               - { label: Name,     name: name,     widget: string }
