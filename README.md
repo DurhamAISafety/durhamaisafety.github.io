@@ -83,6 +83,18 @@ Changes pushed to `main` trigger two deployments automatically:
 
 Netlify configuration lives in [`netlify.toml`](./netlify.toml). The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
 
+## Key Reference Links
+
+- Email: durhamaisi@durham.ac.uk
+- Homepage: https://DurhamAISafety.uk
+- Instagram: https://www.instagram.com/ais_durham
+- Discord: https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u
+- LinkedIn: https://www.linkedin.com/company/durhamaisafety/
+- LinkTree: https://linktr.ee/aisdurham
+- GitHub: https://github.com/DurhamAISafety
+- Events Calendar: https://luma.com/daisi
+
+
 ## Brand Colors
 
 Defined in `tailwind.config.mjs`:

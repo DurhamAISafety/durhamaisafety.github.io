@@ -8,13 +8,10 @@ export const siteConfig = {
 
   social: {
     name: "Durham AI Safety Initiative",
-    instagram: "https://www.instagram.com/ais_durham",
+    instagram: "https:/swww.instagram.com/ais_durham",
     linktree: "https://linktr.ee/aisdurham",
-    discord: "https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u&route=shorturl",
-    links: [
-      "https://www.instagram.com/ais_durham",
-      "https://linktr.ee/aisdurham"
-    ]
+    discord: "https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u",
+    linkedin: "https://www.linkedin.com/company/durhamaisafety/"
   },
 
   repository: "DurhamAISafety/durhamaisafety.github.io",

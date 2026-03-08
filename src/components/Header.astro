@@ -66,7 +66,7 @@ const isHome = pathname === '/';
                 <a href={siteConfig.social.discord} class="nav-social" aria-label="Discord" target="_blank" rel="noopener noreferrer">
                     <Fragment set:html={DiscordIcon} />
                 </a>
-                <a href="https://www.linkedin.com/company/durhamaisafety/" class="nav-social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <a href={siteConfig.social.linkedin} class="nav-social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                     <Fragment set:html={LinkedInIcon} />
                 </a>
                 <a href={siteConfig.social.linktree} class="nav-social" aria-label="Linktree" target="_blank" rel="noopener noreferrer">
@@ -122,6 +122,9 @@ const isHome = pathname === '/';
                 </a>
                 <a href={siteConfig.social.discord} aria-label="Discord" target="_blank" rel="noopener noreferrer">
                     <Fragment set:html={DiscordIcon} />
+                </a>
+                <a href={siteConfig.social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <Fragment set:html={LinkedInIcon} />
                 </a>
                 <a href={siteConfig.social.linktree} aria-label="Linktree" target="_blank" rel="noopener noreferrer">
                     <Fragment set:html={LinkIcon} />
