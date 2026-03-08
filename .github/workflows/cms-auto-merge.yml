@@ -1,0 +1,30 @@
+name: CMS Auto-Merge
+
+# Automatically merges PRs opened by the CMS (Sveltia) from the `cms` branch
+# into `main`. The existing PR Validation workflow runs first; this workflow
+# uses `--auto` so the merge only happens once all required checks pass.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.head_ref == 'cms'
+    steps:
+      - name: Auto-approve PR
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Enable auto-merge (squash) once checks pass
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

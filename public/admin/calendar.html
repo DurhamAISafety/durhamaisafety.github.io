@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAISI Calendar</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: #181825;
+      border-bottom: 1px solid #313244;
+    }
+    header a {
+      color: #89b4fa;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    header a:hover { text-decoration: underline; }
+    header h1 { font-size: 1rem; font-weight: 600; }
+    main { flex: 1; padding: 20px; }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 120px);
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/admin/">&larr; Back to CMS</a>
+    <h1>DAISI Organiser Calendar</h1>
+  </header>
+  <main>
+    <iframe
+      src="https://calendar.google.com/calendar/u/0/embed?src=19819426f7b902b6524ebdc40c12b65fbc87e4a5285d4d7ee00231d09dd10be3@group.calendar.google.com&ctz=Europe/London&mode=AGENDA"
+      title="DAISI Organiser Calendar"
+      loading="lazy"
+    ></iframe>
+  </main>
+</body>
+</html>

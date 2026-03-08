@@ -1,14 +1,13 @@
 backend:
   name: github
   repo: DurhamAISafety/durhamaisafety.github.io
-  branch: main
+  branch: cms
 
 media_folder: public/images
 public_folder: /images
 
 collections:
   # ── Team ────────────────────────────────────────────────────────────────────
-  # src/content/team.yml is a root-level YAML array (no named wrapper key)
   - name: team
     label: Team Members
     files:
@@ -24,13 +23,17 @@ collections:
               - { label: Name,               name: name,              widget: string }
               - { label: Role,               name: role,              widget: string }
               - { label: Start Year,         name: start_year,        widget: number, required: false }
-              - { label: Photo,              name: photo,             widget: string, required: false, hint: "Filename in src/assets/team/ e.g. alice.jpg" }
+              - label: Photo
+                name: photo
+                widget: image
+                required: false
+                media_folder: /src/assets/team
+                public_folder: ""
               - { label: LinkedIn URL,       name: linkedin,          widget: string, required: false }
               - { label: Durham Staff Link,  name: durham-staff-link, widget: string, required: false }
               - { label: Personal Website,   name: link,              widget: string, required: false }
 
   # ── Alumni ──────────────────────────────────────────────────────────────────
-  # src/content/alum.yml is a root-level YAML array (no named wrapper key)
   - name: alumni
     label: Alumni
     files:
@@ -45,13 +48,17 @@ collections:
               - { label: Name,              name: name,              widget: string }
               - { label: Role,              name: role,              widget: string }
               - { label: Years Active,      name: years_active,      widget: string, required: false, hint: "e.g. 2023-2024" }
-              - { label: Photo,             name: photo,             widget: string, required: false, hint: "Filename in src/assets/team/ e.g. alice.jpg" }
+              - label: Photo
+                name: photo
+                widget: image
+                required: false
+                media_folder: /src/assets/team
+                public_folder: ""
               - { label: LinkedIn URL,      name: linkedin,          widget: string, required: false }
               - { label: Durham Staff Link, name: durham-staff-link, widget: string, required: false }
               - { label: Personal Website,  name: link,              widget: string, required: false }
 
   # ── Research ─────────────────────────────────────────────────────────────────
-  # src/content/research.yml is a root-level YAML array (no named wrapper key)
   - name: research
     label: Research Papers
     files:
@@ -65,7 +72,12 @@ collections:
             fields:
               - { label: Title,     name: title,     widget: string }
               - { label: URL,       name: url,        widget: string }
-              - { label: Thumbnail, name: thumbnail,  widget: string, required: false, hint: "Filename in src/assets/research/ e.g. paper.png" }
+              - label: Thumbnail
+                name: thumbnail
+                widget: image
+                required: false
+                media_folder: /src/assets/research
+                public_folder: ""
               - label: Authors
                 name: authors
                 widget: list
@@ -85,7 +97,6 @@ collections:
                 options: [academic, non-academic]
 
   # ── Supporters ───────────────────────────────────────────────────────────────
-  # src/content/supporters.yml is a root-level YAML array (no named wrapper key)
   - name: supporters
     label: Supporters
     files:

@@ -5,10 +5,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DAISI Content Manager</title>
+    <style>
+      #cms-calendar-link {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        background: #68246D;
+        color: #fff;
+        padding: 10px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      }
+      #cms-calendar-link:hover { background: #7d2d83; }
+    </style>
 </head>
 
 <body>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <a id="cms-calendar-link" href="/admin/calendar.html" target="_blank" rel="noopener noreferrer">📅 Calendar</a>
 </body>
 
 </html>
