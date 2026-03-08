@@ -6,7 +6,7 @@
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
+The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML files below, or via the browser-based CMS at [/admin/](https://durhamaisafety.uk/admin/).
 
 ## Quick Start
 
@@ -36,14 +36,15 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 ### Adding a Team Member
 
 1. Add their photo to `src/assets/team/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
-2. Edit `src/content/team.yml` and add:
+2. Edit `src/content/team.yml` and add a new entry under the `members:` key:
    ```yaml
-   - name: Alice Smith
-     role: Co-organiser
-     photo: alice.jpg
-     linkedin: https://www.linkedin.com/in/alice-smith/        # optional
-     durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
-     link: https://example.com                                 # optional (generic)
+   members:
+     - name: Alice Smith
+       role: Co-organiser
+       photo: alice.jpg
+       linkedin: https://www.linkedin.com/in/alice-smith/        # optional
+       durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
+       link: https://example.com                                 # optional (generic)
    ```
 
 See the example template at the top of `team.yml` for more details.
@@ -51,21 +52,22 @@ See the example template at the top of `team.yml` for more details.
 
 ### Adding a Research Paper
 
-Edit `src/content/research.yml` and add at the top (most recent first):
+Edit `src/content/research.yml` and add at the top of the `papers:` list (most recent first):
 ```yaml
-- title: "Paper Title"
-  url: https://link-to-paper
-  thumbnail: paper.png          # Optional: image in src/assets/research/
-  authors:
-    - name: "Surname, F."
-    - name: "Member, A."
-      team: true                # Bold DAISI member names
-  year: 2025
-  month: 7                      # 1-12 for sorting (most recent first)
-  venue: "ICML 2025"            # Shown as grey tag
-  tags:
-    - Interpretability          # Purple topic tags
-  type: academic                # or 'non-academic'
+papers:
+  - title: "Paper Title"
+    url: https://link-to-paper
+    thumbnail: paper.png          # Optional: image in src/assets/research/
+    authors:
+      - name: "Surname, F."
+      - name: "Member, A."
+        team: true                # Bold DAISI member names
+    year: 2025
+    month: 7                      # 1-12 for sorting (most recent first)
+    venue: "ICML 2025"            # Shown as grey tag
+    tags:
+      - Interpretability          # Purple topic tags
+    type: academic                # or 'non-academic'
 ```
 
 See the example template at the top of `research.yml` for all options.

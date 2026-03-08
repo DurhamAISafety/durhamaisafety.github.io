@@ -1,7 +1,7 @@
 # Copilot Instructions: Durham AI Safety Initiative Website
 
 ## Project Overview
-Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durhamaisafety.uk](https://durhamaisafety.uk)** via Netlify (primary). Also deployed to GitHub Pages which redirects to the primary domain. Content lives in YAML files — no CMS involved.
+Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durhamaisafety.uk](https://durhamaisafety.uk)** via Netlify (primary). Also deployed to GitHub Pages which redirects to the primary domain. Content lives in YAML files and is editable via the browser-based CMS at `/admin/` (Sveltia CMS).
 
 ## Architecture: YAML → TypeScript → Astro
 
@@ -17,16 +17,48 @@ Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durha
 
 Optional link fields for a team member (all shown as icons): `linkedin`, `durham-staff-link`, `link` (generic). Example:
 ```yaml
-- name: Alice Smith
-  role: Advisor
-  photo: alice.jpg
-  linkedin: https://www.linkedin.com/in/alice-smith/
-  durham-staff-link: https://www.durham.ac.uk/staff/alice-smith/
+members:
+  - name: Alice Smith
+    role: Advisor
+    photo: alice.jpg
+    linkedin: https://www.linkedin.com/in/alice-smith/
+    durham-staff-link: https://www.durham.ac.uk/staff/alice-smith/
 ```
 
 **Supporters logos** are different: they live in `public/images/supporters/` and are referenced with a plain `/images/supporters/logo.svg` path — no `import.meta.glob()` needed.
 
 When adding a **new asset type** that needs Astro image optimisation, update the glob pattern in the relevant `src/data/*.ts` file. For assets that don't need optimisation, use `public/` instead.
+
+## YAML Content Structure
+
+All four content files use a **named wrapper key** at the root rather than a bare array. This is required for the CMS to read and write entries correctly.
+
+| File | Root key | TS loader unwraps via |
+|---|---|---|
+| `src/content/team.yml` | `members:` | `src/data/team.ts` |
+| `src/content/alum.yml` | `alumni:` | `src/data/alum.ts` |
+| `src/content/research.yml` | `papers:` | `src/data/research.ts` |
+| `src/content/supporters.yml` | `supporters:` | `src/data/supporters.ts` |
+
+When adding entries manually, always nest them under the root key:
+```yaml
+members:
+  - name: Alice Smith
+    role: Co-organiser
+```
+Never write a bare top-level array — the TypeScript loaders and the CMS both expect the named key.
+
+## CMS (Sveltia)
+
+A browser-based content editor is live at `/admin/`. It reads and writes the same YAML files directly to the GitHub repo via OAuth, triggering a Netlify deploy on save.
+
+- Config: `public/admin/config.yml`
+- UI entry point: `public/admin/index.html`
+- OAuth proxy: Netlify (GitHub provider configured in Netlify site settings)
+- Access: `https://durhamaisafety.uk/admin/` — log in with a GitHub account that has write access to the repo
+- Footer link: the shield icon in the footer bottom row links to `/admin/`
+
+To add a new editable collection to the CMS, add a new entry to `collections:` in `public/admin/config.yml` and ensure the corresponding YAML file uses a named root key.
 
 ## Styling Architecture
 
@@ -87,7 +119,7 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 
 **Add supporter:** logo → `public/images/supporters/`, entry → `src/content/supporters.yml`
 
-**Add research paper:** entry at **top** of `src/content/research.yml` (sorted newest-first by `year` then `month`). Required fields: `title`, `url`, `authors`, `year`, `venue`, `tags`, `type`. Mark DAISI members with `team: true` in the authors array.
+**Add research paper:** entry at **top** of the `papers:` list in `src/content/research.yml` (sorted newest-first by `year` then `month`). Required fields: `title`, `url`, `authors`, `year`, `venue`, `tags`, `type`. Mark DAISI members with `team: true` in the authors array.
 
 **Add new page:** create `src/pages/pagename.astro` — Astro file-based routing gives `/pagename/` automatically. Pass `title`, `description`, `heroImage` props to `Layout`.
 
@@ -113,7 +145,9 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 
 ## Gotchas
 - YAML: 2-space indent, no tabs. Arrays use `-` prefix.
+- All four content YAML files use a named root key (`members:`, `alumni:`, `papers:`, `supporters:`) — never a bare top-level array.
 - `public/` images: reference with leading `/` (e.g. `/images/logo.png`)
 - `src/assets/` images: must go through `import.meta.glob()` or a direct `import`
 - `alum.yml` may be empty — `src/data/alum.ts` guards with `(rawAlum || [])`
 - Tailwind v4 migration is deferred (see `TODO.md`); stay on v3 patterns for now
+- Font Awesome 6.7.2 is loaded from cdnjs in `Layout.astro`
