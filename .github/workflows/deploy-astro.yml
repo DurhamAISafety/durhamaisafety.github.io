@@ -18,21 +18,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-          
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: Build with Astro
-        run: npm run build
-        
+      - name: Create redirect site
+        run: |
+          mkdir -p dist
+          # Both index.html and 404.html use the same redirect so that
+          # any path (e.g. /events) is forwarded to the matching path on .uk
+          cat > dist/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta http-equiv="refresh" content="0; url=https://durhamaisafety.uk">
+              <link rel="canonical" href="https://durhamaisafety.uk">
+              <script>location.replace("https://durhamaisafety.uk" + location.pathname + location.search)</script>
+            </head>
+            <body>
+              <p>Redirecting to <a href="https://durhamaisafety.uk">durhamaisafety.uk</a>…</p>
+            </body>
+          </html>
+          EOF
+          cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

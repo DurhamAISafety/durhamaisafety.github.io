@@ -2,7 +2,7 @@ export const siteConfig = {
   title: "Durham AI Safety Initiative",
   description: "Durham AI Safety Initiative (DAISI) is a student-led organization at Durham University dedicated to advancing AI safety research, education, and community engagement.",
   email: "durhamaisi@durham.ac.uk",
-  url: "https://durhamaisafety.github.io",
+  url: "https://durhamaisafety.uk",
   ogImage: "/images/og-image.png",
   lang: "en_GB",
 
