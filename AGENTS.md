@@ -11,9 +11,9 @@ Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durha
 
 **Adding a team member** requires only two steps — no code changes needed:
 1. Drop photo in `src/assets/team/`
-2. Add entry to `src/content/team.yml`
+2. Add entry to `src/content/people.yml` under `members:`
 
-`src/data/team.ts` resolves filenames automatically via `import.meta.glob('../assets/team/*.{jpeg,jpg,png,webp,gif}', { eager: true })`. Alumni photos share the same folder.
+`src/data/people.ts` resolves filenames automatically via `import.meta.glob('../assets/team/*.{jpeg,jpg,png,webp,gif}', { eager: true })`. Alumni photos share the same folder.
 
 Optional link fields for a team member (all shown as icons): `linkedin`, `durham-staff-link`, `link` (generic). Example:
 ```yaml
@@ -33,10 +33,9 @@ When adding a **new asset type** that needs Astro image optimisation, update the
 
 All four content files use a **named wrapper key** at the root rather than a bare array. This is required for the CMS to read and write entries correctly.
 
-| File | Root key | TS loader unwraps via |
+| File | Root key(s) | TS loader unwraps via |
 |---|---|---|
-| `src/content/team.yml` | `members:` | `src/data/team.ts` |
-| `src/content/alum.yml` | `alumni:` | `src/data/alum.ts` |
+| `src/content/people.yml` | `members:` + `alumni:` | `src/data/people.ts` |
 | `src/content/research.yml` | `papers:` | `src/data/research.ts` |
 | `src/content/supporters.yml` | `supporters:` | `src/data/supporters.ts` |
 
@@ -115,7 +114,9 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 
 ## Common Tasks
 
-**Add team member:** photo → `src/assets/team/`, entry → `src/content/team.yml` (optional link fields: `linkedin`, `durham-staff-link`, `link`)
+**Add team member:** photo → `src/assets/team/`, entry → `src/content/people.yml` under `members:` (optional link fields: `linkedin`, `durham-staff-link`, `link`)
+
+**Add alumni:** entry → `src/content/people.yml` under `alumni:` (same fields as team member plus optional `years_active`, e.g. `"2023-2024"`)
 
 **Add supporter:** logo → `public/images/supporters/`, entry → `src/content/supporters.yml`
 
@@ -148,6 +149,6 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 - All four content YAML files use a named root key (`members:`, `alumni:`, `papers:`, `supporters:`) — never a bare top-level array.
 - `public/` images: reference with leading `/` (e.g. `/images/logo.png`)
 - `src/assets/` images: must go through `import.meta.glob()` or a direct `import`
-- `alum.yml` may be empty — `src/data/alum.ts` guards with `(rawAlum || [])`
+- `people.yml` `alumni:` key may be empty — `src/data/people.ts` guards with `(raw.alumni || [])`
 - Tailwind v4 migration is deferred (see `TODO.md`); stay on v3 patterns for now
 - Font Awesome 6.7.2 is loaded from cdnjs in `Layout.astro`

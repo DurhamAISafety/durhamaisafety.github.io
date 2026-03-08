@@ -1,0 +1,77 @@
+# People (Team + Alumni)
+# Edit this file to update team members and alumni on the About / Alumni pages.
+# Photos are stored in src/assets/team/
+#
+# ── Team Members ────────────────────────────────────────────────────────────
+# Optional fields per member: start_year, photo, linkedin, durham-staff-link, link
+#
+# ── Alumni ──────────────────────────────────────────────────────────────────
+# Optional fields per alumnus: years_active (e.g. "2023-2024"), photo, linkedin,
+#   durham-staff-link, link
+#
+# Notes:
+# - Add photos to: src/assets/team/ (supported: .jpg, .jpeg, .png, .webp)
+# - Indentation matters! Use 2 spaces, not tabs
+# - Keep the dash (-) at the start of each person
+
+members:
+  - name: Bella
+    role: Lead Organiser & Publicity
+    start_year: 2025
+    photo: bella-pic.jpg
+    linkedin: https://www.linkedin.com/in/isabella-towers-8937b4381/
+
+  - name: Theo
+    role: Co-organiser & Co-founder
+    start_year: 2023
+    photo: theo.jpeg
+    linkedin: https://www.linkedin.com/in/theofarrell/
+    link: https://theosdoor.github.io/
+
+  - name: Eve
+    role: Co-organiser & Treasurer
+    start_year: 2025
+    photo: eve.jpeg
+    linkedin: https://www.linkedin.com/in/eve-sherratt/
+
+  - name: Quinn
+    role: Co-organiser & Secretary
+    start_year: 2025
+    photo: quinn.jpeg
+    linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
+
+  - name: Patrick
+    role: Advisor (Technical AI Safety)
+    start_year: 2024
+    photo: patrick.jpeg
+    durham-staff-link: https://www.durham.ac.uk/staff/patrick-leask/
+    link: https://linktr.ee/patrickleask
+
+  - name: Leonie
+    role: Advisor (AI & Law)
+    start_year: 2024
+    photo: leonie.png
+    durham-staff-link: https://www.durham.ac.uk/staff/leonie-a-stuessi/
+
+alumni:
+  - name: Ben Kehoe
+    role: Co-founder
+    years_active: "2024-2025"
+    photo: Ben_Kehoe-Augustyniak.jpeg
+    linkedin: https://www.linkedin.com/in/ben-kehoe/
+
+  #  TODO - check that they are happy to be linked as alumni
+  - name: Raja Ikhlaq
+    role: Co-founder
+    years_active: "2023-2024"
+    # link: https://www.linkedin.com/in/raja-ikhlaq/
+
+  - name: Adriana Tihan
+    role: Co-founder
+    years_active: "2023-2024"
+    # link: https://www.linkedin.com/in/adriana-tihan-9939741b9/
+
+  - name: Elias Schmied
+    role: Co-founder
+    years_active: "2023-2024"
+    # link: https://www.linkedin.com/in/elias-schmied-01ab92199/

@@ -1,6 +1,16 @@
 import { parse } from 'yaml';
 import type { ImageMetadata } from 'astro';
 
+export interface TeamMember {
+  name: string;
+  role: string;
+  start_year?: number;
+  photo?: string | ImageMetadata;
+  linkedin?: string;
+  'durham-staff-link'?: string;
+  link?: string;
+}
+
 export interface AlumniMember {
   name: string;
   role: string;
@@ -12,7 +22,6 @@ export interface AlumniMember {
 }
 
 // Auto-import all photos from the team folder using Vite's glob import
-// Alumni photos are stored alongside team photos in src/assets/team/
 const photoModules = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/team/*.{jpeg,jpg,png,webp,gif}',
   { eager: true }
@@ -21,27 +30,23 @@ const photoModules = import.meta.glob<{ default: ImageMetadata }>(
 // Build map of filename -> ImageMetadata
 const photoMap: Record<string, ImageMetadata> = {};
 for (const [path, module] of Object.entries(photoModules)) {
-  // Extract filename from path like '../assets/team/theo.jpeg' -> 'theo.jpeg'
   const filename = path.split('/').pop()!;
   photoMap[filename] = module.default;
 }
 
-// Import YAML as raw text using Vite's ?raw suffix
-import alumYaml from '../content/alum.yml?raw';
+import peopleYaml from '../content/people.yml?raw';
 
-const rawAlum = ((parse(alumYaml) as { alumni: Array<{
-  name: string;
-  role: string;
-  years_active?: string;
-  photo?: string;
-  linkedin?: string;
-  'durham-staff-link'?: string;
-  link?: string;
-}> | null }).alumni) ?? null;
+const raw = parse(peopleYaml) as {
+  members: Array<Omit<TeamMember, 'photo'> & { photo?: string }>;
+  alumni: Array<Omit<AlumniMember, 'photo'> & { photo?: string }> | null;
+};
 
-// Convert photo filenames to imported images
-// Handle case where YAML is empty or only contains comments
-export const alumni: AlumniMember[] = (rawAlum || []).map(member => ({
+export const team: TeamMember[] = raw.members.map(member => ({
+  ...member,
+  photo: member.photo ? photoMap[member.photo] : undefined,
+}));
+
+export const alumni: AlumniMember[] = (raw.alumni || []).map(member => ({
   ...member,
   photo: member.photo ? photoMap[member.photo] : undefined,
 }));

@@ -13,7 +13,7 @@ collections:
     files:
       - name: team
         label: Team
-        file: src/content/team.yml
+        file: src/content/people.yml
         fields:
           - label: Member
             name: members
@@ -39,7 +39,7 @@ collections:
     files:
       - name: alum
         label: Alumni
-        file: src/content/alum.yml
+        file: src/content/people.yml
         fields:
           - label: Alumni
             name: alumni
