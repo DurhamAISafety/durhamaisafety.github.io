@@ -6,19 +6,23 @@
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML files below, or via the browser-based CMS at [/admin/](https://durhamaisafety.uk/admin/).
+The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML files below, or via the [Tina CMS](https://app.tina.io) editor at [/admin/](https://durhamaisafety.uk/admin/).
 
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v18+)
-2. Clone and run:
+2. Clone and install:
    ```bash
    git clone https://github.com/DurhamAISafety/durhamaisafety.github.io.git
    cd durhamaisafety.github.io
    npm install
+   ```
+3. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor)
+4. Start the dev server:
+   ```bash
    npm run dev
    ```
-3. Open http://localhost:4321 in your browser
+5. Open http://localhost:4321 to view the site, or http://localhost:4321/admin to open the CMS editor
 
 ## Content Updates (Quick Reference)
 
@@ -73,16 +77,38 @@ papers:
 
 See the example template at the top of `research.yml` for all options.
 
+## Content Management (CMS)
+
+The site uses [Tina CMS](https://tina.io) — a Git-backed editor that writes directly to the YAML content files. Changes made in the CMS are committed to the repo and trigger a Netlify deploy automatically.
+
+### First-time setup
+
+1. Go to [app.tina.io](https://app.tina.io), create a project, and connect it to this GitHub repo.
+2. Copy your **Client ID** and **Read-only token** from the project dashboard.
+3. Locally: copy `.env.example` → `.env` and paste in the values.
+4. In Netlify: add `TINA_CLIENT_ID` and `TINA_TOKEN` as environment variables in **Site settings → Environment variables**.
+
+### Running the CMS locally
+
+```bash
+npm run dev          # starts Tina + Astro together
+# visit http://localhost:4321/admin
+```
+
+The Tina config (schema, collections) lives in [tina/config.ts](./tina/config.ts). Generated types land in `tina/__generated__/` (gitignored).
+
+---
+
 ## Deployment
 
 Changes pushed to `main` trigger two deployments automatically:
 
 | Host | URL | Role |
 |---|---|---|
-| **Netlify** | [durhamaisafety.uk](https://durhamaisafety.uk) | Primary — full Astro build, Lighthouse, custom domain |
+| **Netlify** | [durhamaisafety.uk](https://durhamaisafety.uk) | Primary — full Astro build, custom domain |
 | **GitHub Pages** | [durhamaisafety.github.io](https://durhamaisafety.github.io) | Redirect fallback → durhamaisafety.uk |
 
-Netlify configuration lives in [`netlify.toml`](./netlify.toml). The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
+The build command is `tinacms build && astro build`. The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
 
 ## Key Reference Links
 
