@@ -1,0 +1,104 @@
+backend:
+  name: github
+  repo: DurhamAISafety/durhamaisafety.github.io
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  # ── Team ────────────────────────────────────────────────────────────────────
+  # src/content/team.yml is a root-level YAML array (no named wrapper key)
+  - name: team
+    label: Team Members
+    files:
+      - name: team
+        label: Team
+        file: src/content/team.yml
+        fields:
+          - label: Members
+            name: members
+            widget: list
+            # Sveltia treats a root-level array as an unnamed list.
+            # The YAML root IS the list, so set identifier_field and use list widget directly.
+            fields:
+              - { label: Name,               name: name,              widget: string }
+              - { label: Role,               name: role,              widget: string }
+              - { label: Start Year,         name: start_year,        widget: number, required: false }
+              - { label: Photo,              name: photo,             widget: string, required: false, hint: "Filename in src/assets/team/ e.g. alice.jpg" }
+              - { label: LinkedIn URL,       name: linkedin,          widget: string, required: false }
+              - { label: Durham Staff Link,  name: durham-staff-link, widget: string, required: false, hint: "https://www.durham.ac.uk/staff/..." }
+              - { label: Personal Website,   name: link,              widget: string, required: false, hint: "Any other personal website" }
+
+  # ── Alumni ──────────────────────────────────────────────────────────────────
+  # src/content/alum.yml is a root-level YAML array (no named wrapper key)
+  - name: alumni
+    label: Alumni
+    files:
+      - name: alum
+        label: Alumni
+        file: src/content/alum.yml
+        fields:
+          - label: Alumni
+            name: alumni
+            widget: list
+            fields:
+              - { label: Name,              name: name,              widget: string }
+              - { label: Role,              name: role,              widget: string }
+              - { label: Years Active,      name: years_active,      widget: string, required: false, hint: "e.g. 2023-2024" }
+              - { label: Photo,             name: photo,             widget: string, required: false, hint: "Filename in src/assets/team/ e.g. alice.jpg" }
+              - { label: LinkedIn URL,      name: linkedin,          widget: string, required: false }
+              - { label: Durham Staff Link, name: durham-staff-link, widget: string, required: false }
+              - { label: Personal Website,  name: link,              widget: string, required: false }
+
+  # ── Research ─────────────────────────────────────────────────────────────────
+  # src/content/research.yml is a root-level YAML array (no named wrapper key)
+  - name: research
+    label: Research Papers
+    files:
+      - name: research
+        label: Research
+        file: src/content/research.yml
+        fields:
+          - label: Papers
+            name: papers
+            widget: list
+            fields:
+              - { label: Title,     name: title,     widget: string }
+              - { label: URL,       name: url,        widget: string }
+              - { label: Thumbnail, name: thumbnail,  widget: string, required: false, hint: "Filename in src/assets/research/ e.g. paper.png" }
+              - label: Authors
+                name: authors
+                widget: list
+                fields:
+                  - { label: Name,           name: name, widget: string, hint: "Surname, F. format" }
+                  - { label: DAISI Member?,  name: team, widget: boolean, required: false, default: false, hint: "Bold this name as a DAISI team member" }
+              - { label: Year,      name: year,   widget: number }
+              - { label: Month,     name: month,  widget: number, hint: "1–12 (used for ordering)" }
+              - { label: Venue,     name: venue,  widget: string, hint: "Short venue name e.g. ICML 2025" }
+              - label: Tags
+                name: tags
+                widget: list
+                field: { label: Tag, name: tag, widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options: [academic, non-academic]
+
+  # ── Supporters ───────────────────────────────────────────────────────────────
+  # src/content/supporters.yml is a root-level YAML array (no named wrapper key)
+  - name: supporters
+    label: Supporters
+    files:
+      - name: supporters
+        label: Supporters
+        file: src/content/supporters.yml
+        fields:
+          - label: Supporters
+            name: supporters
+            widget: list
+            fields:
+              - { label: Name,     name: name,     widget: string }
+              - { label: Logo,     name: logo,     widget: string, hint: "Filename in public/images/supporters/ e.g. logo.png" }
+              - { label: Link,     name: link,     widget: string }
+              - { label: Subtitle, name: subtitle, widget: string, required: false, hint: "e.g. (fmr. Open Philanthropy)" }
