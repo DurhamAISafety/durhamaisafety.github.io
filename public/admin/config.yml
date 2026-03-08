@@ -11,25 +11,40 @@ collections:
   - name: people
     label: People
     files:
-      - name: people
-        label: People
+      - name: team
+        label: Team
         file: src/content/people.yml
         fields:
-          - label: People
-            name: people
+          - label: Team Members
+            name: members
             widget: list
             identifier_field: name
             fields:
               - { label: Name,               name: name,              widget: string }
-              - label: Type
-                name: type
-                widget: select
-                options:
-                  - { label: "Team Member", value: member }
-                  - { label: "Alumnus",     value: alumnus }
               - { label: Role,               name: role,              widget: string }
-              - { label: Start Year,         name: start_year,        widget: number,  required: false, hint: "Team members only: year they joined" }
-              - { label: Years Active,       name: years_active,      widget: string,  required: false, hint: "Alumni only: e.g. 2023-2024" }
+              - { label: Start Year,         name: start_year,        widget: number,  required: false }
+              - label: Photo
+                name: photo
+                widget: image
+                required: false
+                media_folder: /src/assets/team
+                public_folder: ""
+              - { label: LinkedIn URL,       name: linkedin,          widget: string,  required: false }
+              - { label: Durham Staff Link,  name: durham-staff-link, widget: string,  required: false }
+              - { label: Personal Website,   name: link,              widget: string,  required: false }
+
+      - name: alumni
+        label: Alumni
+        file: src/content/people.yml
+        fields:
+          - label: Alumni
+            name: alumni
+            widget: list
+            identifier_field: name
+            fields:
+              - { label: Name,               name: name,              widget: string }
+              - { label: Role,               name: role,              widget: string }
+              - { label: Years Active,       name: years_active,      widget: string,  required: false, hint: "e.g. 2023-2024" }
               - label: Photo
                 name: photo
                 widget: image

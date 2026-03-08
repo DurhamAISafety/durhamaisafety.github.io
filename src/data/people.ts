@@ -36,21 +36,17 @@ for (const [path, module] of Object.entries(photoModules)) {
 
 import peopleYaml from '../content/people.yml?raw';
 
-type RawPerson = {
-  name: string;
-  type: 'member' | 'alumnus';
-  role: string;
-  start_year?: number;
-  years_active?: string;
-  photo?: string;
-  linkedin?: string;
-  'durham-staff-link'?: string;
-  link?: string;
+const raw = parse(peopleYaml) as {
+  members: Array<Omit<TeamMember, 'photo'> & { photo?: string }>;
+  alumni: Array<Omit<AlumniMember, 'photo'> & { photo?: string }> | null;
 };
 
-const raw = parse(peopleYaml) as { people: RawPerson[] };
+export const team: TeamMember[] = raw.members.map(p => ({
+  ...p,
+  photo: p.photo ? photoMap[p.photo] : undefined,
+}));
 
-const resolve = (p: RawPerson) => ({ ...p, photo: p.photo ? photoMap[p.photo] : undefined });
-
-export const team: TeamMember[] = raw.people.filter(p => p.type === 'member').map(resolve);
-export const alumni: AlumniMember[] = raw.people.filter(p => p.type === 'alumnus').map(resolve);
+export const alumni: AlumniMember[] = (raw.alumni || []).map(p => ({
+  ...p,
+  photo: p.photo ? photoMap[p.photo] : undefined,
+}));
