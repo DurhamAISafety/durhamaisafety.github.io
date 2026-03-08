@@ -6,7 +6,7 @@
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for DAISI, built with Astro and deployed to GitHub Pages.
+The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
 
 ## Quick Start
 
@@ -72,7 +72,14 @@ See the example template at the top of `research.yml` for all options.
 
 ## Deployment
 
-Changes pushed to `main` auto-deploy to GitHub Pages via GitHub Actions.
+Changes pushed to `main` trigger two deployments automatically:
+
+| Host | URL | Role |
+|---|---|---|
+| **Netlify** | [durhamaisafety.uk](https://durhamaisafety.uk) | Primary — full Astro build, Lighthouse, custom domain |
+| **GitHub Pages** | [durhamaisafety.github.io](https://durhamaisafety.github.io) | Redirect fallback → durhamaisafety.uk |
+
+Netlify configuration lives in [`netlify.toml`](./netlify.toml). The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
 
 ## Brand Colors
 

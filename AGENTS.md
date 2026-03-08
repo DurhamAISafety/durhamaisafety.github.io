@@ -81,8 +81,6 @@ lychee --base https://durhamaisafety.uk --max-concurrency 8 --accept 200,201,204
 ```
 Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` first to generate `dist/`. 404s for `durhamaisafety.uk/` paths that exist in the PR but not yet on the live site are expected false positives.
 
-Push to `main` → GitHub Actions deploys to GitHub Pages automatically.
-
 ## Common Tasks
 
 **Add team member:** photo → `src/assets/team/`, entry → `src/content/team.yml` (optional link fields: `linkedin`, `durham-staff-link`, `link`)
