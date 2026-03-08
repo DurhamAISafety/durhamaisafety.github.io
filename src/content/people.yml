@@ -15,21 +15,28 @@ people:
     years_active: ''
     photo: theo.jpeg
     linkedin: https://www.linkedin.com/in/theofarrell/
+    durham-staff-link: ''
     link: https://theosdoor.github.io/
   - name: Eve
     type: member
     role: Co-organiser & Treasurer
     start_year: 2025
+    years_active: ''
     photo: eve.jpeg
     linkedin: https://www.linkedin.com/in/eve-sherratt/
+    durham-staff-link: ''
+    link: ''
   - name: Quinn
     type: member
     role: Co-organiser & Secretary
     start_year: 2025
+    years_active: ''
     photo: quinn.jpeg
     linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
+    durham-staff-link: ''
+    link: ''
   - name: Patrick
-    type: alumnus
+    type: member
     role: Advisor (Technical AI Safety)
     start_year: 2024
     years_active: 2024-2026
@@ -41,23 +48,38 @@ people:
     type: member
     role: Advisor (AI & Law)
     start_year: 2024
+    years_active: ''
     photo: leonie.png
+    linkedin: ''
     durham-staff-link: https://www.durham.ac.uk/staff/leonie-a-stuessi/
+    link: ''
   - name: Ben Kehoe
     type: alumnus
     role: Co-founder
+    start_year: null
     years_active: 2024-2025
     photo: Ben_Kehoe-Augustyniak.jpeg
     linkedin: https://www.linkedin.com/in/ben-kehoe/
+    durham-staff-link: ''
+    link: ''
   - name: Raja Ikhlaq
     type: alumnus
     role: Co-founder
+    start_year: null
     years_active: 2023-2024
+    linkedin: ''
+    durham-staff-link: ''
+    link: ''
   - name: Adriana Tihan
     type: alumnus
     role: Co-founder
+    start_year: null
     years_active: 2023-2024
+    linkedin: ''
+    durham-staff-link: ''
+    link: ''
   - name: Elias Schmied
     type: alumnus
     role: Co-founder
+    start_year: null
     years_active: 2023-2024
