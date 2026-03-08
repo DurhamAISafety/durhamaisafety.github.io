@@ -2,25 +2,26 @@
 # Edit this file to update the About and Alumni pages.
 # Photos are stored in src/assets/team/
 #
-# ── Team Members (members:) ───────────────────────────────────────────────
-# Optional per member: start_year, photo, linkedin, durham-staff-link, link
+# type: member   — current team member (use start_year)
+# type: alumnus  — former member (use years_active, e.g. "2023-2024")
+# To graduate someone: change type: member → type: alumnus, add years_active.
 #
-# ── Alumni (alumni:) ───────────────────────────────────────────────────────
-# Optional per alumnus: years_active (e.g. "2023-2024"), photo, linkedin,
-#   durham-staff-link, link
+# Optional for everyone: photo, linkedin, durham-staff-link, link
 #
 # Notes:
 # - Add photos to: src/assets/team/ (supported: .jpg, .jpeg, .png, .webp)
 # - Indentation matters! Use 2 spaces, not tabs
 
-members:
+people:
   - name: Bella
+    type: member
     role: Lead Organiser & Publicity
     start_year: 2025
     photo: bella-pic.jpg
     linkedin: https://www.linkedin.com/in/isabella-towers-8937b4381/
 
   - name: Theo
+    type: member
     role: Co-organiser & Co-founder
     start_year: 2023
     photo: theo.jpeg
@@ -28,18 +29,21 @@ members:
     link: https://theosdoor.github.io/
 
   - name: Eve
+    type: member
     role: Co-organiser & Treasurer
     start_year: 2025
     photo: eve.jpeg
     linkedin: https://www.linkedin.com/in/eve-sherratt/
 
   - name: Quinn
+    type: member
     role: Co-organiser & Secretary
     start_year: 2025
     photo: quinn.jpeg
     linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
 
   - name: Patrick
+    type: member
     role: Advisor (Technical AI Safety)
     start_year: 2024
     photo: patrick.jpeg
@@ -47,13 +51,14 @@ members:
     link: https://linktr.ee/patrickleask
 
   - name: Leonie
+    type: member
     role: Advisor (AI & Law)
     start_year: 2024
     photo: leonie.png
     durham-staff-link: https://www.durham.ac.uk/staff/leonie-a-stuessi/
 
-alumni:
   - name: Ben Kehoe
+    type: alumnus
     role: Co-founder
     years_active: "2024-2025"
     photo: Ben_Kehoe-Augustyniak.jpeg
@@ -61,16 +66,19 @@ alumni:
 
   #  TODO - check that they are happy to be linked as alumni
   - name: Raja Ikhlaq
+    type: alumnus
     role: Co-founder
     years_active: "2023-2024"
     # link: https://www.linkedin.com/in/raja-ikhlaq/
 
   - name: Adriana Tihan
+    type: alumnus
     role: Co-founder
     years_active: "2023-2024"
     # link: https://www.linkedin.com/in/adriana-tihan-9939741b9/
 
   - name: Elias Schmied
+    type: alumnus
     role: Co-founder
     years_active: "2023-2024"
     # link: https://www.linkedin.com/in/elias-schmied-01ab92199/
