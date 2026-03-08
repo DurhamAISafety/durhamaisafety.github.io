@@ -29,7 +29,7 @@ for (const [path, module] of Object.entries(photoModules)) {
 // Import YAML as raw text using Vite's ?raw suffix
 import alumYaml from '../content/alum.yml?raw';
 
-const rawAlum = parse(alumYaml) as Array<{
+const rawAlum = ((parse(alumYaml) as { alumni: Array<{
   name: string;
   role: string;
   years_active?: string;
@@ -37,7 +37,7 @@ const rawAlum = parse(alumYaml) as Array<{
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
-}> | null;
+}> | null }).alumni) ?? null;
 
 // Convert photo filenames to imported images
 // Handle case where YAML is empty or only contains comments

@@ -29,7 +29,7 @@ for (const [path, module] of Object.entries(photoModules)) {
 // Import YAML as raw text using Vite's ?raw suffix
 import teamYaml from '../content/team.yml?raw';
 
-const rawTeam = parse(teamYaml) as Array<{
+const rawTeam = (parse(teamYaml) as { members: Array<{
   name: string;
   role: string;
   start_year?: number;
@@ -37,7 +37,7 @@ const rawTeam = parse(teamYaml) as Array<{
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
-}>;
+}>}).members;
 
 // Convert photo filenames to imported images
 export const team: TeamMember[] = rawTeam.map(member => ({

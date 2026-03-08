@@ -17,7 +17,7 @@ collections:
         file: src/content/team.yml
         fields:
           - label: Member
-            name: ""
+            name: members
             widget: list
             identifier_field: name
             fields:
@@ -39,7 +39,7 @@ collections:
         file: src/content/alum.yml
         fields:
           - label: Alumni
-            name: ""
+            name: alumni
             widget: list
             fields:
               - { label: Name,              name: name,              widget: string }
@@ -60,7 +60,7 @@ collections:
         file: src/content/research.yml
         fields:
           - label: Papers
-            name: ""
+            name: papers
             widget: list
             fields:
               - { label: Title,     name: title,     widget: string }
@@ -94,7 +94,7 @@ collections:
         file: src/content/supporters.yml
         fields:
           - label: Supporters
-            name: ""
+            name: supporters
             widget: list
             fields:
               - { label: Name,     name: name,     widget: string }

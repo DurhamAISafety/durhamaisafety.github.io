@@ -10,4 +10,4 @@ export interface Supporter {
 // Import YAML as raw text using Vite's ?raw suffix
 import supportersYaml from '../content/supporters.yml?raw';
 
-export const supporters: Supporter[] = parse(supportersYaml) as Supporter[];
+export const supporters: Supporter[] = (parse(supportersYaml) as { supporters: Supporter[] }).supporters;

@@ -24,24 +24,25 @@
 #   role: Former Organiser
 #   photo: example.jpg
 
-- name: Ben Kehoe
-  role: Co-founder
-  years_active: "2024-2025"
-  photo: Ben_Kehoe-Augustyniak.jpeg
-  linkedin: https://www.linkedin.com/in/ben-kehoe/
+alumni:
+  - name: Ben Kehoe
+    role: Co-founder
+    years_active: "2024-2025"
+    photo: Ben_Kehoe-Augustyniak.jpeg
+    linkedin: https://www.linkedin.com/in/ben-kehoe/
 
-#  TODO - check that they are happy to be linked as alumni
-- name: Raja Ikhlaq
-  role: Co-founder
-  years_active: "2023-2024"
-  # link: https://www.linkedin.com/in/raja-ikhlaq/
+  #  TODO - check that they are happy to be linked as alumni
+  - name: Raja Ikhlaq
+    role: Co-founder
+    years_active: "2023-2024"
+    # link: https://www.linkedin.com/in/raja-ikhlaq/
 
-- name: Adriana Tihan
-  role: Co-founder
-  years_active: "2023-2024"
-  # link: https://www.linkedin.com/in/adriana-tihan-9939741b9/
+  - name: Adriana Tihan
+    role: Co-founder
+    years_active: "2023-2024"
+    # link: https://www.linkedin.com/in/adriana-tihan-9939741b9/
 
-- name: Elias Schmied
-  role: Co-founder
-  years_active: "2023-2024"
-  # link: https://www.linkedin.com/in/elias-schmied-01ab92199/
+  - name: Elias Schmied
+    role: Co-founder
+    years_active: "2023-2024"
+    # link: https://www.linkedin.com/in/elias-schmied-01ab92199/
