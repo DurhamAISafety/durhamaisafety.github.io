@@ -35,7 +35,7 @@ All four content files use a **named wrapper key** at the root rather than a bar
 
 | File | Root key(s) | TS loader unwraps via |
 |---|---|---|
-| `src/content/people.yml` | `members:` + `alumni:` | `src/data/people.ts` |
+| `src/content/people.yml` | `people:` | `src/data/people.ts` |
 | `src/content/research.yml` | `papers:` | `src/data/research.ts` |
 | `src/content/supporters.yml` | `supporters:` | `src/data/supporters.ts` |
 
@@ -114,9 +114,9 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 
 ## Common Tasks
 
-**Add team member:** photo → `src/assets/team/`, entry → `src/content/people.yml` under `members:` (optional link fields: `linkedin`, `durham-staff-link`, `link`)
+**Add team member:** photo → `src/assets/team/`, entry → `src/content/people.yml` under `people:` with `type: member` (optional: `start_year`, `linkedin`, `durham-staff-link`, `link`)
 
-**Add alumni:** entry → `src/content/people.yml` under `alumni:` (same fields as team member plus optional `years_active`, e.g. `"2023-2024"`)
+**Add alumni:** entry → `src/content/people.yml` under `people:` with `type: alumnus` (optional: `years_active` e.g. `"2023-2024"`, `linkedin`, `durham-staff-link`, `link`)
 
 **Add supporter:** logo → `public/images/supporters/`, entry → `src/content/supporters.yml`
 
@@ -149,6 +149,6 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 - All four content YAML files use a named root key (`members:`, `alumni:`, `papers:`, `supporters:`) — never a bare top-level array.
 - `public/` images: reference with leading `/` (e.g. `/images/logo.png`)
 - `src/assets/` images: must go through `import.meta.glob()` or a direct `import`
-- `people.yml` `alumni:` key may be empty — `src/data/people.ts` guards with `(raw.alumni || [])`
+- `people.yml` uses a single `people:` list; `type: member` entries go to `team`, `type: alumnus` to `alumni` in `src/data/people.ts`
 - Tailwind v4 migration is deferred (see `TODO.md`); stay on v3 patterns for now
 - Font Awesome 6.7.2 is loaded from cdnjs in `Layout.astro`

@@ -7,56 +7,38 @@ media_folder: public/images
 public_folder: /images
 
 collections:
-  # ── Team ────────────────────────────────────────────────────────────────────
-  - name: team
-    label: Team Members
+  # ── People (Team Members & Alumni) ──────────────────────────────────────────
+  - name: people
+    label: People
     files:
-      - name: team
-        label: Team
+      - name: people
+        label: People
         file: src/content/people.yml
         fields:
-          - label: Member
-            name: members
+          - label: People
+            name: people
             widget: list
             identifier_field: name
             fields:
               - { label: Name,               name: name,              widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options:
+                  - { label: "Team Member", value: member }
+                  - { label: "Alumnus",     value: alumnus }
               - { label: Role,               name: role,              widget: string }
-              - { label: Start Year,         name: start_year,        widget: number, required: false }
+              - { label: Start Year,         name: start_year,        widget: number,  required: false, hint: "Team members only: year they joined" }
+              - { label: Years Active,       name: years_active,      widget: string,  required: false, hint: "Alumni only: e.g. 2023-2024" }
               - label: Photo
                 name: photo
                 widget: image
                 required: false
                 media_folder: /src/assets/team
                 public_folder: ""
-              - { label: LinkedIn URL,       name: linkedin,          widget: string, required: false }
-              - { label: Durham Staff Link,  name: durham-staff-link, widget: string, required: false }
-              - { label: Personal Website,   name: link,              widget: string, required: false }
-
-  # ── Alumni ──────────────────────────────────────────────────────────────────
-  - name: alumni
-    label: Alumni
-    files:
-      - name: alum
-        label: Alumni
-        file: src/content/people.yml
-        fields:
-          - label: Alumni
-            name: alumni
-            widget: list
-            fields:
-              - { label: Name,              name: name,              widget: string }
-              - { label: Role,              name: role,              widget: string }
-              - { label: Years Active,      name: years_active,      widget: string, required: false, hint: "e.g. 2023-2024" }
-              - label: Photo
-                name: photo
-                widget: image
-                required: false
-                media_folder: /src/assets/team
-                public_folder: ""
-              - { label: LinkedIn URL,      name: linkedin,          widget: string, required: false }
-              - { label: Durham Staff Link, name: durham-staff-link, widget: string, required: false }
-              - { label: Personal Website,  name: link,              widget: string, required: false }
+              - { label: LinkedIn URL,       name: linkedin,          widget: string,  required: false }
+              - { label: Durham Staff Link,  name: durham-staff-link, widget: string,  required: false }
+              - { label: Personal Website,   name: link,              widget: string,  required: false }
 
   # ── Research ─────────────────────────────────────────────────────────────────
   - name: research

@@ -24,8 +24,8 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 | To update... | Edit this file |
 |--------------|----------------|
-| Team members | `src/content/people.yml` (`members:` list) + add photo to `src/assets/team/` |
-| Alumni | `src/content/people.yml` (`alumni:` list) + add photo to `src/assets/team/` |
+| Team members | `src/content/people.yml` — add entry with `type: member` + photo to `src/assets/team/` |
+| Alumni | `src/content/people.yml` — add entry with `type: alumnus` + photo to `src/assets/team/` |
 | Supporters | `src/content/supporters.yml` + add logo to `public/images/supporters/` |
 | Research papers | `src/content/research.yml` |
 | Navigation links | `src/data/config.ts` (`siteConfig.navigation`) |
@@ -36,10 +36,11 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 ### Adding a Team Member
 
 1. Add their photo to `src/assets/team/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
-2. Edit `src/content/people.yml` and add a new entry under the `members:` key:
+2. Edit `src/content/people.yml` and add a new entry under the `people:` key with `type: member`:
    ```yaml
-   members:
+   people:
      - name: Alice Smith
+       type: member
        role: Co-organiser
        photo: alice.jpg
        linkedin: https://www.linkedin.com/in/alice-smith/        # optional
@@ -48,7 +49,7 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
    ```
 
 See the comments at the top of `people.yml` for more details.
-Alumni live in the same file under the `alumni:` key and also support a `years_active` field (e.g. `"2023-2024"`).
+Alumni live in the same file — use `type: alumnus` instead of `type: member`, and optionally add a `years_active` field (e.g. `"2023-2024"``).
 
 ### Adding a Research Paper
 
