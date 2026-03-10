@@ -1,5 +1,4 @@
 node_modules/
-tina/__generated__/
 /triage/
 /.compiler/
 dist/
