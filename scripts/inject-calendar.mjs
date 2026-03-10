@@ -1,34 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TinaCMS</title>
-  </head>
+/**
+ * Injects the DAISI organiser calendar popup into public/admin/index.html.
+ * Run after `tinacms build` — safe to call multiple times (idempotent).
+ */
 
-  <!-- if development -->
-  <script type="module">
-    import RefreshRuntime from 'http://localhost:4001/@react-refresh'
-    RefreshRuntime.injectIntoGlobalHook(window)
-    window.$RefreshReg$ = () => {}
-    window.$RefreshSig$ = () => (type) => type
-    window.__vite_plugin_react_preamble_installed__ = true
-  </script>
-  <script type="module" src="http://localhost:4001/@vite/client"></script>
-  <script>
-  function handleLoadError() {
-    // Assets have failed to load
-    document.getElementById('root').innerHTML = '<style type="text/css"> #no-assets-placeholder body { font-family: sans-serif; font-size: 16px; line-height: 1.4; color: #333; background-color: #f5f5f5; } #no-assets-placeholder { max-width: 600px; margin: 0 auto; padding: 40px; text-align: center; background-color: #fff; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); } #no-assets-placeholder h1 { font-size: 24px; margin-bottom: 20px; } #no-assets-placeholder p { margin-bottom: 10px; } #no-assets-placeholder a { color: #0077cc; text-decoration: none; } #no-assets-placeholder a:hover { text-decoration: underline; } </style> <div id="no-assets-placeholder"> <h1>Failed loading TinaCMS assets</h1> <p> Your TinaCMS configuration may be misconfigured, and we could not load the assets for this page. </p> <p> Please visit <a href="https://tina.io/docs/r/FAQ/#13-how-do-i-resolve-failed-loading-tinacms-assets-error">this doc</a> for help. </p> </div> </div>';
-  }
-  </script>
-  <script
-    type="module"
-    src="http://localhost:4001/src/main.tsx"
-    onerror="handleLoadError()"
-  ></script>
-  <body class="tina-tailwind">
-    <div id="root"></div>
-  
+import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ADMIN_HTML = resolve(__dirname, '..', 'public', 'admin', 'index.html');
+
+const CALENDAR_SRC =
+  'https://calendar.google.com/calendar/u/0/embed' +
+  '?src=19819426f7b902b6524ebdc40c12b65fbc87e4a5285d4d7ee00231d09dd10be3@group.calendar.google.com' +
+  '&ctz=Europe/London&mode=AGENDA';
+
+export function buildCalendarPayload() {
+  return `
 <!-- ── DAISI Calendar Popup (auto-injected) ─────────────────────────── -->
 <style id="daisi-cal-styles">
   :root {
@@ -259,7 +247,7 @@
   </div>
   <div id="daisi-cal-body">
     <iframe
-      src="https://calendar.google.com/calendar/u/0/embed?src=19819426f7b902b6524ebdc40c12b65fbc87e4a5285d4d7ee00231d09dd10be3@group.calendar.google.com&ctz=Europe/London&mode=AGENDA"
+      src="${CALENDAR_SRC}"
       title="DAISI Organiser Calendar"
       allowfullscreen
       loading="lazy"
@@ -299,6 +287,28 @@
 })();
 </script>
 <!-- ── /DAISI Calendar Popup ────────────────────────────────────────── -->
+`;
+}
 
-</body>
-</html>
+export function injectIntoHtml(html) {
+  if (html.includes('daisi-cal-btn')) return null; // already injected
+  return html.replace('</body>', buildCalendarPayload() + '\n</body>');
+}
+
+// CLI entry point
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  if (!existsSync(ADMIN_HTML)) {
+    console.error('[DAISI Calendar] public/admin/index.html not found — skipping.');
+    process.exit(0);
+  }
+
+  const html = readFileSync(ADMIN_HTML, 'utf-8');
+  const result = injectIntoHtml(html);
+
+  if (result === null) {
+    console.log('[DAISI Calendar] Already injected — nothing to do.');
+  } else {
+    writeFileSync(ADMIN_HTML, result);
+    console.log('[DAISI Calendar] Injected into public/admin/index.html');
+  }
+}

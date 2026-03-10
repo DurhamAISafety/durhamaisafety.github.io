@@ -84,14 +84,3 @@ This is the biggest chunk of work and should be done page-by-page after the v4 m
 4. Refactor card components to accept a `variant` prop, then delete context selectors
 
 ---
-
-## CMS (Tina)
-
-**Status:** Live at `https://durhamaisafety.uk/admin/`
-**Done:** `tina/config.ts` with all collections, YAML files wrapped with named keys, TS loaders updated, footer shield link
-
-### Remaining
-
-Nothing — all planned CMS tasks are complete.
-
----
