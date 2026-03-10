@@ -2,7 +2,7 @@ import { defineConfig } from "tinacms";
 
 export default defineConfig({
   // Your Tina Cloud project ID — get this from app.tina.io after creating a project
-  clientId: process.env.TINA_CLIENT_ID,
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   token: process.env.TINA_TOKEN,
 
   branch:
