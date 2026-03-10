@@ -1,7 +1,7 @@
 # Copilot Instructions: Durham AI Safety Initiative Website
 
 ## Project Overview
-Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durhamaisafety.uk](https://durhamaisafety.uk)** via Netlify (primary). Also deployed to GitHub Pages which redirects to the primary domain. Content lives in YAML files and is editable via the browser-based CMS at `/admin/` (Sveltia CMS).
+Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durhamaisafety.uk](https://durhamaisafety.uk)** via Netlify (primary). Also deployed to GitHub Pages which redirects to the primary domain. Content lives in YAML files and is editable via the browser-based CMS at `/admin/` (Tina CMS).
 
 ## Architecture: YAML → TypeScript → Astro
 
@@ -47,17 +47,17 @@ members:
 ```
 Never write a bare top-level array — the TypeScript loaders and the CMS both expect the named key.
 
-## CMS (Sveltia)
+## CMS (Tina)
 
-A browser-based content editor is live at `/admin/`. It reads and writes the same YAML files directly to the GitHub repo via OAuth, triggering a Netlify deploy on save.
+A Git-backed editor is live at `/admin/`. It reads and writes the YAML content files directly, committing to the repo and triggering a Netlify deploy on save.
 
-- Config: `public/admin/config.yml`
-- UI entry point: `public/admin/index.html`
-- OAuth proxy: Netlify (GitHub provider configured in Netlify site settings)
-- Access: `https://durhamaisafety.uk/admin/` — log in with a GitHub account that has write access to the repo
+- Config: `tina/config.ts` — schema, collections, field definitions
+- Generated types: `tina/__generated__/` (gitignored)
+- Access: `https://durhamaisafety.uk/admin/` — requires Tina Cloud credentials
 - Footer link: the shield icon in the footer bottom row links to `/admin/`
+- Env vars: `TINA_CLIENT_ID` and `TINA_TOKEN` (Netlify site settings; locally via `.env`)
 
-To add a new editable collection to the CMS, add a new entry to `collections:` in `public/admin/config.yml` and ensure the corresponding YAML file uses a named root key.
+To add a new editable collection to the CMS, add a new entry to `schema.collections` in `tina/config.ts` and ensure the corresponding YAML file uses a named root key.
 
 ## Styling Architecture
 

@@ -85,10 +85,10 @@ This is the biggest chunk of work and should be done page-by-page after the v4 m
 
 ---
 
-## CMS (Sveltia)
+## CMS (Tina)
 
 **Status:** Live at `https://durhamaisafety.uk/admin/`
-**Done:** admin UI, config.yml with all four collections, GitHub OAuth App, Netlify OAuth proxy, YAML files wrapped with named keys, TS loaders updated, footer shield link, `cms` branch + auto-merge workflow, `widget: image` for photo/thumbnail fields, calendar page at `/admin/calendar.html` with link from admin UI
+**Done:** `tina/config.ts` with all collections, YAML files wrapped with named keys, TS loaders updated, footer shield link
 
 ### Remaining
 
