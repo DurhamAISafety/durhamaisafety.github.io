@@ -1,0 +1,2 @@
+[build.environment]
+SECRETS_SCAN_OMIT_PATHS = "tina/__generated__/**,tina/generated/**"
