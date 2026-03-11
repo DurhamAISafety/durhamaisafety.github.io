@@ -5,7 +5,7 @@ people:
     start_year: 2025
     years_active: ''
     photo: bella-pic.jpg
-    linkedin: https://www.linkedin.com/in/isabella-towers-8937b4381/
+    linkedin: 'https://www.linkedin.com/in/isabella-towers-8937b4381/'
     durham-staff-link: ''
     link: ''
   - name: Theo
@@ -14,16 +14,16 @@ people:
     start_year: 2023
     years_active: ''
     photo: theo.jpeg
-    linkedin: https://www.linkedin.com/in/theofarrell/
+    linkedin: 'https://www.linkedin.com/in/theofarrell/'
     durham-staff-link: ''
-    link: https://theosdoor.github.io/
+    link: 'https://theosdoor.github.io/'
   - name: Eve
     type: member
     role: Co-organiser & Treasurer
     start_year: 2025
     years_active: ''
     photo: eve.jpeg
-    linkedin: https://www.linkedin.com/in/eve-sherratt/
+    linkedin: 'https://www.linkedin.com/in/eve-sherratt/'
     durham-staff-link: ''
     link: ''
   - name: Quinn
@@ -32,18 +32,18 @@ people:
     start_year: 2025
     years_active: ''
     photo: quinn.jpeg
-    linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
+    linkedin: 'https://www.linkedin.com/in/quinn-dines-154b71234/'
     durham-staff-link: ''
     link: ''
   - name: Patrick
-    type: member
+    type: alumnus
     role: Advisor (Technical AI Safety)
     start_year: 2024
     years_active: 2024-2026
     photo: patrick.jpeg
     linkedin: ''
-    durham-staff-link: https://www.durham.ac.uk/staff/patrick-leask/
-    link: https://linktr.ee/patrickleask
+    durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
+    link: 'https://linktr.ee/patrickleask'
   - name: Leonie
     type: member
     role: Advisor (AI & Law)
@@ -51,7 +51,7 @@ people:
     years_active: ''
     photo: leonie.png
     linkedin: ''
-    durham-staff-link: https://www.durham.ac.uk/staff/leonie-a-stuessi/
+    durham-staff-link: 'https://www.durham.ac.uk/staff/leonie-a-stuessi/'
     link: ''
   - name: Ben Kehoe
     type: alumnus
@@ -59,7 +59,7 @@ people:
     start_year: null
     years_active: 2024-2025
     photo: Ben_Kehoe-Augustyniak.jpeg
-    linkedin: https://www.linkedin.com/in/ben-kehoe/
+    linkedin: 'https://www.linkedin.com/in/ben-kehoe/'
     durham-staff-link: ''
     link: ''
   - name: Raja Ikhlaq
