@@ -84,3 +84,8 @@ This is the biggest chunk of work and should be done page-by-page after the v4 m
 4. Refactor card components to accept a `variant` prop, then delete context selectors
 
 ---
+
+## CMS (Tina)
+
+- Would be good to put organiser calendar on the admin page somewhere
+- visual editor would be great! but hard to link w astro (https://github.com/cassidoo/blahg)
