@@ -179,6 +179,17 @@ const programs: Program[] = [
                         <img src="/images/calendar-icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
                         <span class="cal-label">Apple Calendar</span>
                     </a>
+
+                    <!-- Calendar URL copy -->
+                    <button
+                        id="copy-cal-url"
+                        class="cal-sync-btn"
+                        aria-label="Copy calendar URL to clipboard"
+                        data-url="https://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
+                    >
+                        <i class="fa-solid fa-link cal-icon text-slate-600" aria-hidden="true"></i>
+                        <span class="cal-label" id="copy-cal-label">Copy URL</span>
+                    </button>
                 </div>
 
                 <p class="text-center text-sm mb-8 text-slate-600">
@@ -392,6 +403,32 @@ const programs: Program[] = [
             const opacity = Math.max(0, 1 - window.scrollY / 150);
             (scrollIndicator as HTMLElement).style.opacity = String(opacity);
         }, { passive: true });
+    }
+
+    const copyBtn = document.getElementById('copy-cal-url');
+    const copyLabel = document.getElementById('copy-cal-label');
+
+    if (copyBtn && copyLabel) {
+        copyBtn.addEventListener('click', async () => {
+            const url = copyBtn.getAttribute('data-url') ?? '';
+            try {
+                await navigator.clipboard.writeText(url);
+                copyLabel.textContent = 'Copied!';
+                setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
+            } catch {
+                // Fallback for browsers without clipboard API
+                const ta = document.createElement('textarea');
+                ta.value = url;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                copyLabel.textContent = 'Copied!';
+                setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
+            }
+        });
     }
 </script>
 
