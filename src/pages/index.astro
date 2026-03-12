@@ -463,10 +463,24 @@ const programs: Program[] = [
 }
 
 .cal-icon {
+    flex-shrink: 0;
+}
+
+img.cal-icon {
     width: 1.75rem;
     height: 1.75rem;
-    flex-shrink: 0;
     display: block;
+    object-fit: contain;
+}
+
+i.cal-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-size: 1rem;
 }
 
 .cal-label {
