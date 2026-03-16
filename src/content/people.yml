@@ -35,15 +35,6 @@ people:
     linkedin: 'https://www.linkedin.com/in/quinn-dines-154b71234/'
     durham-staff-link: ''
     link: ''
-  - name: Patrick
-    type: member
-    role: Advisor (Technical AI Safety)
-    start_year: 2024
-    years_active: 2024-2026
-    photo: patrick.jpeg
-    linkedin: ''
-    durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
-    link: 'https://linktr.ee/patrickleask'
   - name: Leonie
     type: member
     role: Advisor (AI & Law)
@@ -53,6 +44,15 @@ people:
     linkedin: ''
     durham-staff-link: 'https://www.durham.ac.uk/staff/leonie-a-stuessi/'
     link: ''
+  - name: Patrick
+    type: member
+    role: Advisor (Technical AI Safety)
+    start_year: 2024
+    years_active: 2024-2026
+    photo: patrick.jpeg
+    linkedin: ''
+    durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
+    link: 'https://linktr.ee/patrickleask'
   - name: Ben Kehoe
     type: alumnus
     role: Co-founder
