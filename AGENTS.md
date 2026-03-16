@@ -10,10 +10,10 @@ Static website built with **Astro 5**, **Tailwind CSS v3**, deployed to **[durha
 3. **Component layer** (`src/pages/*.astro`, `src/components/*.astro`): consume typed data — no raw YAML access here
 
 **Adding a team member** requires only two steps — no code changes needed:
-1. Drop photo in `src/assets/team/`
-2. Add entry to `src/content/people.yml` under `members:`
+1. Drop photo in `public/images/team/`
+2. Add entry to `src/content/people.yml` under `people:`
 
-`src/data/people.ts` resolves filenames automatically via `import.meta.glob('../assets/team/*.{jpeg,jpg,png,webp,gif}', { eager: true })`. Alumni photos share the same folder.
+`src/data/people.ts` resolves filenames automatically by prepending `/images/team/` to the photo filename. Alumni photos share the same folder.
 
 Optional link fields for a team member (all shown as icons): `linkedin`, `durham-staff-link`, `link` (generic). Example:
 ```yaml
@@ -114,13 +114,13 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 
 ## Common Tasks
 
-**Add team member:** photo → `src/assets/team/`, entry → `src/content/people.yml` under `people:` with `type: member` (optional: `start_year`, `linkedin`, `durham-staff-link`, `link`)
+**Add team member:** photo → `public/images/team/`, entry → `src/content/people.yml` under `people:` with `type: member` (optional: `start_year`, `linkedin`, `durham-staff-link`, `link`)
 
 **Add alumni:** entry → `src/content/people.yml` under `people:` with `type: alumnus` (optional: `years_active` e.g. `"2023-2024"`, `linkedin`, `durham-staff-link`, `link`)
 
 **Add supporter:** logo → `public/images/supporters/`, entry → `src/content/supporters.yml`
 
-**Add research paper:** entry at **top** of the `papers:` list in `src/content/research.yml` (sorted newest-first by `year` then `month`). Required fields: `title`, `url`, `authors`, `year`, `venue`, `tags`, `type`. Mark DAISI members with `team: true` in the authors array.
+**Add research paper:** entry at **top** of the `papers:` list in `src/content/research.yml` (sorted newest-first by `year` then `month`). Required fields: `title`, `url`, `authors`, `year`, `venue`, `tags`, `type`. Mark DAISI members with `team: true` in the authors array. Optional `thumbnail` field references images in `public/images/research/`.
 
 **Add new page:** create `src/pages/pagename.astro` — Astro file-based routing gives `/pagename/` automatically. Pass `title`, `description`, `heroImage` props to `Layout`.
 
@@ -147,8 +147,8 @@ Note: `lychee` must be installed (`brew install lychee`). Run `npm run build` fi
 ## Gotchas
 - YAML: 2-space indent, no tabs. Arrays use `-` prefix.
 - All four content YAML files use a named root key (`members:`, `alumni:`, `papers:`, `supporters:`) — never a bare top-level array.
-- `public/` images: reference with leading `/` (e.g. `/images/logo.png`)
-- `src/assets/` images: must go through `import.meta.glob()` or a direct `import`
+- `public/` images: reference with leading `/` (e.g. `/images/logo.png`) — all managed images live here
+- `src/assets/` images: only `hero-picture.jpeg` remains (used with `<Image />` component)
 - `people.yml` uses a single `people:` list; `type: member` entries go to `team`, `type: alumnus` to `alumni` in `src/data/people.ts`
 - Tailwind v4 migration is deferred (see `TODO.md`); stay on v3 patterns for now
 - Font Awesome 6.7.2 is loaded from cdnjs in `Layout.astro`

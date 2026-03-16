@@ -10,15 +10,12 @@
  * 
  * Dependencies:
  * - ../data/config.ts for site config (social links)
- * - ../assets/DAISI-logo.svg for logo
+ * - /images/DAISI-logo.svg for logo
  * - CSS classes from public/css/styles.css (.header, .nav-*, .burger, .mobile-nav, etc.)
  */
 import { siteConfig } from '../data/config';
-import Logo from '../assets/DAISI-logo.svg';
-import InstagramIcon from '../assets/icons/instagram.svg?raw';
-import DiscordIcon from '../assets/icons/discord.svg?raw';
-import LinkedInIcon from '../assets/icons/linkedin.svg?raw';
-import LinkIcon from '../assets/icons/link.svg?raw';
+
+const logoPath = '/images/DAISI-logo.svg';
 
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
@@ -28,7 +25,7 @@ const isHome = pathname === '/';
     <div class="site-container">
         <nav class="nav">
             <a href="/" class="nav-brand">
-                <img src={Logo.src} alt="DAISI Logo" class="h-8 w-auto md:h-10" loading="lazy" decoding="async" />
+                <img src={logoPath} alt="DAISI Logo" class="h-8 w-auto md:h-10" loading="lazy" decoding="async" />
                 <div>
                     <h1 class="nav-title">
                         <span>Durham</span>
@@ -61,16 +58,16 @@ const isHome = pathname === '/';
             <!-- Desktop right section: social, dark mode, CTA -->
             <div class="nav-right nav-menu-desktop">
                 <a href={siteConfig.social.instagram} class="nav-social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={InstagramIcon} />
+                    <img src="/images/icons/instagram.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 <a href={siteConfig.social.discord} class="nav-social" aria-label="Discord" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={DiscordIcon} />
+                    <img src="/images/icons/discord.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 <a href={siteConfig.social.linkedin} class="nav-social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={LinkedInIcon} />
+                    <img src="/images/icons/linkedin.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 <a href={siteConfig.social.linktree} class="nav-social" aria-label="Linktree" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={LinkIcon} />
+                    <img src="/images/icons/link.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 
                 <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
@@ -101,7 +98,7 @@ const isHome = pathname === '/';
     
     <div class="mobile-nav-content">
         <a href="/" class="flex items-center gap-3 mb-6 pb-4 border-b border-white/20">
-            <img src={Logo.src} alt="DAISI Logo" class="h-10 w-auto" />
+            <img src={logoPath} alt="DAISI Logo" class="h-10 w-auto" />
             <div>
                 <span class="text-lg font-bold">Durham</span>
                 <span class="text-lg font-bold gradient-text"> AI Safety</span>
@@ -118,16 +115,16 @@ const isHome = pathname === '/';
         <div class="mobile-nav-footer">
             <div class="mobile-social-links">
                 <a href={siteConfig.social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={InstagramIcon} />
+                    <img src="/images/icons/instagram.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 <a href={siteConfig.social.discord} aria-label="Discord" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={DiscordIcon} />
+                    <img src="/images/icons/discord.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 <a href={siteConfig.social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={LinkedInIcon} />
+                    <img src="/images/icons/linkedin.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
                 <a href={siteConfig.social.linktree} aria-label="Linktree" target="_blank" rel="noopener noreferrer">
-                    <Fragment set:html={LinkIcon} />
+                    <img src="/images/icons/link.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
                 </a>
             </div>
             

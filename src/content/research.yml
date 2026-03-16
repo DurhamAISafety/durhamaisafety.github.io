@@ -8,7 +8,7 @@
 #
 # - title: "Your Paper Title Here"
 #   url: https://link-to-paper.com
-#   thumbnail: paper-thumbnail.png   # Optional: image in src/assets/research/
+#   thumbnail: paper-thumbnail.png   # Optional: image in public/images/research/
 #   authors:
 #     - name: "Surname, F."
 #     - name: "Member, A."
@@ -22,7 +22,7 @@
 #
 # Notes:
 # - Papers are auto-sorted by year then month (newest first)
-# - Thumbnails: screenshot the PDF first page, save to src/assets/research/
+# - Thumbnails: screenshot the PDF first page, save to public/images/research/
 # - If no thumbnail provided, a placeholder will show
 
 papers:

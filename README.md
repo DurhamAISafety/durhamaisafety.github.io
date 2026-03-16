@@ -28,8 +28,8 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 | To update... | Edit this file |
 |--------------|----------------|
-| Team members | `src/content/people.yml` — add entry with `type: member` + photo to `src/assets/team/` |
-| Alumni | `src/content/people.yml` — add entry with `type: alumnus` + photo to `src/assets/team/` |
+| Team members | `src/content/people.yml` — add entry with `type: member` + photo to `public/images/team/` |
+| Alumni | `src/content/people.yml` — add entry with `type: alumnus` + photo to `public/images/team/` |
 | Supporters | `src/content/supporters.yml` + add logo to `public/images/supporters/` |
 | Research papers | `src/content/research.yml` |
 | Navigation links | `src/data/config.ts` (`siteConfig.navigation`) |
@@ -39,7 +39,7 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 ### Adding a Team Member
 
-1. Add their photo to `src/assets/team/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
+1. Add their photo to `public/images/team/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
 2. Edit `src/content/people.yml` and add a new entry under the `people:` key with `type: member`:
    ```yaml
    people:
@@ -62,7 +62,7 @@ Edit `src/content/research.yml` and add at the top of the `papers:` list (most r
 papers:
   - title: "Paper Title"
     url: https://link-to-paper
-    thumbnail: paper.png          # Optional: image in src/assets/research/
+    thumbnail: paper.png          # Optional: image in public/images/research/
     authors:
       - name: "Surname, F."
       - name: "Member, A."

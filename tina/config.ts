@@ -184,7 +184,7 @@ export default defineConfig({
                 required: false,
                 ui: {
                   description:
-                    "Screenshot the PDF first page and upload here. Stored in src/assets/research/",
+                    "Screenshot the PDF first page and upload here. Stored in public/images/research/",
                 },
               },
               {

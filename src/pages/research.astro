@@ -17,10 +17,6 @@ const page = {
       
       {/* Jump Navigation */}
       <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
-        <a href="#research-areas" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-flask mr-1" aria-hidden="true"></i> Research Areas
-        </a>
-        <span class="text-slate-400" aria-hidden="true">•</span>
         <a href="#recent-research" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
           <i class="fas fa-file-alt mr-1" aria-hidden="true"></i> Recent Research
         </a>
@@ -28,87 +24,17 @@ const page = {
         <a href="#opportunities" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
           <i class="fas fa-door-open mr-1" aria-hidden="true"></i> Opportunities
         </a>
+        <span class="text-slate-400" aria-hidden="true">•</span>
+        <a href="#research-areas" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
+          <i class="fas fa-flask mr-1" aria-hidden="true"></i> Research Areas
+        </a>
       </nav>
     </div>
   </section>
 
-  {/* Research Areas & Recent Research */}
+  {/* Recent Research */}
   <section class="section section-light">
     <div class="site-container">
-      {/* Research Areas */}
-      <div id="research-areas" class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Areas</h3>
-        <div class="section-divider"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <i class="fas fa-search text-5xl text-bright-purple mb-4 block text-center" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold text-center mb-4">Interpretability</h4>
-    <p class="text-center text-sm leading-relaxed">Understanding how AI systems make decisions and what they learn from data.</p>
-          <div class="text-center mt-3">
-            <a href="https://arxiv.org/abs/2501.16496" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <i class="fas fa-gavel text-5xl text-light-purple mb-4 block text-center" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold text-center mb-4">Governance</h4>
-    <p class="text-center text-sm leading-relaxed">Developing frameworks for responsible AI development and deployment.</p>
-          <div class="text-center mt-3">
-            <a href="https://www.markusanderljung.com/blog/a-collection-of-ai-governance-research-ideas-2024" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <i class="fas fa-clipboard-check text-5xl text-deep-purple mb-4 block text-center" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold text-center mb-4">Evaluations</h4>
-    <p class="text-center text-sm leading-relaxed">Developing methods to assess AI capabilities, alignment, and safety properties.</p>
-          <div class="text-center mt-3">
-            <a href="https://cset.georgetown.edu/article/ai-safety-evaluations-an-explainer/" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <i class="fas fa-user-shield text-5xl text-lavender mb-4 block text-center" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold text-center mb-4">Oversight / Control</h4>
-    <p class="text-center text-sm leading-relaxed">Ensuring meaningful human oversight and control over AI systems.</p>
-          <div class="text-center mt-3">
-            <a href="https://blog.redwoodresearch.org/p/guide" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <i class="fas fa-robot text-5xl text-violet-600 mb-4 block text-center" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold text-center mb-4">AI Agency</h4>
-    <p class="text-center text-sm leading-relaxed">Understanding and managing autonomous AI behavior and decision-making.</p>
-          <div class="text-center mt-3">
-            <a href="https://aisafety.info/questions/7782/What-is-%22agent-foundations%22" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <i class="fas fa-shield-alt text-5xl text-fuchsia-600 mb-4 block text-center" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold text-center mb-4">Security</h4>
-    <p class="text-center text-sm leading-relaxed">Protecting AI systems from adversarial attacks and malicious use.</p>
-          <div class="text-center mt-3">
-            <a href="https://www.aisi.gov.uk/research?1_category_equal=%5B%22Red+Team%22%5D" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Recent Research */}
       <div id="recent-research" class="text-center mb-12">
         <h3 class="section-heading text-3xl md:text-4xl mb-6">Recent Research involving DAISI Members</h3>
@@ -160,6 +86,84 @@ const page = {
         </div>
         <div class="text-center">
           <a href="/programmes/#research-projects" class="btn-cta">I'm Interested</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Research Areas */}
+  <section id="research-areas" class="section section-light">
+    <div class="site-container">
+      <div class="text-center mb-12">
+        <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Areas</h3>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <i class="fas fa-search text-5xl text-bright-purple mb-4 block text-center" aria-hidden="true"></i>
+          <h4 class="text-xl font-bold text-center mb-4">Interpretability</h4>
+          <p class="text-center text-sm leading-relaxed">Understanding how AI systems make decisions and what they learn from data.</p>
+          <div class="text-center mt-3">
+            <a href="https://arxiv.org/abs/2501.16496" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
+              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <i class="fas fa-gavel text-5xl text-light-purple mb-4 block text-center" aria-hidden="true"></i>
+          <h4 class="text-xl font-bold text-center mb-4">Governance</h4>
+          <p class="text-center text-sm leading-relaxed">Developing frameworks for responsible AI development and deployment.</p>
+          <div class="text-center mt-3">
+            <a href="https://www.markusanderljung.com/blog/a-collection-of-ai-governance-research-ideas-2024" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
+              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <i class="fas fa-clipboard-check text-5xl text-deep-purple mb-4 block text-center" aria-hidden="true"></i>
+          <h4 class="text-xl font-bold text-center mb-4">Evaluations</h4>
+          <p class="text-center text-sm leading-relaxed">Developing methods to assess AI capabilities, alignment, and safety properties.</p>
+          <div class="text-center mt-3">
+            <a href="https://cset.georgetown.edu/article/ai-safety-evaluations-an-explainer/" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
+              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <i class="fas fa-user-shield text-5xl text-lavender mb-4 block text-center" aria-hidden="true"></i>
+          <h4 class="text-xl font-bold text-center mb-4">Oversight / Control</h4>
+          <p class="text-center text-sm leading-relaxed">Ensuring meaningful human oversight and control over AI systems.</p>
+          <div class="text-center mt-3">
+            <a href="https://blog.redwoodresearch.org/p/guide" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
+              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <i class="fas fa-robot text-5xl text-violet-600 mb-4 block text-center" aria-hidden="true"></i>
+          <h4 class="text-xl font-bold text-center mb-4">AI Agency</h4>
+          <p class="text-center text-sm leading-relaxed">Understanding and managing autonomous AI behavior and decision-making.</p>
+          <div class="text-center mt-3">
+            <a href="https://aisafety.info/questions/7782/What-is-%22agent-foundations%22" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
+              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="research-card rounded-2xl p-6 card-hover">
+          <i class="fas fa-shield-alt text-5xl text-fuchsia-600 mb-4 block text-center" aria-hidden="true"></i>
+          <h4 class="text-xl font-bold text-center mb-4">Security</h4>
+          <p class="text-center text-sm leading-relaxed">Protecting AI systems from adversarial attacks and malicious use.</p>
+          <div class="text-center mt-3">
+            <a href="https://www.aisi.gov.uk/research?1_category_equal=%5B%22Red+Team%22%5D" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
+              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

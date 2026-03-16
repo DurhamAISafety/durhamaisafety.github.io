@@ -2,7 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { team, alumni } from '../data/people';
 import { Image } from 'astro:assets';
-import durhamLogo from '../assets/durham-logo.png';
+
+const durhamLogoPath = '/images/durham-logo.png';
 ---
 
 <Layout 
@@ -120,7 +121,7 @@ import durhamLogo from '../assets/durham-logo.png';
 						)}
 						{person['durham-staff-link'] && (
 							<a href={person['durham-staff-link']} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:opacity-70 transition-opacity" aria-label={`${person.name} Durham staff page`}>
-								<Image src={durhamLogo} alt="Durham University" width={40} height={40} format="png" class="inline-block w-5 h-5" />
+								<img src={durhamLogoPath} alt="Durham University" class="inline-block w-5 h-5" />
 							</a>
 						)}
 						{person.link && (
