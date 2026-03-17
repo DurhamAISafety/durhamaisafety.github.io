@@ -21,7 +21,7 @@ export interface ResearchPaper {
 import researchYaml from '../content/research.yml?raw';
 
 // Parse and sort by year then month (most recent first)
-const rawPapers = parse(researchYaml) as ResearchPaper[];
+const rawPapers = (parse(researchYaml) as { papers: ResearchPaper[] }).papers;
 export const research: ResearchPaper[] = rawPapers.sort((a, b) => {
   // Sort by year first (descending)
   if (b.year !== a.year) return b.year - a.year;

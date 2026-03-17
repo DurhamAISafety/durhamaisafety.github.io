@@ -16,19 +16,20 @@
 # - Indentation matters! Use 2 spaces, not tabs
 # - Keep the dash (-) at the start of each supporter
 
-- name: Pathfinder Fellowship
-  logo: pathfinder.svg
-  link: https://pathfinder.kairos-project.org/
+supporters:
+  - name: Pathfinder Fellowship
+    logo: pathfinder.svg
+    link: https://pathfinder.kairos-project.org/
 
-- name: Coefficient Giving
-  logo: Coefficient_Logo_Green.jpeg
-  link: https://coefficientgiving.org/
-  subtitle: (fmr. Open Philanthropy)
+  - name: Coefficient Giving
+    logo: Coefficient_Logo_Green.jpeg
+    link: https://coefficientgiving.org/
+    subtitle: (fmr. Open Philanthropy)
 
-- name: EA Durham
-  logo: eadurham.jpg
-  link: https://www.durhamsu.com/groups/effective-altruism-durham
+  - name: EA Durham
+    logo: eadurham.jpg
+    link: https://www.durhamsu.com/groups/effective-altruism-durham
 
-- name: Durham SU
-  logo: durham-su.png
-  link: https://www.durhamsu.com/
+  - name: Durham SU
+    logo: durham-su.png
+    link: https://www.durhamsu.com/groups/ai-safety-initiative

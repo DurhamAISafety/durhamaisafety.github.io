@@ -8,7 +8,7 @@
 #
 # - title: "Your Paper Title Here"
 #   url: https://link-to-paper.com
-#   thumbnail: paper-thumbnail.png   # Optional: image in src/assets/research/
+#   thumbnail: paper-thumbnail.png   # Optional: image in public/images/research/
 #   authors:
 #     - name: "Surname, F."
 #     - name: "Member, A."
@@ -22,88 +22,89 @@
 #
 # Notes:
 # - Papers are auto-sorted by year then month (newest first)
-# - Thumbnails: screenshot the PDF first page, save to src/assets/research/
+# - Thumbnails: screenshot the PDF first page, save to public/images/research/
 # - If no thumbnail provided, a placeholder will show
 
-- title: "Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models"
-  url: https://openreview.net/forum?id=4WMZqAoYi4
-  thumbnail: itdas.png
-  authors:
-    - name: "Leask, P."
-      team: true
-    - name: "Al Moubayed, N."
-  year: 2025
-  month: 7
-  venue: "ICML 2025"
-  tags:
-    - Interpretability
-  type: academic
+papers:
+  - title: "Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models"
+    url: https://openreview.net/forum?id=4WMZqAoYi4
+    thumbnail: itdas.png
+    authors:
+      - name: "Leask, P."
+        team: true
+      - name: "Al Moubayed, N."
+    year: 2025
+    month: 7
+    venue: "ICML 2025"
+    tags:
+      - Interpretability
+    type: academic
 
-- title: "Sparse Autoencoders Do Not Find Canonical Units of Analysis"
-  url: https://openreview.net/forum?id=9ca9eHNrdH
-  thumbnail: sae_canonical.png
-  authors:
-    - name: "Leask, P."
-      team: true
-    - name: "Bussmann, B."
-    - name: "Pearce, M. T."
-    - name: "Isaac Bloom, J."
-    - name: "Tigges, C."
-    - name: "Al Moubayed, N."
-    - name: "Sharkey, L."
-    - name: "Nanda, N."
-  year: 2025
-  month: 4
-  venue: "ICLR 2025"
-  tags:
-    - Interpretability
-  type: academic
+  - title: "Sparse Autoencoders Do Not Find Canonical Units of Analysis"
+    url: https://openreview.net/forum?id=9ca9eHNrdH
+    thumbnail: sae_canonical.png
+    authors:
+      - name: "Leask, P."
+        team: true
+      - name: "Bussmann, B."
+      - name: "Pearce, M. T."
+      - name: "Isaac Bloom, J."
+      - name: "Tigges, C."
+      - name: "Al Moubayed, N."
+      - name: "Sharkey, L."
+      - name: "Nanda, N."
+    year: 2025
+    month: 4
+    venue: "ICLR 2025"
+    tags:
+      - Interpretability
+    type: academic
 
-- title: "Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization"
-  url: https://openreview.net/forum?id=IhI1qGyk6S
-  thumbnail: probing.png
-  authors:
-    - name: "Leask, P."
-      team: true
-    - name: "Al Moubayed, N."
-  year: 2025
-  month: 9
-  venue: "NeurIPS 2025 Workshop"
-  tags:
-    - Interpretability
-  type: academic
+  - title: "Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization"
+    url: https://openreview.net/forum?id=IhI1qGyk6S
+    thumbnail: probing.png
+    authors:
+      - name: "Leask, P."
+        team: true
+      - name: "Al Moubayed, N."
+    year: 2025
+    month: 9
+    venue: "NeurIPS 2025 Workshop"
+    tags:
+      - Interpretability
+    type: academic
 
-- title: "Order by Scale: Relative-Magnitude Relational Composition in Attention-Only Transformers"
-  url: https://openreview.net/forum?id=vWRVzNtk7W
-  thumbnail: order-by-scale.png
-  authors:
-    - name: "Farrell, T."
-      team: true
-    - name: "Leask, P."
-      team: true
-    - name: "Al Moubayed, N."
-  year: 2025
-  month: 9
-  venue: "NeurIPS 2025 Workshop"
-  tags:
-    - Interpretability
-  type: academic
+  - title: "Order by Scale: Relative-Magnitude Relational Composition in Attention-Only Transformers"
+    url: https://openreview.net/forum?id=vWRVzNtk7W
+    thumbnail: order-by-scale.png
+    authors:
+      - name: "Farrell, T."
+        team: true
+      - name: "Leask, P."
+        team: true
+      - name: "Al Moubayed, N."
+    year: 2025
+    month: 9
+    venue: "NeurIPS 2025 Workshop"
+    tags:
+      - Interpretability
+    type: academic
 
-- title: "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring"
-  url: https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c
-  thumbnail: ghost-marks.png
-  authors:
-    - name: "Sherratt-Cross, E."
-      team: true
-    - name: "Farrell, T."
-      team: true
-    - name: "Ogden, S."
-      team: true
-    - name: "Ryley, O."
-      team: true
-  year: 2025
-  month: 11
-  venue: "Apart def/acc Hackathon"
-  tags:
-    - Security
-  type: non-academic
+  - title: "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring"
+    url: https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c
+    thumbnail: ghost-marks.png
+    authors:
+      - name: "Sherratt-Cross, E."
+        team: true
+      - name: "Farrell, T."
+        team: true
+      - name: "Ogden, S."
+        team: true
+      - name: "Ryley, O."
+        team: true
+    year: 2025
+    month: 11
+    venue: "Apart def/acc Hackathon"
+    tags:
+      - Security
+    type: non-academic
