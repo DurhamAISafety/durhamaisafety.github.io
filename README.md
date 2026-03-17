@@ -28,8 +28,8 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 | To update... | Edit this file |
 |--------------|----------------|
-| Team members | `src/content/people.yml` — add entry with `type: member` + photo to `public/images/team/` |
-| Alumni | `src/content/people.yml` — add entry with `type: alumnus` + photo to `public/images/team/` |
+| Team members | `src/content/people.yml` — add entry with `type: member` + photo to `public/images/people/` |
+| Alumni | `src/content/people.yml` — add entry with `type: alumnus` + photo to `public/images/people/` |
 | Supporters | `src/content/supporters.yml` + add logo to `public/images/supporters/` |
 | Research papers | `src/content/research.yml` |
 | Navigation links | `src/data/config.ts` (`siteConfig.navigation`) |
@@ -39,14 +39,14 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 ### Adding a Team Member
 
-1. Add their photo to `public/images/team/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
+1. Add their photo to `public/images/people/` (supported: `.jpg`, `.jpeg`, `.png`, `.webp`)
 2. Edit `src/content/people.yml` and add a new entry under the `people:` key with `type: member`:
    ```yaml
    people:
      - name: Alice Smith
        type: member
        role: Co-organiser
-       photo: alice.jpg
+      photo: /images/people/alice.jpg
        linkedin: https://www.linkedin.com/in/alice-smith/        # optional
        durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
        link: https://example.com                                 # optional (generic)
@@ -62,7 +62,7 @@ Edit `src/content/research.yml` and add at the top of the `papers:` list (most r
 papers:
   - title: "Paper Title"
     url: https://link-to-paper
-    thumbnail: paper.png          # Optional: image in public/images/research/
+    thumbnail: /images/research/paper.png  # Optional: full public image path
     authors:
       - name: "Surname, F."
       - name: "Member, A."
