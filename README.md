@@ -16,7 +16,7 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
    cd durhamaisafety.github.io
    npm install
    ```
-3. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor)
+3. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor locally)
 4. Start the dev server:
    ```bash
    npm run dev
@@ -45,14 +45,14 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
      - name: Alice Smith
        type: member
        role: Co-organiser
-      photo: /images/people/alice.jpg
+       photo: /images/people/alice.jpg
        linkedin: https://www.linkedin.com/in/alice-smith/        # optional
        durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
        link: https://example.com                                 # optional (generic)
    ```
 
 See the comments at the top of `people.yml` for more details.
-Alumni live in the same file — use `type: alumnus` instead of `type: member`, and optionally add a `years_active` field (e.g. `"2023-2024"``).
+Alumni live in the same file — use `type: alumnus` instead of `type: member`, and optionally add a `years_active` field (e.g. `"2023-2024"`).
 
 ### Adding a Research Paper
 
@@ -80,21 +80,26 @@ See the example template at the top of `research.yml` for all options.
 
 The site uses [Tina CMS](https://tina.io) — a Git-backed editor that writes directly to the YAML content files. Changes made in the CMS are committed to the repo and trigger a Netlify deploy automatically.
 
-### First-time setup
+The simplest way to edit content is through the live editor at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin) — no local setup needed.
 
-1. Go to [app.tina.io](https://app.tina.io), create a project, and connect it to this GitHub repo.
-2. Copy your **Client ID** and **Read-only token** from the project dashboard.
-3. Locally: copy `.env.example` → `.env` and paste in the values.
-4. In Netlify: add `TINA_CLIENT_ID` and `TINA_TOKEN` as environment variables in **Site settings → Environment variables**.
+### Local CMS setup
 
-### Running the CMS locally
+To run the CMS editor locally, you need credentials for the existing Tina Cloud project. Get the **Client ID** and **Read-only token** from a current maintainer or from the [Tina Cloud dashboard](https://app.tina.io) (you'll need to be added as a collaborator on the project first).
 
-```bash
-npm run dev          # starts Tina + Astro together
-# visit http://localhost:4321/admin
-```
+Once you have them:
 
-The Tina config (schema, collections) lives in [tina/config.ts](./tina/config.ts). Generated types land in `tina/__generated__/` (gitignored).
+1. Copy `.env.example` to `.env` and paste in the values:
+   ```
+   TINA_CLIENT_ID=...
+   TINA_TOKEN=...
+   ```
+2. Run the dev server:
+   ```bash
+   npm run dev
+   # visit http://localhost:4321/admin
+   ```
+
+The Tina config (schema, collections) lives in [tina/config.ts](./tina/config.ts).
 
 ---
 
@@ -119,7 +124,6 @@ The build command is `tinacms build && astro build`. The canonical domain is set
 - LinkTree: https://linktr.ee/aisdurham
 - GitHub: https://github.com/DurhamAISafety
 - Events Calendar: https://luma.com/daisi
-
 
 ## Brand Colors
 
