@@ -7,29 +7,30 @@
 # └─────────────────────────────────────────────────────────────────┘
 #
 # - name: Acme Foundation            # Required: Display name
-#   logo: acme.png                   # Required: Filename in public/images/supporters/
+#   logo: /images/supporters/acme.png # Required: Logo path (Tina image upload sets this)
 #   link: https://example.com        # Required: Link to their website
 #   subtitle: (fmr. Other Name)      # Optional: Subtitle text (e.g. former name)
 #
 # Notes:
 # - Add logos to: public/images/supporters/ (supported: .jpg, .jpeg, .png, .svg, .webp)
+# - Tina uploads/picks images as /images/supporters/filename.ext
 # - Indentation matters! Use 2 spaces, not tabs
 # - Keep the dash (-) at the start of each supporter
 
 supporters:
   - name: Pathfinder Fellowship
-    logo: pathfinder.svg
+    logo: /images/supporters/pathfinder.svg
     link: https://pathfinder.kairos-project.org/
 
   - name: Coefficient Giving
-    logo: Coefficient_Logo_Green.jpeg
+    logo: /images/supporters/Coefficient_Logo_Green.jpeg
     link: https://coefficientgiving.org/
     subtitle: (fmr. Open Philanthropy)
 
   - name: EA Durham
-    logo: eadurham.jpg
+    logo: /images/supporters/eadurham.jpg
     link: https://www.durhamsu.com/groups/effective-altruism-durham
 
   - name: Durham SU
-    logo: durham-su.png
+    logo: /images/supporters/durham-su.png
     link: https://www.durhamsu.com/groups/ai-safety-initiative

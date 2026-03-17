@@ -4,7 +4,7 @@ people:
     role: Lead Organiser & Publicity
     start_year: 2025
     years_active: ''
-    photo: bella-pic.jpg
+    photo: /images/team/bella-pic.jpg
     linkedin: 'https://www.linkedin.com/in/isabella-towers-8937b4381/'
     durham-staff-link: ''
     link: ''
@@ -13,7 +13,7 @@ people:
     role: Co-organiser & Co-founder
     start_year: 2023
     years_active: ''
-    photo: theo.jpeg
+    photo: /images/team/theo.jpeg
     linkedin: 'https://www.linkedin.com/in/theofarrell/'
     durham-staff-link: ''
     link: 'https://theosdoor.github.io/'
@@ -22,7 +22,7 @@ people:
     role: Co-organiser & Treasurer
     start_year: 2025
     years_active: ''
-    photo: eve.jpeg
+    photo: /images/team/eve.jpeg
     linkedin: 'https://www.linkedin.com/in/eve-sherratt/'
     durham-staff-link: ''
     link: ''
@@ -31,7 +31,7 @@ people:
     role: Co-organiser & Secretary
     start_year: 2025
     years_active: ''
-    photo: quinn.jpeg
+    photo: /images/team/quinn.jpeg
     linkedin: 'https://www.linkedin.com/in/quinn-dines-154b71234/'
     durham-staff-link: ''
     link: ''
@@ -40,7 +40,7 @@ people:
     role: Advisor (AI & Law)
     start_year: 2024
     years_active: ''
-    photo: leonie.png
+    photo: /images/team/leonie.png
     linkedin: ''
     durham-staff-link: 'https://www.durham.ac.uk/staff/leonie-a-stuessi/'
     link: ''
@@ -49,7 +49,7 @@ people:
     role: Advisor (Technical AI Safety)
     start_year: 2024
     years_active: 2024-2026
-    photo: patrick.jpeg
+    photo: /images/team/patrick.jpeg
     linkedin: ''
     durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
     link: 'https://linktr.ee/patrickleask'
@@ -58,7 +58,7 @@ people:
     role: Co-founder
     start_year: null
     years_active: 2024-2025
-    photo: Ben_Kehoe-Augustyniak.jpeg
+    photo: /images/team/Ben_Kehoe-Augustyniak.jpeg
     linkedin: 'https://www.linkedin.com/in/ben-kehoe/'
     durham-staff-link: ''
     link: ''

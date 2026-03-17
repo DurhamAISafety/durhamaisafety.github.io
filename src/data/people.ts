@@ -31,7 +31,7 @@ const raw = parse(peopleYaml) as { people: RawPerson[] };
 
 const resolve = (p: RawPerson) => ({
   ...p,
-  photo: p.photo ? `/images/team/${p.photo}` : undefined,
+  photo: p.photo,
 });
 
 export const team: TeamMember[] = raw.people.filter(p => p.type === 'member').map(resolve);

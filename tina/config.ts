@@ -288,13 +288,13 @@ export default defineConfig({
                 required: true,
               },
               {
-                type: "string",
+                type: "image",
                 name: "logo",
-                label: "Logo Filename",
+                label: "Logo",
                 required: true,
                 ui: {
                   description:
-                    'Filename in public/images/supporters/ e.g. "logo.png"',
+                    "Upload to public/images/supporters/ (or pick an existing file).",
                 },
               },
               {

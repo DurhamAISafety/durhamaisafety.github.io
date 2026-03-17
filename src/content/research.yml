@@ -8,7 +8,7 @@
 #
 # - title: "Your Paper Title Here"
 #   url: https://link-to-paper.com
-#   thumbnail: paper-thumbnail.png   # Optional: image in public/images/research/
+#   thumbnail: /images/research/paper-thumbnail.png   # Optional: image path
 #   authors:
 #     - name: "Surname, F."
 #     - name: "Member, A."
@@ -28,7 +28,7 @@
 papers:
   - title: "Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models"
     url: https://openreview.net/forum?id=4WMZqAoYi4
-    thumbnail: itdas.png
+    thumbnail: /images/research/itdas.png
     authors:
       - name: "Leask, P."
         team: true
@@ -42,7 +42,7 @@ papers:
 
   - title: "Sparse Autoencoders Do Not Find Canonical Units of Analysis"
     url: https://openreview.net/forum?id=9ca9eHNrdH
-    thumbnail: sae_canonical.png
+    thumbnail: /images/research/sae_canonical.png
     authors:
       - name: "Leask, P."
         team: true
@@ -62,7 +62,7 @@ papers:
 
   - title: "Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization"
     url: https://openreview.net/forum?id=IhI1qGyk6S
-    thumbnail: probing.png
+    thumbnail: /images/research/probing.png
     authors:
       - name: "Leask, P."
         team: true
@@ -76,7 +76,7 @@ papers:
 
   - title: "Order by Scale: Relative-Magnitude Relational Composition in Attention-Only Transformers"
     url: https://openreview.net/forum?id=vWRVzNtk7W
-    thumbnail: order-by-scale.png
+    thumbnail: /images/research/order-by-scale.png
     authors:
       - name: "Farrell, T."
         team: true
@@ -92,7 +92,7 @@ papers:
 
   - title: "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring"
     url: https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c
-    thumbnail: ghost-marks.png
+    thumbnail: /images/research/ghost-marks.png
     authors:
       - name: "Sherratt-Cross, E."
         team: true
