@@ -73,6 +73,8 @@ programmes:
         - icon: fas fa-award
           title: Fellowships
           description: 'Support for applying to competitive fellowships like MATS, ERA and SPAR.'
+          link: 'https://www.aisafety.com/events-and-training'
+          link_label: Upcoming AIS Opps
   - title: Speaker Events
     icon: fas fa-microphone
     short_description: Insightful talks by leading researchers and industry professionals on AI safety and the latest research.
