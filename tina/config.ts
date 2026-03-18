@@ -415,6 +415,228 @@ export default defineConfig({
         ],
       },
 
+      // ── Programmes ───────────────────────────────────────────────────────
+      {
+        name: "programmes",
+        label: "Programmes",
+        path: "src/content",
+        format: "yml",
+        match: {
+          include: "programmes",
+        },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "programmes",
+            label: "Programmes",
+            list: true,
+            ui: {
+              // Drag to reorder in the Tina UI — no order field needed
+              itemProps: (item) => ({
+                label: item?.title ?? "New Programme",
+              }),
+            },
+            fields: [
+              // ── Core fields ───────────────────────────────────────────────────
+              {
+                type: "string",
+                name: "title",
+                label: "Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "icon",
+                label: "Icon",
+                required: true,
+                ui: {
+                  description:
+                    'Font Awesome class, e.g. "fas fa-book-open". Browse icons at fontawesome.com/icons',
+                },
+              },
+              {
+                type: "string",
+                name: "short_description",
+                label: "Short Description",
+                required: true,
+                ui: {
+                  component: "textarea",
+                  description: "Shown on the homepage programme card. Keep it to 1–2 sentences.",
+                },
+              },
+              {
+                type: "string",
+                name: "long_description",
+                label: "Long Description (Overview)",
+                required: false,
+                ui: {
+                  component: "textarea",
+                  description:
+                    "Shown on the Programmes page. Supports basic Markdown: **bold**, _italic_, [link text](https://url.com), and blank lines for paragraph breaks. Guide: https://www.markdownguide.org/basic-syntax/",
+                },
+              },
+
+              // ── Tags (homepage card badges, max 3) ────────────────────────────
+              {
+                type: "object",
+                name: "tags",
+                label: "Tags",
+                list: true,
+                ui: {
+                  description: "Up to 3 tags shown on the homepage card.",
+                  max: 3,
+                  itemProps: (item) => ({ label: item?.label ?? "Tag" }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Icon",
+                    required: true,
+                    ui: {
+                      description:
+                        'Font Awesome class without "fas", e.g. "fa-users" or "fa-laptop-code"',
+                    },
+                  },
+                  {
+                    type: "string",
+                    name: "label",
+                    label: "Label",
+                    required: true,
+                    ui: {
+                      description: 'e.g. "No technical background needed"',
+                    },
+                  },
+                ],
+              },
+
+              // ── Who's this for (programmes page, bullet list) ─────────────────
+              {
+                type: "object",
+                name: "whos_this_for",
+                label: "Who's This For?",
+                list: true,
+                ui: {
+                  description:
+                    "Bullet points shown on the Programmes page in the right-hand column.",
+                  itemProps: (item) => ({
+                    label: item?.text
+                      ? item.text.slice(0, 60) + (item.text.length > 60 ? "…" : "")
+                      : "Bullet",
+                  }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Icon",
+                    required: false,
+                    ui: {
+                      description:
+                        'Font Awesome class, e.g. "fas fa-graduation-cap". Defaults to "fas fa-check" if left blank.',
+                    },
+                  },
+                  {
+                    type: "string",
+                    name: "text",
+                    label: "Text",
+                    required: true,
+                    ui: {
+                      component: "textarea",
+                    },
+                  },
+                ],
+              },
+
+              // ── Feature boxes (programmes page, optional coloured grid) ───────
+              {
+                type: "object",
+                name: "feature_boxes",
+                label: "Feature Boxes",
+                ui: {
+                  description:
+                    "Optional coloured grid shown below the two-column section. Max 3 boxes. Leave empty to hide.",
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "heading",
+                    label: "Section Heading",
+                    required: false,
+                    ui: {
+                      description:
+                        'e.g. "Resources", "Previous Topics", "Previously We\'ve Done". Leave blank for no heading.',
+                    },
+                  },
+                  {
+                    type: "object",
+                    name: "items",
+                    label: "Boxes",
+                    list: true,
+                    ui: {
+                      max: 3,
+                      itemProps: (item) => ({ label: item?.title ?? "Box" }),
+                    },
+                    fields: [
+                      {
+                        type: "string",
+                        name: "icon",
+                        label: "Icon",
+                        required: true,
+                        ui: {
+                          description: 'Font Awesome class, e.g. "fas fa-utensils"',
+                        },
+                      },
+                      {
+                        type: "string",
+                        name: "title",
+                        label: "Title",
+                        required: true,
+                      },
+                      {
+                        type: "string",
+                        name: "description",
+                        label: "Description",
+                        required: true,
+                        ui: {
+                          component: "textarea",
+                        },
+                      },
+                      {
+                        type: "string",
+                        name: "link",
+                        label: "Link URL",
+                        required: false,
+                        ui: {
+                          description:
+                            "Optional. If provided, a link is shown at the bottom of the box.",
+                        },
+                      },
+                      {
+                        type: "string",
+                        name: "link_label",
+                        label: "Link Label",
+                        required: false,
+                        ui: {
+                          description:
+                            'Optional. Button text for the link, e.g. "Dissertation support PDF". Defaults to "Learn more" if left blank.',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+
       // ── Site Config (hero text, nav, etc.) ───────────────────────────────
       // This lets editors change the hero heading, description, and nav CTA
       // without touching code. Maps to src/data/config.ts values stored as JSON.

@@ -1,0 +1,115 @@
+programmes:
+  - title: AIS101
+    icon: fas fa-chalkboard-teacher
+    short_description: 'Regular sessions exploring core AI safety concepts in an accessible, interactive format.'
+    long_description: |
+      Our intro AIS101 sessions are designed to make AI safety accessible to all backgrounds and studies.
+      We cover key concepts for AI alignment and governance in a low-pressure environment, with opportunity for group discussion.
+
+      Each session is a presentation with significant breaks for questions and group discussion. We encourage 'silly' questions!
+    tags:
+      - icon: fas fa-users
+        label: No technical background needed
+    whos_this_for:
+      - icon: fas fa-graduation-cap
+        text: No technical background or prior knowledge required. Open to anyone interested in learning more about AI safety.
+    feature_boxes:
+      heading: Recent Topics
+      items:
+        - icon: fas fa-clipboard-check
+          title: Evals
+          description: Figuring out what models are capable of.
+        - icon: fas fa-search
+          title: Mechanistic Interpretability
+          description: Figuring out what and how models think.
+        - icon: fas fa-globe-asia
+          title: The Deepseek Revolution
+          description: Intro to AI's role in the US-China relationship.
+  - title: In-Depth Reading Groups
+    icon: fas fa-book-open
+    short_description: Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone — aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
+    long_description: |
+      These provide an opportunity to engage deeply with seminal and/or recent AI safety work.
+      In the past we've covered both technical research and AI governance/policy/law papers.
+
+      Anyone can suggest and briefly present a paper, before the group discusses it together.
+    tags:
+      - icon: fas fa-laptop-code
+        label: Some prior knowledge useful
+    whos_this_for:
+      - icon: fas fa-graduation-cap
+        text: 'People from any background, preferably with some prior knowledge and understanding, who are interested in diving deep into the technical details of a niche field within AI safety research.'
+  - title: Research Project Support
+    icon: fas fa-terminal
+    short_description: 'We support you to pursue AI safety research. We can support applications for fellowships and funding, and advise students on dissertation and independent study projects.'
+    long_description: |
+      Interested in AI Safety research? We can support you to pursue it.
+
+      If you're interested, please reach out to chat with us (email in footer).
+      Students: please include your resume/CV and a brief description of your interest in AIS research.
+
+      See [past research by DAISI members](/research/).
+    tags:
+      - icon: fas fa-graduation-cap
+        label: Faculty & Students
+    whos_this_for:
+      - icon: fas fa-user-graduate
+        text: Faculty members interested in AI Safety who want signposting to funding opportunities and connections to researchers in the field.
+      - icon: fas fa-users
+        text: 'Students who have past research experience, strong background in programming, or compelling demonstrated interest in AI safety.'
+    feature_boxes:
+      heading: We Can Help With
+      items:
+        - icon: fas fa-dollar-sign
+          title: Funding Opportunities
+          description: Support suitable funding applications.
+          link: 'https://www.aisafety.com/funding'
+          link_label: Funding Opportunities
+        - icon: fas fa-graduation-cap
+          title: Dissertations
+          description: Advice on AI Safety dissertation topics and independent study projects.
+          link: /documents/ai-safety-project-support.pdf
+          link_label: Dissertation support PDF
+        - icon: fas fa-award
+          title: Fellowships
+          description: 'Support for applying to competitive fellowships like MATS, ERA and SPAR.'
+  - title: Speaker Events
+    icon: fas fa-microphone
+    short_description: Insightful talks by leading researchers and industry professionals on AI safety and the latest research.
+    long_description: |
+      These events offer a unique opportunity to explore emerging topics in the field, engage directly with speakers, and connect with others who share your interest in ensuring AI development benefits humanity.
+
+      To get involved and hear about upcoming speaker events, please join our [Discord server](https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u).
+    tags: []
+    whos_this_for:
+      - icon: fas fa-graduation-cap
+        text: People from any background who are keen to engage with experts in the field of AI safety and learn more about the latest developments.
+  - title: Social Events
+    icon: fas fa-users
+    short_description: Relaxed socials to connect and build community.
+    long_description: |
+      Building community is our most important goal. Our social events provide relaxed, fun environments where both members and non-members can connect.
+
+      These events are open to all and are a great way to meet people who share your interest in AI safety while enjoying some downtime together.
+    tags:
+      - icon: fas fa-heart
+        label: Everyone welcome
+    whos_this_for:
+      - icon: fas fa-heart
+        text: All members looking to connect with the community in a relaxed setting.
+      - icon: fas fa-smile
+        text: Perfect for newcomers wanting to meet people.
+      - icon: fas fa-coffee
+        text: Anyone who enjoys deep conversations over food and games.
+    feature_boxes:
+      heading: Previously We've Done
+      items:
+        - icon: fas fa-utensils
+          title: Free Pizza Socials
+          description: Casual pizza nights where we get to know each other better.
+        - icon: fas fa-brain
+          title: Pub Quizzes
+          description: Fun trivia nights testing knowledge across various topics — not just AI!
+        - icon: fas fa-dice
+          title: Board Games
+          description: 'Strategy games, party games, and classics — something for everyone to enjoy.'

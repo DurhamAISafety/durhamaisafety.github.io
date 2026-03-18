@@ -4,53 +4,8 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-picture.jpeg';
 import { research } from '../data/research';
 import { supporters } from '../data/supporters';
+import { programmes, programmeSlug } from '../data/programmes';
 import ResearchCarousel from '../components/ResearchCarousel.astro';
-
-interface ProgramBadge { icon: string; label: string; }
-interface Program {
-    icon: string;
-    title: string;
-    description: string;
-    badge?: ProgramBadge;
-    href: string;
-}
-
-const programs: Program[] = [
-    {
-        icon: 'fa-chalkboard-teacher',
-        title: 'AIS101',
-        description: 'Regular sessions exploring core AI safety concepts in an accessible, interactive format.',
-        badge: { icon: 'fa-users', label: 'No technical background needed' },
-        href: '/programmes/#ais101',
-    },
-    {
-        icon: 'fa-book-open',
-        title: 'In-Depth Reading Groups',
-        description: 'Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone - aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.',
-        badge: { icon: 'fa-laptop-code', label: 'Some prior knowledge useful' },
-        href: '/programmes/#reading-groups',
-    },
-    {
-        icon: 'fa-terminal',
-        title: 'Research Project Support',
-        description: 'We support you to pursue AI safety research. We can support applications for fellowships and funding, and advise students on dissertation and independent study projects.',
-        badge: { icon: 'fa-graduation-cap', label: 'Faculty & Students' },
-        href: '/programmes/#research-projects',
-    },
-    {
-        icon: 'fa-microphone',
-        title: 'Speaker Events',
-        description: 'Insightful talks by leading researchers and industry professionals who share their insights on AI safety and showcase their latest research.',
-        href: '/programmes/#speaker-series',
-    },
-    {
-        icon: 'fa-users',
-        title: 'Social Events',
-        description: 'Relaxed socials to connect and build community.',
-        badge: { icon: 'fa-heart', label: 'Everyone welcome' },
-        href: '/programmes/#socials',
-    },
-];
 
 const supporterLogoSrc = (logo: string): string =>
     logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;
@@ -247,47 +202,66 @@ const supporterLogoSrc = (logo: string): string =>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
             </div>
 
-            <!-- Program Cards -->
             <div class="max-w-6xl mx-auto mb-16">
                 <!-- First two: wider 2-column layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    {programs.slice(0, 2).map((program, i) => (
-                        <div class="program-card rounded-2xl p-8 text-center reveal" style={`--reveal-delay: ${i * 100}ms`}>
+                    {programmes.slice(0, 2).map((programme, i) => (
+                        <div
+                            class="program-card rounded-2xl p-8 text-center reveal"
+                            style={`--reveal-delay: ${i * 100}ms`}
+                        >
                             <div class="mb-6">
-                                <i class={`fas ${program.icon} text-5xl text-durham-purple mb-4`}></i>
-                                <h4 class="text-2xl font-bold">{program.title}</h4>
+                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <h4 class="text-2xl font-bold">{programme.title}</h4>
                                 <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
                             </div>
-                            <p class="mb-6 leading-relaxed text-slate-600">{program.description}</p>
-                            {program.badge && (
-                                <div class="flex items-center justify-center gap-2 mb-6">
-                                    <i class={`fa-solid ${program.badge.icon} text-durham-purple`} aria-hidden="true"></i>
-                                    <span class="text-sm text-slate-600">{program.badge.label}</span>
+                            <p class="mb-6 leading-relaxed text-slate-600">{programme.short_description}</p>
+                            {programme.tags && programme.tags.length > 0 && (
+                                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                                    {programme.tags.slice(0, 3).map(tag => (
+                                        <div class="flex items-center gap-2">
+                                            <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
+                                            <span class="text-sm text-slate-600">{tag.label}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
-                            <a href={program.href} class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
+                            <a
+                                href={`/programmes/#${programmeSlug(programme.title)}`}
+                                class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]"
+                            >
                                 Learn More
                             </a>
                         </div>
                     ))}
                 </div>
-                <!-- Last three: 3-column layout -->
+                <!-- Remaining: 3-column layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {programs.slice(2).map((program, i) => (
-                        <div class="program-card rounded-2xl p-8 text-center reveal" style={`--reveal-delay: ${(i + 2) * 100}ms`}>
+                    {programmes.slice(2).map((programme, i) => (
+                        <div
+                            class="program-card rounded-2xl p-8 text-center reveal"
+                            style={`--reveal-delay: ${(i + 2) * 100}ms`}
+                        >
                             <div class="mb-6">
-                                <i class={`fas ${program.icon} text-5xl text-durham-purple mb-4`}></i>
-                                <h4 class="text-2xl font-bold">{program.title}</h4>
+                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <h4 class="text-2xl font-bold">{programme.title}</h4>
                                 <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
                             </div>
-                            <p class="mb-6 leading-relaxed text-slate-600">{program.description}</p>
-                            {program.badge && (
-                                <div class="flex items-center justify-center gap-2 mb-6">
-                                    <i class={`fa-solid ${program.badge.icon} text-durham-purple`} aria-hidden="true"></i>
-                                    <span class="text-sm text-slate-600">{program.badge.label}</span>
+                            <p class="mb-6 leading-relaxed text-slate-600">{programme.short_description}</p>
+                            {programme.tags && programme.tags.length > 0 && (
+                                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                                    {programme.tags.slice(0, 3).map(tag => (
+                                        <div class="flex items-center gap-2">
+                                            <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
+                                            <span class="text-sm text-slate-600">{tag.label}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             )}
-                            <a href={program.href} class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]">
+                            <a
+                                href={`/programmes/#${programmeSlug(programme.title)}`}
+                                class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]"
+                            >
                                 Learn More
                             </a>
                         </div>

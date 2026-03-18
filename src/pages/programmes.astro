@@ -1,295 +1,130 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { programmes, renderMarkdown, programmeSlug } from '../data/programmes';
 ---
 
 <Layout 
   title="Programmes"
   description="Explore DAISI programmes: intro AIS101 sessions, in-depth reading groups, research project support, and ways to develop AI safety skills."
 >
-  <!-- Title Section -->
+  <!-- Title & Jump Nav -->
   <section class="section section-neutral">
-  <div class="site-container text-center">
+    <div class="site-container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Programmes</h1>
       <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
-      
-      <!-- Jump Navigation -->
+
       <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
-        <a href="#ais101" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-chalkboard-teacher mr-1" aria-hidden="true"></i> AIS101
-        </a>
-        <span class="text-slate-400" aria-hidden="true">•</span>
-        <a href="#reading-groups" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-book-open mr-1" aria-hidden="true"></i> Reading Groups
-        </a>
-        <span class="text-slate-400" aria-hidden="true">•</span>
-        <a href="#research-projects" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-terminal mr-1" aria-hidden="true"></i> Research Support
-        </a>
-        <span class="text-slate-400" aria-hidden="true">•</span>
-        <a href="#speaker-series" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-microphone mr-1" aria-hidden="true"></i> Speaker Events
-        </a>
-        <span class="text-slate-400" aria-hidden="true">•</span>
-        <a href="#socials" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-users mr-1" aria-hidden="true"></i> Socials
-        </a>
+        {programmes.map((programme, i) => (
+          <>
+            {i > 0 && <span class="text-slate-400" aria-hidden="true">•</span>}
+            <a
+              href={`#${programmeSlug(programme.title)}`}
+              class="text-bright-purple hover:text-light-purple transition-colors font-medium"
+            >
+              <i class={`${programme.icon} mr-1`} aria-hidden="true"></i>
+              {programme.title}
+            </a>
+          </>
+        ))}
       </nav>
     </div>
   </section>
 
-  <!-- AIS101 Section -->
-  <section id="ais101" class="section section-neutral">
-  <div class="site-container">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <i class="fas fa-chalkboard-teacher text-6xl text-durham-purple mb-6"></i>
-          <h3 class="section-heading text-3xl md:text-4xl mb-6">AIS101</h3>
-          <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
-        </div>
+  <!-- Programme Sections -->
+  {programmes.map((programme, i) => {
+    const slug = programmeSlug(programme.title);
+    const sectionClass = i % 2 === 0 ? 'section-neutral' : 'section-light';
+    const hasLongDesc = !!programme.long_description;
+    const hasWhos = programme.whos_this_for && programme.whos_this_for.length > 0;
+    const hasBoxes = programme.feature_boxes?.items && programme.feature_boxes.items.length > 0;
+    const boxCount = programme.feature_boxes?.items?.length ?? 0;
+    const boxGridClass = boxCount === 1
+      ? 'grid-cols-1 max-w-sm mx-auto'
+      : boxCount === 2
+      ? 'md:grid-cols-2'
+      : 'md:grid-cols-3';
 
-        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
-          <div>
-            <h4 class="text-2xl font-bold mb-4">Overview</h4>
-            <p class="text-lg leading-relaxed mb-6">
-              Our intro AIS101 sessions are designed to make AI safety accessible to all backgrounds / studies. 
-              We cover key concepts for AI alignment and governance in a low-pressure environment, with opportunity for group discussion.
-            </p>
-            <p class="text-lg leading-relaxed">
-              Each session is a presentation with significant breaks for questions and group discussion. We encourage 'silly' questions!
-            </p>
-          </div>
-          <div class="bg-gradient-to-br from-bright-purple/15 to-light-purple/15 backdrop-blur rounded-2xl p-6">
-            <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-graduation-cap text-lavender mr-3 mt-1"></i>
-                <span>No technical background or prior knowledge required. Open to anyone interested in learning more about AI safety.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+    return (
+      <section id={slug} class={`section ${sectionClass}`}>
+        <div class="site-container">
+          <div class="max-w-4xl mx-auto">
 
-        <div class="bg-gradient-to-r from-bright-purple/35 to-lavender/40 backdrop-blur rounded-2xl p-8 border border-white/20 shadow-lg">
-          <h4 class="text-xl font-bold mb-4 text-white">Recent Topics</h4>
-          <div class="grid md:grid-cols-3 gap-4">
-            <div class="text-center p-4 bg-white/20 rounded-lg border border-white/30">
-              <h5 class="font-semibold mb-2 text-white">Evals</h5>
-              <p class="text-sm text-white/95">Figuring out what models are capable of.</p>
+            {/* Section header: icon + title + divider */}
+            <div class="text-center mb-12">
+              <i class={`${programme.icon} text-6xl text-durham-purple mb-6`} aria-hidden="true"></i>
+              <h3 class="section-heading text-3xl md:text-4xl mb-6">{programme.title}</h3>
+              <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
             </div>
-            <div class="text-center p-4 bg-white/20 rounded-lg border border-white/30">
-              <h5 class="font-semibold mb-2 text-white">Mechanistic Interpretability</h5>
-              <p class="text-sm text-white/95">Figuring out what and how models think.</p>
-            </div>
-            <div class="text-center p-4 bg-white/20 rounded-lg border border-white/30">
-              <h5 class="font-semibold mb-2 text-white">The Deepseek Revolution</h5>
-              <p class="text-sm text-white/95">Intro to AI's role in the US-China relationship.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Reading Groups Section -->
-  <section id="reading-groups" class="section section-light">
-  <div class="site-container">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <i class="fas fa-book-open text-6xl text-durham-purple mb-6"></i>
-          <h3 class="section-heading text-3xl md:text-4xl mb-6">In-Depth Reading Groups</h3>
-          <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
-        </div>
+            {/* Two-column: long description + who's this for */}
+            {(hasLongDesc || hasWhos) && (
+              <div class={`gap-8 items-start mb-12 ${hasLongDesc && hasWhos ? 'grid md:grid-cols-2' : ''}`}>
 
-        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
-          <div class="bg-gradient-to-br from-light-purple/15 to-lavender/15 backdrop-blur rounded-2xl p-6">
-            <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-graduation-cap text-lavender mr-3 mt-1"></i>
-                <span>People from any background, preferably with some prior knowledge and understanding, who are interested in diving deep into the technical details of a niche field within AI safety research.</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-2xl font-bold mb-4">Overview</h4>
-            <p class="text-lg leading-relaxed mb-6">
-              These provide an opportunity to engage deeply with seminal and/or recent AI safety work. 
-              In the past we've covered both technical research and AI governance/policy/law papers.
-            </p>
-            <p class="text-lg leading-relaxed">
-              Anyone can suggest and briefly present a paper, before the group discusses it together.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+                {/* Left: Overview / long description */}
+                {hasLongDesc && (
+                  <div>
+                    <h4 class="text-2xl font-bold mb-4">Overview</h4>
+                    <div set:html={renderMarkdown(programme.long_description!)} />
+                  </div>
+                )}
 
-  <!-- Research Projects Section -->
-  <section id="research-projects" class="section section-neutral">
-  <div class="site-container">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <i class="fas fa-terminal text-6xl text-durham-purple mb-6"></i>
-          <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Project Support</h3>
-          <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
-        </div>
+                {/* Right: Who's this for */}
+                {hasWhos && (
+                  <div class="bg-gradient-to-br from-bright-purple/15 to-light-purple/15 backdrop-blur rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
+                    <ul class="space-y-3">
+                      {programme.whos_this_for!.map(item => (
+                        <li class="flex items-start">
+                          <i
+                            class={`${item.icon || 'fas fa-check'} text-lavender mr-3 mt-1 flex-shrink-0`}
+                            aria-hidden="true"
+                          ></i>
+                          <span>{item.text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
 
-        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
-          <div>
-            <h4 class="text-2xl font-bold mb-4">Overview</h4>
-            <p class="text-lg leading-relaxed mb-6">
-              Interested in AI Safety research? We can support you to pursue it.
-            </p>
-            <p class="text-lg leading-relaxed">
-              If you're interested, please reach out to chat with us (email in footer).
-              Students: Please include your resume/CV and a brief description of your interest in AIS research.
-            </p>
-          </div>
-          <div class="bg-gradient-to-br from-bright-purple/15 to-light-purple/15 backdrop-blur rounded-2xl p-6">
-            <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-user-graduate text-lavender mr-3 mt-1"></i>
-                <span>Faculty members interested in AI Safety who want signposting to funding opportunities and connections to researchers in the field.</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-users text-bright-purple mr-3 mt-1"></i>
-                <span>Students who have past research experience, strong background in programming, or compelling demonstrated interest in AI safety.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+            {/* Feature boxes — separate cards, no outer gradient wrapper */}
+            {hasBoxes && (
+              <div>
+                {programme.feature_boxes!.heading && (
+                  <h4 class="text-xl font-bold mb-6">{programme.feature_boxes!.heading}</h4>
+                )}
+                <div class={`grid gap-6 ${boxGridClass}`}>
+                  {programme.feature_boxes!.items.map(box => (
+                    <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
+                      <i class={`${box.icon} text-3xl text-deep-purple mb-4 block`} aria-hidden="true"></i>
+                      <h5 class="text-lg font-bold mb-2 text-slate-900">{box.title}</h5>
+                      <p class="text-sm text-slate-700 leading-relaxed">{box.description}</p>
+                      {box.link && (
+                        <a
+                          href={box.link}
+                          target={box.link.startsWith('http') ? '_blank' : undefined}
+                          rel={box.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          class="inline-flex items-center gap-1 mt-3 text-base font-semibold text-bright-purple hover:underline transition-colors"
+                        >
+                          {box.link_label ?? 'Learn more'}
+                          {box.link.startsWith('http') && (
+                            <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                          )}
+                          {!box.link.startsWith('http') && (
+                            <i class="fas fa-file-pdf text-xs" aria-hidden="true"></i>
+                          )}
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-          <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
-            <i class="fas fa-dollar-sign text-3xl text-deep-purple mb-4"></i>
-            <h5 class="text-lg font-bold mb-2 text-slate-900">Funding Opportunities</h5>
-            <p class="text-sm text-slate-700">Support suitable funding applications (<a href="https://www.aisafety.com/funding" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:underline">see opportunities</a>)</p>
-          </div>
-          <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
-            <i class="fas fa-graduation-cap text-3xl text-deep-purple mb-4"></i>
-            <h5 class="text-lg font-bold mb-2 text-slate-900">Dissertations</h5>
-            <p class="text-sm text-slate-700">Advice on AI Safety dissertation topics</p>
-            <a href="/documents/ai-safety-project-support.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center font-semibold text-bright-purple hover:underline mt-3">
-              <i class="fas fa-file-pdf mr-2"></i>
-              Dissertation support PDF
-            </a>
-          </div>
-          <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
-            <i class="fas fa-award text-3xl text-deep-purple mb-4"></i>
-            <h5 class="text-lg font-bold mb-2 text-slate-900">Fellowships</h5>
-            <p class="text-sm text-slate-700">Support for applying to competitive fellowships like MATS, ERA and SPAR</p>
           </div>
         </div>
-
-        <div class="text-center">
-          <a href="/research/" class="inline-flex items-center font-semibold text-bright-purple hover:underline">
-            <i class="fas fa-external-link-alt mr-2"></i>
-            See Past Research
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Speaker Series Section -->
-  <section id="speaker-series" class="section section-light">
-  <div class="site-container">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <i class="fas fa-microphone text-6xl text-durham-purple mb-6"></i>
-          <h3 class="section-heading text-3xl md:text-4xl mb-6">Speaker Events</h3>
-          <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
-          <div class="bg-gradient-to-br from-lavender/15 to-bright-purple/15 backdrop-blur rounded-2xl p-6">
-            <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-graduation-cap text-lavender mr-3 mt-1"></i>
-                <span>People from any background who are keen to engage with experts in the field of AI safety and learn more about the latest developments.</span>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-2xl font-bold mb-4">Overview</h4>
-            <p class="text-lg leading-relaxed mb-6">
-              These events offer a unique opportunity to explore emerging topics in the field, engage directly with speakers, and connect with others who share your interest in ensuring AI development benefits humanity. 
-            </p>
-            <p class="text-lg leading-relaxed">
-              To get involved and hear about upcoming speaker events, please join our 
-              <a href="https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u" target="_blank" rel="noopener noreferrer" class="text-bright-purple hover:text-light-purple font-medium transition-colors">discord server</a>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Socials Section -->
-  <section id="socials" class="section section-neutral">
-    <div class="site-container">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <i class="fas fa-users text-6xl text-durham-purple mb-6"></i>
-          <h3 class="section-heading text-3xl md:text-4xl mb-6">Social Events</h3>
-          <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
-          <div>
-            <h4 class="text-2xl font-bold mb-4">Overview</h4>
-            <p class="text-lg leading-relaxed mb-6">
-              Building community is our most important goal. Our social events provide relaxed, 
-              fun environments where both members and non-members can connect.
-            </p>
-            <p class="text-lg leading-relaxed">
-              These events are open to all members and are a great way to meet new people who 
-              share your interest in AI safety while enjoying some downtime together.
-            </p>
-          </div>
-          <div class="bg-gradient-to-br from-bright-purple/15 to-light-purple/15 backdrop-blur rounded-2xl p-6">
-            <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-heart text-bright-purple mr-3 mt-1"></i>
-                <span>All members looking to connect with the community in a relaxed setting</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-smile text-light-purple mr-3 mt-1"></i>
-                <span>Perfect for newcomers wanting to meet people</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-coffee text-bright-purple mr-3 mt-1"></i>
-                <span>Anyone who enjoys deep conversations over food and games</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-r from-bright-purple/20 to-lavender/30 backdrop-blur rounded-2xl p-8">
-          <h4 class="text-xl font-bold mb-4">Previously we've done:</h4>
-          <div class="grid md:grid-cols-3 gap-4">
-            <div class="text-center p-4 bg-white/10 rounded-lg">
-              <i class="fas fa-utensils text-2xl text-bright-purple mb-3"></i>
-              <h5 class="font-semibold mb-2">Free Pizza Socials</h5>
-              <p class="text-sm text-white/80">Casual pizza nights where we get to know each other better.</p>
-            </div>
-            <div class="text-center p-4 bg-white/10 rounded-lg">
-              <i class="fas fa-brain text-2xl text-light-purple mb-3"></i>
-              <h5 class="font-semibold mb-2">Pub Quizzes</h5>
-              <p class="text-sm text-white/80">Fun trivia nights testing knowledge across various topics - not just AI!</p>
-            </div>
-            <div class="text-center p-4 bg-white/10 rounded-lg">
-              <i class="fas fa-dice text-2xl text-bright-purple mb-3"></i>
-              <h5 class="font-semibold mb-2">Board Games</h5>
-              <p class="text-sm text-white/80">Strategy games, party games, and classics - something for everyone to enjoy.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    );
+  })}
 </Layout>
