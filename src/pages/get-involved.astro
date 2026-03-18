@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { featuredCards, moreCards } from "../data/get-involved";
 ---
 
 <Layout 
@@ -13,121 +14,72 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
-  {/* Ways to Get Involved */}
-  <section class="section section-light">
-    <div class="site-container">
-      {/* Top Priority Options */}
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-        <div class="involvement-card card p-6 card-hover text-center border-strong border-bright-purple-50">
-          <i class="fas fa-calendar-alt text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Come to Our Events</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Join our reading groups, workshops, and speaker events.
-          </p>
-          <div class="text-center mb-4">
-            <span class="text-durham-purple font-semibold">✨ Recommended</span>
-          </div>
-          <a href="/#events" class="btn btn-primary btn-sm">View Events</a>
-        </div>
-
-        <div class="involvement-card card p-6 card-hover text-center border-strong border-light-purple-50">
-          <i class="fab fa-discord text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Join Our Discord</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Chat with our community, ask questions, and hear about new opportunities first!
-          </p>
-          <div class="text-center mb-4">
-            <span class="text-durham-purple font-semibold">✨ Recommended</span>
-          </div>
-          <a href="https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Join Discord <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
-        </div>
-
-        <div class="involvement-card card p-6 card-hover text-center border-strong border-lavender-50">
-          <i class="fab fa-instagram text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Follow Our Instagram</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Stay up-to-date and DM us with any questions!
-          </p>
-          <div class="text-center mb-4">
-            <span class="text-durham-purple font-semibold">✨ Recommended</span>
-          </div>
-          <a href="https://www.instagram.com/ais_durham" class="btn btn-primary btn-sm">Follow Us <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
+  {/* Featured / Recommended Cards */}
+  {featuredCards.length > 0 && (
+    <section class="section section-light">
+      <div class="site-container">
+        <div class={`grid grid-cols-1 gap-8 max-w-4xl mx-auto mb-12 ${
+          featuredCards.length === 1
+            ? 'md:grid-cols-1 max-w-sm'
+            : featuredCards.length === 2
+            ? 'md:grid-cols-2'
+            : 'md:grid-cols-3'
+        }`}>
+          {featuredCards.map((card, i) => {
+            const borderClasses = ['border-bright-purple-50', 'border-light-purple-50', 'border-lavender-50'];
+            const borderClass = borderClasses[i % borderClasses.length];
+            return (
+              <div class={`involvement-card card p-6 card-hover text-center border-strong ${borderClass}`}>
+                <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
+                <h4 class="text-xl font-bold mb-4">{card.title}</h4>
+                <p class="text-sm leading-relaxed mb-4">{card.description}</p>
+                {card.recommended_label && (
+                  <div class="text-center mb-4">
+                    <span class="text-durham-purple font-semibold">{card.recommended_label}</span>
+                  </div>
+                )}
+                <a
+                  href={card.link_url}
+                  class="btn btn-primary btn-sm"
+                  {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {card.link_label}
+                  {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
+    </section>
+  )}
 
-    </div>
-  </section>
-
-  {/* Additional Ways to Get Involved */}
-  <section class="section section-neutral">
-    <div class="site-container">
-      <div class="text-center mb-8">
-        <h4 class="text-2xl font-bold mb-4">More Ways to Get Involved</h4>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="involvement-card card p-6 card-hover text-center">
-          <i class="fas fa-envelope text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Talk to Our Team</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Please feel free to reach out to our team via email for anything.
-          </p>
-          <a href="mailto:durhamaisi@durham.ac.uk" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm hover:underline transition-all duration-200">Contact Us <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
+  {/* More Ways to Get Involved */}
+  {moreCards.length > 0 && (
+    <section class="section section-neutral">
+      <div class="site-container">
+        <div class="text-center mb-8">
+          <h4 class="text-2xl font-bold mb-4">More Ways to Get Involved</h4>
         </div>
 
-        <div class="involvement-card card p-6 card-hover text-center">
-          <i class="fas fa-university text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Become an Official Member</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Durham students can join us officially through the Students' Union. We keep our resources free for everyone, so official membership is just for the records!
-          </p>
-          <a href="https://www.durhamsu.com/groups/ai-safety-initiative" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm hover:underline transition-all duration-200">Join on SU <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
-        </div>
-
-        <div class="involvement-card card p-6 card-hover text-center">
-          <i class="fas fa-graduation-cap text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Get Informed!</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Learn more about AI safety and why it matters for our future.
-          </p>
-          <a href="/what-is-ai-safety/" class="btn btn-secondary btn-sm hover:underline transition-all duration-200">Learn More</a>
-        </div>
-
-        {/* 
-          NOTE: Linktree card removed - all important links are already 
-          provided directly on this page.
-          
-        <div class="involvement-card card p-6 card-hover text-center">
-          <i class="fas fa-link text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Find All Our Links</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Access all our social media, resources, and important links in one place.
-          </p>
-          <a href="https://linktr.ee/aisdurham" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm hover:underline transition-all duration-200">View Linktree <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
-        </div>
-        */}
-
-        {/* 
-          NOTE: "Write to Your MP" card DOESN'T count as political lobbying as far as BERI is concerned
-        */}
-        <div class="involvement-card card p-6 card-hover text-center">
-          <i class="fas fa-bullhorn text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Write to Your MP</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Take action on AI safety policy by contacting your Member of Parliament.
-          </p>
-          <a href="https://campaign.controlai.com/take-action" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm hover:underline transition-all duration-200">Take Action <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
-        </div>
-
-        <div class="involvement-card card p-6 card-hover text-center">
-          <i class="fas fa-comments text-5xl text-durham-purple mb-4" aria-hidden="true"></i>
-          <h4 class="text-xl font-bold mb-4">Get Advice</h4>
-          <p class="text-sm leading-relaxed mb-4">
-            Connecting with human experts can be invaluable. These advisors offer free guidance calls to help you most effectively contribute to AI safety.
-          </p>
-          <a href="https://www.aisafety.com/advisors" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm hover:underline transition-all duration-200">Find Advisors <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {moreCards.map((card) => (
+            <div class="involvement-card card p-6 card-hover text-center">
+              <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
+              <h4 class="text-xl font-bold mb-4">{card.title}</h4>
+              <p class="text-sm leading-relaxed mb-4">{card.description}</p>
+              <a
+                href={card.link_url}
+                class="btn btn-secondary btn-sm hover:underline transition-all duration-200"
+                {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {card.link_label}
+                {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
+              </a>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Layout>

@@ -1,0 +1,60 @@
+cards:
+  - title: Come to Our Events
+    description: 'Join our reading groups, workshops, and speaker events.'
+    icon: fas fa-calendar-alt
+    link_url: /#events
+    link_label: View Events
+    external: false
+    featured: true
+    recommended_label: ✨ Recommended
+  - title: Join Our Discord
+    description: 'Chat with our community, ask questions, and hear about new opportunities first!'
+    icon: fab fa-discord
+    link_url: 'https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u'
+    link_label: Join Discord
+    external: true
+    featured: true
+    recommended_label: ✨ Recommended
+  - title: Follow Our Instagram
+    description: Stay up-to-date and DM us with any questions!
+    icon: fab fa-instagram
+    link_url: 'https://www.instagram.com/ais_durham'
+    link_label: Follow Us
+    external: true
+    featured: true
+    recommended_label: ✨ Recommended
+  - title: Talk to Our Team
+    description: Please feel free to reach out to our team via email for anything.
+    icon: fas fa-envelope
+    link_url: 'mailto:durhamaisi@durham.ac.uk'
+    link_label: Contact Us
+    external: true
+    featured: false
+  - title: Become an Official Member
+    description: 'Durham students can join us officially through the Students'' Union. We keep our resources free for everyone, so official membership is just for the records!'
+    icon: fas fa-university
+    link_url: 'https://www.durhamsu.com/groups/ai-safety-initiative'
+    link_label: Join on SU
+    external: true
+    featured: false
+  - title: Get Informed!
+    description: Learn more about AI safety and why it matters for our future.
+    icon: fas fa-graduation-cap
+    link_url: /what-is-ai-safety/
+    link_label: Learn More
+    external: false
+    featured: false
+  - title: Write to Your MP
+    description: Take action on AI safety policy by contacting your Member of Parliament.
+    icon: fas fa-bullhorn
+    link_url: 'https://campaign.controlai.com/take-action'
+    link_label: Take Action
+    external: true
+    featured: false
+  - title: Get Advice
+    description: Connecting with human experts can be valuable. These advisors offer free guidance calls to help you contribute to AI safety.
+    icon: fas fa-comments
+    link_url: 'https://www.aisafety.com/advisors'
+    link_label: Find Advisors
+    external: true
+    featured: false
