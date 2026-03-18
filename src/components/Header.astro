@@ -1,17 +1,17 @@
 ---
 /**
  * Header component - Site navigation header
- * 
+ *
  * Features:
  * - Desktop dropdown navigation
  * - Mobile hamburger menu (Saarland-style)
- * - Dark mode toggle
- * - Responsive logo/title display
- * 
+ * - Dark mode toggle (disabled pending Tailwind v4 migration)
+ * - Social links driven by siteConfig.socialLinks
+ *
  * Dependencies:
- * - ../data/config.ts for site config (social links)
+ * - ../data/config.ts for site config
  * - /images/DAISI-logo.svg for logo
- * - CSS classes from public/css/styles.css (.header, .nav-*, .burger, .mobile-nav, etc.)
+ * - CSS classes from public/css/styles.css
  */
 import { siteConfig } from '../data/config';
 
@@ -19,6 +19,11 @@ const logoPath = '/images/DAISI-logo.svg';
 
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
+
+// Up to 4 links flagged for the header
+const headerSocials = siteConfig.socialLinks.filter(s => s.inHeader).slice(0, 4);
+// All links for the mobile menu footer
+const allSocials = siteConfig.socialLinks;
 ---
 
 <header class:list={["header", "no-print", { "header--transparent": isHome }]} id="siteHeader">
@@ -34,12 +39,12 @@ const isHome = pathname === '/';
                     </h1>
                 </div>
             </a>
-            
+
             <!-- Mobile hamburger button (Saarland-style) -->
-            <button 
-                type="button" 
-                class="burger" 
-                id="burgerBtn" 
+            <button
+                type="button"
+                class="burger"
+                id="burgerBtn"
                 aria-label="Toggle mobile menu"
                 aria-expanded="false"
             >
@@ -47,34 +52,38 @@ const isHome = pathname === '/';
                     <div class="burger-inner"></div>
                 </div>
             </button>
-            
+
             <!-- Desktop navigation - center -->
             <div class="nav-center nav-menu-desktop">
                 {siteConfig.navigation.main.map((item) => (
                     <a href={item.url} class="nav-link">{item.title}</a>
                 ))}
             </div>
-            
-            <!-- Desktop right section: social, dark mode, CTA -->
+
+            <!-- Desktop right section: social icons, dark mode toggle, CTA -->
             <div class="nav-right nav-menu-desktop">
-                <a href={siteConfig.social.instagram} class="nav-social" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/instagram.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                <a href={siteConfig.social.discord} class="nav-social" aria-label="Discord" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/discord.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                <a href={siteConfig.social.linkedin} class="nav-social" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/linkedin.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                <a href={siteConfig.social.linktree} class="nav-social" aria-label="Linktree" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/link.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                
+                {headerSocials.map((link) => (
+                    <a
+                        href={link.url}
+                        class="nav-social"
+                        aria-label={link.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src={link.icon}
+                            alt=""
+                            class="w-5 h-5"
+                            style="filter: brightness(0) invert(1)"
+                        />
+                    </a>
+                ))}
+
                 <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
                 <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" style="display:none" aria-hidden="true">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
-                
+
                 <a href={siteConfig.navigation.cta.url} class="btn-cta" style="padding: 0.5rem 1.25rem; font-size: 1rem;">
                     {siteConfig.navigation.cta.title}
                 </a>
@@ -85,17 +94,17 @@ const isHome = pathname === '/';
 
 <!-- Full-screen mobile menu overlay - MUST be outside header to avoid backdrop-filter containment -->
 <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-    <button 
-        type="button" 
-        class="mobile-nav-close burger burger--active" 
-        id="mobileNavClose" 
+    <button
+        type="button"
+        class="mobile-nav-close burger burger--active"
+        id="mobileNavClose"
         aria-label="Close mobile menu"
     >
         <div class="burger-box">
             <div class="burger-inner"></div>
         </div>
     </button>
-    
+
     <div class="mobile-nav-content">
         <a href="/" class="flex items-center gap-3 mb-6 pb-4 border-b border-white/20">
             <img src={logoPath} alt="DAISI Logo" class="h-10 w-auto" />
@@ -105,29 +114,34 @@ const isHome = pathname === '/';
                 <span class="text-lg font-bold"> Initiative</span>
             </div>
         </a>
+
         {siteConfig.navigation.main.map((item) => (
             <a href={item.url} class="mobile-nav-link">{item.title}</a>
         ))}
+
         <a href={siteConfig.navigation.cta.url} class="btn-cta" style="padding: 0.75rem 2rem; font-size: 1rem;">
             {siteConfig.navigation.cta.title}
         </a>
-        
+
         <div class="mobile-nav-footer">
             <div class="mobile-social-links">
-                <a href={siteConfig.social.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/instagram.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                <a href={siteConfig.social.discord} aria-label="Discord" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/discord.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                <a href={siteConfig.social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/linkedin.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
-                <a href={siteConfig.social.linktree} aria-label="Linktree" target="_blank" rel="noopener noreferrer">
-                    <img src="/images/icons/link.svg" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
-                </a>
+                {allSocials.map((link) => (
+                    <a
+                        href={link.url}
+                        aria-label={link.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src={link.icon}
+                            alt=""
+                            class="w-5 h-5"
+                            style="filter: brightness(0) invert(1)"
+                        />
+                    </a>
+                ))}
             </div>
-            
+
             <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
             <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode" style="display:none" aria-hidden="true">
                 <i class="fas fa-moon" aria-hidden="true"></i>
@@ -141,7 +155,7 @@ const isHome = pathname === '/';
     const burgerBtn = document.getElementById('burgerBtn');
     const mobileNav = document.getElementById('mobileNav');
     const mobileNavClose = document.getElementById('mobileNavClose');
-    
+
     function openMobileMenu() {
         if (burgerBtn && mobileNav) {
             burgerBtn.classList.add('burger--active');
@@ -151,7 +165,7 @@ const isHome = pathname === '/';
             document.body.style.overflow = 'hidden';
         }
     }
-    
+
     function closeMobileMenu() {
         if (burgerBtn && mobileNav) {
             burgerBtn.classList.remove('burger--active');
@@ -161,7 +175,7 @@ const isHome = pathname === '/';
             document.body.style.overflow = '';
         }
     }
-    
+
     if (burgerBtn) {
         burgerBtn.addEventListener('click', () => {
             const isOpen = mobileNav?.classList.contains('mobile-nav--active');
@@ -172,52 +186,30 @@ const isHome = pathname === '/';
             }
         });
     }
-    
+
     if (mobileNavClose) {
         mobileNavClose.addEventListener('click', closeMobileMenu);
     }
-    
+
     // Close menu when clicking a link
     if (mobileNav) {
         mobileNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
     }
-    
+
     // Close menu on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileNav?.classList.contains('mobile-nav--active')) {
             closeMobileMenu();
         }
     });
-    
-    // Sync dark mode toggle for mobile
-    const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
-    if (darkModeToggleMobile) {
-        darkModeToggleMobile.addEventListener('click', () => {
-            const html = document.documentElement;
-            const isDark = html.classList.toggle('dark');
-            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-            
-            // Update all dark mode icons
-            document.querySelectorAll('.dark-mode-toggle i').forEach(icon => {
-                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            });
-        });
-        
-        // Sync initial state
-        const isDark = document.documentElement.classList.contains('dark');
-        const icon = darkModeToggleMobile.querySelector('i');
-        if (icon) {
-            icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-        }
-    }
-    
+
     // Transparent header scroll effect
     const siteHeader = document.getElementById('siteHeader');
     if (siteHeader?.classList.contains('header--transparent')) {
         let ticking = false;
-        
+
         const updateHeaderOnScroll = () => {
             if (window.scrollY > 50) {
                 siteHeader.classList.add('header--scrolled');
@@ -226,14 +218,14 @@ const isHome = pathname === '/';
             }
             ticking = false;
         };
-        
+
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(updateHeaderOnScroll);
                 ticking = true;
             }
         }, { passive: true });
-        
+
         // Check initial scroll position
         updateHeaderOnScroll();
     }

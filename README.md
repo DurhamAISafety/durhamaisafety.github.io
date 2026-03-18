@@ -5,7 +5,7 @@
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML files below, or via the [Tina CMS](https://app.tina.io) editor at [/admin/](https://durhamaisafety.uk/admin/).
+The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML/JSON files below, or via the [Tina CMS](https://app.tina.io) editor at [/admin/](https://durhamaisafety.uk/admin/).
 
 ## Quick Start
 
@@ -25,16 +25,21 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 ## Content Updates (Quick Reference)
 
-| To update... | Edit this file |
-|--------------|----------------|
-| Team members | `src/content/people.yml` — add entry with `type: member` + photo to `public/images/people/` |
-| Alumni | `src/content/people.yml` — add entry with `type: alumnus` + photo to `public/images/people/` |
-| Supporters | `src/content/supporters.yml` + add logo to `public/images/supporters/` |
-| Research papers | `src/content/research.yml` |
-| Navigation links | `src/data/config.ts` (`siteConfig.navigation`) |
-| Footer & social links | `src/data/config.ts` (`siteConfig.social`) |
-| Site config (email, title) | `src/data/config.ts` |
-| Page content | `src/pages/[pagename].astro` |
+All content below can be edited either directly in the file or via the CMS at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin).
+
+| To update... | Edit this file | CMS section |
+|---|---|---|
+| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** |
+| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** |
+| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** |
+| Research papers | `src/content/research.yml` | **Research Papers** |
+| Programmes | `src/content/programmes.yml` | **Programmes** |
+| Get Involved cards | `src/content/get-involved.yml` | **Get Involved Cards** |
+| Navigation links | `src/content/site-config.json` | **Site Config → Navigation** |
+| Social links | `src/content/site-config.json` | **Site Config → Social Links** |
+| Site title, email, OG image | `src/content/site-config.json` | **Site Config** |
+| Footer tagline | `src/content/site-config.json` | **Site Config → Footer Tagline** |
+| Page content | `src/pages/[pagename].astro` | *(not CMS-editable)* |
 
 ### Adding a Team Member
 
@@ -45,13 +50,13 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
      - name: Alice Smith
        type: member
        role: Co-organiser
+       start_year: 2025
        photo: /images/people/alice.jpg
        linkedin: https://www.linkedin.com/in/alice-smith/        # optional
        durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
        link: https://example.com                                 # optional (generic)
    ```
 
-See the comments at the top of `people.yml` for more details.
 Alumni live in the same file — use `type: alumnus` instead of `type: member`, and optionally add a `years_active` field (e.g. `"2023-2024"`).
 
 ### Adding a Research Paper
@@ -74,17 +79,58 @@ papers:
     type: academic                # or 'non-academic'
 ```
 
-See the example template at the top of `research.yml` for all options.
+### Adding or Editing a Programme
+
+Edit `src/content/programmes.yml`. Each programme supports:
+
+- `title`, `icon` (Font Awesome class), `short_description` — shown on the homepage card
+- `long_description` — shown on the Programmes page; supports basic Markdown (`**bold**`, `_italic_`, `[link](url)`)
+- `tags` — up to 3 icon+label pairs shown on the homepage card
+- `whos_this_for` — bullet points shown in the right column on the Programmes page
+- `feature_boxes` — optional coloured grid of up to 3 boxes, each with an icon, title, description, and optional link
+
+The order of programmes in the file determines their order on the site and in the navigation.
+
+### Adding or Editing a Get Involved Card
+
+Edit `src/content/get-involved.yml`. Each card has:
+
+- `title`, `description`, `icon` (Font Awesome class)
+- `link_url`, `link_label`, `external` (opens in new tab if true)
+- `featured` — featured cards appear in the top highlighted row; non-featured appear in the "More Ways to Get Involved" section below
+- `recommended_label` — optional label on featured cards (e.g. `✨ Recommended`); leave blank to hide
+
+### Updating Site Config
+
+Edit `src/content/site-config.json` (or use the CMS **Site Config** section) to update:
+
+- **Site title and description** — used in browser tabs, OG tags, and the footer
+- **Contact email** — shown in the footer and used for mailto links
+- **Default OG image** — fallback social sharing image (1200×630px recommended)
+- **Social links** — each link has a name, URL, icon image path, and an `inHeader` toggle (up to 4 links appear as icons in the desktop/mobile header)
+- **Navigation** — main nav links and the header CTA button
+- **Footer tagline** — short text shown under the email in the footer
 
 ## Content Management (CMS)
 
-The site uses [Tina CMS](https://tina.io) — a Git-backed editor that writes directly to the YAML content files. Changes made in the CMS are committed to the repo and trigger a Netlify deploy automatically.
+The site uses [Tina CMS](https://tina.io) — a Git-backed editor that writes directly to the content files. Changes made in the CMS are committed to the repo and trigger a Netlify deploy automatically.
 
 The simplest way to edit content is through the live editor at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin) — no local setup needed.
 
+The following collections are available in the CMS:
+
+| CMS Section | File edited |
+|---|---|
+| Site Config | `src/content/site-config.json` |
+| People | `src/content/people.yml` |
+| Research Papers | `src/content/research.yml` |
+| Supporters | `src/content/supporters.yml` |
+| Get Involved Cards | `src/content/get-involved.yml` |
+| Programmes | `src/content/programmes.yml` |
+
 ### Local CMS setup
 
-To run the CMS editor locally, you need credentials for the existing Tina Cloud project. Get the **Client ID** and **Read-only token** from a current maintainer or from the [Tina Cloud dashboard](https://app.tina.io) (you'll need to be added as a collaborator on the project first).
+To run the CMS editor locally, you need credentials for the existing Tina Cloud project. Get the **Client ID** and **Read-only token** from a current maintainer or from the [Tina Cloud dashboard](https://app.tina.io) (you'll need to be added as a collaborator first).
 
 Once you have them:
 

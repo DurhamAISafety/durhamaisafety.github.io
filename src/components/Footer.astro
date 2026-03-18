@@ -1,15 +1,15 @@
 ---
 /**
  * Footer component - Site footer with social links and legal info
- * 
+ *
  * Features:
- * - Social media links (Instagram, Discord, LinkedIn, Linktree)
+ * - Social links driven by siteConfig.socialLinks (all links shown)
  * - Contact email and feedback form link
  * - Legal disclaimers and license links
  * - Back to top button
- * 
+ *
  * Dependencies:
- * - ../data/config.ts for site config (title, email, social links, repository)
+ * - ../data/config.ts for site config
  * - CSS classes from public/css/styles.css (.footer, .social-links)
  */
 import { siteConfig } from '../data/config';
@@ -24,18 +24,22 @@ const currentYear = new Date().getFullYear();
             <div class="flex flex-col gap-4 min-w-[220px] items-center md:items-start text-center md:text-left">
                 <div class="flex items-center gap-4 justify-center md:justify-start w-full">
                     <div class="social-links flex gap-4 justify-center md:justify-start">
-                        <a href={siteConfig.social.instagram} aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href={siteConfig.social.discord} aria-label="Discord" title="Discord">
-                            <i class="fa-brands fa-discord"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/durhamaisafety/" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-brands fa-linkedin"></i>
-                        </a>
-                        <a href={siteConfig.social.linktree} aria-label="Linktree" title="Linktree">
-                            <i class="fa-solid fa-link"></i>
-                        </a>
+                        {siteConfig.socialLinks.map((link) => (
+                            <a
+                                href={link.url}
+                                aria-label={link.name}
+                                title={link.name}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img
+                                    src={link.icon}
+                                    alt=""
+                                    class="w-7 h-7"
+                                    style="filter: brightness(0) invert(1)"
+                                />
+                            </a>
+                        ))}
                     </div>
                 </div>
                 <div class="text-base md:text-lg font-semibold inline-flex items-center gap-2">
@@ -52,12 +56,12 @@ const currentYear = new Date().getFullYear();
                     </a>
                 </div>
                 <p class="text-white/70 leading-snug">
-                    Questions, suggestions, or want to collaborate? Feel free to reach out via email or our socials!
+                    {siteConfig.footerTagline}
                 </p>
                 <div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1e1H4DnI1xWvjtpO4pZCAQiUq1mtdYYiDnJUBHb8yb72xMQ/viewform?usp=dialog" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1e1H4DnI1xWvjtpO4pZCAQiUq1mtdYYiDnJUBHb8yb72xMQ/viewform?usp=dialog"
+                       target="_blank"
+                       rel="noopener noreferrer"
                        class="inline-flex items-center gap-2 text-bright-purple hover:text-light-purple font-medium transition-colors">
                         <i class="fas fa-user-secret"></i>
                         <span>Send anonymous feedback / report an issue</span>
@@ -76,11 +80,10 @@ const currentYear = new Date().getFullYear();
             </p>
         </div>
 
-        <!-- Bottom-right: Open-source + content license links -->
+        <!-- Bottom: back to top + license links -->
         <div class="mt-4 flex flex-col gap-3 items-start md:flex-row md:items-center md:justify-between">
-            <!-- Back to top link (left on desktop, below on mobile) -->
-            <a 
-                href="#top" 
+            <a
+                href="#top"
                 id="back-to-top-link"
                 class="order-2 md:order-1 inline-flex items-center gap-2 text-white/60 hover:text-bright-purple font-medium transition-colors text-xs md:text-sm"
                 aria-label="Back to top"
@@ -88,8 +91,7 @@ const currentYear = new Date().getFullYear();
                 <i class="fas fa-arrow-up"></i>
                 <span>Back to top</span>
             </a>
-            
-            <!-- License links (right on desktop, above on mobile) -->
+
             <div class="order-1 md:order-2 inline-flex items-center gap-3 text-xs md:text-sm">
                 <a
                     href={`https://github.com/${siteConfig.repository}`}
@@ -128,6 +130,3 @@ const currentYear = new Date().getFullYear();
         </div>
     </div>
 </footer>
-
-
-

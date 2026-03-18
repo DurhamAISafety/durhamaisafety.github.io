@@ -19,22 +19,197 @@ export default defineConfig({
     outputFolder: "admin",
     publicFolder: "public",
   },
-  // Uncomment to allow cross-origin requests from non-localhost origins
-  // during local development (e.g. GitHub Codespaces, Gitpod, Docker).
-  // Use 'private' to allow all private-network IPs (WSL2, Docker, etc.)
-  // server: {
-  //   allowedOrigins: ['https://your-codespace.github.dev'],
-  // },
   media: {
     tina: {
       mediaRoot: "",
       publicFolder: "public",
     },
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
 
   schema: {
     collections: [
+      // ── Site Config (header, footer, navigation) ─────────────────────────
+      {
+        name: "siteConfig",
+        label: "Site Config",
+        path: "src/content",
+        format: "json",
+        match: {
+          include: "site-config",
+        },
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          // ── Basic info ───────────────────────────────────────────────────
+          {
+            type: "string",
+            name: "title",
+            label: "Site Title",
+            required: true,
+            ui: {
+              description: "Used in the browser tab, OG tags, and the footer brand name.",
+            },
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Site Description",
+            required: true,
+            ui: {
+              component: "textarea",
+              description: "Default meta description used when a page doesn't provide its own.",
+            },
+          },
+          {
+            type: "string",
+            name: "email",
+            label: "Contact Email",
+            required: true,
+            ui: {
+              description: "Shown in the footer and used for mailto links.",
+            },
+          },
+          {
+            type: "image",
+            name: "ogImage",
+            label: "Default OG Image",
+            required: false,
+            ui: {
+              description: "Fallback social-sharing image (1200×630px recommended).",
+            },
+          },
+
+          // ── Social links ─────────────────────────────────────────────────
+          {
+            type: "object",
+            name: "socialLinks",
+            label: "Social Links",
+            list: true,
+            ui: {
+              description:
+                "All social/external links. Toggle 'Show in header' to surface a link as an icon in the site header (max 4).",
+              itemProps: (item) => ({
+                label: item?.name
+                  ? `${item.name}${item.inHeader ? " ✓ header" : ""}`
+                  : "New Link",
+              }),
+            },
+            fields: [
+              {
+                type: "string",
+                name: "name",
+                label: "Name",
+                required: true,
+                ui: {
+                  description: 'Display name, e.g. "Discord" or "Instagram".',
+                },
+              },
+              {
+                type: "string",
+                name: "url",
+                label: "URL",
+                required: true,
+              },
+              {
+                type: "image",
+                name: "icon",
+                label: "Icon",
+                required: true,
+                ui: {
+                  description:
+                    "Upload or select an icon image (recommended: public/images/icons/). Use full relative paths like images/icons/discord.svg so Tina can preview the file.",
+                },
+              },
+              {
+                type: "boolean",
+                name: "inHeader",
+                label: "Show in header?",
+                required: false,
+                ui: {
+                  description: "Up to 4 links can appear as icons in the desktop/mobile header.",
+                },
+              },
+            ],
+          },
+
+          // ── Navigation ───────────────────────────────────────────────────
+          {
+            type: "object",
+            name: "navigation",
+            label: "Navigation",
+            fields: [
+              {
+                type: "object",
+                name: "main",
+                label: "Main Nav Links",
+                list: true,
+                ui: {
+                  description: "Links shown in the desktop header and mobile menu. Order matters.",
+                  itemProps: (item) => ({
+                    label: item?.title ? `${item.title} → ${item.url}` : "New Link",
+                  }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Label",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "url",
+                    label: "URL",
+                    required: true,
+                    ui: {
+                      description: 'Internal paths like "/about/" or anchor links like "/#events".',
+                    },
+                  },
+                ],
+              },
+              {
+                type: "object",
+                name: "cta",
+                label: "CTA Button",
+                ui: {
+                  description: 'The pill button on the right of the header, e.g. "Get Involved".',
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Button Label",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "url",
+                    label: "URL",
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
+
+          // ── Footer ───────────────────────────────────────────────────────
+          {
+            type: "string",
+            name: "footerTagline",
+            label: "Footer Tagline",
+            required: false,
+            ui: {
+              component: "textarea",
+              description: 'Short blurb shown under the email in the footer, e.g. "Questions, suggestions, or want to collaborate? Feel free to reach out!"',
+            },
+          },
+        ],
+      },
+
       // ── People (Team Members & Alumni) ──────────────────────────────────
       {
         name: "people",
@@ -44,7 +219,6 @@ export default defineConfig({
         match: {
           include: "people",
         },
-        // Single-file collection — the whole list lives in one YAML file
         ui: {
           allowedActions: {
             create: false,
@@ -437,13 +611,11 @@ export default defineConfig({
             label: "Programmes",
             list: true,
             ui: {
-              // Drag to reorder in the Tina UI — no order field needed
               itemProps: (item) => ({
                 label: item?.title ?? "New Programme",
               }),
             },
             fields: [
-              // ── Core fields ───────────────────────────────────────────────────
               {
                 type: "string",
                 name: "title",
@@ -478,11 +650,9 @@ export default defineConfig({
                 ui: {
                   component: "textarea",
                   description:
-                    "Shown on the Programmes page. Supports basic Markdown: **bold**, _italic_, [link text](https://url.com), and blank lines for paragraph breaks. Guide: https://www.markdownguide.org/basic-syntax/",
+                    "Shown on the Programmes page. Supports basic Markdown: **bold**, _italic_, [link text](https://url.com), and blank lines for paragraph breaks.",
                 },
               },
-
-              // ── Tags (homepage card badges, max 3) ────────────────────────────
               {
                 type: "object",
                 name: "tags",
@@ -515,8 +685,6 @@ export default defineConfig({
                   },
                 ],
               },
-
-              // ── Who's this for (programmes page, bullet list) ─────────────────
               {
                 type: "object",
                 name: "whos_this_for",
@@ -553,8 +721,6 @@ export default defineConfig({
                   },
                 ],
               },
-
-              // ── Feature boxes (programmes page, optional coloured grid) ───────
               {
                 type: "object",
                 name: "feature_boxes",
@@ -613,10 +779,6 @@ export default defineConfig({
                         name: "link",
                         label: "Link URL",
                         required: false,
-                        ui: {
-                          description:
-                            "Optional. If provided, a link is shown at the bottom of the box.",
-                        },
                       },
                       {
                         type: "string",
@@ -625,7 +787,7 @@ export default defineConfig({
                         required: false,
                         ui: {
                           description:
-                            'Optional. Button text for the link, e.g. "Dissertation support PDF". Defaults to "Learn more" if left blank.',
+                            'Button text, e.g. "Dissertation support PDF". Defaults to "Learn more" if blank.',
                         },
                       },
                     ],
@@ -636,55 +798,6 @@ export default defineConfig({
           },
         ],
       },
-
-      // ── Site Config (hero text, nav, etc.) ───────────────────────────────
-      // This lets editors change the hero heading, description, and nav CTA
-      // without touching code. Maps to src/data/config.ts values stored as JSON.
-      //
-      // To enable: create src/content/site-config.json with your current
-      // values from config.ts, then import from there instead.
-      // (See migration note in README below)
     ],
   },
 });
-
-/*
- * ─────────────────────────────────────────────────────────────────────────────
- * SETUP STEPS
- * ─────────────────────────────────────────────────────────────────────────────
- *
- * 1. Install Tina:
- *      npx @tinacms/cli@latest init
- *    Skip when it asks to overwrite this config file.
- *
- * 2. Create a project at https://app.tina.io, then add to your .env:
- *      TINA_CLIENT_ID=...
- *      TINA_TOKEN=...
- *
- * 3. Add to .gitignore:
- *      .tina/__generated__
- *
- * 4. Replace your cms-open-pr / cms-auto-merge GitHub Actions with Tina's
- *    built-in branch management — Tina Cloud handles this automatically.
- *    You can delete:
- *      .github/workflows/cms-auto-merge.yml
- *      .github/workflows/cms-open-pr.yml
- *
- * 5. For inline (click-to-edit) hero text, add the `tinaField` helper to
- *    your index.astro hero section. Example:
- *
- *      import { tinaField } from 'tinacms/dist/react';
- *      ...
- *      <h1 data-tina-field={tinaField(data, 'heroHeading')}>
- *        {data.heroHeading}
- *      </h1>
- *
- *    This requires moving hero strings into a content file (not config.ts).
- *    The site-config collection above is a starting point for that.
- *
- * 6. Run locally:
- *      npx tinacms dev -c "astro dev"
- *    Then visit http://localhost:3000/admin to see the editor.
- *
- * ─────────────────────────────────────────────────────────────────────────────
- */
