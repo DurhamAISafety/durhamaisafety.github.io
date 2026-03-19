@@ -34,6 +34,7 @@ Image paths (always use leading `/`):
 - Supporter logos: `/images/supporters/...`
 
 ## Frontend Conventions
+- Use British English spellings throughout (colour, organised, centralised, behaviour, etc.).
 - Navigation is centralised in `src/content/site-config.json`; do not hardcode links in `Header.astro`.
 - Dark mode is disabled; do not add dark-mode-dependent behaviour.
 - Scroll animations: use `.reveal` with `style="--reveal-delay: Xms"` for stagger.
