@@ -12,15 +12,16 @@
   --color-lavender:      #B8BBFE;
   --color-pure-white:    #FFFFFF;
 
-  /* Legacy palette colours (still referenced in some utilities) */
-  --color-ocean-blue: #0891b2;
+  /* Legacy palette colours (still referenced in some utilities).
+     ocean-blue and navy match styles.css :root to avoid gradient conflicts. */
+  --color-ocean-blue: #6F3FA7;
   --color-deep-blue:  #0e4a5c;
   --color-teal:       #14b8a6;
   --color-emerald:    #10b981;
   --color-sage:       #84cc16;
   --color-mint:       #6ee7b7;
   --color-warm-blue:  #3b82f6;
-  --color-navy:       #1e3a8a;
+  --color-navy:       #2B0F40;
 
   /* Semantic surface/text tokens — light mode defaults */
   --color-surface:       #ffffff;

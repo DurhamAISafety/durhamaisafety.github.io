@@ -29,11 +29,23 @@ function initializeCommonFeatures() {
 /**
  * Dark mode — toggle via .dark class on <html>.
  * Persists preference to localStorage; respects system preference as default.
+ * localStorage access is guarded against restricted contexts (private browsing,
+ * sandboxed iframes) where it can throw. matchMedia.addEventListener falls back
+ * to the deprecated addListener for older Safari compatibility.
  */
 function initializeDarkMode() {
     const html = document.documentElement;
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    function storageGet(key) {
+        try { return localStorage.getItem(key); } catch (_) { return null; }
+    }
+    function storageSet(key, val) {
+        try { localStorage.setItem(key, val); } catch (_) { /* ignore */ }
+    }
+
+    const stored = storageGet('theme');
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDark = mq.matches;
     const isDark = stored ? stored === 'dark' : prefersDark;
 
     if (isDark) html.classList.add('dark');
@@ -43,18 +55,25 @@ function initializeDarkMode() {
     document.querySelectorAll('.dark-mode-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
             const nowDark = html.classList.toggle('dark');
-            localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+            storageSet('theme', nowDark ? 'dark' : 'light');
             updateDarkModeIcon(nowDark);
         });
     });
 
-    // Follow system preference changes if user hasn't set a manual preference
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
+    // Follow system preference changes if user hasn't manually set a preference.
+    // addEventListener on MediaQueryList is standard but addListener is the
+    // fallback for older Safari (pre-14).
+    function onSchemeChange(e) {
+        if (!storageGet('theme')) {
             html.classList.toggle('dark', e.matches);
             updateDarkModeIcon(e.matches);
         }
-    });
+    }
+    if (typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', onSchemeChange);
+    } else if (typeof mq.addListener === 'function') {
+        mq.addListener(onSchemeChange);
+    }
 }
 
 function updateDarkModeIcon(isDark) {
