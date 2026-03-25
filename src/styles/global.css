@@ -22,7 +22,7 @@
   --color-warm-blue:  #3b82f6;
   --color-navy:       #1e3a8a;
 
-  /* Semantic surface/text tokens — these flip in dark mode */
+  /* Semantic surface/text tokens — light mode defaults */
   --color-surface:       #ffffff;
   --color-surface-muted: #f8fafc;
   --color-body-text:     #475569;
@@ -36,13 +36,13 @@
   --font-secondary: "Inter", sans-serif;
 }
 
-/* Dark mode: override semantic tokens when .dark class is active */
-@variant dark {
-  @theme {
-    --color-surface:       #1a0a24;
-    --color-surface-muted: #2b0f40;
-    --color-body-text:     #cbd5e1;
-    --color-heading-text:  #f1f5f9;
-    --color-muted-text:    #64748b;
-  }
+/* Dark mode: override semantic tokens when .dark class is active.
+   Plain CSS rule rather than @variant dark { @theme } — the latter
+   incorrectly overwrites the :root defaults instead of scoping them. */
+.dark {
+  --color-surface:       #1a0a24;
+  --color-surface-muted: #2b0f40;
+  --color-body-text:     #cbd5e1;
+  --color-heading-text:  #f1f5f9;
+  --color-muted-text:    #64748b;
 }
