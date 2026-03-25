@@ -1,20 +1,48 @@
-/* ==========================================================================
-   Tailwind CSS with proper layer ordering
-   Using @layer to establish specificity hierarchy so Tailwind utilities
-   always win over base styles without needing !important
-   ========================================================================== */
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Use class-based dark mode so the JS toggle works */
+@custom-variant dark (&:where(.dark, .dark *));
 
-/* 
-   Note: The custom styles.css reset (* { margin: 0; padding: 0 }) has been 
-   moved to the Tailwind base layer to ensure proper specificity ordering.
-   
-   If you still experience conflicts, Tailwind utilities should now take 
-   precedence due to the layer cascade order:
-   1. Base (resets and global styles)
-   2. Components  
-   3. Utilities (highest priority)
-*/
+@theme {
+  /* Brand colours */
+  --color-durham-purple: #68246D;
+  --color-deep-purple:   #39144F;
+  --color-bright-purple: #EB80FD;
+  --color-light-purple:  #E2ACFE;
+  --color-lavender:      #B8BBFE;
+  --color-pure-white:    #FFFFFF;
+
+  /* Legacy palette colours (still referenced in some utilities) */
+  --color-ocean-blue: #0891b2;
+  --color-deep-blue:  #0e4a5c;
+  --color-teal:       #14b8a6;
+  --color-emerald:    #10b981;
+  --color-sage:       #84cc16;
+  --color-mint:       #6ee7b7;
+  --color-warm-blue:  #3b82f6;
+  --color-navy:       #1e3a8a;
+
+  /* Semantic surface/text tokens — these flip in dark mode */
+  --color-surface:       #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-body-text:     #475569;
+  --color-heading-text:  #0f172a;
+  --color-muted-text:    #94a3b8;
+
+  /* Fonts */
+  --font-display:   "IBM Plex Sans", sans-serif;
+  --font-body:      "IBM Plex Sans", sans-serif;
+  --font-inter:     "Inter", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+}
+
+/* Dark mode: override semantic tokens when .dark class is active */
+@variant dark {
+  @theme {
+    --color-surface:       #1a0a24;
+    --color-surface-muted: #2b0f40;
+    --color-body-text:     #cbd5e1;
+    --color-heading-text:  #f1f5f9;
+    --color-muted-text:    #64748b;
+  }
+}

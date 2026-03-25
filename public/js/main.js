@@ -27,16 +27,40 @@ function initializeCommonFeatures() {
 }
 
 /**
- * Dark mode — disabled until Tailwind v4 migration.
- * Functions are stubs so no call-site errors occur.
- * All .dark CSS rules remain in styles.css as reference.
+ * Dark mode — toggle via .dark class on <html>.
+ * Persists preference to localStorage; respects system preference as default.
  */
 function initializeDarkMode() {
-    // no-op: dark mode disabled
+    const html = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = stored ? stored === 'dark' : prefersDark;
+
+    if (isDark) html.classList.add('dark');
+    updateDarkModeIcon(isDark);
+
+    // Wire up all toggle buttons (desktop + mobile)
+    document.querySelectorAll('.dark-mode-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const nowDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+            updateDarkModeIcon(nowDark);
+        });
+    });
+
+    // Follow system preference changes if user hasn't set a manual preference
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            html.classList.toggle('dark', e.matches);
+            updateDarkModeIcon(e.matches);
+        }
+    });
 }
 
-function updateDarkModeIcon(_isDark) {
-    // no-op: dark mode disabled
+function updateDarkModeIcon(isDark) {
+    document.querySelectorAll('.dark-mode-toggle i').forEach(icon => {
+        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    });
 }
 
 /**

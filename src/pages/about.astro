@@ -84,7 +84,7 @@ const durhamLogoPath = '/images/durham-logo.png';
 										loading="lazy"
 										decoding="async"
 										class="w-full h-full object-cover"
-										onerror="const fb0=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb0){fb0.style.display='flex'}; this.remove();"
+										onerror="var fb0=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb0){fb0.style.display='flex'}; this.remove();"
 										style="width:100%; height:100%; object-fit: cover;"
 									/>
 								) : (
@@ -110,7 +110,7 @@ const durhamLogoPath = '/images/durham-logo.png';
 				<h4 class="text-xl font-bold mb-2">{person.name}</h4>
 				<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
 				{person.start_year && (
-					<p class="text-xs text-gray-500 mb-2">{person.start_year}–present</p>
+					<p class="text-xs text-muted-text mb-2">{person.start_year}–present</p>
 				)}
 				{(person.linkedin || person['durham-staff-link'] || person.link) && (
 					<div class="flex items-center justify-center gap-3">

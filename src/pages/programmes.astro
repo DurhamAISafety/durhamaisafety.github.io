@@ -16,7 +16,7 @@ import { programmes, renderMarkdown, programmeSlug } from '../data/programmes';
       <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
         {programmes.map((programme, i) => (
           <>
-            {i > 0 && <span class="text-slate-400" aria-hidden="true">•</span>}
+            {i > 0 && <span class="text-muted-text" aria-hidden="true">•</span>}
             <a
               href={`#${programmeSlug(programme.title)}`}
               class="text-bright-purple hover:text-light-purple transition-colors font-medium"
@@ -98,8 +98,8 @@ import { programmes, renderMarkdown, programmeSlug } from '../data/programmes';
                   {programme.feature_boxes!.items.map(box => (
                     <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
                       <i class={`${box.icon} text-3xl text-deep-purple mb-4 block`} aria-hidden="true"></i>
-                      <h5 class="text-lg font-bold mb-2 text-slate-900">{box.title}</h5>
-                      <p class="text-sm text-slate-700 leading-relaxed">{box.description}</p>
+                      <h5 class="text-lg font-bold mb-2 text-heading-text">{box.title}</h5>
+                      <p class="text-sm text-body-text leading-relaxed">{box.description}</p>
                       {box.link && (
                         <a
                           href={box.link}
