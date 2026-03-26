@@ -18,9 +18,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
-    "@tinacms/cli": "^2.1.11",
-    "@types/node": "^22.19.15",
-    "baseline-browser-mapping": "^2.9.19",
-    "typescript": "^5.9.3"
+    "@tinacms/cli": "^2.2.0",
+    "@types/node": "^25.5.0",
+    "baseline-browser-mapping": "^2.10.10",
+    "typescript": "^6.0.2"
   }
 }
