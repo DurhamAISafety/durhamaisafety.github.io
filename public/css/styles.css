@@ -173,28 +173,11 @@
     box-sizing: border-box;
 }
 
-/* Only reset margin/padding on elements that need it (not utility-styled elements) */
-html,
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-figure,
-blockquote,
-dl,
-dd {
+/* Reset body margin only — Tailwind v4's @layer base handles h1-h6, p, ul, ol etc.
+   Keeping those resets here as unlayered CSS would override Tailwind utilities (e.g. mb-6)
+   because unlayered CSS always wins over @layer utilities regardless of specificity. */
+body {
     margin: 0;
-}
-
-ul,
-ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
 }
 
 
