@@ -41,9 +41,9 @@
    Plain CSS rule rather than @variant dark { @theme } — the latter
    incorrectly overwrites the :root defaults instead of scoping them. */
 .dark {
-  --color-surface:       #1a0a24;
-  --color-surface-muted: #2b0f40;
-  --color-body-text:     #cbd5e1;
-  --color-heading-text:  #f1f5f9;
-  --color-muted-text:    #64748b;
+  --color-surface:       #111118;
+  --color-surface-muted: #1c1c28;
+  --color-body-text:     #a0a0b8;
+  --color-heading-text:  #e8e8f5;
+  --color-muted-text:    #52526a;
 }

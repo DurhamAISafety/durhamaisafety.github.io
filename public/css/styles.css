@@ -55,35 +55,29 @@
     --transition-fast: all 0.2s ease;
 }
 
-/* Dark mode variables */
+/* Dark mode variables — neutral dark with subtle purple tint */
 .dark {
-    /* Dark mode purple palette - darker and more muted */
-    --color-deep-purple: #1a0a24;
-    --color-bright-purple: #9d4edd;
+    --color-deep-purple: #1a1a2e;
+    --color-bright-purple: #b06be8;
     --color-light-purple: #c77dff;
-    --color-lavender: #7b68ee;
-    --color-pure-white: #e0e0e0;
+    --color-lavender: #8585d0;
+    --color-pure-white: #e8e8f5;
 
-    /* Legacy colors - only keeping those still in use */
-    --color-ocean-blue: #5a3a8f;
-    --color-navy: #0d0414;
+    --color-ocean-blue: #7060a8;
+    --color-navy: #0e0e18;
 
-    /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, #9d4edd, #c77dff);
-    --gradient-text: linear-gradient(135deg, #c77dff, #7b68ee);
-    --gradient-hero: linear-gradient(135deg, #1a0a24 0%, #0d0414 50%, #9d4edd 100%);
-    --gradient-bg: linear-gradient(to bottom right, #0d0414, #1a0a24, #2d1b3d);
+    --gradient-primary: linear-gradient(135deg, #b06be8, #c77dff);
+    --gradient-text: linear-gradient(135deg, #c77dff, #8585d0);
+    --gradient-hero: linear-gradient(135deg, #0e0e18 0%, #111118 50%, #b06be8 100%);
+    --gradient-bg: linear-gradient(to bottom right, #0e0e15, #12121c, #16162a);
 
-    /* Dark mode text colors */
-    --text-primary: #e0e0e0;
-    --text-secondary: rgba(224, 224, 224, 0.7);
+    --text-primary: #e8e8f5;
+    --text-secondary: rgba(232, 232, 245, 0.7);
 
-    /* Dark mode backgrounds */
-    --bg-primary: #0d0414;
-    --bg-secondary: #1a0a24;
-    --bg-card: rgba(26, 10, 36, 0.7);
+    --bg-primary: #0e0e15;
+    --bg-secondary: #12121c;
+    --bg-card: rgba(255, 255, 255, 0.06);
 
-    /* Dark mode shadows */
     --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
     --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
@@ -867,28 +861,13 @@ body {
 .section-neutral .research-card h4,
 .section-neutral .info-card h4,
 .section-neutral .program-card h4 {
-    color: #0f172a;
-    /* Slate 900 */
+    color: var(--color-heading-text);
 }
 
 .section-neutral .research-card p,
 .section-neutral .info-card p,
 .section-neutral .program-card p {
-    color: #475569;
-    /* Slate 600 */
-}
-
-/* Dark mode overrides for card text inside neutral sections (ensure readable on dark surfaces) */
-.dark .section-neutral .research-card h4,
-.dark .section-neutral .info-card h4,
-.dark .section-neutral .program-card h4 {
-    color: var(--text-primary);
-}
-
-.dark .section-neutral .research-card p,
-.dark .section-neutral .info-card p,
-.dark .section-neutral .program-card p {
-    color: var(--text-secondary);
+    color: var(--color-body-text);
 }
 
 /* Dark mode variant for cards in neutral sections: elevated dark surfaces */
@@ -1129,11 +1108,11 @@ body {
 /* Neutral background for sections below hero */
 .section-neutral {
     background: #f8fafc;
-    color: #1e293b;
+    color: var(--color-body-text);
 }
 
 .dark .section-neutral {
-    background: rgba(13, 4, 20, 0.6);
+    background: #0f0f18;
     color: var(--text-primary);
 }
 
@@ -1141,11 +1120,11 @@ body {
    without being jarring. Use for alternating sections. */
 .section-light {
     background: #f5f3ff;
-    color: #1e293b;
+    color: var(--color-body-text);
 }
 
 .dark .section-light {
-    background: rgba(30, 10, 40, 0.65);
+    background: #141428;
     color: var(--text-primary);
 }
 
@@ -1168,16 +1147,7 @@ body {
 .section-light h4,
 .section-light h5,
 .section-light h6 {
-    color: #1e293b;
-}
-
-.dark .section-light h1,
-.dark .section-light h2,
-.dark .section-light h3,
-.dark .section-light h4,
-.dark .section-light h5,
-.dark .section-light h6 {
-    color: var(--text-primary);
+    color: var(--color-heading-text);
 }
 
 /* Ensure btn-cta text is white in section-light too */
@@ -1246,47 +1216,22 @@ body {
 .section-neutral h4,
 .section-neutral h5,
 .section-neutral h6 {
-    color: #0f172a;
-    /* Slate 900 */
-}
-
-.dark .section-neutral h1,
-.dark .section-neutral h2,
-.dark .section-neutral h3,
-.dark .section-neutral h4,
-.dark .section-neutral h5,
-.dark .section-neutral h6 {
-    color: var(--text-primary);
+    color: var(--color-heading-text);
 }
 
 .section-neutral p,
 .section-neutral span,
 .section-neutral li {
-    color: #334155;
-    /* Slate 700 */
-}
-
-.dark .section-neutral p,
-.dark .section-neutral span,
-.dark .section-neutral li {
-    color: var(--text-secondary);
+    color: var(--color-body-text);
 }
 
 /* Get Involved cards: ensure readable headings & paragraphs */
 .section-neutral .involvement-card h4 {
-    color: #0f172a;
+    color: var(--color-heading-text);
 }
 
 .section-neutral .involvement-card p {
-    color: #475569;
-}
-
-.dark .section-neutral .involvement-card h4 {
-    color: var(--text-primary);
-}
-
-.dark .section-neutral .involvement-card p {
-    color: var(--text-secondary);
+    color: var(--color-body-text);
 }
 
 /* Research page badges: improve contrast in dark mode */
@@ -1300,15 +1245,6 @@ body {
     background: rgba(255, 255, 255, 0.12) !important;
     color: var(--text-primary) !important;
     border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-/* Timeline blocks (What is AI Safety): force readable text in dark mode */
-.dark .section-neutral .info-card h4 {
-    color: var(--text-primary) !important;
-}
-
-.dark .section-neutral .info-card .text-slate-600 {
-    color: var(--text-secondary) !important;
 }
 
 .dark .section-neutral .info-card a {
@@ -1332,15 +1268,14 @@ body {
 .section-neutral .program-card h4,
 .section-neutral .info-card h3,
 .section-neutral .involvement-card h4 {
-    color: #0f172a;
+    color: var(--color-heading-text);
 }
 
 .section-neutral .program-card p,
 .section-neutral .research-card p,
 .section-neutral .info-card p,
 .section-neutral .involvement-card p {
-    color: #475569;
-    /* Slate 600 */
+    color: var(--color-body-text);
 }
 
 /* Icons in program/research cards now use Tailwind classes (e.g., text-durham-purple).
@@ -1361,14 +1296,7 @@ body {
 .section-neutral .program-card .text-sm,
 .section-neutral .research-card .text-sm,
 .section-neutral .involvement-card .text-sm {
-    color: #64748b;
-    /* Slate 500 for small text */
-}
-
-.dark .section-neutral .program-card .text-sm,
-.dark .section-neutral .research-card .text-sm,
-.dark .section-neutral .involvement-card .text-sm {
-    color: var(--text-secondary);
+    color: var(--color-muted-text);
 }
 
 /* Home page (#events) specific: make ONLY the large leading icon inside the 64px (w-16 h-16) square white.
@@ -1557,6 +1485,11 @@ body {
 
 .icon-light-purple {
     color: var(--color-light-purple) !important;
+}
+
+/* Calendar sync button icons: invert black SVGs to white in dark mode */
+.dark img.cal-icon {
+    filter: brightness(0) invert(1);
 }
 
 /* Section divider */
