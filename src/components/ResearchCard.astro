@@ -25,10 +25,10 @@ const formatAuthors = (authors: { name: string; team?: boolean }[]) => {
   href={paper.url} 
   target="_blank" 
   rel="noopener noreferrer"
-  class="research-card-new block rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
+  class="research-card-new block rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-surface border border-surface-muted"
 >
   {/* Thumbnail */}
-  <div class="aspect-[4/3] bg-slate-100 dark:bg-slate-700 overflow-hidden">
+  <div class="aspect-[4/3] bg-surface-muted overflow-hidden">
     {thumbnailImage ? (
       <img 
         src={thumbnailImage}
@@ -38,8 +38,8 @@ const formatAuthors = (authors: { name: string; team?: boolean }[]) => {
         decoding="async"
       />
     ) : (
-      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
-        <i class="fas fa-file-pdf text-5xl text-slate-300 dark:text-slate-600" aria-hidden="true"></i>
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-muted to-surface">
+        <i class="fas fa-file-pdf text-5xl text-muted-text" aria-hidden="true"></i>
       </div>
     )}
   </div>
@@ -47,21 +47,21 @@ const formatAuthors = (authors: { name: string; team?: boolean }[]) => {
   {/* Content */}
   <div class="p-4">
     {/* Title */}
-    <h4 class="font-bold text-sm leading-tight mb-2 text-slate-900 dark:text-white line-clamp-2 group-hover:text-bright-purple">
+    <h4 class="font-bold text-sm leading-tight mb-2 text-heading-text line-clamp-2 group-hover:text-bright-purple">
       {paper.title}
     </h4>
     
     {/* Authors (if present) */}
     {paper.authors && paper.authors.length > 0 && (
       <p 
-        class="text-xs text-slate-600 dark:text-slate-300 mb-2 line-clamp-1"
+        class="text-xs text-body-text mb-2 line-clamp-1"
         set:html={formatAuthors(paper.authors)}
       />
     )}
     
     {/* Venue (as grey tag) */}
     <div class="mb-3">
-      <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-200 text-slate-700 dark:bg-slate-600 dark:text-slate-200">
+      <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-surface-muted text-body-text">
         {paper.venue}
       </span>
     </div>

@@ -63,7 +63,7 @@ const durhamLogoPath = '/images/durham-logo.png';
               <h4 class="text-xl font-bold mb-2">{person.name}</h4>
               <p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
               {person.years_active && (
-                <p class="text-xs text-gray-500 mb-2">{person.years_active}</p>
+                <p class="text-xs text-muted-text mb-2">{person.years_active}</p>
               )}
               {(person.linkedin || person['durham-staff-link'] || person.link) && (
                 <div class="flex items-center justify-center gap-3">
@@ -92,7 +92,7 @@ const durhamLogoPath = '/images/durham-logo.png';
   ) : (
     <section class="section section-light">
       <div class="site-container text-center">
-        <p class="text-lg text-slate-500">No alumni listed yet.</p>
+        <p class="text-lg text-muted-text">No alumni listed yet.</p>
       </div>
     </section>
   )}

@@ -5,7 +5,7 @@
  * Features:
  * - Desktop dropdown navigation
  * - Mobile hamburger menu (Saarland-style)
- * - Dark mode toggle (disabled pending Tailwind v4 migration)
+ * - Dark mode toggle (class-based, toggled via initializeDarkMode() in main.js)
  * - Social links driven by siteConfig.socialLinks
  *
  * Dependencies:
@@ -79,8 +79,7 @@ const allSocials = siteConfig.socialLinks;
                     </a>
                 ))}
 
-                <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
-                <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" style="display:none" aria-hidden="true">
+                <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
 
@@ -142,8 +141,7 @@ const allSocials = siteConfig.socialLinks;
                 ))}
             </div>
 
-            <!-- Dark mode toggle: disabled until Tailwind v4 migration -->
-            <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode" style="display:none" aria-hidden="true">
+            <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode">
                 <i class="fas fa-moon" aria-hidden="true"></i>
             </button>
         </div>

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../data/config';
+import '../styles/global.css';
 
 export interface Props {
   title?: string;
@@ -98,13 +99,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={heroImage ? new URL(heroImage, siteConfig.url).href : new URL(siteConfig.ogImage, siteConfig.url).href}>
     <meta name="twitter:image:alt" content={pageDescription}>
 
-  <!-- Dark mode disabled — to be re-enabled during Tailwind v4 migration.
-       All .dark CSS rules are preserved as reference. -->
+  <!-- Apply theme before first paint to prevent flash of wrong theme -->
   <script is:inline>
-    // Always light: ensure no stale 'dark' class from a previous visit
-    document.documentElement.classList.remove('dark');
-    // Mark JS as active for progressive-enhancement CSS hooks (e.g. .reveal)
-    document.documentElement.classList.add('js-enabled');
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (_) {}
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+      // Mark JS as active for progressive-enhancement CSS hooks (e.g. .reveal)
+      document.documentElement.classList.add('js-enabled');
+    })();
   </script>
 
   <slot name="head" />

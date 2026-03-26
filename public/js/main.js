@@ -27,16 +27,59 @@ function initializeCommonFeatures() {
 }
 
 /**
- * Dark mode — disabled until Tailwind v4 migration.
- * Functions are stubs so no call-site errors occur.
- * All .dark CSS rules remain in styles.css as reference.
+ * Dark mode — toggle via .dark class on <html>.
+ * Persists preference to localStorage; respects system preference as default.
+ * localStorage access is guarded against restricted contexts (private browsing,
+ * sandboxed iframes) where it can throw. matchMedia.addEventListener falls back
+ * to the deprecated addListener for older Safari compatibility.
  */
 function initializeDarkMode() {
-    // no-op: dark mode disabled
+    const html = document.documentElement;
+
+    function storageGet(key) {
+        try { return localStorage.getItem(key); } catch (_) { return null; }
+    }
+    function storageSet(key, val) {
+        try { localStorage.setItem(key, val); } catch (_) { /* ignore */ }
+    }
+
+    const stored = storageGet('theme');
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const prefersDark = mq.matches;
+    const isDark = stored ? stored === 'dark' : prefersDark;
+
+    if (isDark) html.classList.add('dark');
+    updateDarkModeIcon(isDark);
+
+    // Wire up all toggle buttons (desktop + mobile)
+    document.querySelectorAll('.dark-mode-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const nowDark = html.classList.toggle('dark');
+            storageSet('theme', nowDark ? 'dark' : 'light');
+            updateDarkModeIcon(nowDark);
+        });
+    });
+
+    // Follow system preference changes if user hasn't manually set a preference.
+    // addEventListener on MediaQueryList is standard but addListener is the
+    // fallback for older Safari (pre-14).
+    function onSchemeChange(e) {
+        if (!storageGet('theme')) {
+            html.classList.toggle('dark', e.matches);
+            updateDarkModeIcon(e.matches);
+        }
+    }
+    if (typeof mq.addEventListener === 'function') {
+        mq.addEventListener('change', onSchemeChange);
+    } else if (typeof mq.addListener === 'function') {
+        mq.addListener(onSchemeChange);
+    }
 }
 
-function updateDarkModeIcon(_isDark) {
-    // no-op: dark mode disabled
+function updateDarkModeIcon(isDark) {
+    document.querySelectorAll('.dark-mode-toggle i').forEach(icon => {
+        icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    });
 }
 
 /**

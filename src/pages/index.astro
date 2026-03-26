@@ -145,12 +145,12 @@ const supporterLogoSrc = (logo: string): string =>
                         aria-label="Copy calendar URL to clipboard"
                         data-url="https://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
                     >
-                        <i class="fa-solid fa-link cal-icon text-slate-600" aria-hidden="true"></i>
+                        <i class="fa-solid fa-link cal-icon text-body-text" aria-hidden="true"></i>
                         <span class="cal-label" id="copy-cal-label">Copy URL</span>
                     </button>
                 </div>
 
-                <p class="text-center text-sm mb-8 text-slate-600">
+                <p class="text-center text-sm mb-8 text-body-text">
                     Click on and RSVP to any event to receive email updates for that event.
                 </p>
 
@@ -178,7 +178,7 @@ const supporterLogoSrc = (logo: string): string =>
                     </div>
                 </div>
                 <div class="mt-6 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-3 text-slate-700">
+                    <div class="flex items-center gap-3 text-body-text">
                         <i class="fa-solid fa-triangle-exclamation text-durham-purple text-lg flex-shrink-0" aria-hidden="true"></i>
                         <span class="text-sm font-medium">Calendar not loading? Some browsers block embedded calendars.</span>
                     </div>
@@ -187,7 +187,7 @@ const supporterLogoSrc = (logo: string): string =>
                         View calendar
                     </a>
                 </div>
-                <p class="text-center text-sm mt-4 text-slate-600">
+                <p class="text-center text-sm mt-4 text-body-text">
                     <a href="https://luma.com/daisi?period=past" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events</a>
                 </p>
             </div>
@@ -215,13 +215,13 @@ const supporterLogoSrc = (logo: string): string =>
                                 <h4 class="text-2xl font-bold">{programme.title}</h4>
                                 <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
                             </div>
-                            <p class="mb-6 leading-relaxed text-slate-600">{programme.short_description}</p>
+                            <p class="mb-6 leading-relaxed text-body-text">{programme.short_description}</p>
                             {programme.tags && programme.tags.length > 0 && (
                                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
                                     {programme.tags.slice(0, 3).map(tag => (
                                         <div class="flex items-center gap-2">
                                             <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                            <span class="text-sm text-slate-600">{tag.label}</span>
+                                            <span class="text-sm text-body-text">{tag.label}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -247,13 +247,13 @@ const supporterLogoSrc = (logo: string): string =>
                                 <h4 class="text-2xl font-bold">{programme.title}</h4>
                                 <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
                             </div>
-                            <p class="mb-6 leading-relaxed text-slate-600">{programme.short_description}</p>
+                            <p class="mb-6 leading-relaxed text-body-text">{programme.short_description}</p>
                             {programme.tags && programme.tags.length > 0 && (
                                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
                                     {programme.tags.slice(0, 3).map(tag => (
                                         <div class="flex items-center gap-2">
                                             <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                            <span class="text-sm text-slate-600">{tag.label}</span>
+                                            <span class="text-sm text-body-text">{tag.label}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -307,7 +307,7 @@ const supporterLogoSrc = (logo: string): string =>
                         </div>
                         <div class="text-center min-h-[3rem] flex flex-col justify-start">
                             <span class="text-base md:text-lg font-semibold">{supporter.name}</span>
-                            {supporter.subtitle && <span class="text-sm text-slate-500">{supporter.subtitle}</span>}
+                            {supporter.subtitle && <span class="text-sm text-muted-text">{supporter.subtitle}</span>}
                         </div>
                     </a>
                 ))}
@@ -418,8 +418,8 @@ const supporterLogoSrc = (logo: string): string =>
     padding: 0.5rem;
     border-radius: 9999px;
     border: 1.5px solid rgba(128, 0, 128, 0.2);
-    background: white;
-    color: #4a4a4a;
+    background: var(--color-surface);
+    color: var(--color-body-text);
     font-size: 0.875rem;
     font-weight: 500;
     text-decoration: none;

@@ -9,7 +9,7 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 ## Quick Start
 
-1. Install [Node.js](https://nodejs.org/) (v18+)
+1. Install [Node.js](https://nodejs.org/) (v22+)
 2. Clone and install:
    ```bash
    git clone https://github.com/DurhamAISafety/durhamaisafety.github.io.git
@@ -173,7 +173,7 @@ The build command is `tinacms build && astro build`. The canonical domain is set
 
 ## Brand Colors
 
-Defined in `tailwind.config.mjs`:
+Defined in `src/styles/global.css` (`@theme {}` block):
 - `durham-purple` (#68246D) - Primary
 - `bright-purple` (#EB80FD) - Accent
 - `light-purple` (#E2ACFE) - Light accent

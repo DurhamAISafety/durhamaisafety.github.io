@@ -27,7 +27,7 @@ const showArrows = papers.length > 4;
     {showArrows && (
       <div class="flex gap-2">
         <button 
-          class="carousel-arrow carousel-prev p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          class="carousel-arrow carousel-prev p-2 rounded-full bg-surface-muted hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           data-carousel={id}
           data-direction="prev"
           aria-label="Previous papers"
@@ -35,7 +35,7 @@ const showArrows = papers.length > 4;
           <i class="fas fa-chevron-left" aria-hidden="true"></i>
         </button>
         <button 
-          class="carousel-arrow carousel-next p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          class="carousel-arrow carousel-next p-2 rounded-full bg-surface-muted hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           data-carousel={id}
           data-direction="next"
           aria-label="Next papers"
