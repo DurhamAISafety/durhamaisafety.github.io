@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-Static website for **Durham AI Safety** (DAISI), deployed to [durhamaisafety.uk](https://durhamaisafety.uk) via Netlify. Built with Astro 5 (SSG), Tailwind CSS v3, and Tina CMS for content editing.
+Static website for **Durham AI Safety** (DAISI), deployed to [durhamaisafety.uk](https://durhamaisafety.uk) via Netlify. Built with Astro 6 (SSG), Tailwind CSS v4, and Tina CMS for content editing.
 
 ---
 
@@ -21,13 +21,6 @@ npm run preview       # Preview production build locally
 ```
 
 There is **no separate unit/integration test suite**. Use `npx astro check` + `npm run build` as baseline validation for all code changes.
-
-### Development Branch
-
-Always develop on `claude/add-claude-documentation-FOkJC` and push via:
-```bash
-git push -u origin <branch-name>
-```
 
 ---
 
@@ -69,9 +62,9 @@ durhamaisafety.github.io/
 │   │   ├── what-is-ai-safety.astro
 │   │   └── 404.astro
 │   └── styles/
-│       └── global.css        # Tailwind directives + global utilities (~1,700 lines)
+│       └── global.css        # Tailwind v4 entry: @import, @theme tokens, dark mode overrides
 ├── public/                   # Static assets served as-is
-│   ├── css/styles.css        # Component classes, animations, theming
+│   ├── css/styles.css        # Component classes, animations, theming (~1,600 lines)
 │   ├── js/main.js            # Scroll animations, dropdowns, form handling
 │   └── images/               # People photos, research thumbnails, logos, icons
 ├── tina/
@@ -82,14 +75,13 @@ durhamaisafety.github.io/
 │   │   ├── deploy-astro.yml  # GitHub Pages redirect to durhamaisafety.uk
 │   │   └── pr-validation.yml # Type-check + build + link validation on PRs
 │   └── dependabot.yml        # Weekly npm updates (grouped)
-├── astro.config.mjs          # Astro config (site URL, integrations)
-├── tailwind.config.mjs       # Tailwind v3 theme (brand colours, fonts)
+├── astro.config.mjs          # Astro config (site URL, Vite plugins)
 ├── netlify.toml              # Netlify deploy config + secrets scan exclusions
 ├── .editorconfig             # UTF-8, LF, 2-space indent
 ├── .env.example              # Tina CMS credentials template
 ├── README.md                 # Human-readable quick-start guide
 ├── AGENTS.md                 # AI assistant guidelines (kept for compatibility)
-└── TODO.md                   # Deferred work: Tailwind v4 migration, CSS refactoring
+└── TODO.md                   # Deferred work: styles.css refactoring, Tina CMS enhancements
 ```
 
 ---
@@ -115,8 +107,8 @@ src/components/*.astro (receive data as props)
 
 | Layer | Technology | Version |
 |-------|-----------|---------|
-| Framework | Astro (SSG) | 5.18.0 |
-| Styling | Tailwind CSS | 3.4.17 |
+| Framework | Astro (SSG) | 6.0.8 |
+| Styling | Tailwind CSS | 4.2.2 |
 | CMS | Tina CMS | 3.6.3 |
 | Language | TypeScript | 5.9.3 |
 | Icons | Font Awesome | 6.7.2 (CDN) |
@@ -205,7 +197,18 @@ Navigation is managed in `src/content/site-config.json`. The `Header.astro` comp
 
 ### Dark Mode
 
-Dark mode is **disabled**. The CSS classes and variables remain in `styles.css` as reference for a future implementation. Do not add dark-mode-dependent behaviour or toggle logic.
+Dark mode is implemented via a `.dark` class on `<html>`, toggled by `main.js`. The `@custom-variant dark` in `global.css` scopes the variant. Semantic CSS tokens in `global.css` flip automatically:
+
+```css
+/* global.css — light defaults in @theme, dark overrides in .dark {} */
+--color-surface:       #ffffff;   /* #111118 in dark */
+--color-body-text:     #475569;   /* #a0a0b8 in dark */
+--color-heading-text:  #0f172a;   /* #e8e8f5 in dark */
+```
+
+Use these tokens (and their Tailwind equivalents `text-surface`, `text-body-text`, etc.) rather than hardcoded colours so that dark mode works automatically.
+
+**SVG/image icons in dark mode**: Brand SVG icons (e.g. calendar icons) with black-fill paths become invisible on dark backgrounds. Add the `.cal-icon` class and the CSS in `styles.css` applies `filter: brightness(0) invert(1)` in dark mode.
 
 ### Scroll Animations
 
@@ -247,19 +250,50 @@ In `.astro` files, inline `onerror` handlers must use `var` (not `const` or `let
 
 ## Styling
 
-### Tailwind v3 (Current)
+### Tailwind v4 (Current)
 
-Use Tailwind utilities for layout and spacing. The `tailwind.config.mjs` defines brand colours and fonts — use these token names, not hardcoded hex values:
+Tailwind v4 is configured entirely in CSS — there is no `tailwind.config.mjs`. The entry point is `src/styles/global.css`:
 
-| Token | Hex | Use |
-|-------|-----|-----|
-| `durham-purple` | `#68246D` | Primary brand |
-| `deep-purple` | `#39144F` | Darkest shade |
-| `bright-purple` | `#EB80FD` | Accent |
-| `light-purple` | `#E2ACFE` | Light accent |
-| `lavender` | `#B8BBFE` | Tertiary |
+```css
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
-Fonts: `font-display` / `font-body` → IBM Plex Sans; `font-secondary` → Inter.
+@theme {
+  --color-durham-purple: #68246D;
+  /* ... other brand tokens */
+}
+```
+
+Brand colour tokens and their Tailwind utility equivalents:
+
+| Token | Hex | Tailwind class example |
+|-------|-----|------------------------|
+| `durham-purple` | `#68246D` | `bg-durham-purple` |
+| `deep-purple` | `#39144F` | `text-deep-purple` |
+| `bright-purple` | `#EB80FD` | `border-bright-purple` |
+| `light-purple` | `#E2ACFE` | `text-light-purple` |
+| `lavender` | `#B8BBFE` | `text-lavender` |
+
+Semantic tokens (auto-flip in dark mode — prefer these over brand tokens for text/surface colours):
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `surface` | `#ffffff` | `#111118` |
+| `surface-muted` | `#f8fafc` | `#1c1c28` |
+| `body-text` | `#475569` | `#a0a0b8` |
+| `heading-text` | `#0f172a` | `#e8e8f5` |
+| `muted-text` | `#94a3b8` | `#52526a` |
+
+Fonts: `font-display` / `font-body` → IBM Plex Sans; `font-secondary` / `font-inter` → Inter.
+
+### CSS Architecture: Two Files
+
+| File | Purpose |
+|------|---------|
+| `src/styles/global.css` | Tailwind entry point, `@theme` tokens, dark mode semantic overrides. **Keep small.** |
+| `public/css/styles.css` | Component classes, section theming, animations. Loaded as a plain `<link>` tag. |
+
+**Important**: `styles.css` is loaded as a static asset, outside Tailwind's CSS layer system. This means all rules in `styles.css` are *unlayered* and have **higher cascade priority** than Tailwind utilities (which live in `@layer utilities`). See CSS Layers pitfall below.
 
 ### Component CSS (`public/css/styles.css`)
 
@@ -271,7 +305,7 @@ For reusable component patterns that don't map cleanly to Tailwind utilities:
 
 - Hardcode hex colour values — use Tailwind tokens or CSS variables
 - Add new CSS to `src/styles/global.css` for component-level patterns (use `styles.css`)
-- Upgrade to Tailwind v4 (deferred — see TODO.md)
+- Add element-level margin/padding resets to `styles.css` — Tailwind v4's `@layer base` handles these, and unlayered resets will silently override all `mb-*`/`mt-*` utilities on those elements
 
 ---
 
@@ -300,7 +334,7 @@ Weekly npm updates, grouped into:
 - Astro packages (`astro`, `@astrojs/*`)
 - Dev dependencies
 
-Tailwind major updates are **ignored** (waiting for v4 migration).
+Tailwind major updates are **ignored** (already on v4; further major bumps deferred).
 
 ---
 
@@ -337,21 +371,20 @@ Do not remove these entries.
 | YAML indentation | Always 2 spaces, never tabs |
 | Missing YAML root key | Each YAML file needs its root wrapper (e.g. `papers:`) |
 | Hardcoded nav links | Add navigation only to `site-config.json`, not `Header.astro` |
-| Dark mode | Do not add dark-mode logic — it is intentionally disabled |
-| `onerror` variables | Use `var` in inline handlers, not `const`/`let` |
+| CSS layer conflict | `styles.css` is unlayered — any element reset (e.g. `h1-h6, p { margin: 0 }`) added there will override ALL Tailwind `mb-*`/`mt-*` utilities on those elements, because unlayered CSS beats `@layer utilities` regardless of specificity |
+| Font Awesome + `block` | FA's `display: var(--fa-display, inline-block)` is unlayered and beats Tailwind's `display: block` on `<i>` elements. To centre an icon, put `text-center` on a wrapper `<div>`, not on the `<i>` itself |
+| `onerror` variables | Use `var` in inline handlers, not `const`/`let` — causes Astro TS redeclaration errors |
 | `html.js-enabled` | Do not remove or break this class contract in `Layout.astro`/`main.js` |
 | Image paths | Always use leading `/` for paths under `public/` |
 | Hex colours | Use Tailwind tokens or CSS variables, not raw hex values |
 | British spelling | Use British English in all user-facing text |
-| Tailwind v4 | Do not upgrade — deferred, see TODO.md |
 
 ---
 
 ## Deferred Work (TODO.md)
 
-1. **Tailwind v4 migration** — Replace `@astrojs/tailwind` + `tailwind.config.mjs` with `@tailwindcss/vite` plugin and `@theme {}` CSS block. Blocked on browser compatibility review.
-2. **`styles.css` refactoring** — ~1,700 lines; ~400 lines of dead `.dark` rules to delete, remainder to migrate to Tailwind utilities + component `variant` props.
-3. **Tina CMS enhancements** — Organiser calendar integration, visual editor exploration.
+1. **`styles.css` refactoring** — ~1,600 lines; dead `.dark` rules partially removed and semantic CSS tokens introduced. Remaining work: migrate component classes to Tailwind utilities, refactor card components to accept a `variant` prop to remove CSS context selectors.
+2. **Tina CMS enhancements** — Organiser calendar integration, visual editor exploration.
 
 ---
 

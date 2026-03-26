@@ -1,61 +1,20 @@
 # Future Work
 
-## Tailwind CSS v4 Migration
-
-**Status:** Deferred — older browser compatibility concerns  
-**Priority:** Medium
-
-### What needs doing
-
-1. **Remove** `@astrojs/tailwind` integration and `tailwind.config.mjs`
-2. **Install** `tailwindcss@^4` and `@tailwindcss/vite`
-3. **`astro.config.mjs`** — replace the Astro integration with a Vite plugin:
-   ```js
-   import tailwindcss from '@tailwindcss/vite';
-   export default defineConfig({
-     vite: { plugins: [tailwindcss()] },
-   });
-   ```
-4. **`src/styles/global.css`** — replace the three `@tailwind` directives with:
-   ```css
-   @import "tailwindcss";
-   ```
-5. **Move theme values** from `tailwind.config.mjs` into a `@theme {}` block in CSS:
-   ```css
-   @theme {
-     --color-durham-purple: #68246D;
-     --color-bright-purple: #EB80FD;
-     --color-light-purple: #E2ACFE;
-     --color-lavender: #B8BBFE;
-     --font-display: 'IBM Plex Sans', sans-serif;
-     --font-body: 'IBM Plex Sans', sans-serif;
-   }
-   ```
-6. **Dark mode** — replace `darkMode: 'class'` config with CSS variant:
-   ```css
-   @variant dark (&:where(.dark, .dark *));
-   ```
-   Then migrate `.dark .section-neutral ...` rules in `styles.css` to `dark:` utility
-   classes in each `.astro` file, page by page.
-
-7. **Test build** — run `npm run build` and fix any renamed utilities (e.g. `shadow-sm` → `shadow-xs`).
-
-### Browser compatibility note
-Tailwind v4 uses CSS custom properties and modern CSS features more aggressively.
-Check [caniuse.com](https://caniuse.com) for `@property`, `color-mix()`, and cascade layers
-before migrating if older browser support is required.
-
----
-
 ## Replace `styles.css` with Tailwind Utilities
 
-**Status:** Not started — do this during (or after) the Tailwind v4 migration  
+**Status:** In progress — semantic tokens migrated, dead dark rules partially removed
 **Priority:** Medium
 
-`public/css/styles.css` is ~1,700 lines. Much of it can move into Tailwind utilities, but a full migration requires more than search/replace:
+`public/css/styles.css` is ~1,600 lines. Much of it can move into Tailwind utilities, but a full migration requires more than search/replace.
 
-### What can be deleted outright
-- All `.dark { … }` rules (~400 lines) — dark mode is disabled; these are dead code. Delete them before doing anything else.
+### What has been done
+- Tailwind v4 migration complete: `@astrojs/tailwind` and `tailwind.config.mjs` replaced by `@tailwindcss/vite` plugin; theme values moved to `@theme {}` in `global.css`
+- Semantic CSS tokens (`--color-surface`, `--color-body-text`, etc.) introduced — light/dark mode handled automatically via a `.dark {}` override block in `global.css`
+- Hardcoded hex colours replaced with semantic tokens in most component rules; corresponding `.dark` overrides removed (~100 lines deleted)
+- Element-level margin resets (`h1-h6, p { margin: 0 }`) removed — these were unlayered and silently overrode all Tailwind `mb-*`/`mt-*` utilities (see CLAUDE.md — CSS layer conflict pitfall)
+
+### What can still be deleted
+- Remaining `.dark { … }` overrides that duplicate what semantic tokens now handle automatically
 
 ### What converts cleanly to Tailwind
 - **Simple component classes** (`.btn-cta`, `.section-heading`, `.gradient-text`, `.hero-heading`, `.reveal`) — replace with `@apply` blocks in a small `src/styles/components.css`, or move the classes inline onto each element.
