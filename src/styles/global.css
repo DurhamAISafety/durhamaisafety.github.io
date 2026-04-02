@@ -4,46 +4,74 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Brand colours */
-  --color-durham-purple: #68246D;
-  --color-deep-purple:   #39144F;
-  --color-bright-purple: #EB80FD;
-  --color-light-purple:  #E2ACFE;
-  --color-lavender:      #B8BBFE;
-  --color-pure-white:    #FFFFFF;
-
-  /* Legacy palette colours (still referenced in some utilities).
-     ocean-blue and navy match styles.css :root to avoid gradient conflicts. */
-  --color-ocean-blue: #6F3FA7;
-  --color-deep-blue:  #0e4a5c;
-  --color-teal:       #14b8a6;
-  --color-emerald:    #10b981;
-  --color-sage:       #84cc16;
-  --color-mint:       #6ee7b7;
-  --color-warm-blue:  #3b82f6;
-  --color-navy:       #2B0F40;
-
-  /* Semantic surface/text tokens — light mode defaults */
+  /* ===== COLORS ===== */
+  
+  /* Monochrome palette */
+  --color-charcoal:      #1a1a1a;
+  --color-slate-grey:    #475569;
+  --color-light-slate:   #94a3b8;
+  --color-off-white:     #f8fafc;
+  --color-pure-white:    #ffffff;
+  
+  /* Durham purple */
+  --color-durham-purple: #682860;
+  --color-durham-purple-hover: #7a2d80;
+  
+  /* Semantic tokens (light mode defaults) */
   --color-surface:       #ffffff;
   --color-surface-muted: #f8fafc;
   --color-body-text:     #475569;
-  --color-heading-text:  #0f172a;
+  --color-heading-text:  #1a1a1a;
   --color-muted-text:    #94a3b8;
-
-  /* Fonts */
-  --font-display:   "IBM Plex Sans", sans-serif;
-  --font-body:      "IBM Plex Sans", sans-serif;
-  --font-inter:     "Inter", sans-serif;
-  --font-secondary: "Inter", sans-serif;
+  --color-border:        #e2e8f0;
+  
+  /* ===== FONTS ===== */
+  
+  --font-display:   "Crimson Text", serif;
+  --font-body:      "Work Sans", sans-serif;
+  --font-mono:      "Space Mono", monospace;
+  
+  /* ===== SPACING ===== */
+  
+  --spacing-section-desktop: 7.5rem;  /* 120px */
+  --spacing-section-mobile:  4rem;    /* 64px */
+  --spacing-component-gap:   4rem;    /* 64px */
+  --spacing-heading-large:   3rem;    /* 48px */
+  --spacing-heading-medium:  2rem;    /* 32px */
+  --spacing-paragraph:       1.5rem;  /* 24px */
+  
+  /* ===== BORDER RADIUS ===== */
+  
+  --radius-sharp:  4px;   /* Cards, buttons - intentionally sharp */
+  --radius-subtle: 8px;   /* Occasional use */
+  
+  /* ===== SHADOWS ===== */
+  
+  --shadow-card:       0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  /* ===== TRANSITIONS ===== */
+  
+  --transition-default: all 0.2s ease;
 }
 
 /* Dark mode: override semantic tokens when .dark class is active.
    Plain CSS rule rather than @variant dark { @theme } — the latter
    incorrectly overwrites the :root defaults instead of scoping them. */
 .dark {
-  --color-surface:       #111118;
+  /* Semantic tokens - dark mode overrides */
+  --color-surface:       #1a1a1a;
   --color-surface-muted: #1c1c28;
   --color-body-text:     #a0a0b8;
-  --color-heading-text:  #e8e8f5;
+  --color-heading-text:  #e8e8e8;
   --color-muted-text:    #52526a;
+  --color-border:        #2a2a2a;
+  
+  /* Durham purple - slightly lighter for contrast */
+  --color-durham-purple: #8b3d7d;
+  --color-durham-purple-hover: #9d4e8d;
+  
+  /* Shadows - stronger for dark backgrounds */
+  --shadow-card:       0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
