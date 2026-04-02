@@ -1,0 +1,69 @@
+/* ============================================================================
+   DAISI Website - Utility Classes
+   ============================================================================
+   Utility classes: icon colors, viewport heights, responsive helpers, print styles.
+   ========================================================================= */
+
+/* Viewport height utilities for stable hero sizing across mobile browsers */
+.min-h-100dvh {
+    min-height: 100dvh;
+    /* Dynamic viewport to account for mobile UI */
+}
+
+.min-h-100svh {
+    min-height: 100svh;
+    /* Small viewport height fallback */
+}
+
+.min-h-100vh {
+    min-height: 100vh;
+    /* Fallback for older browsers */
+}
+
+/* Defer offscreen rendering where safe */
+.defer-render {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
+}
+
+/* Icon color utilities (use to override context defaults) */
+.icon-current {
+    color: currentColor !important;
+}
+
+.icon-white {
+    color: #ffffff !important;
+}
+
+.icon-bright-purple {
+    color: var(--color-bright-purple) !important;
+}
+
+.icon-light-purple {
+    color: var(--color-light-purple) !important;
+}
+
+/* Calendar sync button icons: invert black SVGs to white in dark mode */
+.dark img.cal-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Responsive utilities */
+@media (max-width: 767px) {
+    .hidden-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .hidden-desktop {
+        display: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}

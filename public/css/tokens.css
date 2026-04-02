@@ -1,0 +1,133 @@
+/* ============================================================================
+   DAISI Website - Design Tokens
+   ============================================================================
+   CSS custom properties for colors, spacing, typography, and theming.
+   These tokens are used throughout the site for consistent design.
+   ========================================================================= */
+
+/* Fonts are loaded in layout head via <link>; removed @import to improve performance */
+
+/* CSS Variables for consistent theming */
+:root {
+    /* New purple palette */
+    --color-deep-purple: #39144F;
+    --color-bright-purple: #EB80FD;
+    --color-light-purple: #E2ACFE;
+    --color-lavender: #B8BBFE;
+    --color-pure-white: #FFFFFF;
+    --color-durham-purple: #68246D;
+    --color-durham-purple-hover: #7a2d80;
+
+    /* Legacy colors - only keeping those still in use */
+    --color-ocean-blue: #6F3FA7;
+    /* used in gradient */
+    --color-navy: #2B0F40;
+    /* darkest purple - used in gradients */
+
+    /* Gradients updated to purple theme */
+    --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
+    --gradient-text: linear-gradient(135deg, var(--color-bright-purple), var(--color-lavender));
+    --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
+    --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
+
+    /* Text colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+
+    /* Background colors */
+    --bg-primary: var(--color-deep-purple);
+    --bg-secondary: var(--color-navy);
+    --bg-card: rgba(57, 20, 79, 0.5);
+
+    /* Spacing */
+    --section-padding: 5rem 0;
+    --container-padding: 0 1.5rem;
+    --card-padding: 2rem;
+
+    /* Border radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Shadows */
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 20px 40px rgba(14, 74, 92, 0.3);
+
+    /* Transitions */
+    --transition-default: all 0.3s ease;
+    --transition-fast: all 0.2s ease;
+}
+
+/* Dark mode variables — neutral dark with subtle purple tint */
+.dark {
+    --color-deep-purple: #1a1a2e;
+    --color-bright-purple: #b06be8;
+    --color-light-purple: #c77dff;
+    --color-lavender: #8585d0;
+    --color-pure-white: #e8e8f5;
+
+    --color-ocean-blue: #7060a8;
+    --color-navy: #0e0e18;
+
+    --gradient-primary: linear-gradient(135deg, #b06be8, #c77dff);
+    --gradient-text: linear-gradient(135deg, #c77dff, #8585d0);
+    --gradient-hero: linear-gradient(135deg, #0e0e18 0%, #111118 50%, #b06be8 100%);
+    --gradient-bg: linear-gradient(to bottom right, #0e0e15, #12121c, #16162a);
+
+    --text-primary: #e8e8f5;
+    --text-secondary: rgba(232, 232, 245, 0.7);
+
+    --bg-primary: #0e0e15;
+    --bg-secondary: #12121c;
+    --bg-card: rgba(255, 255, 255, 0.06);
+
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Reset and base styles - targeted approach to avoid conflicts with Tailwind */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset body margin only — Tailwind v4's @layer base handles h1-h6, p, ul, ol etc.
+   Keeping those resets here as unlayered CSS would override Tailwind utilities (e.g. mb-6)
+   because unlayered CSS always wins over @layer utilities regardless of specificity. */
+body {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    /* Use site-wide purple gradient background; Tailwind body gradient in layout is compatible */
+    background: var(--gradient-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Typography */
+.gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Section heading: IBM Plex Sans semibold for all h2/h3 section titles.
+   Consistent with the body font — no serif mismatch, high legibility at all sizes. */
+.section-heading {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+}

@@ -1,0 +1,92 @@
+/* ============================================================================
+   DAISI Website - Button Components
+   ============================================================================
+   Button styles and variants (primary, secondary, CTA).
+   ========================================================================= */
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-default);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--color-light-purple), var(--color-lavender));
+    /* Remove transform to avoid layout thrash */
+    /* transform: scale(1.05); */
+    /* box-shadow: var(--shadow-card); */
+}
+
+/* Secondary button (used on light / neutral backgrounds) */
+.btn-secondary {
+    background: transparent;
+    color: var(--color-deep-purple);
+    border: 2px solid var(--color-bright-purple);
+    font-weight: 600;
+}
+
+.dark .btn-secondary {
+    color: var(--color-bright-purple);
+}
+
+.btn-secondary:hover {
+    background: var(--gradient-primary);
+    color: #ffffff;
+}
+
+/* Small button size utility */
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Primary CTA button — matches the hero pill style.
+   Use for top-level calls to action: Get Involved, Back to Home, etc. */
+.btn-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background-color: var(--color-durham-purple);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: var(--color-durham-purple-hover);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    color: #ffffff;
+}
+
+.btn-cta-white {
+    background-color: #ffffff;
+    color: var(--color-durham-purple);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-cta-white:hover {
+    background-color: #f0e8f1;
+    color: var(--color-durham-purple);
+}
+
+.dark .btn-cta {
+    border-color: rgba(255, 255, 255, 0.15);
+}

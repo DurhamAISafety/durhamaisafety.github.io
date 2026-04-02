@@ -1,46 +1,52 @@
 # Future Work
 
-## Replace `styles.css` with Tailwind Utilities
+## ~~Replace `styles.css` with Tailwind Utilities~~ → Modular CSS Architecture ✅
 
-**Status:** In progress — semantic tokens migrated, dead dark rules partially removed
+**Status:** ✅ **COMPLETED** — Modular file split (April 2026)
 **Priority:** Medium
 
-`public/css/styles.css` is ~1,600 lines. Much of it can move into Tailwind utilities, but a full migration requires more than search/replace.
+~~`public/css/styles.css` is ~1,600 lines.~~ **Problem solved!** The monolithic 1,669-line `styles.css` has been refactored into 8 focused modules.
 
-### What has been done
+### What has been done (April 2026)
+- ✅ **Modular file split complete** — Approach 1 implemented:
+  - `tokens.css` (133 lines) - CSS variables, dark mode, base styles, typography
+  - `layout.css` (752 lines) - Header, footer, navigation, hero, sections
+  - `cards.css` (611 lines) - Card components and section context selectors
+  - `buttons.css` (92 lines) - Button styles and variants
+  - `forms.css` (108 lines) - Form input styles
+  - `animations.css` (80 lines) - Keyframe animations and scroll reveals
+  - `utilities.css` (69 lines) - Icon colors, viewport heights, responsive/print
+  - `styles.css` (32 lines) - Main import file with @import statements
+- ✅ **Build verified** — `npm run build` passes, all CSS modules load correctly
+- ✅ **Zero behavior changes** — Pure file reorganization, no visual regressions
+- ✅ **AI-agent friendly** — Each module is 69-752 lines (readable in one context window)
+- ✅ **Backup preserved** — Original file saved as `styles.css.backup` (1,669 lines)
+
+### Previous work (2025)
 - Tailwind v4 migration complete: `@astrojs/tailwind` and `tailwind.config.mjs` replaced by `@tailwindcss/vite` plugin; theme values moved to `@theme {}` in `global.css`
 - Semantic CSS tokens (`--color-surface`, `--color-body-text`, etc.) introduced — light/dark mode handled automatically via a `.dark {}` override block in `global.css`
 - Hardcoded hex colours replaced with semantic tokens in most component rules; corresponding `.dark` overrides removed (~100 lines deleted)
 - Element-level margin resets (`h1-h6, p { margin: 0 }`) removed — these were unlayered and silently overrode all Tailwind `mb-*`/`mt-*` utilities (see CLAUDE.md — CSS layer conflict pitfall)
 
-### What can still be deleted
-- Remaining `.dark { … }` overrides that duplicate what semantic tokens now handle automatically
+### Next phase (optional future work)
 
-### What converts cleanly to Tailwind
-- **Simple component classes** (`.btn-cta`, `.section-heading`, `.gradient-text`, `.hero-heading`, `.reveal`) — replace with `@apply` blocks in a small `src/styles/components.css`, or move the classes inline onto each element.
-- **CSS custom properties** (`:root { --color-* … }`) — move a minimal set into `@theme {}` (v4) or keep in a tiny `src/styles/tokens.css`. Most are already duplicated in `tailwind.config.mjs`.
-- **Animation keyframes** (`@keyframes fade-up`, `.reveal`) — define via `theme.extend.keyframes` / `theme.extend.animation` in `tailwind.config.mjs` and use `animate-*` utilities, or keep in a tiny CSS file.
+Now that CSS is modular and maintainable, **Approach 2 or 3** (Tailwind migration + component extraction) can be done incrementally:
 
-### What requires Astro component refactoring (the hard part)
-The ~350-line block of `.section-neutral .program-card`, `.section-light .research-card` etc. are CSS context selectors that change card colours based on the parent section's background. To remove these, each card component needs a `variant` prop:
+1. **Delete redundant `.dark` rules** in individual modules (quick wins)
+2. **Migrate simple classes to Tailwind** (`.btn-cta`, `.section-heading`) — replace with `@apply` or inline utilities
+3. **Extract card components** with `variant` props to eliminate CSS context selectors:
+   ```astro
+   <!-- Before: CSS context selector in cards.css -->
+   <section class="section-neutral">
+     <div class="program-card">…</div>
+   </section>
 
-```astro
-<!-- Before: CSS context selector does the work -->
-<section class="section-neutral">
-  <div class="program-card">…</div>
-</section>
+   <!-- After: variant prop drives conditional Tailwind classes -->
+   <ProgramCard variant="neutral" />
+   ```
+4. Each module can now be refactored independently without affecting others
 
-<!-- After: variant prop drives conditional Tailwind classes -->
-<ProgramCard variant="neutral" />
-```
-
-This is the biggest chunk of work and should be done page-by-page after the v4 migration is stable.
-
-### Suggested order
-1. Delete all `.dark` rules (quick win, ~400 lines gone)
-2. Migrate simple component classes to `@apply` or inline utilities
-3. Move `:root` tokens to `@theme` (during v4 migration)
-4. Refactor card components to accept a `variant` prop, then delete context selectors
+**Benefit of modular approach:** Cards.css (611 lines) can be tackled separately from buttons.css (92 lines). No need to refactor everything at once.
 
 ---
 

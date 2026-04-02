@@ -1,0 +1,80 @@
+/* ============================================================================
+   DAISI Website - Animations
+   ============================================================================
+   Keyframe animations, transitions, and scroll reveal effects.
+   ========================================================================= */
+
+/* ============================================================================
+   KEYFRAME DEFINITIONS
+   ========================================================================= */
+
+/* Fade in from above — used in header/alerts */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Bounce animation for hoverable cards */
+@keyframes hover-bounce {
+    /* Disabled */
+}
+
+/* Apply bounce on hover to elements marked as card-hover */
+.card-hover:hover {
+    animation: none;
+}
+
+/* Fade up from below — used in scroll reveal animations */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================================
+   SCROLL REVEAL ANIMATIONS
+   ========================================================================= */
+
+/* Only hide .reveal when JS is active — default-visible for progressive enhancement */
+html.js-enabled .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal.visible {
+    animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* ============================================================================
+   ACCESSIBILITY: REDUCED MOTION
+   ========================================================================= */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

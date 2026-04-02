@@ -1,0 +1,752 @@
+/* ============================================================================
+   DAISI Website - Layout & Structure
+   ============================================================================
+   Header, footer, navigation, hero sections, and page layout utilities.
+   ========================================================================= */
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-bright-purple);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 1rem;
+    outline: 3px solid var(--color-light-purple);
+    outline-offset: 2px;
+}
+
+/* Layout utilities */
+.site-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.section {
+    padding: var(--section-padding);
+}
+
+/* Header styles */
+.header {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(235, 128, 253, 0.5);
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.dark .header {
+    border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+}
+
+/* Transparent header for home page - overlays hero image */
+.header--transparent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+}
+
+.dark .header--transparent {
+    border-bottom: none;
+}
+
+/* When scrolled, add background to transparent header */
+.header--transparent.header--scrolled {
+    position: fixed;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.5);
+}
+
+.dark .header--transparent.header--scrolled {
+    border-bottom: 1px solid rgba(157, 78, 221, 0.3);
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.4rem 0;
+}
+
+/* Give the header container more breathing room */
+.header .site-container {
+    max-width: 1500px;
+    padding: 0 2.5rem;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+    background: var(--bg-card);
+    border: 2px solid var(--color-bright-purple);
+    color: var(--text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition-default);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.dark-mode-toggle:hover {
+    background: var(--color-bright-purple);
+    transform: scale(1.05);
+}
+
+.dark-mode-toggle:active {
+    transform: scale(0.95);
+}
+
+.dark-mode-toggle i {
+    font-size: 1.125rem;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition-default);
+}
+
+.nav-brand:hover {
+    opacity: 0.8;
+}
+
+.nav-brand img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius-lg);
+}
+
+/* Stacked title layout like AIS Saarland */
+.nav-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.nav-title .gradient-text {
+    font-size: 1.1em;
+    font-weight: 800;
+}
+
+@media (min-width: 768px) {
+    .nav-brand img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .nav-title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-brand img {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    .nav-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Navigation center section */
+.nav-center {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Navigation right section */
+.nav-right {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Social links in nav */
+.nav-social {
+    color: white;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    transition: var(--transition-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-social:hover {
+    color: var(--color-bright-purple);
+    transform: scale(1.1);
+}
+
+.nav-social svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+}
+
+.mobile-social-links a svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+}
+
+/* CTA button in nav */
+.nav-cta {
+    background: var(--color-bright-purple);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: var(--transition-default);
+    white-space: nowrap;
+}
+
+.nav-cta:hover {
+    background: #d060e0;
+    transform: scale(1.05);
+}
+
+.nav-link {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: var(--transition-default);
+}
+
+.nav-link:hover {
+    color: var(--color-bright-purple);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--gradient-primary);
+    transition: var(--transition-default);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Saarland-style Mobile Menu
+   Full-screen overlay with hamburger-to-X animation
+   ========================================================================== */
+
+/* Hamburger button - two lines that become X */
+.burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0;
+}
+
+.burger-box {
+    position: relative;
+    width: 28px;
+    height: 20px;
+}
+
+/* Saarland uses 2 lines - we keep just ::before and ::after for the lines */
+.burger-inner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    /* No middle line - just use pseudo-elements */
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+
+.burger-inner::before,
+.burger-inner::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.burger-inner::before {
+    top: -8px;
+}
+
+.burger-inner::after {
+    top: 8px;
+}
+
+/* Hamburger to X animation */
+.burger--active .burger-inner {
+    background: transparent;
+}
+
+.burger--active .burger-inner::before {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger--active .burger-inner::after {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 1300px) {
+    .burger {
+        display: none;
+    }
+}
+
+/* Desktop navigation - hidden on mobile */
+.nav-menu-desktop {
+    display: none;
+}
+
+@media (min-width: 1300px) {
+    .nav-menu-desktop {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+}
+
+/* Full-screen mobile navigation overlay */
+.mobile-nav {
+    position: fixed;
+    inset: 0;
+    background: #39144F;
+    /* Solid background - no transparency */
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow-y: auto;
+    /* Enable scrolling if content overflows */
+}
+
+.dark .mobile-nav {
+    background: #0d0414;
+    /* Solid dark background */
+}
+
+.mobile-nav--active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Close button positioned in top-right of mobile menu */
+.mobile-nav-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+}
+
+.mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 5rem 2rem 2rem;
+    /* Extra top padding to avoid overlap with burger button */
+    gap: 0.5rem;
+}
+
+/* Mobile nav links - centered, large text */
+.mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: var(--radius-md);
+    transition: var(--transition-default);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+    color: var(--color-bright-purple);
+    transform: scale(1.05);
+}
+
+/* CTA link styling */
+.mobile-nav-cta {
+    margin-top: 1rem;
+    background: var(--gradient-primary);
+    color: white !important;
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+}
+
+.mobile-nav-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(235, 128, 253, 0.4);
+}
+
+/* Mobile nav footer with social links */
+.mobile-nav-footer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.mobile-social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.mobile-social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: var(--transition-default);
+}
+
+.mobile-social-links a:hover {
+    color: var(--color-bright-purple);
+    transform: scale(1.1);
+}
+
+/* Hide mobile nav on desktop */
+@media (min-width: 1100px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-toggle i {
+    transition: var(--transition-default);
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(57, 20, 79, 0.95);
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(235, 128, 253, 0.3);
+    box-shadow: var(--shadow-card);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.dark .dropdown-content {
+    background: rgba(13, 4, 20, 0.95);
+    border: 1px solid rgba(157, 78, 221, 0.4);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Mobile / JS toggled state */
+.dropdown-content.open {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    color: white;
+    transition: var(--transition-default);
+    border-bottom: 1px solid rgba(235, 128, 253, 0.2);
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background: rgba(235, 128, 253, 0.2);
+    color: var(--color-bright-purple);
+    padding-left: 1.5rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero section with parallax effect */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-parallax-container {
+    position: absolute;
+    inset: -20%;
+    /* Extend beyond viewport for parallax movement room */
+    z-index: 0;
+}
+
+.hero-parallax-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+}
+
+/* Parallax effect - disable on mobile for performance */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+    .hero-parallax-container {
+        /* The parallax will be controlled by JavaScript */
+        transition: transform 0.1s ease-out;
+    }
+}
+
+/* Fallback for mobile - no parallax, just static image */
+@media (max-width: 767px),
+(hover: none) {
+    .hero-parallax-container {
+        inset: 0;
+    }
+}
+
+/* Hero heading & subheading: text-shadow extracted from inline styles */
+.hero-heading {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* Italic accent phrase inside the hero h1 */
+.hero-heading em {
+    color: var(--color-bright-purple);
+    font-style: italic;
+    font-weight: inherit;
+}
+
+.hero-subheading {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero section (non-parallax) */
+.hero {
+    padding: 4rem 0 6rem;
+    background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        padding: 6rem 0 8rem;
+    }
+
+    .hero h2 {
+        font-size: 3.75rem;
+    }
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 48rem;
+    margin: 0 auto;
+    line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+    .hero p {
+        font-size: 1.5rem;
+    }
+}
+
+/* Section backgrounds */
+.section-alt {
+    background: linear-gradient(135deg,
+            rgba(57, 20, 79, 0.9),
+            rgba(184, 132, 254, 0.15));
+}
+
+.dark .section-alt {
+    background: linear-gradient(135deg,
+            rgba(13, 4, 20, 0.95),
+            rgba(157, 78, 221, 0.2));
+}
+
+.section-alt-2 {
+    background: linear-gradient(135deg,
+            rgba(235, 128, 253, 0.15),
+            rgba(57, 20, 79, 0.9));
+}
+
+.dark .section-alt-2 {
+    background: linear-gradient(135deg,
+            rgba(157, 78, 221, 0.2),
+            rgba(13, 4, 20, 0.95));
+}
+
+/* Neutral background for sections below hero */
+.section-neutral {
+    background: #f8fafc;
+    color: var(--color-body-text);
+}
+
+.dark .section-neutral {
+    background: #0f0f18;
+    color: var(--text-primary);
+}
+
+/* Slightly lavender-tinted off-white — visually distinct from section-neutral
+   without being jarring. Use for alternating sections. */
+.section-light {
+    background: #f5f3ff;
+    color: var(--color-body-text);
+}
+
+.dark .section-light {
+    background: #141428;
+    color: var(--text-primary);
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4,
+.section-light h5,
+.section-light h6 {
+    color: var(--color-heading-text);
+}
+
+/* Footer */
+.footer {
+    background: #39144F;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(235, 128, 253, 0.2);
+    padding: 3rem 0;
+    text-align: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .footer {
+    background: rgba(13, 4, 20, 0.95);
+    border-top: 1px solid rgba(157, 78, 221, 0.3);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.875rem;
+    transition: var(--transition-default);
+}
+
+.social-links a:hover {
+    color: #EB80FD;
+    transform: scale(1.1);
+}
+
+/* Section divider */
+.section-divider {
+    width: 6rem;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 9999px;
+    margin: 0 auto 4rem;
+}
