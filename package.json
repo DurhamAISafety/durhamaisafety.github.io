@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
-    "@tinacms/cli": "^2.1.11",
-    "@types/node": "^22.19.15",
-    "typescript": "^5.9.3"
+    "@tinacms/cli": "^2.2.2",
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2"
   }
 }
