@@ -3,7 +3,7 @@ people:
     type: member
     role: Lead Organiser & Publicity
     start_year: 2025
-    years_active: ''
+    years_active: '2025-2026'
     photo: /images/people/bella-pic.jpg
     linkedin: 'https://www.linkedin.com/in/isabella-towers-8937b4381/'
     durham-staff-link: ''
@@ -12,7 +12,7 @@ people:
     type: member
     role: Co-organiser & Co-founder
     start_year: 2023
-    years_active: ''
+    years_active: '2023-2026'
     photo: /images/people/theo.jpeg
     linkedin: 'https://www.linkedin.com/in/theofarrell/'
     durham-staff-link: ''
@@ -21,9 +21,27 @@ people:
     type: member
     role: Co-organiser & Treasurer
     start_year: 2025
-    years_active: ''
+    years_active: '2025-2026'
     photo: /images/people/eve.jpeg
     linkedin: 'https://www.linkedin.com/in/eve-sherratt/'
+    durham-staff-link: ''
+    link: ''
+  - name: Toby
+    type: member
+    role: Incoming Secretary
+    start_year: 2026
+    years_active: ''
+    photo: ''
+    linkedin: ''
+    durham-staff-link: ''
+    link: ''
+  - name: Sam
+    type: member
+    role: Incoming Treasurer
+    start_year: 2026
+    years_active: ''
+    photo: ''
+    linkedin: ''
     durham-staff-link: ''
     link: ''
   - name: Quinn
