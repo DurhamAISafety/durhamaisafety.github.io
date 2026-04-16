@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.8",
+    "astro": "^6.1.7",
     "tailwindcss": "^4.2.2",
     "tinacms": "^3.7.2",
     "yaml": "^2.8.3"
