@@ -93,27 +93,7 @@ const allSocials = siteConfig.socialLinks;
 
 <!-- Full-screen mobile menu overlay - MUST be outside header to avoid backdrop-filter containment -->
 <div class="mobile-nav" id="mobileNav" aria-hidden="true">
-    <button
-        type="button"
-        class="mobile-nav-close burger burger--active"
-        id="mobileNavClose"
-        aria-label="Close mobile menu"
-    >
-        <div class="burger-box">
-            <div class="burger-inner"></div>
-        </div>
-    </button>
-
     <div class="mobile-nav-content">
-        <a href="/" class="flex items-center gap-3 mb-6 pb-4 border-b border-white/20">
-            <img src={logoPath} alt="DAISI Logo" class="h-10 w-auto" />
-            <div>
-                <span class="text-lg font-bold">Durham</span>
-                <span class="text-lg font-bold gradient-text"> AI Safety</span>
-                <span class="text-lg font-bold"> Initiative</span>
-            </div>
-        </a>
-
         {siteConfig.navigation.main.map((item) => (
             <a href={item.url} class="mobile-nav-link">{item.title}</a>
         ))}
@@ -152,13 +132,17 @@ const allSocials = siteConfig.socialLinks;
     // Mobile menu toggle
     const burgerBtn = document.getElementById('burgerBtn');
     const mobileNav = document.getElementById('mobileNav');
-    const mobileNavClose = document.getElementById('mobileNavClose');
+    const siteHeader = document.getElementById('siteHeader');
+    let mobileHeaderResetTimer: number | undefined;
 
     function openMobileMenu() {
         if (burgerBtn && mobileNav) {
+            window.clearTimeout(mobileHeaderResetTimer);
             burgerBtn.classList.add('burger--active');
             mobileNav.classList.add('mobile-nav--active');
+            siteHeader?.classList.add('header--mobile-nav-open');
             burgerBtn.setAttribute('aria-expanded', 'true');
+            burgerBtn.setAttribute('aria-label', 'Close mobile menu');
             mobileNav.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
         }
@@ -169,8 +153,12 @@ const allSocials = siteConfig.socialLinks;
             burgerBtn.classList.remove('burger--active');
             mobileNav.classList.remove('mobile-nav--active');
             burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerBtn.setAttribute('aria-label', 'Toggle mobile menu');
             mobileNav.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            mobileHeaderResetTimer = window.setTimeout(() => {
+                siteHeader?.classList.remove('header--mobile-nav-open');
+            }, 300);
         }
     }
 
@@ -183,10 +171,6 @@ const allSocials = siteConfig.socialLinks;
                 openMobileMenu();
             }
         });
-    }
-
-    if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', closeMobileMenu);
     }
 
     // Close menu when clicking a link
@@ -204,7 +188,6 @@ const allSocials = siteConfig.socialLinks;
     });
 
     // Transparent header scroll effect
-    const siteHeader = document.getElementById('siteHeader');
     if (siteHeader?.classList.contains('header--transparent')) {
         let ticking = false;
 
