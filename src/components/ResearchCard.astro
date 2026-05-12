@@ -14,11 +14,6 @@ export interface Props {
 }
 
 const { paper, thumbnailImage } = Astro.props;
-
-// Format authors with bolding for team members
-const formatAuthors = (authors: { name: string; team?: boolean }[]) => {
-  return authors.map(a => a.team ? `<strong>${a.name}</strong>` : a.name).join(', ');
-};
 ---
 
 <a 
@@ -53,10 +48,14 @@ const formatAuthors = (authors: { name: string; team?: boolean }[]) => {
     
     {/* Authors (if present) */}
     {paper.authors && paper.authors.length > 0 && (
-      <p 
-        class="text-xs text-body-text mb-2 line-clamp-1"
-        set:html={formatAuthors(paper.authors)}
-      />
+      <p class="text-xs text-body-text mb-2 line-clamp-1">
+        {paper.authors.map((author, index) => (
+          <>
+            {author.team ? <strong>{author.name}</strong> : author.name}
+            {index < paper.authors.length - 1 && ', '}
+          </>
+        ))}
+      </p>
     )}
     
     {/* Venue (as grey tag) */}

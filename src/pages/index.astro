@@ -16,6 +16,7 @@ const supporterLogoSrc = (logo: string): string =>
     heroImage={heroImage.src}
 >
   <script
+    is:inline
     type="application/ld+json"
     slot="head"
     set:html={JSON.stringify({
@@ -393,16 +394,7 @@ const supporterLogoSrc = (logo: string): string =>
                 copyLabel.textContent = 'Copied!';
                 setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
             } catch {
-                // Fallback for browsers without clipboard API
-                const ta = document.createElement('textarea');
-                ta.value = url;
-                ta.style.position = 'fixed';
-                ta.style.opacity = '0';
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                copyLabel.textContent = 'Copied!';
+                copyLabel.textContent = 'Copy failed';
                 setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
             }
         });

@@ -27,7 +27,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL}>
     
     <!-- Organization Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": `${siteConfig.url}/#org`,
@@ -41,20 +41,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }]
     })}></script>
 
-    {Astro.url.pathname === '/' && (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": siteConfig.url,
-        "name": siteConfig.title,
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": `${siteConfig.url}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
-      })}></script>
-    )}
-    
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="/images/DAISI-logo.svg">
     <link rel="shortcut icon" href="/images/new_favicon/favicon.ico">
@@ -130,6 +116,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     
     <Footer />
     
-  <script src="/js/main.js" defer></script>
+  <script is:inline src="/js/main.js" defer></script>
 </body>
 </html>
