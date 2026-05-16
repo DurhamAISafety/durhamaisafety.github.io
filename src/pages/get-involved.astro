@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { tinaField } from "@tinacms/astro";
 import { getGetInvolvedContent } from "../data/get-involved";
 
 const { featuredCards, moreCards } = await getGetInvolvedContent();
@@ -33,17 +34,27 @@ const { featuredCards, moreCards } = await getGetInvolvedContent();
             return (
               <div class={`involvement-card card p-6 card-hover text-center border-strong ${borderClass}`}>
                 <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-                <h4 class="text-xl font-bold mb-4">{card.title}</h4>
-                <p class="text-sm leading-relaxed mb-4">{card.description}</p>
+                <h4 class="text-xl font-bold mb-4" data-tina-field={tinaField(card._source, "title")}>
+                  {card.title}
+                </h4>
+                <p class="text-sm leading-relaxed mb-4" data-tina-field={tinaField(card._source, "description")}>
+                  {card.description}
+                </p>
                 {card.recommended_label && (
                   <div class="text-center mb-4">
-                    <span class="text-durham-purple font-semibold">{card.recommended_label}</span>
+                    <span
+                      class="text-durham-purple font-semibold"
+                      data-tina-field={tinaField(card._source, "recommended_label")}
+                    >
+                      {card.recommended_label}
+                    </span>
                   </div>
                 )}
                 <a
                   href={card.link_url}
                   class="btn btn-primary btn-sm"
                   {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  data-tina-field={tinaField(card._source, "link_label")}
                 >
                   {card.link_label}
                   {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
@@ -68,12 +79,17 @@ const { featuredCards, moreCards } = await getGetInvolvedContent();
           {moreCards.map((card) => (
             <div class="involvement-card card p-6 card-hover text-center">
               <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-              <h4 class="text-xl font-bold mb-4">{card.title}</h4>
-              <p class="text-sm leading-relaxed mb-4">{card.description}</p>
+              <h4 class="text-xl font-bold mb-4" data-tina-field={tinaField(card._source, "title")}>
+                {card.title}
+              </h4>
+              <p class="text-sm leading-relaxed mb-4" data-tina-field={tinaField(card._source, "description")}>
+                {card.description}
+              </p>
               <a
                 href={card.link_url}
                 class="btn btn-secondary btn-sm hover:underline transition-all duration-200"
                 {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                data-tina-field={tinaField(card._source, "link_label")}
               >
                 {card.link_label}
                 {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}

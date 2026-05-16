@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
+import { tinaField } from '@tinacms/astro';
 import heroImage from '../assets/hero-picture.jpeg';
 import { research } from '../data/research';
 import { supporters } from '../data/supporters';
@@ -215,16 +216,31 @@ const supporterLogoSrc = (logo: string): string =>
                         >
                             <div class="mb-6">
                                 <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
-                                <h4 class="text-2xl font-bold">{programme.title}</h4>
+                                <h4
+                                    class="text-2xl font-bold"
+                                    data-tina-field={tinaField(programme._source, 'title')}
+                                >
+                                    {programme.title}
+                                </h4>
                                 <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
                             </div>
-                            <p class="mb-6 leading-relaxed text-body-text">{programme.short_description}</p>
+                            <p
+                                class="mb-6 leading-relaxed text-body-text"
+                                data-tina-field={tinaField(programme._source, 'short_description')}
+                            >
+                                {programme.short_description}
+                            </p>
                             {programme.tags && programme.tags.length > 0 && (
                                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
                                     {programme.tags.slice(0, 3).map(tag => (
                                         <div class="flex items-center gap-2">
                                             <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                            <span class="text-sm text-body-text">{tag.label}</span>
+                                            <span
+                                                class="text-sm text-body-text"
+                                                data-tina-field={tinaField(tag._source, 'label')}
+                                            >
+                                                {tag.label}
+                                            </span>
                                         </div>
                                     ))}
                                 </div>
@@ -247,16 +263,31 @@ const supporterLogoSrc = (logo: string): string =>
                         >
                             <div class="mb-6">
                                 <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
-                                <h4 class="text-2xl font-bold">{programme.title}</h4>
+                                <h4
+                                    class="text-2xl font-bold"
+                                    data-tina-field={tinaField(programme._source, 'title')}
+                                >
+                                    {programme.title}
+                                </h4>
                                 <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
                             </div>
-                            <p class="mb-6 leading-relaxed text-body-text">{programme.short_description}</p>
+                            <p
+                                class="mb-6 leading-relaxed text-body-text"
+                                data-tina-field={tinaField(programme._source, 'short_description')}
+                            >
+                                {programme.short_description}
+                            </p>
                             {programme.tags && programme.tags.length > 0 && (
                                 <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
                                     {programme.tags.slice(0, 3).map(tag => (
                                         <div class="flex items-center gap-2">
                                             <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                            <span class="text-sm text-body-text">{tag.label}</span>
+                                            <span
+                                                class="text-sm text-body-text"
+                                                data-tina-field={tinaField(tag._source, 'label')}
+                                            >
+                                                {tag.label}
+                                            </span>
                                         </div>
                                     ))}
                                 </div>

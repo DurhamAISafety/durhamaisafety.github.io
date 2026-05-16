@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { tinaField } from '@tinacms/astro';
 import { getProgrammesContent, renderMarkdown, programmeSlug } from '../data/programmes';
 
 const { programmes } = await getProgrammesContent();
@@ -22,6 +23,7 @@ const { programmes } = await getProgrammesContent();
             <a
               href={`#${programmeSlug(programme.title)}`}
               class="text-bright-purple hover:text-light-purple transition-colors font-medium"
+              data-tina-field={tinaField(programme._source, 'title')}
             >
               <i class={`${programme.icon} mr-1`} aria-hidden="true"></i>
               {programme.title}
@@ -54,7 +56,12 @@ const { programmes } = await getProgrammesContent();
             {/* Section header: icon + title + divider */}
             <div class="text-center mb-12">
               <i class={`${programme.icon} text-6xl text-durham-purple mb-6`} aria-hidden="true"></i>
-              <h3 class="section-heading text-3xl md:text-4xl mb-6">{programme.title}</h3>
+              <h3
+                class="section-heading text-3xl md:text-4xl mb-6"
+                data-tina-field={tinaField(programme._source, 'title')}
+              >
+                {programme.title}
+              </h3>
               <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
             </div>
 
@@ -66,7 +73,10 @@ const { programmes } = await getProgrammesContent();
                 {hasLongDesc && (
                   <div>
                     <h4 class="text-2xl font-bold mb-4">Overview</h4>
-                    <div set:html={renderMarkdown(programme.long_description!)} />
+                    <div
+                      data-tina-field={tinaField(programme._source, 'long_description')}
+                      set:html={renderMarkdown(programme.long_description!)}
+                    />
                   </div>
                 )}
 
@@ -81,7 +91,7 @@ const { programmes } = await getProgrammesContent();
                             class={`${item.icon || 'fas fa-check'} text-lavender mr-3 mt-1 flex-shrink-0`}
                             aria-hidden="true"
                           ></i>
-                          <span>{item.text}</span>
+                          <span data-tina-field={tinaField(item._source, 'text')}>{item.text}</span>
                         </li>
                       ))}
                     </ul>
@@ -94,20 +104,36 @@ const { programmes } = await getProgrammesContent();
             {hasBoxes && (
               <div>
                 {programme.feature_boxes!.heading && (
-                  <h4 class="text-xl font-bold mb-6">{programme.feature_boxes!.heading}</h4>
+                  <h4
+                    class="text-xl font-bold mb-6"
+                    data-tina-field={tinaField(programme.feature_boxes!._source, 'heading')}
+                  >
+                    {programme.feature_boxes!.heading}
+                  </h4>
                 )}
                 <div class={`grid gap-6 ${boxGridClass}`}>
                   {programme.feature_boxes!.items.map(box => (
                     <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
                       <i class={`${box.icon} text-3xl text-deep-purple mb-4 block`} aria-hidden="true"></i>
-                      <h5 class="text-lg font-bold mb-2 text-heading-text">{box.title}</h5>
-                      <p class="text-sm text-body-text leading-relaxed">{box.description}</p>
+                      <h5
+                        class="text-lg font-bold mb-2 text-heading-text"
+                        data-tina-field={tinaField(box._source, 'title')}
+                      >
+                        {box.title}
+                      </h5>
+                      <p
+                        class="text-sm text-body-text leading-relaxed"
+                        data-tina-field={tinaField(box._source, 'description')}
+                      >
+                        {box.description}
+                      </p>
                       {box.link && (
                         <a
                           href={box.link}
                           target={box.link.startsWith('http') ? '_blank' : undefined}
                           rel={box.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                           class="inline-flex items-center gap-1 mt-3 text-base font-semibold text-bright-purple hover:underline transition-colors"
+                          data-tina-field={tinaField(box._source, 'link_label')}
                         >
                           {box.link_label ?? 'Learn more'}
                           {box.link.startsWith('http') && (
