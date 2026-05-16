@@ -31,10 +31,10 @@ All content below can be edited either directly in the file or via the CMS at [d
 |---|---|---|
 | Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** |
 | Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** |
-| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** |
-| Research papers | `src/content/research.yml` | **Research Papers** |
-| Programmes | `src/content/programmes.yml` | **Programmes** |
-| Get Involved cards | `src/content/get-involved.yml` | **Get Involved Cards** |
+| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** (visual preview) |
+| Research papers | `src/content/research.yml` | **Research Papers** (visual preview) |
+| Programmes | `src/content/programmes.yml` | **Programmes** (visual preview) |
+| Get Involved cards | `src/content/get-involved.yml` | **Get Involved Cards** (visual preview) |
 | Navigation links | `src/content/site-config.json` | **Site Config → Navigation** |
 | Social links | `src/content/site-config.json` | **Site Config → Social Links** |
 | Site title, email, OG image | `src/content/site-config.json` | **Site Config** |
@@ -127,6 +127,19 @@ The following collections are available in the CMS:
 | Supporters | `src/content/supporters.yml` |
 | Get Involved Cards | `src/content/get-involved.yml` |
 | Programmes | `src/content/programmes.yml` |
+
+Visual previews are enabled for Programmes, Get Involved Cards, Research Papers, and Supporters. Those collections open the relevant site route inside Tina so editors can click marked fields in the page preview as well as use the form sidebar.
+
+### Visual editing implementation
+
+Visual-editable collections need all of the following pieces:
+
+- A `ui.router` entry in [tina/config.ts](./tina/config.ts) that maps the document to the page route.
+- A Tina-backed async loader in `src/data/*.ts` using `client.queries.*` and `requestWithMetadata()`.
+- Rendered elements marked with `data-tina-field={tinaField(source, "field")}`.
+- A `data-tina-island="/tina-island/name"` wrapper plus a registry entry in `src/lib/tina-islands.ts` when the region should live-refresh inside the preview iframe.
+
+Keep the data boundary intact: pages and components should import typed helpers from `src/data`, not read YAML/JSON files directly.
 
 ### Local CMS setup
 

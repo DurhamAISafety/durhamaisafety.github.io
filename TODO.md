@@ -10,8 +10,17 @@
 
 - Add schema validation for `src/content/*.yml` and `site-config.json` in the `src/data/*.ts` loaders, so malformed content fails clearly at build time.
 - Add organiser calendar management to Tina CMS if event/calendar ownership moves into the site.
-- Explore Tina visual editing for Astro pages.
 - Move calendar URLs and labels out of `src/pages/index.astro` into content/config if organisers need to update them without code edits.
+
+## Tina Visual Editor Extensions
+
+- Move the hardcoded homepage hero headline, subheading, CTA labels, CTA links, and background image into Tina so the first viewport can be edited without code changes.
+- Move the homepage events/calendar section into Tina or Site Config: calendar URLs, button labels, helper text, fallback link, and section headings.
+- Move the hardcoded Research Opportunities and Research Areas sections in `src/pages/research.astro` into the Research collection or a new page-content collection.
+- Add visual editing for People and Alumni next; route the shared `people.yml` collection to `/about/` or split member/alumni previews carefully so editors land on the right page.
+- Add visual editing for Site Config fields that visibly render in the header/footer, especially navigation labels, CTA text, social icons, email, and footer tagline.
+- Consider a general page-content collection for static pages such as About and What Is AI Safety once the desired editor model is clear.
+- Add a small smoke-test checklist for visual editing: open `/admin/index.html`, select each routed collection, confirm Tina navigates to `#/~...`, click a marked field, and confirm sidebar focus/live refresh.
 
 ## Pages
 

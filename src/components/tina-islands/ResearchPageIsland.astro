@@ -1,0 +1,34 @@
+---
+import type { ResearchPaper } from '../../data/research';
+import ResearchCarousel from '../ResearchCarousel.astro';
+
+interface Props {
+  academicPapers: ResearchPaper[];
+  nonAcademicPapers: ResearchPaper[];
+}
+
+const { academicPapers, nonAcademicPapers } = Astro.props;
+---
+
+<section class="section section-light">
+  <div class="site-container">
+    <div id="recent-research" class="text-center mb-12">
+      <h3 class="section-heading text-3xl md:text-4xl mb-6">Recent Research involving DAISI Members</h3>
+      <div class="section-divider"></div>
+    </div>
+
+    <ResearchCarousel
+      papers={academicPapers}
+      title="Academic Publications"
+      id="academic-carousel"
+    />
+
+    {nonAcademicPapers.length > 0 && (
+      <ResearchCarousel
+        papers={nonAcademicPapers}
+        title="Other Research & Projects"
+        id="non-academic-carousel"
+      />
+    )}
+  </div>
+</section>

@@ -1,8 +1,15 @@
-import { parse } from 'yaml';
+import { requestWithMetadata } from '@tinacms/astro';
+import client from '../../tina/__generated__/client';
+import type {
+  ResearchPapers,
+  ResearchPapersAuthors,
+  ResearchQuery,
+} from '../../tina/__generated__/types';
 
 export interface Author {
   name: string;
   team?: boolean;
+  _source: ResearchPapersAuthors;
 }
 
 export interface ResearchPaper {
@@ -15,20 +22,49 @@ export interface ResearchPaper {
   venue: string;
   tags: string[];
   type: 'academic' | 'non-academic';
+  _source: ResearchPapers;
 }
 
-// Import YAML as raw text using Vite's ?raw suffix
-import researchYaml from '../content/research.yml?raw';
+const compact = <T>(items: Array<T | null> | null | undefined): T[] =>
+  items?.filter((item): item is T => item !== null) ?? [];
 
-// Parse and sort by year then month (most recent first)
-const rawPapers = (parse(researchYaml) as { papers: ResearchPaper[] }).papers;
-export const research: ResearchPaper[] = rawPapers.sort((a, b) => {
-  // Sort by year first (descending)
+const sortPapers = (papers: ResearchPaper[]): ResearchPaper[] => papers.sort((a, b) => {
   if (b.year !== a.year) return b.year - a.year;
-  // Then by month (descending), treating missing month as 0
   return (b.month || 0) - (a.month || 0);
 });
 
-// Helper to get papers by type
-export const academicPapers = research.filter(p => p.type === 'academic');
-export const nonAcademicPapers = research.filter(p => p.type === 'non-academic');
+export async function getResearchContent(): Promise<{
+  document: ResearchQuery['research'];
+  research: ResearchPaper[];
+  academicPapers: ResearchPaper[];
+  nonAcademicPapers: ResearchPaper[];
+}> {
+  const result = await requestWithMetadata(
+    client.queries.research({ relativePath: 'research.yml' })
+  );
+
+  const document = result.data.research;
+  const research = sortPapers(compact(document.papers).map((paper) => ({
+    title: paper.title,
+    url: paper.url,
+    thumbnail: paper.thumbnail ?? undefined,
+    authors: compact(paper.authors).map((author) => ({
+      name: author.name,
+      team: author.team ?? undefined,
+      _source: author,
+    })),
+    year: paper.year,
+    month: paper.month ?? undefined,
+    venue: paper.venue,
+    tags: compact(paper.tags),
+    type: paper.type === 'non-academic' ? 'non-academic' : 'academic',
+    _source: paper,
+  })));
+
+  return {
+    document,
+    research,
+    academicPapers: research.filter((paper) => paper.type === 'academic'),
+    nonAcademicPapers: research.filter((paper) => paper.type === 'non-academic'),
+  };
+}

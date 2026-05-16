@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { academicPapers, nonAcademicPapers } from "../data/research";
-import ResearchCarousel from "../components/ResearchCarousel.astro";
+import { getResearchContent } from "../data/research";
+import ResearchPageIsland from "../components/tina-islands/ResearchPageIsland.astro";
+
+const { academicPapers, nonAcademicPapers } = await getResearchContent();
 
 const page = {
   title: "Research",
@@ -32,33 +34,9 @@ const page = {
     </div>
   </section>
 
-  {/* Recent Research */}
-  <section class="section section-light">
-    <div class="site-container">
-      {/* Recent Research */}
-      <div id="recent-research" class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Recent Research involving DAISI Members</h3>
-        <div class="section-divider"></div>
-      </div>
-
-      {/* Academic Publications Carousel */}
-      <ResearchCarousel 
-        papers={academicPapers} 
-        title="Academic Publications" 
-        id="academic-carousel"
-      />
-
-      {/* Non-Academic Research Carousel */}
-      {nonAcademicPapers.length > 0 && (
-        <ResearchCarousel 
-          papers={nonAcademicPapers} 
-          title="Other Research & Projects" 
-          id="non-academic-carousel"
-        />
-      )}
-
-    </div>
-  </section>
+  <div class="contents" data-tina-island="/tina-island/research">
+    <ResearchPageIsland academicPapers={academicPapers} nonAcademicPapers={nonAcademicPapers} />
+  </div>
 
   {/* Research Opportunities */}
   <section id="opportunities" class="section section-neutral">
