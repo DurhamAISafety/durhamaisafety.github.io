@@ -1,4 +1,9 @@
-import { parse } from 'yaml';
+import { requestWithMetadata } from '@tinacms/astro';
+import client from '../../tina/__generated__/client';
+import type {
+  GetInvolvedCards,
+  GetInvolvedQuery,
+} from '../../tina/__generated__/types';
 
 export interface GetInvolvedCard {
   title: string;
@@ -9,15 +14,39 @@ export interface GetInvolvedCard {
   external: boolean;
   featured: boolean;
   recommended_label?: string;
+  _source: GetInvolvedCards;
 }
 
-// Import YAML as raw text using Vite's ?raw suffix
-import getInvolvedYaml from '../content/get-involved.yml?raw';
+const compact = <T>(items: Array<T | null> | null | undefined): T[] =>
+  items?.filter((item): item is T => item !== null) ?? [];
 
-export const cards: GetInvolvedCard[] = (
-  parse(getInvolvedYaml) as { cards: GetInvolvedCard[] }
-).cards;
+export async function getGetInvolvedContent(): Promise<{
+  document: GetInvolvedQuery['getInvolved'];
+  cards: GetInvolvedCard[];
+  featuredCards: GetInvolvedCard[];
+  moreCards: GetInvolvedCard[];
+}> {
+  const result = await requestWithMetadata(
+    client.queries.getInvolved({ relativePath: 'get-involved.yml' })
+  );
 
-// Helper to split into featured / non-featured
-export const featuredCards = cards.filter(c => c.featured);
-export const moreCards = cards.filter(c => !c.featured);
+  const document = result.data.getInvolved;
+  const cards = compact(document.cards).map((card) => ({
+    title: card.title,
+    description: card.description,
+    icon: card.icon,
+    link_url: card.link_url,
+    link_label: card.link_label,
+    external: card.external ?? false,
+    featured: card.featured ?? false,
+    recommended_label: card.recommended_label ?? undefined,
+    _source: card,
+  }));
+
+  return {
+    document,
+    cards,
+    featuredCards: cards.filter((card) => card.featured),
+    moreCards: cards.filter((card) => !card.featured),
+  };
+}

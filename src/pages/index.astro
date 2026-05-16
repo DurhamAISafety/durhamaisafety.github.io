@@ -4,8 +4,10 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-picture.jpeg';
 import { research } from '../data/research';
 import { supporters } from '../data/supporters';
-import { programmes, programmeSlug } from '../data/programmes';
+import { getProgrammesContent, programmeSlug } from '../data/programmes';
 import ResearchCarousel from '../components/ResearchCarousel.astro';
+
+const { programmes } = await getProgrammesContent();
 
 const supporterLogoSrc = (logo: string): string =>
     logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;

@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { programmes, renderMarkdown, programmeSlug } from '../data/programmes';
+import { getProgrammesContent, renderMarkdown, programmeSlug } from '../data/programmes';
+
+const { programmes } = await getProgrammesContent();
 ---
 
 <Layout 

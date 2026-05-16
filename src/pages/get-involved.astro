@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { featuredCards, moreCards } from "../data/get-involved";
+import { getGetInvolvedContent } from "../data/get-involved";
+
+const { featuredCards, moreCards } = await getGetInvolvedContent();
 ---
 
 <Layout 
