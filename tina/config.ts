@@ -499,6 +499,7 @@ export default defineConfig({
           include: "get-involved",
         },
         ui: {
+          router: () => "/get-involved/",
           allowedActions: {
             create: false,
             delete: false,
@@ -599,6 +600,7 @@ export default defineConfig({
           include: "programmes",
         },
         ui: {
+          router: () => "/programmes/",
           allowedActions: {
             create: false,
             delete: false,
