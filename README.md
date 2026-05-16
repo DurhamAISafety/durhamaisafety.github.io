@@ -29,8 +29,8 @@ All content below can be edited either directly in the file or via the CMS at [d
 
 | To update... | Edit this file | CMS section |
 |---|---|---|
-| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** |
-| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** |
+| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
+| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
 | Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** (visual preview) |
 | Research papers | `src/content/research.yml` | **Research Papers** (visual preview) |
 | Programmes | `src/content/programmes.yml` | **Programmes** (visual preview) |
@@ -128,7 +128,7 @@ The following collections are available in the CMS:
 | Get Involved Cards | `src/content/get-involved.yml` |
 | Programmes | `src/content/programmes.yml` |
 
-Visual previews are enabled for Programmes, Get Involved Cards, Research Papers, and Supporters. Those collections open the relevant site route inside Tina so editors can click marked fields in the page preview as well as use the form sidebar.
+Visual previews are enabled for People, Programmes, Get Involved Cards, Research Papers, and Supporters. Those collections open the relevant site route inside Tina so editors can click marked fields in the page preview as well as use the form sidebar.
 
 ### Visual editing implementation
 

@@ -1,0 +1,16 @@
+---
+import type { AlumniMember } from '../../data/people';
+import PeopleGrid from './PeopleGrid.astro';
+
+interface Props {
+  alumni: AlumniMember[];
+}
+
+const { alumni } = Astro.props;
+---
+
+<section class="section section-light">
+  <div class="site-container">
+    <PeopleGrid people={alumni} emptyMessage="No alumni listed yet." />
+  </div>
+</section>

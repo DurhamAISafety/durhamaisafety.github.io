@@ -1,15 +1,36 @@
 import type { IslandRegistry } from '@tinacms/astro/experimental';
+import AboutTeamIsland from '../components/tina-islands/AboutTeamIsland.astro';
+import AlumniPageIsland from '../components/tina-islands/AlumniPageIsland.astro';
 import GetInvolvedPageIsland from '../components/tina-islands/GetInvolvedPageIsland.astro';
 import ProgrammesPageIsland from '../components/tina-islands/ProgrammesPageIsland.astro';
 import ResearchPageIsland from '../components/tina-islands/ResearchPageIsland.astro';
 import SupportersGrid from '../components/tina-islands/SupportersGrid.astro';
 import SupportersHeroStrip from '../components/tina-islands/SupportersHeroStrip.astro';
 import { getGetInvolvedContent } from '../data/get-involved';
+import { getPeopleContent } from '../data/people';
 import { getProgrammesContent } from '../data/programmes';
 import { getResearchContent } from '../data/research';
 import { getSupportersContent } from '../data/supporters';
 
 export const tinaIslands = {
+  'about-team': {
+    fetch: async () => getPeopleContent(),
+    component: AboutTeamIsland,
+    wrapper: { tag: 'div', className: 'contents' },
+    propsFromData: (data) => {
+      const { team, alumni } = data as Awaited<ReturnType<typeof getPeopleContent>>;
+      return { team, alumni };
+    },
+  },
+  alumni: {
+    fetch: async () => getPeopleContent(),
+    component: AlumniPageIsland,
+    wrapper: { tag: 'div', className: 'contents' },
+    propsFromData: (data) => {
+      const { alumni } = data as Awaited<ReturnType<typeof getPeopleContent>>;
+      return { alumni };
+    },
+  },
   programmes: {
     fetch: async () => getProgrammesContent(),
     component: ProgrammesPageIsland,

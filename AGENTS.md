@@ -90,7 +90,7 @@ Visual-editable Tina collections must have all of these pieces:
 - `data-tina-field` attributes on rendered editable elements.
 - `data-tina-island="/tina-island/name"` plus a `src/lib/tina-islands.ts` registry entry when live preview should refresh a page region.
 
-Current visual-editing coverage: Programmes, Get Involved Cards, Research Papers, and Supporters. Prefer extending Tina schemas and content files over adding new hardcoded page copy when maintainers may need to edit it.
+Current visual-editing coverage: People, Programmes, Get Involved Cards, Research Papers, and Supporters. Prefer extending Tina schemas and content files over adding new hardcoded page copy when maintainers may need to edit it.
 
 ## CI/CD
 PR validation runs dependency install, `npx astro check`, `npm run build`, and link validation. Netlify is the primary deployment target for the production site. GitHub Pages is used as a redirect/fallback path to the canonical domain.

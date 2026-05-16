@@ -1,0 +1,31 @@
+---
+import type { AlumniMember, TeamMember } from '../../data/people';
+import PeopleGrid from './PeopleGrid.astro';
+
+interface Props {
+  team: TeamMember[];
+  alumni: AlumniMember[];
+}
+
+const { team, alumni } = Astro.props;
+---
+
+<section id="team" class="section section-light">
+  <div class="site-container">
+    <div class="text-center mb-12">
+      <h2 class="section-heading text-3xl md:text-4xl mb-6">Our Team</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <PeopleGrid people={team} />
+
+    {alumni.length > 0 && (
+      <div class="text-center mt-10">
+        <a href="/alumni/" class="inline-flex items-center gap-2 text-durham-purple hover:text-bright-purple font-medium transition-colors text-base">
+          See alumni &amp; past exec
+          <i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
+        </a>
+      </div>
+    )}
+  </div>
+</section>

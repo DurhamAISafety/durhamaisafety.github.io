@@ -220,6 +220,7 @@ export default defineConfig({
           include: "people",
         },
         ui: {
+          router: () => "/about/",
           allowedActions: {
             create: false,
             delete: false,
