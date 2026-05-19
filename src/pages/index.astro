@@ -6,6 +6,7 @@ import heroImage from '../assets/hero-picture.jpeg';
 import { getResearchContent } from '../data/research';
 import { getSupportersContent } from '../data/supporters';
 import { getProgrammesContent, programmeSlug } from '../data/programmes';
+import { getSiteConfigContent } from '../data/config';
 import ResearchCarousel from '../components/ResearchCarousel.astro';
 import SupportersGrid from '../components/tina-islands/SupportersGrid.astro';
 import SupportersHeroStrip from '../components/tina-islands/SupportersHeroStrip.astro';
@@ -13,6 +14,7 @@ import SupportersHeroStrip from '../components/tina-islands/SupportersHeroStrip.
 const { programmes } = await getProgrammesContent();
 const { research } = await getResearchContent();
 const { supporters } = await getSupportersContent();
+const { siteConfig } = await getSiteConfigContent();
 
 ---
 
@@ -101,13 +103,13 @@ const { supporters } = await getSupportersContent();
             
             <div id="calendar" class="max-w-5xl mx-auto mb-16">
                 <p class="text-center text-lg mb-4 font-medium">
-                    We'll update <a href="https://luma.com/daisi" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">this calendar</a> with upcoming events. You can add it to yours:
+                    We'll update <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarSlug')}>this calendar</a> with upcoming events. You can add it to yours:
                 </p>
 
                 <!-- Calendar sync buttons -->
-                <div class="flex items-center justify-center gap-4 mb-6">
+                <div class="flex items-center justify-center gap-4 mb-6" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarId')}>
                     <!-- Google Calendar -->
-                    <a href="https://www.google.com/calendar/render?cid=http%3A%2F%2Fapi2.luma.com%2Fics%2Fget%3Fentity%3Dcalendar%26id%3Dcal-lvIwlKjJGAceOBN"
+                    <a href={`https://www.google.com/calendar/render?cid=${encodeURIComponent(`http://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="cal-sync-btn"
@@ -117,7 +119,7 @@ const { supporters } = await getSupportersContent();
                     </a>
 
                     <!-- Outlook Calendar -->
-                    <a href="https://outlook.live.com/calendar/0/addcalendar?url=webcal%3A%2F%2Fapi2.luma.com%2Fics%2Fget%3Fentity%3Dcalendar%26id%3Dcal-lvIwlKjJGAceOBN"
+                    <a href={`https://outlook.live.com/calendar/0/addcalendar?url=${encodeURIComponent(`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="cal-sync-btn"
@@ -127,7 +129,7 @@ const { supporters } = await getSupportersContent();
                     </a>
 
                     <!-- Apple Calendar -->
-                    <a href="webcal://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
+                    <a href={`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
                     class="cal-sync-btn"
                     aria-label="Add to Apple Calendar">
                         <img src="/images/icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
@@ -139,7 +141,7 @@ const { supporters } = await getSupportersContent();
                         id="copy-cal-url"
                         class="cal-sync-btn"
                         aria-label="Copy calendar URL to clipboard"
-                        data-url="https://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
+                        data-url={`https://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
                     >
                         <i class="fa-solid fa-link cal-icon text-body-text" aria-hidden="true"></i>
                         <span class="cal-label" id="copy-cal-label">Copy URL</span>
@@ -160,11 +162,11 @@ const { supporters } = await getSupportersContent();
                     </div>
                     
                     <!-- Calendar iframe -->
-                    <div class="overflow-hidden rounded-xl luma-calendar-wrapper">                            
+                    <div class="overflow-hidden rounded-xl luma-calendar-wrapper" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarId')}>                            
                         <iframe
                             id="calendar-iframe" 
                             title="DAISI Events Calendar"
-                            src="https://luma.com/embed/calendar/cal-lvIwlKjJGAceOBN/events"
+                            src={`https://luma.com/embed/calendar/${siteConfig.calendar.lumaCalendarId}/events`}
                             class="calendar-iframe"
                             allowfullscreen=""
                             aria-hidden="false"
@@ -178,13 +180,13 @@ const { supporters } = await getSupportersContent();
                         <i class="fa-solid fa-triangle-exclamation text-durham-purple text-lg flex-shrink-0" aria-hidden="true"></i>
                         <span class="text-sm font-medium">Calendar not loading? Some browsers block embedded calendars.</span>
                     </div>
-                    <a href="https://calendar.google.com/calendar/embed?src=b7bo0qsj27l7ahfaqgqiavjom9etg7sb%40import.calendar.google.com&ctz=Europe%2FLondon&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-durham-purple text-white text-sm font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200 flex-shrink-0">
+                    <a href={`https://calendar.google.com/calendar/embed?src=${encodeURIComponent(siteConfig.calendar.googleCalendarBackupId)}&ctz=Europe%2FLondon&mode=AGENDA`} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-durham-purple text-white text-sm font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200 flex-shrink-0" data-tina-field={tinaField(siteConfig._source, 'calendar.googleCalendarBackupId')}>
                         <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
                         View calendar
                     </a>
                 </div>
                 <p class="text-center text-sm mt-4 text-body-text">
-                    <a href="https://luma.com/daisi?period=past" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events</a>
+                    <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}?period=past`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarSlug')}>See past events</a>
                 </p>
             </div>
         </div>
