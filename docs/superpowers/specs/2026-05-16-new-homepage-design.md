@@ -62,7 +62,7 @@ The page should preserve and extend visual editing where it matters:
 ## Visual System
 
 - Base: white/off-white surfaces, high contrast body text, Durham purple accents.
-- Typography: editorial, restrained, and legible. Avoid oversized hero text inside compact areas.
+- Typography: use Merriweather for h1/h2 display headings and major section titles, paired with IBM Plex Sans for body text and UI chrome. Keep Merriweather deliberate rather than ubiquitous: avoid it for compact labels, buttons, cards, navigation, and dense mobile text where its weight can feel heavy. Avoid oversized hero text inside compact areas.
 - Components: reduce glassmorphism, broad gradients, pill overload, decorative rounded cards, and large Font Awesome icon blocks.
 - Layout: use section rules, columns, labels, and structured editorial groups. Keep generous spacing without making the page feel like a SaaS landing page.
 - Motion: preserve existing reveal behaviour only where it feels subtle and useful.

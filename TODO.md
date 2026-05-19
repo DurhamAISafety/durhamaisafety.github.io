@@ -1,5 +1,18 @@
 # Future Work
 
+## visual overhaul
+
+Problem - current site looks ai generated and generic
+
+ideas:
+- replace homepage hero with something people-focused
+- go for gothic neural network theme - like durham cathedral identity mixed with ai safety
+  - https://claude.ai/chat/0e2c7bee-816c-410a-b0d9-059bf4f2bb48
+  - page background is a cathedral corridor with neural network features
+  - scrolling down the page could go further down the corridor?
+- serif font - just nicer imo, eg. merryweather. at least for headings
+- 
+
 ## CSS And Components
 
 - Delete redundant `.dark` rules in individual CSS modules where semantic tokens already handle light/dark variants.
