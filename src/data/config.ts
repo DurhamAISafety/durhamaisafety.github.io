@@ -1,52 +1,123 @@
-import siteConfigData from '../content/site-config.json';
+import { requestWithMetadata } from '@tinacms/astro';
+import client from '../../tina/__generated__/client';
+import type { SiteConfigQuery } from '../../tina/__generated__/types';
 
 export interface SocialLink {
   name: string;
   url: string;
-  icon: string;       // image path in public/, e.g. "/images/icons/discord.svg"
+  icon: string;
   inHeader: boolean;
+  _index: number; // Stored to preserve original index for Visual Editor targeting
 }
 
-const normalizePublicPath = (value: string): string => {
-  if (!value) return value;
-  if (value.startsWith('http://') || value.startsWith('https://')) return value;
-  return value.startsWith('/') ? value : `/${value}`;
-};
+export interface NavigationItem {
+  title: string;
+  url: string;
+}
 
-export const siteConfig = {
-  // Editable via CMS — values live in src/content/site-config.json
-  title:        siteConfigData.title,
-  description:  siteConfigData.description,
-  email:        siteConfigData.email,
-  ogImage:      siteConfigData.ogImage,
-  socialLinks: siteConfigData.socialLinks.map((link) => ({
-    ...link,
-    icon: normalizePublicPath(link.icon),
-  })) as SocialLink[],
+export interface CalendarConfig {
+  lumaCalendarId: string;
+  lumaCalendarSlug: string;
+  googleCalendarBackupId: string;
+}
+
+export interface SiteConfig {
+  title: string;
+  description: string;
+  email: string;
+  ogImage?: string;
+  socialLinks: SocialLink[];
   navigation: {
-    main: siteConfigData.navigation.main,
-    cta:  siteConfigData.navigation.cta,
-  },
-  footerTagline: siteConfigData.footerTagline,
+    main: NavigationItem[];
+    cta: NavigationItem;
+  };
+  footerTagline?: string;
+  calendar: CalendarConfig;
+  url: string;
+  lang: string;
+  repository: string;
+  showEditLink: boolean;
+  googleSiteVerification: string;
+  _source: any;
+  // Legacy compatibility layer for social object
+  social: {
+    name: string;
+    instagram: string;
+    discord: string;
+    linkedin: string;
+    linktree: string;
+  };
+}
 
-  // Not CMS-editable — keep hardcoded
-  url:                    "https://durhamaisafety.uk",
-  lang:                   "en_GB",
-  repository:             "DurhamAISafety/durhamaisafety.github.io",
-  showEditLink:           false,
-  googleSiteVerification: "BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw",
+export async function getSiteConfigContent(): Promise<{
+  document: SiteConfigQuery['siteConfig'];
+  siteConfig: SiteConfig;
+}> {
+  const result = await requestWithMetadata(
+    client.queries.siteConfig({ relativePath: 'site-config.json' })
+  );
+  
+  const document = result.data.siteConfig;
+  
+  const normalizePublicPath = (value: string): string => {
+    if (!value) return value;
+    if (value.startsWith('http://') || value.startsWith('https://')) return value;
+    return value.startsWith('/') ? value : `/${value}`;
+  };
 
-  // Legacy shim — keeps any code that still references siteConfig.social.* working.
-  // Remove once Header/Footer are fully migrated to socialLinks.
-  get social() {
-    const find = (name: string) =>
-      this.socialLinks.find(s => s.name.toLowerCase() === name.toLowerCase())?.url ?? '';
-    return {
-      name:      this.title,
-      instagram: find('instagram'),
-      discord:   find('discord'),
-      linkedin:  find('linkedin'),
-      linktree:  find('linktree'),
-    };
-  },
-};
+  const socialLinks = (document.socialLinks ?? []).map((link, idx) => ({
+    name: link?.name ?? '',
+    url: link?.url ?? '',
+    icon: normalizePublicPath(link?.icon ?? ''),
+    inHeader: !!link?.inHeader,
+    _index: idx,
+  }));
+
+  const mainNavigation = (document.navigation?.main ?? []).map((item) => ({
+    title: item?.title ?? '',
+    url: item?.url ?? '',
+  }));
+
+  const ctaNavigation = {
+    title: document.navigation?.cta?.title ?? '',
+    url: document.navigation?.cta?.url ?? '',
+  };
+
+  const calendarConfig = {
+    lumaCalendarId: document.calendar?.lumaCalendarId ?? 'cal-lvIwlKjJGAceOBN',
+    lumaCalendarSlug: document.calendar?.lumaCalendarSlug ?? 'daisi',
+    googleCalendarBackupId: document.calendar?.googleCalendarBackupId ?? 'b7bo0qsj27l7ahfaqgqiavjom9etg7sb@import.calendar.google.com',
+  };
+
+  const findSocialUrl = (name: string) =>
+    socialLinks.find(s => s.name.toLowerCase() === name.toLowerCase())?.url ?? '';
+
+  const config: SiteConfig = {
+    title: document.title,
+    description: document.description,
+    email: document.email,
+    ogImage: document.ogImage ?? undefined,
+    socialLinks,
+    navigation: {
+      main: mainNavigation,
+      cta: ctaNavigation,
+    },
+    footerTagline: document.footerTagline ?? undefined,
+    calendar: calendarConfig,
+    url: "https://durhamaisafety.uk",
+    lang: "en_GB",
+    repository: "DurhamAISafety/durhamaisafety.github.io",
+    showEditLink: false,
+    googleSiteVerification: "BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw",
+    _source: document,
+    social: {
+      name: document.title,
+      instagram: findSocialUrl('instagram'),
+      discord: findSocialUrl('discord'),
+      linkedin: findSocialUrl('linkedin'),
+      linktree: findSocialUrl('linktree'),
+    }
+  };
+
+  return { document, siteConfig: config };
+}

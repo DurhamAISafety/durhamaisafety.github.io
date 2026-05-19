@@ -207,6 +207,42 @@ export default defineConfig({
               description: 'Short blurb shown under the email in the footer, e.g. "Questions, suggestions, or want to collaborate? Feel free to reach out!"',
             },
           },
+
+          // ── Calendar Config ───────────────────────────────────────────────
+          {
+            type: "object",
+            name: "calendar",
+            label: "Events Calendar Config",
+            fields: [
+              {
+                type: "string",
+                name: "lumaCalendarId",
+                label: "Luma Calendar ID",
+                required: true,
+                ui: {
+                  description: "The Luma calendar ID, e.g., 'cal-lvIwlKjJGAceOBN'",
+                },
+              },
+              {
+                type: "string",
+                name: "lumaCalendarSlug",
+                label: "Luma Calendar URL Slug",
+                required: true,
+                ui: {
+                  description: "The slug of the calendar URL, e.g., 'daisi' from luma.com/daisi",
+                },
+              },
+              {
+                type: "string",
+                name: "googleCalendarBackupId",
+                label: "Backup Google Calendar ID",
+                required: true,
+                ui: {
+                  description: "The raw calendar ID used for the fallback Google Calendar link",
+                },
+              },
+            ],
+          },
         ],
       },
 
