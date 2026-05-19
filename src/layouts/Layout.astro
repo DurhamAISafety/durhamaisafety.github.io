@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { siteConfig } from '../data/config';
+import { getSiteConfigContent } from '../data/config';
 import '../styles/global.css';
 
 export interface Props {
@@ -11,6 +11,8 @@ export interface Props {
 }
 
 const { title, description, heroImage } = Astro.props;
+
+const { siteConfig } = await getSiteConfigContent();
 
 const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
 const pageDescription = description || siteConfig.description;

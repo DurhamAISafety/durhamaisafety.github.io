@@ -12,9 +12,11 @@
  * - ../data/config.ts for site config
  * - CSS classes from public/css/styles.css (.footer, .social-links)
  */
-import { siteConfig } from '../data/config';
+import { getSiteConfigContent } from '../data/config';
+import { tinaField } from '@tinacms/astro';
 
 const currentYear = new Date().getFullYear();
+const { siteConfig } = await getSiteConfigContent();
 ---
 
 <footer class="footer no-print">
@@ -31,6 +33,7 @@ const currentYear = new Date().getFullYear();
                                 title={link.name}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-tina-field={tinaField(siteConfig._source, `socialLinks.${link._index}.url`)}
                             >
                                 <img
                                     src={link.icon}
@@ -43,7 +46,7 @@ const currentYear = new Date().getFullYear();
                     </div>
                 </div>
                 <div class="text-base md:text-lg font-semibold inline-flex items-center gap-2">
-                    <span>{siteConfig.title}</span>
+                    <span data-tina-field={tinaField(siteConfig._source, 'title')}>{siteConfig.title}</span>
                     <span class="text-[10px] md:text-xs font-normal text-white/60 align-middle">{currentYear}</span>
                 </div>
             </div>
@@ -51,11 +54,11 @@ const currentYear = new Date().getFullYear();
             <!-- Right: Contact & Feedback -->
             <div class="flex-1 grid gap-3 text-sm md:text-base max-w-xl">
                 <div>
-                    <a href={`mailto:${siteConfig.email}`} class="text-bright-purple hover:text-light-purple font-medium transition-colors">
+                    <a href={`mailto:${siteConfig.email}`} class="text-bright-purple hover:text-light-purple font-medium transition-colors" data-tina-field={tinaField(siteConfig._source, 'email')}>
                         {siteConfig.email}
                     </a>
                 </div>
-                <p class="text-white/70 leading-snug">
+                <p class="text-white/70 leading-snug" data-tina-field={tinaField(siteConfig._source, 'footerTagline')}>
                     {siteConfig.footerTagline}
                 </p>
                 <div>
