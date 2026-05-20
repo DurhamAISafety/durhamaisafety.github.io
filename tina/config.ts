@@ -320,6 +320,220 @@ export default defineConfig({
               },
             ],
           },
+          // ── About Page Content ───────────────────────────────────────────
+          {
+            type: "object",
+            name: "aboutPage",
+            label: "About Page Content",
+            fields: [
+              {
+                type: "string",
+                name: "introText",
+                label: "Introduction Text",
+                required: true,
+                ui: {
+                  component: "textarea",
+                  description: "Introduction text (supports HTML tags for links).",
+                },
+              },
+              {
+                type: "object",
+                name: "missionCards",
+                label: "Mission Cards",
+                list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.title ?? "Mission Card" }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Font Awesome Icon Class",
+                    required: true,
+                    ui: { description: 'e.g. "fas fa-bullhorn"' },
+                  },
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Title",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    required: true,
+                    ui: { component: "textarea" },
+                  },
+                ],
+              },
+              {
+                type: "string",
+                name: "impactTitle",
+                label: "Our Impact Card Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "impactIcon",
+                label: "Our Impact Card Icon",
+                required: true,
+                ui: { description: 'e.g. "fas fa-chart-line"' },
+              },
+              {
+                type: "string",
+                name: "impactText",
+                label: "Our Impact Card Text",
+                required: true,
+                ui: {
+                  component: "textarea",
+                  description: "Supports HTML links.",
+                },
+              },
+              {
+                type: "string",
+                name: "joinTitle",
+                label: "Join Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "joinText",
+                label: "Join Section Text",
+                required: true,
+                ui: {
+                  component: "textarea",
+                  description: "Supports HTML for email links.",
+                },
+              },
+            ],
+          },
+          // ── Research Page Content ────────────────────────────────────────
+          {
+            type: "object",
+            name: "researchPage",
+            label: "Research Page Content",
+            fields: [
+              {
+                type: "string",
+                name: "opportunitiesTitle",
+                label: "Opportunities Title",
+                required: true,
+              },
+              {
+                type: "object",
+                name: "opportunities",
+                label: "Opportunities",
+                list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.title ?? "Opportunity" }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Font Awesome Icon Class",
+                    required: true,
+                    ui: { description: 'e.g. "fas fa-graduation-cap"' },
+                  },
+                  {
+                    type: "string",
+                    name: "iconColor",
+                    label: "Icon Color Tailwind Class",
+                    required: true,
+                    options: [
+                      { label: "Bright Purple", value: "text-bright-purple" },
+                      { label: "Light Purple", value: "text-light-purple" },
+                      { label: "Deep Purple", value: "text-deep-purple" },
+                      { label: "Lavender", value: "text-lavender" },
+                    ],
+                  },
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Title",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    required: true,
+                    ui: { component: "textarea" },
+                  },
+                ],
+              },
+              {
+                type: "string",
+                name: "opportunitiesCtaText",
+                label: "Opportunities CTA Text",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "opportunitiesCtaLink",
+                label: "Opportunities CTA Link",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "areasTitle",
+                label: "Research Areas Title",
+                required: true,
+              },
+              {
+                type: "object",
+                name: "researchAreas",
+                label: "Research Areas",
+                list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.title ?? "Research Area" }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Font Awesome Icon Class",
+                    required: true,
+                    ui: { description: 'e.g. "fas fa-search"' },
+                  },
+                  {
+                    type: "string",
+                    name: "iconColor",
+                    label: "Icon Color Tailwind Class",
+                    required: true,
+                    options: [
+                      { label: "Bright Purple", value: "text-bright-purple" },
+                      { label: "Light Purple", value: "text-light-purple" },
+                      { label: "Deep Purple", value: "text-deep-purple" },
+                      { label: "Lavender", value: "text-lavender" },
+                      { label: "Violet 600", value: "text-violet-600" },
+                      { label: "Fuchsia 600", value: "text-fuchsia-600" },
+                    ],
+                  },
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Title",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Description",
+                    required: true,
+                    ui: { component: "textarea" },
+                  },
+                  {
+                    type: "string",
+                    name: "linkUrl",
+                    label: "Learn More Link URL",
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
 

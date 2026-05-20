@@ -35,6 +35,46 @@ export interface HomepageConfig {
   researchViewAllText: string;
 }
 
+export interface MissionCard {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface AboutPageConfig {
+  introText: string;
+  missionCards: MissionCard[];
+  impactTitle: string;
+  impactIcon: string;
+  impactText: string;
+  joinTitle: string;
+  joinText: string;
+}
+
+export interface OpportunityCard {
+  icon: string;
+  iconColor: string;
+  title: string;
+  description: string;
+}
+
+export interface ResearchAreaCard {
+  icon: string;
+  iconColor: string;
+  title: string;
+  description: string;
+  linkUrl: string;
+}
+
+export interface ResearchPageConfig {
+  opportunitiesTitle: string;
+  opportunities: OpportunityCard[];
+  opportunitiesCtaText: string;
+  opportunitiesCtaLink: string;
+  areasTitle: string;
+  researchAreas: ResearchAreaCard[];
+}
+
 export interface SiteConfig {
   title: string;
   description: string;
@@ -48,6 +88,8 @@ export interface SiteConfig {
   footerTagline?: string;
   calendar: CalendarConfig;
   homepage: HomepageConfig;
+  aboutPage: AboutPageConfig;
+  researchPage: ResearchPageConfig;
   url: string;
   lang: string;
   repository: string;
@@ -118,6 +160,40 @@ export async function getSiteConfigContent(): Promise<{
     researchViewAllText: document.homepage?.researchViewAllText ?? 'View All Research',
   };
 
+  const aboutPageConfig: AboutPageConfig = {
+    introText: (document as any).aboutPage?.introText ?? 'We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/what-is-ai-safety/" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:',
+    missionCards: ((document as any).aboutPage?.missionCards ?? []).map((card: any) => ({
+      icon: card?.icon ?? '',
+      title: card?.title ?? '',
+      description: card?.description ?? '',
+    })),
+    impactTitle: (document as any).aboutPage?.impactTitle ?? 'Our Impact',
+    impactIcon: (document as any).aboutPage?.impactIcon ?? 'fas fa-chart-line',
+    impactText: (document as any).aboutPage?.impactText ?? 'Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple font-semibold transition-colors underline">MATS</a> and gone on to study AI ethics at Cambridge.',
+    joinTitle: (document as any).aboutPage?.joinTitle ?? 'Join Our Team',
+    joinText: (document as any).aboutPage?.joinText ?? 'If you want to help organise and shape DAISI, contact <a href="mailto:durhamaisi@durham.ac.uk" class="text-bright-purple hover:text-light-purple font-semibold transition-colors">durhamaisi@durham.ac.uk</a> and we\'ll be in touch!',
+  };
+
+  const researchPageConfig: ResearchPageConfig = {
+    opportunitiesTitle: (document as any).researchPage?.opportunitiesTitle ?? 'Research Opportunities',
+    opportunities: ((document as any).researchPage?.opportunities ?? []).map((opp: any) => ({
+      icon: opp?.icon ?? '',
+      iconColor: opp?.iconColor ?? 'text-bright-purple',
+      title: opp?.title ?? '',
+      description: opp?.description ?? '',
+    })),
+    opportunitiesCtaText: (document as any).researchPage?.opportunitiesCtaText ?? "I'm Interested",
+    opportunitiesCtaLink: (document as any).researchPage?.opportunitiesCtaLink ?? '/programmes/#research-projects',
+    areasTitle: (document as any).researchPage?.areasTitle ?? 'Research Areas',
+    researchAreas: ((document as any).researchPage?.researchAreas ?? []).map((area: any) => ({
+      icon: area?.icon ?? '',
+      iconColor: area?.iconColor ?? 'text-bright-purple',
+      title: area?.title ?? '',
+      description: area?.description ?? '',
+      linkUrl: area?.linkUrl ?? '',
+    })),
+  };
+
   const findSocialUrl = (name: string) =>
     socialLinks.find(s => s.name.toLowerCase() === name.toLowerCase())?.url ?? '';
 
@@ -134,6 +210,8 @@ export async function getSiteConfigContent(): Promise<{
     footerTagline: document.footerTagline ?? undefined,
     calendar: calendarConfig,
     homepage: homepageConfig,
+    aboutPage: aboutPageConfig,
+    researchPage: researchPageConfig,
     url: "https://durhamaisafety.uk",
     lang: "en_GB",
     repository: "DurhamAISafety/durhamaisafety.github.io",
