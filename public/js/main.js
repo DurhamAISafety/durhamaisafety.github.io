@@ -203,13 +203,36 @@ function initializeAnalytics() {
 function initializeScrollAnimations() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealElements = document.querySelectorAll('.reveal');
+    const isIframe = window.parent !== window;
 
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window) || isIframe) {
         // Skip animation — make everything visible immediately
-        revealElements.forEach(el => {
+        const makeVisible = (el) => {
+            el.classList.add('visible');
             el.style.opacity = '1';
             el.style.transform = 'none';
-        });
+            el.style.animation = 'none';
+            el.style.transition = 'none';
+        };
+
+        revealElements.forEach(makeVisible);
+
+        // Watch for newly added elements (e.g. from Tina CMS live-preview updates)
+        if ('MutationObserver' in window) {
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    for (const node of mutation.addedNodes) {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            if (node.classList.contains('reveal')) {
+                                makeVisible(node);
+                            }
+                            node.querySelectorAll('.reveal').forEach(makeVisible);
+                        }
+                    }
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
         return;
     }
 
@@ -226,7 +249,27 @@ function initializeScrollAnimations() {
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // Watch for dynamically added elements in standard viewport to trigger reveal observer
+    if ('MutationObserver' in window) {
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                for (const node of mutation.addedNodes) {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        if (node.classList.contains('reveal')) {
+                            revealObserver.observe(node);
+                        }
+                        node.querySelectorAll('.reveal').forEach(el => {
+                            revealObserver.observe(el);
+                        });
+                    }
+                }
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
 }
+
 
 /**
  * Initialize navigation dropdowns for mobile (tap interaction)
