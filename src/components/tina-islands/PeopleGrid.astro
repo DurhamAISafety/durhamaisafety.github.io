@@ -12,7 +12,7 @@ const { people, emptyMessage = 'No people listed yet.' } = Astro.props;
 const durhamLogoPath = '/images/durham-logo.png';
 
 const getDefaultDescription = (person: Person): string => {
-  const prefix = 'member of DAISI';
+  const prefix = 'Member of DAISI';
   if (person.type === 'member') {
     return person.start_year ? `${prefix} ${person.start_year}–present` : prefix;
   } else {

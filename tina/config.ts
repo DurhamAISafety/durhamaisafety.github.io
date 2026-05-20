@@ -348,7 +348,7 @@ export default defineConfig({
                 label: "Description",
                 required: false,
                 ui: {
-                  description: "1-2 sentence description. Defaults to 'member of DAISI ...' if blank.",
+                  description: "1-2 sentence description. Defaults to 'Member of DAISI ...' if blank.",
                 },
               },
             ],
