@@ -10,6 +10,15 @@ interface Props {
 const { people, emptyMessage = 'No people listed yet.' } = Astro.props;
 
 const durhamLogoPath = '/images/durham-logo.png';
+
+const getDefaultDescription = (person: Person): string => {
+  const prefix = 'member of DAISI';
+  if (person.type === 'member') {
+    return person.start_year ? `${prefix} ${person.start_year}–present` : prefix;
+  } else {
+    return person.years_active ? `${prefix} ${person.years_active}` : prefix;
+  }
+};
 ---
 
 {people.length > 0 ? (
@@ -51,6 +60,9 @@ const durhamLogoPath = '/images/durham-logo.png';
             {person.years_active}
           </p>
         )}
+        <p class="text-xs md:text-sm text-muted-text mb-3 px-2 leading-relaxed min-h-[2.5rem]" data-tina-field={tinaField(person._source, 'description')}>
+          {person.description || getDefaultDescription(person)}
+        </p>
         {(person.linkedin || person['durham-staff-link'] || person.link) && (
           <div class="flex items-center justify-center gap-3">
             {person.linkedin && (

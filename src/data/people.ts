@@ -15,6 +15,7 @@ export interface Person {
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
+  description?: string;
   _source: PeoplePeople;
 }
 
@@ -45,6 +46,7 @@ export async function getPeopleContent(): Promise<{
     linkedin: person.linkedin ?? undefined,
     'durham-staff-link': person.durham_staff_link ?? undefined,
     link: person.link ?? undefined,
+    description: person.description ?? undefined,
     _source: person,
   }));
 

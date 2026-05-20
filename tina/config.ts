@@ -342,6 +342,15 @@ export default defineConfig({
                 label: "Personal Website",
                 required: false,
               },
+              {
+                type: "string",
+                name: "description",
+                label: "Description",
+                required: false,
+                ui: {
+                  description: "1-2 sentence description. Defaults to 'member of DAISI ...' if blank.",
+                },
+              },
             ],
           },
         ],
