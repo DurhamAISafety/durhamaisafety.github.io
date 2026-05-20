@@ -1,0 +1,45 @@
+---
+export interface Props {
+  name: string;
+  logo: string;
+  link: string;
+  subtitle?: string;
+  variant: 'hero' | 'grid';
+}
+
+const { name, logo, link, subtitle, variant } = Astro.props;
+
+// Normalization helper
+const normalizePath = (p: string) => {
+  if (!p) return '';
+  if (p.startsWith('/') || p.startsWith('http://') || p.startsWith('https://')) return p;
+  return `/${p}`;
+};
+
+const cleanLogo = normalizePath(logo);
+---
+
+{variant === 'hero' ? (
+  <a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center justify-center transition-all duration-300 filter grayscale opacity-45 hover:grayscale-0 hover:opacity-100 h-10 px-2"
+    title={`${name} ${subtitle ?? ''}`}
+  >
+    <img src={cleanLogo} alt={`${name} logo`} class="max-h-full max-w-[140px] object-contain" />
+  </a>
+) : (
+  <a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="research-card rounded-2xl p-6 flex flex-col items-center justify-center card-hover border border-durham-purple/20 transition-all duration-300"
+  >
+    <div class="h-20 flex items-center justify-center mb-4">
+      <img src={cleanLogo} alt={`${name} logo`} class="max-h-full max-w-[180px] object-contain" />
+    </div>
+    <h4 class="text-lg font-bold text-center">{name}</h4>
+    {subtitle && <p class="text-sm text-muted-text text-center mt-1">{subtitle}</p>}
+  </a>
+)}
