@@ -43,8 +43,16 @@ export interface SiteConfig {
   repository: string;
   showEditLink: boolean;
   googleSiteVerification: string;
-  _source: any;
+  _source: SiteConfigQuery['siteConfig'];
 }
+
+export type HomePageData = HomePageQuery['homePage'];
+export type HomePageConfig = NonNullable<HomePageQuery['homePage']['home']>;
+export type AboutPageData = AboutPageQuery['aboutPage'];
+export type AboutPageConfig = NonNullable<AboutPageQuery['aboutPage']['about']>;
+export type ResearchPageData = ResearchPageQuery['researchPage'];
+export type ResearchPageConfig = NonNullable<ResearchPageQuery['researchPage']['research']>;
+
 
 // Custom validation helper
 function validatePath(path: string, fieldName: string) {

@@ -2,12 +2,14 @@
 import { Image } from 'astro:assets';
 import { tinaField } from '@tinacms/astro';
 import SupportersHeroStrip from '../tina-islands/SupportersHeroStrip.astro';
+import type { ImageMetadata } from 'astro';
 import type { Supporter } from '../../data/supporters';
+import type { HomePageData, HomePageConfig } from '../../data/config';
 
 interface Props {
-  homeConfig: any;
-  homeDoc: any;
-  heroImage: any;
+  homeConfig: HomePageConfig;
+  homeDoc: HomePageData;
+  heroImage: ImageMetadata;
   supporters: Supporter[];
 }
 
@@ -31,7 +33,7 @@ const { homeConfig, homeDoc, heroImage, supporters } = Astro.props;
     <div class="site-container mx-auto px-6 relative z-10 w-full">
         <div class="max-w-2xl pt-28 md:pt-36 pb-16 space-y-6 md:space-y-8">
             <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight" data-tina-field={tinaField(homeDoc, 'home.heroTitle')} set:html={homeConfig.heroTitle} />
-            
+
             <p class="hero-subheading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 md:mb-8">
                 <span class="font-semibold text-light-purple" data-tina-field={tinaField(homeDoc, 'home.heroSubtitleHighlight')}>{homeConfig.heroSubtitleHighlight}</span>
                 <span class="text-white" data-tina-field={tinaField(homeDoc, 'home.heroSubtitleMain')}>{homeConfig.heroSubtitleMain}</span>

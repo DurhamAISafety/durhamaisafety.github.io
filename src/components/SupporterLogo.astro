@@ -20,6 +20,7 @@ const cleanLogo = normalizePath(logo);
 ---
 
 {variant === 'hero' ? (
+  /* Deliberate design exception: image-only hero strip logos omit the external link icon for visual cleanliness */
   <a
     href={link}
     target="_blank"
@@ -39,7 +40,10 @@ const cleanLogo = normalizePath(logo);
     <div class="h-20 flex items-center justify-center mb-4">
       <img src={cleanLogo} alt={`${name} logo`} class="max-h-full max-w-[180px] object-contain" />
     </div>
-    <h4 class="text-lg font-bold text-center">{name}</h4>
+    <h4 class="text-lg font-bold text-center">
+      {name}
+      <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+    </h4>
     {subtitle && <p class="text-sm text-muted-text text-center mt-1">{subtitle}</p>}
   </a>
 )}

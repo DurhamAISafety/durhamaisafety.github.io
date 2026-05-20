@@ -2,10 +2,11 @@
 import { tinaField } from '@tinacms/astro';
 import ResearchCarousel from '../ResearchCarousel.astro';
 import type { Paper } from '../../data/research';
+import type { HomePageData, HomePageConfig } from '../../data/config';
 
 interface Props {
-  homeConfig: any;
-  homeDoc: any;
+  homeConfig: HomePageConfig;
+  homeDoc: HomePageData;
   research: Paper[];
 }
 

@@ -29,4 +29,3 @@
   - Possible visual motif: restrained gothic/neural-network treatment, avoiding generic AI gradients.
   - Use Merriweather or another serif for headings only if it fits the final design direction; keep body/UI text readable and restrained.
 - Add organiser calendar management to Tina only if event/calendar ownership moves into the site.
-

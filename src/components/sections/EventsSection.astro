@@ -1,10 +1,10 @@
 ---
 import { tinaField } from '@tinacms/astro';
-import type { SiteConfig } from '../../data/config';
+import type { SiteConfig, HomePageData, HomePageConfig } from '../../data/config';
 
 interface Props {
-  homeConfig: any;
-  homeDoc: any;
+  homeConfig: HomePageConfig;
+  homeDoc: HomePageData;
   siteConfig: SiteConfig;
 }
 
@@ -17,7 +17,7 @@ const { homeConfig, homeDoc, siteConfig } = Astro.props;
             <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeDoc, 'home.eventsTitle')}>{homeConfig.eventsTitle}</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
         </div>
-        
+
         <div id="calendar" class="max-w-5xl mx-auto mb-16">
             <p class="text-center text-lg mb-4 font-medium">
                 We'll update <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarSlug')}>this calendar</a> with upcoming events. You can add it to yours:
