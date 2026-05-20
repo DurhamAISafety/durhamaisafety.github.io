@@ -243,303 +243,6 @@ export default defineConfig({
               },
             ],
           },
-          // ── Homepage Hero & Section Intros ───────────────────────────────
-          {
-            type: "object",
-            name: "homepage",
-            label: "Homepage Hero & Section Intros",
-            fields: [
-              {
-                type: "string",
-                name: "heroTitle",
-                label: "Hero Title",
-                required: true,
-                ui: {
-                  description: "Supports HTML like <em>italic</em> to highlight text.",
-                },
-              },
-              {
-                type: "string",
-                name: "heroSubtitleHighlight",
-                label: "Hero Subheading Highlight (purple text)",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "heroSubtitleMain",
-                label: "Hero Subheading Main (white text)",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "heroPrimaryCtaText",
-                label: "Hero Primary CTA Button Text",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "heroPrimaryCtaLink",
-                label: "Hero Primary CTA Button Link",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "heroSecondaryCtaText",
-                label: "Hero Secondary CTA Button Text",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "heroSecondaryCtaLink",
-                label: "Hero Secondary CTA Button Link",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "eventsTitle",
-                label: "Events Section Title",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "programmesTitle",
-                label: "Programmes Section Title",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "researchTitle",
-                label: "Research Section Title",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "researchSubtitle",
-                label: "Research Section Carousel Subtitle",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "researchViewAllText",
-                label: "Research View All Button Text",
-                required: true,
-              },
-            ],
-          },
-          // ── About Page Content ───────────────────────────────────────────
-          {
-            type: "object",
-            name: "aboutPage",
-            label: "About Page Content",
-            fields: [
-              {
-                type: "string",
-                name: "introText",
-                label: "Introduction Text",
-                required: true,
-                ui: {
-                  component: "textarea",
-                  description: "Introduction text (supports HTML tags for links).",
-                },
-              },
-              {
-                type: "object",
-                name: "missionCards",
-                label: "Mission Cards",
-                list: true,
-                ui: {
-                  itemProps: (item) => ({ label: item?.title ?? "Mission Card" }),
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "icon",
-                    label: "Font Awesome Icon Class",
-                    required: true,
-                    ui: { description: 'e.g. "fas fa-bullhorn"' },
-                  },
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Title",
-                    required: true,
-                  },
-                  {
-                    type: "string",
-                    name: "description",
-                    label: "Description",
-                    required: true,
-                    ui: { component: "textarea" },
-                  },
-                ],
-              },
-              {
-                type: "string",
-                name: "impactTitle",
-                label: "Our Impact Card Title",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "impactIcon",
-                label: "Our Impact Card Icon",
-                required: true,
-                ui: { description: 'e.g. "fas fa-chart-line"' },
-              },
-              {
-                type: "string",
-                name: "impactText",
-                label: "Our Impact Card Text",
-                required: true,
-                ui: {
-                  component: "textarea",
-                  description: "Supports HTML links.",
-                },
-              },
-              {
-                type: "string",
-                name: "joinTitle",
-                label: "Join Section Title",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "joinText",
-                label: "Join Section Text",
-                required: true,
-                ui: {
-                  component: "textarea",
-                  description: "Supports HTML for email links.",
-                },
-              },
-            ],
-          },
-          // ── Research Page Content ────────────────────────────────────────
-          {
-            type: "object",
-            name: "researchPage",
-            label: "Research Page Content",
-            fields: [
-              {
-                type: "string",
-                name: "opportunitiesTitle",
-                label: "Opportunities Title",
-                required: true,
-              },
-              {
-                type: "object",
-                name: "opportunities",
-                label: "Opportunities",
-                list: true,
-                ui: {
-                  itemProps: (item) => ({ label: item?.title ?? "Opportunity" }),
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "icon",
-                    label: "Font Awesome Icon Class",
-                    required: true,
-                    ui: { description: 'e.g. "fas fa-graduation-cap"' },
-                  },
-                  {
-                    type: "string",
-                    name: "iconColor",
-                    label: "Icon Color Tailwind Class",
-                    required: true,
-                    options: [
-                      { label: "Bright Purple", value: "text-bright-purple" },
-                      { label: "Light Purple", value: "text-light-purple" },
-                      { label: "Deep Purple", value: "text-deep-purple" },
-                      { label: "Lavender", value: "text-lavender" },
-                    ],
-                  },
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Title",
-                    required: true,
-                  },
-                  {
-                    type: "string",
-                    name: "description",
-                    label: "Description",
-                    required: true,
-                    ui: { component: "textarea" },
-                  },
-                ],
-              },
-              {
-                type: "string",
-                name: "opportunitiesCtaText",
-                label: "Opportunities CTA Text",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "opportunitiesCtaLink",
-                label: "Opportunities CTA Link",
-                required: true,
-              },
-              {
-                type: "string",
-                name: "areasTitle",
-                label: "Research Areas Title",
-                required: true,
-              },
-              {
-                type: "object",
-                name: "researchAreas",
-                label: "Research Areas",
-                list: true,
-                ui: {
-                  itemProps: (item) => ({ label: item?.title ?? "Research Area" }),
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "icon",
-                    label: "Font Awesome Icon Class",
-                    required: true,
-                    ui: { description: 'e.g. "fas fa-search"' },
-                  },
-                  {
-                    type: "string",
-                    name: "iconColor",
-                    label: "Icon Color Tailwind Class",
-                    required: true,
-                    options: [
-                      { label: "Bright Purple", value: "text-bright-purple" },
-                      { label: "Light Purple", value: "text-light-purple" },
-                      { label: "Deep Purple", value: "text-deep-purple" },
-                      { label: "Lavender", value: "text-lavender" },
-                      { label: "Violet 600", value: "text-violet-600" },
-                      { label: "Fuchsia 600", value: "text-fuchsia-600" },
-                    ],
-                  },
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Title",
-                    required: true,
-                  },
-                  {
-                    type: "string",
-                    name: "description",
-                    label: "Description",
-                    required: true,
-                    ui: { component: "textarea" },
-                  },
-                  {
-                    type: "string",
-                    name: "linkUrl",
-                    label: "Learn More Link URL",
-                    required: true,
-                  },
-                ],
-              },
-            ],
-          },
         ],
       },
 
@@ -1139,6 +842,166 @@ export default defineConfig({
                       },
                     ],
                   },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      // ── Home Page ──────────────────────────────────────────────────────────
+      {
+        name: "homePage",
+        label: "Home Page",
+        path: "src/content/pages",
+        format: "yml",
+        match: {
+          include: "home",
+        },
+        ui: {
+          router: () => "/",
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "home",
+            label: "Home Page Content",
+            fields: [
+              { type: "string", name: "heroTitle", label: "Hero Title", required: true },
+              { type: "string", name: "heroSubtitleHighlight", label: "Hero Subtitle Highlight", required: true },
+              { type: "string", name: "heroSubtitleMain", label: "Hero Subtitle Main", required: true },
+              { type: "string", name: "heroPrimaryCtaText", label: "Hero Primary CTA Text", required: true },
+              { type: "string", name: "heroPrimaryCtaLink", label: "Hero Primary CTA Link", required: true },
+              { type: "string", name: "heroSecondaryCtaText", label: "Hero Secondary CTA Text", required: true },
+              { type: "string", name: "heroSecondaryCtaLink", label: "Hero Secondary CTA Link", required: true },
+              { type: "string", name: "eventsTitle", label: "Events Section Title", required: true },
+              { type: "string", name: "programmesTitle", label: "Programmes Section Title", required: true },
+              { type: "string", name: "researchTitle", label: "Research Section Title", required: true },
+              { type: "string", name: "researchSubtitle", label: "Research Carousel Subtitle", required: true },
+              { type: "string", name: "researchViewAllText", label: "Research View All Text", required: true },
+            ],
+          },
+        ],
+      },
+      // ── About Page ─────────────────────────────────────────────────────────
+      {
+        name: "aboutPage",
+        label: "About Page",
+        path: "src/content/pages",
+        format: "yml",
+        match: {
+          include: "about",
+        },
+        ui: {
+          router: () => "/about/",
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "about",
+            label: "About Page Content",
+            fields: [
+              { type: "string", name: "introText", label: "Intro Text", required: true, ui: { component: "textarea" } },
+              {
+                type: "object",
+                name: "missionCards",
+                label: "Mission Cards",
+                list: true,
+                fields: [
+                  { type: "string", name: "icon", label: "Font Awesome Icon", required: true },
+                  { type: "string", name: "title", label: "Title", required: true },
+                  { type: "string", name: "description", label: "Description", required: true, ui: { component: "textarea" } },
+                ],
+              },
+              { type: "string", name: "impactTitle", label: "Impact Title", required: true },
+              { type: "string", name: "impactIcon", label: "Impact Icon", required: true },
+              { type: "string", name: "impactText", label: "Impact Text", required: true, ui: { component: "textarea" } },
+              { type: "string", name: "joinTitle", label: "Join Title", required: true },
+              { type: "string", name: "joinText", label: "Join Text", required: true, ui: { component: "textarea" } },
+            ],
+          },
+        ],
+      },
+      // ── Research Page ──────────────────────────────────────────────────────
+      {
+        name: "researchPage",
+        label: "Research Page",
+        path: "src/content/pages",
+        format: "yml",
+        match: {
+          include: "research",
+        },
+        ui: {
+          router: () => "/research/",
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "research",
+            label: "Research Page Content",
+            fields: [
+              { type: "string", name: "opportunitiesTitle", label: "Opportunities Title", required: true },
+              {
+                type: "object",
+                name: "opportunities",
+                label: "Opportunities",
+                list: true,
+                fields: [
+                  { type: "string", name: "icon", label: "Icon Class", required: true },
+                  {
+                    type: "string",
+                    name: "iconColor",
+                    label: "Icon Color Class",
+                    required: true,
+                    options: [
+                      { label: "Bright Purple", value: "text-bright-purple" },
+                      { label: "Light Purple", value: "text-light-purple" },
+                      { label: "Deep Purple", value: "text-deep-purple" },
+                      { label: "Lavender", value: "text-lavender" },
+                    ],
+                  },
+                  { type: "string", name: "title", label: "Title", required: true },
+                  { type: "string", name: "description", label: "Description", required: true, ui: { component: "textarea" } },
+                ],
+              },
+              { type: "string", name: "opportunitiesCtaText", label: "Opportunities CTA Text", required: true },
+              { type: "string", name: "opportunitiesCtaLink", label: "Opportunities CTA Link", required: true },
+              { type: "string", name: "areasTitle", label: "Areas Title", required: true },
+              {
+                type: "object",
+                name: "researchAreas",
+                label: "Research Areas",
+                list: true,
+                fields: [
+                  { type: "string", name: "icon", label: "Icon Class", required: true },
+                  {
+                    type: "string",
+                    name: "iconColor",
+                    label: "Icon Color Class",
+                    required: true,
+                    options: [
+                      { label: "Bright Purple", value: "text-bright-purple" },
+                      { label: "Light Purple", value: "text-light-purple" },
+                      { label: "Deep Purple", value: "text-deep-purple" },
+                      { label: "Lavender", value: "text-lavender" },
+                      { label: "Violet 600", value: "text-violet-600" },
+                      { label: "Fuchsia 600", value: "text-fuchsia-600" },
+                    ],
+                  },
+                  { type: "string", name: "title", label: "Title", required: true },
+                  { type: "string", name: "description", label: "Description", required: true, ui: { component: "textarea" } },
+                  { type: "string", name: "linkUrl", label: "Link URL", required: true },
                 ],
               },
             ],
