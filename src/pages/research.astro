@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getResearchContent } from "../data/research";
-import { getSiteConfigContent } from "../data/config";
+import { getSiteConfigContent, getResearchPageContent } from "../data/config";
 import { tinaField } from "@tinacms/astro";
 import ResearchPageIsland from "../components/tina-islands/ResearchPageIsland.astro";
 
 const { academicPapers, nonAcademicPapers } = await getResearchContent();
 const { siteConfig } = await getSiteConfigContent();
+const { researchConfig, document: researchDoc } = await getResearchPageContent();
 
 const page = {
   title: "Research",
@@ -45,23 +46,23 @@ const page = {
   <section id="opportunities" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(siteConfig._source, 'researchPage.opportunitiesTitle')}>{siteConfig.researchPage.opportunitiesTitle}</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(researchDoc, 'research.opportunitiesTitle')}>{researchConfig.opportunitiesTitle}</h3>
         <div class="section-divider"></div>
       </div>
       <div class="max-w-4xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {siteConfig.researchPage.opportunities.map((opp, idx) => (
+          {researchConfig.opportunities.map((opp, idx) => (
             <div class="research-card rounded-2xl p-6 card-hover">
               <div class="flex items-center mb-4">
-                <i class={`${opp.icon} text-3xl ${opp.iconColor} mr-4`} data-tina-field={tinaField(siteConfig._source, `researchPage.opportunities.${idx}.icon`)} aria-hidden="true"></i>
-                <h4 class="text-lg font-bold" data-tina-field={tinaField(siteConfig._source, `researchPage.opportunities.${idx}.title`)}>{opp.title}</h4>
+                <i class={`${opp.icon} text-3xl ${opp.iconColor} mr-4`} data-tina-field={tinaField(researchDoc, `research.opportunities.${idx}.icon`)} aria-hidden="true"></i>
+                <h4 class="text-lg font-bold" data-tina-field={tinaField(researchDoc, `research.opportunities.${idx}.title`)}>{opp.title}</h4>
               </div>
-              <p class="text-sm leading-relaxed" data-tina-field={tinaField(siteConfig._source, `researchPage.opportunities.${idx}.description`)}>{opp.description}</p>
+              <p class="text-sm leading-relaxed" data-tina-field={tinaField(researchDoc, `research.opportunities.${idx}.description`)}>{opp.description}</p>
             </div>
           ))}
         </div>
         <div class="text-center">
-          <a href={siteConfig.researchPage.opportunitiesCtaLink} class="btn-cta" data-tina-field={tinaField(siteConfig._source, 'researchPage.opportunitiesCtaText')}>{siteConfig.researchPage.opportunitiesCtaText}</a>
+          <a href={researchConfig.opportunitiesCtaLink} class="btn-cta" data-tina-field={tinaField(researchDoc, 'research.opportunitiesCtaText')}>{researchConfig.opportunitiesCtaText}</a>
         </div>
       </div>
     </div>
@@ -71,20 +72,20 @@ const page = {
   <section id="research-areas" class="section section-light">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(siteConfig._source, 'researchPage.areasTitle')}>{siteConfig.researchPage.areasTitle}</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(researchDoc, 'research.areasTitle')}>{researchConfig.areasTitle}</h3>
         <div class="section-divider"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {siteConfig.researchPage.researchAreas.map((area, idx) => (
+        {researchConfig.researchAreas.map((area, idx) => (
           <div class="research-card rounded-2xl p-6 card-hover">
             <div class="text-center mb-4">
-              <i class={`${area.icon} text-5xl ${area.iconColor}`} data-tina-field={tinaField(siteConfig._source, `researchPage.researchAreas.${idx}.icon`)} aria-hidden="true"></i>
+              <i class={`${area.icon} text-5xl ${area.iconColor}`} data-tina-field={tinaField(researchDoc, `research.researchAreas.${idx}.icon`)} aria-hidden="true"></i>
             </div>
-            <h4 class="text-xl font-bold text-center mb-4" data-tina-field={tinaField(siteConfig._source, `researchPage.researchAreas.${idx}.title`)}>{area.title}</h4>
-            <p class="text-center text-sm leading-relaxed" data-tina-field={tinaField(siteConfig._source, `researchPage.researchAreas.${idx}.description`)}>{area.description}</p>
+            <h4 class="text-xl font-bold text-center mb-4" data-tina-field={tinaField(researchDoc, `research.researchAreas.${idx}.title`)}>{area.title}</h4>
+            <p class="text-center text-sm leading-relaxed" data-tina-field={tinaField(researchDoc, `research.researchAreas.${idx}.description`)}>{area.description}</p>
             <div class="text-center mt-3">
-              <a href={area.linkUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center" data-tina-field={tinaField(siteConfig._source, `researchPage.researchAreas.${idx}.linkUrl`)}>
+              <a href={area.linkUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center" data-tina-field={tinaField(researchDoc, `research.researchAreas.${idx}.linkUrl`)}>
                 Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
               </a>
             </div>

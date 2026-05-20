@@ -33,9 +33,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": `${siteConfig.url}/#org`,
-      "name": siteConfig.social.name,
+      "name": siteConfig.title,
       "url": siteConfig.url,
-      "sameAs": [siteConfig.social.instagram, siteConfig.social.discord, siteConfig.social.linkedin, siteConfig.social.linktree].filter(Boolean),
+      "sameAs": siteConfig.socialLinks.map(s => s.url).filter(Boolean),
       "contactPoint": [{
         "@type": "ContactPoint",
         "email": siteConfig.email,

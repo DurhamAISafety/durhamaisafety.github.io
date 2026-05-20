@@ -1,15 +1,13 @@
 ---
 import { tinaField } from '@tinacms/astro';
 import type { Supporter } from '../../data/supporters';
+import SupporterLogo from '../SupporterLogo.astro';
 
 interface Props {
   supporters: Supporter[];
 }
 
 const { supporters } = Astro.props;
-
-const supporterLogoSrc = (logo: string): string =>
-  logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;
 ---
 
 <section id="supported-by" class="py-16 section-neutral">
@@ -20,39 +18,19 @@ const supporterLogoSrc = (logo: string): string =>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
       {supporters.map((supporter, i) => (
-        <a
-          href={supporter.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex flex-col items-center group reveal"
+        <div
+          class="reveal"
           style={`--reveal-delay: ${i * 80}ms`}
           data-tina-field={tinaField(supporter._source, 'link')}
         >
-          <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
-            <img
-              src={supporterLogoSrc(supporter.logo)}
-              alt={`${supporter.name} logo`}
-              class="max-h-16 max-w-16 object-contain"
-              data-tina-field={tinaField(supporter._source, 'logo')}
-            />
-          </div>
-          <div class="text-center min-h-[3rem] flex flex-col justify-start">
-            <span
-              class="text-base md:text-lg font-semibold"
-              data-tina-field={tinaField(supporter._source, 'name')}
-            >
-              {supporter.name}
-            </span>
-            {supporter.subtitle && (
-              <span
-                class="text-sm text-muted-text"
-                data-tina-field={tinaField(supporter._source, 'subtitle')}
-              >
-                {supporter.subtitle}
-              </span>
-            )}
-          </div>
-        </a>
+          <SupporterLogo
+            name={supporter.name}
+            logo={supporter.logo}
+            link={supporter.link}
+            subtitle={supporter.subtitle}
+            variant="grid"
+          />
+        </div>
       ))}
     </div>
   </div>
