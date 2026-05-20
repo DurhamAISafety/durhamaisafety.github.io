@@ -29,6 +29,9 @@ All content below can be edited either directly in the file or via the CMS at [d
 
 | To update... | Edit this file | CMS section |
 |---|---|---|
+| Home page text & headers | `src/content/pages/home.yml` | **Home Page** (visual preview) |
+| About page intro & impact | `src/content/pages/about.yml` | **About Page** (visual preview) |
+| Research opportunities & areas | `src/content/pages/research.yml` | **Research Page** (visual preview) |
 | Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
 | Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
 | Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** (visual preview) |
@@ -39,7 +42,6 @@ All content below can be edited either directly in the file or via the CMS at [d
 | Social links | `src/content/site-config.json` | **Site Config → Social Links** |
 | Site title, email, OG image | `src/content/site-config.json` | **Site Config** |
 | Footer tagline | `src/content/site-config.json` | **Site Config → Footer Tagline** |
-| Page content | `src/pages/[pagename].astro` | *(not CMS-editable)* |
 
 ### Adding a Team Member
 
@@ -122,6 +124,9 @@ The following collections are available in the CMS:
 | CMS Section | File edited |
 |---|---|
 | Site Config | `src/content/site-config.json` |
+| Home Page | `src/content/pages/home.yml` |
+| About Page | `src/content/pages/about.yml` |
+| Research Page | `src/content/pages/research.yml` |
 | People | `src/content/people.yml` |
 | Research Papers | `src/content/research.yml` |
 | Supporters | `src/content/supporters.yml` |
