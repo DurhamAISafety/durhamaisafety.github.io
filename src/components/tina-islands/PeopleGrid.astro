@@ -47,24 +47,8 @@ const getDefaultDescription = (person: Person): string => {
         <h4 class="text-xl font-bold mb-2" data-tina-field={tinaField(person._source, 'name')}>
           {person.name}
         </h4>
-        <p class="font-semibold mb-2 text-sm text-violet-600" data-tina-field={tinaField(person._source, 'role')}>
-          {person.role}
-        </p>
-        {person.type === 'member' && person.start_year && (
-          <p class="text-xs text-muted-text mb-2" data-tina-field={tinaField(person._source, 'start_year')}>
-            {person.start_year}–present
-          </p>
-        )}
-        {person.type === 'alumnus' && person.years_active && (
-          <p class="text-xs text-muted-text mb-2" data-tina-field={tinaField(person._source, 'years_active')}>
-            {person.years_active}
-          </p>
-        )}
-        <p class="text-xs md:text-sm text-muted-text mb-3 px-2 leading-relaxed min-h-[2.5rem]" data-tina-field={tinaField(person._source, 'description')}>
-          {person.description || getDefaultDescription(person)}
-        </p>
         {(person.linkedin || person['durham-staff-link'] || person.link) && (
-          <div class="flex items-center justify-center gap-3">
+          <div class="flex items-center justify-center gap-3 mb-2">
             {person.linkedin && (
               <a
                 href={person.linkedin}
@@ -103,6 +87,22 @@ const getDefaultDescription = (person: Person): string => {
             )}
           </div>
         )}
+        <p class="font-semibold mb-2 text-sm text-violet-600" data-tina-field={tinaField(person._source, 'role')}>
+          {person.role}
+        </p>
+        {person.type === 'member' && person.start_year && (
+          <p class="text-xs text-muted-text mb-2" data-tina-field={tinaField(person._source, 'start_year')}>
+            {person.start_year}–present
+          </p>
+        )}
+        {person.type === 'alumnus' && person.years_active && (
+          <p class="text-xs text-muted-text mb-2" data-tina-field={tinaField(person._source, 'years_active')}>
+            {person.years_active}
+          </p>
+        )}
+        <p class="text-xs md:text-sm text-muted-text mb-3 px-2 leading-relaxed min-h-[2.5rem]" data-tina-field={tinaField(person._source, 'description')}>
+          {person.description || getDefaultDescription(person)}
+        </p>
       </div>
     ))}
   </div>
