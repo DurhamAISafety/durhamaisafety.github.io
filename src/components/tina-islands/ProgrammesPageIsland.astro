@@ -1,0 +1,152 @@
+---
+import { tinaField } from '@tinacms/astro';
+import {
+  programmeSlug,
+  renderMarkdown,
+  type Programme,
+} from '../../data/programmes';
+
+interface Props {
+  programmes: Programme[];
+}
+
+const { programmes } = Astro.props;
+---
+
+<!-- Title & Jump Nav -->
+<section class="section section-neutral">
+  <div class="site-container text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Programmes</h1>
+    <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+
+    <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
+      {programmes.map((programme, i) => (
+        <>
+          {i > 0 && <span class="text-muted-text" aria-hidden="true">•</span>}
+          <a
+            href={`#${programmeSlug(programme.title)}`}
+            class="text-bright-purple hover:text-light-purple transition-colors font-medium"
+            data-tina-field={tinaField(programme._source, 'title')}
+          >
+            <i class={`${programme.icon} mr-1`} aria-hidden="true" data-tina-field={tinaField(programme._source, 'icon')}></i>
+            {programme.title}
+          </a>
+        </>
+      ))}
+    </nav>
+  </div>
+</section>
+
+<!-- Programme Sections -->
+{programmes.map((programme, i) => {
+  const slug = programmeSlug(programme.title);
+  const sectionClass = i % 2 === 0 ? 'section-neutral' : 'section-light';
+  const hasLongDesc = !!programme.long_description;
+  const hasWhos = programme.whos_this_for && programme.whos_this_for.length > 0;
+  const hasBoxes = programme.feature_boxes?.items && programme.feature_boxes.items.length > 0;
+  const boxCount = programme.feature_boxes?.items?.length ?? 0;
+  const boxGridClass = boxCount === 1
+    ? 'grid-cols-1 max-w-sm mx-auto'
+    : boxCount === 2
+    ? 'md:grid-cols-2'
+    : 'md:grid-cols-3';
+
+  return (
+    <section id={slug} class={`section ${sectionClass}`}>
+      <div class="site-container">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <i class={`${programme.icon} text-6xl text-durham-purple mb-6`} aria-hidden="true" data-tina-field={tinaField(programme._source, 'icon')}></i>
+            <h3
+              class="section-heading text-3xl md:text-4xl mb-6"
+              data-tina-field={tinaField(programme._source, 'title')}
+            >
+              {programme.title}
+            </h3>
+            <div class="w-24 h-1 bg-durham-purple mx-auto rounded-full mb-8"></div>
+          </div>
+
+          {(hasLongDesc || hasWhos) && (
+            <div class={`gap-8 items-start mb-12 ${hasLongDesc && hasWhos ? 'grid md:grid-cols-2' : ''}`}>
+              {hasLongDesc && (
+                <div>
+                  <h4 class="text-2xl font-bold mb-4">Overview</h4>
+                  <div
+                    data-tina-field={tinaField(programme._source, 'long_description')}
+                    set:html={renderMarkdown(programme.long_description!)}
+                  />
+                </div>
+              )}
+
+              {hasWhos && (
+                <div class="bg-gradient-to-br from-bright-purple/15 to-light-purple/15 backdrop-blur rounded-2xl p-6">
+                  <h4 class="text-xl font-bold mb-4">Who's this for?</h4>
+                  <ul class="space-y-3">
+                    {programme.whos_this_for!.map(item => (
+                      <li class="flex items-start">
+                        <i
+                          class={`${item.icon || 'fas fa-check'} text-lavender mr-3 mt-1 flex-shrink-0`}
+                          aria-hidden="true"
+                        ></i>
+                        <span data-tina-field={tinaField(item._source, 'text')}>{item.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+
+          {hasBoxes && (
+            <div>
+              {programme.feature_boxes!.heading && (
+                <h4
+                  class="text-xl font-bold mb-6"
+                  data-tina-field={tinaField(programme.feature_boxes!._source, 'heading')}
+                >
+                  {programme.feature_boxes!.heading}
+                </h4>
+              )}
+              <div class={`grid gap-6 ${boxGridClass}`}>
+                {programme.feature_boxes!.items.map(box => (
+                  <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
+                    <i class={`${box.icon} text-3xl text-deep-purple mb-4 block`} aria-hidden="true" data-tina-field={tinaField(box._source, 'icon')}></i>
+                    <h5
+                      class="text-lg font-bold mb-2 text-heading-text"
+                      data-tina-field={tinaField(box._source, 'title')}
+                    >
+                      {box.title}
+                    </h5>
+                    <p
+                      class="text-sm text-body-text leading-relaxed"
+                      data-tina-field={tinaField(box._source, 'description')}
+                    >
+                      {box.description}
+                    </p>
+                    {box.link && (
+                      <a
+                        href={box.link}
+                        target={box.link.startsWith('http') ? '_blank' : undefined}
+                        rel={box.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        class="inline-flex items-center gap-1 mt-3 text-base font-semibold text-bright-purple hover:underline transition-colors"
+                        data-tina-field={tinaField(box._source, 'link_label')}
+                      >
+                        {box.link_label ?? 'Learn more'}
+                        {box.link.startsWith('http') && (
+                          <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                        )}
+                        {!box.link.startsWith('http') && (
+                          <i class="fas fa-file-pdf text-xs" aria-hidden="true"></i>
+                        )}
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+})}

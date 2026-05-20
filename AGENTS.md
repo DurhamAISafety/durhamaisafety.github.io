@@ -1,16 +1,18 @@
 # Project Guidelines
 
 ## Project Snapshot
-Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is built with Astro 6, Tailwind CSS v4, TypeScript, and Tina CMS. Content is managed via Tina CMS at `/admin/` and stored in YAML/JSON files under `src/content/`.
+Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is currently built with Astro 5, Tailwind CSS v4, TypeScript, and Tina CMS. Keep Astro on the 5.x line while `@tinacms/astro` peers on `astro@^5.0.0`. Content is managed via Tina CMS at `/admin/` and stored in YAML/JSON files under `src/content/`.
 
 ## Build & Validation
 ```bash
 npm install           # install dependencies
-npm run dev           # local dev server + Tina CMS at /admin/
+npm run dev           # local dev server + Tina CMS at /admin/ NOTE - ALWAYS ASK THE USER TO RUN THIS THEN YOU (the agent) check the url
 npx astro check       # TypeScript/Astro type-check
 npm run build         # production build: tinacms build && astro build
 npm run preview       # preview production build locally
 ```
+
+Use npm as the package manager. Keep `package-lock.json`; do not add `pnpm-lock.yaml`, `pnpm-workspace.yaml`, Yarn lockfiles, or Bun lockfiles unless the whole repo is intentionally migrated and CI/Netlify are updated at the same time.
 
 There is no separate unit/integration test suite configured. Use `npx astro check` and `npm run build` as the baseline validation for most code changes.
 
@@ -82,6 +84,15 @@ Tina CMS provides a visual editing interface at `/admin/` and writes directly to
 Local CMS setup uses `.env.example` as the template. Required credentials are provided by the Tina Cloud project maintainers.
 
 Do not remove Netlify secrets-scan exclusions for Tina public IDs. `netlify.toml` must continue omitting `NEXT_PUBLIC_TINA_CLIENT_ID` and Tina generated paths from secrets scanning.
+
+Visual-editable Tina collections must have all of these pieces:
+- `ui.router` in `tina/config.ts` so Tina opens a preview route instead of only the basic collection form.
+- An async loader in `src/data/*.ts` that calls the generated Tina client and wraps it with `requestWithMetadata()`.
+- Original Tina source objects preserved on normalised data so components can call `tinaField(source, "field")`.
+- `data-tina-field` attributes on rendered editable elements.
+- `data-tina-island="/tina-island/name"` plus a `src/lib/tina-islands.ts` registry entry when live preview should refresh a page region.
+
+Current visual-editing coverage: Home Page, About Page, Research Page, People, Programmes, Get Involved Cards, Research Papers, and Supporters. Prefer extending Tina schemas and content files over adding new hardcoded page copy when maintainers may need to edit it. Page-specific copy is queried via page-specific loaders in `src/data/config.ts` (`getHomePageContent()`, `getAboutPageContent()`, `getResearchPageContent()`).
 
 ## CI/CD
 PR validation runs dependency install, `npx astro check`, `npm run build`, and link validation. Netlify is the primary deployment target for the production site. GitHub Pages is used as a redirect/fallback path to the canonical domain.

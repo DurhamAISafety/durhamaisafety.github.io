@@ -29,17 +29,19 @@ All content below can be edited either directly in the file or via the CMS at [d
 
 | To update... | Edit this file | CMS section |
 |---|---|---|
-| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** |
-| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** |
-| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** |
-| Research papers | `src/content/research.yml` | **Research Papers** |
-| Programmes | `src/content/programmes.yml` | **Programmes** |
-| Get Involved cards | `src/content/get-involved.yml` | **Get Involved Cards** |
+| Home page text & headers | `src/content/pages/home.yml` | **Home Page** (visual preview) |
+| About page intro & impact | `src/content/pages/about.yml` | **About Page** (visual preview) |
+| Research opportunities & areas | `src/content/pages/research.yml` | **Research Page** (visual preview) |
+| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
+| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
+| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** (visual preview) |
+| Research papers | `src/content/research.yml` | **Research Papers** (visual preview) |
+| Programmes | `src/content/programmes.yml` | **Programmes** (visual preview) |
+| Get Involved cards | `src/content/get-involved.yml` | **Get Involved Cards** (visual preview) |
 | Navigation links | `src/content/site-config.json` | **Site Config → Navigation** |
 | Social links | `src/content/site-config.json` | **Site Config → Social Links** |
 | Site title, email, OG image | `src/content/site-config.json` | **Site Config** |
 | Footer tagline | `src/content/site-config.json` | **Site Config → Footer Tagline** |
-| Page content | `src/pages/[pagename].astro` | *(not CMS-editable)* |
 
 ### Adding a Team Member
 
@@ -122,11 +124,27 @@ The following collections are available in the CMS:
 | CMS Section | File edited |
 |---|---|
 | Site Config | `src/content/site-config.json` |
+| Home Page | `src/content/pages/home.yml` |
+| About Page | `src/content/pages/about.yml` |
+| Research Page | `src/content/pages/research.yml` |
 | People | `src/content/people.yml` |
 | Research Papers | `src/content/research.yml` |
 | Supporters | `src/content/supporters.yml` |
 | Get Involved Cards | `src/content/get-involved.yml` |
 | Programmes | `src/content/programmes.yml` |
+
+Visual previews are enabled for People, Programmes, Get Involved Cards, Research Papers, and Supporters. Those collections open the relevant site route inside Tina so editors can click marked fields in the page preview as well as use the form sidebar.
+
+### Visual editing implementation
+
+Visual-editable collections need all of the following pieces:
+
+- A `ui.router` entry in [tina/config.ts](./tina/config.ts) that maps the document to the page route.
+- A Tina-backed async loader in `src/data/*.ts` using `client.queries.*` and `requestWithMetadata()`.
+- Rendered elements marked with `data-tina-field={tinaField(source, "field")}`.
+- A `data-tina-island="/tina-island/name"` wrapper plus a registry entry in `src/lib/tina-islands.ts` when the region should live-refresh inside the preview iframe.
+
+Keep the data boundary intact: pages and components should import typed helpers from `src/data`, not read YAML/JSON files directly.
 
 ### Local CMS setup
 
@@ -158,7 +176,7 @@ Changes pushed to `main` trigger two deployments automatically:
 | **Netlify** | [durhamaisafety.uk](https://durhamaisafety.uk) | Primary — full Astro build, custom domain |
 | **GitHub Pages** | [durhamaisafety.github.io](https://durhamaisafety.github.io) | Redirect fallback → durhamaisafety.uk |
 
-The build command is `tinacms build && astro build`. The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
+The build command is `tinacms build --skip-cloud-checks && astro build`. This still generates the Tina admin bundle and site output, but skips comparing the branch schema with Tina Cloud's remote schema so PR builds can pass before the branch has been merged into `main`. The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
 
 ## Key Reference Links
 

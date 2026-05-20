@@ -1,0 +1,119 @@
+---
+import { tinaField } from '@tinacms/astro';
+import { programmeSlug } from '../../data/programmes';
+import type { Programme } from '../../data/programmes';
+import type { HomePageConfig } from '../../data/config';
+
+interface Props {
+  homeConfig: HomePageConfig;
+  programmes: Programme[];
+}
+
+const { homeConfig, programmes } = Astro.props;
+---
+
+<section id="programmes" class="py-16 section-light">
+    <div class="site-container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig, 'programmesTitle')}>{homeConfig.programmesTitle}</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto mb-16">
+            <!-- First two: wider 2-column layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                {programmes.slice(0, 2).map((programme, i) => (
+                    <div
+                        class="program-card rounded-2xl p-8 text-center reveal"
+                        style={`--reveal-delay: ${i * 100}ms`}
+                    >
+                        <div class="mb-6">
+                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
+                            <h4
+                                class="text-2xl font-bold"
+                                data-tina-field={tinaField(programme._source, 'title')}
+                            >
+                                {programme.title}
+                            </h4>
+                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                        </div>
+                        <p
+                            class="mb-6 leading-relaxed text-body-text"
+                            data-tina-field={tinaField(programme._source, 'short_description')}
+                        >
+                            {programme.short_description}
+                        </p>
+                        {programme.tags && programme.tags.length > 0 && (
+                            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                                {programme.tags.slice(0, 3).map(tag => (
+                                    <div class="flex items-center gap-2">
+                                        <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
+                                        <span
+                                            class="text-sm text-body-text"
+                                            data-tina-field={tinaField(tag._source, 'label')}
+                                        >
+                                            {tag.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        <a
+                            href={`/programmes/#${programmeSlug(programme.title)}`}
+                            class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]"
+                        >
+                            Learn More
+                        </a>
+                    </div>
+                ))}
+            </div>
+            <!-- Remaining: 3-column layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {programmes.slice(2).map((programme, i) => (
+                    <div
+                        class="program-card rounded-2xl p-8 text-center reveal"
+                        style={`--reveal-delay: ${(i + 2) * 100}ms`}
+                    >
+                        <div class="mb-6">
+                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
+                            <h4
+                                class="text-2xl font-bold"
+                                data-tina-field={tinaField(programme._source, 'title')}
+                            >
+                                {programme.title}
+                            </h4>
+                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+                        </div>
+                        <p
+                            class="mb-6 leading-relaxed text-body-text"
+                            data-tina-field={tinaField(programme._source, 'short_description')}
+                        >
+                            {programme.short_description}
+                        </p>
+                        {programme.tags && programme.tags.length > 0 && (
+                            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                                {programme.tags.slice(0, 3).map(tag => (
+                                    <div class="flex items-center gap-2">
+                                        <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
+                                        <span
+                                            class="text-sm text-body-text"
+                                            data-tina-field={tinaField(tag._source, 'label')}
+                                        >
+                                            {tag.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        <a
+                            href={`/programmes/#${programmeSlug(programme.title)}`}
+                            class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]"
+                        >
+                            Learn More
+                        </a>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>

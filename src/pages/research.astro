@@ -1,7 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { academicPapers, nonAcademicPapers } from "../data/research";
-import ResearchCarousel from "../components/ResearchCarousel.astro";
+import { getResearchContent } from "../data/research";
+import { getResearchPageContent } from "../data/config";
+import { tinaField } from "@tinacms/astro";
+import ResearchPageIsland from "../components/tina-islands/ResearchPageIsland.astro";
+
+const { academicPapers, nonAcademicPapers } = await getResearchContent();
+const { researchConfig } = await getResearchPageContent();
 
 const page = {
   title: "Research",
@@ -32,60 +37,31 @@ const page = {
     </div>
   </section>
 
-  {/* Recent Research */}
-  <section class="section section-light">
-    <div class="site-container">
-      {/* Recent Research */}
-      <div id="recent-research" class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Recent Research involving DAISI Members</h3>
-        <div class="section-divider"></div>
-      </div>
-
-      {/* Academic Publications Carousel */}
-      <ResearchCarousel 
-        papers={academicPapers} 
-        title="Academic Publications" 
-        id="academic-carousel"
-      />
-
-      {/* Non-Academic Research Carousel */}
-      {nonAcademicPapers.length > 0 && (
-        <ResearchCarousel 
-          papers={nonAcademicPapers} 
-          title="Other Research & Projects" 
-          id="non-academic-carousel"
-        />
-      )}
-
-    </div>
-  </section>
+  <div class="contents" data-tina-island="/tina-island/research">
+    <ResearchPageIsland academicPapers={academicPapers} nonAcademicPapers={nonAcademicPapers} />
+  </div>
 
   {/* Research Opportunities */}
   <section id="opportunities" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Opportunities</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(researchConfig, 'opportunitiesTitle')}>{researchConfig.opportunitiesTitle}</h3>
         <div class="section-divider"></div>
       </div>
       <div class="max-w-4xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <div class="research-card rounded-2xl p-6 card-hover">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-graduation-cap text-3xl text-bright-purple mr-4" aria-hidden="true"></i>
-              <h4 class="text-lg font-bold">Undergraduates</h4>
+          {researchConfig.opportunities.map((opp) => (
+            <div class="research-card rounded-2xl p-6 card-hover">
+              <div class="flex items-center mb-4">
+                <i class={`${opp.icon} text-3xl ${opp.iconColor} mr-4`} data-tina-field={tinaField(opp, 'icon')} aria-hidden="true"></i>
+                <h4 class="text-lg font-bold" data-tina-field={tinaField(opp, 'title')}>{opp.title}</h4>
+              </div>
+              <p class="text-sm leading-relaxed" data-tina-field={tinaField(opp, 'description')}>{opp.description}</p>
             </div>
-            <p class="text-sm leading-relaxed">We can advise and support you on dissertation and individual study projects.</p>
-          </div>
-          <div class="research-card rounded-2xl p-6 card-hover">
-            <div class="flex items-center mb-4">
-              <i class="fas fa-user-graduate text-3xl text-light-purple mr-4" aria-hidden="true"></i>
-              <h4 class="text-lg font-bold">Faculty</h4>
-            </div>
-            <p class="text-sm leading-relaxed">We can signpost promising research directions and funding opportunities, and support you throughout.</p>
-          </div>
+          ))}
         </div>
         <div class="text-center">
-          <a href="/programmes/#research-projects" class="btn-cta">I'm Interested</a>
+          <a href={researchConfig.opportunitiesCtaLink} class="btn-cta" data-tina-field={tinaField(researchConfig, 'opportunitiesCtaText')}>{researchConfig.opportunitiesCtaText}</a>
         </div>
       </div>
     </div>
@@ -95,79 +71,26 @@ const page = {
   <section id="research-areas" class="section section-light">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">Research Areas</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(researchConfig, 'areasTitle')}>{researchConfig.areasTitle}</h3>
         <div class="section-divider"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <div class="text-center mb-4"><i class="fas fa-search text-5xl text-bright-purple" aria-hidden="true"></i></div>
-          <h4 class="text-xl font-bold text-center mb-4">Interpretability</h4>
-          <p class="text-center text-sm leading-relaxed">Understanding how AI systems make decisions and what they learn from data.</p>
-          <div class="text-center mt-3">
-            <a href="https://arxiv.org/abs/2501.16496" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
+        {researchConfig.researchAreas.map((area) => (
+          <div class="research-card rounded-2xl p-6 card-hover">
+            <div class="text-center mb-4">
+              <i class={`${area.icon} text-5xl ${area.iconColor}`} data-tina-field={tinaField(area, 'icon')} aria-hidden="true"></i>
+            </div>
+            <h4 class="text-xl font-bold text-center mb-4" data-tina-field={tinaField(area, 'title')}>{area.title}</h4>
+            <p class="text-center text-sm leading-relaxed" data-tina-field={tinaField(area, 'description')}>{area.description}</p>
+            <div class="text-center mt-3">
+              <a href={area.linkUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center" data-tina-field={tinaField(area, 'linkUrl')}>
+                Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <div class="text-center mb-4"><i class="fas fa-gavel text-5xl text-light-purple" aria-hidden="true"></i></div>
-          <h4 class="text-xl font-bold text-center mb-4">Governance</h4>
-          <p class="text-center text-sm leading-relaxed">Developing frameworks for responsible AI development and deployment.</p>
-          <div class="text-center mt-3">
-            <a href="https://www.markusanderljung.com/blog/a-collection-of-ai-governance-research-ideas-2024" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <div class="text-center mb-4"><i class="fas fa-clipboard-check text-5xl text-deep-purple" aria-hidden="true"></i></div>
-          <h4 class="text-xl font-bold text-center mb-4">Evaluations</h4>
-          <p class="text-center text-sm leading-relaxed">Developing methods to assess AI capabilities, alignment, and safety properties.</p>
-          <div class="text-center mt-3">
-            <a href="https://cset.georgetown.edu/article/ai-safety-evaluations-an-explainer/" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <div class="text-center mb-4"><i class="fas fa-user-shield text-5xl text-lavender" aria-hidden="true"></i></div>
-          <h4 class="text-xl font-bold text-center mb-4">Oversight / Control</h4>
-          <p class="text-center text-sm leading-relaxed">Ensuring meaningful human oversight and control over AI systems.</p>
-          <div class="text-center mt-3">
-            <a href="https://blog.redwoodresearch.org/p/guide" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <div class="text-center mb-4"><i class="fas fa-robot text-5xl text-violet-600" aria-hidden="true"></i></div>
-          <h4 class="text-xl font-bold text-center mb-4">AI Agency</h4>
-          <p class="text-center text-sm leading-relaxed">Understanding and managing autonomous AI behavior and decision-making.</p>
-          <div class="text-center mt-3">
-            <a href="https://aisafety.info/questions/7782/What-is-%22agent-foundations%22" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="research-card rounded-2xl p-6 card-hover">
-          <div class="text-center mb-4"><i class="fas fa-shield-alt text-5xl text-fuchsia-600" aria-hidden="true"></i></div>
-          <h4 class="text-xl font-bold text-center mb-4">Security</h4>
-          <p class="text-center text-sm leading-relaxed">Protecting AI systems from adversarial attacks and malicious use.</p>
-          <div class="text-center mt-3">
-            <a href="https://www.aisi.gov.uk/research?1_category_equal=%5B%22Red+Team%22%5D" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-              Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
-
-
 </Layout>

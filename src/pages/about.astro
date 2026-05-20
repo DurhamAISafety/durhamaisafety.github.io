@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { team, alumni } from '../data/people';
-import { Image } from 'astro:assets';
+import { getPeopleContent } from '../data/people';
+import { getAboutPageContent } from '../data/config';
+import { tinaField } from '@tinacms/astro';
+import AboutTeamIsland from '../components/tina-islands/AboutTeamIsland.astro';
 
-const durhamLogoPath = '/images/durham-logo.png';
+const { team, alumni } = await getPeopleContent();
+const { aboutConfig } = await getAboutPageContent();
 ---
 
 <Layout 
@@ -18,142 +21,42 @@ const durhamLogoPath = '/images/durham-logo.png';
 					<h1 class="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
 					<div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
 				</div>
-				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto">
-					We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/what-is-ai-safety/" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:
-				</p>
-
-	
+				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto" data-tina-field={tinaField(aboutConfig, 'introText')} set:html={aboutConfig.introTextHtml} />
 
 				<div class="grid md:grid-cols-3 gap-6 mb-12">
-					<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
-						<div class="text-center mb-4">
-							<i class="fas fa-bullhorn text-4xl text-durham-purple"></i>
+					{aboutConfig.missionCards.map((card) => (
+						<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
+							<div class="text-center mb-4">
+								<i class={`${card.icon} text-4xl text-durham-purple`} data-tina-field={tinaField(card, 'icon')}></i>
+							</div>
+							<h4 class="text-xl font-bold mb-4 text-center" data-tina-field={tinaField(card, 'title')}>{card.title}</h4>
+							<p class="text-base leading-relaxed text-center" data-tina-field={tinaField(card, 'description')}>{card.description}</p>
 						</div>
-						<h4 class="text-xl font-bold mb-4 text-center">Raising Awareness</h4>
-						<p class="text-base leading-relaxed text-center">Through discussion groups and speaker events</p>
-					</div>
-					<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
-						<div class="text-center mb-4">
-							<i class="fas fa-tools text-4xl text-durham-purple"></i>
-						</div>
-						<h4 class="text-xl font-bold mb-4 text-center">Upskilling Members</h4>
-						<p class="text-base leading-relaxed text-center">In safety techniques through workshops and 1-1 support</p>
-					</div>
-					<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
-						<div class="text-center mb-4">
-							<i class="fas fa-users text-4xl text-durham-purple"></i>
-						</div>
-						<h4 class="text-xl font-bold mb-4 text-center">Fostering Community</h4>
-						<p class="text-base leading-relaxed text-center">For high-quality discussion, support and connections to the wider field of AI safety</p>
-					</div>
+					))}
 				</div>
 
 				<div class="program-card rounded-2xl p-8 border border-durham-purple/30 shadow-lg mb-8">
 					<div class="text-center">
 						<div class="mb-4">
-							<i class="fas fa-chart-line text-4xl text-durham-purple"></i>
+							<i class={`${aboutConfig.impactIcon} text-4xl text-durham-purple`} data-tina-field={tinaField(aboutConfig, 'impactIcon')}></i>
 						</div>
-						<h4 class="text-2xl font-bold mb-4">Our Impact</h4>
-						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto">
-							Our members have published in top AI and law conferences, participated in 
-							<a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple font-semibold transition-colors underline">MATS</a>
-							and gone on to study AI ethics at Cambridge.
-						</p>
+						<h4 class="text-2xl font-bold mb-4" data-tina-field={tinaField(aboutConfig, 'impactTitle')}>{aboutConfig.impactTitle}</h4>
+						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto" data-tina-field={tinaField(aboutConfig, 'impactText')} set:html={aboutConfig.impactTextHtml} />
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Team Section -->
-	<section id="team" class="section section-light">
-		<div class="site-container">
-			<div class="text-center mb-12">
-				<h2 class="section-heading text-3xl md:text-4xl mb-6">Our Team</h2>
-				<div class="section-divider"></div>
-			</div>
-			<div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-				{team.map((person, i) => (
-					<div class="text-center reveal w-40 md:w-48" style={`--reveal-delay: ${(i % 4) * 80}ms`}>
-						<div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
-							{person.photo ? (
-								typeof person.photo === 'string' ? (
-									<img
-										src={person.photo}
-										alt={person.name}
-										loading="lazy"
-										decoding="async"
-										class="w-full h-full object-cover"
-										onerror="var fb0=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb0){fb0.style.display='flex'}; this.remove();"
-										style="width:100%; height:100%; object-fit: cover;"
-									/>
-								) : (
-									<Image
-										src={person.photo}
-										alt={person.name}
-										widths={[128,160,200,320]}
-										sizes="(min-width: 1024px) 160px, (min-width: 768px) 160px, 128px"
-										fit="cover"
-										loading="lazy"
-										decoding="async"
-										class="w-full h-full object-cover"
-										onerror="const fb1=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb1){fb1.style.display='flex'}; this.remove();"
-									/>
-								)
-							) : (
-								<i class="fas fa-user text-3xl text-white"></i>
-							)}
-							<div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
-								<i class="fas fa-user text-3xl text-white"></i>
-							</div>
-						</div>
-				<h4 class="text-xl font-bold mb-2">{person.name}</h4>
-				<p class="font-semibold mb-2 text-sm text-violet-600">{person.role}</p>
-				{person.start_year && (
-					<p class="text-xs text-muted-text mb-2">{person.start_year}–present</p>
-				)}
-				{(person.linkedin || person['durham-staff-link'] || person.link) && (
-					<div class="flex items-center justify-center gap-3">
-						{person.linkedin && (
-							<a href={person.linkedin} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} on LinkedIn`}>
-								<i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
-							</a>
-						)}
-						{person['durham-staff-link'] && (
-							<a href={person['durham-staff-link']} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:opacity-70 transition-opacity" aria-label={`${person.name} Durham staff page`}>
-								<img src={durhamLogoPath} alt="Durham University" class="inline-block w-5 h-5" />
-							</a>
-						)}
-						{person.link && (
-							<a href={person.link} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple transition-colors" aria-label={`${person.name} website`}>
-								<i class="fas fa-link text-sm" aria-hidden="true"></i>
-							</a>
-						)}
-					</div>
-				)}
-			</div>
-				))}
-			</div>
-			{alumni.length > 0 && (
-				<div class="text-center mt-10">
-					<a href="/alumni/" class="inline-flex items-center gap-2 text-durham-purple hover:text-bright-purple font-medium transition-colors text-base">
-						See alumni &amp; past exec
-						<i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
-					</a>
-				</div>
-			)}
-		</div>
-	</section>
+	<div class="contents" data-tina-island="/tina-island/about-team">
+		<AboutTeamIsland team={team} alumni={alumni} />
+	</div>
 
 	<!-- Join Section -->
 	<section class="section section-neutral">
 		<div class="site-container text-center">
-			<h3 class="section-heading text-3xl md:text-4xl mb-6">Join Our Team</h3>
-			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
-				If you want to help organise and shape DAISI, contact 
-				<a href="mailto:durhamaisi@durham.ac.uk" class="text-bright-purple hover:text-light-purple font-semibold transition-colors">durhamaisi@durham.ac.uk</a> and we'll be in touch!
-			</p>
+			<h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(aboutConfig, 'joinTitle')}>{aboutConfig.joinTitle}</h3>
+			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed" data-tina-field={tinaField(aboutConfig, 'joinText')} set:html={aboutConfig.joinTextHtml} />
 		</div>
 	</section>
 </Layout>
-

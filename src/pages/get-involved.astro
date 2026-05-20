@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { featuredCards, moreCards } from "../data/get-involved";
+import GetInvolvedPageIsland from "../components/tina-islands/GetInvolvedPageIsland.astro";
+import { getGetInvolvedContent } from "../data/get-involved";
+
+const { featuredCards, moreCards } = await getGetInvolvedContent();
 ---
 
 <Layout 
@@ -14,72 +17,7 @@ import { featuredCards, moreCards } from "../data/get-involved";
     </div>
   </section>
 
-  {/* Featured / Recommended Cards */}
-  {featuredCards.length > 0 && (
-    <section class="section section-light">
-      <div class="site-container">
-        <div class={`grid grid-cols-1 gap-8 max-w-4xl mx-auto mb-12 ${
-          featuredCards.length === 1
-            ? 'md:grid-cols-1 max-w-sm'
-            : featuredCards.length === 2
-            ? 'md:grid-cols-2'
-            : 'md:grid-cols-3'
-        }`}>
-          {featuredCards.map((card, i) => {
-            const borderClasses = ['border-bright-purple-50', 'border-light-purple-50', 'border-lavender-50'];
-            const borderClass = borderClasses[i % borderClasses.length];
-            return (
-              <div class={`involvement-card card p-6 card-hover text-center border-strong ${borderClass}`}>
-                <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-                <h4 class="text-xl font-bold mb-4">{card.title}</h4>
-                <p class="text-sm leading-relaxed mb-4">{card.description}</p>
-                {card.recommended_label && (
-                  <div class="text-center mb-4">
-                    <span class="text-durham-purple font-semibold">{card.recommended_label}</span>
-                  </div>
-                )}
-                <a
-                  href={card.link_url}
-                  class="btn btn-primary btn-sm"
-                  {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                >
-                  {card.link_label}
-                  {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  )}
-
-  {/* More Ways to Get Involved */}
-  {moreCards.length > 0 && (
-    <section class="section section-neutral">
-      <div class="site-container">
-        <div class="text-center mb-8">
-          <h4 class="text-2xl font-bold mb-4">More Ways to Get Involved</h4>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {moreCards.map((card) => (
-            <div class="involvement-card card p-6 card-hover text-center">
-              <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-              <h4 class="text-xl font-bold mb-4">{card.title}</h4>
-              <p class="text-sm leading-relaxed mb-4">{card.description}</p>
-              <a
-                href={card.link_url}
-                class="btn btn-secondary btn-sm hover:underline transition-all duration-200"
-                {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                {card.link_label}
-                {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
+  <div class="contents" data-tina-island="/tina-island/get-involved">
+    <GetInvolvedPageIsland featuredCards={featuredCards} moreCards={moreCards} />
+  </div>
 </Layout>

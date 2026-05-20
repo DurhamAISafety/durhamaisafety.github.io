@@ -1,19 +1,31 @@
 # Future Work
 
+## CMS Model
+
+- Migrate `/what-is-ai-safety/` to Tina after the page-owned model is proven.
+  - It likely needs flexible rich text or a small block schema for definitions, timeline items, resource links, video embeds, and updateable examples.
+
 ## CSS And Components
 
-- Delete redundant `.dark` rules in individual CSS modules where semantic tokens already handle light/dark variants.
-- Migrate simple reusable classes such as `.btn-cta` and `.section-heading` to Tailwind utilities or `@apply` where that reduces custom CSS.
+- Delete redundant `.dark` rules in individual CSS modules where semantic tokens already cover light/dark variants.
+- Migrate simple reusable classes such as `.btn-cta` and `.section-heading` to Tailwind utilities or `@apply` only where it reduces custom CSS.
 - Extract repeated card patterns into Astro components with explicit `variant` props, so styling no longer depends on broad section context selectors.
 
-## Content And CMS
+## Visual Editing QA
 
-- Add schema validation for `src/content/*.yml` and `site-config.json` in the `src/data/*.ts` loaders, so malformed content fails clearly at build time.
-- Add organiser calendar management to Tina CMS if event/calendar ownership moves into the site.
-- Explore Tina visual editing for Astro pages.
-- Move calendar URLs and labels out of `src/pages/index.astro` into content/config if organisers need to update them without code edits.
+- Add a manual smoke-test checklist for Tina visual editing.
+  - Open `/admin/index.html`.
+  - Open each routed collection.
+  - Confirm Tina navigates to the expected preview route.
+  - Click a marked field in the preview.
+  - Confirm the sidebar focuses the matching field.
+  - Edit a field and confirm the relevant island live-refreshes.
+- After the manual checklist is stable, consider a small Playwright smoke test for the public routes. Full Tina editor automation can wait.
 
-## Pages
+## Content And Design
 
-- Break the homepage into smaller sections, starting with events, programmes preview, research preview, and supporters.
-- Split page-local JavaScript and styles out of `src/pages/index.astro` once the homepage sections are extracted.
+- Replace informal visual-overhaul notes with a short design spec before implementation.
+  - Direction to explore: a more people-focused homepage while keeping Durham Cathedral/Durham identity visible.
+  - Possible visual motif: restrained gothic/neural-network treatment, avoiding generic AI gradients.
+  - Use Merriweather or another serif for headings only if it fits the final design direction; keep body/UI text readable and restrained.
+- Add organiser calendar management to Tina only if event/calendar ownership moves into the site.

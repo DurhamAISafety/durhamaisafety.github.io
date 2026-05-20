@@ -1,0 +1,36 @@
+---
+import { tinaField } from '@tinacms/astro';
+import type { Supporter } from '../../data/supporters';
+
+interface Props {
+  supporters: Supporter[];
+}
+
+const { supporters } = Astro.props;
+
+const supporterLogoSrc = (logo: string): string =>
+  logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;
+---
+
+<div class="pt-8 border-t border-white/20">
+  <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-4">Proudly supported by</p>
+  <div class="flex flex-wrap items-center gap-3">
+    {supporters.map((supporter) => (
+      <a
+        href={supporter.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center bg-white/90 hover:bg-white rounded-lg px-3 py-2 transition-all duration-200 hover:scale-105"
+        title={supporter.name}
+        data-tina-field={tinaField(supporter._source, 'link')}
+      >
+        <img
+          src={supporterLogoSrc(supporter.logo)}
+          alt={supporter.name}
+          class="h-7 max-w-[100px] object-contain"
+          data-tina-field={tinaField(supporter._source, 'logo')}
+        />
+      </a>
+    ))}
+  </div>
+</div>

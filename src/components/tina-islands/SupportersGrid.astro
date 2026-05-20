@@ -1,0 +1,37 @@
+---
+import { tinaField } from '@tinacms/astro';
+import type { Supporter } from '../../data/supporters';
+import SupporterLogo from '../SupporterLogo.astro';
+
+interface Props {
+  supporters: Supporter[];
+}
+
+const { supporters } = Astro.props;
+---
+
+<section id="supported-by" class="py-16 section-neutral">
+  <div class="site-container mx-auto px-6">
+    <div class="text-center mb-10 reveal">
+      <h2 class="section-heading text-4xl md:text-5xl mb-6">Proudly Supported By</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      {supporters.map((supporter, i) => (
+        <div
+          class="reveal"
+          style={`--reveal-delay: ${i * 80}ms`}
+          data-tina-field={tinaField(supporter._source, 'link')}
+        >
+          <SupporterLogo
+            name={supporter.name}
+            logo={supporter.logo}
+            link={supporter.link}
+            subtitle={supporter.subtitle}
+            variant="grid"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

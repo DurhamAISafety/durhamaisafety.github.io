@@ -11,9 +11,9 @@ export default defineConfig({
   branch,
 
   // Get this from tina.io
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || null,
   // Get this from tina.io
-  token: process.env.TINA_TOKEN,
+  token: process.env.TINA_TOKEN || null,
 
   build: {
     outputFolder: "admin",
@@ -207,6 +207,42 @@ export default defineConfig({
               description: 'Short blurb shown under the email in the footer, e.g. "Questions, suggestions, or want to collaborate? Feel free to reach out!"',
             },
           },
+
+          // ── Calendar Config ───────────────────────────────────────────────
+          {
+            type: "object",
+            name: "calendar",
+            label: "Events Calendar Config",
+            fields: [
+              {
+                type: "string",
+                name: "lumaCalendarId",
+                label: "Luma Calendar ID",
+                required: true,
+                ui: {
+                  description: "The Luma calendar ID, e.g., 'cal-lvIwlKjJGAceOBN'",
+                },
+              },
+              {
+                type: "string",
+                name: "lumaCalendarSlug",
+                label: "Luma Calendar URL Slug",
+                required: true,
+                ui: {
+                  description: "The slug of the calendar URL, e.g., 'daisi' from luma.com/daisi",
+                },
+              },
+              {
+                type: "string",
+                name: "googleCalendarBackupId",
+                label: "Backup Google Calendar ID",
+                required: true,
+                ui: {
+                  description: "The raw calendar ID used for the fallback Google Calendar link",
+                },
+              },
+            ],
+          },
         ],
       },
 
@@ -220,6 +256,7 @@ export default defineConfig({
           include: "people",
         },
         ui: {
+          router: () => "/about/",
           allowedActions: {
             create: false,
             delete: false,
@@ -305,6 +342,15 @@ export default defineConfig({
                 label: "Personal Website",
                 required: false,
               },
+              {
+                type: "string",
+                name: "description",
+                label: "Description",
+                required: false,
+                ui: {
+                  description: "1-2 sentence description. Defaults to 'Member of DAISI ...' if blank.",
+                },
+              },
             ],
           },
         ],
@@ -320,6 +366,7 @@ export default defineConfig({
           include: "research",
         },
         ui: {
+          router: () => "/research/",
           allowedActions: {
             create: false,
             delete: false,
@@ -440,6 +487,7 @@ export default defineConfig({
           include: "supporters",
         },
         ui: {
+          router: () => "/",
           allowedActions: {
             create: false,
             delete: false,
@@ -499,6 +547,7 @@ export default defineConfig({
           include: "get-involved",
         },
         ui: {
+          router: () => "/get-involved/",
           allowedActions: {
             create: false,
             delete: false,
@@ -599,6 +648,7 @@ export default defineConfig({
           include: "programmes",
         },
         ui: {
+          router: () => "/programmes/",
           allowedActions: {
             create: false,
             delete: false,
@@ -792,6 +842,166 @@ export default defineConfig({
                       },
                     ],
                   },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      // ── Home Page ──────────────────────────────────────────────────────────
+      {
+        name: "homePage",
+        label: "Home Page",
+        path: "src/content/pages",
+        format: "yml",
+        match: {
+          include: "home",
+        },
+        ui: {
+          router: () => "/",
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "home",
+            label: "Home Page Content",
+            fields: [
+              { type: "string", name: "heroTitle", label: "Hero Title", required: true },
+              { type: "string", name: "heroSubtitleHighlight", label: "Hero Subtitle Highlight", required: true },
+              { type: "string", name: "heroSubtitleMain", label: "Hero Subtitle Main", required: true },
+              { type: "string", name: "heroPrimaryCtaText", label: "Hero Primary CTA Text", required: true },
+              { type: "string", name: "heroPrimaryCtaLink", label: "Hero Primary CTA Link", required: true },
+              { type: "string", name: "heroSecondaryCtaText", label: "Hero Secondary CTA Text", required: true },
+              { type: "string", name: "heroSecondaryCtaLink", label: "Hero Secondary CTA Link", required: true },
+              { type: "string", name: "eventsTitle", label: "Events Section Title", required: true },
+              { type: "string", name: "programmesTitle", label: "Programmes Section Title", required: true },
+              { type: "string", name: "researchTitle", label: "Research Section Title", required: true },
+              { type: "string", name: "researchSubtitle", label: "Research Carousel Subtitle", required: true },
+              { type: "string", name: "researchViewAllText", label: "Research View All Text", required: true },
+            ],
+          },
+        ],
+      },
+      // ── About Page ─────────────────────────────────────────────────────────
+      {
+        name: "aboutPage",
+        label: "About Page",
+        path: "src/content/pages",
+        format: "yml",
+        match: {
+          include: "about",
+        },
+        ui: {
+          router: () => "/about/",
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "about",
+            label: "About Page Content",
+            fields: [
+              { type: "string", name: "introText", label: "Intro Text", required: true, ui: { component: "textarea" } },
+              {
+                type: "object",
+                name: "missionCards",
+                label: "Mission Cards",
+                list: true,
+                fields: [
+                  { type: "string", name: "icon", label: "Font Awesome Icon", required: true },
+                  { type: "string", name: "title", label: "Title", required: true },
+                  { type: "string", name: "description", label: "Description", required: true, ui: { component: "textarea" } },
+                ],
+              },
+              { type: "string", name: "impactTitle", label: "Impact Title", required: true },
+              { type: "string", name: "impactIcon", label: "Impact Icon", required: true },
+              { type: "string", name: "impactText", label: "Impact Text", required: true, ui: { component: "textarea" } },
+              { type: "string", name: "joinTitle", label: "Join Title", required: true },
+              { type: "string", name: "joinText", label: "Join Text", required: true, ui: { component: "textarea" } },
+            ],
+          },
+        ],
+      },
+      // ── Research Page ──────────────────────────────────────────────────────
+      {
+        name: "researchPage",
+        label: "Research Page",
+        path: "src/content/pages",
+        format: "yml",
+        match: {
+          include: "research",
+        },
+        ui: {
+          router: () => "/research/",
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "object",
+            name: "research",
+            label: "Research Page Content",
+            fields: [
+              { type: "string", name: "opportunitiesTitle", label: "Opportunities Title", required: true },
+              {
+                type: "object",
+                name: "opportunities",
+                label: "Opportunities",
+                list: true,
+                fields: [
+                  { type: "string", name: "icon", label: "Icon Class", required: true },
+                  {
+                    type: "string",
+                    name: "iconColor",
+                    label: "Icon Color Class",
+                    required: true,
+                    options: [
+                      { label: "Bright Purple", value: "text-bright-purple" },
+                      { label: "Light Purple", value: "text-light-purple" },
+                      { label: "Deep Purple", value: "text-deep-purple" },
+                      { label: "Lavender", value: "text-lavender" },
+                    ],
+                  },
+                  { type: "string", name: "title", label: "Title", required: true },
+                  { type: "string", name: "description", label: "Description", required: true, ui: { component: "textarea" } },
+                ],
+              },
+              { type: "string", name: "opportunitiesCtaText", label: "Opportunities CTA Text", required: true },
+              { type: "string", name: "opportunitiesCtaLink", label: "Opportunities CTA Link", required: true },
+              { type: "string", name: "areasTitle", label: "Areas Title", required: true },
+              {
+                type: "object",
+                name: "researchAreas",
+                label: "Research Areas",
+                list: true,
+                fields: [
+                  { type: "string", name: "icon", label: "Icon Class", required: true },
+                  {
+                    type: "string",
+                    name: "iconColor",
+                    label: "Icon Color Class",
+                    required: true,
+                    options: [
+                      { label: "Bright Purple", value: "text-bright-purple" },
+                      { label: "Light Purple", value: "text-light-purple" },
+                      { label: "Deep Purple", value: "text-deep-purple" },
+                      { label: "Lavender", value: "text-lavender" },
+                      { label: "Violet 600", value: "text-violet-600" },
+                      { label: "Fuchsia 600", value: "text-fuchsia-600" },
+                    ],
+                  },
+                  { type: "string", name: "title", label: "Title", required: true },
+                  { type: "string", name: "description", label: "Description", required: true, ui: { component: "textarea" } },
+                  { type: "string", name: "linkUrl", label: "Link URL", required: true },
                 ],
               },
             ],

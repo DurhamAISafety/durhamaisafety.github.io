@@ -609,3 +609,17 @@
     color: #7c3aed !important;
     /* Purple */
 }
+
+/* -------------------------------------------
+   Fixes for Supporters Grid:
+   - Ensure logo cards have white background for contrast (e.g. black SVGs)
+-------------------------------------------- */
+#supported-by .involvement-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(57, 20, 79, 0.15) !important;
+}
+
+.dark #supported-by .involvement-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(157, 78, 221, 0.3) !important;
+}

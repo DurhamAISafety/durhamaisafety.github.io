@@ -1,19 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import heroImage from '../assets/hero-picture.jpeg';
-import { research } from '../data/research';
-import { supporters } from '../data/supporters';
-import { programmes, programmeSlug } from '../data/programmes';
-import ResearchCarousel from '../components/ResearchCarousel.astro';
+import { getResearchContent } from '../data/research';
+import { getSupportersContent } from '../data/supporters';
+import { getProgrammesContent } from '../data/programmes';
+import { getSiteConfigContent, getHomePageContent } from '../data/config';
 
-const supporterLogoSrc = (logo: string): string =>
-    logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;
+import HeroSection from '../components/sections/HeroSection.astro';
+import EventsSection from '../components/sections/EventsSection.astro';
+import ProgrammePreviewSection from '../components/sections/ProgrammePreviewSection.astro';
+import ResearchPreviewSection from '../components/sections/ResearchPreviewSection.astro';
+import SupportersSection from '../components/sections/SupportersSection.astro';
+
+const { programmes } = await getProgrammesContent();
+const { research } = await getResearchContent();
+const { supporters } = await getSupportersContent();
+const { siteConfig } = await getSiteConfigContent();
+const { homeConfig } = await getHomePageContent();
 ---
 
 <Layout 
   description="Durham AI Safety Initiative (DAISI) at Durham University: events, research and community focused on reducing catastrophic risks from advanced AI."
-    heroImage={heroImage.src}
+  heroImage={heroImage.src}
 >
   <script
     is:inline
@@ -42,279 +50,37 @@ const supporterLogoSrc = (logo: string): string =>
       }
     })}
   />
-    <!-- Hero Section -->
-    <section id="home" class="hero-section min-h-100dvh min-h-100svh min-h-100vh flex items-center relative overflow-hidden">
-        <!-- Hero Image with Parallax -->
-        <div class="hero-parallax-container">
-            <Image
-                src={heroImage}
-                alt="Durham Cathedral"
-                class="hero-parallax-image"
-                widths={[640, 768, 1024, 1280, 1536, 1920]}
-                sizes="100vw"
-                loading="eager"
-                decoding="async"
-            />
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-br from-black/65 via-black/50 to-black/30"></div>
-    <div class="site-container mx-auto px-6 relative z-10 w-full">
-            <div class="max-w-2xl pt-28 md:pt-36 pb-16 space-y-6 md:space-y-8">
-                <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight">
-                    Durham students and academics for <em>reducing catastrophic risks from advanced AI</em>
-                </h1>
-                
-                <p class="hero-subheading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 md:mb-8">
-                    <span class="font-semibold text-light-purple">Whatever your expertise,</span>
-                    <span class="text-white">you can contribute to the conversation and make a difference.</span>
-                </p>
-                
-                <div class="pt-2 md:pt-4 flex flex-wrap gap-4">
-                    <a href="/get-involved/" class="btn-cta">Get Involved</a>
-                    <a href="/about/" class="btn-cta btn-cta-white">About</a>
-                </div>
 
-                <!-- Supporters strip -->
-                <div class="pt-8 border-t border-white/20">
-                    <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-4">Proudly supported by</p>
-                    <div class="flex flex-wrap items-center gap-3">
-                        {supporters.map((supporter) => (
-                            <a href={supporter.link} target="_blank" rel="noopener noreferrer"
-                               class="flex items-center justify-center bg-white/90 hover:bg-white rounded-lg px-3 py-2 transition-all duration-200 hover:scale-105"
-                               title={supporter.name}>
-                                <img src={supporterLogoSrc(supporter.logo)} alt={supporter.name} class="h-7 max-w-[100px] object-contain" />
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <HeroSection
+    homeConfig={homeConfig}
+    heroImage={heroImage}
+    supporters={supporters}
+  />
 
-    <!-- Scroll indicator -->
-    <a href="#events" aria-label="Scroll to events" class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors duration-200">
-        <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
-        <i class="fa-solid fa-chevron-down text-lg animate-bounce"></i>
-    </a>
+  <!-- Scroll indicator -->
+  <a href="#events" aria-label="Scroll to events" class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors duration-200">
+      <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
+      <i class="fa-solid fa-chevron-down text-lg animate-bounce"></i>
+  </a>
 
-    <!-- Events Section -->
-    <section id="events" class="py-16 section-neutral">
-    <div class="site-container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <h2 class="section-heading text-4xl md:text-5xl mb-6">Our Events</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
-            </div>
-            
-            <div id="calendar" class="max-w-5xl mx-auto mb-16">
-                <p class="text-center text-lg mb-4 font-medium">
-                    We'll update <a href="https://luma.com/daisi" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">this calendar</a> with upcoming events. You can add it to yours:
-                </p>
+  <EventsSection
+    homeConfig={homeConfig}
+    siteConfig={siteConfig}
+  />
 
-                <!-- Calendar sync buttons -->
-                <div class="flex items-center justify-center gap-4 mb-6">
-                    <!-- Google Calendar -->
-                    <a href="https://www.google.com/calendar/render?cid=http%3A%2F%2Fapi2.luma.com%2Fics%2Fget%3Fentity%3Dcalendar%26id%3Dcal-lvIwlKjJGAceOBN"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="cal-sync-btn"
-                    aria-label="Add to Google Calendar">
-                        <img src="/images/icons/google.svg" alt="" class="cal-icon" aria-hidden="true" />
-                        <span class="cal-label">Google Calendar</span>
-                    </a>
+  <ProgrammePreviewSection
+    homeConfig={homeConfig}
+    programmes={programmes}
+  />
 
-                    <!-- Outlook Calendar -->
-                    <a href="https://outlook.live.com/calendar/0/addcalendar?url=webcal%3A%2F%2Fapi2.luma.com%2Fics%2Fget%3Fentity%3Dcalendar%26id%3Dcal-lvIwlKjJGAceOBN"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="cal-sync-btn"
-                    aria-label="Add to Outlook Calendar">
-                        <img src="/images/icons/outlook.svg" alt="" class="cal-icon" aria-hidden="true" />
-                        <span class="cal-label">Outlook Calendar</span>
-                    </a>
+  <ResearchPreviewSection
+    homeConfig={homeConfig}
+    research={research}
+  />
 
-                    <!-- Apple Calendar -->
-                    <a href="webcal://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
-                    class="cal-sync-btn"
-                    aria-label="Add to Apple Calendar">
-                        <img src="/images/icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
-                        <span class="cal-label">Apple Calendar</span>
-                    </a>
-
-                    <!-- Calendar URL copy -->
-                    <button
-                        id="copy-cal-url"
-                        class="cal-sync-btn"
-                        aria-label="Copy calendar URL to clipboard"
-                        data-url="https://api2.luma.com/ics/get?entity=calendar&id=cal-lvIwlKjJGAceOBN"
-                    >
-                        <i class="fa-solid fa-link cal-icon text-body-text" aria-hidden="true"></i>
-                        <span class="cal-label" id="copy-cal-label">Copy URL</span>
-                    </button>
-                </div>
-
-                <p class="text-center text-sm mb-8 text-body-text">
-                    Click on and RSVP to any event to receive email updates for that event.
-                </p>
-
-                <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
-                    <!-- Loading state -->
-                    <div id="calendar-loading" class="calendar-loading">
-                        <div class="text-center">
-                            <div class="spinner mx-auto mb-4"></div>
-                            <p class="text-bright-purple font-medium">Loading calendar...</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Calendar iframe -->
-                    <div class="overflow-hidden rounded-xl luma-calendar-wrapper">                            
-                        <iframe
-                            id="calendar-iframe" 
-                            title="DAISI Events Calendar"
-                            src="https://luma.com/embed/calendar/cal-lvIwlKjJGAceOBN/events"
-                            class="calendar-iframe"
-                            allowfullscreen=""
-                            aria-hidden="false"
-                            tabindex="0"
-                            style="border: none;"
-                        ></iframe>
-                    </div>
-                </div>
-                <div class="mt-6 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-3 text-body-text">
-                        <i class="fa-solid fa-triangle-exclamation text-durham-purple text-lg flex-shrink-0" aria-hidden="true"></i>
-                        <span class="text-sm font-medium">Calendar not loading? Some browsers block embedded calendars.</span>
-                    </div>
-                    <a href="https://calendar.google.com/calendar/embed?src=b7bo0qsj27l7ahfaqgqiavjom9etg7sb%40import.calendar.google.com&ctz=Europe%2FLondon&mode=AGENDA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-durham-purple text-white text-sm font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200 flex-shrink-0">
-                        <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
-                        View calendar
-                    </a>
-                </div>
-                <p class="text-center text-sm mt-4 text-body-text">
-                    <a href="https://luma.com/daisi?period=past" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events</a>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programmes Section -->
-    <section id="programmes" class="py-16 section-light">
-        <div class="site-container mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="section-heading text-4xl md:text-5xl mb-6">Our Programmes</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
-            </div>
-
-            <div class="max-w-6xl mx-auto mb-16">
-                <!-- First two: wider 2-column layout -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    {programmes.slice(0, 2).map((programme, i) => (
-                        <div
-                            class="program-card rounded-2xl p-8 text-center reveal"
-                            style={`--reveal-delay: ${i * 100}ms`}
-                        >
-                            <div class="mb-6">
-                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
-                                <h4 class="text-2xl font-bold">{programme.title}</h4>
-                                <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                            </div>
-                            <p class="mb-6 leading-relaxed text-body-text">{programme.short_description}</p>
-                            {programme.tags && programme.tags.length > 0 && (
-                                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-                                    {programme.tags.slice(0, 3).map(tag => (
-                                        <div class="flex items-center gap-2">
-                                            <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                            <span class="text-sm text-body-text">{tag.label}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                            <a
-                                href={`/programmes/#${programmeSlug(programme.title)}`}
-                                class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]"
-                            >
-                                Learn More
-                            </a>
-                        </div>
-                    ))}
-                </div>
-                <!-- Remaining: 3-column layout -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {programmes.slice(2).map((programme, i) => (
-                        <div
-                            class="program-card rounded-2xl p-8 text-center reveal"
-                            style={`--reveal-delay: ${(i + 2) * 100}ms`}
-                        >
-                            <div class="mb-6">
-                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
-                                <h4 class="text-2xl font-bold">{programme.title}</h4>
-                                <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                            </div>
-                            <p class="mb-6 leading-relaxed text-body-text">{programme.short_description}</p>
-                            {programme.tags && programme.tags.length > 0 && (
-                                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-                                    {programme.tags.slice(0, 3).map(tag => (
-                                        <div class="flex items-center gap-2">
-                                            <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                            <span class="text-sm text-body-text">{tag.label}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                            <a
-                                href={`/programmes/#${programmeSlug(programme.title)}`}
-                                class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80]"
-                            >
-                                Learn More
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" class="py-16 section-neutral">
-        <div class="site-container mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="section-heading text-4xl md:text-5xl mb-6">Research</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
-            </div>
-
-            <div class="reveal">
-                <ResearchCarousel 
-                    papers={research} 
-                    title="Latest Publications & Projects" 
-                    id="home-research-carousel" 
-                />
-            </div>
-            <div class="text-center mb-16 reveal" style="--reveal-delay: 150ms">
-                <a href="/research" class="btn-cta mb-12">View All Research</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proudly Supported By Section -->
-    <section id="supported-by" class="py-16 section-neutral">
-        <div class="site-container mx-auto px-6">
-            <div class="text-center mb-10 reveal">
-                <h2 class="section-heading text-4xl md:text-5xl mb-6">Proudly Supported By</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                {supporters.map((supporter, i) => (
-                    <a href={supporter.link} target="_blank" rel="noopener noreferrer" class="flex flex-col items-center group reveal" style={`--reveal-delay: ${i * 80}ms`}>
-                        <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
-                            <img src={supporterLogoSrc(supporter.logo)} alt={`${supporter.name} logo`} class="max-h-16 max-w-16 object-contain" />
-                        </div>
-                        <div class="text-center min-h-[3rem] flex flex-col justify-start">
-                            <span class="text-base md:text-lg font-semibold">{supporter.name}</span>
-                            {supporter.subtitle && <span class="text-sm text-muted-text">{supporter.subtitle}</span>}
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
+  <SupportersSection
+    supporters={supporters}
+  />
 </Layout>
 
 <script>
@@ -351,8 +117,6 @@ const supporterLogoSrc = (logo: string): string =>
             }, { passive: true });
         }
     }
-
-
     
     // Calendar loading state
     const calendarIframe = document.getElementById('calendar-iframe');
@@ -400,129 +164,3 @@ const supporterLogoSrc = (logo: string): string =>
         });
     }
 </script>
-
-<style>
-/* Calendar sync buttons */
-.cal-sync-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    padding: 0.5rem;
-    border-radius: 9999px;
-    border: 1.5px solid rgba(128, 0, 128, 0.2);
-    background: var(--color-surface);
-    color: var(--color-body-text);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 2.75rem; /* icon-only width */
-    transition: max-width 0.3s ease, padding 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-.cal-sync-btn:hover,
-.cal-sync-btn:focus-visible {
-    max-width: 12rem; /* expanded width */
-    padding: 0.5rem 1rem 0.5rem 0.65rem;
-    border-color: var(--color-durham-purple, #6b1a6e);
-    box-shadow: 0 2px 8px rgba(107, 26, 110, 0.18);
-    outline: none;
-}
-
-.cal-icon {
-    flex-shrink: 0;
-}
-
-img.cal-icon {
-    width: 1.75rem;
-    height: 1.75rem;
-    display: block;
-    object-fit: contain;
-}
-
-i.cal-icon {
-    width: 1.75rem;
-    height: 1.75rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    font-size: 1rem;
-}
-
-.cal-label {
-    overflow: hidden;
-    max-width: 0;
-    opacity: 0;
-    transition: max-width 0.3s ease, opacity 0.25s ease, margin-left 0.3s ease;
-    margin-left: 0;
-    pointer-events: none;
-}
-
-.cal-sync-btn:hover .cal-label,
-.cal-sync-btn:focus-visible .cal-label {
-    max-width: 8rem;
-    opacity: 1;
-    margin-left: 0.5rem;
-    pointer-events: auto;
-}
-/* Calendar loading styles */
-.calendar-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-}
-
-.calendar-iframe {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.calendar-iframe.loaded {
-    opacity: 1;
-}
-
-/* Spinner animation */
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(235, 128, 253, 0.2);
-    border-top-color: var(--color-bright-purple);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.calendar-container {
-    position: relative;
-}
-
-/* Luma calendar responsive wrapper */
-.luma-calendar-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-}
-
-.luma-calendar-wrapper .calendar-iframe {
-    width: 100%;
-    min-height: 450px;
-    height: 600px;
-    border: 1px solid rgba(191, 203, 218, 0.533);
-    border-radius: 4px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .luma-calendar-wrapper .calendar-iframe {
-        height: 500px;
-        min-height: 400px;
-    }
-}
-</style>

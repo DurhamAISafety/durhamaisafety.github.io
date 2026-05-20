@@ -30,8 +30,7 @@ function initializeCommonFeatures() {
  * Dark mode — toggle via .dark class on <html>.
  * Persists preference to localStorage; respects system preference as default.
  * localStorage access is guarded against restricted contexts (private browsing,
- * sandboxed iframes) where it can throw. matchMedia.addEventListener falls back
- * to the deprecated addListener for older Safari compatibility.
+ * sandboxed iframes) where it can throw.
  */
 function initializeDarkMode() {
     const html = document.documentElement;
@@ -61,19 +60,13 @@ function initializeDarkMode() {
     });
 
     // Follow system preference changes if user hasn't manually set a preference.
-    // addEventListener on MediaQueryList is standard but addListener is the
-    // fallback for older Safari (pre-14).
     function onSchemeChange(e) {
         if (!storageGet('theme')) {
             html.classList.toggle('dark', e.matches);
             updateDarkModeIcon(e.matches);
         }
     }
-    if (typeof mq.addEventListener === 'function') {
-        mq.addEventListener('change', onSchemeChange);
-    } else if (typeof mq.addListener === 'function') {
-        mq.addListener(onSchemeChange);
-    }
+    mq.addEventListener('change', onSchemeChange);
 }
 
 function updateDarkModeIcon(isDark) {
@@ -127,8 +120,6 @@ function handleFormSubmission(e) {
     e.preventDefault();
 
     const form = e.target;
-    const formData = new FormData(form);
-
     // Show loading state
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;
@@ -203,13 +194,36 @@ function initializeAnalytics() {
 function initializeScrollAnimations() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealElements = document.querySelectorAll('.reveal');
+    const isIframe = window.parent !== window;
 
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    if (prefersReducedMotion || !('IntersectionObserver' in window) || isIframe) {
         // Skip animation — make everything visible immediately
-        revealElements.forEach(el => {
+        const makeVisible = (el) => {
+            el.classList.add('visible');
             el.style.opacity = '1';
             el.style.transform = 'none';
-        });
+            el.style.animation = 'none';
+            el.style.transition = 'none';
+        };
+
+        revealElements.forEach(makeVisible);
+
+        // Watch for newly added elements (e.g. from Tina CMS live-preview updates)
+        if ('MutationObserver' in window) {
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    for (const node of mutation.addedNodes) {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            if (node.classList.contains('reveal')) {
+                                makeVisible(node);
+                            }
+                            node.querySelectorAll('.reveal').forEach(makeVisible);
+                        }
+                    }
+                }
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        }
         return;
     }
 
@@ -226,7 +240,27 @@ function initializeScrollAnimations() {
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // Watch for dynamically added elements in standard viewport to trigger reveal observer
+    if ('MutationObserver' in window) {
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                for (const node of mutation.addedNodes) {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        if (node.classList.contains('reveal')) {
+                            revealObserver.observe(node);
+                        }
+                        node.querySelectorAll('.reveal').forEach(el => {
+                            revealObserver.observe(el);
+                        });
+                    }
+                }
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
 }
+
 
 /**
  * Initialize navigation dropdowns for mobile (tap interaction)

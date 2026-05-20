@@ -1,0 +1,113 @@
+---
+import { tinaField } from '@tinacms/astro';
+import type { AlumniMember, Person, TeamMember } from '../../data/people';
+
+interface Props {
+  people: Array<Person | TeamMember | AlumniMember>;
+  emptyMessage?: string;
+}
+
+const { people, emptyMessage = 'No people listed yet.' } = Astro.props;
+
+const durhamLogoPath = '/images/durham-logo.png';
+
+const getDefaultDescription = (person: Person): string => {
+  const prefix = 'Member of DAISI';
+  if (person.type === 'member') {
+    return person.start_year ? `${prefix} ${person.start_year}–present` : prefix;
+  } else {
+    return person.years_active ? `${prefix} ${person.years_active}` : prefix;
+  }
+};
+---
+
+{people.length > 0 ? (
+  <div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+    {people.map((person, i) => (
+      <div class="text-center reveal w-40 md:w-48" style={`--reveal-delay: ${(i % 4) * 80}ms`}>
+        <div class="photo-wrap w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden bg-gradient-to-br from-bright-purple to-light-purple">
+          {person.photo ? (
+            <img
+              src={person.photo}
+              alt={person.name}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover"
+              onerror="var fb=this.closest('.photo-wrap')?.querySelector('.fallback-icon'); if(fb){fb.style.display='flex'}; this.remove();"
+              style="width:100%; height:100%; object-fit: cover;"
+              data-tina-field={tinaField(person._source, 'photo')}
+            />
+          ) : (
+            <i class="fas fa-user text-3xl text-white"></i>
+          )}
+          <div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
+            <i class="fas fa-user text-3xl text-white"></i>
+          </div>
+        </div>
+        <h4 class="text-xl font-bold mb-2" data-tina-field={tinaField(person._source, 'name')}>
+          {person.name}
+        </h4>
+        {(person.linkedin || person['durham-staff-link'] || person.link) && (
+          <div class="flex items-center justify-center gap-3 mb-2">
+            {person.linkedin && (
+              <a
+                href={person.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:text-bright-purple transition-colors"
+                aria-label={`${person.name} on LinkedIn`}
+                data-tina-field={tinaField(person._source, 'linkedin')}
+              >
+                <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+              </a>
+            )}
+            {person['durham-staff-link'] && (
+              <a
+                href={person['durham-staff-link']}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:opacity-70 transition-opacity"
+                aria-label={`${person.name} Durham staff page`}
+                data-tina-field={tinaField(person._source, 'durham_staff_link')}
+              >
+                <img src={durhamLogoPath} alt="Durham University" class="w-5 h-5 object-contain" />
+              </a>
+            )}
+            {person.link && (
+              <a
+                href={person.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:text-bright-purple transition-colors"
+                aria-label={`${person.name} website`}
+                data-tina-field={tinaField(person._source, 'link')}
+              >
+                <i class="fas fa-external-link-alt text-base" aria-hidden="true"></i>
+              </a>
+            )}
+          </div>
+        )}
+        <p class="font-semibold mb-2 text-sm text-violet-600" data-tina-field={tinaField(person._source, 'role')}>
+          {person.role}
+        </p>
+        {person.type === 'member' && person.start_year && (
+          <p class="text-xs text-muted-text mb-2" data-tina-field={tinaField(person._source, 'start_year')}>
+            {person.start_year}–present
+          </p>
+        )}
+        {person.type === 'alumnus' && person.years_active && (
+          <p class="text-xs text-muted-text mb-2" data-tina-field={tinaField(person._source, 'years_active')}>
+            {person.years_active}
+          </p>
+        )}
+        <p class="text-xs md:text-sm text-muted-text mb-3 px-2 leading-relaxed min-h-[2.5rem]" data-tina-field={tinaField(person._source, 'description')}>
+          {person.description || getDefaultDescription(person)}
+        </p>
+      </div>
+    ))}
+  </div>
+) : (
+  <div class="text-center">
+    <p class="text-lg text-muted-text">{emptyMessage}</p>
+  </div>
+)}

@@ -57,5 +57,10 @@
       "url": "/get-involved/"
     }
   },
-  "footerTagline": "Questions, suggestions, or want to collaborate? Feel free to reach out via email or our socials!"
+  "footerTagline": "Questions, suggestions, or want to collaborate? Feel free to reach out via email or our socials!",
+  "calendar": {
+    "lumaCalendarId": "cal-lvIwlKjJGAceOBN",
+    "lumaCalendarSlug": "daisi",
+    "googleCalendarBackupId": "b7bo0qsj27l7ahfaqgqiavjom9etg7sb@import.calendar.google.com"
+  }
 }

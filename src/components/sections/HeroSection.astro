@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import { tinaField } from '@tinacms/astro';
+import SupportersHeroStrip from '../tina-islands/SupportersHeroStrip.astro';
+import type { ImageMetadata } from 'astro';
+import type { Supporter } from '../../data/supporters';
+import type { HomePageConfig } from '../../data/config';
+
+interface Props {
+  homeConfig: HomePageConfig;
+  heroImage: ImageMetadata;
+  supporters: Supporter[];
+}
+
+const { homeConfig, heroImage, supporters } = Astro.props;
+---
+
+<section id="home" class="hero-section min-h-100dvh min-h-100svh min-h-100vh flex items-center relative overflow-hidden">
+    <!-- Hero Image with Parallax -->
+    <div class="hero-parallax-container">
+        <Image
+            src={heroImage}
+            alt="Durham Cathedral"
+            class="hero-parallax-image"
+            widths={[640, 768, 1024, 1280, 1536, 1920]}
+            sizes="100vw"
+            loading="eager"
+            decoding="async"
+        />
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-black/65 via-black/50 to-black/30"></div>
+    <div class="site-container mx-auto px-6 relative z-10 w-full">
+        <div class="max-w-2xl pt-28 md:pt-36 pb-16 space-y-6 md:space-y-8">
+            <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight" data-tina-field={tinaField(homeConfig, 'heroTitle')} set:html={homeConfig.heroTitleHtml} />
+
+            <p class="hero-subheading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 md:mb-8">
+                <span class="font-semibold text-light-purple" data-tina-field={tinaField(homeConfig, 'heroSubtitleHighlight')}>{homeConfig.heroSubtitleHighlight}</span>
+                <span class="text-white" data-tina-field={tinaField(homeConfig, 'heroSubtitleMain')}>{homeConfig.heroSubtitleMain}</span>
+            </p>
+            
+            <div class="pt-2 md:pt-4 flex flex-wrap gap-4">
+                <a href={homeConfig.heroPrimaryCtaLink} class="btn-cta" data-tina-field={tinaField(homeConfig, 'heroPrimaryCtaText')}>{homeConfig.heroPrimaryCtaText}</a>
+                <a href={homeConfig.heroSecondaryCtaLink} class="btn-cta btn-cta-white" data-tina-field={tinaField(homeConfig, 'heroSecondaryCtaText')}>{homeConfig.heroSecondaryCtaText}</a>
+            </div>
+
+            <div class="contents" data-tina-island="/tina-island/supporters-hero">
+                <SupportersHeroStrip supporters={supporters} />
+            </div>
+        </div>
+    </div>
+</section>
