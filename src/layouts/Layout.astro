@@ -97,7 +97,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         document.documentElement.classList.add('dark');
       }
       // Mark JS as active for progressive-enhancement CSS hooks (e.g. .reveal)
-      document.documentElement.classList.add('js-enabled');
+      // Skip hiding elements inside CMS preview / iframes to avoid loading visibility issues
+      if (window.parent === window) {
+        document.documentElement.classList.add('js-enabled');
+      }
     })();
   </script>
 
