@@ -35,15 +35,17 @@ const cleanLogo = normalizePath(logo);
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    class="research-card rounded-2xl p-6 flex flex-col items-center justify-center card-hover border border-durham-purple/20 transition-all duration-300"
+    class="flex flex-col items-center group transition-all duration-300"
   >
-    <div class="h-20 flex items-center justify-center mb-4">
-      <img src={cleanLogo} alt={`${name} logo`} class="max-h-full max-w-[180px] object-contain" />
+    <div class="involvement-card rounded-xl p-4 mb-3 transition-transform group-hover:scale-105 h-24 w-24 flex items-center justify-center">
+      <img src={cleanLogo} alt={`${name} logo`} class="max-h-16 max-w-16 object-contain" />
     </div>
-    <h4 class="text-lg font-bold text-center">
-      {name}
-      <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
-    </h4>
-    {subtitle && <p class="text-sm text-muted-text text-center mt-1">{subtitle}</p>}
+    <div class="text-center min-h-[3rem] flex flex-col justify-start">
+      <span class="text-base md:text-lg font-semibold text-heading-text flex items-center justify-center gap-1">
+        {name}
+        <i class="fas fa-external-link-alt text-[10px] text-muted-text ml-0.5" aria-hidden="true"></i>
+      </span>
+      {subtitle && <span class="text-sm text-muted-text text-center mt-1">{subtitle}</span>}
+    </div>
   </a>
 )}
