@@ -61,19 +61,13 @@ function initializeDarkMode() {
     });
 
     // Follow system preference changes if user hasn't manually set a preference.
-    // addEventListener on MediaQueryList is standard but addListener is the
-    // fallback for older Safari (pre-14).
     function onSchemeChange(e) {
         if (!storageGet('theme')) {
             html.classList.toggle('dark', e.matches);
             updateDarkModeIcon(e.matches);
         }
     }
-    if (typeof mq.addEventListener === 'function') {
-        mq.addEventListener('change', onSchemeChange);
-    } else if (typeof mq.addListener === 'function') {
-        mq.addListener(onSchemeChange);
-    }
+    mq.addEventListener('change', onSchemeChange);
 }
 
 function updateDarkModeIcon(isDark) {
@@ -127,8 +121,6 @@ function handleFormSubmission(e) {
     e.preventDefault();
 
     const form = e.target;
-    const formData = new FormData(form);
-
     // Show loading state
     const submitButton = form.querySelector('button[type="submit"]');
     const originalText = submitButton.textContent;

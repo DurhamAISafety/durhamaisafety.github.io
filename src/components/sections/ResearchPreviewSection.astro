@@ -1,22 +1,21 @@
 ---
 import { tinaField } from '@tinacms/astro';
 import ResearchCarousel from '../ResearchCarousel.astro';
-import type { Paper } from '../../data/research';
-import type { HomePageData, HomePageConfig } from '../../data/config';
+import type { ResearchPaper } from '../../data/research';
+import type { HomePageConfig } from '../../data/config';
 
 interface Props {
   homeConfig: HomePageConfig;
-  homeDoc: HomePageData;
-  research: Paper[];
+  research: ResearchPaper[];
 }
 
-const { homeConfig, homeDoc, research } = Astro.props;
+const { homeConfig, research } = Astro.props;
 ---
 
 <section id="research" class="py-16 section-neutral">
     <div class="site-container mx-auto px-6">
         <div class="text-center mb-16 reveal">
-            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeDoc, 'home.researchTitle')}>{homeConfig.researchTitle}</h2>
+            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig, 'researchTitle')}>{homeConfig.researchTitle}</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
         </div>
 
@@ -25,11 +24,11 @@ const { homeConfig, homeDoc, research } = Astro.props;
                 papers={research}
                 title={homeConfig.researchSubtitle}
                 id="home-research-carousel"
-                tinaField={tinaField(homeDoc, 'home.researchSubtitle')}
+                tinaField={tinaField(homeConfig, 'researchSubtitle')}
             />
         </div>
         <div class="text-center mb-16 reveal" style="--reveal-delay: 150ms">
-            <a href="/research" class="btn-cta mb-12" data-tina-field={tinaField(homeDoc, 'home.researchViewAllText')}>{homeConfig.researchViewAllText}</a>
+            <a href="/research" class="btn-cta mb-12" data-tina-field={tinaField(homeConfig, 'researchViewAllText')}>{homeConfig.researchViewAllText}</a>
         </div>
     </div>
 </section>

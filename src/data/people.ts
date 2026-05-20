@@ -36,7 +36,7 @@ export async function getPeopleContent(): Promise<{
   );
 
   const document = result.data.people;
-  const people = compact(document.people).map((person) => ({
+  const people: Person[] = compact(document.people).map((person) => ({
     name: person.name,
     role: person.role,
     type: person.type === 'alumnus' ? 'alumnus' : 'member',

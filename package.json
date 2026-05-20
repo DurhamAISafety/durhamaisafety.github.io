@@ -5,7 +5,7 @@
   "packageManager": "npm@11.6.2",
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
-    "build": "tinacms build && astro build",
+    "build": "tinacms build --skip-cloud-checks && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -27,6 +27,9 @@
     "vite": "^6.2.0"
   },
   "overrides": {
+    "@tinacms/cli": {
+      "vite": "^4.5.9"
+    },
     "vite": "^6.2.0"
   }
 }

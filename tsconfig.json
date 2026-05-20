@@ -7,5 +7,11 @@
       "@layouts/*": ["src/layouts/*"],
       "@data/*": ["src/data/*"]
     }
-  }
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "public/admin",
+    "tina/__generated__"
+  ]
 }

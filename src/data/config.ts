@@ -1,10 +1,19 @@
 import { requestWithMetadata } from '@tinacms/astro';
 import client from '../../tina/__generated__/client';
 import type {
+  AboutPageAbout,
+  AboutPageAboutMissionCards,
   SiteConfigQuery,
   HomePageQuery,
+  ResearchPageResearch,
+  ResearchPageResearchOpportunities,
+  ResearchPageResearchResearchAreas,
   AboutPageQuery,
   ResearchPageQuery,
+  SiteConfigCalendar,
+  SiteConfigNavigationCta,
+  SiteConfigNavigationMain,
+  SiteConfigSocialLinks,
 } from '../../tina/__generated__/types';
 
 export interface SocialLink {
@@ -13,24 +22,27 @@ export interface SocialLink {
   icon: string;
   inHeader: boolean;
   _index: number;
+  _source: SiteConfigSocialLinks;
 }
 
 export interface NavigationItem {
   title: string;
   url: string;
+  _source: SiteConfigNavigationMain | SiteConfigNavigationCta;
 }
 
 export interface CalendarConfig {
   lumaCalendarId: string;
   lumaCalendarSlug: string;
   googleCalendarBackupId: string;
+  _source: SiteConfigCalendar;
 }
 
 export interface SiteConfig {
   title: string;
   description: string;
   email: string;
-  ogImage?: string;
+  ogImage: string;
   socialLinks: SocialLink[];
   navigation: {
     main: NavigationItem[];
@@ -49,10 +61,17 @@ export interface SiteConfig {
 export type HomePageData = HomePageQuery['homePage'];
 export type HomePageConfig = NonNullable<HomePageQuery['homePage']['home']>;
 export type AboutPageData = AboutPageQuery['aboutPage'];
-export type AboutPageConfig = NonNullable<AboutPageQuery['aboutPage']['about']>;
+export type AboutMissionCard = AboutPageAboutMissionCards;
+export type AboutPageConfig = Omit<AboutPageAbout, 'missionCards'> & {
+  missionCards: AboutMissionCard[];
+};
 export type ResearchPageData = ResearchPageQuery['researchPage'];
-export type ResearchPageConfig = NonNullable<ResearchPageQuery['researchPage']['research']>;
-
+export type ResearchOpportunity = ResearchPageResearchOpportunities;
+export type ResearchArea = ResearchPageResearchResearchAreas;
+export type ResearchPageConfig = Omit<ResearchPageResearch, 'opportunities' | 'researchAreas'> & {
+  opportunities: ResearchOpportunity[];
+  researchAreas: ResearchArea[];
+};
 
 // Custom validation helper
 function validatePath(path: string, fieldName: string) {
@@ -62,6 +81,9 @@ function validatePath(path: string, fieldName: string) {
     );
   }
 }
+
+const compact = <T>(items: Array<T | null> | null | undefined): T[] =>
+  items?.filter((item): item is T => item !== null) ?? [];
 
 export async function getHomePageContent() {
   const result = await requestWithMetadata(
@@ -90,10 +112,14 @@ export async function getAboutPageContent() {
   if (!doc) {
     throw new Error("Validation Error: Missing about page configuration object.");
   }
+  const aboutConfig: AboutPageConfig = {
+    ...doc,
+    missionCards: compact(doc.missionCards),
+  };
 
   return {
     document: result.data.aboutPage,
-    aboutConfig: doc,
+    aboutConfig,
   };
 }
 
@@ -105,20 +131,21 @@ export async function getResearchPageContent() {
   if (!doc) {
     throw new Error("Validation Error: Missing research page configuration object.");
   }
+  const researchConfig: ResearchPageConfig = {
+    ...doc,
+    opportunities: compact(doc.opportunities),
+    researchAreas: compact(doc.researchAreas),
+  };
 
   // Path validation
-  validatePath(doc.opportunitiesCtaLink, 'research.opportunitiesCtaLink');
-  if (doc.researchAreas) {
-    doc.researchAreas.forEach((area, idx) => {
-      if (area) {
-        validatePath(area.linkUrl, `research.researchAreas.${idx}.linkUrl`);
-      }
-    });
-  }
+  validatePath(researchConfig.opportunitiesCtaLink, 'research.opportunitiesCtaLink');
+  researchConfig.researchAreas.forEach((area, idx) => {
+    validatePath(area.linkUrl, `research.researchAreas.${idx}.linkUrl`);
+  });
 
   return {
     document: result.data.researchPage,
-    researchConfig: doc,
+    researchConfig,
   };
 }
 
@@ -138,46 +165,58 @@ export async function getSiteConfigContent(): Promise<{
     return value.startsWith('/') ? value : `/${value}`;
   };
 
-  const socialLinks = (document.socialLinks ?? []).map((link, idx) => {
-    const url = link?.url ?? '';
-    const icon = normalizePublicPath(link?.icon ?? '');
+  const socialLinks = compact(document.socialLinks).map((link, idx) => {
+    const url = link.url;
+    const icon = normalizePublicPath(link.icon);
     validatePath(url, `siteConfig.socialLinks.${idx}.url`);
     validatePath(icon, `siteConfig.socialLinks.${idx}.icon`);
     return {
-      name: link?.name ?? '',
+      name: link.name,
       url,
       icon,
       inHeader: !!link?.inHeader,
       _index: idx,
+      _source: link,
     };
   });
 
-  const mainNavigation = (document.navigation?.main ?? []).map((item, idx) => {
-    const url = item?.url ?? '';
+  const mainNavigation = compact(document.navigation?.main).map((item, idx) => {
+    const url = item.url;
     validatePath(url, `siteConfig.navigation.main.${idx}.url`);
     return {
-      title: item?.title ?? '',
+      title: item.title,
       url,
+      _source: item,
     };
   });
 
-  const ctaNavigation = {
-    title: document.navigation?.cta?.title ?? '',
-    url: document.navigation?.cta?.url ?? '',
+  const ctaSource = document.navigation?.cta;
+  if (!ctaSource) {
+    throw new Error("Validation Error: Missing site navigation CTA.");
+  }
+  const ctaNavigation: NavigationItem = {
+    title: ctaSource.title,
+    url: ctaSource.url,
+    _source: ctaSource,
   };
   validatePath(ctaNavigation.url, 'siteConfig.navigation.cta.url');
 
+  const calendarSource = document.calendar;
+  if (!calendarSource) {
+    throw new Error("Validation Error: Missing site calendar configuration.");
+  }
   const calendarConfig = {
-    lumaCalendarId: document.calendar?.lumaCalendarId ?? 'cal-lvIwlKjJGAceOBN',
-    lumaCalendarSlug: document.calendar?.lumaCalendarSlug ?? 'daisi',
-    googleCalendarBackupId: document.calendar?.googleCalendarBackupId ?? 'b7bo0qsj27l7ahfaqgqiavjom9etg7sb@import.calendar.google.com',
+    lumaCalendarId: calendarSource.lumaCalendarId,
+    lumaCalendarSlug: calendarSource.lumaCalendarSlug,
+    googleCalendarBackupId: calendarSource.googleCalendarBackupId,
+    _source: calendarSource,
   };
 
   const config: SiteConfig = {
     title: document.title,
     description: document.description,
     email: document.email,
-    ogImage: document.ogImage ?? undefined,
+    ogImage: document.ogImage ?? '/images/og-image.png',
     socialLinks,
     navigation: {
       main: mainNavigation,

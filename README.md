@@ -176,7 +176,7 @@ Changes pushed to `main` trigger two deployments automatically:
 | **Netlify** | [durhamaisafety.uk](https://durhamaisafety.uk) | Primary — full Astro build, custom domain |
 | **GitHub Pages** | [durhamaisafety.github.io](https://durhamaisafety.github.io) | Redirect fallback → durhamaisafety.uk |
 
-The build command is `tinacms build && astro build`. The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
+The build command is `tinacms build --skip-cloud-checks && astro build`. This still generates the Tina admin bundle and site output, but skips comparing the branch schema with Tina Cloud's remote schema so PR builds can pass before the branch has been merged into `main`. The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
 
 ## Key Reference Links
 

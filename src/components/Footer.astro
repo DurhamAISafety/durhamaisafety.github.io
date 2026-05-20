@@ -33,7 +33,7 @@ const { siteConfig } = await getSiteConfigContent();
                                 title={link.name}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                data-tina-field={tinaField(siteConfig._source, `socialLinks.${link._index}.url`)}
+                                data-tina-field={tinaField(link._source, 'url')}
                             >
                                 <img
                                     src={link.icon}

@@ -2,21 +2,20 @@
 import { tinaField } from '@tinacms/astro';
 import { programmeSlug } from '../../data/programmes';
 import type { Programme } from '../../data/programmes';
-import type { HomePageData, HomePageConfig } from '../../data/config';
+import type { HomePageConfig } from '../../data/config';
 
 interface Props {
   homeConfig: HomePageConfig;
-  homeDoc: HomePageData;
   programmes: Programme[];
 }
 
-const { homeConfig, homeDoc, programmes } = Astro.props;
+const { homeConfig, programmes } = Astro.props;
 ---
 
 <section id="programmes" class="py-16 section-light">
     <div class="site-container mx-auto px-6">
         <div class="text-center mb-16 reveal">
-            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeDoc, 'home.programmesTitle')}>{homeConfig.programmesTitle}</h2>
+            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig, 'programmesTitle')}>{homeConfig.programmesTitle}</h2>
             <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
         </div>
 
