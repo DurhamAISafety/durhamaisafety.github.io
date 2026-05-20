@@ -70,7 +70,7 @@ const getDefaultDescription = (person: Person): string => {
                 href={person.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-durham-purple hover:text-bright-purple transition-colors"
+                class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:text-bright-purple transition-colors"
                 aria-label={`${person.name} on LinkedIn`}
                 data-tina-field={tinaField(person._source, 'linkedin')}
               >
@@ -82,11 +82,11 @@ const getDefaultDescription = (person: Person): string => {
                 href={person['durham-staff-link']}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-durham-purple hover:opacity-70 transition-opacity"
+                class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:opacity-70 transition-opacity"
                 aria-label={`${person.name} Durham staff page`}
                 data-tina-field={tinaField(person._source, 'durham_staff_link')}
               >
-                <img src={durhamLogoPath} alt="Durham University" class="inline-block w-5 h-5" />
+                <img src={durhamLogoPath} alt="Durham University" class="w-5 h-5 object-contain" />
               </a>
             )}
             {person.link && (
@@ -94,11 +94,11 @@ const getDefaultDescription = (person: Person): string => {
                 href={person.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-durham-purple hover:text-bright-purple transition-colors"
+                class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:text-bright-purple transition-colors"
                 aria-label={`${person.name} website`}
                 data-tina-field={tinaField(person._source, 'link')}
               >
-                <i class="fas fa-external-link-alt text-sm" aria-hidden="true"></i>
+                <i class="fas fa-external-link-alt text-base" aria-hidden="true"></i>
               </a>
             )}
           </div>
