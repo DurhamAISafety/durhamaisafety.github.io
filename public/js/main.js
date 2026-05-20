@@ -30,8 +30,7 @@ function initializeCommonFeatures() {
  * Dark mode — toggle via .dark class on <html>.
  * Persists preference to localStorage; respects system preference as default.
  * localStorage access is guarded against restricted contexts (private browsing,
- * sandboxed iframes) where it can throw. matchMedia.addEventListener falls back
- * to the deprecated addListener for older Safari compatibility.
+ * sandboxed iframes) where it can throw.
  */
 function initializeDarkMode() {
     const html = document.documentElement;

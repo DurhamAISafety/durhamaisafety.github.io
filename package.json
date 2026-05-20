@@ -5,6 +5,7 @@
   "packageManager": "npm@11.6.2",
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
+    "check": "tinacms build --skip-cloud-checks && astro check",
     "build": "tinacms build --skip-cloud-checks && astro build",
     "preview": "astro preview",
     "astro": "astro"

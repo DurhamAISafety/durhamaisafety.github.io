@@ -1,5 +1,6 @@
 import { requestWithMetadata } from '@tinacms/astro';
 import client from '../../tina/__generated__/client';
+import { sanitiseInlineHtml } from '../lib/sanitize-html';
 import type {
   AboutPageAbout,
   AboutPageAboutMissionCards,
@@ -59,11 +60,16 @@ export interface SiteConfig {
 }
 
 export type HomePageData = HomePageQuery['homePage'];
-export type HomePageConfig = NonNullable<HomePageQuery['homePage']['home']>;
+export type HomePageConfig = NonNullable<HomePageQuery['homePage']['home']> & {
+  heroTitleHtml: string;
+};
 export type AboutPageData = AboutPageQuery['aboutPage'];
 export type AboutMissionCard = AboutPageAboutMissionCards;
 export type AboutPageConfig = Omit<AboutPageAbout, 'missionCards'> & {
   missionCards: AboutMissionCard[];
+  introTextHtml: string;
+  impactTextHtml: string;
+  joinTextHtml: string;
 };
 export type ResearchPageData = ResearchPageQuery['researchPage'];
 export type ResearchOpportunity = ResearchPageResearchOpportunities;
@@ -75,7 +81,10 @@ export type ResearchPageConfig = Omit<ResearchPageResearch, 'opportunities' | 'r
 
 // Custom validation helper
 function validatePath(path: string, fieldName: string) {
-  if (path && !path.startsWith('/') && !path.startsWith('http://') && !path.startsWith('https://')) {
+  if (!path?.trim()) {
+    throw new Error(`Validation Error: Path in field "${fieldName}" is required.`);
+  }
+  if (!path.startsWith('/') && !path.startsWith('http://') && !path.startsWith('https://')) {
     throw new Error(
       `Validation Error: Path "${path}" in field "${fieldName}" must start with a leading slash "/" or be a fully qualified URL starting with "http://" or "https://".`
     );
@@ -93,6 +102,10 @@ export async function getHomePageContent() {
   if (!doc) {
     throw new Error("Validation Error: Missing home page configuration object.");
   }
+  const homeConfig: HomePageConfig = {
+    ...doc,
+    heroTitleHtml: sanitiseInlineHtml(doc.heroTitle),
+  };
 
   // Path validation
   validatePath(doc.heroPrimaryCtaLink, 'home.heroPrimaryCtaLink');
@@ -100,7 +113,7 @@ export async function getHomePageContent() {
 
   return {
     document: result.data.homePage,
-    homeConfig: doc,
+    homeConfig,
   };
 }
 
@@ -115,6 +128,9 @@ export async function getAboutPageContent() {
   const aboutConfig: AboutPageConfig = {
     ...doc,
     missionCards: compact(doc.missionCards),
+    introTextHtml: sanitiseInlineHtml(doc.introText),
+    impactTextHtml: sanitiseInlineHtml(doc.impactText),
+    joinTextHtml: sanitiseInlineHtml(doc.joinText),
   };
 
   return {

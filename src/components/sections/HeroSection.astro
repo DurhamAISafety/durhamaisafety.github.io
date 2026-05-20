@@ -31,7 +31,7 @@ const { homeConfig, heroImage, supporters } = Astro.props;
     <div class="absolute inset-0 bg-gradient-to-br from-black/65 via-black/50 to-black/30"></div>
     <div class="site-container mx-auto px-6 relative z-10 w-full">
         <div class="max-w-2xl pt-28 md:pt-36 pb-16 space-y-6 md:space-y-8">
-            <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight" data-tina-field={tinaField(homeConfig, 'heroTitle')} set:html={homeConfig.heroTitle} />
+            <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight" data-tina-field={tinaField(homeConfig, 'heroTitle')} set:html={homeConfig.heroTitleHtml} />
 
             <p class="hero-subheading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 md:mb-8">
                 <span class="font-semibold text-light-purple" data-tina-field={tinaField(homeConfig, 'heroSubtitleHighlight')}>{homeConfig.heroSubtitleHighlight}</span>
