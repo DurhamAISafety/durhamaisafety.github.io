@@ -194,7 +194,7 @@ const { siteConfig } = await getSiteConfigContent();
     <section id="programmes" class="py-16 section-light">
         <div class="site-container mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="section-heading text-4xl md:text-5xl mb-6">Our Programmes</h2>
+                <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(siteConfig._source, 'homepage.programmesTitle')}>{siteConfig.homepage.programmesTitle}</h2>
                 <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
             </div>
 
@@ -207,7 +207,7 @@ const { siteConfig } = await getSiteConfigContent();
                             style={`--reveal-delay: ${i * 100}ms`}
                         >
                             <div class="mb-6">
-                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
                                 <h4
                                     class="text-2xl font-bold"
                                     data-tina-field={tinaField(programme._source, 'title')}
@@ -254,7 +254,7 @@ const { siteConfig } = await getSiteConfigContent();
                             style={`--reveal-delay: ${(i + 2) * 100}ms`}
                         >
                             <div class="mb-6">
-                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
+                                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
                                 <h4
                                     class="text-2xl font-bold"
                                     data-tina-field={tinaField(programme._source, 'title')}
