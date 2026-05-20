@@ -1,0 +1,17 @@
+about:
+  introText: "We are a <a href=\"#team\" class=\"text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple\">student-led</a> initiative that aims to empower students and academics to <a href=\"/what-is-ai-safety/\" class=\"text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple\">reduce risk from advanced AI</a>, by:"
+  missionCards:
+    - icon: "fas fa-bullhorn"
+      title: "Raising Awareness"
+      description: "Through discussion groups and speaker events"
+    - icon: "fas fa-tools"
+      title: "Upskilling Members"
+      description: "In safety techniques through workshops and 1-1 support"
+    - icon: "fas fa-users"
+      title: "Fostering Community"
+      description: "For high-quality discussion, support and connections to the wider field of AI safety"
+  impactTitle: "Our Impact"
+  impactIcon: "fas fa-chart-line"
+  impactText: "Our members have published in top AI and law conferences, participated in <a href=\"https://www.matsprogram.org/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-durham-purple hover:text-bright-purple font-semibold transition-colors underline\">MATS</a> and gone on to study AI ethics at Cambridge."
+  joinTitle: "Join Our Team"
+  joinText: "If you want to help organise and shape DAISI, contact <a href=\"mailto:durhamaisi@durham.ac.uk\" class=\"text-bright-purple hover:text-light-purple font-semibold transition-colors\">durhamaisi@durham.ac.uk</a> and we'll be in touch!"
