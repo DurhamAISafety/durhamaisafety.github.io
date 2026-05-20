@@ -1,7 +1,7 @@
 # Repo Cleanup And CMS Visual Editing Design
 
 **Date**: 2026-05-20
-**Status**: Approved
+**Status**: Proposed
 **Authors**: Antigravity
 
 ---
@@ -9,14 +9,11 @@
 ## 1. Goal & Context
 
 The goal is to implement high and medium priority tasks from the `docs/repo-cleanup-cms-visual-editing-audit.md` report. 
-We want to:
-- Move page-specific copy from `site-config.json` into typed, page-owned `.yml` files in a new `src/content/pages/` directory.
-- Define separate collections in `tina/config.ts` for `homePage`, `aboutPage`, and `researchPage`.
-- Clean up typescript types, `any` casts, and legacy shims (such as `siteConfig.social`).
-- Split the monolithic `src/pages/index.astro` into focused section components in `src/components/`.
-- Unify the supporters' display in the hero section and bottom grid.
-- Implement robust schema validation in loaders.
-- Improve tooling (add `tsconfig.json`).
+
+### Core Decisions
+- **Package Manager**: Remain strictly on `npm` for lockfile management. Remove any accidental pnpm lockfiles/workspaces from the repository to avoid split dependencies.
+- **Framework Version**: Do not upgrade to Astro 6. Remain on Astro 5 because `@tinacms/astro@0.2.0` has a peer dependency of `astro@^5.0.0`.
+- **Validation**: Implement a simple, custom TypeScript utility in `src/data/config.ts` (no heavy validation library dependencies).
 
 ---
 
@@ -24,71 +21,107 @@ We want to:
 
 ### Phase 1: CMS Migration, Schema Overhaul & Loaders
 
-#### 2.1.1 New Page Content Files
-We will create:
-- `src/content/pages/home.yml` containing the homepage copy under a `home` wrapper key.
-- `src/content/pages/about.yml` containing the About page copy under an `about` wrapper key.
-- `src/content/pages/research.yml` containing the Research page copy under a `research` wrapper key.
+#### Phase 1.1: Content File Migration
+Create the following page-owned `.yml` files in a new directory `src/content/pages/` containing content moved from `src/content/site-config.json`:
+- `src/content/pages/home.yml` (under a `home:` root wrapper key)
+- `src/content/pages/about.yml` (under an `about:` root wrapper key)
+- `src/content/pages/research.yml` (under a `research:` root wrapper key)
 
-#### 2.1.2 Schema Adjustments (`tina/config.ts`)
-- Remove `homepage`, `aboutPage`, and `researchPage` fields from the `siteConfig` collection.
-- Define separate `homePage`, `aboutPage`, and `researchPage` collections pointing to `src/content/pages/` with format `yml`.
-- Structure them with a root wrapper object matching the wrapper key in the `.yml` files.
+#### Phase 1.2: Tina Schema Changes
+- Remove the `homepage`, `aboutPage`, and `researchPage` fields from the `siteConfig` collection in `tina/config.ts`.
+- Define three new independent collections in `tina/config.ts` with these properties:
+  - **`homePage`**:
+    - `name: "homePage"`
+    - `path: "src/content/pages"`
+    - `match: { include: "home" }`
+    - `format: "yml"`
+  - **`aboutPage`**:
+    - `name: "aboutPage"`
+    - `path: "src/content/pages"`
+    - `match: { include: "about" }`
+    - `format: "yml"`
+  - **`researchPage`**:
+    - `name: "researchPage"`
+    - `path: "src/content/pages"`
+    - `match: { include: "research" }`
+    - `format: "yml"`
 
-#### 2.1.3 Data Loader Updates (`src/data/config.ts`)
-- Implement:
-  - `getHomePageContent()`
-  - `getAboutPageContent()`
-  - `getResearchPageContent()`
-- Refactor `getSiteConfigContent()` to only parse global settings.
-- Implement validators for:
-  - Leading slashes in image paths (`/images/...`).
-  - Navigation menu labels and URLs being non-empty.
-  - Required fields in pages.
-- Strip all `any` casts and use fully generated Typescript types.
+#### Phase 1.3: Generated Type Refresh
+- Run `npm run build` or the Tina Dev CLI (`npx tinacms schema:compile` and `npx tinacms codegen`) to refresh `tina/__generated__/` types and client queries:
+  - `client.queries.homePage`
+  - `client.queries.aboutPage`
+  - `client.queries.researchPage`
+
+#### Phase 1.4: Loader Refactor
+- Refactor `src/data/config.ts` to implement three new loaders:
+  - `getHomePageContent()` -> queries `client.queries.homePage({ relativePath: 'home.yml' })`
+  - `getAboutPageContent()` -> queries `client.queries.aboutPage({ relativePath: 'about.yml' })`
+  - `getResearchPageContent()` -> queries `client.queries.researchPage({ relativePath: 'research.yml' })`
+- Update `getSiteConfigContent()` to fetch only global configuration.
+- Strip all `any` casts from loaders and leverage the refreshed generated TypeScript types.
 - Delete the legacy `social` object shim inside `SiteConfig` interface.
 
-#### 2.1.4 Page and Layout Updates
-- Update `src/layouts/Layout.astro` to derive JSON-LD social links from `siteConfig.socialLinks` instead of the legacy `social` shim.
-- Update `src/pages/index.astro`, `src/pages/about.astro`, and `src/pages/research.astro` to fetch configuration using their respective new loaders.
-- Update all `data-tina-field` bindings on those pages.
+#### Phase 1.5: Page Rewiring
+- Update `src/layouts/Layout.astro` to derive social links from `siteConfig.socialLinks` dynamically rather than relying on `siteConfig.social`.
+- Update `src/pages/index.astro`, `src/pages/about.astro`, and `src/pages/research.astro` to use their corresponding page loaders.
+- Update all `data-tina-field` properties on pages to bind to the new page-specific `_source` properties.
+
+#### Phase 1.6: Local Content Validation
+- Implement a lightweight, custom local validation helper function within `src/data/config.ts`.
+- Perform checks on content parsed by loaders:
+  - Navigation links have valid `title` and `url`.
+  - Image paths are absolute (must start with `/`).
+  - Required fields in page contents are non-empty.
 
 ---
 
 ### Phase 2: Component Extraction & Supporter Unification
 
-#### 2.2.1 Component Extraction
-Extract sections from `src/pages/index.astro` into `src/components/`:
-- `HeroSection.astro` (containing hero text, buttons, and supporters' hero strip)
-- `EventsSection.astro` (containing the Luma calendar iframe and description)
-- `ProgrammePreviewSection.astro` (containing the dynamic list of programmes)
-- `ResearchPreviewSection.astro` (containing the research paper carousel)
-- `SupportersSection.astro` (containing the bottom supporters grid)
+#### Phase 2.1: Component Extraction
+Extract monolithic code blocks from `src/pages/index.astro` into `src/components/sections/`:
+- `HeroSection.astro` (text, CTA buttons, and supporters' hero strip)
+- `EventsSection.astro` (contains events layout and Luma calendar)
+- `ProgrammePreviewSection.astro` (programmes list)
+- `ResearchPreviewSection.astro` (carousel)
+- `SupportersSection.astro` (bottom grid)
 
-#### 2.2.2 Supporter Unification
-- Implement a helper or reusable component to render the supporter logos.
-- Align both `SupportersHeroStrip` and `SupportersGrid` to consume the same unified list of supporters, ensuring consistent dark-mode styling and alt texts.
+##### Component Guidelines
+- **Tina Island Boundaries**: Preserve all existing `data-tina-island` configurations and boundaries.
+- **Scroll Animations**: Maintain exact `.reveal` class hooks, `style="--reveal-delay: Xms"`, and general reveal structures.
+- **Calendar Scripts**: Maintain inline iframe rendering, custom scripts, backup links, and `.cal-icon` styling logic precisely.
 
----
-
-### Phase 3: Tooling & Documentation
-
-#### 2.3.1 Tooling
-- Add `tsconfig.json` using Astro's strict template.
-
-#### 2.3.2 Documentation & Verification
-- Add a manual checklist for visual editing smoke-testing.
-- Refresh CMS coverage documentation in README.md.
-- Trim completed TODO items from `TODO.md`.
+#### Phase 2.2: Supporter Unification
+- Implement a single logo normalization helper to ensure absolute paths with leading slashes.
+- Create a shared `SupporterLogo.astro` / `SupporterCard.astro` component which takes the logo metadata and handles:
+  - **Hero Variant**: Greyscale styling with standard opacity.
+  - **Grid Variant**: Full-contrast hover states with distinct border styles.
 
 ---
 
-## 3. Verification Plan
+### Phase 3: Tooling, Documentation & Cleanup
 
-### Automated Verification
-- Run `npx astro check` to verify that there are no TypeScript or Astro type-check errors.
-- Run `npm run build` to verify the full static build and Tina CMS generation works cleanly.
+#### Phase 3.1: Tooling Configuration
+- Initialize `tsconfig.json` conforming to Astro's strict template.
 
-### Manual Verification
-- Verify in development mode (`npm run dev`) that all pages render correctly.
-- Verify that live visual editing metadata is correctly embedded on elements.
+#### Phase 3.2: Documentation Updates
+- Update `README.md` to document the new page-owned CMS model structure.
+- Update `AGENTS.md` to specify the package manager policy (`npm` only) and dependency policies.
+- Clean up completed items in `TODO.md`.
+
+---
+
+## 4. Verification Plan
+
+### Automated Checks
+Run the following commands inside the repository:
+1.  **Whitespace & Git Check**: `git diff --check`
+2.  **TypeScript & Astro Compilation Diagnostics**: `npx astro check`
+3.  **Production Bundle Verification**: `npm run build`
+
+### Manual Tina Visual-Editing Smoke Checklist
+1.  Launch development environment: `npm run dev`.
+2.  Log into `/admin/index.html` locally.
+3.  Navigate to Site Config, People, Programmes, Get Involved Cards, Research Papers, and Supporters.
+4.  Confirm each collection correctly previews and routes to its expected preview URL.
+5.  Click marked fields in the live preview iframe and verify that the editor sidebar correctly focuses them.
+6.  Edit a field in the sidebar and verify that the target Tina Island re-renders dynamically.
