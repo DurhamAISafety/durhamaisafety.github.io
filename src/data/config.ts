@@ -21,6 +21,20 @@ export interface CalendarConfig {
   googleCalendarBackupId: string;
 }
 
+export interface HomepageConfig {
+  heroTitle: string;
+  heroSubtitleHighlight: string;
+  heroSubtitleMain: string;
+  heroPrimaryCtaText: string;
+  heroPrimaryCtaLink: string;
+  heroSecondaryCtaText: string;
+  heroSecondaryCtaLink: string;
+  eventsTitle: string;
+  researchTitle: string;
+  researchSubtitle: string;
+  researchViewAllText: string;
+}
+
 export interface SiteConfig {
   title: string;
   description: string;
@@ -33,6 +47,7 @@ export interface SiteConfig {
   };
   footerTagline?: string;
   calendar: CalendarConfig;
+  homepage: HomepageConfig;
   url: string;
   lang: string;
   repository: string;
@@ -89,6 +104,20 @@ export async function getSiteConfigContent(): Promise<{
     googleCalendarBackupId: document.calendar?.googleCalendarBackupId ?? 'b7bo0qsj27l7ahfaqgqiavjom9etg7sb@import.calendar.google.com',
   };
 
+  const homepageConfig = {
+    heroTitle: document.homepage?.heroTitle ?? 'Durham students and academics for <em>reducing catastrophic risks from advanced AI</em>',
+    heroSubtitleHighlight: document.homepage?.heroSubtitleHighlight ?? 'Whatever your expertise,',
+    heroSubtitleMain: document.homepage?.heroSubtitleMain ?? 'you can contribute to the conversation and make a difference.',
+    heroPrimaryCtaText: document.homepage?.heroPrimaryCtaText ?? 'Get Involved',
+    heroPrimaryCtaLink: document.homepage?.heroPrimaryCtaLink ?? '/get-involved/',
+    heroSecondaryCtaText: document.homepage?.heroSecondaryCtaText ?? 'About',
+    heroSecondaryCtaLink: document.homepage?.heroSecondaryCtaLink ?? '/about/',
+    eventsTitle: document.homepage?.eventsTitle ?? 'Our Events',
+    researchTitle: document.homepage?.researchTitle ?? 'Research',
+    researchSubtitle: document.homepage?.researchSubtitle ?? 'Latest Publications & Projects',
+    researchViewAllText: document.homepage?.researchViewAllText ?? 'View All Research',
+  };
+
   const findSocialUrl = (name: string) =>
     socialLinks.find(s => s.name.toLowerCase() === name.toLowerCase())?.url ?? '';
 
@@ -104,6 +133,7 @@ export async function getSiteConfigContent(): Promise<{
     },
     footerTagline: document.footerTagline ?? undefined,
     calendar: calendarConfig,
+    homepage: homepageConfig,
     url: "https://durhamaisafety.uk",
     lang: "en_GB",
     repository: "DurhamAISafety/durhamaisafety.github.io",

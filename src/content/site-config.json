@@ -62,5 +62,18 @@
     "lumaCalendarId": "cal-lvIwlKjJGAceOBN",
     "lumaCalendarSlug": "daisi",
     "googleCalendarBackupId": "b7bo0qsj27l7ahfaqgqiavjom9etg7sb@import.calendar.google.com"
+  },
+  "homepage": {
+    "heroTitle": "Durham students and academics for <em>reducing catastrophic risks from advanced AI</em>",
+    "heroSubtitleHighlight": "Whatever your expertise,",
+    "heroSubtitleMain": "you can contribute to the conversation and make a difference.",
+    "heroPrimaryCtaText": "Get Involved",
+    "heroPrimaryCtaLink": "/get-involved/",
+    "heroSecondaryCtaText": "About",
+    "heroSecondaryCtaLink": "/about/",
+    "eventsTitle": "Our Events",
+    "researchTitle": "Research",
+    "researchSubtitle": "Latest Publications & Projects",
+    "researchViewAllText": "View All Research"
   }
 }

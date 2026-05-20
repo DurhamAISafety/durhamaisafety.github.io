@@ -243,6 +243,83 @@ export default defineConfig({
               },
             ],
           },
+          // ── Homepage Hero & Section Intros ───────────────────────────────
+          {
+            type: "object",
+            name: "homepage",
+            label: "Homepage Hero & Section Intros",
+            fields: [
+              {
+                type: "string",
+                name: "heroTitle",
+                label: "Hero Title",
+                required: true,
+                ui: {
+                  description: "Supports HTML like <em>italic</em> to highlight text.",
+                },
+              },
+              {
+                type: "string",
+                name: "heroSubtitleHighlight",
+                label: "Hero Subheading Highlight (purple text)",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "heroSubtitleMain",
+                label: "Hero Subheading Main (white text)",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "heroPrimaryCtaText",
+                label: "Hero Primary CTA Button Text",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "heroPrimaryCtaLink",
+                label: "Hero Primary CTA Button Link",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "heroSecondaryCtaText",
+                label: "Hero Secondary CTA Button Text",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "heroSecondaryCtaLink",
+                label: "Hero Secondary CTA Button Link",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "eventsTitle",
+                label: "Events Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "researchTitle",
+                label: "Research Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "researchSubtitle",
+                label: "Research Section Carousel Subtitle",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "researchViewAllText",
+                label: "Research View All Button Text",
+                required: true,
+              },
+            ],
+          },
         ],
       },
 
