@@ -160,7 +160,7 @@ const { siteConfig } = await getSiteConfigContent();
                     </div>
                     
                     <!-- Calendar iframe -->
-                    <div class="overflow-hidden rounded-xl luma-calendar-wrapper" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarId')}>                            
+                    <div class="overflow-hidden rounded-xl luma-calendar-wrapper" data-tina-field={tinaField(siteConfig._source, 'calendar.lumaCalendarId')}>
                         <iframe
                             id="calendar-iframe" 
                             title="DAISI Events Calendar"
@@ -306,10 +306,10 @@ const { siteConfig } = await getSiteConfigContent();
             </div>
 
             <div class="reveal">
-                <ResearchCarousel 
-                    papers={research} 
-                    title={siteConfig.homepage.researchSubtitle} 
-                    id="home-research-carousel" 
+                <ResearchCarousel
+                    papers={research}
+                    title={siteConfig.homepage.researchSubtitle}
+                    id="home-research-carousel"
                     tinaField={tinaField(siteConfig._source, 'homepage.researchSubtitle')}
                 />
             </div>

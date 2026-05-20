@@ -114,9 +114,9 @@ export async function getSiteConfigContent(): Promise<{
   const result = await requestWithMetadata(
     client.queries.siteConfig({ relativePath: 'site-config.json' })
   );
-  
+
   const document = result.data.siteConfig;
-  
+
   const normalizePublicPath = (value: string): string => {
     if (!value) return value;
     if (value.startsWith('http://') || value.startsWith('https://')) return value;

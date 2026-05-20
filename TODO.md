@@ -1,42 +1,74 @@
 # Future Work
 
-## visual overhaul
+## Tooling And Package Manager
 
-Problem - current site looks ai generated and generic
+- Decide explicitly whether the repo should stay on npm or migrate to pnpm.
+  - Current recommendation: stay on npm for now because CI, Dependabot, Netlify docs, and `package-lock.json` are already npm-based.
+  - If migrating to pnpm, do it as one deliberate branch: replace `package-lock.json` with `pnpm-lock.yaml`, set `packageManager` to pnpm, update GitHub Actions install/cache steps, update README/AGENTS/Netlify docs, and remove npm-only instructions.
+  - Do not keep npm and pnpm lockfiles together.
+- Keep Astro on the 5.x line while `@tinacms/astro@0.2.0` peers on `astro@^5.0.0`.
+  - Revisit Astro 6 only after Tina's Astro integration supports it.
+  - Tailwind is already using the current v4 Vite plugin shape; do not add Tailwind v3-style config files.
+- Add `tsconfig.json` using Astro's strict template once the current CMS branch is stable.
 
-ideas:
-- replace homepage hero with something people-focused
-- go for gothic neural network theme - like durham cathedral identity mixed with ai safety
-  - https://claude.ai/chat/0e2c7bee-816c-410a-b0d9-059bf4f2bb48
-  - page background is a cathedral corridor with neural network features
-  - scrolling down the page could go further down the corridor?
-- serif font - just nicer imo, eg. merryweather. at least for headings
-- 
+## CMS Model
+
+- Move page-specific copy out of `src/content/site-config.json` into page-owned content documents.
+  - Suggested files: `src/content/pages/home.yml`, `src/content/pages/about.yml`, `src/content/pages/research.yml`.
+  - Keep `site-config.json` for global settings only: title, description, email, OG image, navigation, social links, footer, site-wide metadata.
+- Add Tina collections for page-owned content.
+  - Use separate collections for Home Page, About Page, and Research Page rather than extending Site Config further.
+  - Add `ui.router` routes so each document opens the right visual preview route.
+  - Preserve source objects in loaders so `tinaField(...)` bindings remain accurate.
+- Migrate `/what-is-ai-safety/` to Tina after the page-owned model is proven.
+  - It likely needs flexible rich text or a small block schema for definitions, timeline items, resource links, video embeds, and updateable examples.
+
+## Data Loaders And Validation
+
+- Add clear validation in `src/data/*.ts` loaders so malformed CMS content fails early at build time.
+  - Check required fields are non-empty.
+  - Check public image paths start with `/`.
+  - Check research `month` is between 1 and 12 when present.
+  - Check links that open externally are valid URLs where practical.
+  - Check homepage programme tags respect the intended display limits.
+- Remove temporary `any` casts from `src/data/config.ts` once Tina generated types include the new page fields.
+- Remove the legacy `siteConfig.social` compatibility shim.
+  - Derive JSON-LD `sameAs` links in `Layout.astro` from `siteConfig.socialLinks` instead.
+
+## Homepage And Components
+
+- Break `src/pages/index.astro` into focused section components.
+  - `HeroSection.astro`
+  - `EventsSection.astro`
+  - `ProgrammePreviewSection.astro`
+  - `ResearchPreviewSection.astro`
+  - `SupportersSection.astro`
+- Unify supporter rendering.
+  - The hero strip and bottom grid should share logo path normalisation and a common logo/card component with variants.
+  - Keep one CMS-backed supporter list, but allow per-section display options if needed.
+- Split page-local JavaScript and styles out of `src/pages/index.astro` when the events and homepage sections are extracted.
 
 ## CSS And Components
 
-- Delete redundant `.dark` rules in individual CSS modules where semantic tokens already handle light/dark variants.
-- Migrate simple reusable classes such as `.btn-cta` and `.section-heading` to Tailwind utilities or `@apply` where that reduces custom CSS.
+- Delete redundant `.dark` rules in individual CSS modules where semantic tokens already cover light/dark variants.
+- Migrate simple reusable classes such as `.btn-cta` and `.section-heading` to Tailwind utilities or `@apply` only where it reduces custom CSS.
 - Extract repeated card patterns into Astro components with explicit `variant` props, so styling no longer depends on broad section context selectors.
 
-## Content And CMS
+## Visual Editing QA
 
-- Add schema validation for `src/content/*.yml` and `site-config.json` in the `src/data/*.ts` loaders, so malformed content fails clearly at build time.
-- Add organiser calendar management to Tina CMS if event/calendar ownership moves into the site.
-- Move calendar URLs and labels out of `src/pages/index.astro` into content/config if organisers need to update them without code edits.
+- Add a manual smoke-test checklist for Tina visual editing.
+  - Open `/admin/index.html`.
+  - Open each routed collection.
+  - Confirm Tina navigates to the expected preview route.
+  - Click a marked field in the preview.
+  - Confirm the sidebar focuses the matching field.
+  - Edit a field and confirm the relevant island live-refreshes.
+- After the manual checklist is stable, consider a small Playwright smoke test for the public routes. Full Tina editor automation can wait.
 
-## Tina Visual Editor Extensions
+## Content And Design
 
-<!-- - Move the hardcoded homepage hero headline, subheading, CTA labels, CTA links, and background image into Tina so the first viewport can be edited without code changes. -->
-- Create a unified visual editor for the homepage (incl supporters - which are duplicated in hero and at bottom - currently the bottom icons are invisible on tina dashboard BUG)
-- Move the hardcoded Research Opportunities and Research Areas sections in `src/pages/research.astro` into the Research collection or a new page-content collection. (Completed)
-- Move the hardcoded About page mission cards, impact copy, and Join Our Team section into Tina or a page-content collection. (Completed)
-- Add visual editing for Site Config fields that visibly render in the header/footer, especially navigation labels, CTA text, social icons, email, and footer tagline.
-- Consider a general page-content collection for static pages such as About and What Is AI Safety once the desired editor model is clear.
-- [ ] Migrate the "What is AI Safety?" educational page (/what-is-ai-safety) to Tina CMS using a flexible MDX or block-based layout to easily update definitions, timeline items, news references, video embeds, and resource lists without editing code.
-- Add a small smoke-test checklist for visual editing: open `/admin/index.html`, select each routed collection, confirm Tina navigates to `#/~...`, click a marked field, and confirm sidebar focus/live refresh.
-
-## Pages
-
-- Break the homepage into smaller sections, starting with events, programmes preview, research preview, and supporters.
-- Split page-local JavaScript and styles out of `src/pages/index.astro` once the homepage sections are extracted.
+- Replace informal visual-overhaul notes with a short design spec before implementation.
+  - Direction to explore: a more people-focused homepage while keeping Durham Cathedral/Durham identity visible.
+  - Possible visual motif: restrained gothic/neural-network treatment, avoiding generic AI gradients.
+  - Use Merriweather or another serif for headings only if it fits the final design direction; keep body/UI text readable and restrained.
+- Add organiser calendar management to Tina only if event/calendar ownership moves into the site.

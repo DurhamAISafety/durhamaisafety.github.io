@@ -1,7 +1,7 @@
 # Project Guidelines
 
 ## Project Snapshot
-Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is built with Astro 6, Tailwind CSS v4, TypeScript, and Tina CMS. Content is managed via Tina CMS at `/admin/` and stored in YAML/JSON files under `src/content/`.
+Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is currently built with Astro 5, Tailwind CSS v4, TypeScript, and Tina CMS. Keep Astro on the 5.x line while `@tinacms/astro` peers on `astro@^5.0.0`. Content is managed via Tina CMS at `/admin/` and stored in YAML/JSON files under `src/content/`.
 
 ## Build & Validation
 ```bash
@@ -11,6 +11,8 @@ npx astro check       # TypeScript/Astro type-check
 npm run build         # production build: tinacms build && astro build
 npm run preview       # preview production build locally
 ```
+
+Use npm as the package manager. Keep `package-lock.json`; do not add `pnpm-lock.yaml`, `pnpm-workspace.yaml`, Yarn lockfiles, or Bun lockfiles unless the whole repo is intentionally migrated and CI/Netlify are updated at the same time.
 
 There is no separate unit/integration test suite configured. Use `npx astro check` and `npm run build` as the baseline validation for most code changes.
 
