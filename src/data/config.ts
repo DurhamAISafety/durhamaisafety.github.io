@@ -30,6 +30,7 @@ export interface HomepageConfig {
   heroSecondaryCtaText: string;
   heroSecondaryCtaLink: string;
   eventsTitle: string;
+  programmesTitle: string;
   researchTitle: string;
   researchSubtitle: string;
   researchViewAllText: string;
@@ -155,6 +156,7 @@ export async function getSiteConfigContent(): Promise<{
     heroSecondaryCtaText: document.homepage?.heroSecondaryCtaText ?? 'About',
     heroSecondaryCtaLink: document.homepage?.heroSecondaryCtaLink ?? '/about/',
     eventsTitle: document.homepage?.eventsTitle ?? 'Our Events',
+    programmesTitle: (document.homepage as any)?.programmesTitle ?? 'Our Programmes',
     researchTitle: document.homepage?.researchTitle ?? 'Research',
     researchSubtitle: document.homepage?.researchSubtitle ?? 'Latest Publications & Projects',
     researchViewAllText: document.homepage?.researchViewAllText ?? 'View All Research',

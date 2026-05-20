@@ -302,6 +302,12 @@ export default defineConfig({
               },
               {
                 type: "string",
+                name: "programmesTitle",
+                label: "Programmes Section Title",
+                required: true,
+              },
+              {
+                type: "string",
                 name: "researchTitle",
                 label: "Research Section Title",
                 required: true,
