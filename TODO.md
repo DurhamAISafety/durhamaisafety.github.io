@@ -29,10 +29,11 @@ ideas:
 
 <!-- - Move the hardcoded homepage hero headline, subheading, CTA labels, CTA links, and background image into Tina so the first viewport can be edited without code changes. -->
 - Create a unified visual editor for the homepage (incl supporters - which are duplicated in hero and at bottom - currently the bottom icons are invisible on tina dashboard BUG)
-- Move the hardcoded Research Opportunities and Research Areas sections in `src/pages/research.astro` into the Research collection or a new page-content collection.
-- Move the hardcoded About page mission cards, impact copy, and Join Our Team section into Tina or a page-content collection.
+- Move the hardcoded Research Opportunities and Research Areas sections in `src/pages/research.astro` into the Research collection or a new page-content collection. (Completed)
+- Move the hardcoded About page mission cards, impact copy, and Join Our Team section into Tina or a page-content collection. (Completed)
 - Add visual editing for Site Config fields that visibly render in the header/footer, especially navigation labels, CTA text, social icons, email, and footer tagline.
 - Consider a general page-content collection for static pages such as About and What Is AI Safety once the desired editor model is clear.
+- [ ] Migrate the "What is AI Safety?" educational page (/what-is-ai-safety) to Tina CMS using a flexible MDX or block-based layout to easily update definitions, timeline items, news references, video embeds, and resource lists without editing code.
 - Add a small smoke-test checklist for visual editing: open `/admin/index.html`, select each routed collection, confirm Tina navigates to `#/~...`, click a marked field, and confirm sidebar focus/live refresh.
 
 ## Pages
