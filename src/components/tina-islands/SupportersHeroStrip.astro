@@ -12,25 +12,64 @@ const supporterLogoSrc = (logo: string): string =>
   logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;
 ---
 
-<div class="pt-8 border-t border-white/20">
-  <p class="text-white/50 text-xs uppercase tracking-widest font-semibold mb-4">Proudly supported by</p>
-  <div class="flex flex-wrap items-center gap-3">
-    {supporters.map((supporter) => (
-      <a
-        href={supporter.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center justify-center bg-white/90 hover:bg-white rounded-lg px-3 py-2 transition-all duration-200 hover:scale-105"
-        title={supporter.name}
-        data-tina-field={tinaField(supporter._source, 'link')}
-      >
-        <img
-          src={supporterLogoSrc(supporter.logo)}
-          alt={supporter.name}
-          class="h-7 max-w-[100px] object-contain"
-          data-tina-field={tinaField(supporter._source, 'logo')}
-        />
-      </a>
-    ))}
+<section class="w-full bg-surface-muted dark:bg-[#141428] border-y border-slate-200 dark:border-white/5 py-8 reveal">
+  <div class="site-container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <p class="text-muted-text dark:text-white/40 text-xs uppercase tracking-widest font-semibold text-center md:text-left flex-shrink-0">
+      Proudly supported by
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+      {supporters.map((supporter) => (
+        <a
+          href={supporter.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit ${supporter.name}`}
+          title={supporter.name}
+          class="supporter-btn flex items-center justify-center bg-white dark:bg-white/95 hover:bg-white rounded-xl px-4 py-2.5 shadow-sm border border-slate-100 dark:border-transparent transition-all duration-300"
+          data-tina-field={tinaField(supporter._source, 'link')}
+        >
+          <img
+            src={supporterLogoSrc(supporter.logo)}
+            alt={supporter.name}
+            class="supporter-logo h-7 md:h-8 max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
+            data-tina-field={tinaField(supporter._source, 'logo')}
+          />
+          <span class="supporter-label text-xs md:text-sm font-semibold text-slate-700 dark:text-slate-800">
+            {supporter.name}
+          </span>
+        </a>
+      ))}
+    </div>
   </div>
-</div>
+</section>
+
+<style>
+.supporter-btn {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+.supporter-btn:hover,
+.supporter-btn:focus-visible {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px -5px rgba(235, 128, 253, 0.15), 0 6px 6px -6px rgba(235, 128, 253, 0.15);
+    border-color: var(--color-bright-purple, #EB80FD);
+}
+
+.supporter-label {
+    overflow: hidden;
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-left 0.4s ease;
+    margin-left: 0;
+    pointer-events: none;
+}
+
+.supporter-btn:hover .supporter-label,
+.supporter-btn:focus-visible .supporter-label {
+    max-width: 200px; /* Large enough to hold supporter names */
+    opacity: 1;
+    margin-left: 0.75rem;
+    pointer-events: auto;
+}
+</style>
