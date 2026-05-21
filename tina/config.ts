@@ -256,7 +256,6 @@ export default defineConfig({
           include: "people",
         },
         ui: {
-          router: () => "/about/",
           allowedActions: {
             create: false,
             delete: false,
@@ -366,7 +365,6 @@ export default defineConfig({
           include: "research",
         },
         ui: {
-          router: () => "/research/",
           allowedActions: {
             create: false,
             delete: false,
@@ -487,7 +485,6 @@ export default defineConfig({
           include: "supporters",
         },
         ui: {
-          router: () => "/",
           allowedActions: {
             create: false,
             delete: false,
