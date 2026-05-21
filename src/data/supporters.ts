@@ -6,7 +6,6 @@ import type {
 } from '../../tina/__generated__/types';
 
 export interface Supporter {
-  name: string;
   logo: string;
   link: string;
   _source: SupportersSupporters;
@@ -25,7 +24,6 @@ export async function getSupportersContent(): Promise<{
 
   const document = result.data.supporters;
   const supporters = compact(document.supporters).map((supporter) => ({
-    name: supporter.name,
     logo: supporter.logo,
     link: supporter.link,
     _source: supporter,

@@ -500,15 +500,13 @@ export default defineConfig({
             label: "Supporters",
             list: true,
             ui: {
-              itemProps: (item) => ({ label: item?.name ?? "Supporter" }),
+              itemProps: (item) => ({
+                label: item?.link
+                  ? item.link.replace(/^https?:\/\/(www\.)?/, "")
+                  : "Supporter",
+              }),
             },
             fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Name",
-                required: true,
-              },
               {
                 type: "image",
                 name: "logo",
