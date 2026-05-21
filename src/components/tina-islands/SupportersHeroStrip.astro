@@ -7,9 +7,6 @@ interface Props {
 }
 
 const { supporters } = Astro.props;
-
-const supporterLogoSrc = (logo: string): string =>
-  logo.startsWith('/images/') ? logo : `/images/supporters/${logo}`;
 ---
 
 <section class="w-full bg-surface-muted dark:bg-[#141428] border-y border-slate-200 dark:border-white/5 py-8 reveal">
@@ -28,7 +25,7 @@ const supporterLogoSrc = (logo: string): string =>
           data-tina-field={tinaField(supporter._source, 'link')}
         >
           <img
-            src={supporterLogoSrc(supporter.logo)}
+            src={supporter.logo}
             alt="Supporter Logo"
             class="supporter-logo h-7 md:h-8 max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
             data-tina-field={tinaField(supporter._source, 'logo')}
