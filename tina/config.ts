@@ -525,13 +525,6 @@ export default defineConfig({
                 label: "Link",
                 required: true,
               },
-              {
-                type: "string",
-                name: "subtitle",
-                label: "Subtitle",
-                required: false,
-                ui: { description: 'e.g. "(fmr. Open Philanthropy)"' },
-              },
             ],
           },
         ],

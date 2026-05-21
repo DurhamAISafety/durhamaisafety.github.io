@@ -9,7 +9,6 @@ export interface Supporter {
   name: string;
   logo: string;
   link: string;
-  subtitle?: string;
   _source: SupportersSupporters;
 }
 
@@ -29,7 +28,6 @@ export async function getSupportersContent(): Promise<{
     name: supporter.name,
     logo: supporter.logo,
     link: supporter.link,
-    subtitle: supporter.subtitle ?? undefined,
     _source: supporter,
   }));
 

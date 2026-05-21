@@ -4,7 +4,6 @@ import AlumniPageIsland from '../components/tina-islands/AlumniPageIsland.astro'
 import GetInvolvedPageIsland from '../components/tina-islands/GetInvolvedPageIsland.astro';
 import ProgrammesPageIsland from '../components/tina-islands/ProgrammesPageIsland.astro';
 import ResearchPageIsland from '../components/tina-islands/ResearchPageIsland.astro';
-import SupportersGrid from '../components/tina-islands/SupportersGrid.astro';
 import SupportersHeroStrip from '../components/tina-islands/SupportersHeroStrip.astro';
 import { getGetInvolvedContent } from '../data/get-involved';
 import { getPeopleContent } from '../data/people';
@@ -61,15 +60,6 @@ export const tinaIslands = {
   'supporters-hero': {
     fetch: async () => getSupportersContent(),
     component: SupportersHeroStrip,
-    wrapper: { tag: 'div', className: 'contents' },
-    propsFromData: (data) => {
-      const { supporters } = data as Awaited<ReturnType<typeof getSupportersContent>>;
-      return { supporters };
-    },
-  },
-  'supporters-grid': {
-    fetch: async () => getSupportersContent(),
-    component: SupportersGrid,
     wrapper: { tag: 'div', className: 'contents' },
     propsFromData: (data) => {
       const { supporters } = data as Awaited<ReturnType<typeof getSupportersContent>>;

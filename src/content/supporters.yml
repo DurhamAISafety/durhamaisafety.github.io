@@ -9,7 +9,6 @@
 # - name: Acme Foundation            # Required: Display name
 #   logo: /images/supporters/acme.png # Required: Logo path (Tina image upload sets this)
 #   link: https://example.com        # Required: Link to their website
-#   subtitle: (fmr. Other Name)      # Optional: Subtitle text (e.g. former name)
 #
 # Notes:
 # - Add logos to: public/images/supporters/ (supported: .jpg, .jpeg, .png, .svg, .webp)
@@ -25,7 +24,6 @@ supporters:
   - name: Coefficient Giving
     logo: /images/supporters/Coefficient_Logo_Green.jpeg
     link: https://coefficientgiving.org/
-    subtitle: (fmr. Open Philanthropy)
 
   - name: EA Durham
     logo: /images/supporters/eadurham.jpg
