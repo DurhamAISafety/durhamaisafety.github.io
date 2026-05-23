@@ -14,12 +14,12 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
    ```bash
    git clone https://github.com/DurhamAISafety/durhamaisafety.github.io.git
    cd durhamaisafety.github.io
-   npm install
+   pnpm install
    ```
 3. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor locally)
 4. Start the dev server:
    ```bash
-   npm run dev
+   pnpm dev
    ```
 5. Open http://localhost:4321 to view the site, or http://localhost:4321/admin to open the CMS editor
 
@@ -159,7 +159,7 @@ Once you have them:
    ```
 2. Run the dev server:
    ```bash
-   npm run dev
+   pnpm dev
    # visit http://localhost:4321/admin
    ```
 
@@ -198,7 +198,7 @@ Defined in `src/styles/global.css` (`@theme {}` block):
 
 ## Troubleshooting
 
-- **Build errors**: Run `npm run build` locally to see details
+- **Build errors**: Run `pnpm build` locally to see details
 - **Changes not appearing**: Check the Actions tab on GitHub for build status
 - **Images not loading**: Paths should start with `/` for public assets
 - **YAML errors**: Check indentation (use 2 spaces, not tabs)
