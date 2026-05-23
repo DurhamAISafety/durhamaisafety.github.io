@@ -25,12 +25,12 @@ const { featuredCards, moreCards } = Astro.props;
           const borderClasses = ['border-bright-purple-50', 'border-light-purple-50', 'border-lavender-50'];
           const borderClass = borderClasses[i % borderClasses.length];
           return (
-            <div class={`involvement-card card p-6 card-hover text-center border-strong ${borderClass}`}>
+            <div class={`involvement-card card p-6 card-hover text-center border-strong flex flex-col h-full ${borderClass}`}>
               <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
               <h4 class="text-xl font-bold mb-4" data-tina-field={tinaField(card._source, "title")}>
                 {card.title}
               </h4>
-              <p class="text-sm leading-relaxed mb-4" data-tina-field={tinaField(card._source, "description")}>
+              <p class="text-sm leading-relaxed mb-4 flex-grow" data-tina-field={tinaField(card._source, "description")}>
                 {card.description}
               </p>
               {card.recommended_label && (
@@ -45,7 +45,7 @@ const { featuredCards, moreCards } = Astro.props;
               )}
               <a
                 href={card.link_url}
-                class="btn btn-primary btn-sm"
+                class="btn btn-primary btn-sm mt-auto"
                 {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 data-tina-field={tinaField(card._source, "link_label")}
               >
@@ -70,17 +70,17 @@ const { featuredCards, moreCards } = Astro.props;
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {moreCards.map((card) => (
-          <div class="involvement-card card p-6 card-hover text-center">
+          <div class="involvement-card card p-6 card-hover text-center flex flex-col h-full">
             <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
             <h4 class="text-xl font-bold mb-4" data-tina-field={tinaField(card._source, "title")}>
               {card.title}
             </h4>
-            <p class="text-sm leading-relaxed mb-4" data-tina-field={tinaField(card._source, "description")}>
+            <p class="text-sm leading-relaxed mb-4 flex-grow" data-tina-field={tinaField(card._source, "description")}>
               {card.description}
             </p>
             <a
               href={card.link_url}
-              class="btn btn-secondary btn-sm hover:underline transition-all duration-200"
+              class="btn btn-secondary btn-sm hover:underline transition-all duration-200 mt-auto"
               {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               data-tina-field={tinaField(card._source, "link_label")}
             >
