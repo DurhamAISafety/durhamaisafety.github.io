@@ -1,0 +1,11 @@
+allowBuilds:
+  '@parcel/watcher': true
+  better-sqlite3: true
+  core-js: true
+  esbuild: true
+  protobufjs: true
+  sharp: true
+
+overrides:
+  '@tinacms/cli>vite': '^4.5.9'
+  vite: '^6.2.0'

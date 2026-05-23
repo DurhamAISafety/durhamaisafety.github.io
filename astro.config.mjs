@@ -7,7 +7,7 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://durhamaisafety.uk',
+  site: process.env.SITE_URL,
   integrations: [sitemap(), tina()],
   adapter: netlify(),
   vite: {

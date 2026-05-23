@@ -1,17 +1,15 @@
 {
   "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": [
+    "dist",
+  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "strictNullChecks": true,
     "paths": {
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@data/*": ["src/data/*"]
     }
-  },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "public/admin",
-    "tina/__generated__"
-  ]
+  }
 }
