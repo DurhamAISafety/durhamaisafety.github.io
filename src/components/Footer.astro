@@ -45,6 +45,16 @@ function getSocialLabel(link: { name: string; url: string }) {
             
             <!-- Left Column: Title & Disclaimer -->
             <div class="flex flex-col items-center md:items-start gap-4">
+                <!-- Brand Logo -->
+                <a href="/" class="inline-block flex-shrink-0" aria-label="DAISI Home">
+                    <img 
+                        src="/images/DAISI-logo.svg" 
+                        alt="DAISI Logo" 
+                        class="h-6 w-auto md:h-7 opacity-85 hover:opacity-100 transition-all duration-300" 
+                        loading="lazy" 
+                        decoding="async" 
+                    />
+                </a>
                 <div class="text-base md:text-lg font-bold text-white tracking-wide" data-tina-field={tinaField(siteConfig._source, 'title')}>
                     {siteConfig.title}<sup class="text-[10px] md:text-xs font-normal text-white/50 ml-1.5 align-super">2026</sup>
                 </div>
