@@ -17,119 +17,140 @@ import { tinaField } from '@tinacms/astro';
 
 const currentYear = new Date().getFullYear();
 const { siteConfig } = await getSiteConfigContent();
+
+function getSocialLabel(link: { name: string; url: string }) {
+    const lowerName = link.name.toLowerCase();
+    if (lowerName === 'instagram') {
+        const match = link.url.match(/instagram\.com\/([^/?#]+)/);
+        return match ? `@${match[1]}` : 'Instagram';
+    }
+    if (lowerName === 'linkedin') {
+        const match = link.url.match(/linkedin\.com\/company\/([^/?#]+)/);
+        return match ? match[1] : 'LinkedIn';
+    }
+    if (lowerName === 'linktree') {
+        const match = link.url.match(/linktr\.ee\/([^/?#]+)/);
+        return match ? `linktr.ee/${match[1]}` : 'Linktree';
+    }
+    if (lowerName === 'discord') {
+        return 'Join our Discord';
+    }
+    return link.name;
+}
 ---
 
-<footer class="footer no-print">
-    <div class="site-container py-10 md:py-8">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-            <!-- Left: Brand & Social -->
-            <div class="flex flex-col gap-4 min-w-[220px] items-center md:items-start text-center md:text-left">
-                <div class="flex items-center gap-4 justify-center md:justify-start w-full">
-                    <div class="social-links flex gap-4 justify-center md:justify-start">
-                        {siteConfig.socialLinks.map((link) => (
-                            <a
-                                href={link.url}
-                                aria-label={link.name}
-                                title={link.name}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                data-tina-field={tinaField(link._source, 'url')}
-                            >
-                                <img
-                                    src={link.icon}
-                                    alt=""
-                                    class="w-7 h-7"
-                                    style="filter: brightness(0) invert(1)"
-                                />
-                            </a>
-                        ))}
-                    </div>
+<footer id="site-footer" class="footer no-print relative py-8 md:py-10 text-left bg-deep-purple dark:bg-[#0d0414] border-t border-bright-purple/20 transition-all duration-300">
+    <div class="site-container mx-auto w-full max-w-[980px] px-5">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr] md:gap-16 text-center md:text-left">
+            
+            <!-- Left Column: Title & Disclaimer -->
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <div class="text-base md:text-lg font-bold text-white tracking-wide" data-tina-field={tinaField(siteConfig._source, 'title')}>
+                    {siteConfig.title}<sup class="text-[10px] md:text-xs font-normal text-white/50 ml-1.5 align-super">2026</sup>
                 </div>
-                <div class="text-base md:text-lg font-semibold inline-flex items-center gap-2">
-                    <span data-tina-field={tinaField(siteConfig._source, 'title')}>{siteConfig.title}</span>
-                    <span class="text-[10px] md:text-xs font-normal text-white/60 align-middle">{currentYear}</span>
-                </div>
-            </div>
-
-            <!-- Right: Contact & Feedback -->
-            <div class="flex-1 grid gap-3 text-sm md:text-base max-w-xl">
-                <div>
-                    <a href={`mailto:${siteConfig.email}`} class="text-bright-purple hover:text-light-purple font-medium transition-colors" data-tina-field={tinaField(siteConfig._source, 'email')}>
-                        {siteConfig.email}
-                    </a>
-                </div>
-                <p class="text-white/70 leading-snug" data-tina-field={tinaField(siteConfig._source, 'footerTagline')}>
-                    {siteConfig.footerTagline}
+                {siteConfig.footerTagline && (
+                    <p class="text-xs md:text-sm text-white/70 leading-relaxed font-normal" data-tina-field={tinaField(siteConfig._source, 'footerTagline')}>
+                        {siteConfig.footerTagline}
+                    </p>
+                )}
+                <!-- Disclaimer -->
+                <p class="text-[11px] md:text-xs leading-relaxed text-white/50">
+                    Durham AI Safety Initiative is a student group affiliated with Durham Students' Union, 
+                    which is registered in England as a company limited by guarantee (07689815) and a charity (1145400). 
+                    Durham Students' Union's registered office is Dunelm House, New Elvet, Durham, DH1 3AN.
+                    Durham AI Safety Initiative follows Durham Students' Union's privacy policy and code of conduct.
                 </p>
-                <div>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1e1H4DnI1xWvjtpO4pZCAQiUq1mtdYYiDnJUBHb8yb72xMQ/viewform?usp=dialog"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 text-bright-purple hover:text-light-purple font-medium transition-colors">
-                        <i class="fas fa-user-secret"></i>
-                        <span>Send anonymous feedback / report an issue</span>
-                    </a>
-                </div>
+                <!-- Back to top button -->
+                <a
+                    href="#top"
+                    id="back-to-top-link"
+                    aria-label="Back to top"
+                    class="mt-2 inline-flex items-center gap-2 text-xs text-white/50 hover:text-bright-purple hover:opacity-100 transition-colors"
+                >
+                    <i class="fas fa-arrow-up text-xs" aria-hidden="true"></i>
+                    <span>Back to top</span>
+                </a>
             </div>
+
+            <!-- Right Column: Contact Us & Socials -->
+            <div class="flex flex-col gap-4 items-center md:items-start">
+                <span class="font-bold text-white text-[15px] uppercase tracking-wider opacity-85">
+                    Contact Us
+                </span>
+
+                <!-- Email -->
+                <a
+                    href={`mailto:${siteConfig.email}`}
+                    aria-label="Email"
+                    class="flex items-center gap-3 text-xs md:text-sm text-white hover:text-bright-purple hover:opacity-100 transition-colors"
+                    data-tina-field={tinaField(siteConfig._source, 'email')}
+                >
+                    <i class="fas fa-envelope text-base w-5 text-center flex-shrink-0" aria-hidden="true"></i>
+                    <span>{siteConfig.email}</span>
+                </a>
+
+                <!-- Socials loops -->
+                {siteConfig.socialLinks.map((link) => (
+                    <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label={link.name}
+                        class="flex items-center gap-3 text-xs md:text-sm text-white/80 hover:text-bright-purple hover:opacity-100 transition-colors"
+                        data-tina-field={tinaField(link._source, 'url')}
+                    >
+                        <img
+                            src={link.icon}
+                            alt=""
+                            class="w-5 h-5 invert brightness-0 flex-shrink-0 transition-all duration-300"
+                        />
+                        <span>{getSocialLabel(link)}</span>
+                    </a>
+                ))}
+            </div>
+
         </div>
 
-        <!-- Legal / fine print condensed -->
-        <div class="mt-8 text-[11px] md:text-xs text-white/50 leading-relaxed max-w-4xl">
-            <p>
-                Durham AI Safety Initiative is a student group affiliated with Durham Students' Union, which is registered in England as a company limited by guarantee (07689815) and a charity (1145400). Durham Students' Union's registered office is Dunelm House, New Elvet, Durham, DH1 3AN.
-            </p>
-            <p>
-                Durham AI Safety Initiative follows Durham Students' Union's privacy policy and code of conduct.
-            </p>
-        </div>
-
-        <!-- Bottom: back to top + license links -->
-        <div class="mt-4 flex flex-col gap-3 items-start md:flex-row md:items-center md:justify-between">
+        <!-- Divider & Bottom Navigation Links -->
+        <div class="border-t border-white/10 my-6"></div>
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[11px] md:text-xs text-white/40 font-medium">
+            <!-- Report feedback -->
             <a
-                href="#top"
-                id="back-to-top-link"
-                class="order-2 md:order-1 inline-flex items-center gap-2 text-white/60 hover:text-bright-purple font-medium transition-colors text-xs md:text-sm"
-                aria-label="Back to top"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd1e1H4DnI1xWvjtpO4pZCAQiUq1mtdYYiDnJUBHb8yb72xMQ/viewform?usp=dialog"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Send anonymous feedback / report an issue"
+                class="flex items-center gap-2 hover:text-bright-purple transition-colors"
             >
-                <i class="fas fa-arrow-up"></i>
-                <span>Back to top</span>
+                <i class="fas fa-user-secret" aria-hidden="true"></i>
+                <span>Report feedback / issue</span>
             </a>
 
-            <div class="order-1 md:order-2 inline-flex items-center gap-3 text-xs md:text-sm">
-                <a
-                    href={`https://github.com/${siteConfig.repository}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="This site is open-source on GitHub"
-                    class="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium transition-colors"
-                >
-                    <i class="fa-brands fa-github"></i>
-                    <span>This site is open-source</span>
-                </a>
-                <span aria-hidden="true" class="text-white/30">•</span>
-                <a
-                    href="https://creativecommons.org/licenses/by/4.0/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Content licensed under Creative Commons Attribution 4.0"
-                    title="Content licensed CC BY 4.0 (except photos, team data, and logo)"
-                    class="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
-                >
-                    <i class="fa-brands fa-creative-commons"></i>
-                    <i class="fa-brands fa-creative-commons-by -ml-1"></i>
-                    <span>CC BY 4.0</span>
-                </a>
-                <span aria-hidden="true" class="text-white/30">•</span>
-                <a
-                    href="/admin/"
-                    aria-label="Content management admin"
-                    title="Content management"
-                    class="inline-flex items-center gap-1.5 text-white/40 hover:text-white/70 transition-colors"
-                >
-                    <i class="fas fa-shield-halved text-[10px]"></i>
-                    <span>Admin</span>
-                </a>
-            </div>
+            <span aria-hidden="true" class="hidden sm:inline text-white/20">•</span>
+
+            <!-- Open source link -->
+            <a
+                href={`https://github.com/${siteConfig.repository}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="This site is open-source on GitHub"
+                class="flex items-center gap-2 hover:text-bright-purple transition-colors"
+            >
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                <span>This site is open-source</span>
+            </a>
+
+            <span aria-hidden="true" class="hidden sm:inline text-white/20">•</span>
+
+            <!-- Admin panel -->
+            <a
+                href="/admin/"
+                aria-label="Admin panel"
+                class="flex items-center gap-2 text-white/30 hover:text-bright-purple transition-colors"
+            >
+                <i class="fa-solid fa-wrench opacity-70" aria-hidden="true"></i>
+                <span>Admin Panel</span>
+            </a>
         </div>
     </div>
 </footer>
