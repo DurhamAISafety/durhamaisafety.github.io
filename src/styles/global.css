@@ -8,6 +8,10 @@
   --font-family-body: "Raleway", sans-serif;
   --font-family-headings: "Merriweather", serif;
 
+  /* Fixed highlight colors (equivalent to dark mode vibrant purples, used globally across light/dark modes) */
+  --color-fixed-bright-purple: #b06be8;
+  --color-fixed-light-purple: #c77dff;
+
   /* Brand colours */
   --color-durham-purple: #68246D;
   --color-durham-purple-hover: #7a2d80;
@@ -28,11 +32,11 @@
   --color-heading-text: #0f172a;
   --color-muted-text: #94a3b8;
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
-  --gradient-text: linear-gradient(135deg, var(--color-bright-purple), var(--color-lavender));
-  --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
-  --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
+  /* Gradients replaced with fixed solid colours */
+  --gradient-primary: var(--color-bright-purple);
+  --gradient-text: var(--color-bright-purple);
+  --gradient-hero: var(--color-deep-purple);
+  --gradient-bg: var(--color-deep-purple);
 
   /* Text colors */
   --text-primary: #FFFFFF;
@@ -74,10 +78,10 @@
   --color-ocean-blue: #7060a8;
   --color-navy: #0e0e18;
 
-  --gradient-primary: linear-gradient(135deg, #b06be8, #c77dff);
-  --gradient-text: linear-gradient(135deg, #c77dff, #8585d0);
-  --gradient-hero: linear-gradient(135deg, #0e0e18 0%, #111118 50%, #b06be8 100%);
-  --gradient-bg: linear-gradient(to bottom right, #0e0e15, #12121c, #16162a);
+  --gradient-primary: #b06be8;
+  --gradient-text: #b06be8;
+  --gradient-hero: #0e0e18;
+  --gradient-bg: #0e0e15;
 
   --text-primary: #e8e8f5;
   --text-secondary: rgba(232, 232, 245, 0.7);
@@ -149,4 +153,9 @@ body {
 h1, h2, h3, h4, h5, h6,
 .section-heading {
   font-family: var(--font-family-headings);
+}
+
+/* Custom override to keep hero emphasis text always the fixed dark-mode bright purple */
+.hero-heading em {
+  color: var(--color-fixed-bright-purple) !important;
 }
