@@ -1,3 +1,4 @@
 [build.environment]
 NODE_VERSION = "24"
 NODE_OPTIONS = "--max-old-space-size=4096"
+SECRETS_SCAN_OMIT_PATHS = "tina/__generated__/**,tina/generated/**"
