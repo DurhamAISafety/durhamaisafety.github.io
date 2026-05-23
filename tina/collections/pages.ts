@@ -1,67 +1,16 @@
-import fs from "fs";
-import path from "path";
 import type { Collection } from "tinacms";
 
-// Helper function to dynamically parse color variables from global.css
-function getColorOptionsFromCSS() {
-  try {
-    const cssPath = path.resolve(process.cwd(), "src/styles/global.css");
-    const cssContent = fs.readFileSync(cssPath, "utf-8");
-    
-    // RegExp to find all --color-* variables
-    const matches = cssContent.matchAll(/--color-([\w-]+):\s*([^;]+);/g);
-    const options: { label: string; value: string }[] = [];
-    const seen = new Set<string>();
-
-    for (const match of matches) {
-      const colorName = match[1];
-      
-      // Exclude hover variants, structure, and text components
-      if (
-        colorName.endsWith("-hover") || 
-        colorName === "pure-white" || 
-        colorName === "surface" || 
-        colorName === "surface-muted" || 
-        colorName === "body-text" || 
-        colorName === "heading-text" || 
-        colorName === "muted-text"
-      ) {
-        continue;
-      }
-      
-      if (seen.has(colorName)) {
-        continue;
-      }
-      seen.add(colorName);
-      
-      const label = colorName
-        .split("-")
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-        
-      options.push({
-        label: label,
-        value: `text-${colorName}`,
-      });
-    }
-    
-    return options.length > 0 ? options : getFallbackColorOptions();
-  } catch (error) {
-    console.error("Error reading colors from global.css:", error);
-    return getFallbackColorOptions();
-  }
-}
-
-function getFallbackColorOptions() {
-  return [
-    { label: "Bright Purple", value: "text-bright-purple" },
-    { label: "Light Purple", value: "text-light-purple" },
-    { label: "Deep Purple", value: "text-deep-purple" },
-    { label: "Lavender", value: "text-lavender" },
-  ];
-}
-
-const colorOptions = getColorOptionsFromCSS();
+// Tina collection modules are bundled for the browser, so keep schema options
+// independent of Node-only filesystem access.
+const colorOptions = [
+  { label: "Durham Purple", value: "text-durham-purple" },
+  { label: "Deep Purple", value: "text-deep-purple" },
+  { label: "Bright Purple", value: "text-bright-purple" },
+  { label: "Light Purple", value: "text-light-purple" },
+  { label: "Lavender", value: "text-lavender" },
+  { label: "Ocean Blue", value: "text-ocean-blue" },
+  { label: "Navy", value: "text-navy" },
+];
 
 // ── Home Page ──────────────────────────────────────────────────────────
 export const homePageCollection: Collection = {
