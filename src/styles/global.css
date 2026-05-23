@@ -3,47 +3,150 @@
 /* Use class-based dark mode so the JS toggle works */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
+:root {
+  /* Brand fonts */
+  --font-family-body: "Raleway", sans-serif;
+  --font-family-headings: "Merriweather", serif;
+
   /* Brand colours */
   --color-durham-purple: #68246D;
-  --color-deep-purple:   #39144F;
+  --color-durham-purple-hover: #7a2d80;
+  --color-deep-purple: #39144F;
   --color-bright-purple: #EB80FD;
-  --color-light-purple:  #E2ACFE;
-  --color-lavender:      #B8BBFE;
-  --color-pure-white:    #FFFFFF;
+  --color-light-purple: #E2ACFE;
+  --color-lavender: #B8BBFE;
+  --color-pure-white: #FFFFFF;
 
-  /* Legacy palette colours (still referenced in some utilities).
-     ocean-blue and navy match styles.css :root to avoid gradient conflicts. */
+  /* Legacy palette colours */
   --color-ocean-blue: #6F3FA7;
-  --color-deep-blue:  #0e4a5c;
-  --color-teal:       #14b8a6;
-  --color-emerald:    #10b981;
-  --color-sage:       #84cc16;
-  --color-mint:       #6ee7b7;
-  --color-warm-blue:  #3b82f6;
-  --color-navy:       #2B0F40;
+  --color-navy: #2B0F40;
 
   /* Semantic surface/text tokens — light mode defaults */
-  --color-surface:       #ffffff;
+  --color-surface: #ffffff;
   --color-surface-muted: #f8fafc;
-  --color-body-text:     #475569;
-  --color-heading-text:  #0f172a;
-  --color-muted-text:    #94a3b8;
+  --color-body-text: #475569;
+  --color-heading-text: #0f172a;
+  --color-muted-text: #94a3b8;
 
-  /* Fonts */
-  --font-display:   "IBM Plex Sans", sans-serif;
-  --font-body:      "IBM Plex Sans", sans-serif;
-  --font-inter:     "Inter", sans-serif;
-  --font-secondary: "Inter", sans-serif;
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-bright-purple), var(--color-light-purple));
+  --gradient-text: linear-gradient(135deg, var(--color-bright-purple), var(--color-lavender));
+  --gradient-hero: linear-gradient(135deg, var(--color-deep-purple) 0%, var(--color-navy) 50%, var(--color-bright-purple) 100%);
+  --gradient-bg: linear-gradient(to bottom right, var(--color-deep-purple), var(--color-navy), var(--color-bright-purple));
+
+  /* Text colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+
+  /* Background colors */
+  --bg-primary: var(--color-deep-purple);
+  --bg-secondary: var(--color-navy);
+  --bg-card: rgba(57, 20, 79, 0.5);
+
+  /* Spacing */
+  --section-padding: 5rem 0;
+  --container-padding: 0 1.5rem;
+  --card-padding: 2rem;
+
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Shadows */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 20px 40px rgba(14, 74, 92, 0.3);
+
+  /* Transitions */
+  --transition-default: all 0.3s ease;
+  --transition-fast: all 0.2s ease;
 }
 
-/* Dark mode: override semantic tokens when .dark class is active.
-   Plain CSS rule rather than @variant dark { @theme } — the latter
-   incorrectly overwrites the :root defaults instead of scoping them. */
 .dark {
+  /* Brand colours */
+  --color-deep-purple: #1a1a2e;
+  --color-bright-purple: #b06be8;
+  --color-light-purple: #c77dff;
+  --color-lavender: #8585d0;
+  --color-pure-white: #e8e8f5;
+
+  --color-ocean-blue: #7060a8;
+  --color-navy: #0e0e18;
+
+  --gradient-primary: linear-gradient(135deg, #b06be8, #c77dff);
+  --gradient-text: linear-gradient(135deg, #c77dff, #8585d0);
+  --gradient-hero: linear-gradient(135deg, #0e0e18 0%, #111118 50%, #b06be8 100%);
+  --gradient-bg: linear-gradient(to bottom right, #0e0e15, #12121c, #16162a);
+
+  --text-primary: #e8e8f5;
+  --text-secondary: rgba(232, 232, 245, 0.7);
+
+  --bg-primary: #0e0e15;
+  --bg-secondary: #12121c;
+  --bg-card: rgba(255, 255, 255, 0.06);
+
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+  /* Semantic surface/text tokens */
   --color-surface:       #111118;
   --color-surface-muted: #1c1c28;
   --color-body-text:     #a0a0b8;
   --color-heading-text:  #e8e8f5;
   --color-muted-text:    #52526a;
+}
+
+@theme {
+  /* Brand colours */
+  --color-durham-purple: var(--color-durham-purple);
+  --color-durham-purple-hover: var(--color-durham-purple-hover);
+  --color-deep-purple: var(--color-deep-purple);
+  --color-bright-purple: var(--color-bright-purple);
+  --color-light-purple: var(--color-light-purple);
+  --color-lavender: var(--color-lavender);
+  --color-pure-white: var(--color-pure-white);
+
+  /* Legacy palette colours */
+  --color-ocean-blue: var(--color-ocean-blue);
+  --color-navy: var(--color-navy);
+
+  /* Semantic surface/text tokens */
+  --color-surface: var(--color-surface);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-body-text: var(--color-body-text);
+  --color-heading-text: var(--color-heading-text);
+  --color-muted-text: var(--color-muted-text);
+
+  /* Fonts */
+  --font-headings: var(--font-family-headings);
+  --font-display: var(--font-family-headings);
+  --font-body: var(--font-family-body);
+  --font-inter: var(--font-family-headings);
+  --font-secondary: var(--font-family-headings);
+
+  /* Spacing */
+  --spacing-section: var(--section-padding);
+  --spacing-container: var(--container-padding);
+  --spacing-card: var(--card-padding);
+
+  /* Border radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Shadows */
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+}
+
+/* Base resets utilizing Tailwind v4 design tokens */
+body {
+  font-family: var(--font-family-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.section-heading {
+  font-family: var(--font-family-headings);
 }
