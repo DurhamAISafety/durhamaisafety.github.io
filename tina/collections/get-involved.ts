@@ -2,7 +2,7 @@ import type { Collection } from "tinacms";
 
 export const getInvolvedCollection: Collection = {
   name: "getInvolved",
-  label: "Get Involved Cards",
+  label: "Get Involved Page",
   path: "src/content",
   format: "yml",
   match: {

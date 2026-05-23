@@ -1,34 +1,18 @@
 import type { Collection } from "tinacms";
 
-export const peopleCollection: Collection = {
+export const peopleField = {
+  type: "object",
   name: "people",
   label: "People",
-  path: "src/content",
-  format: "yml",
-  match: {
-    include: "people",
-  },
+  list: true,
   ui: {
-    router: () => "/about/",
-    allowedActions: {
-      create: false,
-      delete: false,
-    },
+    itemProps: (item) => ({
+      label: item?.name
+        ? `[${item.type ?? "?"}] ${item.name} - ${item.role ?? ""}`
+        : "New Person",
+    }),
   },
   fields: [
-    {
-      type: "object",
-      name: "people",
-      label: "People",
-      list: true,
-      ui: {
-        itemProps: (item) => ({
-          label: item?.name
-            ? `[${item.type ?? "?"}] ${item.name} — ${item.role ?? ""}`
-            : "New Person",
-        }),
-      },
-      fields: [
         {
           type: "string",
           name: "name",
@@ -104,7 +88,5 @@ export const peopleCollection: Collection = {
             description: "1-2 sentence description. Defaults to 'Member of DAISI ...' if blank.",
           },
         },
-      ],
-    },
   ],
-};
+} satisfies NonNullable<Collection["fields"]>[number];

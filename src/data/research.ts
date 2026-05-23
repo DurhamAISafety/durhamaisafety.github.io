@@ -1,15 +1,16 @@
 import { requestWithMetadata } from '@tinacms/astro';
 import client from '../../tina/__generated__/client';
-import type {
-  ResearchPapers,
-  ResearchPapersAuthors,
-  ResearchQuery,
-} from '../../tina/__generated__/types';
+import type { ResearchPageQuery } from '../../tina/__generated__/types';
+
+type ResearchSource = NonNullable<
+  NonNullable<NonNullable<ResearchPageQuery['researchPage']['research']>['papers']>[number]
+>;
+type AuthorSource = NonNullable<ResearchSource['authors']>[number];
 
 export interface Author {
   name: string;
   team?: boolean;
-  _source: ResearchPapersAuthors;
+  _source: AuthorSource;
 }
 
 export interface ResearchPaper {
@@ -22,7 +23,7 @@ export interface ResearchPaper {
   venue: string;
   tags: string[];
   type: 'academic' | 'non-academic';
-  _source: ResearchPapers;
+  _source: ResearchSource;
 }
 
 const compact = <T>(items: Array<T | null> | null | undefined): T[] =>
@@ -34,17 +35,21 @@ const sortPapers = (papers: ResearchPaper[]): ResearchPaper[] => papers.sort((a,
 });
 
 export async function getResearchContent(): Promise<{
-  document: ResearchQuery['research'];
+  document: ResearchPageQuery['researchPage'];
   research: ResearchPaper[];
   academicPapers: ResearchPaper[];
   nonAcademicPapers: ResearchPaper[];
 }> {
   const result = await requestWithMetadata(
-    client.queries.research({ relativePath: 'research.yml' })
+    client.queries.researchPage({ relativePath: 'research.yml' })
   );
 
-  const document = result.data.research;
-  const research = sortPapers(compact(document.papers).map((paper) => ({
+  const document = result.data.researchPage;
+  const researchPage = document.research;
+  if (!researchPage) {
+    throw new Error("Validation Error: Missing research page configuration object.");
+  }
+  const research = sortPapers(compact(researchPage.papers).map((paper) => ({
     title: paper.title,
     url: paper.url,
     thumbnail: paper.thumbnail ?? undefined,

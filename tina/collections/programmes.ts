@@ -2,7 +2,7 @@ import type { Collection } from "tinacms";
 
 export const programmesCollection: Collection = {
   name: "programmes",
-  label: "Programmes",
+  label: "Programmes Page",
   path: "src/content",
   format: "yml",
   match: {

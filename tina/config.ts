@@ -1,8 +1,5 @@
 import { defineConfig } from "tinacms";
 import { siteConfigCollection } from "./collections/site-config";
-import { peopleCollection } from "./collections/people";
-import { researchCollection } from "./collections/research";
-import { supportersCollection } from "./collections/supporters";
 import { getInvolvedCollection } from "./collections/get-involved";
 import { programmesCollection } from "./collections/programmes";
 import { homePageCollection, aboutPageCollection, researchPageCollection } from "./collections/pages";
@@ -35,28 +32,15 @@ export default defineConfig({
 
   schema: {
     collections: [
-      // ── People (Team Members & Alumni) - FIRST in list ────────────────────
-      peopleCollection,
-
-      // ── Site Config (header, footer, navigation) ─────────────────────────
+      // ── Site-wide configuration ──────────────────────────────────────────
       siteConfigCollection,
 
-      // ── Research Papers ──────────────────────────────────────────────────
-      researchCollection,
-
-      // ── Supporters ───────────────────────────────────────────────────────
-      supportersCollection,
-
-      // ── Get Involved Cards ───────────────────────────────────────────────
-      getInvolvedCollection,
-
-      // ── Programmes ───────────────────────────────────────────────────────
-      programmesCollection,
-
-      // ── Page Collections ──────────────────────────────────────────────────
+      // ── Pages ────────────────────────────────────────────────────────────
       homePageCollection,
       aboutPageCollection,
       researchPageCollection,
+      programmesCollection,
+      getInvolvedCollection,
     ],
   },
 });

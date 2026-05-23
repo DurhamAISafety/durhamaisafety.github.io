@@ -1,51 +1,33 @@
 import type { Collection } from "tinacms";
 
-export const supportersCollection: Collection = {
+export const supportersField = {
+  type: "object",
   name: "supporters",
   label: "Supporters",
-  path: "src/content",
-  format: "yml",
-  match: {
-    include: "supporters",
-  },
+  list: true,
   ui: {
-    router: () => "/",
-    allowedActions: {
-      create: false,
-      delete: false,
-    },
+    itemProps: (item) => ({
+      label: item?.link
+        ? item.link.replace(/^https?:\/\/(www\.)?/, "")
+        : "Supporter",
+    }),
   },
   fields: [
     {
-      type: "object",
-      name: "supporters",
-      label: "Supporters",
-      list: true,
+      type: "image",
+      name: "logo",
+      label: "Logo",
+      required: true,
       ui: {
-        itemProps: (item) => ({
-          label: item?.link
-            ? item.link.replace(/^https?:\/\/(www\.)?/, "")
-            : "Supporter",
-        }),
+        description:
+          "Upload to public/images/supporters/ (or pick an existing file).",
       },
-      fields: [
-        {
-          type: "image",
-          name: "logo",
-          label: "Logo",
-          required: true,
-          ui: {
-            description:
-              "Upload to public/images/supporters/ (or pick an existing file).",
-          },
-        },
-        {
-          type: "string",
-          name: "link",
-          label: "Link",
-          required: true,
-        },
-      ],
+    },
+    {
+      type: "string",
+      name: "link",
+      label: "Link",
+      required: true,
     },
   ],
-};
+} satisfies NonNullable<Collection["fields"]>[number];

@@ -1,4 +1,7 @@
 import type { Collection } from "tinacms";
+import { peopleField } from "./people";
+import { papersField } from "./research";
+import { supportersField } from "./supporters";
 
 // Tina collection modules are bundled for the browser, so keep schema options
 // independent of Node-only filesystem access.
@@ -46,6 +49,7 @@ export const homePageCollection: Collection = {
         { type: "string", name: "researchTitle", label: "Research Section Title", required: true },
         { type: "string", name: "researchSubtitle", label: "Research Carousel Subtitle", required: true },
         { type: "string", name: "researchViewAllText", label: "Research View All Text", required: true },
+        supportersField,
       ],
     },
   ],
@@ -90,6 +94,7 @@ export const aboutPageCollection: Collection = {
         { type: "string", name: "impactText", label: "Impact Text", required: true, ui: { component: "textarea" } },
         { type: "string", name: "joinTitle", label: "Join Title", required: true },
         { type: "string", name: "joinText", label: "Join Text", required: true, ui: { component: "textarea" } },
+        peopleField,
       ],
     },
   ],
@@ -158,6 +163,7 @@ export const researchPageCollection: Collection = {
             { type: "string", name: "linkUrl", label: "Link URL", required: true },
           ],
         },
+        papersField,
       ],
     },
   ],

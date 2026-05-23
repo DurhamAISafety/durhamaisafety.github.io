@@ -1,9 +1,10 @@
 import { requestWithMetadata } from '@tinacms/astro';
 import client from '../../tina/__generated__/client';
-import type {
-  PeoplePeople,
-  PeopleQuery,
-} from '../../tina/__generated__/types';
+import type { AboutPageQuery } from '../../tina/__generated__/types';
+
+type PersonSource = NonNullable<
+  NonNullable<NonNullable<AboutPageQuery['aboutPage']['about']>['people']>[number]
+>;
 
 export interface Person {
   name: string;
@@ -16,7 +17,7 @@ export interface Person {
   'durham-staff-link'?: string;
   link?: string;
   description?: string;
-  _source: PeoplePeople;
+  _source: PersonSource;
 }
 
 export type TeamMember = Person & { type: 'member' };
@@ -26,17 +27,21 @@ const compact = <T>(items: Array<T | null> | null | undefined): T[] =>
   items?.filter((item): item is T => item !== null) ?? [];
 
 export async function getPeopleContent(): Promise<{
-  document: PeopleQuery['people'];
+  document: AboutPageQuery['aboutPage'];
   people: Person[];
   team: TeamMember[];
   alumni: AlumniMember[];
 }> {
   const result = await requestWithMetadata(
-    client.queries.people({ relativePath: 'people.yml' })
+    client.queries.aboutPage({ relativePath: 'about.yml' })
   );
 
-  const document = result.data.people;
-  const people: Person[] = compact(document.people).map((person) => ({
+  const document = result.data.aboutPage;
+  const about = document.about;
+  if (!about) {
+    throw new Error("Validation Error: Missing about page configuration object.");
+  }
+  const people: Person[] = compact(about.people).map((person) => ({
     name: person.name,
     role: person.role,
     type: person.type === 'alumnus' ? 'alumnus' : 'member',

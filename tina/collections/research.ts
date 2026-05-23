@@ -1,34 +1,18 @@
 import type { Collection } from "tinacms";
 
-export const researchCollection: Collection = {
-  name: "research",
+export const papersField = {
+  type: "object",
+  name: "papers",
   label: "Research Papers",
-  path: "src/content",
-  format: "yml",
-  match: {
-    include: "research",
-  },
+  list: true,
   ui: {
-    router: () => "/research/",
-    allowedActions: {
-      create: false,
-      delete: false,
-    },
+    itemProps: (item) => ({
+      label: item?.title
+        ? `${item.title} (${item.year ?? "?"})`
+        : "New Paper",
+    }),
   },
   fields: [
-    {
-      type: "object",
-      name: "papers",
-      label: "Papers",
-      list: true,
-      ui: {
-        itemProps: (item) => ({
-          label: item?.title
-            ? `${item.title} (${item.year ?? "?"})`
-            : "New Paper",
-        }),
-      },
-      fields: [
         {
           type: "string",
           name: "title",
@@ -115,7 +99,5 @@ export const researchCollection: Collection = {
             { label: "Non-Academic", value: "non-academic" },
           ],
         },
-      ],
-    },
   ],
-};
+} satisfies NonNullable<Collection["fields"]>[number];

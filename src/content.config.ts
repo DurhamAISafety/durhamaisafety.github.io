@@ -6,21 +6,6 @@ const pages = defineCollection({
   schema: z.any(),
 });
 
-const people = defineCollection({
-  loader: glob({ pattern: 'people.yml', base: './src/content' }),
-  schema: z.any(),
-});
-
-const research = defineCollection({
-  loader: glob({ pattern: 'research.yml', base: './src/content' }),
-  schema: z.any(),
-});
-
-const supporters = defineCollection({
-  loader: glob({ pattern: 'supporters.yml', base: './src/content' }),
-  schema: z.any(),
-});
-
 const getInvolved = defineCollection({
   loader: glob({ pattern: 'get-involved.yml', base: './src/content' }),
   schema: z.any(),
@@ -33,9 +18,6 @@ const programmes = defineCollection({
 
 export const collections = {
   pages,
-  people,
-  research,
-  supporters,
   'get-involved': getInvolved,
   programmes,
 };
