@@ -1,5 +1,7 @@
 # Project Guidelines
 
+**CRITICAL** For netlify, use the `.agents/skills/netlify-deploy` skill - it details how to use the CLI to interact with netlify.
+
 ## Project Snapshot
 Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is currently built with Astro 5, Tailwind CSS v4, TypeScript, and Tina CMS. Keep Astro on the 5.x line while `@tinacms/astro` peers on `astro@^5.0.0`. Content is managed via Tina CMS at `/admin/` and stored in YAML/JSON files under `src/content/`.
 
