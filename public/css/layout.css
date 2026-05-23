@@ -189,12 +189,20 @@
     margin-left: auto;
 }
 
+/* Navigation divider line */
+.nav-divider {
+    width: 1px;
+    height: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.25);
+    align-self: center;
+    flex-shrink: 0;
+}
+
 /* Navigation right section */
 .nav-right {
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    margin-left: auto;
 }
 
 /* Social links in nav */

@@ -61,9 +61,15 @@ const allSocials = siteConfig.socialLinks;
                 {siteConfig.navigation.main.map((item) => (
                     <a href={item.url} class="nav-link" data-tina-field={tinaField(item._source, 'title')}>{item.title}</a>
                 ))}
+                <a href={siteConfig.navigation.cta.url} class="btn-cta" data-tina-field={tinaField(siteConfig.navigation.cta._source, 'title')} style="padding: 0.5rem 1.25rem; font-size: 1rem;">
+                    {siteConfig.navigation.cta.title}
+                </a>
             </div>
 
-            <!-- Desktop right section: social icons, dark mode toggle, CTA -->
+            <!-- Divider -->
+            <div class="nav-divider nav-menu-desktop" aria-hidden="true"></div>
+
+            <!-- Desktop right section: social icons, dark mode toggle -->
             <div class="nav-right nav-menu-desktop">
                 {headerSocials.map((link) => (
                     <a
@@ -86,10 +92,6 @@ const allSocials = siteConfig.socialLinks;
                 <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
-
-                <a href={siteConfig.navigation.cta.url} class="btn-cta" data-tina-field={tinaField(siteConfig.navigation.cta._source, 'title')} style="padding: 0.5rem 1.25rem; font-size: 1rem;">
-                    {siteConfig.navigation.cta.title}
-                </a>
             </div>
         </nav>
     </div>
