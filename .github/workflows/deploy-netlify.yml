@@ -1,10 +1,14 @@
 name: Scheduled Netlify Deploy
 
 on:
-  schedule:
-    # Runs twice a day (every 12 hours) at 00:00 and 12:00 UTC
-    - cron: "0 */12 * * *"
+  push:
+    branches: [main]
   workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+
+# Manage concurrency: cancels running deploys if a new commit is pushed
+concurrency:
+  group: "deploy"
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -91,4 +95,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify-cli deploy --prod --dir=dist
+        run: npx netlify-cli deploy --prod --no-build
