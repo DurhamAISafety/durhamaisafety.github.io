@@ -1,0 +1,96 @@
+name: Scheduled Netlify Deploy
+
+on:
+  schedule:
+    # Runs twice a day (every 12 hours) at 00:00 and 12:00 UTC
+    - cron: "0 */12 * * *"
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+
+jobs:
+  deploy:
+    name: Build and Deploy Astro
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check for New Commits Since Last Successful Deploy
+        id: commit-check
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ] || [ -z "$NETLIFY_SITE_ID" ]; then
+            echo "Secrets missing. Proceeding with build."
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          LAST_DEPLOYED_COMMIT=$(curl -s -H "Authorization: Bearer $NETLIFY_AUTH_TOKEN" "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID/deploys" | node -e '
+            const fs = require("fs");
+            try {
+              const deploys = JSON.parse(fs.readFileSync(0, "utf-8"));
+              if (Array.isArray(deploys)) {
+                const prodDeploy = deploys.find(d => d.state === "ready" && d.context === "production");
+                console.log(prodDeploy ? prodDeploy.commit_ref : "");
+                process.exit(0);
+              }
+            } catch(e) {}
+            console.log("");
+          ')
+
+          echo "Last successfully deployed commit hash on Netlify: '$LAST_DEPLOYED_COMMIT'"
+          echo "Current GitHub repository commit hash (HEAD): '$GITHUB_SHA'"
+
+          if [ "$LAST_DEPLOYED_COMMIT" = "$GITHUB_SHA" ]; then
+            echo "No new changes to deploy. Skipping build."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected or first deploy. Proceeding to build."
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.commit-check.outputs.has_changes == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Setup pnpm
+        if: steps.commit-check.outputs.has_changes == 'true'
+        uses: pnpm/action-setup@v3
+        with:
+          version: 11
+
+      - name: Get pnpm Store Directory
+        if: steps.commit-check.outputs.has_changes == 'true'
+        id: pnpm-cache
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm Cache
+        if: steps.commit-check.outputs.has_changes == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install Dependencies
+        if: steps.commit-check.outputs.has_changes == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Site
+        if: steps.commit-check.outputs.has_changes == 'true'
+        env:
+          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+        run: pnpm run build
+
+      - name: Deploy to Netlify
+        if: steps.commit-check.outputs.has_changes == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx netlify-cli deploy --prod --dir=dist
