@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
     "check": "astro check",
-    "build": "tinacms build && astro build",
+    "build": "node scripts/build.js",
     "build:astro": "astro build",
     "preview": "astro preview",
     "astro": "astro"
