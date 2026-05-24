@@ -18,6 +18,10 @@ Use pnpm as the package manager. Keep `pnpm-lock.yaml` and `pnpm-workspace.yaml`
 
 There is no separate unit/integration test suite configured. Use `pnpx astro check` and `pnpm run build` as the baseline validation for most code changes.
 
+## Fixes and Documentation
+- Document any environment, deployment, or technical fixes systematically in `docs/FIX_NOTES.md`.
+- Always keep `docs/FIX_NOTES.md` up to date with newly discovered issues or modifications to the build/deployment orchestration scripts.
+
 ## Architecture
 Content flows in one direction:
 
