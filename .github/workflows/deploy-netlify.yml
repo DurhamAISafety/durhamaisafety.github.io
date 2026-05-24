@@ -1,4 +1,4 @@
-name: Scheduled Netlify Deploy
+name: Netlify Deploy
 
 on:
   push:
@@ -88,7 +88,7 @@ jobs:
         env:
           NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-        run: pnpm run build
+        run: pnpm build
 
       - name: Deploy to Netlify
         if: steps.commit-check.outputs.has_changes == 'true'

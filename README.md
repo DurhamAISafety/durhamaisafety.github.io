@@ -1,7 +1,6 @@
 # Durham AI Safety Initiative Website
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a0b6c037-c40b-4180-89c3-5df235e24684/deploy-status)](https://app.netlify.com/projects/durhamaisafety/deploys)
-[![Scheduled Netlify Deploy](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml/badge.svg)](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml)
+[![Netlify Deploy](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml/badge.svg)](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml)
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -9,19 +8,18 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
 
 ## Quick Start
 
-1. Install [Node.js](https://nodejs.org/) (v22+)
-2. Clone and install:
+1. Clone and install:
    ```bash
    git clone https://github.com/DurhamAISafety/durhamaisafety.github.io.git
    cd durhamaisafety.github.io
    pnpm install
    ```
-3. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor locally)
-4. Start the dev server:
+2. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor locally)
+3. Start the dev server:
    ```bash
    pnpm dev
    ```
-5. Open http://localhost:4321 to view the site, or http://localhost:4321/admin to open the CMS editor
+4. Open http://localhost:4321 to view the site, or http://localhost:4321/admin to open the CMS editor
 
 ## Content Updates (Quick Reference)
 
@@ -169,7 +167,9 @@ The Tina config (schema, collections) lives in [tina/config.ts](./tina/config.ts
 
 ## Deployment
 
-To conserve Netlify build minutes, local and remote builds are decoupled:
+To conserve Netlify build minutes and ensure robust builds under `pnpm` strict non-hoisting, our deployment system and local workflow are fully optimized:
+
+### Decoupled Build Orchestration
 
 1. **Netlify Production Site**:
    - Deployed at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
@@ -179,7 +179,40 @@ To conserve Netlify build minutes, local and remote builds are decoupled:
 2. **GitHub Pages (Redirect Site)**:
    - Deployed at **[durhamaisafety.github.io](https://durhamaisafety.github.io)** on every push to `main` to serve as a redirect fallback.
 
-The build process runs through the custom wrapper `node scripts/build.js` which automatically restores masked credentials downloaded by the Netlify CLI, running both `tinacms build` and `astro build` flawlessly under pnpm.
+---
+
+### Local Netlify CLI Commands
+
+When executing Netlify commands locally under `pnpm`, avoid running `pnpm dlx netlify` without `--package` as `netlify-cli` ships multiple binaries and triggers a `[ERR_PNPM_DLX_MULTIPLE_BINS]` error. Instead, use:
+*   **Check status**: `npx netlify status`
+*   **Local build preview**: `npx netlify build`
+*   **Deploy preview**: `npx netlify deploy`
+*   **Production deploy**: `npx netlify deploy --prod`
+
+---
+
+### Strict pnpm & Netlify Local Build Fixes
+
+To support local development and deployment seamlessly, the repository contains two key architectural configurations:
+
+1. **Safe Build Wrapper (`scripts/build.js`)**:
+   When Netlify CLI runs a local build/deploy, it pulls down site variables from Netlify's backend. Because production environment variables (e.g. `NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN`) are secured/masked in the Netlify UI, the Netlify CLI receives a masked asterisk string (e.g., `****************a8f1`) and overrides your local raw `.env` definitions. This crashes the `tinacms build` command.
+   
+   To bypass this, our default build script runs through `node scripts/build.js` which:
+   - Detects if credentials have been overwritten by masked asterisks.
+   - Swaps them back automatically with the correct, raw values from your local `.env`.
+   - Bypasses this override seamlessly on remote production environments where `.env` is absent.
+   - Spawns `tinacms build` and `astro build` within a clean process context.
+
+2. **Serverless Functions Bundling (`netlify.toml`)**:
+   Under strict `pnpm` package resolution without hoisting, the symlinked dependencies in `node_modules/.pnpm/` are not easily traversed by standard zip-based bundlers. We configured the Astro SSR serverless functions to bundle via `esbuild` using:
+   ```toml
+   [functions]
+       node_bundler = "esbuild"
+   ```
+   This compiles all serverless function dependencies into a single statically resolvable bundle, completely avoiding symlink resolution issues.
+
+For in-depth explanations and troubleshooting of these issues, see [docs/FIX_NOTES.md](file:///Users/Subspace_Explorer/Projects/durhamaisafety.github.io/docs/FIX_NOTES.md).
 
 ## Key Reference Links
 
