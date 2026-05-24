@@ -62,6 +62,7 @@ export interface SiteConfig {
 export type HomePageData = HomePageQuery['homePage'];
 export type HomePageConfig = NonNullable<HomePageQuery['homePage']['home']> & {
   heroTitleHtml: string;
+  _source: NonNullable<HomePageQuery['homePage']['home']>;
 };
 export type AboutPageData = AboutPageQuery['aboutPage'];
 export type AboutMissionCard = AboutPageAboutMissionCards;
@@ -70,6 +71,7 @@ export type AboutPageConfig = Omit<AboutPageAbout, 'missionCards'> & {
   introTextHtml: string;
   impactTextHtml: string;
   joinTextHtml: string;
+  _source: AboutPageAbout;
 };
 export type ResearchPageData = ResearchPageQuery['researchPage'];
 export type ResearchOpportunity = ResearchPageResearchOpportunities;
@@ -77,6 +79,7 @@ export type ResearchArea = ResearchPageResearchResearchAreas;
 export type ResearchPageConfig = Omit<ResearchPageResearch, 'opportunities' | 'researchAreas'> & {
   opportunities: ResearchOpportunity[];
   researchAreas: ResearchArea[];
+  _source: ResearchPageResearch;
 };
 
 // Custom validation helper
@@ -105,6 +108,7 @@ export async function getHomePageContent() {
   const homeConfig: HomePageConfig = {
     ...doc,
     heroTitleHtml: sanitiseInlineHtml(doc.heroTitle),
+    _source: doc,
   };
 
   // Path validation
@@ -131,6 +135,7 @@ export async function getAboutPageContent() {
     introTextHtml: sanitiseInlineHtml(doc.introText),
     impactTextHtml: sanitiseInlineHtml(doc.impactText),
     joinTextHtml: sanitiseInlineHtml(doc.joinText),
+    _source: doc,
   };
 
   return {
@@ -151,6 +156,7 @@ export async function getResearchPageContent() {
     ...doc,
     opportunities: compact(doc.opportunities),
     researchAreas: compact(doc.researchAreas),
+    _source: doc,
   };
 
   // Path validation

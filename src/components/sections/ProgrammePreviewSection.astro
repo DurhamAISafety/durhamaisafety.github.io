@@ -15,7 +15,7 @@ const { homeConfig, programmes } = Astro.props;
 <section id="programmes" class="py-16 section-light">
     <div class="site-container mx-auto px-6">
         <div class="text-center mb-16 reveal">
-            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig, 'programmesTitle')}>{homeConfig.programmesTitle}</h2>
+            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig._source, 'programmesTitle')}>{homeConfig.programmesTitle}</h2>
             <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
         </div>
 

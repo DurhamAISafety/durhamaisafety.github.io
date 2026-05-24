@@ -6,7 +6,8 @@ import { tinaField } from "@tinacms/astro";
 import ResearchPageIsland from "../components/tina-islands/ResearchPageIsland.astro";
 
 const { academicPapers, nonAcademicPapers } = await getResearchContent();
-const { researchConfig } = await getResearchPageContent();
+const { document, researchConfig } = await getResearchPageContent();
+const doc = document.research!;
 
 const page = {
   title: "Research",
@@ -45,7 +46,7 @@ const page = {
   <section id="opportunities" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(researchConfig, 'opportunitiesTitle')}>{researchConfig.opportunitiesTitle}</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(doc, 'opportunitiesTitle')}>{researchConfig.opportunitiesTitle}</h3>
         <div class="section-divider"></div>
       </div>
       <div class="max-w-4xl mx-auto">
@@ -61,7 +62,7 @@ const page = {
           ))}
         </div>
         <div class="text-center">
-          <a href={researchConfig.opportunitiesCtaLink} class="btn-cta" data-tina-field={tinaField(researchConfig, 'opportunitiesCtaText')}>{researchConfig.opportunitiesCtaText}</a>
+          <a href={researchConfig.opportunitiesCtaLink} class="btn-cta" data-tina-field={tinaField(doc, 'opportunitiesCtaText')}>{researchConfig.opportunitiesCtaText}</a>
         </div>
       </div>
     </div>
@@ -71,7 +72,7 @@ const page = {
   <section id="research-areas" class="section section-light">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(researchConfig, 'areasTitle')}>{researchConfig.areasTitle}</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(doc, 'areasTitle')}>{researchConfig.areasTitle}</h3>
         <div class="section-divider"></div>
       </div>
 
