@@ -3,12 +3,27 @@ function setAdminOrigin(origin) {
   configuredAdminOrigins = Array.isArray(origin) ? [...origin] : [origin];
 }
 function getAdminOrigin() {
+  if (typeof document !== "undefined" && document.referrer) {
+    try {
+      const refUrl = new URL(document.referrer);
+      if (
+        refUrl.origin === window.location.origin ||
+        refUrl.origin === "https://app.tina.io" ||
+        refUrl.origin.endsWith(".tina.io")
+      ) {
+        return refUrl.origin;
+      }
+    } catch (e) {}
+  }
   return configuredAdminOrigins[0] ?? "";
 }
 function isFromAdmin(event) {
   if (typeof window === "undefined")
     return false;
-  if (!configuredAdminOrigins.includes(event.origin))
+  const isTrustedOrigin = configuredAdminOrigins.includes(event.origin) ||
+                          event.origin === "https://app.tina.io" ||
+                          event.origin.endsWith(".tina.io");
+  if (!isTrustedOrigin)
     return false;
   return event.source === window.parent;
 }
