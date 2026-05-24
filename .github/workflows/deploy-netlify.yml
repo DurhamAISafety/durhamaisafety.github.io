@@ -54,13 +54,11 @@ jobs:
         if: steps.commit-check.outputs.has_changes == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version-file: 'package.json'
 
       - name: Setup pnpm
         if: steps.commit-check.outputs.has_changes == 'true'
         uses: pnpm/action-setup@v3
-        with:
-          version: 11
 
       - name: Get pnpm Store Directory
         if: steps.commit-check.outputs.has_changes == 'true'
