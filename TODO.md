@@ -1,23 +1,5 @@
 # Future Work
 
-## [FIX NEEDED] Netlify deploys
-Problem:
-- Netlify automatically deploys the site to production when changes are pushed to main branch. These builds consistently fail because of issues relating to pnpm I think.
-- However, `npx netlify deploy` and `npx netlify deploy --prod` both work!
-
-Ideas:
-- need to change prod env / something in netlify.toml ? MUST use .agents/skills/netlify-deploy
-
-## Netlify minutes
-Problem:
-- limited netlify minutes get used up quickly by tina cms pushes, because netlify automatically deploys from main on every push to main.
-
-Proposed solution:
-- set up a workflow that automatically runs (eg. twice a day) `npx netlify deploy --prod` if non-prod version succeeds. 
-- This should only run if the main branch has been updated since the last deploy
-- Then turn off automatic deploys whenever something is pushed to main branch.
-- Alternatively, could use something like https://docs.netlify.com/build/configure-builds/build-hooks/
-
 
 ## CSS And Components
 
