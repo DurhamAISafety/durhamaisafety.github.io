@@ -14,16 +14,32 @@ try {
         if (index !== -1) {
           const key = trimmed.slice(0, index).trim();
           let value = trimmed.slice(index + 1).trim();
+          
+          // 1. Strip inline comment first
+          const hashIndex = value.indexOf('#');
+          if (hashIndex !== -1) {
+            const firstQuoteIndex = value.indexOf('"');
+            const lastQuoteIndex = value.lastIndexOf('"');
+            if (firstQuoteIndex === 0 && lastQuoteIndex > 0 && lastQuoteIndex < hashIndex) {
+              value = value.slice(0, hashIndex).trim();
+            } else {
+              const firstSingleQuoteIndex = value.indexOf("'");
+              const lastSingleQuoteIndex = value.lastIndexOf("'");
+              if (firstSingleQuoteIndex === 0 && lastSingleQuoteIndex > 0 && lastSingleQuoteIndex < hashIndex) {
+                value = value.slice(0, hashIndex).trim();
+              } else if (firstQuoteIndex === -1 && firstSingleQuoteIndex === -1) {
+                value = value.slice(0, hashIndex).trim();
+              }
+            }
+          }
+          
+          // 2. Strip surrounding quotes
           const hasDoubleQuotes = value.startsWith('"') && value.endsWith('"');
           const hasSingleQuotes = value.startsWith("'") && value.endsWith("'");
           if (hasDoubleQuotes || hasSingleQuotes) {
             value = value.slice(1, -1);
-          } else {
-            const hashIndex = value.indexOf('#');
-            if (hashIndex !== -1) {
-              value = value.slice(0, hashIndex).trim();
-            }
           }
+          
           env[key] = value;
         }
       }
