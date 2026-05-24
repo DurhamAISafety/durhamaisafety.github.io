@@ -12,6 +12,8 @@ pnpm run dev          # local dev server + Tina CMS at /admin/ NOTE - ALWAYS ASK
 pnpx astro check      # TypeScript/Astro type-check
 pnpm run build        # production build: tinacms build && astro build
 pnpm run preview      # preview production build locally
+pnpx netlify build
+pnpx netlify deploy
 ```
 
 Use pnpm as the package manager. Keep `pnpm-lock.yaml` and `pnpm-workspace.yaml` tracked.
