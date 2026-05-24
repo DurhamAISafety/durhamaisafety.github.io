@@ -1,9 +1,15 @@
 # Future Work
 
-## CMS Model
+## [NEEDS FIX] TinaCMS visual editing works on local dev but not tinacloud (/admin/ page on live build)
 
-- Migrate `/what-is-ai-safety/` to Tina after the page-owned model is proven.
-  - It likely needs flexible rich text or a small block schema for definitions, timeline items, resource links, video embeds, and updateable examples.
+[24/05/2026]
+Tried several things - LLMs just can't figure it out.
+Current plan: just wait as it's not urgent and see if tinacms devs fix it, since the astro visual editing is very new.
+
+References:
+- Initial astro vis editing release: https://github.com/tinacms/tinacms/releases/tag/tinacms%403.8.0
+- reference example: https://github.com/tinacms/tinacms/tree/main/examples/astro/visual-editing
+
 
 ## CSS And Components
 
