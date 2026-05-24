@@ -56,7 +56,7 @@ function getSocialLabel(link: { name: string; url: string }) {
                     />
                 </a>
                 <div class="text-base md:text-lg font-bold text-white tracking-wide" data-tina-field={tinaField(siteConfig._source, 'title')}>
-                    {siteConfig.title}<sup class="text-[10px] md:text-xs font-normal text-white/50 ml-1.5 align-super">2026</sup>
+                    {siteConfig.title}<sup class="text-[10px] md:text-xs font-normal text-white/50 ml-1.5 align-super">{currentYear}</sup>
                 </div>
                 {siteConfig.footerTagline && (
                     <p class="text-xs md:text-sm text-white/70 leading-relaxed font-normal" data-tina-field={tinaField(siteConfig._source, 'footerTagline')}>

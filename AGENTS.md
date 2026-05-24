@@ -9,7 +9,7 @@ Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.
 ```bash
 pnpm install          # install dependencies
 pnpm run dev          # local dev server + Tina CMS at /admin/ NOTE - ALWAYS ASK THE USER TO RUN THIS THEN YOU (the agent) check the url
-pnpx astro check      # TypeScript/Astro type-check
+pnpx astro check      # TypeScript/Astro type-check (always fix all these issues)
 pnpm run build        # production build: tinacms build && astro build
 pnpm run preview      # preview production build locally
 pnpx netlify build
