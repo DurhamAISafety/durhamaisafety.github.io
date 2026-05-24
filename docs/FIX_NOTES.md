@@ -4,7 +4,7 @@ This document logs critical production-only bugs, root cause analyses, and their
 
 ---
 
-## 1. Tina CMS Visual Editing Fails on Production (Netlify SSR)
+## [BROKEN - THIS FIX DIDNT WORK] 1. Tina CMS Visual Editing Fails on Production (Netlify SSR)
 
 ### Problem Description
 Visual editing via Tina Cloud works perfectly on the local dev server (`pnpm run dev`), but fails on the production site. When navigating to `/admin/` on `https://durhamaisafety.uk`, clicking any page (e.g., "About") displays a blank sidebar with:
