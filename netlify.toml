@@ -10,4 +10,5 @@
     SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_TINA_CLIENT_ID"
 
 [functions]
-    node_bundler = "esbuild"
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
