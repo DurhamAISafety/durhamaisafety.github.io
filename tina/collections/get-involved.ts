@@ -9,7 +9,7 @@ export const getInvolvedCollection: Collection = {
     include: "get-involved",
   },
   ui: {
-    router: () => "/get-involved/?tina-edit=1",
+    router: () => "/get-involved/",
     allowedActions: {
       create: false,
       delete: false,

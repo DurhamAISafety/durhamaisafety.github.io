@@ -25,7 +25,7 @@ export const homePageCollection: Collection = {
     include: "home",
   },
   ui: {
-    router: () => "/?tina-edit=1",
+    router: () => "/",
     allowedActions: {
       create: false,
       delete: false,
@@ -65,7 +65,7 @@ export const aboutPageCollection: Collection = {
     include: "about",
   },
   ui: {
-    router: () => "/about/?tina-edit=1",
+    router: () => "/about/",
     allowedActions: {
       create: false,
       delete: false,
@@ -110,7 +110,7 @@ export const researchPageCollection: Collection = {
     include: "research",
   },
   ui: {
-    router: () => "/research/?tina-edit=1",
+    router: () => "/research/",
     allowedActions: {
       create: false,
       delete: false,
