@@ -9,7 +9,7 @@ export const programmesCollection: Collection = {
     include: "programmes",
   },
   ui: {
-    router: () => "/programmes/",
+    router: () => "/programmes/?tina-edit=1",
     allowedActions: {
       create: false,
       delete: false,
