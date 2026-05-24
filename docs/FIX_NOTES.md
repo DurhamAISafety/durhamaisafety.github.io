@@ -1,49 +1,67 @@
-# Production Bug Resolution Notes
+# Fix Notes: Netlify CLI Local Build Environment Variable Overwrite
 
-This document logs critical production-only bugs, root cause analyses, and their resolutions to assist future maintainers of the DAISI website.
-
----
-
-## Visual editing fields not appearing in TinaCMS Cloud
-
-**Symptom:** Visual editing works in local dev (`tinacms dev`) but the admin sidebar shows "TinaCMS form fields will appear here" on the live Netlify deployment.
-
-### Root Cause 1: Missing Middleware (`src/middleware.ts`)
-The `@tinacms/astro` integration relies on an Astro middleware to intercept HTML responses in edit mode and splice the visual editing bridge script (`/_tina/bridge.js`) and `<div data-tina-form>` metadata payloads into the page. Without `src/middleware.ts` present in the project, Astro does not activate the middleware pipeline, causing the bridge to be silently skipped.
-
-### Root Cause 2: Serverless Functions Bundling Error
-Under `pnpm`'s strict, non-hoisted dependency architecture, nested sub-dependencies like `@tinacms/bridge` are not placed at the root level of `node_modules`. 
-During the Netlify **Functions bundling** stage, the serverless functions bundler (`esbuild`) was unable to locate `@tinacms/bridge` inside the server-side entrypoint, causing the deployment to crash during bundling.
-
-### Root Cause 3: Dynamic Route Resolution Failure (500 Error)
-Even if the SSR function compiled successfully, the dynamic integration route `/_tina/bridge.js` resolved the bridge package at runtime using `readFileSync` and `createRequire` in the serverless Lambda function container. Since `node_modules` is not uploaded or present in the live AWS Lambda/Netlify runtime container, the function threw a `Cannot find module` error, causing the `/_tina/bridge.js` route to fail with an **`HTTP/2 500` Internal Server Error** at runtime.
+This document details the issues encountered when deploying locally with `netlify deploy` under `pnpm` and the clean, non-intrusive solution implemented to resolve it.
 
 ---
 
-### The Fixes
+## 1. The Core Issues
 
-1. **Selective Dependency Hoisting (`.npmrc`)**
-   We added a targeted `.npmrc` file with the native `pnpm` public hoisting pattern to selectively hoist only TinaCMS packages to the root `node_modules` while keeping the rest of the project completely isolated:
-   ```ini
-   public-hoist-pattern[]=*tinacms*
-   public-hoist-pattern[]=*tina*
-   ```
+### Issue A: `pnpm dlx` / `pnpx` Executable Ambiguity
+When running `pnpm dlx netlify-cli status` or legacy `pnpx netlify-cli status`, pnpm failed with the following error:
+```text
+[ERR_PNPM_DLX_MULTIPLE_BINS] Could not determine executable to run. netlify-cli has multiple binaries: ntl, netlify
+```
+*   **Cause**: `netlify-cli` ships with multiple entrypoints (`netlify` and `ntl`). Under strict `pnpm dlx` syntax, pnpm will not assume which binary to run unless explicitly configured with `--package`.
+*   **Correction**: Use `npx netlify <cmd>` or `pnpm --package=netlify-cli dlx netlify <cmd>`.
 
-2. **Middleware Activation (`src/middleware.ts`)**
-   We created `src/middleware.ts` to export the Astro middleware handler:
-   ```ts
-   export { onRequest } from '@tinacms/astro/middleware';
-   ```
-
-3. **Statically Pre-Rendered Bridge (`public/_tina/bridge.js`)**
-   We copied the bundled `@tinacms/bridge` script directly into the `public/_tina/bridge.js` directory. 
-   Because files in the `public` folder bypass Astro's routing engine and are copied directly into the static assets directory at build time (when `node_modules` is fully present), Netlify's CDN serves the bridge natively as a static asset, completely avoiding serverless Lambda execution and preventing runtime 500 errors.
+### Issue B: Masked Environment Variables Overwriting Local Credentials
+When running `npx netlify deploy` (which triggers local building through Netlify's build engine), `tinacms build` crashed with the following error:
+```text
+Invalid URL format provided. Expected: https://content.tinajs.io/<Version>/content/<ClientID>/github/<Branch> but received https://content.tinajs.io/2.4/content/****************a8f1/github/main
+```
+*   **Cause**: 
+    1. Netlify CLI automatically downloads remote environment variables from the connected Netlify site configuration to mimic production during local builds.
+    2. Because remote variables like `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` are secured/masked in the Netlify site UI, the CLI's API request fetched the literal masked asterisks string (e.g. `****************a8f1`).
+    3. The Netlify CLI injected these masked strings into the local shell process, which aggressively overrode the correct, raw credentials defined in the local `.env` file.
+    4. When `tina/config.ts` was read, it parsed the literal masked asterisks string as the Client ID, causing `tinacms build` to fail.
 
 ---
 
-### Previous Commits: What was necessary?
+## 2. The Solution
 
-The previous commit (`940209496bd6c0ab2bba4b82a3fc47d2df7e492a`) which updated the `tinaField` references to use the raw query objects (e.g. `document.about!`) instead of the spread configurations (e.g. `{ ...doc }`) **was absolutely correct and must NOT be undone**.
+To make local deployment work flawlessly while keeping the project optimized and completely flat-free (no global `shamefully-hoist=true` required), the local build was decoupled from the environment injection using a build wrapper.
 
-* **Why?** TinaCMS attaches the GraphQL field path metadata (`_content_source`) as a **non-enumerable** property on the query objects. When an object is copied using the spread operator (`const aboutConfig = { ...doc }`), non-enumerable properties are lost.
-* As a result, `tinaField(aboutConfig, 'introText')` returns `""` (empty string). Passing the original raw reference `doc` keeps the metadata intact, enabling the elements to render correct `data-tina-field` attributes that the visual editing bridge uses to identify fields.
+### A. Restoring Browser-Compatible config (`tina/config.ts`)
+We restored [tina/config.ts](../tina/config.ts) to a clean, bundle-safe state. Statically importing Node-specific modules like `fs` or `path` inside `tina/config.ts` causes Rollup/Vite to crash when compiling the Tina client bundle for the browser editor.
+
+### B. Created a Safe Build Wrapper (`scripts/build.js`)
+We created [scripts/build.js](./build.js) to orchestrate building. This script:
+1.  Locates and parses the local `.env` file natively (correctly stripping surrounding quotes and ignoring inline comments starting with `#`).
+2.  Inspects the active process environment variables. If it detects they have been overridden with masked asterisks (e.g. starting with `*`), it swaps them back with the raw, correct values from `.env`.
+3.  Spawns `pnpm exec tinacms build` followed by `pnpm exec astro build` inside a child process containing the corrected environment.
+
+### C. Configured `package.json`
+We pointed the project's `"build"` command directly to the new wrapper script in [package.json](../package.json):
+```json
+"scripts": {
+  "build": "node scripts/build.js"
+}
+```
+
+---
+
+## 3. Deployment Workflow
+
+This setup is fully automated and works out-of-the-box locally and remotely:
+
+### Local Deployments (`netlify deploy`)
+Run the deployment command normally:
+```bash
+npx netlify deploy
+# or
+npx netlify deploy --prod
+```
+The Netlify CLI will download remote variables, trigger `pnpm run build` (which runs `node scripts/build.js`), the wrapper script will restore your real credentials, and the build/deploy will complete successfully.
+
+### Remote / Continuous Deployment (Git Push)
+Since `.env` is ignored by git and does not exist on remote build machines, the wrapper script will automatically bypass overriding and gracefully default to using the unmasked, secure credentials injected natively on Netlify's production infrastructure.
