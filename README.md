@@ -1,7 +1,7 @@
 # Durham AI Safety Initiative Website
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a0b6c037-c40b-4180-89c3-5df235e24684/deploy-status)](https://app.netlify.com/projects/durhamaisafety/deploys)
-[![PR Validation](https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/AI-Safety-Durham/AI-Safety-Durham.github.io/actions/workflows/pr-validation.yml)
+[![Scheduled Netlify Deploy](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml/badge.svg)](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml)
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -169,14 +169,17 @@ The Tina config (schema, collections) lives in [tina/config.ts](./tina/config.ts
 
 ## Deployment
 
-Changes pushed to `main` trigger two deployments automatically:
+To conserve Netlify build minutes, local and remote builds are decoupled:
 
-| Host | URL | Role |
-|---|---|---|
-| **Netlify** | [durhamaisafety.uk](https://durhamaisafety.uk) | Primary — full Astro build, custom domain |
-| **GitHub Pages** | [durhamaisafety.github.io](https://durhamaisafety.github.io) | Redirect fallback → durhamaisafety.uk |
+1. **Netlify Production Site**:
+   - Deployed at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
+   - Built and deployed via **GitHub Actions** (`Scheduled Netlify Deploy` workflow) running twice a day (every 12 hours) or manually triggered on-demand.
+   - This shifts all build computation to GitHub's free runners, reducing Netlify Build Minute consumption to **zero**!
+   - Automatic Git triggers are disabled in the Netlify Dashboard to avoid burning minutes on Tina CMS git saves.
+2. **GitHub Pages (Redirect Site)**:
+   - Deployed at **[durhamaisafety.github.io](https://durhamaisafety.github.io)** on every push to `main` to serve as a redirect fallback.
 
-The build command is `tinacms build --skip-cloud-checks && astro build`. This still generates the Tina admin bundle and site output, but skips comparing the branch schema with Tina Cloud's remote schema so PR builds can pass before the branch has been merged into `main`. The canonical domain is set in [`astro.config.mjs`](./astro.config.mjs).
+The build process runs through the custom wrapper `node scripts/build.js` which automatically restores masked credentials downloaded by the Netlify CLI, running both `tinacms build` and `astro build` flawlessly under pnpm.
 
 ## Key Reference Links
 
