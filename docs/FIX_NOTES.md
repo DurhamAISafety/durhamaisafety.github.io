@@ -25,27 +25,49 @@ Invalid URL format provided. Expected: https://content.tinajs.io/<Version>/conte
     3. The Netlify CLI injected these masked strings into the local shell process, which aggressively overrode the correct, raw credentials defined in the local `.env` file.
     4. When `tina/config.ts` was read, it parsed the literal masked asterisks string as the Client ID, causing `tinacms build` to fail.
 
+### Issue C: Serverless Functions Bundling Failure (pnpm Symlink Conflict)
+During remote deployments (or when packaging serverless functions locally), the Netlify Functions Bundling stage failed with:
+```text
+Failed during stage 'building site': Build script returned non-zero exit code: 1
+```
+*   **Cause**: 
+    1. The Astro SSR adapter compiles server-side logic into an SSR function (`ssr/ssr.mjs`).
+    2. Netlify's default functions bundler (`zip-it-and-ship-it`) tries to package the function along with its physical dependencies in `node_modules`.
+    3. Because `pnpm` uses a strict symlinked virtual store (`node_modules/.pnpm`) without hoisting, the default bundler fails to resolve these nested dependencies, throwing a silent bundling error.
+    4. Due to an internal bug in `@netlify/build`'s error formatting for plugin-failure states, it crashes with `TypeError: Cannot read properties of undefined (reading 'packageName')`, masking the original bundling error.
+
 ---
 
 ## 2. The Solution
 
-To make local deployment work flawlessly while keeping the project optimized and completely flat-free (no global `shamefully-hoist=true` required), the local build was decoupled from the environment injection using a build wrapper.
+To make deployments work flawlessly while keeping the project optimized and completely flat-free (no global `shamefully-hoist=true` required), we implemented a two-part solution:
 
-### A. Restoring Browser-Compatible config (`tina/config.ts`)
+### A. Restoring Browser-Compatible Config (`tina/config.ts`)
 We restored [tina/config.ts](../tina/config.ts) to a clean, bundle-safe state. Statically importing Node-specific modules like `fs` or `path` inside `tina/config.ts` causes Rollup/Vite to crash when compiling the Tina client bundle for the browser editor.
 
-### B. Created a Safe Build Wrapper (`scripts/build.js`)
+### B. Creating a Safe Build Wrapper (`scripts/build.js`)
 We created [scripts/build.js](./build.js) to orchestrate building. This script:
 1.  Locates and parses the local `.env` file natively (correctly stripping surrounding quotes and ignoring inline comments starting with `#`).
 2.  Inspects the active process environment variables. If it detects they have been overridden with masked asterisks (e.g. starting with `*`), it swaps them back with the raw, correct values from `.env`.
 3.  Spawns `pnpm exec tinacms build` followed by `pnpm exec astro build` inside a child process containing the corrected environment.
 
-### C. Configured `package.json`
+### C. Updating `package.json` Build Script
 We pointed the project's `"build"` command directly to the new wrapper script in [package.json](../package.json):
 ```json
 "scripts": {
   "build": "node scripts/build.js"
 }
+```
+
+### D. Configuring esbuild for Serverless Functions (`netlify.toml`)
+To support non-hoisted dependencies under strict `pnpm`, we configured Netlify to bundle the Astro SSR serverless function (`ssr/ssr.mjs`) using `esbuild`. 
+
+Unlike the default folder-copying bundler (`zip-it-and-ship-it`), `esbuild` statically compiles all dependencies directly into the SSR function file itself. This completely bypasses the symlinked `node_modules/.pnpm` pathing limitations.
+
+Added to [netlify.toml](../netlify.toml):
+```toml
+[functions]
+    node_bundler = "esbuild"
 ```
 
 ---
