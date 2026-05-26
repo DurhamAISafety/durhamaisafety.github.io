@@ -463,7 +463,7 @@
 }
 
 /* Hide mobile nav on desktop */
-@media (min-width: 1100px) {
+@media (min-width: 1300px) {
     .mobile-nav {
         display: none;
     }

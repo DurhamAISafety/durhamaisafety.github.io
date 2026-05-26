@@ -87,3 +87,12 @@ The Netlify CLI will download remote variables, trigger `pnpm run build` (which 
 
 ### Remote / Continuous Deployment (Git Push)
 Since `.env` is ignored by git and does not exist on remote build machines, the wrapper script will automatically bypass overriding and gracefully default to using the unmasked, secure credentials injected natively on Netlify's production infrastructure.
+
+---
+
+## 4. Mobile Menu Breakpoint Mismatch
+
+### The Issue
+On viewport widths between `1100px` and `1299px` (e.g. tablets or medium-sized desktop browser windows), clicking the header burger button turned it into an "X" but did not display the mobile navigation overlay.
+*   **Cause**: The burger button and the desktop menu breakpoints were controlled at `1300px` (showing the burger button and hiding the desktop menu when the screen width was `< 1300px`). However, `.mobile-nav` was hidden via a `@media (min-width: 1100px) { display: none; }` media query. Therefore, for widths between `1100px` and `1299px`, the burger button was visible, but the menu itself was hidden via `display: none`.
+*   **Correction**: Modified the `@media (min-width: 1100px)` media query on `.mobile-nav` in [public/css/layout.css](file:///Users/Subspace_Explorer/Projects/durhamaisafety.github.io/public/css/layout.css) to `@media (min-width: 1300px)` to properly align with the other navigation breakpoints.
