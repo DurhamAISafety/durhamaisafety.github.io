@@ -37,15 +37,11 @@
       },
       {
         "title": "Events",
-        "url": "/#events"
+        "url": "/events/"
       },
       {
         "title": "Research",
         "url": "/research/"
-      },
-      {
-        "title": "Programmes",
-        "url": "/programmes/"
       },
       {
         "title": "What is AI Safety?",
