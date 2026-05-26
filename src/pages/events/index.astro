@@ -100,7 +100,7 @@ const { homeConfig } = await getHomePageContent();
         <h2 class="section-heading text-3xl md:text-4xl mb-4">Latest Updates</h2>
         <div class="w-20 h-1 bg-bright-purple mx-auto rounded-full"></div>
         <p class="text-muted-text mt-4">
-          Follow <a href="https://www.instagram.com/ais_durham" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:underline font-semibold">@ais_durham</a> on Instagram for our latest news and announcements!
+          Follow <a href="https://www.instagram.com/ais_durham" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:underline font-semibold">@ais_durham<i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a> on Instagram for our latest news and announcements!
         </p>
       </div>
 
@@ -115,40 +115,3 @@ const { homeConfig } = await getHomePageContent();
     </div>
   </section>
 </Layout>
-
-<script>
-  // Calendar loading state
-  const calendarIframe = document.getElementById('calendar-iframe');
-  const calendarLoading = document.getElementById('calendar-loading');
-  
-  if (calendarIframe && calendarLoading) {
-    calendarIframe.addEventListener('load', () => {
-      calendarLoading.style.display = 'none';
-      calendarIframe.classList.add('loaded');
-    });
-  }
-  
-  setTimeout(() => {
-    if (calendarIframe && calendarLoading && !calendarIframe.classList.contains('loaded')) {
-      calendarLoading.style.display = 'none';
-      calendarIframe.classList.add('loaded');
-    }
-  }, 5000);
-
-  const copyBtn = document.getElementById('copy-cal-url');
-  const copyLabel = document.getElementById('copy-cal-label');
-
-  if (copyBtn && copyLabel) {
-    copyBtn.addEventListener('click', async () => {
-      const url = copyBtn.getAttribute('data-url') ?? '';
-      try {
-        await navigator.clipboard.writeText(url);
-        copyLabel.textContent = 'Copied!';
-        setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
-      } catch {
-        copyLabel.textContent = 'Copy failed';
-        setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
-      }
-    });
-  }
-</script>
