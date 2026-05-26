@@ -5,70 +5,24 @@ import type { SiteConfig, HomePageConfig } from '../../data/config';
 interface Props {
   homeConfig: HomePageConfig;
   siteConfig: SiteConfig;
+  hideHeading?: boolean;
 }
 
-const { homeConfig, siteConfig } = Astro.props;
+const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
 ---
 
 <section id="events" class="py-16 section-neutral">
     <div class="site-container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16 reveal">
-            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig._source, 'eventsTitle')}>{homeConfig.eventsTitle}</h2>
-            <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
-        </div>
-
-        <div id="calendar" class="max-w-5xl mx-auto mb-16">
-            <p class="text-center text-lg mb-4 font-medium">
-                We'll update <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium" data-tina-field={tinaField(siteConfig.calendar._source, 'lumaCalendarSlug')}>this calendar</a> with upcoming events. You can add it to yours:
-            </p>
-
-            <!-- Calendar sync buttons -->
-            <div class="flex items-center justify-center gap-4 mb-6" data-tina-field={tinaField(siteConfig.calendar._source, 'lumaCalendarId')}>
-                <!-- Google Calendar -->
-                <a href={`https://www.google.com/calendar/render?cid=${encodeURIComponent(`http://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cal-sync-btn"
-                aria-label="Add to Google Calendar">
-                    <img src="/images/icons/google.svg" alt="" class="cal-icon" aria-hidden="true" />
-                    <span class="cal-label">Google Calendar</span>
-                </a>
-
-                <!-- Outlook Calendar -->
-                <a href={`https://outlook.live.com/calendar/0/addcalendar?url=${encodeURIComponent(`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="cal-sync-btn"
-                aria-label="Add to Outlook Calendar">
-                    <img src="/images/icons/outlook.svg" alt="" class="cal-icon" aria-hidden="true" />
-                    <span class="cal-label">Outlook Calendar</span>
-                </a>
-
-                <!-- Apple Calendar -->
-                <a href={`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
-                class="cal-sync-btn"
-                aria-label="Add to Apple Calendar">
-                    <img src="/images/icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
-                    <span class="cal-label">Apple Calendar</span>
-                </a>
-
-                <!-- Calendar URL copy -->
-                <button
-                    id="copy-cal-url"
-                    class="cal-sync-btn"
-                    aria-label="Copy calendar URL to clipboard"
-                    data-url={`https://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
-                >
-                    <i class="fa-solid fa-link cal-icon text-body-text" aria-hidden="true"></i>
-                    <span class="cal-label" id="copy-cal-label">Copy URL</span>
-                </button>
+        {!hideHeading && (
+            <div class="text-center mb-16 reveal">
+                <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig._source, 'eventsTitle')}>{homeConfig.eventsTitle}</h2>
+                <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
             </div>
+        )}
 
-            <p class="text-center text-sm mb-8 text-body-text">
-                Click on and RSVP to any event to receive email updates for that event.
-            </p>
-
-            <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container">
+        <div id="calendar" class="max-w-5xl mx-auto">
+            <!-- Calendar container first -->
+            <div class="bg-white/20 backdrop-blur rounded-2xl p-4 border border-bright-purple/30 calendar-container reveal">
                 <!-- Loading state -->
                 <div id="calendar-loading" class="calendar-loading">
                     <div class="text-center">
@@ -91,8 +45,63 @@ const { homeConfig, siteConfig } = Astro.props;
                     ></iframe>
                 </div>
             </div>
-            <div class="mt-6 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3 text-body-text">
+
+            <!-- Sync buttons and info below calendar -->
+            <div class="mt-8 text-center reveal" style="--reveal-delay: 100ms">
+                <p class="text-center text-lg mb-4 font-medium">
+                    We'll update <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium" data-tina-field={tinaField(siteConfig.calendar._source, 'lumaCalendarSlug')}>this calendar</a> with upcoming events. You can add it to yours:
+                </p>
+
+                <!-- Calendar sync buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-6" data-tina-field={tinaField(siteConfig.calendar._source, 'lumaCalendarId')}>
+                    <!-- Google Calendar -->
+                    <a href={`https://www.google.com/calendar/render?cid=${encodeURIComponent(`http://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cal-sync-btn"
+                    aria-label="Add to Google Calendar">
+                        <img src="/images/icons/google.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <span class="cal-label">Google Calendar</span>
+                    </a>
+
+                    <!-- Outlook Calendar -->
+                    <a href={`https://outlook.live.com/calendar/0/addcalendar?url=${encodeURIComponent(`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cal-sync-btn"
+                    aria-label="Add to Outlook Calendar">
+                        <img src="/images/icons/outlook.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <span class="cal-label">Outlook Calendar</span>
+                    </a>
+
+                    <!-- Apple Calendar -->
+                    <a href={`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
+                    class="cal-sync-btn"
+                    aria-label="Add to Apple Calendar">
+                        <img src="/images/icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <span class="cal-label">Apple Calendar</span>
+                    </a>
+
+                    <!-- Calendar URL copy -->
+                    <button
+                        id="copy-cal-url"
+                        class="cal-sync-btn"
+                        aria-label="Copy calendar URL to clipboard"
+                        data-url={`https://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
+                    >
+                        <i class="fa-solid fa-link cal-icon text-body-text" aria-hidden="true"></i>
+                        <span class="cal-label" id="copy-cal-label">Copy URL</span>
+                    </button>
+                </div>
+
+                <p class="text-center text-sm mb-8 text-body-text">
+                    Click on and RSVP to any event to receive email updates for that event.
+                </p>
+            </div>
+
+            <!-- Alternative links below -->
+            <div class="mt-6 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 reveal" style="--reveal-delay: 150ms">
+                <div class="flex items-center gap-3 text-body-text text-left">
                     <i class="fa-solid fa-triangle-exclamation text-durham-purple text-lg flex-shrink-0" aria-hidden="true"></i>
                     <span class="text-sm font-medium">Calendar not loading? Some browsers block embedded calendars.</span>
                 </div>
@@ -101,7 +110,8 @@ const { homeConfig, siteConfig } = Astro.props;
                     View calendar
                 </a>
             </div>
-            <p class="text-center text-sm mt-4 text-body-text">
+            
+            <p class="text-center text-sm mt-6 text-body-text reveal" style="--reveal-delay: 200ms">
                 <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}?period=past`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium" data-tina-field={tinaField(siteConfig.calendar._source, 'lumaCalendarSlug')}>See past events</a>
             </p>
         </div>

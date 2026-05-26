@@ -36,9 +36,11 @@ const boxGridClass = boxCount === 1
       <a href="/events/" class="inline-flex items-center gap-2 text-sm text-durham-purple hover:text-bright-purple font-semibold mb-8 transition-colors duration-200">
         <i class="fa-solid fa-arrow-left text-xs"></i> Back to Events
       </a>
-      <i class={`${programme.icon} text-6xl text-durham-purple mb-6 block reveal`} data-tina-field={tinaField(programme._source, 'icon')}></i>
+      <div class="mb-6 reveal" data-tina-field={tinaField(programme._source, 'icon')}>
+        <i class={`${programme.icon} text-6xl text-durham-purple`} aria-hidden="true"></i>
+      </div>
       <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal" data-tina-field={tinaField(programme._source, 'title')}>{programme.title}</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-6"></div>
+      <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
       
       {programme.tags && programme.tags.length > 0 && (
         <div class="flex flex-wrap items-center justify-center gap-3 mt-4 reveal">
@@ -72,7 +74,7 @@ const boxGridClass = boxCount === 1
           )}
 
           {hasWhos && (
-            <div class="bg-gradient-to-br from-bright-purple/10 to-light-purple/10 border border-bright-purple/20 backdrop-blur rounded-2xl p-8 reveal" style="--reveal-delay: 150ms">
+            <div class="bg-white/5 border border-bright-purple/20 backdrop-blur rounded-2xl p-8 reveal" style="--reveal-delay: 150ms">
               <h2 class="text-xl font-bold text-heading-text mb-6 flex items-center gap-2">
                 <i class="fa-solid fa-users text-durham-purple"></i> Who is this for?
               </h2>
@@ -111,7 +113,7 @@ const boxGridClass = boxCount === 1
           <div class={`grid gap-6 ${boxGridClass}`}>
             {programme.feature_boxes!.items.map((box, i) => (
               <div
-                class="bg-gradient-to-br from-bright-purple/20 to-transparent backdrop-blur rounded-xl p-6 text-center border border-white/10 hover:border-bright-purple/20 shadow-md transition-all duration-300 reveal flex flex-col h-full"
+                class="bg-white/5 backdrop-blur rounded-xl p-6 text-center border border-white/10 hover:border-bright-purple/20 shadow-md transition-all duration-300 reveal flex flex-col h-full"
                 style={`--reveal-delay: ${i * 100}ms`}
               >
                 <i class={`${box.icon} text-3xl text-durham-purple mb-4 block`} aria-hidden="true" data-tina-field={tinaField(box._source, 'icon')}></i>

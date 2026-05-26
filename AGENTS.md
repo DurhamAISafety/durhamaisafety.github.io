@@ -76,6 +76,7 @@ Long programme descriptions support basic Markdown such as `**bold**`, `_italic_
   ```html
   <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
   ```
+- **Jump Navigation**: For long, multi-section pages (e.g. consolidated hubs or resource indices), include a premium, sleek horizontal jump navigation bar (e.g. pill layout with smooth-scrolling anchors and icons) at the top of the content area to improve scannability and user engagement.
 
 ## Styling
 - Tailwind v4 is configured in CSS through `src/styles/global.css`; there is no `tailwind.config.mjs`.
