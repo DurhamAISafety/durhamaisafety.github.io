@@ -1,0 +1,154 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getProgrammesContent, programmeSlug } from '../../data/programmes';
+import { getSiteConfigContent, getHomePageContent } from '../../data/config';
+import { tinaField } from '@tinacms/astro';
+import EventsSection from '../../components/sections/EventsSection.astro';
+
+const { programmes } = await getProgrammesContent();
+const { siteConfig } = await getSiteConfigContent();
+const { homeConfig } = await getHomePageContent();
+---
+
+<Layout
+  title="Events & Programmes"
+  description="Durham AI Safety Initiative (DAISI) events, intro AIS101 sessions, reading groups, research projects, and news feed."
+>
+  <!-- Welcome / Intro Hero Header -->
+  <section class="py-16 section-neutral border-b border-white/5">
+    <div class="site-container mx-auto px-6 text-center reveal">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Events & Programmes</h1>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-6"></div>
+      <p class="max-w-2xl mx-auto text-lg text-body-text leading-relaxed">
+        Explore our upcoming talks, workshops, and socials, apply to our structured study and research programmes, and see our latest updates.
+      </p>
+    </div>
+  </section>
+
+  <!-- Luma Calendar Section -->
+  <EventsSection homeConfig={homeConfig} siteConfig={siteConfig} />
+
+  <!-- Our Programmes Section -->
+  <section id="programmes" class="py-16 section-light border-b border-white/5">
+    <div class="site-container mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="section-heading text-3xl md:text-4xl mb-4">Our Programmes</h2>
+        <div class="w-20 h-1 bg-bright-purple mx-auto rounded-full"></div>
+        <p class="text-muted-text mt-4 max-w-xl mx-auto">
+          Structured tracks designed to help you build skills and transition into AI safety research and governance.
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {programmes.map((programme, i) => (
+            <div
+              class="program-card rounded-2xl p-8 text-center reveal flex flex-col h-full bg-gradient-to-br from-bright-purple/5 to-transparent border border-white/10 hover:border-bright-purple/30 transition-all duration-300 shadow-md hover:shadow-xl"
+              style={`--reveal-delay: ${i * 100}ms`}
+            >
+              <div class="mb-6">
+                <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
+                <h3
+                  class="text-2xl font-bold text-heading-text"
+                  data-tina-field={tinaField(programme._source, 'title')}
+                >
+                  {programme.title}
+                </h3>
+                <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
+              </div>
+              
+              <p
+                class="mb-6 leading-relaxed text-body-text flex-grow text-sm animate-fade-in"
+                data-tina-field={tinaField(programme._source, 'short_description')}
+              >
+                {programme.short_description}
+              </p>
+
+              {programme.tags && programme.tags.length > 0 && (
+                <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
+                  {programme.tags.slice(0, 3).map(tag => (
+                    <div class="flex items-center gap-1.5 bg-bright-purple/10 border border-bright-purple/20 px-2.5 py-0.5 rounded-full">
+                      <i class={`${tag.icon} text-xs text-durham-purple`} aria-hidden="true"></i>
+                      <span
+                        class="text-xs font-semibold text-body-text"
+                        data-tina-field={tinaField(tag._source, 'label')}
+                      >
+                        {tag.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <a
+                href={`/events/${programmeSlug(programme.title)}/`}
+                class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80] mt-auto"
+              >
+                Learn More & Apply
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram News Feed Section -->
+  <section id="instagram" class="py-16 section-neutral">
+    <div class="site-container mx-auto px-6">
+      <div class="text-center mb-12 reveal">
+        <h2 class="section-heading text-3xl md:text-4xl mb-4">Latest Updates</h2>
+        <div class="w-20 h-1 bg-bright-purple mx-auto rounded-full"></div>
+        <p class="text-muted-text mt-4">
+          Follow <a href="https://www.instagram.com/ais_durham" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:underline font-semibold">@ais_durham</a> on Instagram for our latest news and announcements!
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-gradient-to-br from-bright-purple/5 to-light-purple/5 backdrop-blur border border-bright-purple/20 rounded-2xl p-6 shadow-lg relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-40 h-40 bg-bright-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -bottom-20 w-40 h-40 bg-light-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <!-- Common Ninja widget container -->
+        <script is:inline src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+        <div class="commonninja_component pid-a260439a-ccb1-465a-970b-1908a2089d07"></div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Calendar loading state
+  const calendarIframe = document.getElementById('calendar-iframe');
+  const calendarLoading = document.getElementById('calendar-loading');
+  
+  if (calendarIframe && calendarLoading) {
+    calendarIframe.addEventListener('load', () => {
+      calendarLoading.style.display = 'none';
+      calendarIframe.classList.add('loaded');
+    });
+  }
+  
+  setTimeout(() => {
+    if (calendarIframe && calendarLoading && !calendarIframe.classList.contains('loaded')) {
+      calendarLoading.style.display = 'none';
+      calendarIframe.classList.add('loaded');
+    }
+  }, 5000);
+
+  const copyBtn = document.getElementById('copy-cal-url');
+  const copyLabel = document.getElementById('copy-cal-label');
+
+  if (copyBtn && copyLabel) {
+    copyBtn.addEventListener('click', async () => {
+      const url = copyBtn.getAttribute('data-url') ?? '';
+      try {
+        await navigator.clipboard.writeText(url);
+        copyLabel.textContent = 'Copied!';
+        setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
+      } catch {
+        copyLabel.textContent = 'Copy failed';
+        setTimeout(() => { copyLabel.textContent = 'Copy URL'; }, 2000);
+      }
+    });
+  }
+</script>
