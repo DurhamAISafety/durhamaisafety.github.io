@@ -1,16 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProgrammesPageIsland from '../components/tina-islands/ProgrammesPageIsland.astro';
-import { getProgrammesContent } from '../data/programmes';
-
-const { programmes } = await getProgrammesContent();
 ---
 
-<Layout 
+<Layout
   title="Programmes"
-  description="Explore DAISI programmes: intro AIS101 sessions, in-depth reading groups, research project support, and ways to develop AI safety skills."
+  description="Our programmes have merged with our events section into a unified hub. Redirecting to Events & Programmes..."
 >
-  <div class="contents" data-tina-island="/tina-island/programmes">
-    <ProgrammesPageIsland programmes={programmes} />
-  </div>
+  <meta slot="head" http-equiv="refresh" content="2;url=/events/" />
+
+  <section class="py-32 section-neutral min-h-[60vh] flex items-center justify-center">
+    <div class="site-container mx-auto px-6 text-center reveal">
+      <i class="fa-solid fa-arrow-right-arrow-left text-5xl text-durham-purple mb-6 animate-pulse"></i>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">We've Moved!</h1>
+      <div class="w-20 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-6"></div>
+      <p class="max-w-md mx-auto text-body-text mb-8">
+        Our study and research programmes have merged with our events section into a unified hub.
+      </p>
+      <p class="text-sm text-muted-text">
+        Redirecting you to <a href="/events/" class="text-durham-purple hover:underline font-semibold">Events & Programmes</a> in a moment...
+      </p>
+      <a
+        href="/events/"
+        class="inline-block mt-6 px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200"
+      >
+        Go to Events & Programmes
+      </a>
+    </div>
+  </section>
 </Layout>
+
+<script is:inline>
+  // Fast redirection
+  window.location.replace('/events/');
+</script>
