@@ -4,6 +4,7 @@ import { getResearchContent } from "../data/research";
 import { getResearchPageContent } from "../data/config";
 import { tinaField } from "@tinacms/astro";
 import ResearchPageIsland from "../components/tina-islands/ResearchPageIsland.astro";
+import JumpNav from "../components/JumpNav.astro";
 
 const { academicPapers, nonAcademicPapers } = await getResearchContent();
 const { document, researchConfig } = await getResearchPageContent();
@@ -19,22 +20,13 @@ const page = {
   <section class="section section-neutral">
     <div class="site-container text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Research</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+      <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-8"></div>
       
-      {/* Jump Navigation */}
-      <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
-        <a href="#recent-research" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-file-alt mr-1" aria-hidden="true"></i> Recent Research
-        </a>
-        <span class="text-muted-text" aria-hidden="true">•</span>
-        <a href="#opportunities" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-door-open mr-1" aria-hidden="true"></i> Opportunities
-        </a>
-        <span class="text-muted-text" aria-hidden="true">•</span>
-        <a href="#research-areas" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-flask mr-1" aria-hidden="true"></i> Research Areas
-        </a>
-      </nav>
+      <JumpNav links={[
+        { href: '#recent-research', label: 'Recent Research', icon: 'fas fa-file-alt' },
+        { href: '#opportunities', label: 'Opportunities', icon: 'fas fa-door-open' },
+        { href: '#research-areas', label: 'Research Areas', icon: 'fas fa-flask' }
+      ]} />
     </div>
   </section>
 

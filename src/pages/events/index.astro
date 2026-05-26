@@ -4,6 +4,7 @@ import { getProgrammesContent, programmeSlug } from '../../data/programmes';
 import { getSiteConfigContent, getHomePageContent } from '../../data/config';
 import { tinaField } from '@tinacms/astro';
 import EventsSection from '../../components/sections/EventsSection.astro';
+import JumpNav from '../../components/JumpNav.astro';
 
 const { programmes } = await getProgrammesContent();
 const { siteConfig } = await getSiteConfigContent();
@@ -20,23 +21,14 @@ const { homeConfig } = await getHomePageContent();
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Events & Programmes</h1>
       <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
       <p class="max-w-2xl mx-auto text-lg text-body-text leading-relaxed mb-8">
-        Explore our upcoming talks, workshops, and socials, apply to our structured study and research programmes, and see our latest updates.
+        Explore our events and see our latest updates.
       </p>
 
-      <!-- Sleek Jump Navigation -->
-      <nav class="inline-flex flex-wrap items-center justify-center gap-2 bg-white/5 backdrop-blur border border-white/10 p-1.5 rounded-2xl md:rounded-full shadow-md max-w-lg mx-auto">
-        <a href="#events" class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-white/5 hover:text-durham-purple text-body-text transition-all duration-200">
-          <i class="fa-solid fa-calendar-days mr-2"></i>Calendar
-        </a>
-        <div class="hidden sm:block w-px h-4 bg-white/10"></div>
-        <a href="#programmes" class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-white/5 hover:text-durham-purple text-body-text transition-all duration-200">
-          <i class="fa-solid fa-graduation-cap mr-2"></i>Our Programmes
-        </a>
-        <div class="hidden sm:block w-px h-4 bg-white/10"></div>
-        <a href="#instagram" class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-white/5 hover:text-durham-purple text-body-text transition-all duration-200">
-          <i class="fa-brands fa-instagram mr-2"></i>Latest News
-        </a>
-      </nav>
+      <JumpNav links={[
+        { href: '#events', label: 'Calendar', icon: 'fa-solid fa-calendar-days' },
+        { href: '#programmes', label: 'What we do', icon: 'fa-solid fa-graduation-cap' },
+        { href: '#instagram', label: 'Latest News', icon: 'fa-brands fa-instagram' }
+      ]} />
     </div>
   </section>
 

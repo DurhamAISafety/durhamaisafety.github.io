@@ -1,0 +1,27 @@
+---
+export interface JumpNavLink {
+  href: string;
+  label: string;
+  icon: string;
+}
+
+interface Props {
+  links: JumpNavLink[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav class="inline-flex flex-wrap items-center justify-center gap-2 bg-white/5 backdrop-blur border border-white/10 p-1.5 rounded-2xl md:rounded-full shadow-md max-w-lg mx-auto">
+  {links.map((link, index) => (
+    <>
+      {index > 0 && <div class="hidden sm:block w-px h-4 bg-white/10" aria-hidden="true" />}
+      <a
+        href={link.href}
+        class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-white/5 hover:text-durham-purple text-body-text transition-all duration-200"
+      >
+        <i class={`${link.icon} mr-2`} aria-hidden="true"></i>{link.label}
+      </a>
+    </>
+  ))}
+</nav>

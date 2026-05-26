@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import JumpNav from "../components/JumpNav.astro";
 ---
 
 <Layout 
@@ -9,22 +10,13 @@ import Layout from "../layouts/Layout.astro";
   <section class="section section-neutral">
     <div class="site-container text-center">
       <h1 class="section-heading text-4xl md:text-5xl mb-4">AI Safety and Why It Matters</h1>
-      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-8"></div>
+      <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-8"></div>
       
-      {/* Jump Navigation */}
-      <nav class="flex flex-wrap justify-center gap-4 text-sm" aria-label="Page sections">
-        <a href="#what-is-ais" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-shield-alt mr-1" aria-hidden="true"></i> What is AI Safety?
-        </a>
-        <span class="text-muted-text" aria-hidden="true">•</span>
-        <a href="#why-it-matters" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-exclamation-circle mr-1" aria-hidden="true"></i> Why It Matters
-        </a>
-        <span class="text-muted-text" aria-hidden="true">•</span>
-        <a href="#getting-started" class="text-bright-purple hover:text-light-purple transition-colors font-medium">
-          <i class="fas fa-rocket mr-1" aria-hidden="true"></i> Getting Started
-        </a>
-      </nav>
+      <JumpNav links={[
+        { href: '#what-is-ais', label: 'What is AI Safety?', icon: 'fas fa-shield-alt' },
+        { href: '#why-it-matters', label: 'Why It Matters', icon: 'fas fa-exclamation-circle' },
+        { href: '#getting-started', label: 'Getting Started', icon: 'fas fa-rocket' }
+      ]} />
     </div>
   </section>
 
@@ -40,7 +32,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="info-card p-8 mb-8">
           <p class="text-xl md:text-2xl leading-relaxed text-center mb-6">
             AI Safety is the field focused on ensuring that artificial intelligence systems are
-            <span class="gradient-text font-semibold"> safe, beneficial, and aligned with human values</span>
+            <span class="text-bright-purple font-bold"> safe, beneficial, and aligned with human values</span>
             as they become increasingly capable.
           </p>
         </div>
@@ -239,7 +231,7 @@ import Layout from "../layouts/Layout.astro";
            class="info-card block p-8 transition-all duration-300 hover:scale-[1.02] group">
           <div class="flex flex-col md:flex-row items-center gap-6">
             <div class="flex-shrink-0">
-              <div class="w-20 h-20 bg-gradient-to-br from-durham-purple to-bright-purple rounded-xl flex items-center justify-center">
+              <div class="w-20 h-20 bg-durham-purple rounded-xl flex items-center justify-center">
                 <i class="fas fa-compass text-4xl text-white" aria-hidden="true"></i>
               </div>
             </div>
