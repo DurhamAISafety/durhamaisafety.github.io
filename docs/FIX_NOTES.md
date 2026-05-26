@@ -36,6 +36,23 @@ Failed during stage 'building site': Build script returned non-zero exit code: 1
     3. Because `pnpm` uses a strict symlinked virtual store (`node_modules/.pnpm`) without hoisting, the default bundler fails to resolve these nested dependencies, throwing a silent bundling error.
     4. Due to an internal bug in `@netlify/build`'s error formatting for plugin-failure states, it crashes with `TypeError: Cannot read properties of undefined (reading 'packageName')`, masking the original bundling error.
 
+### Issue D: GitHub Actions Built Successfully but Never Deployed
+On 26 May 2026, the Netlify Deploy workflow built the new `/events/` route successfully but production continued to return the previous site's 404 page for that URL. The deploy step failed with:
+```text
+[ERR_PNPM_DLX_MULTIPLE_BINS] Could not determine executable to run. netlify-cli has multiple binaries: ntl, netlify
+```
+*   **Cause**: `.github/workflows/deploy-netlify.yml` invoked `pnpx netlify-cli deploy --prod --no-build`. This is the same ambiguous multi-binary invocation described in Issue A, so no newly built output was uploaded to Netlify.
+*   **Correction**: Invoke the package and binary explicitly in CI:
+    ```bash
+    pnpm --package=netlify-cli dlx netlify deploy --prod --no-build
+    ```
+    This retains the prebuilt deploy workflow while selecting the intended CLI binary.
+
+### Issue E: `pnpx astro check` Did Not Run the Repository Check
+During verification on 26 May 2026, `pnpx astro check` prompted to install `@astrojs/check` even though that dependency is already declared in the project.
+*   **Cause**: `pnpx` launches a temporary package context rather than resolving the already installed repository dependencies for this validation command.
+*   **Correction**: Use `pnpm exec astro check` so the check runs with the locked, installed project toolchain.
+
 ---
 
 ## 2. The Solution
