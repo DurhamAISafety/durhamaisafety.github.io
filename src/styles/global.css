@@ -159,3 +159,13 @@ h1, h2, h3, h4, h5, h6,
 .hero-heading em {
   color: var(--color-fixed-bright-purple) !important;
 }
+
+/* Centralized imports for component styles and legacy layouts */
+@import "./tokens.css";
+@import "./layout.css";
+@import "./cards.css";
+@import "./buttons.css";
+@import "./forms.css";
+@import "./animations.css";
+@import "./utilities.css";
+
