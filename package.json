@@ -20,7 +20,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "@tinacms/astro": "^0.2.0",
     "@tinacms/bridge": "^0.2.0",
-    "astro": "^5.18.1",
+    "astro": "^5.18.2",
     "tailwindcss": "^4.3.0",
     "tinacms": "^3.8.1",
     "yaml": "^2.9.0"
