@@ -1,0 +1,59 @@
+# Action required — things only you can do
+
+Short list of manual steps I can't do for you. Nothing here blocks the site building or
+deploying; it's needed to switch the **content editor** (Sveltia CMS at `/admin`) on and to
+tidy old settings. Do them when you're back at a computer.
+
+---
+
+## 1. Turn on the CMS login (GitHub OAuth via Netlify) — ~15 min
+
+Sveltia commits your edits to GitHub. Because we're on Netlify, we use Netlify's built-in
+GitHub OAuth provider — **no extra server/worker needed**, and no config change.
+
+1. **Create a GitHub OAuth app**: GitHub → Settings → *Developer settings* → *OAuth Apps* →
+   *New OAuth App*.
+   - Application name: `DAISI CMS` (anything)
+   - Homepage URL: `https://durhamaisafety.uk`
+   - **Authorization callback URL**: `https://api.netlify.com/auth/done` (this exact value)
+   - Register, then **Generate a client secret**. Copy the **Client ID** and **Client Secret**.
+2. **Give them to Netlify**: in the Netlify dashboard, add GitHub as an OAuth provider for the
+   site and paste the Client ID + Secret. (Netlify's current wording is roughly
+   *Site configuration → Access & security → OAuth* / "Install provider → GitHub". Follow
+   Netlify's own "Sveltia/Decap CMS + GitHub" guide if the menu names differ — the callback
+   URL above is the stable part.)
+3. **Test**: go to `https://durhamaisafety.uk/admin/` (after this branch is deployed), click
+   *Login with GitHub*. You should see four editors: **People / Committee, About Page,
+   Research, Supporters**. Try a tiny edit → it should open a **pull request** (not commit to
+   `main` directly). Merge the PR to publish.
+
+Anyone you want to let edit must have **write access** to the `DurhamAISafety/durhamaisafety.github.io`
+repo. (For quick solo testing without any of the above, Sveltia also supports a personal
+access token — but the OAuth setup is the right one for a committee.)
+
+## 2. Remove the old TinaCMS settings
+
+Tina is gone from the code. Clean up its leftovers so nobody's confused and no dead secrets linger:
+- **Netlify env vars**: delete `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` from the site's
+  environment variables.
+- **Local `.env`**: you can drop those two Tina lines (kept for now, harmless).
+- Optional: archive/close the project on Tina Cloud (app.tina.io).
+
+## 3. Confirm the deploy branch
+
+`public/admin/config.yml` has `branch: main`. That must match the branch Netlify builds for
+production. If production deploys from a different branch, tell me and I'll update it.
+
+---
+
+## Notes (no action needed unless you care)
+
+- **CMS branch vs this branch**: I'm working on `theo-aug-2026`. The CMS won't work until this
+  is merged to `main` and deployed (so `/admin` and `config.yml` exist in production).
+- **Committee photos**: new uploads in the People editor go to `public/images/people`. Existing
+  photo paths are untouched.
+- **Security hardening (optional)**: the admin page loads Sveltia from the unpkg CDN without a
+  Subresource-Integrity hash (Sveltia ships as an auto-updating bundle, so pinning a hash
+  breaks updates). If you'd rather pin a fixed version + SRI, say so. Sveltia also has a CSP
+  guide if we add a Content-Security-Policy later.
+- **A blog later**: easy to add — a folder of markdown files + one Astro route. Ask when you want it.

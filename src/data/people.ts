@@ -34,11 +34,8 @@ export async function getPeopleContent(): Promise<{
   team: TeamMember[];
   alumni: AlumniMember[];
 }> {
-  const { about } = readYaml<{ about?: { people?: RawPerson[] } }>('pages/about.yml');
-  if (!about) {
-    throw new Error('Validation Error: Missing about page configuration object.');
-  }
-  const people: Person[] = (about.people ?? []).map((person) => ({
+  const { people: rawPeople = [] } = readYaml<{ people?: RawPerson[] }>('people.yml');
+  const people: Person[] = rawPeople.map((person) => ({
     name: person.name,
     role: person.role,
     type: person.type === 'alumnus' ? 'alumnus' : 'member',

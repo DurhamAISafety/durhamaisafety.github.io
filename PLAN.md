@@ -37,14 +37,16 @@ Supporters**. Blog = easy later (Sveltia folder collection of markdown + an Astr
   credits. Hosting: GitHub Pages (free) or Netlify static — see Open.
 
 ## Phases (commit per phase)
-- [ ] **0a. Remove Tina.** Delete `tina/`, `middleware.ts`, `lib/tina-islands.ts`,
-      `tina-island` route, `@tinacms/*` deps, Tina step in `build.js`. Rewrite `src/data/*.ts`
-      to read YAML/JSON directly (`yaml` dep, already installed); strip `tinaField`/`_source`/
-      `data-tina-*` from ~20 components/pages. Removing Tina also frees the Vite-6 pin.
-- [ ] **0b. Finish upgrade + static.** Reinstall (Vite 8 resolves → Astro 7 builds),
-      `output: 'static'`. Gate: `pnpm build` passes, all routes render.
-- [ ] **0c. Add Sveltia.** `public/admin/` (index.html + config.yml) mapping People/About/
-      Research/Supporters to the YAML files; editorial workflow; GitHub OAuth. Gate: `/admin` loads.
+- [x] **0a. Remove Tina.** Done — deleted `tina/`, `middleware.ts`, `lib/tina-islands.ts`,
+      `tina-island` route, `@tinacms/*` deps, `build.js`. `src/data/*.ts` now read YAML/JSON via
+      `src/data/content.ts`; all `tinaField`/`_source`/`data-tina-*` stripped. Removed the
+      Tina-era Vite override in `pnpm-workspace.yaml`.
+- [x] **0b. Upgrade + static.** Done — Astro 5→7, netlify 6→8, Vite 8; `output: 'static'`.
+      Build green, 14 routes prerender, 0 type errors, no serverless function content.
+- [x] **0c. Add Sveltia.** Done — `public/admin/` (index.html + config.yml) with People/About/
+      Research/Supporters singletons, editorial workflow. Split `people`→`people.yml` and
+      `supporters`→`supporters.yml` so CMS saves can't drop sibling keys. GitHub OAuth setup +
+      verification are manual → see `ACTION_REQUIRED.md`.
 - [ ] **1. Photos in.** Optimise `new_photos/`, swap hero, place across pages. Visible win, low risk.
 - [ ] **2. IA.** Fold `what-is-ai-safety` into Home para + video; wire Alumni under About;
       confirm What-we-do subpages carry non-event activities.
