@@ -17,11 +17,13 @@ GitHub OAuth provider — **no extra server/worker needed**, and no config chang
    - Homepage URL: `https://durhamaisafety.uk`
    - **Authorization callback URL**: `https://api.netlify.com/auth/done` (this exact value)
    - Register, then **Generate a client secret**. Copy the **Client ID** and **Client Secret**.
-2. **Give them to Netlify**: in the Netlify dashboard, add GitHub as an OAuth provider for the
-   site and paste the Client ID + Secret. (Netlify's current wording is roughly
-   *Site configuration → Access & security → OAuth* / "Install provider → GitHub". Follow
-   Netlify's own "Sveltia/Decap CMS + GitHub" guide if the menu names differ — the callback
-   URL above is the stable part.)
+2. **Give them to Netlify** — this is a **dashboard-only** step (no CLI/env var exists for it):
+   Netlify → your site → *Site configuration → Access & security → OAuth* (older UI:
+   *Access control → OAuth*) → **Install provider → GitHub** → paste the **Client ID** and
+   **Client Secret**, save. Paste the **secret directly into that form** — never into chat, a
+   config file, or an env var. (Follow Netlify's own "Sveltia/Decap CMS + GitHub" guide if the
+   menu names differ — the callback URL above is the stable part.)
+   - Client ID on file: `Ov23liSqpa1IDRusNroy` (this is fine to keep in the repo; it isn't secret).
 3. **Test**: go to `https://durhamaisafety.uk/admin/` (after this branch is deployed), click
    *Login with GitHub*. You should see four editors: **People / Committee, About Page,
    Research, Supporters**. Try a tiny edit → it should open a **pull request** (not commit to
@@ -31,18 +33,17 @@ Anyone you want to let edit must have **write access** to the `DurhamAISafety/du
 repo. (For quick solo testing without any of the above, Sveltia also supports a personal
 access token — but the OAuth setup is the right one for a committee.)
 
-## 2. Remove the old TinaCMS settings
+## 2. Remove the old TinaCMS settings — ✅ mostly done
 
-Tina is gone from the code. Clean up its leftovers so nobody's confused and no dead secrets linger:
-- **Netlify env vars**: delete `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` from the site's
-  environment variables.
+- **Netlify env vars**: ✅ `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` removed via the CLI
+  (only `NODE_VERSION` / `NODE_OPTIONS` remain).
 - **Local `.env`**: you can drop those two Tina lines (kept for now, harmless).
 - Optional: archive/close the project on Tina Cloud (app.tina.io).
 
-## 3. Confirm the deploy branch
+## 3. Confirm the deploy branch — ✅ done
 
-`public/admin/config.yml` has `branch: main`. That must match the branch Netlify builds for
-production. If production deploys from a different branch, tell me and I'll update it.
+Confirmed via the Netlify API: production branch is **`main`**, which matches
+`public/admin/config.yml`. Nothing to change.
 
 ---
 
