@@ -48,6 +48,41 @@
     border-radius: var(--radius-xl);
 }
 
+/* Programme card badge (pill) — used on the home "What we do" cards */
+.program-badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    background: rgba(157, 78, 221, 0.12);
+    color: var(--color-durham-purple);
+    border: 1px solid rgba(235, 128, 253, 0.3);
+}
+
+.dark .program-badge {
+    background: rgba(235, 128, 253, 0.14);
+    color: var(--color-bright-purple);
+    border-color: rgba(235, 128, 253, 0.35);
+}
+
+/* "Learn More" link on the borderless programme cards:
+   Durham purple in light mode, near-white in dark mode, bright purple on hover. */
+.learn-more {
+    color: var(--color-durham-purple);
+}
+
+.dark .learn-more {
+    color: var(--color-heading-text);
+}
+
+.group:hover .learn-more {
+    color: var(--color-bright-purple);
+}
+
 /* Icon box utility - ensures consistent icon sizing in cards */
 .icon-box {
     display: flex;

@@ -6,9 +6,3 @@
 [build.environment]
     NODE_VERSION = "24"
     NODE_OPTIONS = "--max-old-space-size=4096"
-    SECRETS_SCAN_OMIT_PATHS = "tina/__generated__/**,tina/generated/**"
-    SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_TINA_CLIENT_ID"
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"

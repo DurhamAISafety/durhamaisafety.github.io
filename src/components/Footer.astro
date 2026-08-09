@@ -13,7 +13,6 @@
  * - CSS classes from public/css/styles.css (.footer, .social-links)
  */
 import { getSiteConfigContent } from '../data/config';
-import { tinaField } from '@tinacms/astro';
 
 const currentYear = new Date().getFullYear();
 const { siteConfig } = await getSiteConfigContent();
@@ -55,11 +54,11 @@ function getSocialLabel(link: { name: string; url: string }) {
                         decoding="async" 
                     />
                 </a>
-                <div class="text-base md:text-lg font-bold text-white tracking-wide" data-tina-field={tinaField(siteConfig._source, 'title')}>
+                <div class="text-base md:text-lg font-bold text-white tracking-wide">
                     {siteConfig.title}<sup class="text-[10px] md:text-xs font-normal text-white/50 ml-1.5 align-super">{currentYear}</sup>
                 </div>
                 {siteConfig.footerTagline && (
-                    <p class="text-xs md:text-sm text-white/70 leading-relaxed font-normal" data-tina-field={tinaField(siteConfig._source, 'footerTagline')}>
+                    <p class="text-xs md:text-sm text-white/70 leading-relaxed font-normal">
                         {siteConfig.footerTagline}
                     </p>
                 )}
@@ -93,7 +92,6 @@ function getSocialLabel(link: { name: string; url: string }) {
                     href={`mailto:${siteConfig.email}`}
                     aria-label="Email"
                     class="flex items-center gap-3 text-xs md:text-sm text-white hover:text-bright-purple hover:opacity-100 transition-colors"
-                    data-tina-field={tinaField(siteConfig._source, 'email')}
                 >
                     <i class="fas fa-envelope text-base w-5 text-center flex-shrink-0" aria-hidden="true"></i>
                     <span>{siteConfig.email}</span>
@@ -107,7 +105,6 @@ function getSocialLabel(link: { name: string; url: string }) {
                         rel="noreferrer noopener"
                         aria-label={link.name}
                         class="flex items-center gap-3 text-xs md:text-sm text-white/80 hover:text-bright-purple hover:opacity-100 transition-colors"
-                        data-tina-field={tinaField(link._source, 'url')}
                     >
                         <img
                             src={link.icon}

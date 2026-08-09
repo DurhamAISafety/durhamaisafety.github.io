@@ -14,7 +14,6 @@
  * - CSS classes from public/css/styles.css
  */
 import { getSiteConfigContent } from '../data/config';
-import { tinaField } from '@tinacms/astro';
 
 const logoPath = '/images/DAISI-logo.svg';
 
@@ -35,7 +34,7 @@ const allSocials = siteConfig.socialLinks;
             <a href="/" class="nav-brand">
                 <img src={logoPath} alt="DAISI Logo" class="h-8 w-auto md:h-10" loading="lazy" decoding="async" />
                 <div>
-                    <h1 class="nav-title" data-tina-field={tinaField(siteConfig._source, 'title')}>
+                    <h1 class="nav-title">
                         <span>Durham</span>
                         <span class="text-[1.1em] font-extrabold" style="color: var(--color-fixed-bright-purple);">AI Safety</span>
                         <span>Initiative</span>
@@ -59,9 +58,9 @@ const allSocials = siteConfig.socialLinks;
             <!-- Desktop navigation - center -->
             <div class="nav-center nav-menu-desktop">
                 {siteConfig.navigation.main.map((item) => (
-                    <a href={item.url} class="nav-link" data-tina-field={tinaField(item._source, 'title')}>{item.title}</a>
+                    <a href={item.url} class="nav-link">{item.title}</a>
                 ))}
-                <a href={siteConfig.navigation.cta.url} class="btn-cta" data-tina-field={tinaField(siteConfig.navigation.cta._source, 'title')} style="padding: 0.5rem 1.25rem; font-size: 1rem;">
+                <a href={siteConfig.navigation.cta.url} class="btn-cta" style="padding: 0.5rem 1.25rem; font-size: 1rem;">
                     {siteConfig.navigation.cta.title}
                 </a>
             </div>
@@ -78,7 +77,6 @@ const allSocials = siteConfig.socialLinks;
                         aria-label={link.name}
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-tina-field={tinaField(link._source, 'url')}
                     >
                         <img
                             src={link.icon}
@@ -101,10 +99,10 @@ const allSocials = siteConfig.socialLinks;
 <div class="mobile-nav" id="mobileNav" aria-hidden="true">
     <div class="mobile-nav-content">
         {siteConfig.navigation.main.map((item) => (
-            <a href={item.url} class="mobile-nav-link" data-tina-field={tinaField(item._source, 'title')}>{item.title}</a>
+            <a href={item.url} class="mobile-nav-link">{item.title}</a>
         ))}
 
-        <a href={siteConfig.navigation.cta.url} class="btn-cta" data-tina-field={tinaField(siteConfig.navigation.cta._source, 'title')} style="padding: 0.75rem 2rem; font-size: 1rem;">
+        <a href={siteConfig.navigation.cta.url} class="btn-cta" style="padding: 0.75rem 2rem; font-size: 1rem;">
             {siteConfig.navigation.cta.title}
         </a>
 
@@ -116,7 +114,6 @@ const allSocials = siteConfig.socialLinks;
                         aria-label={link.name}
                         target="_blank"
                         rel="noopener noreferrer"
-                        data-tina-field={tinaField(link._source, 'url')}
                     >
                         <img
                             src={link.icon}

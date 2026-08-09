@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# DAISI content editor (Sveltia CMS). Non-technical maintainers edit content here;
+# each save opens a pull request (editorial workflow) for review before it goes live.
+# Docs: https://sveltiacms.app/en/docs
+
+backend:
+  name: github
+  repo: DurhamAISafety/durhamaisafety.github.io
+  branch: main # production branch the site deploys from
+  # Auth uses Netlify's built-in GitHub OAuth provider (no base_url needed).
+  # See ACTION_REQUIRED.md for the one-time OAuth setup.
+
+# Edits go through a pull request instead of committing straight to the branch.
+publish_mode: editorial_workflow
+
+# Uploaded images (e.g. committee photos) land in public/images and are referenced as /images/...
+media_folder: public/images
+public_folder: /images
+
+# Each entry below maps to one existing content file. Fields mirror that file's
+# structure, so nothing outside these fields is touched on save.
+singletons:
+  - name: people
+    label: People / Committee
+    file: src/content/people.yml
+    icon: group
+    description: Committee members and alumni shown on the About and Alumni pages.
+    fields:
+      - name: people
+        label: People
+        label_singular: Person
+        widget: list
+        summary: '{{fields.name}} — {{fields.role}}'
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: role, label: Role, widget: string }
+          - {
+              name: type,
+              label: Type,
+              widget: select,
+              options: [member, alumnus],
+              default: member,
+            }
+          - { name: start_year, label: Start year, widget: number, value_type: int, required: false }
+          - { name: years_active, label: Years active (e.g. 2024-2026), widget: string, required: false }
+          - { name: photo, label: Photo, widget: image, required: false, media_folder: '/public/images/people', public_folder: '/images/people' }
+          - { name: linkedin, label: LinkedIn URL, widget: string, required: false }
+          - { name: durham-staff-link, label: Durham staff page URL, widget: string, required: false }
+          - { name: link, label: Personal website URL, widget: string, required: false }
+          - { name: description, label: Short description, widget: text, required: false }
+
+  - name: research
+    label: Research papers
+    file: src/content/research-papers.yml
+    icon: science
+    description: Papers and projects listed on the Research page.
+    fields:
+      - name: papers
+        label: Papers & projects
+        label_singular: Paper
+        widget: list
+        summary: '{{fields.title}} ({{fields.year}})'
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: url, label: URL, widget: string }
+          - { name: thumbnail, label: Thumbnail image, widget: image, required: false, media_folder: '/public/images/research', public_folder: '/images/research' }
+          - name: authors
+            label: Authors
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { name: name, label: Name (e.g. "Leask, P."), widget: string }
+              - { name: team, label: DAISI member?, widget: boolean, default: false, required: false }
+          - { name: year, label: Year, widget: number, value_type: int }
+          - { name: month, label: Month (1-12, for ordering), widget: number, value_type: int, required: false }
+          - { name: venue, label: Venue, widget: string }
+          - { name: tags, label: Tags, widget: list, field: { name: tag, label: Tag, widget: string } }
+          - {
+              name: type,
+              label: Type,
+              widget: select,
+              options: [academic, non-academic],
+              default: academic,
+            }
+
+  - name: supporters
+    label: Supporters
+    file: src/content/supporters.yml
+    icon: handshake
+    description: Supporter/sponsor logos shown across the site.
+    fields:
+      - name: supporters
+        label: Supporters
+        label_singular: Supporter
+        widget: list
+        fields:
+          - { name: logo, label: Logo image, widget: image, media_folder: '/public/images/supporters', public_folder: '/images/supporters' }
+          - { name: link, label: Website URL, widget: string }

@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getProgrammesContent, programmeSlug, renderMarkdown } from '../../data/programmes';
-import { tinaField } from '@tinacms/astro';
 
 export const prerender = true;
 
@@ -33,13 +32,13 @@ const boxGridClass = boxCount === 1
   <section class="py-16 md:py-24 section-neutral relative overflow-hidden border-b border-white/5">
     <div class="absolute -right-40 -top-40 w-96 h-96 bg-bright-purple/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="site-container mx-auto px-6 text-center relative z-10">
-      <a href="/events/" class="inline-flex items-center gap-2 text-sm text-durham-purple hover:text-bright-purple font-semibold mb-8 transition-colors duration-200">
-        <i class="fa-solid fa-arrow-left text-xs"></i> Back to Events
+      <a href="/#programmes" class="inline-flex items-center gap-2 text-sm text-durham-purple hover:text-bright-purple font-semibold mb-8 transition-colors duration-200">
+        <i class="fa-solid fa-arrow-left text-xs"></i> Back to What we do
       </a>
-      <div class="mb-6 reveal" data-tina-field={tinaField(programme._source, 'icon')}>
+      <div class="mb-6 reveal">
         <i class={`${programme.icon} text-6xl text-durham-purple`} aria-hidden="true"></i>
       </div>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal" data-tina-field={tinaField(programme._source, 'title')}>{programme.title}</h1>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">{programme.title}</h1>
       <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
       
       {programme.tags && programme.tags.length > 0 && (
@@ -47,7 +46,7 @@ const boxGridClass = boxCount === 1
           {programme.tags.map(tag => (
             <div class="flex items-center gap-1.5 bg-bright-purple/15 border border-bright-purple/30 px-3 py-1 rounded-full text-sm">
               <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-              <span class="font-semibold text-body-text" data-tina-field={tinaField(tag._source, 'label')}>
+              <span class="font-semibold text-body-text">
                 {tag.label}
               </span>
             </div>
@@ -67,7 +66,6 @@ const boxGridClass = boxCount === 1
               <h2 class="text-2xl font-bold text-heading-text mb-6">Programme Overview</h2>
               <div
                 class="prose prose-purple dark:prose-invert max-w-none text-body-text"
-                data-tina-field={tinaField(programme._source, 'long_description')}
                 set:html={renderMarkdown(programme.long_description)}
               />
             </div>
@@ -85,7 +83,7 @@ const boxGridClass = boxCount === 1
                       class={`${item.icon || 'fas fa-check'} text-durham-purple mt-1 flex-shrink-0 text-sm`}
                       aria-hidden="true"
                     ></i>
-                    <span data-tina-field={tinaField(item._source, 'text')}>{item.text}</span>
+                    <span>{item.text}</span>
                   </li>
                 ))}
               </ul>
@@ -104,7 +102,6 @@ const boxGridClass = boxCount === 1
           {programme.feature_boxes!.heading && (
             <h2
               class="text-2xl font-bold text-heading-text mb-8 text-center reveal"
-              data-tina-field={tinaField(programme.feature_boxes!._source, 'heading')}
             >
               {programme.feature_boxes!.heading}
             </h2>
@@ -116,16 +113,14 @@ const boxGridClass = boxCount === 1
                 class="bg-white/5 backdrop-blur rounded-xl p-6 text-center border border-white/10 hover:border-bright-purple/20 shadow-md transition-all duration-300 reveal flex flex-col h-full"
                 style={`--reveal-delay: ${i * 100}ms`}
               >
-                <i class={`${box.icon} text-3xl text-durham-purple mb-4 block`} aria-hidden="true" data-tina-field={tinaField(box._source, 'icon')}></i>
+                <i class={`${box.icon} text-3xl text-durham-purple mb-4 block`} aria-hidden="true"></i>
                 <h3
                   class="text-lg font-bold mb-3 text-heading-text"
-                  data-tina-field={tinaField(box._source, 'title')}
                 >
                   {box.title}
                 </h3>
                 <p
                   class="text-sm text-body-text leading-relaxed flex-grow"
-                  data-tina-field={tinaField(box._source, 'description')}
                 >
                   {box.description}
                 </p>
@@ -135,7 +130,6 @@ const boxGridClass = boxCount === 1
                     target={box.link.startsWith('http') ? '_blank' : undefined}
                     rel={box.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                     class="inline-flex items-center justify-center gap-1.5 mt-5 text-sm font-semibold text-bright-purple hover:underline transition-all duration-200"
-                    data-tina-field={tinaField(box._source, 'link_label')}
                   >
                     {box.link_label ?? 'Learn more'}
                     {box.link.startsWith('http') && (
@@ -158,10 +152,10 @@ const boxGridClass = boxCount === 1
   <section class="py-16 section-light text-center">
     <div class="site-container mx-auto px-6 reveal">
       <h2 class="text-xl font-bold mb-4">Interested in other opportunities?</h2>
-      <p class="text-muted-text mb-8 max-w-md mx-auto">Explore our other structured programmes and calendar of events.</p>
+      <p class="text-muted-text mb-8 max-w-md mx-auto">Explore our other programmes and our calendar of events.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="/events/" class="px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200">
-          View All Events & Programmes
+        <a href="/#programmes" class="px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200">
+          View all programmes
         </a>
         <a href="/get-involved/" class="px-6 py-3 border border-white/20 text-heading-text font-medium rounded-lg hover:bg-white/5 transition-colors duration-200">
           Get Involved

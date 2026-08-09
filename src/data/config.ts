@@ -1,21 +1,5 @@
-import { requestWithMetadata } from '@tinacms/astro';
-import client from '../../tina/__generated__/client';
+import { readYaml, readJson } from './content';
 import { sanitiseInlineHtml } from '../lib/sanitize-html';
-import type {
-  AboutPageAbout,
-  AboutPageAboutMissionCards,
-  SiteConfigQuery,
-  HomePageQuery,
-  ResearchPageResearch,
-  ResearchPageResearchOpportunities,
-  ResearchPageResearchResearchAreas,
-  AboutPageQuery,
-  ResearchPageQuery,
-  SiteConfigCalendar,
-  SiteConfigNavigationCta,
-  SiteConfigNavigationMain,
-  SiteConfigSocialLinks,
-} from '../../tina/__generated__/types';
 
 export interface SocialLink {
   name: string;
@@ -23,20 +7,16 @@ export interface SocialLink {
   icon: string;
   inHeader: boolean;
   _index: number;
-  _source: SiteConfigSocialLinks;
 }
 
 export interface NavigationItem {
   title: string;
   url: string;
-  _source: SiteConfigNavigationMain | SiteConfigNavigationCta;
 }
 
 export interface CalendarConfig {
   lumaCalendarId: string;
   lumaCalendarSlug: string;
-  googleCalendarBackupId: string;
-  _source: SiteConfigCalendar;
 }
 
 export interface SiteConfig {
@@ -56,31 +36,69 @@ export interface SiteConfig {
   repository: string;
   showEditLink: boolean;
   googleSiteVerification: string;
-  _source: SiteConfigQuery['siteConfig'];
 }
 
-export type HomePageData = HomePageQuery['homePage'];
-export type HomePageConfig = NonNullable<HomePageQuery['homePage']['home']> & {
+export interface HomePageConfig {
+  heroTitle: string;
   heroTitleHtml: string;
-  _source: NonNullable<HomePageQuery['homePage']['home']>;
-};
-export type AboutPageData = AboutPageQuery['aboutPage'];
-export type AboutMissionCard = AboutPageAboutMissionCards;
-export type AboutPageConfig = Omit<AboutPageAbout, 'missionCards'> & {
-  missionCards: AboutMissionCard[];
+  heroSubtitleHighlight: string;
+  heroSubtitleMain: string;
+  heroPrimaryCtaText: string;
+  heroPrimaryCtaLink: string;
+  heroSecondaryCtaText: string;
+  heroSecondaryCtaLink: string;
+  eventsTitle: string;
+  programmesTitle: string;
+  researchTitle: string;
+  researchSubtitle: string;
+  researchViewAllText: string;
+  [key: string]: unknown;
+}
+
+export interface AboutMissionCard {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface AboutPageConfig {
+  introText: string;
   introTextHtml: string;
+  missionCards: AboutMissionCard[];
+  impactTitle: string;
+  impactIcon: string;
+  impactText: string;
   impactTextHtml: string;
+  joinTitle: string;
+  joinText: string;
   joinTextHtml: string;
-  _source: AboutPageAbout;
-};
-export type ResearchPageData = ResearchPageQuery['researchPage'];
-export type ResearchOpportunity = ResearchPageResearchOpportunities;
-export type ResearchArea = ResearchPageResearchResearchAreas;
-export type ResearchPageConfig = Omit<ResearchPageResearch, 'opportunities' | 'researchAreas'> & {
+  [key: string]: unknown;
+}
+
+export interface ResearchOpportunity {
+  icon: string;
+  iconColor: string;
+  title: string;
+  description: string;
+}
+
+export interface ResearchArea {
+  icon: string;
+  iconColor: string;
+  title: string;
+  description: string;
+  linkUrl: string;
+}
+
+export interface ResearchPageConfig {
+  opportunitiesTitle: string;
   opportunities: ResearchOpportunity[];
+  opportunitiesCtaText: string;
+  opportunitiesCtaLink: string;
+  areasTitle: string;
   researchAreas: ResearchArea[];
-  _source: ResearchPageResearch;
-};
+  [key: string]: unknown;
+}
 
 // Custom validation helper
 function validatePath(path: string, fieldName: string) {
@@ -94,92 +112,59 @@ function validatePath(path: string, fieldName: string) {
   }
 }
 
-const compact = <T>(items: Array<T | null> | null | undefined): T[] =>
-  items?.filter((item): item is T => item !== null) ?? [];
-
-export async function getHomePageContent() {
-  const result = await requestWithMetadata(
-    client.queries.homePage({ relativePath: 'home.yml' })
-  );
-  const doc = result.data.homePage.home;
+export async function getHomePageContent(): Promise<{ document: any; homeConfig: HomePageConfig }> {
+  const { home: doc } = readYaml<{ home?: any }>('pages/home.yml');
   if (!doc) {
-    throw new Error("Validation Error: Missing home page configuration object.");
+    throw new Error('Validation Error: Missing home page configuration object.');
   }
   const homeConfig: HomePageConfig = {
     ...doc,
     heroTitleHtml: sanitiseInlineHtml(doc.heroTitle),
-    _source: doc,
   };
 
-  // Path validation
   validatePath(doc.heroPrimaryCtaLink, 'home.heroPrimaryCtaLink');
   validatePath(doc.heroSecondaryCtaLink, 'home.heroSecondaryCtaLink');
 
-  return {
-    document: result.data.homePage,
-    homeConfig,
-  };
+  return { document: doc, homeConfig };
 }
 
-export async function getAboutPageContent() {
-  const result = await requestWithMetadata(
-    client.queries.aboutPage({ relativePath: 'about.yml' })
-  );
-  const doc = result.data.aboutPage.about;
+export async function getAboutPageContent(): Promise<{ document: any; aboutConfig: AboutPageConfig }> {
+  const { about: doc } = readYaml<{ about?: any }>('pages/about.yml');
   if (!doc) {
-    throw new Error("Validation Error: Missing about page configuration object.");
+    throw new Error('Validation Error: Missing about page configuration object.');
   }
   const aboutConfig: AboutPageConfig = {
     ...doc,
-    missionCards: compact(doc.missionCards),
+    missionCards: doc.missionCards ?? [],
     introTextHtml: sanitiseInlineHtml(doc.introText),
     impactTextHtml: sanitiseInlineHtml(doc.impactText),
     joinTextHtml: sanitiseInlineHtml(doc.joinText),
-    _source: doc,
   };
 
-  return {
-    document: result.data.aboutPage,
-    aboutConfig,
-  };
+  return { document: doc, aboutConfig };
 }
 
-export async function getResearchPageContent() {
-  const result = await requestWithMetadata(
-    client.queries.researchPage({ relativePath: 'research.yml' })
-  );
-  const doc = result.data.researchPage.research;
+export async function getResearchPageContent(): Promise<{ document: any; researchConfig: ResearchPageConfig }> {
+  const { research: doc } = readYaml<{ research?: any }>('pages/research.yml');
   if (!doc) {
-    throw new Error("Validation Error: Missing research page configuration object.");
+    throw new Error('Validation Error: Missing research page configuration object.');
   }
   const researchConfig: ResearchPageConfig = {
     ...doc,
-    opportunities: compact(doc.opportunities),
-    researchAreas: compact(doc.researchAreas),
-    _source: doc,
+    opportunities: doc.opportunities ?? [],
+    researchAreas: doc.researchAreas ?? [],
   };
 
-  // Path validation
   validatePath(researchConfig.opportunitiesCtaLink, 'research.opportunitiesCtaLink');
   researchConfig.researchAreas.forEach((area, idx) => {
     validatePath(area.linkUrl, `research.researchAreas.${idx}.linkUrl`);
   });
 
-  return {
-    document: result.data.researchPage,
-    researchConfig,
-  };
+  return { document: doc, researchConfig };
 }
 
-export async function getSiteConfigContent(): Promise<{
-  document: SiteConfigQuery['siteConfig'];
-  siteConfig: SiteConfig;
-}> {
-  const result = await requestWithMetadata(
-    client.queries.siteConfig({ relativePath: 'site-config.json' })
-  );
-
-  const document = result.data.siteConfig;
+export async function getSiteConfigContent(): Promise<{ document: any; siteConfig: SiteConfig }> {
+  const document = readJson<any>('site-config.json');
 
   const normalizePublicPath = (value: string): string => {
     if (!value) return value;
@@ -187,7 +172,7 @@ export async function getSiteConfigContent(): Promise<{
     return value.startsWith('/') ? value : `/${value}`;
   };
 
-  const socialLinks = compact(document.socialLinks).map((link, idx) => {
+  const socialLinks: SocialLink[] = (document.socialLinks ?? []).map((link: any, idx: number) => {
     const url = link.url;
     const icon = normalizePublicPath(link.icon);
     validatePath(url, `siteConfig.socialLinks.${idx}.url`);
@@ -198,40 +183,29 @@ export async function getSiteConfigContent(): Promise<{
       icon,
       inHeader: !!link?.inHeader,
       _index: idx,
-      _source: link,
     };
   });
 
-  const mainNavigation = compact(document.navigation?.main).map((item, idx) => {
+  const mainNavigation: NavigationItem[] = (document.navigation?.main ?? []).map((item: any, idx: number) => {
     const url = item.url;
     validatePath(url, `siteConfig.navigation.main.${idx}.url`);
-    return {
-      title: item.title,
-      url,
-      _source: item,
-    };
+    return { title: item.title, url };
   });
 
   const ctaSource = document.navigation?.cta;
   if (!ctaSource) {
-    throw new Error("Validation Error: Missing site navigation CTA.");
+    throw new Error('Validation Error: Missing site navigation CTA.');
   }
-  const ctaNavigation: NavigationItem = {
-    title: ctaSource.title,
-    url: ctaSource.url,
-    _source: ctaSource,
-  };
+  const ctaNavigation: NavigationItem = { title: ctaSource.title, url: ctaSource.url };
   validatePath(ctaNavigation.url, 'siteConfig.navigation.cta.url');
 
   const calendarSource = document.calendar;
   if (!calendarSource) {
-    throw new Error("Validation Error: Missing site calendar configuration.");
+    throw new Error('Validation Error: Missing site calendar configuration.');
   }
-  const calendarConfig = {
+  const calendarConfig: CalendarConfig = {
     lumaCalendarId: calendarSource.lumaCalendarId,
     lumaCalendarSlug: calendarSource.lumaCalendarSlug,
-    googleCalendarBackupId: calendarSource.googleCalendarBackupId,
-    _source: calendarSource,
   };
 
   const config: SiteConfig = {
@@ -246,12 +220,11 @@ export async function getSiteConfigContent(): Promise<{
     },
     footerTagline: document.footerTagline ?? undefined,
     calendar: calendarConfig,
-    url: "https://durhamaisafety.uk",
-    lang: "en_GB",
-    repository: "DurhamAISafety/durhamaisafety.github.io",
+    url: 'https://durhamaisafety.uk',
+    lang: 'en_GB',
+    repository: 'DurhamAISafety/durhamaisafety.github.io',
     showEditLink: false,
-    googleSiteVerification: "BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw",
-    _source: document,
+    googleSiteVerification: 'BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw',
   };
 
   return { document, siteConfig: config };

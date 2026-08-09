@@ -6,7 +6,6 @@
  * - paper: ResearchPaper object
  * - thumbnailImage: Optional image path from public/images/research/
  */
-import { tinaField } from '@tinacms/astro';
 import type { ResearchPaper } from '../data/research';
 
 export interface Props {
@@ -22,7 +21,6 @@ const { paper, thumbnailImage } = Astro.props;
   target="_blank" 
   rel="noopener noreferrer"
   class="research-card-new block rounded-2xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-surface border border-surface-muted"
-  data-tina-field={tinaField(paper._source, 'url')}
 >
   {/* Thumbnail */}
   <div class="aspect-[4/3] bg-surface-muted overflow-hidden">
@@ -33,7 +31,6 @@ const { paper, thumbnailImage } = Astro.props;
         class="w-full h-full object-cover object-top"
         loading="lazy"
         decoding="async"
-        data-tina-field={tinaField(paper._source, 'thumbnail')}
       />
     ) : (
       <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-muted to-surface">
@@ -47,7 +44,6 @@ const { paper, thumbnailImage } = Astro.props;
     {/* Title */}
     <h4
       class="font-bold text-sm leading-tight mb-2 text-heading-text line-clamp-2 group-hover:text-bright-purple"
-      data-tina-field={tinaField(paper._source, 'title')}
     >
       {paper.title}
     </h4>
@@ -58,9 +54,9 @@ const { paper, thumbnailImage } = Astro.props;
         {paper.authors.map((author, index) => (
           <>
             {author.team ? (
-              <strong data-tina-field={tinaField(author._source, 'name')}>{author.name}</strong>
+              <strong>{author.name}</strong>
             ) : (
-              <span data-tina-field={tinaField(author._source, 'name')}>{author.name}</span>
+              <span>{author.name}</span>
             )}
             {index < paper.authors.length - 1 && ', '}
           </>
@@ -72,7 +68,6 @@ const { paper, thumbnailImage } = Astro.props;
     <div class="mb-3">
       <span
         class="px-2 py-0.5 text-xs font-medium rounded-full bg-surface-muted text-body-text"
-        data-tina-field={tinaField(paper._source, 'venue')}
       >
         {paper.venue}
       </span>
@@ -83,7 +78,6 @@ const { paper, thumbnailImage } = Astro.props;
       {paper.tags.map(tag => (
         <span
           class="px-2 py-0.5 text-xs font-medium rounded-full bg-durham-purple !text-white"
-          data-tina-field={tinaField(paper._source, 'tags')}
         >
           {tag}
         </span>

@@ -2,13 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import { getResearchContent } from "../data/research";
 import { getResearchPageContent } from "../data/config";
-import { tinaField } from "@tinacms/astro";
 import ResearchPageIsland from "../components/tina-islands/ResearchPageIsland.astro";
 import JumpNav from "../components/JumpNav.astro";
 
 const { academicPapers, nonAcademicPapers } = await getResearchContent();
-const { document, researchConfig } = await getResearchPageContent();
-const doc = document.research!;
+const { researchConfig } = await getResearchPageContent();
 
 const page = {
   title: "Research",
@@ -30,15 +28,13 @@ const page = {
     </div>
   </section>
 
-  <div class="contents" data-tina-island="/tina-island/research">
-    <ResearchPageIsland academicPapers={academicPapers} nonAcademicPapers={nonAcademicPapers} />
-  </div>
+  <ResearchPageIsland academicPapers={academicPapers} nonAcademicPapers={nonAcademicPapers} />
 
   {/* Research Opportunities */}
   <section id="opportunities" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(doc, 'opportunitiesTitle')}>{researchConfig.opportunitiesTitle}</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6">{researchConfig.opportunitiesTitle}</h3>
         <div class="section-divider"></div>
       </div>
       <div class="max-w-4xl mx-auto">
@@ -46,15 +42,15 @@ const page = {
           {researchConfig.opportunities.map((opp) => (
             <div class="research-card rounded-2xl p-6 card-hover">
               <div class="flex items-center mb-4">
-                <i class={`${opp.icon} text-3xl ${opp.iconColor} mr-4`} data-tina-field={tinaField(opp, 'icon')} aria-hidden="true"></i>
-                <h4 class="text-lg font-bold" data-tina-field={tinaField(opp, 'title')}>{opp.title}</h4>
+                <i class={`${opp.icon} text-3xl ${opp.iconColor} mr-4`} aria-hidden="true"></i>
+                <h4 class="text-lg font-bold">{opp.title}</h4>
               </div>
-              <p class="text-sm leading-relaxed" data-tina-field={tinaField(opp, 'description')}>{opp.description}</p>
+              <p class="text-sm leading-relaxed">{opp.description}</p>
             </div>
           ))}
         </div>
         <div class="text-center">
-          <a href={researchConfig.opportunitiesCtaLink} class="btn-cta" data-tina-field={tinaField(doc, 'opportunitiesCtaText')}>{researchConfig.opportunitiesCtaText}</a>
+          <a href={researchConfig.opportunitiesCtaLink} class="btn-cta">{researchConfig.opportunitiesCtaText}</a>
         </div>
       </div>
     </div>
@@ -64,7 +60,7 @@ const page = {
   <section id="research-areas" class="section section-light">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(doc, 'areasTitle')}>{researchConfig.areasTitle}</h3>
+        <h3 class="section-heading text-3xl md:text-4xl mb-6">{researchConfig.areasTitle}</h3>
         <div class="section-divider"></div>
       </div>
 
@@ -72,18 +68,35 @@ const page = {
         {researchConfig.researchAreas.map((area) => (
           <div class="research-card rounded-2xl p-6 card-hover">
             <div class="text-center mb-4">
-              <i class={`${area.icon} text-5xl ${area.iconColor}`} data-tina-field={tinaField(area, 'icon')} aria-hidden="true"></i>
+              <i class={`${area.icon} text-5xl ${area.iconColor}`} aria-hidden="true"></i>
             </div>
-            <h4 class="text-xl font-bold text-center mb-4" data-tina-field={tinaField(area, 'title')}>{area.title}</h4>
-            <p class="text-center text-sm leading-relaxed" data-tina-field={tinaField(area, 'description')}>{area.description}</p>
+            <h4 class="text-xl font-bold text-center mb-4">{area.title}</h4>
+            <p class="text-center text-sm leading-relaxed">{area.description}</p>
             <div class="text-center mt-3">
-              <a href={area.linkUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center" data-tina-field={tinaField(area, 'linkUrl')}>
+              <a href={area.linkUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
                 Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
               </a>
             </div>
           </div>
         ))}
       </div>
+
+      <figure class="max-w-4xl mx-auto mt-16">
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-durham-purple/20">
+          <img
+            src="/images/community/member-presenting.webp"
+            alt="A DAISI member presenting their research on AI governance"
+            class="w-full h-auto"
+            width="1270"
+            height="1280"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <figcaption class="text-center text-sm text-body-text mt-3">
+          DAISI members presenting their research at the National Edge AI Summit 2026 in Newcastle
+        </figcaption>
+      </figure>
     </div>
   </section>
 </Layout>

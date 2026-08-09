@@ -1,6 +1,7 @@
 programmes:
   - title: AIS101
     icon: fas fa-chalkboard-teacher
+    image: /images/programmes/ais101.webp
     short_description: 'Regular sessions exploring core AI safety concepts in an accessible, interactive format.'
     long_description: |
       Our intro AIS101 sessions are designed to make AI safety accessible to all backgrounds and studies.
@@ -27,6 +28,7 @@ programmes:
           description: Intro to AI's role in the US-China relationship.
   - title: In-Depth Reading Groups
     icon: fas fa-book-open
+    image: /images/programmes/reading-groups.avif
     short_description: Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone — aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
     long_description: |
       These provide an opportunity to engage deeply with seminal and/or recent AI safety work.
@@ -41,6 +43,7 @@ programmes:
         text: 'People from any background, preferably with some prior knowledge and understanding, who are interested in diving deep into the technical details of a niche field within AI safety research.'
   - title: Research Project Support
     icon: fas fa-terminal
+    image: /images/programmes/research-support.webp
     short_description: 'We support you to pursue AI safety research. We can support applications for fellowships and funding, and advise students on dissertation and independent study projects.'
     long_description: |
       Interested in AI Safety research? We can support you to pursue it.
@@ -77,17 +80,21 @@ programmes:
           link_label: Upcoming AIS Opps
   - title: Speaker Events
     icon: fas fa-microphone
+    image: /images/programmes/speaker-events.webp
     short_description: Insightful talks by leading researchers and industry professionals on AI safety and the latest research.
     long_description: |
       These events offer a unique opportunity to explore emerging topics in the field, engage directly with speakers, and connect with others who share your interest in ensuring AI development benefits humanity.
 
       To get involved and hear about upcoming speaker events, please join our [Discord server](https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u).
-    tags: []
+    tags:
+      - icon: fas fa-door-open
+        label: Open to all
     whos_this_for:
       - icon: fas fa-graduation-cap
         text: People from any background who are keen to engage with experts in the field of AI safety and learn more about the latest developments.
   - title: Social Events
     icon: fas fa-users
+    image: /images/programmes/social-events.webp
     short_description: Relaxed socials to connect and build community.
     long_description: |
       Building community is our most important goal. Our social events provide relaxed, fun environments where both members and non-members can connect.
