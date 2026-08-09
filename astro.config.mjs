@@ -8,7 +8,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: "https://durhamaisafety.uk/",
   redirects: {
-    '/events': '/news',
+    '/events': '/#events',
+    '/what-is-ai-safety': '/#what-is-ai-safety',
   },
   integrations: [sitemap()],
   vite: {
