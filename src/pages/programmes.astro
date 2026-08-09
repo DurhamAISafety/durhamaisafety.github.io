@@ -4,9 +4,9 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Programmes"
-  description="Our programmes have merged with our events section into a unified hub. Redirecting to Events & Programmes..."
+  description="Our programmes now live on the home page under 'What we do'. Redirecting..."
 >
-  <meta slot="head" http-equiv="refresh" content="2;url=/events/" />
+  <meta slot="head" http-equiv="refresh" content="2;url=/#programmes" />
 
   <section class="py-32 section-neutral min-h-[60vh] flex items-center justify-center">
     <div class="site-container mx-auto px-6 text-center reveal">
@@ -14,16 +14,16 @@ import Layout from '../layouts/Layout.astro';
       <h1 class="text-3xl md:text-4xl font-bold mb-4">We've Moved!</h1>
       <div class="w-20 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
       <p class="max-w-md mx-auto text-body-text mb-8">
-        Our study and research programmes have merged with our events section into a unified hub.
+        Our programmes now live on the home page under <strong>What we do</strong>.
       </p>
       <p class="text-sm text-muted-text">
-        Redirecting you to <a href="/events/" class="text-durham-purple hover:underline font-semibold">Events & Programmes</a> in a moment...
+        Redirecting you to <a href="/#programmes" class="text-durham-purple hover:underline font-semibold">What we do</a> in a moment...
       </p>
       <a
-        href="/events/"
+        href="/#programmes"
         class="inline-block mt-6 px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200"
       >
-        Go to Events & Programmes
+        Go to What we do
       </a>
     </div>
   </section>
@@ -31,5 +31,5 @@ import Layout from '../layouts/Layout.astro';
 
 <script is:inline>
   // Fast redirection
-  window.location.replace('/events/');
+  window.location.replace('/#programmes');
 </script>

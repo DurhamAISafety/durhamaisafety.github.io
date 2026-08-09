@@ -7,6 +7,9 @@ import sitemap from '@astrojs/sitemap';
 // Pure static site (no adapter needed); Netlify serves the built `dist/` directly.
 export default defineConfig({
   site: "https://durhamaisafety.uk/",
+  redirects: {
+    '/events': '/news',
+  },
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

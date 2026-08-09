@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="News"
+  description="Latest news and announcements from the Durham AI Safety Initiative (DAISI), straight from our Instagram feed."
+>
+  <!-- Intro Hero Header -->
+  <section class="py-16 section-neutral border-b border-white/5">
+    <div class="site-container mx-auto px-6 text-center reveal">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">News</h1>
+      <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
+      <p class="max-w-2xl mx-auto text-lg text-body-text leading-relaxed">
+        Follow <a href="https://www.instagram.com/ais_durham" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:underline font-semibold">@ais_durham<i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i></a> on Instagram for our latest news and announcements.
+      </p>
+    </div>
+  </section>
+
+  <!-- Instagram News Feed Section -->
+  <section id="instagram" class="py-16 section-neutral">
+    <div class="site-container mx-auto px-6">
+      <div class="max-w-4xl mx-auto bg-white/5 backdrop-blur border border-bright-purple/20 rounded-2xl p-6 shadow-lg relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-40 h-40 bg-bright-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -bottom-20 w-40 h-40 bg-light-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Common Ninja widget container -->
+        <script is:inline src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+        <div class="commonninja_component pid-a260439a-ccb1-465a-970b-1908a2089d07"></div>
+      </div>
+    </div>
+  </section>
+</Layout>

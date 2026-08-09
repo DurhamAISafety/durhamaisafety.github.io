@@ -37,11 +37,15 @@
       },
       {
         "title": "Events",
-        "url": "/events/"
+        "url": "/#events"
       },
       {
         "title": "Research",
         "url": "/research/"
+      },
+      {
+        "title": "News",
+        "url": "/news/"
       }
     ],
     "cta": {
