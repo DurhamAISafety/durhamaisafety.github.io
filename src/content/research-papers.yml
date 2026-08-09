@@ -60,7 +60,7 @@ papers:
       - Interpretability
     type: academic
   - title: "Sparse Autoencoders Can Learn Graded Latents for Relational Composition"
-    url: ""
+    url: "https://openreview.net/forum?id=ltQ6XAduTF"
     thumbnail: /images/research/graded-latents.png
     authors:
       - name: "Farrell, T."
