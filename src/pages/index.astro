@@ -62,9 +62,7 @@ const { homeConfig } = await getHomePageContent();
       <i class="fa-solid fa-chevron-down text-lg animate-bounce"></i>
   </a>
 
-  <div class="contents" data-tina-island="/tina-island/supporters-hero">
-      <SupportersHeroStrip supporters={supporters} />
-  </div>
+  <SupportersHeroStrip supporters={supporters} />
 
   <EventsSection
     homeConfig={homeConfig}

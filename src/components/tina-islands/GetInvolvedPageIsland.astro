@@ -1,5 +1,4 @@
 ---
-import { tinaField } from "@tinacms/astro";
 import type { GetInvolvedCard } from "../../data/get-involved";
 
 interface Props {
@@ -27,17 +26,16 @@ const { featuredCards, moreCards } = Astro.props;
           return (
             <div class={`involvement-card card p-6 card-hover text-center border-strong flex flex-col h-full ${borderClass}`}>
               <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-              <h4 class="text-xl font-bold mb-4" data-tina-field={tinaField(card._source, "title")}>
+              <h4 class="text-xl font-bold mb-4">
                 {card.title}
               </h4>
-              <p class="text-sm leading-relaxed mb-4 flex-grow" data-tina-field={tinaField(card._source, "description")}>
+              <p class="text-sm leading-relaxed mb-4 flex-grow">
                 {card.description}
               </p>
               {card.recommended_label && (
                 <div class="text-center mb-4">
                   <span
                     class="text-durham-purple font-semibold"
-                    data-tina-field={tinaField(card._source, "recommended_label")}
                   >
                     {card.recommended_label}
                   </span>
@@ -47,7 +45,6 @@ const { featuredCards, moreCards } = Astro.props;
                 href={card.link_url}
                 class="btn btn-primary btn-sm mt-auto"
                 {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                data-tina-field={tinaField(card._source, "link_label")}
               >
                 {card.link_label}
                 {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
@@ -72,17 +69,16 @@ const { featuredCards, moreCards } = Astro.props;
         {moreCards.map((card) => (
           <div class="involvement-card card p-6 card-hover text-center flex flex-col h-full">
             <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-            <h4 class="text-xl font-bold mb-4" data-tina-field={tinaField(card._source, "title")}>
+            <h4 class="text-xl font-bold mb-4">
               {card.title}
             </h4>
-            <p class="text-sm leading-relaxed mb-4 flex-grow" data-tina-field={tinaField(card._source, "description")}>
+            <p class="text-sm leading-relaxed mb-4 flex-grow">
               {card.description}
             </p>
             <a
               href={card.link_url}
               class="btn btn-secondary btn-sm hover:underline transition-all duration-200 mt-auto"
               {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              data-tina-field={tinaField(card._source, "link_label")}
             >
               {card.link_label}
               {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}

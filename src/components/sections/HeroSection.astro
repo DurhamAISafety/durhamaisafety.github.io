@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import { tinaField } from '@tinacms/astro';
 import type { ImageMetadata } from 'astro';
 import type { HomePageConfig } from '../../data/config';
 
@@ -28,16 +27,16 @@ const { homeConfig, heroImage } = Astro.props;
     <div class="absolute inset-0 bg-gradient-to-br from-black/65 via-black/50 to-black/30"></div>
     <div class="site-container mx-auto px-6 relative z-10 w-full">
         <div class="max-w-2xl pt-28 md:pt-36 pb-16 space-y-6 md:space-y-8 text-center md:text-left mx-auto md:mx-0">
-            <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight" data-tina-field={tinaField(homeConfig._source, 'heroTitle')} set:html={homeConfig.heroTitleHtml} />
+            <h1 class="hero-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight" set:html={homeConfig.heroTitleHtml} />
 
             <p class="hero-subheading text-xl md:text-2xl lg:text-3xl leading-relaxed mb-6 md:mb-8">
-                <span class="font-semibold" style="color: var(--color-fixed-light-purple);" data-tina-field={tinaField(homeConfig._source, 'heroSubtitleHighlight')}>{homeConfig.heroSubtitleHighlight}</span>
-                <span class="text-white" data-tina-field={tinaField(homeConfig._source, 'heroSubtitleMain')}>{homeConfig.heroSubtitleMain}</span>
+                <span class="font-semibold" style="color: var(--color-fixed-light-purple);">{homeConfig.heroSubtitleHighlight}</span>
+                <span class="text-white">{homeConfig.heroSubtitleMain}</span>
             </p>
             
             <div class="pt-2 md:pt-4 flex flex-wrap gap-4 justify-center md:justify-start">
-                <a href={homeConfig.heroPrimaryCtaLink} class="btn-cta" data-tina-field={tinaField(homeConfig._source, 'heroPrimaryCtaText')}>{homeConfig.heroPrimaryCtaText}</a>
-                <a href={homeConfig.heroSecondaryCtaLink} class="btn-cta btn-cta-white" data-tina-field={tinaField(homeConfig._source, 'heroSecondaryCtaText')}>{homeConfig.heroSecondaryCtaText}</a>
+                <a href={homeConfig.heroPrimaryCtaLink} class="btn-cta">{homeConfig.heroPrimaryCtaText}</a>
+                <a href={homeConfig.heroSecondaryCtaLink} class="btn-cta btn-cta-white">{homeConfig.heroSecondaryCtaText}</a>
             </div>
         </div>
     </div>

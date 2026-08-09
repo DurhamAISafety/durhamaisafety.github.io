@@ -1,5 +1,4 @@
 ---
-import { tinaField } from '@tinacms/astro';
 import { programmeSlug } from '../../data/programmes';
 import type { Programme } from '../../data/programmes';
 import type { HomePageConfig } from '../../data/config';
@@ -15,7 +14,7 @@ const { homeConfig, programmes } = Astro.props;
 <section id="programmes" class="py-16 section-light">
     <div class="site-container mx-auto px-6">
         <div class="text-center mb-16 reveal">
-            <h2 class="section-heading text-4xl md:text-5xl mb-6" data-tina-field={tinaField(homeConfig._source, 'programmesTitle')}>{homeConfig.programmesTitle}</h2>
+            <h2 class="section-heading text-4xl md:text-5xl mb-6">{homeConfig.programmesTitle}</h2>
             <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
         </div>
 
@@ -28,10 +27,9 @@ const { homeConfig, programmes } = Astro.props;
                         style={`--reveal-delay: ${i * 100}ms`}
                     >
                         <div class="mb-6">
-                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
+                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
                             <h4
                                 class="text-2xl font-bold"
-                                data-tina-field={tinaField(programme._source, 'title')}
                             >
                                 {programme.title}
                             </h4>
@@ -39,7 +37,6 @@ const { homeConfig, programmes } = Astro.props;
                         </div>
                         <p
                             class="mb-6 leading-relaxed text-body-text flex-grow"
-                            data-tina-field={tinaField(programme._source, 'short_description')}
                         >
                             {programme.short_description}
                         </p>
@@ -50,7 +47,6 @@ const { homeConfig, programmes } = Astro.props;
                                         <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
                                         <span
                                             class="text-sm text-body-text"
-                                            data-tina-field={tinaField(tag._source, 'label')}
                                         >
                                             {tag.label}
                                         </span>
@@ -75,10 +71,9 @@ const { homeConfig, programmes } = Astro.props;
                         style={`--reveal-delay: ${(i + 2) * 100}ms`}
                     >
                         <div class="mb-6">
-                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`} data-tina-field={tinaField(programme._source, 'icon')}></i>
+                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
                             <h4
                                 class="text-2xl font-bold"
-                                data-tina-field={tinaField(programme._source, 'title')}
                             >
                                 {programme.title}
                             </h4>
@@ -86,7 +81,6 @@ const { homeConfig, programmes } = Astro.props;
                         </div>
                         <p
                             class="mb-6 leading-relaxed text-body-text flex-grow"
-                            data-tina-field={tinaField(programme._source, 'short_description')}
                         >
                             {programme.short_description}
                         </p>
@@ -97,7 +91,6 @@ const { homeConfig, programmes } = Astro.props;
                                         <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
                                         <span
                                             class="text-sm text-body-text"
-                                            data-tina-field={tinaField(tag._source, 'label')}
                                         >
                                             {tag.label}
                                         </span>

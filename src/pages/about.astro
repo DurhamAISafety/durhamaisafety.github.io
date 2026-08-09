@@ -2,12 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import { getPeopleContent } from '../data/people';
 import { getAboutPageContent } from '../data/config';
-import { tinaField } from '@tinacms/astro';
 import AboutTeamIsland from '../components/tina-islands/AboutTeamIsland.astro';
 
 const { team, alumni } = await getPeopleContent();
-const { document, aboutConfig } = await getAboutPageContent();
-const doc = document.about!;
+const { aboutConfig } = await getAboutPageContent();
 ---
 
 <Layout 
@@ -22,16 +20,16 @@ const doc = document.about!;
 					<h1 class="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
 					<div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full"></div>
 				</div>
-				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto" data-tina-field={tinaField(doc, 'introText')} set:html={aboutConfig.introTextHtml} />
+				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto" set:html={aboutConfig.introTextHtml} />
 
 				<div class="grid md:grid-cols-3 gap-6 mb-12">
 					{aboutConfig.missionCards.map((card) => (
 						<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
 							<div class="text-center mb-4">
-								<i class={`${card.icon} text-4xl text-durham-purple`} data-tina-field={tinaField(card, 'icon')}></i>
+								<i class={`${card.icon} text-4xl text-durham-purple`}></i>
 							</div>
-							<h4 class="text-xl font-bold mb-4 text-center" data-tina-field={tinaField(card, 'title')}>{card.title}</h4>
-							<p class="text-base leading-relaxed text-center" data-tina-field={tinaField(card, 'description')}>{card.description}</p>
+							<h4 class="text-xl font-bold mb-4 text-center">{card.title}</h4>
+							<p class="text-base leading-relaxed text-center">{card.description}</p>
 						</div>
 					))}
 				</div>
@@ -39,25 +37,23 @@ const doc = document.about!;
 				<div class="program-card rounded-2xl p-8 border border-durham-purple/30 shadow-lg mb-8">
 					<div class="text-center">
 						<div class="mb-4">
-							<i class={`${aboutConfig.impactIcon} text-4xl text-durham-purple`} data-tina-field={tinaField(doc, 'impactIcon')}></i>
+							<i class={`${aboutConfig.impactIcon} text-4xl text-durham-purple`}></i>
 						</div>
-						<h4 class="text-2xl font-bold mb-4" data-tina-field={tinaField(doc, 'impactTitle')}>{aboutConfig.impactTitle}</h4>
-						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto" data-tina-field={tinaField(doc, 'impactText')} set:html={aboutConfig.impactTextHtml} />
+						<h4 class="text-2xl font-bold mb-4">{aboutConfig.impactTitle}</h4>
+						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto" set:html={aboutConfig.impactTextHtml} />
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<div class="contents" data-tina-island="/tina-island/about-team">
-		<AboutTeamIsland team={team} alumni={alumni} />
-	</div>
+	<AboutTeamIsland team={team} alumni={alumni} />
 
 	<!-- Join Section -->
 	<section class="section section-neutral">
 		<div class="site-container text-center">
-			<h3 class="section-heading text-3xl md:text-4xl mb-6" data-tina-field={tinaField(doc, 'joinTitle')}>{aboutConfig.joinTitle}</h3>
-			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed" data-tina-field={tinaField(doc, 'joinText')} set:html={aboutConfig.joinTextHtml} />
+			<h3 class="section-heading text-3xl md:text-4xl mb-6">{aboutConfig.joinTitle}</h3>
+			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed" set:html={aboutConfig.joinTextHtml} />
 		</div>
 	</section>
 </Layout>

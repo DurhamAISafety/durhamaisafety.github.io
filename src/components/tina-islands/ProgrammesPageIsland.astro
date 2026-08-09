@@ -1,5 +1,4 @@
 ---
-import { tinaField } from '@tinacms/astro';
 import {
   programmeSlug,
   renderMarkdown,
@@ -26,9 +25,8 @@ const { programmes } = Astro.props;
           <a
             href={`#${programmeSlug(programme.title)}`}
             class="text-bright-purple hover:text-light-purple transition-colors font-medium"
-            data-tina-field={tinaField(programme._source, 'title')}
           >
-            <i class={`${programme.icon} mr-1`} aria-hidden="true" data-tina-field={tinaField(programme._source, 'icon')}></i>
+            <i class={`${programme.icon} mr-1`} aria-hidden="true"></i>
             {programme.title}
           </a>
         </>
@@ -56,10 +54,9 @@ const { programmes } = Astro.props;
       <div class="site-container">
         <div class="max-w-4xl mx-auto">
           <div class="text-center mb-12">
-            <i class={`${programme.icon} text-6xl text-durham-purple mb-6`} aria-hidden="true" data-tina-field={tinaField(programme._source, 'icon')}></i>
+            <i class={`${programme.icon} text-6xl text-durham-purple mb-6`} aria-hidden="true"></i>
             <h3
               class="section-heading text-3xl md:text-4xl mb-6"
-              data-tina-field={tinaField(programme._source, 'title')}
             >
               {programme.title}
             </h3>
@@ -72,7 +69,6 @@ const { programmes } = Astro.props;
                 <div>
                   <h4 class="text-2xl font-bold mb-4">Overview</h4>
                   <div
-                    data-tina-field={tinaField(programme._source, 'long_description')}
                     set:html={renderMarkdown(programme.long_description!)}
                   />
                 </div>
@@ -88,7 +84,7 @@ const { programmes } = Astro.props;
                           class={`${item.icon || 'fas fa-check'} text-lavender mr-3 mt-1 flex-shrink-0`}
                           aria-hidden="true"
                         ></i>
-                        <span data-tina-field={tinaField(item._source, 'text')}>{item.text}</span>
+                        <span>{item.text}</span>
                       </li>
                     ))}
                   </ul>
@@ -102,7 +98,6 @@ const { programmes } = Astro.props;
               {programme.feature_boxes!.heading && (
                 <h4
                   class="text-xl font-bold mb-6"
-                  data-tina-field={tinaField(programme.feature_boxes!._source, 'heading')}
                 >
                   {programme.feature_boxes!.heading}
                 </h4>
@@ -110,16 +105,14 @@ const { programmes } = Astro.props;
               <div class={`grid gap-6 ${boxGridClass}`}>
                 {programme.feature_boxes!.items.map(box => (
                   <div class="bg-gradient-to-br from-bright-purple/40 to-light-purple/45 backdrop-blur rounded-xl p-6 text-center border border-white/20 shadow-lg">
-                    <i class={`${box.icon} text-3xl text-deep-purple mb-4 block`} aria-hidden="true" data-tina-field={tinaField(box._source, 'icon')}></i>
+                    <i class={`${box.icon} text-3xl text-deep-purple mb-4 block`} aria-hidden="true"></i>
                     <h5
                       class="text-lg font-bold mb-2 text-heading-text"
-                      data-tina-field={tinaField(box._source, 'title')}
                     >
                       {box.title}
                     </h5>
                     <p
                       class="text-sm text-body-text leading-relaxed"
-                      data-tina-field={tinaField(box._source, 'description')}
                     >
                       {box.description}
                     </p>
@@ -129,7 +122,6 @@ const { programmes } = Astro.props;
                         target={box.link.startsWith('http') ? '_blank' : undefined}
                         rel={box.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                         class="inline-flex items-center gap-1 mt-3 text-base font-semibold text-bright-purple hover:underline transition-colors"
-                        data-tina-field={tinaField(box._source, 'link_label')}
                       >
                         {box.link_label ?? 'Learn more'}
                         {box.link.startsWith('http') && (

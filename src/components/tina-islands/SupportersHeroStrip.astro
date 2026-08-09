@@ -1,5 +1,4 @@
 ---
-import { tinaField } from '@tinacms/astro';
 import type { Supporter } from '../../data/supporters';
 
 interface Props {
@@ -22,13 +21,11 @@ const { supporters } = Astro.props;
           rel="noopener noreferrer"
           aria-label="Visit supporter website"
           class="supporter-btn flex items-center justify-center bg-white dark:bg-white/95 hover:bg-white rounded-xl px-4 py-2.5 shadow-sm border border-slate-100 dark:border-transparent transition-all duration-300"
-          data-tina-field={tinaField(supporter._source, 'link')}
         >
           <img
             src={supporter.logo}
             alt="Supporter Logo"
             class="supporter-logo h-7 md:h-8 max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
-            data-tina-field={tinaField(supporter._source, 'logo')}
           />
         </a>
       ))}
