@@ -17,7 +17,6 @@ export interface NavigationItem {
 export interface CalendarConfig {
   lumaCalendarId: string;
   lumaCalendarSlug: string;
-  googleCalendarBackupId: string;
 }
 
 export interface SiteConfig {
@@ -207,7 +206,6 @@ export async function getSiteConfigContent(): Promise<{ document: any; siteConfi
   const calendarConfig: CalendarConfig = {
     lumaCalendarId: calendarSource.lumaCalendarId,
     lumaCalendarSlug: calendarSource.lumaCalendarSlug,
-    googleCalendarBackupId: calendarSource.googleCalendarBackupId,
   };
 
   const config: SiteConfig = {
