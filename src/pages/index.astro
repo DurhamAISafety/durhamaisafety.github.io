@@ -88,8 +88,13 @@ const { homeConfig } = await getHomePageContent();
     siteConfig={siteConfig}
   />
 
+  <ProgrammePreviewSection
+    homeConfig={homeConfig}
+    programmes={programmes}
+  />
+
   <!-- Post-event community note -->
-  <section class="py-12 section-light border-b border-white/5">
+  <section class="pt-0 pb-12 section-light border-b border-white/5">
     <div class="site-container mx-auto px-6">
       <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center reveal">
         <div class="rounded-2xl overflow-hidden shadow-lg border border-durham-purple/20">
@@ -109,11 +114,6 @@ const { homeConfig } = await getHomePageContent();
       </div>
     </div>
   </section>
-
-  <ProgrammePreviewSection
-    homeConfig={homeConfig}
-    programmes={programmes}
-  />
 
   <ResearchPreviewSection
     homeConfig={homeConfig}
