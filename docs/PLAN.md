@@ -45,8 +45,8 @@ Supporters**. Blog = easy later (Sveltia folder collection of markdown + an Astr
       Build green, 14 routes prerender, 0 type errors, no serverless function content.
 - [x] **0c. Add Sveltia.** Done — `public/admin/` (index.html + config.yml) with People/About/
       Research/Supporters singletons, editorial workflow. Split `people`→`people.yml` and
-      `supporters`→`supporters.yml` so CMS saves can't drop sibling keys. GitHub OAuth setup +
-      verification are manual → see `ACTION_REQUIRED.md`.
+      `supporters`→`supporters.yml` so CMS saves can't drop sibling keys. GitHub OAuth
+      configured on Netlify.
 - [~] **1. Photos in.** Done: hero → seminar photo; About → freshers-fair banner; Events →
       post-event pizza banner. Also dropped the Netlify adapter (pure static + `sharp`).
       TODO: members-presenting → Research; the you+speaker portrait somewhere (About/speakers).

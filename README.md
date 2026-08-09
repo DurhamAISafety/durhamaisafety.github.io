@@ -116,7 +116,7 @@ Edit `src/content/site-config.json` to update:
 
 The site uses [Sveltia CMS](https://sveltiacms.app) — a lightweight, Git-based editor with no SaaS backend. It's hosted at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin); no local setup is needed to use it.
 
-Sveltia commits edits to GitHub through an **editorial workflow**: each save opens a pull request against `main` that a maintainer reviews and merges before it goes live. Login uses **GitHub OAuth via Netlify** — the one-time setup (OAuth app + Netlify provider) is documented in [ACTION_REQUIRED.md](./ACTION_REQUIRED.md). Anyone editing needs write access to the repo.
+Sveltia commits edits to GitHub through an **editorial workflow**: each save opens a pull request against `main` that a maintainer reviews and merges before it goes live. Login uses **GitHub OAuth via Netlify** (OAuth app + Netlify provider, already configured). Anyone editing needs write access to the repo.
 
 The CMS exposes three collections:
 

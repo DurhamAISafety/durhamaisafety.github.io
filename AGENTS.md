@@ -88,7 +88,7 @@ Long programme descriptions support basic Markdown such as `**bold**`, `_italic_
 Important cascade pitfall: CSS loaded from `public/css/*.css` is unlayered and can override Tailwind utilities. Avoid broad element resets such as `p { margin: 0 }` or heading margin resets there, because they can silently beat `mt-*` and `mb-*` utilities.
 
 ## Content Editing (Sveltia CMS)
-Non-technical maintainers edit content via [Sveltia CMS](https://sveltiacms.app) at `/admin/` — a Git-based editor with no SaaS backend. It's hosted: `public/admin/index.html` loads Sveltia from a CDN and reads `public/admin/config.yml`. There is no local CMS process to run and no credentials are needed to build the site. Each save opens a pull request against `main` (editorial workflow) for review before publish. Auth is GitHub OAuth via Netlify — one-time setup is in `ACTION_REQUIRED.md`.
+Non-technical maintainers edit content via [Sveltia CMS](https://sveltiacms.app) at `/admin/` — a Git-based editor with no SaaS backend. It's hosted: `public/admin/index.html` loads Sveltia from a CDN and reads `public/admin/config.yml`. There is no local CMS process to run and no credentials are needed to build the site. Each save opens a pull request against `main` (editorial workflow) for review before publish. Auth is GitHub OAuth via Netlify (already configured).
 
 The CMS exposes three collections only:
 - People / Committee -> `src/content/people.yml`
@@ -116,4 +116,4 @@ PR validation runs dependency install, `pnpm exec astro check`, `pnpm build`, an
 - Brand SVG/image icons with black fills can become invisible in dark mode. Existing `.cal-icon` CSS handles calendar icons.
 - Keep image paths absolute from `public/`, with a leading `/`.
 - Keep navigation and social links in `src/content/site-config.json`.
-- Check `TODO.md` before broad CSS refactors; it tracks deferred cleanup work.
+- Check `docs/TODO.md` before broad CSS refactors; it tracks deferred cleanup work.
