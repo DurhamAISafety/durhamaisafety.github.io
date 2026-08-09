@@ -3,14 +3,14 @@
 **CRITICAL** For netlify, use the `.agents/skills/netlify-deploy` skill - it details how to use the CLI to interact with netlify.
 
 ## Project Snapshot
-Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is currently built with Astro 5, Tailwind CSS v4, TypeScript, and Tina CMS. Keep Astro on the 5.x line while `@tinacms/astro` peers on `astro@^5.0.0`. Content is managed via Tina CMS at `/admin/` and stored in YAML/JSON files under `src/content/`.
+Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is a pure static Astro 7 build (no adapter — `astro.config.mjs` is just sitemap + the Tailwind Vite plugin), with Tailwind CSS v4 and TypeScript. Content lives in YAML/JSON files under `src/content/` and is read directly at build time; three collections are also editable via Sveltia CMS at `/admin/`.
 
 ## Build & Validation
 ```bash
 pnpm install          # install dependencies
-pnpm dev          # local dev server + Tina CMS at /admin/ NOTE - ALWAYS ASK THE USER TO RUN THIS THEN YOU (the agent) check the url
+pnpm dev          # local dev server NOTE - ALWAYS ASK THE USER TO RUN THIS THEN YOU (the agent) check the url
 pnpm exec astro check # TypeScript/Astro type-check (always fix all these issues)
-pnpm build        # production build: tinacms build && astro build
+pnpm build        # production build: astro build (pure static output to dist/)
 pnpm run preview      # preview production build locally
 pnpm --package=netlify-cli dlx netlify build
 pnpm --package=netlify-cli dlx netlify deploy
@@ -38,21 +38,21 @@ src/content/*.yml / *.json
 ## Repository Structure
 - `src/assets/` - build-time optimised images.
 - `src/components/` - Astro components, using PascalCase filenames.
-- `src/content/` - YAML/JSON content files edited by Tina CMS.
-- `src/data/` - TypeScript data loaders and content types.
+- `src/content/` - YAML/JSON content files (edited via Sveltia CMS or directly).
+- `src/data/` - TypeScript data loaders and content types; `content.ts` holds the `readYaml`/`readJson` file readers.
 - `src/layouts/Layout.astro` - base HTML, metadata, structured data, and global assets.
 - `src/pages/` - route-based pages, using kebab-case filenames.
 - `src/styles/global.css` - Tailwind v4 entry point and `@theme` tokens.
 - `public/` - static assets served as-is, including `css/`, `js/`, and `images/`.
-- `tina/config.ts` - Tina CMS schema.
-- `netlify.toml` - Netlify deploy configuration and secrets-scan exclusions.
+- `public/admin/` - Sveltia CMS admin page (`index.html`) and its `config.yml`.
+- `netlify.toml` - Netlify deploy configuration.
 
 ## Content
-Prefer Tina CMS (`/admin/`) for content edits. It commits to YAML/JSON and triggers deploys automatically. Use direct YAML edits only when changing schema, repairing content structure, or when explicitly requested.
+Content is read directly from `src/content/*` at build time via the readers in `src/data/content.ts`; there is no CMS runtime or API. Most content is code-edited in the files. Sveltia CMS (`/admin/`) covers only three collections — People / Committee, Research papers, and Supporters — committing edits as pull requests against `main`.
 
 YAML root wrappers must not be removed:
 - `people.yml` -> `people:` (members and alumni in one list, split by `type: member` / `type: alumnus`)
-- `research.yml` -> `papers:`
+- `research-papers.yml` -> `papers:`
 - `supporters.yml` -> `supporters:`
 - `get-involved.yml` -> `cards:`
 - `programmes.yml` -> `programmes:`
@@ -87,21 +87,17 @@ Long programme descriptions support basic Markdown such as `**bold**`, `_italic_
 
 Important cascade pitfall: CSS loaded from `public/css/*.css` is unlayered and can override Tailwind utilities. Avoid broad element resets such as `p { margin: 0 }` or heading margin resets there, because they can silently beat `mt-*` and `mb-*` utilities.
 
-## Tina CMS
-Tina CMS provides a visual editing interface at `/admin/` and writes directly to content files.
+## Content Editing (Sveltia CMS)
+Non-technical maintainers edit content via [Sveltia CMS](https://sveltiacms.app) at `/admin/` — a Git-based editor with no SaaS backend. It's hosted: `public/admin/index.html` loads Sveltia from a CDN and reads `public/admin/config.yml`. There is no local CMS process to run and no credentials are needed to build the site. Each save opens a pull request against `main` (editorial workflow) for review before publish. Auth is GitHub OAuth via Netlify — one-time setup is in `ACTION_REQUIRED.md`.
 
-Local CMS setup uses `.env.example` as the template. Required credentials are provided by the Tina Cloud project maintainers.
+The CMS exposes three collections only:
+- People / Committee -> `src/content/people.yml`
+- Research papers -> `src/content/research-papers.yml`
+- Supporters -> `src/content/supporters.yml`
 
-Do not remove Netlify secrets-scan exclusions for Tina public IDs. `netlify.toml` must continue omitting `NEXT_PUBLIC_TINA_CLIENT_ID` and Tina generated paths from secrets scanning.
+Everything else — home, research page, programmes, get-involved, and site config — is code-edited under `src/content/`. The About page is intentionally NOT in the CMS (its copy contains hand-written HTML links); edit it in `src/content/pages/about.yml`.
 
-Visual-editable Tina collections must have all of these pieces:
-- `ui.router` in `tina/config.ts` so Tina opens a preview route instead of only the basic collection form.
-- An async loader in `src/data/*.ts` that calls the generated Tina client and wraps it with `requestWithMetadata()`.
-- Original Tina source objects preserved on normalised data so components can call `tinaField(source, "field")`.
-- `data-tina-field` attributes on rendered editable elements.
-- `data-tina-island="/tina-island/name"` plus a `src/lib/tina-islands.ts` registry entry when live preview should refresh a page region.
-
-Current visual-editing coverage: Home Page, About Page, Research Page, People, Programmes, Get Involved Cards, Research Papers, and Supporters. Prefer extending Tina schemas and content files over adding new hardcoded page copy when maintainers may need to edit it. Page-specific copy is queried via page-specific loaders in `src/data/config.ts` (`getHomePageContent()`, `getAboutPageContent()`, `getResearchPageContent()`).
+Content is read directly from the files at build time via `src/data/content.ts`; no CMS runtime client, GraphQL, or editing-preview markup is involved. Page-specific copy is loaded via `src/data/config.ts` (`getHomePageContent()`, `getAboutPageContent()`, `getResearchPageContent()`). Prefer extending content files over adding hardcoded page copy that maintainers may need to edit.
 
 ## CI/CD
 PR validation runs dependency install, `pnpm exec astro check`, `pnpm build`, and link validation. Netlify is the primary deployment target for the production site. GitHub Pages is used as a redirect/fallback path to the canonical domain.
@@ -120,4 +116,4 @@ PR validation runs dependency install, `pnpm exec astro check`, `pnpm build`, an
 - Brand SVG/image icons with black fills can become invisible in dark mode. Existing `.cal-icon` CSS handles calendar icons.
 - Keep image paths absolute from `public/`, with a leading `/`.
 - Keep navigation and social links in `src/content/site-config.json`.
-- Check `TODO.md` before broad CSS or Tina CMS refactors; it tracks deferred cleanup work.
+- Check `TODO.md` before broad CSS refactors; it tracks deferred cleanup work.

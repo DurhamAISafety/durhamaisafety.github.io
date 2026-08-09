@@ -4,7 +4,7 @@
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML/JSON files below, or via the [Tina CMS](https://app.tina.io) editor at [/admin/](https://durhamaisafety.uk/admin/).
+The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML/JSON files below, or via the [Sveltia CMS](https://sveltiacms.app) editor at [/admin/](https://durhamaisafety.uk/admin/).
 
 ## Quick Start
 
@@ -14,32 +14,33 @@ The official website for DAISI, built with Astro and deployed with Netlify at **
    cd durhamaisafety.github.io
    pnpm install
    ```
-2. Copy `.env.example` to `.env` and fill in your [Tina Cloud credentials](#content-management-cms) (required to run the CMS editor locally)
-3. Start the dev server:
+2. Start the dev server:
    ```bash
    pnpm dev
    ```
-4. Open http://localhost:4321 to view the site, or http://localhost:4321/admin to open the CMS editor
+3. Open http://localhost:4321 to view the site
+
+No credentials or `.env` are needed for local development — the site builds and runs entirely from the content files. The content editor is a hosted admin page (see [Content Management (CMS)](#content-management-cms)).
 
 ## Content Updates (Quick Reference)
 
-All content below can be edited either directly in the file or via the CMS at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin).
+All content below is edited directly in the file. Three collections — People, Research papers, and Supporters — can also be edited via the hosted CMS at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin); everything else is file-only.
 
 | To update... | Edit this file | CMS section |
 |---|---|---|
-| Home page text & headers | `src/content/pages/home.yml` | **Home Page** (visual preview) |
-| About page intro & impact | `src/content/pages/about.yml` | **About Page** (visual preview) |
-| Research opportunities & areas | `src/content/pages/research.yml` | **Research Page** (visual preview) |
-| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
-| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People** (visual preview) |
-| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** (visual preview) |
-| Research papers | `src/content/research.yml` | **Research Papers** (visual preview) |
-| Programmes | `src/content/programmes.yml` | **Programmes** (visual preview) |
-| Get Involved cards | `src/content/get-involved.yml` | **Get Involved Cards** (visual preview) |
-| Navigation links | `src/content/site-config.json` | **Site Config → Navigation** |
-| Social links | `src/content/site-config.json` | **Site Config → Social Links** |
-| Site title, email, OG image | `src/content/site-config.json` | **Site Config** |
-| Footer tagline | `src/content/site-config.json` | **Site Config → Footer Tagline** |
+| Home page text & headers | `src/content/pages/home.yml` | — |
+| About page intro & impact | `src/content/pages/about.yml` | — |
+| Research opportunities & areas | `src/content/pages/research.yml` | — |
+| Team members | `src/content/people.yml` + photo to `public/images/people/` | **People / Committee** |
+| Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People / Committee** |
+| Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** |
+| Research papers | `src/content/research-papers.yml` | **Research papers** |
+| Programmes | `src/content/programmes.yml` | — |
+| Get Involved cards | `src/content/get-involved.yml` | — |
+| Navigation links | `src/content/site-config.json` | — |
+| Social links | `src/content/site-config.json` | — |
+| Site title, email, OG image | `src/content/site-config.json` | — |
+| Footer tagline | `src/content/site-config.json` | — |
 
 ### Adding a Team Member
 
@@ -61,7 +62,7 @@ Alumni live in the same file — use `type: alumnus` instead of `type: member`, 
 
 ### Adding a Research Paper
 
-Edit `src/content/research.yml` and add at the top of the `papers:` list (most recent first):
+Edit `src/content/research-papers.yml` and add at the top of the `papers:` list (most recent first):
 ```yaml
 papers:
   - title: "Paper Title"
@@ -102,7 +103,7 @@ Edit `src/content/get-involved.yml`. Each card has:
 
 ### Updating Site Config
 
-Edit `src/content/site-config.json` (or use the CMS **Site Config** section) to update:
+Edit `src/content/site-config.json` to update:
 
 - **Site title and description** — used in browser tabs, OG tags, and the footer
 - **Contact email** — shown in the footer and used for mailto links
@@ -113,55 +114,21 @@ Edit `src/content/site-config.json` (or use the CMS **Site Config** section) to 
 
 ## Content Management (CMS)
 
-The site uses [Tina CMS](https://tina.io) — a Git-backed editor that writes directly to the content files. Changes made in the CMS are committed to the repo and trigger a Netlify deploy automatically.
+The site uses [Sveltia CMS](https://sveltiacms.app) — a lightweight, Git-based editor with no SaaS backend. It's hosted at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin); no local setup is needed to use it.
 
-The simplest way to edit content is through the live editor at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin) — no local setup needed.
+Sveltia commits edits to GitHub through an **editorial workflow**: each save opens a pull request against `main` that a maintainer reviews and merges before it goes live. Login uses **GitHub OAuth via Netlify** — the one-time setup (OAuth app + Netlify provider) is documented in [ACTION_REQUIRED.md](./ACTION_REQUIRED.md). Anyone editing needs write access to the repo.
 
-The following collections are available in the CMS:
+The CMS exposes three collections:
 
 | CMS Section | File edited |
 |---|---|
-| Site Config | `src/content/site-config.json` |
-| Home Page | `src/content/pages/home.yml` |
-| About Page | `src/content/pages/about.yml` |
-| Research Page | `src/content/pages/research.yml` |
-| People | `src/content/people.yml` |
-| Research Papers | `src/content/research.yml` |
+| People / Committee | `src/content/people.yml` |
+| Research papers | `src/content/research-papers.yml` |
 | Supporters | `src/content/supporters.yml` |
-| Get Involved Cards | `src/content/get-involved.yml` |
-| Programmes | `src/content/programmes.yml` |
 
-Visual previews are enabled for People, Programmes, Get Involved Cards, Research Papers, and Supporters. Those collections open the relevant site route inside Tina so editors can click marked fields in the page preview as well as use the form sidebar.
+Everything else — home, about, research page, programmes, get-involved, and site config — is edited directly in the files under `src/content/`. The **About page is intentionally not in the CMS**: its text contains hand-written HTML links, so it's edited in code at `src/content/pages/about.yml`.
 
-### Visual editing implementation
-
-Visual-editable collections need all of the following pieces:
-
-- A `ui.router` entry in [tina/config.ts](./tina/config.ts) that maps the document to the page route.
-- A Tina-backed async loader in `src/data/*.ts` using `client.queries.*` and `requestWithMetadata()`.
-- Rendered elements marked with `data-tina-field={tinaField(source, "field")}`.
-- A `data-tina-island="/tina-island/name"` wrapper plus a registry entry in `src/lib/tina-islands.ts` when the region should live-refresh inside the preview iframe.
-
-Keep the data boundary intact: pages and components should import typed helpers from `src/data`, not read YAML/JSON files directly.
-
-### Local CMS setup
-
-To run the CMS editor locally, you need credentials for the existing Tina Cloud project. Get the **Client ID** and **Read-only token** from a current maintainer or from the [Tina Cloud dashboard](https://app.tina.io) (you'll need to be added as a collaborator first).
-
-Once you have them:
-
-1. Copy `.env.example` to `.env` and paste in the values:
-   ```
-   TINA_CLIENT_ID=...
-   TINA_TOKEN=...
-   ```
-2. Run the dev server:
-   ```bash
-   pnpm dev
-   # visit http://localhost:4321/admin
-   ```
-
-The Tina config (schema, collections) lives in [tina/config.ts](./tina/config.ts).
+Content is read directly from `src/content/*` at build time — there is no CMS runtime or API. The `src/data/*.ts` modules parse the YAML/JSON via the `readYaml` / `readJson` helpers in [src/data/content.ts](./src/data/content.ts). Keep the data boundary intact: pages and components import typed helpers from `src/data`, not the raw content files. The Sveltia config (backend, collections, fields) lives in [public/admin/config.yml](./public/admin/config.yml).
 
 ---
 
@@ -175,7 +142,7 @@ To conserve Netlify build minutes and ensure robust builds under `pnpm` strict n
    - Deployed at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
    - Built and deployed via **GitHub Actions** (`Scheduled Netlify Deploy` workflow) running twice a day (every 12 hours) or manually triggered on-demand.
    - This shifts all build computation to GitHub's free runners, reducing Netlify Build Minute consumption to **zero**!
-   - Automatic Git triggers are disabled in the Netlify Dashboard to avoid burning minutes on Tina CMS git saves.
+   - Automatic Git triggers are disabled in the Netlify Dashboard to avoid burning minutes on CMS git saves.
 2. **GitHub Pages (Redirect Site)**:
    - Deployed at **[durhamaisafety.github.io](https://durhamaisafety.github.io)** on every push to `main` to serve as a redirect fallback.
 
@@ -191,28 +158,13 @@ When executing Netlify commands locally under `pnpm`, avoid running `pnpm dlx ne
 
 ---
 
-### Strict pnpm & Netlify Local Build Fixes
+### Pure static build
 
-To support local development and deployment seamlessly, the repository contains two key architectural configurations:
+The site is a **pure static** Astro build (no adapter, no serverless functions). `pnpm build`
+runs `astro build` and outputs to `dist/`, which Netlify publishes directly — so there is no
+`[functions]` block or SSR bundling to configure. This keeps builds simple and Netlify usage low.
 
-1. **Safe Build Wrapper (`scripts/build.js`)**:
-   When Netlify CLI runs a local build/deploy, it pulls down site variables from Netlify's backend. Because production environment variables (e.g. `NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN`) are secured/masked in the Netlify UI, the Netlify CLI receives a masked asterisk string (e.g., `****************a8f1`) and overrides your local raw `.env` definitions. This crashes the `tinacms build` command.
-   
-   To bypass this, our default build script runs through `node scripts/build.js` which:
-   - Detects if credentials have been overwritten by masked asterisks.
-   - Swaps them back automatically with the correct, raw values from your local `.env`.
-   - Bypasses this override seamlessly on remote production environments where `.env` is absent.
-   - Spawns `tinacms build` and `astro build` within a clean process context.
-
-2. **Serverless Functions Bundling (`netlify.toml`)**:
-   Under strict `pnpm` package resolution without hoisting, the symlinked dependencies in `node_modules/.pnpm/` are not easily traversed by standard zip-based bundlers. We configured the Astro SSR serverless functions to bundle via `esbuild` using:
-   ```toml
-   [functions]
-       node_bundler = "esbuild"
-   ```
-   This compiles all serverless function dependencies into a single statically resolvable bundle, completely avoiding symlink resolution issues.
-
-For in-depth explanations and troubleshooting of these issues, see [docs/FIX_NOTES.md](file:///Users/Subspace_Explorer/Projects/durhamaisafety.github.io/docs/FIX_NOTES.md).
+For historical build/troubleshooting notes, see [docs/FIX_NOTES.md](./docs/FIX_NOTES.md).
 
 ## Key Reference Links
 
