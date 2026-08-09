@@ -595,7 +595,7 @@
     color: white;
 }
 
-/* Italic accent phrase inside the hero h1 */
+/* Accent phrase inside the hero h1 (purple, non-italic) */
 .hero-heading em {
     color: var(--color-bright-purple);
     font-style: normal;
