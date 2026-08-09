@@ -69,7 +69,7 @@ papers:
         team: true
       - name: "Al Moubayed, N."
     year: 2026
-    month: 7
+    month: 6
     venue: "ICML 2026 Workshop"
     tags:
       - Interpretability
