@@ -27,11 +27,8 @@ export async function getResearchContent(): Promise<{
   academicPapers: ResearchPaper[];
   nonAcademicPapers: ResearchPaper[];
 }> {
-  const { research: researchPage } = readYaml<{ research?: { papers?: ResearchPaper[] } }>('pages/research.yml');
-  if (!researchPage) {
-    throw new Error('Validation Error: Missing research page configuration object.');
-  }
-  const research = sortPapers((researchPage.papers ?? []).map((paper) => ({
+  const { papers = [] } = readYaml<{ papers?: ResearchPaper[] }>('research-papers.yml');
+  const research = sortPapers(papers.map((paper) => ({
     title: paper.title,
     url: paper.url,
     thumbnail: paper.thumbnail ?? undefined,

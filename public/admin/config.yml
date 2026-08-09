@@ -49,88 +49,39 @@ singletons:
           - { name: link, label: Personal website URL, widget: string, required: false }
           - { name: description, label: Short description, widget: text, required: false }
 
-  - name: about
-    label: About Page
-    file: src/content/pages/about.yml
-    icon: info
-    description: Intro, mission cards, impact and join text on the About page.
-    fields:
-      - name: about
-        label: About
-        widget: object
-        fields:
-          - { name: introText, label: Intro text (HTML links allowed), widget: text }
-          - name: missionCards
-            label: Mission cards
-            widget: list
-            fields:
-              - { name: icon, label: Icon (Font Awesome class), widget: string }
-              - { name: title, label: Title, widget: string }
-              - { name: description, label: Description, widget: text }
-          - { name: impactTitle, label: Impact heading, widget: string }
-          - { name: impactIcon, label: Impact icon (Font Awesome class), widget: string }
-          - { name: impactText, label: Impact text (HTML links allowed), widget: text }
-          - { name: joinTitle, label: Join heading, widget: string }
-          - { name: joinText, label: Join text (HTML links allowed), widget: text }
-
   - name: research
-    label: Research
-    file: src/content/pages/research.yml
+    label: Research papers
+    file: src/content/research-papers.yml
     icon: science
-    description: Research opportunities, areas, and the list of papers/projects.
+    description: Papers and projects listed on the Research page.
     fields:
-      - name: research
-        label: Research
-        widget: object
+      - name: papers
+        label: Papers & projects
+        label_singular: Paper
+        widget: list
+        summary: '{{fields.title}} ({{fields.year}})'
         fields:
-          - { name: opportunitiesTitle, label: Opportunities heading, widget: string }
-          - name: opportunities
-            label: Opportunities
+          - { name: title, label: Title, widget: string }
+          - { name: url, label: URL, widget: string }
+          - { name: thumbnail, label: Thumbnail image, widget: image, required: false, media_folder: '/public/images/research', public_folder: '/images/research' }
+          - name: authors
+            label: Authors
             widget: list
+            summary: '{{fields.name}}'
             fields:
-              - { name: icon, label: Icon (Font Awesome class), widget: string }
-              - { name: iconColor, label: Icon colour class, widget: string }
-              - { name: title, label: Title, widget: string }
-              - { name: description, label: Description, widget: text }
-          - { name: opportunitiesCtaText, label: Opportunities button text, widget: string }
-          - { name: opportunitiesCtaLink, label: Opportunities button link, widget: string }
-          - { name: areasTitle, label: Research areas heading, widget: string }
-          - name: researchAreas
-            label: Research areas
-            widget: list
-            fields:
-              - { name: icon, label: Icon (Font Awesome class), widget: string }
-              - { name: iconColor, label: Icon colour class, widget: string }
-              - { name: title, label: Title, widget: string }
-              - { name: description, label: Description, widget: text }
-              - { name: linkUrl, label: Link URL, widget: string }
-          - name: papers
-            label: Papers & projects
-            label_singular: Paper
-            widget: list
-            summary: '{{fields.title}} ({{fields.year}})'
-            fields:
-              - { name: title, label: Title, widget: string }
-              - { name: url, label: URL, widget: string }
-              - { name: thumbnail, label: Thumbnail image, widget: image, required: false, media_folder: '/public/images/research', public_folder: '/images/research' }
-              - name: authors
-                label: Authors
-                widget: list
-                summary: '{{fields.name}}'
-                fields:
-                  - { name: name, label: Name (e.g. "Leask, P."), widget: string }
-                  - { name: team, label: DAISI member?, widget: boolean, default: false, required: false }
-              - { name: year, label: Year, widget: number, value_type: int }
-              - { name: month, label: Month (1-12, for ordering), widget: number, value_type: int, required: false }
-              - { name: venue, label: Venue, widget: string }
-              - { name: tags, label: Tags, widget: list, field: { name: tag, label: Tag, widget: string } }
-              - {
-                  name: type,
-                  label: Type,
-                  widget: select,
-                  options: [academic, non-academic],
-                  default: academic,
-                }
+              - { name: name, label: Name (e.g. "Leask, P."), widget: string }
+              - { name: team, label: DAISI member?, widget: boolean, default: false, required: false }
+          - { name: year, label: Year, widget: number, value_type: int }
+          - { name: month, label: Month (1-12, for ordering), widget: number, value_type: int, required: false }
+          - { name: venue, label: Venue, widget: string }
+          - { name: tags, label: Tags, widget: list, field: { name: tag, label: Tag, widget: string } }
+          - {
+              name: type,
+              label: Type,
+              widget: select,
+              options: [academic, non-academic],
+              default: academic,
+            }
 
   - name: supporters
     label: Supporters
