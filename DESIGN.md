@@ -64,4 +64,4 @@ talks/presenting→hero/Research.
 - "Find out more" link: https://80000hours.org/problem-profiles/risks-from-power-seeking-ai/
 - Style refs: https://eadurham-test.netlify.app/ · https://compsoc.tech/
 - Branding guide: EA Forum "Branding AI Safety Groups: A Field Guide"
-- Anti-example (too start-uppy): https://daisiv2.lovable.app/
+- Anti-example (too start-uppy, but good SEO etc): https://daisiv2.lovable.app/
