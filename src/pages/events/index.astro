@@ -34,6 +34,29 @@ const { homeConfig } = await getHomePageContent();
   <!-- Luma Calendar Section -->
   <EventsSection homeConfig={homeConfig} siteConfig={siteConfig} hideHeading={true} />
 
+  <!-- Post-event community note -->
+  <section class="py-12 section-light border-b border-white/5">
+    <div class="site-container mx-auto px-6">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center reveal">
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-durham-purple/20">
+          <img
+            src="/images/community/post-event-pizza.webp"
+            alt="Pizza laid out after a DAISI event"
+            class="w-full h-56 md:h-64 object-cover"
+            width="1536"
+            height="1536"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="text-center md:text-left">
+          <h2 class="section-heading text-2xl md:text-3xl mb-3">Free pizza after almost every event</h2>
+          <p class="text-body-text leading-relaxed">Relaxed socials to connect and build community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Our Programmes Section -->
   <section id="programmes" class="py-16 section-light border-b border-white/5">
     <div class="site-container mx-auto px-6">

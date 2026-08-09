@@ -22,6 +22,18 @@ const { aboutConfig } = await getAboutPageContent();
 				</div>
 				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto" set:html={aboutConfig.introTextHtml} />
 
+				<div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-durham-purple/20">
+					<img
+						src="/images/community/freshers-fair.webp"
+						alt="The DAISI stall at the Durham Freshers' Fair, with flyers, stickers and books"
+						class="w-full h-56 md:h-72 object-cover"
+						width="1280"
+						height="1280"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+
 				<div class="grid md:grid-cols-3 gap-6 mb-12">
 					{aboutConfig.missionCards.map((card) => (
 						<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
