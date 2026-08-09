@@ -24,10 +24,16 @@ GitHub OAuth provider — **no extra server/worker needed**, and no config chang
    config file, or an env var. (Follow Netlify's own "Sveltia/Decap CMS + GitHub" guide if the
    menu names differ — the callback URL above is the stable part.)
    - Client ID on file: `Ov23liSqpa1IDRusNroy` (this is fine to keep in the repo; it isn't secret).
-3. **Test**: go to `https://durhamaisafety.uk/admin/` (after this branch is deployed), click
-   *Login with GitHub*. You should see four editors: **People / Committee, About Page,
-   Research, Supporters**. Try a tiny edit → it should open a **pull request** (not commit to
-   `main` directly). Merge the PR to publish.
+3. **Test**: go to `https://durhamaisafety.uk/admin/` (after PR #76 is merged), click
+   *Login with GitHub*. You should see three editors: **People / Committee, Research papers,
+   Supporters**. Try a tiny edit → it should open a **pull request** (not commit to `main`
+   directly). Merge the PR to publish.
+
+   NOTE — the CMS reads from `main`. People / Supporters / Research-papers are **new files that
+   only land on `main` when PR #76 is merged**, so before merging they show as empty ("0
+   People"). That's expected, not a bug — they populate after merge. (Test the CMS on the real
+   site after merging, not on the deploy-preview.) The About page is intentionally NOT in the
+   CMS — its text has hand-written HTML links, so it stays code-edited.
 
 Anyone you want to let edit must have **write access** to the `DurhamAISafety/durhamaisafety.github.io`
 repo. (For quick solo testing without any of the above, Sveltia also supports a personal
