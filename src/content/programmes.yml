@@ -28,7 +28,7 @@ programmes:
           description: Intro to AI's role in the US-China relationship.
   - title: In-Depth Reading Groups
     icon: fas fa-book-open
-    image: /images/programmes/reading-groups.jpg
+    image: /images/programmes/reading-groups.avif
     short_description: Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone — aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
     long_description: |
       These provide an opportunity to engage deeply with seminal and/or recent AI safety work.

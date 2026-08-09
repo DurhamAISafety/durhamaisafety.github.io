@@ -69,15 +69,18 @@
     border-color: rgba(235, 128, 253, 0.35);
 }
 
-/* Image-topped programme cards lift slightly on hover */
-a.program-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+/* "Learn More" link on the borderless programme cards:
+   Durham purple in light mode, near-white in dark mode, bright purple on hover. */
+.learn-more {
+    color: var(--color-durham-purple);
 }
 
-a.program-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(57, 20, 79, 0.15);
-    border-color: rgba(235, 128, 253, 0.55);
+.dark .learn-more {
+    color: var(--color-heading-text);
+}
+
+.group:hover .learn-more {
+    color: var(--color-bright-purple);
 }
 
 /* Icon box utility - ensures consistent icon sizing in cards */

@@ -18,35 +18,35 @@ const { homeConfig, programmes } = Astro.props;
             <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-6 gap-y-12">
             {programmes.map((programme, i) => (
                 <a
                     href={`/events/${programmeSlug(programme.title)}/`}
-                    class="program-card overflow-hidden flex flex-col reveal group no-underline"
+                    class="group block text-left no-underline reveal"
                     style={`--reveal-delay: ${i * 100}ms`}
                 >
                     {programme.image && (
-                        <img
-                            src={programme.image}
-                            alt={`${programme.title} at DAISI`}
-                            class="w-full aspect-[4/3] object-cover"
-                            loading="lazy"
-                            decoding="async"
-                        />
+                        <div class="overflow-hidden rounded-2xl mb-5">
+                            <img
+                                src={programme.image}
+                                alt={`${programme.title} at DAISI`}
+                                class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
                     )}
-                    <div class="p-6 flex flex-col flex-grow text-left">
-                        {programme.tags && programme.tags.length > 0 && (
-                            <span class="program-badge mb-3 self-start">{programme.tags[0].label}</span>
-                        )}
-                        <h3 class="text-xl font-bold mb-2">{programme.title}</h3>
-                        <p class="text-sm leading-relaxed text-body-text flex-grow">
-                            {programme.short_description}
-                        </p>
-                        <span class="learn-more mt-4 inline-flex items-center gap-2 text-sm font-semibold text-durham-purple group-hover:text-bright-purple transition-colors">
-                            Learn More
-                            <i class="fa-solid fa-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
-                        </span>
-                    </div>
+                    {programme.tags && programme.tags.length > 0 && (
+                        <span class="program-badge">{programme.tags[0].label}</span>
+                    )}
+                    <h3 class="text-xl font-bold mt-3 mb-2">{programme.title}</h3>
+                    <p class="text-sm leading-relaxed text-body-text">
+                        {programme.short_description}
+                    </p>
+                    <span class="learn-more mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-colors">
+                        Learn More
+                        <i class="fa-solid fa-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
+                    </span>
                 </a>
             ))}
         </div>

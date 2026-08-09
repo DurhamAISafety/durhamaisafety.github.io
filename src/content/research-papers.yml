@@ -59,6 +59,21 @@ papers:
     tags:
       - Interpretability
     type: academic
+  - title: "Sparse Autoencoders Can Learn Graded Latents for Relational Composition"
+    url: ""
+    thumbnail: /images/research/graded-latents.png
+    authors:
+      - name: "Farrell, T."
+        team: true
+      - name: "Leask, P."
+        team: true
+      - name: "Al Moubayed, N."
+    year: 2026
+    month: 7
+    venue: "ICML 2026 Workshop"
+    tags:
+      - Interpretability
+    type: academic
   - title: "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring"
     url: https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c
     thumbnail: /images/research/ghost-marks.png
