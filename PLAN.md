@@ -47,14 +47,19 @@ Supporters**. Blog = easy later (Sveltia folder collection of markdown + an Astr
       Research/Supporters singletons, editorial workflow. Split `people`→`people.yml` and
       `supporters`→`supporters.yml` so CMS saves can't drop sibling keys. GitHub OAuth setup +
       verification are manual → see `ACTION_REQUIRED.md`.
-- [ ] **1. Photos in.** Optimise `new_photos/`, swap hero, place across pages. Visible win, low risk.
-- [ ] **2. IA.** Fold `what-is-ai-safety` into Home para + video; wire Alumni under About;
-      confirm What-we-do subpages carry non-event activities.
+- [~] **1. Photos in.** Done: hero → seminar photo; About → freshers-fair banner; Events →
+      post-event pizza banner. Also dropped the Netlify adapter (pure static + `sharp`).
+      TODO: members-presenting → Research; the you+speaker portrait somewhere (About/speakers).
+      `new_photos/` kept untracked (raw source) to avoid repo bloat.
+- [x] **2. IA (what-is-ai-safety).** Done — deleted the 328-line page; folded a concise section
+      into Home (existing definition + intro video + 80k "find out more"); repointed all inbound
+      links to `/#what-is-ai-safety`. Alumni already separate (linked from About); What-we-do
+      subpages already carry non-event activities (e.g. dissertation support).
 - [ ] **3. CSS de-bloat.** Collapse ~2000 lines (`layout.css` 756, `cards.css` 625) into Tailwind;
       kill duplicated `.dark` rules (per `TODO.md`). Do last — refresh reveals what's actually used.
 - [ ] **4. Optional.** `git gc` / history trim (14M of 28M is old images); delete dead files.
+      Also: rename `components/tina-islands/` (misnomer now); update README/AGENTS/TODO (Tina→Sveltia).
 
-Design direction (palette, type, signature) lives in `DESIGN.md`.
-
-## Open
-- Exact hero photo — pick together in phase 1.
+## Scope note
+Today = keep the current (dark purple) design, do content/structure only. The full visual
+revamp in `DESIGN.md` (light paper base, Fraunces, arch motif) is deferred to a later pass.
