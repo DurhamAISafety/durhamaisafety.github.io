@@ -65,19 +65,24 @@ const { homeConfig } = await getHomePageContent();
   <SupportersHeroStrip supporters={supporters} />
 
   <!-- What is AI Safety? (folded in from the former standalone page) -->
-  <section id="what-is-ai-safety" class="py-16 section-neutral">
+  <section id="what-is-ai-safety" class="py-12 section-neutral">
     <div class="site-container mx-auto px-6">
-      <div class="text-center mb-10 reveal">
-        <h2 class="section-heading text-4xl md:text-5xl mb-6">What is AI Safety?</h2>
-        <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
-      </div>
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="text-xl md:text-2xl leading-relaxed mb-8 reveal">
-          AI Safety is the field focused on ensuring that artificial intelligence systems are
-          <span class="text-bright-purple font-bold"> safe, beneficial, and aligned with human values</span>
-          as they become increasingly capable.
-        </p>
-        <div class="aspect-video max-w-2xl mx-auto mb-8 rounded-2xl overflow-hidden shadow-lg reveal">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 md:gap-10 items-center reveal">
+        <div class="text-center md:text-left">
+          <h2 class="section-heading text-2xl md:text-3xl mb-4">What is AI Safety?</h2>
+          <p class="text-lg leading-relaxed">
+            AI Safety is the field focused on ensuring that artificial intelligence systems are
+            <span class="text-bright-purple font-semibold">safe, beneficial, and aligned with human values</span>
+            as they become increasingly capable.
+            <a
+              href="https://80000hours.org/problem-profiles/risks-from-power-seeking-ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-bright-purple hover:text-light-purple underline font-medium"
+            >Find out more</a>.
+          </p>
+        </div>
+        <div class="aspect-video w-full max-w-xl mx-auto md:mx-0 rounded-2xl overflow-hidden shadow-lg">
           <iframe
             class="w-full h-full"
             src="https://www.youtube.com/embed/5KVDDfAkRgc"
@@ -88,12 +93,6 @@ const { homeConfig } = await getHomePageContent();
             allowfullscreen
           ></iframe>
         </div>
-        <a
-          href="https://80000hours.org/problem-profiles/risks-from-power-seeking-ai/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-cta reveal"
-        >Find out more</a>
       </div>
     </div>
   </section>
