@@ -26,6 +26,7 @@ export interface FeatureBoxes {
 export interface Programme {
   title: string;
   icon: string;
+  image?: string;
   short_description: string;
   long_description?: string;
   tags?: ProgrammeTag[];

@@ -18,95 +18,37 @@ const { homeConfig, programmes } = Astro.props;
             <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
         </div>
 
-        <div class="max-w-6xl mx-auto mb-16">
-            <!-- First two: wider 2-column layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                {programmes.slice(0, 2).map((programme, i) => (
-                    <div
-                        class="program-card rounded-2xl p-8 text-center reveal flex flex-col h-full"
-                        style={`--reveal-delay: ${i * 100}ms`}
-                    >
-                        <div class="mb-6">
-                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
-                            <h4
-                                class="text-2xl font-bold"
-                            >
-                                {programme.title}
-                            </h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p
-                            class="mb-6 leading-relaxed text-body-text flex-grow"
-                        >
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {programmes.map((programme, i) => (
+                <a
+                    href={`/events/${programmeSlug(programme.title)}/`}
+                    class="program-card overflow-hidden flex flex-col reveal group no-underline"
+                    style={`--reveal-delay: ${i * 100}ms`}
+                >
+                    {programme.image && (
+                        <img
+                            src={programme.image}
+                            alt={`${programme.title} at DAISI`}
+                            class="w-full aspect-[4/3] object-cover"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    )}
+                    <div class="p-6 flex flex-col flex-grow text-left">
+                        {programme.tags && programme.tags.length > 0 && (
+                            <span class="program-badge mb-3 self-start">{programme.tags[0].label}</span>
+                        )}
+                        <h3 class="text-xl font-bold mb-2">{programme.title}</h3>
+                        <p class="text-sm leading-relaxed text-body-text flex-grow">
                             {programme.short_description}
                         </p>
-                        {programme.tags && programme.tags.length > 0 && (
-                            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-                                {programme.tags.slice(0, 3).map(tag => (
-                                    <div class="flex items-center gap-2">
-                                        <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                        <span
-                                            class="text-sm text-body-text"
-                                        >
-                                            {tag.label}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                        <a
-                            href={`/events/${programmeSlug(programme.title)}/`}
-                            class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80] mt-auto"
-                        >
+                        <span class="learn-more mt-4 inline-flex items-center gap-2 text-sm font-semibold text-durham-purple group-hover:text-bright-purple transition-colors">
                             Learn More
-                        </a>
+                            <i class="fa-solid fa-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
+                        </span>
                     </div>
-                ))}
-            </div>
-            <!-- Remaining: 3-column layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {programmes.slice(2).map((programme, i) => (
-                    <div
-                        class="program-card rounded-2xl p-8 text-center reveal flex flex-col h-full"
-                        style={`--reveal-delay: ${(i + 2) * 100}ms`}
-                    >
-                        <div class="mb-6">
-                            <i class={`fas ${programme.icon} text-5xl text-durham-purple mb-4`}></i>
-                            <h4
-                                class="text-2xl font-bold"
-                            >
-                                {programme.title}
-                            </h4>
-                            <div class="w-16 h-1 bg-durham-purple mx-auto rounded-full mt-3"></div>
-                        </div>
-                        <p
-                            class="mb-6 leading-relaxed text-body-text flex-grow"
-                        >
-                            {programme.short_description}
-                        </p>
-                        {programme.tags && programme.tags.length > 0 && (
-                            <div class="flex flex-wrap items-center justify-center gap-3 mb-6">
-                                {programme.tags.slice(0, 3).map(tag => (
-                                    <div class="flex items-center gap-2">
-                                        <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-                                        <span
-                                            class="text-sm text-body-text"
-                                        >
-                                            {tag.label}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                        <a
-                            href={`/events/${programmeSlug(programme.title)}/`}
-                            class="inline-block px-6 py-2 bg-durham-purple text-white font-medium text-sm rounded-lg transition-colors duration-300 hover:bg-[#7a2d80] mt-auto"
-                        >
-                            Learn More
-                        </a>
-                    </div>
-                ))}
-            </div>
+                </a>
+            ))}
         </div>
     </div>
 </section>
