@@ -57,12 +57,45 @@ const { homeConfig } = await getHomePageContent();
   />
 
   <!-- Scroll indicator -->
-  <a href="#events" aria-label="Scroll to events" class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors duration-200">
+  <a href="#what-is-ai-safety" aria-label="Scroll to introduction" class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors duration-200">
       <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
       <i class="fa-solid fa-chevron-down text-lg animate-bounce"></i>
   </a>
 
   <SupportersHeroStrip supporters={supporters} />
+
+  <!-- What is AI Safety? (folded in from the former standalone page) -->
+  <section id="what-is-ai-safety" class="py-16 section-neutral">
+    <div class="site-container mx-auto px-6">
+      <div class="text-center mb-10 reveal">
+        <h2 class="section-heading text-4xl md:text-5xl mb-6">What is AI Safety?</h2>
+        <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
+      </div>
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-xl md:text-2xl leading-relaxed mb-8 reveal">
+          AI Safety is the field focused on ensuring that artificial intelligence systems are
+          <span class="text-bright-purple font-bold"> safe, beneficial, and aligned with human values</span>
+          as they become increasingly capable.
+        </p>
+        <div class="aspect-video max-w-2xl mx-auto mb-8 rounded-2xl overflow-hidden shadow-lg reveal">
+          <iframe
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/5KVDDfAkRgc"
+            title="What is AI safety?"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <a
+          href="https://80000hours.org/problem-profiles/risks-from-power-seeking-ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-cta reveal"
+        >Find out more</a>
+      </div>
+    </div>
+  </section>
 
   <EventsSection
     homeConfig={homeConfig}

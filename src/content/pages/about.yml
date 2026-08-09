@@ -1,5 +1,5 @@
 about:
-  introText: 'We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/what-is-ai-safety/" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:'
+  introText: 'We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/#what-is-ai-safety" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:'
   missionCards:
     - icon: fas fa-bullhorn
       title: Raising Awareness

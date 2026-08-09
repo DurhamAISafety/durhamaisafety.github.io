@@ -40,7 +40,7 @@ cards:
   - title: Get Informed!
     description: Learn more about AI safety and why it matters for our future.
     icon: fas fa-graduation-cap
-    link_url: /what-is-ai-safety/
+    link_url: /#what-is-ai-safety
     link_label: Learn More
     external: false
     featured: false
