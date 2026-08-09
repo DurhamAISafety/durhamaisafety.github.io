@@ -56,12 +56,6 @@ const { homeConfig } = await getHomePageContent();
     heroImage={heroImage}
   />
 
-  <!-- Scroll indicator -->
-  <a href="#what-is-ai-safety" aria-label="Scroll to introduction" class="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors duration-200">
-      <span class="text-xs uppercase tracking-widest font-medium">Scroll</span>
-      <i class="fa-solid fa-chevron-down text-lg animate-bounce"></i>
-  </a>
-
   <SupportersHeroStrip supporters={supporters} />
 
   <!-- What is AI Safety? (folded in from the former standalone page) -->
@@ -111,7 +105,6 @@ const { homeConfig } = await getHomePageContent();
         </div>
         <div class="text-center md:text-left">
           <h2 class="section-heading text-2xl md:text-3xl mb-3">Free pizza after almost every event</h2>
-          <p class="text-body-text leading-relaxed">Relaxed socials to connect and build community.</p>
         </div>
       </div>
     </div>
@@ -161,14 +154,5 @@ const { homeConfig } = await getHomePageContent();
                 }
             }, { passive: true });
         }
-    }
-    
-    // Fade scroll indicator on scroll
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        window.addEventListener('scroll', () => {
-            const opacity = Math.max(0, 1 - window.scrollY / 150);
-            (scrollIndicator as HTMLElement).style.opacity = String(opacity);
-        }, { passive: true });
     }
 </script>

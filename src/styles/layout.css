@@ -598,7 +598,7 @@
 /* Italic accent phrase inside the hero h1 */
 .hero-heading em {
     color: var(--color-bright-purple);
-    font-style: italic;
+    font-style: normal;
     font-weight: inherit;
 }
 

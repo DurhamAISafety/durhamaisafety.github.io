@@ -10,11 +10,11 @@ interface Props {
 const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
 ---
 
-<section id="events" class="py-16 section-neutral">
+<section id="events" class="py-12 section-neutral">
     <div class="site-container mx-auto px-6 relative z-10">
         {!hideHeading && (
-            <div class="text-center mb-16 reveal">
-                <h2 class="section-heading text-4xl md:text-5xl mb-6">{homeConfig.eventsTitle}</h2>
+            <div class="text-center mb-8 reveal">
+                <h2 class="section-heading text-4xl md:text-5xl mb-4">{homeConfig.eventsTitle}</h2>
                 <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
             </div>
         )}
@@ -46,13 +46,13 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
             </div>
 
             <!-- Sync buttons and info below calendar -->
-            <div class="mt-8 text-center reveal" style="--reveal-delay: 100ms">
-                <p class="text-center text-lg mb-4 font-medium">
+            <div class="mt-5 text-center reveal" style="--reveal-delay: 100ms">
+                <p class="text-center text-lg mb-3 font-medium">
                     We'll update <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">this calendar</a> with upcoming events. You can add it to yours:
                 </p>
 
                 <!-- Calendar sync buttons -->
-                <div class="flex flex-wrap items-center justify-center gap-4 mb-6">
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-4">
                     <!-- Google Calendar -->
                     <a href={`https://www.google.com/calendar/render?cid=${encodeURIComponent(`http://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`)}`}
                     target="_blank"
@@ -93,13 +93,13 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
                     </button>
                 </div>
 
-                <p class="text-center text-sm mb-8 text-body-text">
+                <p class="text-center text-sm mb-4 text-body-text">
                     Click on and RSVP to any event to receive email updates for that event.
                 </p>
             </div>
 
             <!-- Alternative links below -->
-            <div class="mt-6 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 reveal" style="--reveal-delay: 150ms">
+            <div class="mt-4 rounded-xl border border-bright-purple/40 bg-light-purple/20 px-5 py-3 flex flex-col sm:flex-row items-center justify-between gap-4 reveal" style="--reveal-delay: 150ms">
                 <div class="flex items-center gap-3 text-body-text text-left">
                     <i class="fa-solid fa-triangle-exclamation text-durham-purple text-lg flex-shrink-0" aria-hidden="true"></i>
                     <span class="text-sm font-medium">Calendar not loading? Some browsers block embedded calendars.</span>
@@ -110,7 +110,7 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
                 </a>
             </div>
             
-            <p class="text-center text-sm mt-6 text-body-text reveal" style="--reveal-delay: 200ms">
+            <p class="text-center text-sm mt-4 text-body-text reveal" style="--reveal-delay: 200ms">
                 <a href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}?period=past`} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple underline font-medium">See past events</a>
             </p>
         </div>
@@ -228,8 +228,8 @@ i.cal-icon {
 
 .luma-calendar-wrapper .calendar-iframe {
     width: 100%;
-    min-height: 450px;
-    height: 600px;
+    min-height: 420px;
+    height: 520px;
     border: 1px solid rgba(191, 203, 218, 0.533);
     border-radius: 4px;
 }
