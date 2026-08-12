@@ -32,47 +32,67 @@ const boxGridClass = boxCount === 1
   description={programme.short_description}
 >
   <!-- Programme Hero -->
-  <section class="py-16 md:py-24 section-neutral relative overflow-hidden border-b border-white/5">
-    <div class="absolute -right-40 -top-40 w-96 h-96 bg-bright-purple/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="site-container mx-auto px-6 text-center relative z-10">
-      <a href="/#programmes" class="inline-flex items-center gap-2 text-sm text-durham-purple hover:text-bright-purple font-semibold mb-8 transition-colors duration-200">
+  {programme.image ? (
+    <section class="relative min-h-[55vh] flex items-end overflow-hidden border-b border-white/5">
+      <img
+        src={programme.image}
+        alt={`${programme.title} at DAISI`}
+        class="absolute inset-0 w-full h-full object-cover"
+        style={`view-transition-name: prog-${slug}`}
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/30"></div>
+
+      <a
+        href="/#programmes"
+        class="absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-sm text-white/90 hover:text-white font-semibold bg-black/30 backdrop-blur px-3 py-1.5 rounded-full transition-colors duration-200"
+      >
         <i class="fa-solid fa-arrow-left text-xs"></i> Back to What we do
       </a>
-      {programme.image ? (
-        <div class="mb-8 reveal">
-          <img
-            src={programme.image}
-            alt={`${programme.title} at DAISI`}
-            class="mx-auto w-32 h-32 md:w-40 md:h-40 object-cover rounded-2xl shadow-lg"
-            style={`view-transition-name: prog-${slug}`}
-            width="160"
-            height="160"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      ) : (
+
+      <div class="site-container mx-auto px-6 relative z-10 w-full text-center pt-24 pb-12">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg reveal">{programme.title}</h1>
+        <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
+
+        {programme.tags && programme.tags.length > 0 && (
+          <div class="flex flex-wrap items-center justify-center gap-3 reveal">
+            {programme.tags.map(tag => (
+              <div class="flex items-center gap-1.5 bg-white/15 border border-white/25 backdrop-blur px-3 py-1 rounded-full text-sm">
+                <i class={`${tag.icon} text-white`} aria-hidden="true"></i>
+                <span class="font-semibold text-white">{tag.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  ) : (
+    <section class="py-16 md:py-24 section-neutral relative overflow-hidden border-b border-white/5">
+      <div class="absolute -right-40 -top-40 w-96 h-96 bg-bright-purple/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="site-container mx-auto px-6 text-center relative z-10">
+        <a href="/#programmes" class="inline-flex items-center gap-2 text-sm text-durham-purple hover:text-bright-purple font-semibold mb-8 transition-colors duration-200">
+          <i class="fa-solid fa-arrow-left text-xs"></i> Back to What we do
+        </a>
         <div class="mb-6 reveal">
           <i class={`${programme.icon} text-6xl text-durham-purple`} aria-hidden="true"></i>
         </div>
-      )}
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">{programme.title}</h1>
-      <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
-      
-      {programme.tags && programme.tags.length > 0 && (
-        <div class="flex flex-wrap items-center justify-center gap-3 mt-4 reveal">
-          {programme.tags.map(tag => (
-            <div class="flex items-center gap-1.5 bg-bright-purple/15 border border-bright-purple/30 px-3 py-1 rounded-full text-sm">
-              <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
-              <span class="font-semibold text-body-text">
-                {tag.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  </section>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">{programme.title}</h1>
+        <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
+
+        {programme.tags && programme.tags.length > 0 && (
+          <div class="flex flex-wrap items-center justify-center gap-3 mt-4 reveal">
+            {programme.tags.map(tag => (
+              <div class="flex items-center gap-1.5 bg-bright-purple/15 border border-bright-purple/30 px-3 py-1 rounded-full text-sm">
+                <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
+                <span class="font-semibold text-body-text">{tag.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
 
   <!-- Overview & Audience -->
   <section class="py-16 section-light border-b border-white/5">
