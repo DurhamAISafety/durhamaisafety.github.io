@@ -32,6 +32,7 @@ export interface Programme {
   tags?: ProgrammeTag[];
   whos_this_for?: WhosThisFor[];
   feature_boxes?: FeatureBoxes;
+  cta?: 'email' | 'community'; // 'email' = direct contact; default 'community' (news + calendar)
 }
 
 export async function getProgrammesContent(): Promise<{ programmes: Programme[] }> {

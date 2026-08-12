@@ -44,6 +44,7 @@ programmes:
   - title: Research Project Support
     icon: fas fa-terminal
     image: /images/programmes/research-support.webp
+    cta: email
     short_description: 'We support you to pursue AI safety research. We can support applications for fellowships and funding, and advise students on dissertation and independent study projects.'
     long_description: |
       Interested in AI Safety research? We can support you to pursue it.

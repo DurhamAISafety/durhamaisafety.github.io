@@ -169,3 +169,19 @@ h1, h2, h3, h4, h5, h6,
 @import "./animations.css";
 @import "./utilities.css";
 
+/* Native cross-document view transitions (Astro 7 / Chrome 126+).
+   Programme card image morphs into the detail-page hero image via the
+   matching `view-transition-name: prog-<slug>`. Unsupported browsers just
+   navigate normally — no JS, no ClientRouter. */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
