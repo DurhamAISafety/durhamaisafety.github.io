@@ -1,5 +1,5 @@
 ---
-import ResearchCarousel from '../ResearchCarousel.astro';
+import ResearchCard from '../ResearchCard.astro';
 import type { ResearchPaper } from '../../data/research';
 import type { HomePageConfig } from '../../data/config';
 
@@ -18,12 +18,10 @@ const { homeConfig, research } = Astro.props;
             <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-8"></div>
         </div>
 
-        <div class="reveal">
-            <ResearchCarousel
-                papers={research}
-                title={homeConfig.researchSubtitle}
-                id="home-research-carousel"
-            />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+            {research.slice(0, 4).map((paper) => (
+                <ResearchCard paper={paper} thumbnailImage={paper.thumbnail} />
+            ))}
         </div>
         <div class="text-center mb-16 reveal" style="--reveal-delay: 150ms">
             <a href="/research" class="btn-cta mb-12">{homeConfig.researchViewAllText}</a>
