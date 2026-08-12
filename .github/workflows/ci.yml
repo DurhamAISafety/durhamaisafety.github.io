@@ -1,0 +1,22 @@
+name: CI
+
+# Build gate for PRs (incl. Dependabot). Live deploy only runs on push to main,
+# so a red build here keeps a bad dependency bump off durhamaisafety.uk.
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Type-check and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+      - uses: pnpm/action-setup@v3
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build

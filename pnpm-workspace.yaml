@@ -1,3 +1,8 @@
+overrides:
+  # Patch transitive vulns pulled by the Astro toolchain (build-time only). Dependabot: GHSA-f88m-g3jw-g9cj, GHSA-7p8r-x3mc-p8w7, GHSA-2p49-hgcm-8545
+  sharp: '^0.35.3'
+  fast-uri: '>=3.1.5'
+  svgo: '>=4.0.2'
 allowBuilds:
   '@parcel/watcher': true
   better-sqlite3: true
