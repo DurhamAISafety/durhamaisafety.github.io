@@ -157,7 +157,43 @@ singletons:
         fields:
           - { name: title, label: Title, widget: string }
           - { name: description, label: Description, widget: text }
-          - { name: icon, label: Icon (Font Awesome class, e.g. fas fa-envelope), widget: string }
+          - name: icon
+            label: Icon
+            widget: select
+            options: &fa_icons
+              - { label: Award, value: 'fas fa-award' }
+              - { label: Brain, value: 'fas fa-brain' }
+              - { label: Calendar, value: 'fas fa-calendar-alt' }
+              - { label: 'Chart / growth', value: 'fas fa-chart-line' }
+              - { label: Checklist, value: 'fas fa-clipboard-check' }
+              - { label: Coffee, value: 'fas fa-coffee' }
+              - { label: Dice, value: 'fas fa-dice' }
+              - { label: Discord, value: 'fab fa-discord' }
+              - { label: 'Dollar sign', value: 'fas fa-dollar-sign' }
+              - { label: Envelope, value: 'fas fa-envelope' }
+              - { label: 'Food / utensils', value: 'fas fa-utensils' }
+              - { label: Gavel, value: 'fas fa-gavel' }
+              - { label: Globe, value: 'fas fa-globe-asia' }
+              - { label: Graduate, value: 'fas fa-user-graduate' }
+              - { label: 'Graduation cap', value: 'fas fa-graduation-cap' }
+              - { label: Heart, value: 'fas fa-heart' }
+              - { label: Instagram, value: 'fab fa-instagram' }
+              - { label: 'Laptop / code', value: 'fas fa-laptop-code' }
+              - { label: 'Magnifying glass', value: 'fas fa-search' }
+              - { label: Megaphone, value: 'fas fa-bullhorn' }
+              - { label: Microphone, value: 'fas fa-microphone' }
+              - { label: 'Open book', value: 'fas fa-book-open' }
+              - { label: 'Open door', value: 'fas fa-door-open' }
+              - { label: People, value: 'fas fa-users' }
+              - { label: Robot, value: 'fas fa-robot' }
+              - { label: Shield, value: 'fas fa-shield-alt' }
+              - { label: Smile, value: 'fas fa-smile' }
+              - { label: 'Speech bubbles', value: 'fas fa-comments' }
+              - { label: Teacher, value: 'fas fa-chalkboard-teacher' }
+              - { label: Terminal, value: 'fas fa-terminal' }
+              - { label: Tools, value: 'fas fa-tools' }
+              - { label: University, value: 'fas fa-university' }
+              - { label: 'User shield', value: 'fas fa-user-shield' }
           - { name: link_url, label: Link URL, widget: string }
           - { name: link_label, label: Link label, widget: string }
           - { name: external, label: Opens an external site?, widget: boolean, default: false }
@@ -204,11 +240,110 @@ singletons:
             widget: list
             summary: '{{fields.title}}'
             fields:
-              - { name: icon, label: Icon (Font Awesome class), widget: string }
+              - { name: icon, label: Icon, widget: select, options: *fa_icons }
               - { name: title, label: Title, widget: string }
               - { name: description, label: Description, widget: text }
           - { name: impactTitle, label: Impact section title, widget: string }
-          - { name: impactIcon, label: Impact icon (Font Awesome class), widget: string }
+          - { name: impactIcon, label: Impact icon, widget: select, options: *fa_icons }
           - { name: impactText, label: Impact text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
           - { name: joinTitle, label: Join section title, widget: string }
           - { name: joinText, label: Join text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
+
+  - name: programmes
+    label: Programmes
+    file: src/content/programmes.yml
+    icon: school
+    description: The "What we do" programmes and their detail pages.
+    fields:
+      - name: programmes
+        label: Programmes
+        label_singular: Programme
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: icon, label: Icon, widget: select, options: *fa_icons }
+          - { name: image, label: Banner image, widget: image, required: false, media_folder: '/public/images/programmes', public_folder: '/images/programmes' }
+          - { name: short_description, label: Short description, widget: text }
+          - { name: long_description, label: Full description, widget: text, required: false, hint: 'Markdown supported: paragraphs, **bold**, _italic_, [links](https://example.com).' }
+          - { name: cta, label: Call-to-action style, widget: select, required: false, options: [{ label: 'Community (news + calendar)', value: community }, { label: 'Email (direct contact)', value: email }] }
+          - name: tags
+            label: Tags
+            label_singular: Tag
+            widget: list
+            required: false
+            summary: '{{fields.label}}'
+            fields:
+              - { name: icon, label: Icon, widget: select, options: *fa_icons }
+              - { name: label, label: Label, widget: string }
+          - name: whos_this_for
+            label: Who's this for
+            label_singular: Entry
+            widget: list
+            required: false
+            summary: '{{fields.text}}'
+            fields:
+              - { name: icon, label: Icon, widget: select, required: false, options: *fa_icons }
+              - { name: text, label: Text, widget: text }
+          - name: feature_boxes
+            label: Feature boxes
+            widget: object
+            required: false
+            fields:
+              - { name: heading, label: Heading, widget: string, required: false }
+              - name: items
+                label: Items
+                label_singular: Item
+                widget: list
+                fields:
+                  - { name: icon, label: Icon, widget: select, options: *fa_icons }
+                  - { name: title, label: Title, widget: string }
+                  - { name: description, label: Description, widget: text }
+                  - { name: link, label: Link URL, widget: string, required: false }
+                  - { name: link_label, label: Link label, widget: string, required: false }
+
+  - name: research_page
+    label: Research page
+    file: src/content/pages/research.yml
+    icon: biotech
+    description: Opportunities and research areas on the Research page.
+    fields:
+      - name: research
+        label: Research page
+        widget: object
+        fields:
+          - { name: opportunitiesTitle, label: Opportunities title, widget: string }
+          - name: opportunities
+            label: Opportunities
+            label_singular: Opportunity
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: icon, label: Icon, widget: select, options: *fa_icons }
+              - name: iconColor
+                label: Icon colour
+                widget: select
+                options: &fa_colours
+                  - { label: 'Durham purple', value: text-durham-purple }
+                  - { label: 'Deep purple', value: text-deep-purple }
+                  - { label: 'Bright purple', value: text-bright-purple }
+                  - { label: 'Light purple', value: text-light-purple }
+                  - { label: Lavender, value: text-lavender }
+                  - { label: Violet, value: text-violet-600 }
+                  - { label: Fuchsia, value: text-fuchsia-600 }
+              - { name: title, label: Title, widget: string }
+              - { name: description, label: Description, widget: text }
+          - { name: opportunitiesCtaText, label: Opportunities button text, widget: string }
+          - { name: opportunitiesCtaLink, label: Opportunities button link, widget: string }
+          - { name: areasTitle, label: Research areas title, widget: string }
+          - name: researchAreas
+            label: Research areas
+            label_singular: Area
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: icon, label: Icon, widget: select, options: *fa_icons }
+              - { name: iconColor, label: Icon colour, widget: select, options: *fa_colours }
+              - { name: title, label: Title, widget: string }
+              - { name: description, label: Description, widget: text }
+              - { name: linkUrl, label: Link URL, widget: string }
