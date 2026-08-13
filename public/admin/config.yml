@@ -96,3 +96,119 @@ singletons:
         fields:
           - { name: logo, label: Logo image, widget: image, media_folder: '/public/images/supporters', public_folder: '/images/supporters' }
           - { name: link, label: Website URL, widget: string }
+
+  - name: site_config
+    label: Site config
+    file: src/content/site-config.json
+    icon: settings
+    description: Global site details — contact email, social links, header/footer navigation, and calendar.
+    fields:
+      - { name: title, label: Site title, widget: string }
+      - { name: description, label: Site description (used for SEO / social previews), widget: text }
+      - { name: email, label: Contact email, widget: string }
+      - { name: ogImage, label: Social share image, widget: image, required: false, media_folder: '/public/images', public_folder: '/images' }
+      - name: socialLinks
+        label: Social & important links
+        label_singular: Link
+        widget: list
+        summary: '{{fields.name}}'
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: url, label: URL, widget: string }
+          - { name: icon, label: Icon (SVG), widget: image, media_folder: '/public/images/icons', public_folder: '/images/icons' }
+          - { name: inHeader, label: Show in header?, widget: boolean, default: true }
+      - name: navigation
+        label: Navigation
+        widget: object
+        fields:
+          - name: main
+            label: Main menu
+            label_singular: Menu item
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Label, widget: string }
+              - { name: url, label: URL, widget: string }
+          - name: cta
+            label: Call-to-action button
+            widget: object
+            fields:
+              - { name: title, label: Label, widget: string }
+              - { name: url, label: URL, widget: string }
+      - { name: footerTagline, label: Footer tagline, widget: text, required: false }
+      - name: calendar
+        label: Luma calendar
+        widget: object
+        fields:
+          - { name: lumaCalendarId, label: Calendar ID, widget: string }
+          - { name: lumaCalendarSlug, label: Calendar slug, widget: string }
+
+  - name: get_involved
+    label: Get Involved cards
+    file: src/content/get-involved.yml
+    icon: volunteer_activism
+    description: The action cards shown on the Get Involved page.
+    fields:
+      - name: cards
+        label: Cards
+        label_singular: Card
+        widget: list
+        summary: '{{fields.title}}'
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: text }
+          - { name: icon, label: Icon (Font Awesome class, e.g. fas fa-envelope), widget: string }
+          - { name: link_url, label: Link URL, widget: string }
+          - { name: link_label, label: Link label, widget: string }
+          - { name: external, label: Opens an external site?, widget: boolean, default: false }
+          - { name: featured, label: Featured (shown at top)?, widget: boolean, default: false }
+          - { name: recommended_label, label: Recommended badge text, widget: string, required: false }
+
+  - name: home_page
+    label: Home page
+    file: src/content/pages/home.yml
+    icon: home
+    description: Hero text and section headings on the home page.
+    fields:
+      - name: home
+        label: Home page
+        widget: object
+        fields:
+          - { name: heroTitle, label: Hero title, widget: string, hint: 'Use _italic_ or **bold** for emphasis.' }
+          - { name: heroSubtitleHighlight, label: Hero subtitle (highlighted part), widget: string }
+          - { name: heroSubtitleMain, label: Hero subtitle (rest), widget: string }
+          - { name: heroPrimaryCtaText, label: Primary button text, widget: string }
+          - { name: heroPrimaryCtaLink, label: Primary button link, widget: string }
+          - { name: heroSecondaryCtaText, label: Secondary button text, widget: string }
+          - { name: heroSecondaryCtaLink, label: Secondary button link, widget: string }
+          - { name: eventsTitle, label: Events section title, widget: string }
+          - { name: programmesTitle, label: Programmes section title, widget: string }
+          - { name: researchTitle, label: Research section title, widget: string }
+          - { name: researchSubtitle, label: Research section subtitle, widget: string }
+          - { name: researchViewAllText, label: 'Research "view all" button text', widget: string }
+
+  - name: about_page
+    label: About page
+    file: src/content/pages/about.yml
+    icon: info
+    description: Intro, mission cards, impact and join text on the About page.
+    fields:
+      - name: about
+        label: About page
+        widget: object
+        fields:
+          - { name: introText, label: Intro text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
+          - name: missionCards
+            label: Mission cards
+            label_singular: Card
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: icon, label: Icon (Font Awesome class), widget: string }
+              - { name: title, label: Title, widget: string }
+              - { name: description, label: Description, widget: text }
+          - { name: impactTitle, label: Impact section title, widget: string }
+          - { name: impactIcon, label: Impact icon (Font Awesome class), widget: string }
+          - { name: impactText, label: Impact text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
+          - { name: joinTitle, label: Join section title, widget: string }
+          - { name: joinText, label: Join text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
