@@ -41,39 +41,47 @@ export async function getProgrammesContent(): Promise<{ programmes: Programme[] 
 }
 
 /**
+ * Renders inline Markdown to HTML — **bold**, _italic_, [label](url) — with no
+ * paragraph wrapping, so it is safe to drop inside an existing <h1>/<p>.
+ * External (http/https) links open in a new tab; internal (/, #, mailto:) don't.
+ */
+export function renderInlineMarkdown(input: string): string {
+  if (!input) return '';
+
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    // Bold **text**
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Italic _text_
+    .replace(/_(.+?)_/g, '<em>$1</em>')
+    // Links [label](url) — url may be http(s), or an internal /, #, or mailto: target.
+    // Quote/angle chars are excluded from the url and the remaining "/' are escaped
+    // for attribute context, so a url can't break out of the href attribute.
+    .replace(
+      /\[([^\]]+)\]\((https?:\/\/[^\s)"'<>]+|(?:mailto:|[/#])[^\s)"'<>]*)\)/g,
+      (_match, label: string, url: string) => {
+        const external = /^https?:\/\//.test(url);
+        const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+        const safeUrl = url.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        return `<a href="${safeUrl}" class="text-durham-purple hover:text-bright-purple underline transition-colors"${attrs}>${label}</a>`;
+      }
+    );
+}
+
+/**
  * Renders a small subset of Markdown to HTML.
  * Supports: paragraphs, **bold**, _italic_, [link](url)
  */
 export function renderMarkdown(input: string): string {
   if (!input) return '';
 
-  const escaped = input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-
-  // Split into paragraphs on blank lines
-  const paragraphs = escaped
+  return input
     .split(/\n{2,}/)
     .map(p => p.trim())
-    .filter(Boolean);
-
-  const renderInline = (text: string): string =>
-    text
-      // Bold **text**
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      // Italic _text_
-      .replace(/_(.+?)_/g, '<em>$1</em>')
-      // Links [label](url)
-      .replace(
-        /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g,
-        '<a href="$2" class="text-durham-purple hover:text-bright-purple underline transition-colors" target="_blank" rel="noopener noreferrer">$1</a>'
-      )
-      // Line breaks within a paragraph
-      .replace(/\n/g, '<br>');
-
-  return paragraphs
-    .map(p => `<p class="text-lg leading-relaxed mb-4 last:mb-0">${renderInline(p)}</p>`)
+    .filter(Boolean)
+    .map(p => `<p class="text-lg leading-relaxed mb-4 last:mb-0">${renderInlineMarkdown(p).replace(/\n/g, '<br>')}</p>`)
     .join('\n');
 }
 
