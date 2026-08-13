@@ -1,5 +1,5 @@
 import { readYaml, readJson } from './content';
-import { sanitiseInlineHtml } from '../lib/sanitize-html';
+import { renderInlineMarkdown } from './programmes';
 
 export interface SocialLink {
   name: string;
@@ -119,7 +119,7 @@ export async function getHomePageContent(): Promise<{ document: any; homeConfig:
   }
   const homeConfig: HomePageConfig = {
     ...doc,
-    heroTitleHtml: sanitiseInlineHtml(doc.heroTitle),
+    heroTitleHtml: renderInlineMarkdown(doc.heroTitle),
   };
 
   validatePath(doc.heroPrimaryCtaLink, 'home.heroPrimaryCtaLink');
@@ -136,9 +136,9 @@ export async function getAboutPageContent(): Promise<{ document: any; aboutConfi
   const aboutConfig: AboutPageConfig = {
     ...doc,
     missionCards: doc.missionCards ?? [],
-    introTextHtml: sanitiseInlineHtml(doc.introText),
-    impactTextHtml: sanitiseInlineHtml(doc.impactText),
-    joinTextHtml: sanitiseInlineHtml(doc.joinText),
+    introTextHtml: renderInlineMarkdown(doc.introText),
+    impactTextHtml: renderInlineMarkdown(doc.impactText),
+    joinTextHtml: renderInlineMarkdown(doc.joinText),
   };
 
   return { document: doc, aboutConfig };

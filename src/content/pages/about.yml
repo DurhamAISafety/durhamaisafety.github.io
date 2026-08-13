@@ -1,5 +1,5 @@
 about:
-  introText: 'We are a <a href="#team" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">student-led</a> initiative that aims to empower students and academics to <a href="/#what-is-ai-safety" class="text-bright-purple hover:text-light-purple font-semibold transition-colors underline decoration-bright-purple/50 hover:decoration-light-purple">reduce risk from advanced AI</a>, by:'
+  introText: 'We are a [student-led](#team) initiative that aims to empower students and academics to [reduce risk from advanced AI](/#what-is-ai-safety), by:'
   missionCards:
     - icon: fas fa-bullhorn
       title: Raising Awareness
@@ -12,6 +12,6 @@ about:
       description: 'For high-quality discussion, support and connections to the wider field of AI safety'
   impactTitle: Our Impact
   impactIcon: fas fa-chart-line
-  impactText: 'Our members have published in top AI and law conferences, participated in <a href="https://www.matsprogram.org/" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple font-semibold transition-colors underline">MATS</a>, <a href="https://www.lasrlabs.org/" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:text-bright-purple font-semibold transition-colors underline">LASR Labs</a>, and gone on to study AI ethics at Cambridge.'
+  impactText: 'Our members have published in top AI and law conferences, participated in [MATS](https://www.matsprogram.org/), [LASR Labs](https://www.lasrlabs.org/), and gone on to study AI ethics at Cambridge.'
   joinTitle: Join Our Team
-  joinText: 'If you want to help organise and shape DAISI, contact <a href="mailto:durhamaisi@durham.ac.uk" class="text-bright-purple hover:text-light-purple font-semibold transition-colors">durhamaisi@durham.ac.uk</a> and we''ll be in touch!'
+  joinText: 'If you want to help organise and shape DAISI, contact [durhamaisi@durham.ac.uk](mailto:durhamaisi@durham.ac.uk) and we''ll be in touch!'
