@@ -18,7 +18,7 @@ export function initializeScrollAnimations(): void {
     // Skip animation — make everything visible immediately
     revealElements.forEach((el) => makeVisible(el as HTMLElement));
 
-    // Watch for newly added elements (e.g. from Tina CMS live-preview updates)
+    // Watch for newly added elements (e.g. content injected after initial load)
     if ('MutationObserver' in window) {
       const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {

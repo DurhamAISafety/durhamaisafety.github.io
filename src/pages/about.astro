@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getPeopleContent } from '../data/people';
 import { getAboutPageContent } from '../data/config';
-import AboutTeamIsland from '../components/tina-islands/AboutTeamIsland.astro';
+import AboutTeamIsland from '../components/islands/AboutTeamIsland.astro';
 
 const { team, alumni } = await getPeopleContent();
 const { aboutConfig } = await getAboutPageContent();

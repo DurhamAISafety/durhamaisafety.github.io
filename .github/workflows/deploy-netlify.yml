@@ -85,9 +85,6 @@ jobs:
 
       - name: Build Site
         if: steps.commit-check.outputs.has_changes == 'true'
-        env:
-          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
-          TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
         run: pnpm build
 
       - name: Deploy to Netlify
