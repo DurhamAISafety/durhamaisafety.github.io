@@ -656,31 +656,6 @@
     }
 }
 
-/* Section backgrounds */
-.section-alt {
-    background: linear-gradient(135deg,
-            rgba(57, 20, 79, 0.9),
-            rgba(184, 132, 254, 0.15));
-}
-
-.dark .section-alt {
-    background: linear-gradient(135deg,
-            rgba(13, 4, 20, 0.95),
-            rgba(157, 78, 221, 0.2));
-}
-
-.section-alt-2 {
-    background: linear-gradient(135deg,
-            rgba(235, 128, 253, 0.15),
-            rgba(57, 20, 79, 0.9));
-}
-
-.dark .section-alt-2 {
-    background: linear-gradient(135deg,
-            rgba(157, 78, 221, 0.2),
-            rgba(13, 4, 20, 0.95));
-}
-
 /* Neutral background for sections below hero */
 .section-neutral {
     background: #f8fafc;
