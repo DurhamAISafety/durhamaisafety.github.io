@@ -1,7 +1,7 @@
 papers:
   - title: "Inference-Time Decomposition of Activations (ITDA): A Scalable Approach to Interpreting Large Language Models"
     url: https://openreview.net/forum?id=4WMZqAoYi4
-    thumbnail: /images/research/itdas.png
+    thumbnail: /images/research/itdas.webp
     authors:
       - name: "Leask, P."
         team: true
@@ -14,7 +14,7 @@ papers:
     type: academic
   - title: "Sparse Autoencoders Do Not Find Canonical Units of Analysis"
     url: https://openreview.net/forum?id=9ca9eHNrdH
-    thumbnail: /images/research/sae_canonical.png
+    thumbnail: /images/research/sae_canonical.webp
     authors:
       - name: "Leask, P."
         team: true
@@ -33,7 +33,7 @@ papers:
     type: academic
   - title: "Probing by Analogy: Decomposing Probes into Activations for Better Interpretability and Inter-Model Generalization"
     url: https://openreview.net/forum?id=IhI1qGyk6S
-    thumbnail: /images/research/probing.png
+    thumbnail: /images/research/probing.webp
     authors:
       - name: "Leask, P."
         team: true
@@ -46,7 +46,7 @@ papers:
     type: academic
   - title: "Order by Scale: Relative-Magnitude Relational Composition in Attention-Only Transformers"
     url: https://openreview.net/forum?id=vWRVzNtk7W
-    thumbnail: /images/research/order-by-scale.png
+    thumbnail: /images/research/order-by-scale.webp
     authors:
       - name: "Farrell, T."
         team: true
@@ -61,7 +61,7 @@ papers:
     type: academic
   - title: "Sparse Autoencoders Can Learn Graded Latents for Relational Composition"
     url: "https://openreview.net/forum?id=ltQ6XAduTF"
-    thumbnail: /images/research/graded-latents.png
+    thumbnail: /images/research/graded-latents.webp
     authors:
       - name: "Farrell, T."
         team: true
@@ -76,7 +76,7 @@ papers:
     type: academic
   - title: "Ghost Marks in the Machine: A Critical Review of SynthID for Code Provenance Monitoring"
     url: https://apartresearch.com/project/ghost-marks-in-the-machine-a-critical-review-of-synthid-for-code-provenance-monitoring-ov2c
-    thumbnail: /images/research/ghost-marks.png
+    thumbnail: /images/research/ghost-marks.webp
     authors:
       - name: "Sherratt-Cross, E."
         team: true
