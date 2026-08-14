@@ -7,8 +7,12 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 10
+    # Collapse routine bumps into a single PR; majors still open individually for review.
+    groups:
+      npm-minor-patch:
+        update-types: ["minor", "patch"]
     ignore:
-      # Keep Astro on the 5.x line as per project snapshots
+      # Astro is upgraded manually (jumped 5.x -> 7.x); don't auto-open major bumps.
       - dependency-name: "astro"
         update-types: ["version-update:semver-major"]
 
@@ -19,3 +23,7 @@ updates:
       interval: "weekly"
       day: "monday"
     open-pull-requests-limit: 5
+    # Action bumps are low-risk; batch all of them (incl. majors) into one PR.
+    groups:
+      github-actions:
+        patterns: ["*"]
