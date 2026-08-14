@@ -21,16 +21,6 @@
     }
 }
 
-/* Bounce animation for hoverable cards */
-@keyframes hover-bounce {
-    /* Disabled */
-}
-
-/* Apply bounce on hover to elements marked as card-hover */
-.card-hover:hover {
-    animation: none;
-}
-
 /* Fade up from below — used in scroll reveal animations */
 @keyframes fade-up {
     from {

@@ -19,24 +19,6 @@
     border: 1px solid rgba(157, 78, 221, 0.4);
 }
 
-.card:hover {
-    /* Disabled expensive transform on hover for performance */
-    transform: none;
-    box-shadow: none;
-}
-
-/* Bounce animation for hoverable cards */
-@keyframes hover-bounce {
-    /* Disabled */
-}
-
-/* Apply bounce on hover to elements marked as card-hover */
-.card-hover:hover {
-    animation: none;
-}
-
-
-
 /* Page-specific card helpers */
 .program-card,
 .research-card,
