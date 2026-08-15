@@ -136,3 +136,4 @@ Keeping the Netlify site alive for OAuth costs no build minutes; don't delete it
 - Keep image paths absolute from `public/`, with a leading `/`.
 - Keep navigation and social links in `src/content/site-config.json`.
 - Check `docs/TODO.md` before broad CSS refactors; it tracks deferred cleanup work.
+- The `get-involved.yml` "Join Discord" card links to a Microsoft **Forms** URL by design — an anti-scam gate that vets people before the real invite, not a broken link. Do not "fix" it to a raw Discord invite.

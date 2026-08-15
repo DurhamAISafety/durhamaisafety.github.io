@@ -8,7 +8,7 @@ export interface GetInvolvedCard {
   link_label: string;
   external: boolean;
   featured: boolean;
-  recommended_label?: string;
+  badge?: string;
 }
 
 export async function getGetInvolvedContent(): Promise<{
@@ -25,7 +25,7 @@ export async function getGetInvolvedContent(): Promise<{
     link_label: card.link_label,
     external: card.external ?? false,
     featured: card.featured ?? false,
-    recommended_label: card.recommended_label ?? undefined,
+    badge: card.badge ?? undefined,
   }));
 
   return {
