@@ -1,21 +1,28 @@
 # Future Work
 
-## CSS de-bloat (real refactor, not a quick delete)
+## CSS de-bloat (partly done)
 
-~2000 lines of custom CSS, dominated by `layout.css` (756) and `cards.css` (660).
+Custom CSS down from ~2007 to ~1800 lines. Done (branch `chore/css-dead-code`):
 
-The ~60 `.dark` rules are **not redundant duplicates** — they set hardcoded dark
-colours (e.g. `.dark .program-card { background: rgba(0,0,0,0.3) }`) that the token
-system in `global.css` does not produce. Deleting them breaks dark mode. Making them
-redundant is the actual task:
+- Added `--surface-glass` / `--surface-elevated` semantic pairs in `global.css` that flip
+  under `.dark`; migrated `.card`, `.program/.research/.info-card` and the section-neutral
+  elevated cards onto them and deleted the now-redundant `.dark` overrides. Verified light
+  **and** dark in-browser on home, get-involved, research, about, what-is-ai-safety.
+- Deleted dead code: `.section-alt`/`.section-alt-2`, the empty `hover-bounce` animation,
+  and the entire `forms.css` (`.form-input`/`.checkbox-custom` unused in every template).
 
-- Migrate hardcoded `rgba()` light/dark pairs into semantic tokens (a `--surface`-style
-  token that flips under `.dark`), *then* delete the now-dead `.dark` overrides. Do this
-  per component, verifying light **and** dark in the browser each time.
-- Migrate simple reusable classes such as `.btn-cta` and `.section-heading` to Tailwind
-  utilities or `@apply` only where it reduces custom CSS.
+Remaining (each its own focused effort):
+
+- The rest of the `.dark` rules are genuine **one-offs** (footer, dropdown, mobile-nav,
+  header borders, section backgrounds, `.btn-secondary/.btn-cta`, `.learn-more`,
+  `.program-badge`) plus page-specific `!important` icon-contrast hacks in `cards.css`.
+  These are not repeated pairs — tokenising a value used once adds indirection without
+  removing lines, so leave them unless a component is being reworked anyway.
 - Extract repeated card patterns into Astro components with explicit `variant` props, so
-  styling no longer depends on broad section-context selectors.
+  styling no longer depends on broad `.section-neutral .program-card`-style context
+  selectors. This is the big lever for killing the `!important` icon hacks — but it's a
+  component-architecture change across 13 pages, not a CSS edit. Do it deliberately, per
+  component, with browser checks.
 
 ## Optional / conditional
 
