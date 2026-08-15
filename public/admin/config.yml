@@ -222,6 +222,10 @@ singletons:
           - { name: researchTitle, label: Research section title, widget: string }
           - { name: researchSubtitle, label: Research section subtitle, widget: string }
           - { name: researchViewAllText, label: 'Research "view all" button text', widget: string }
+          - { name: getInvolvedBannerTitle, label: Get Involved banner heading, widget: text, hint: 'One line per line of the heading.' }
+          - { name: getInvolvedBannerCtaText, label: Get Involved banner button text, widget: string }
+          - { name: getInvolvedBannerCtaLink, label: Get Involved banner button link, widget: string }
+          - { name: getInvolvedBannerImage, label: Get Involved banner background image, widget: image }
 
   - name: about_page
     label: About page

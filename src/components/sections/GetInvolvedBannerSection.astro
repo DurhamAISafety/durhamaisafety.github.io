@@ -1,0 +1,60 @@
+---
+import type { HomePageConfig } from '../../data/config';
+
+interface Props {
+  homeConfig: HomePageConfig;
+}
+
+const { homeConfig } = Astro.props;
+
+// The heading is authored as two lines ("Get involved." / "Make a difference.")
+const titleLines = homeConfig.getInvolvedBannerTitle.split('\n').filter(Boolean);
+---
+
+<section
+    id="get-involved-banner"
+    class="get-involved-banner relative overflow-hidden flex items-center"
+>
+    <img
+        src={homeConfig.getInvolvedBannerImage}
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full object-cover"
+        width="1600"
+        height="1130"
+        loading="lazy"
+        decoding="async"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/25"></div>
+
+    <div class="site-container mx-auto px-6 relative z-10 w-full">
+        <div class="max-w-3xl text-left reveal">
+            <h2 class="section-heading text-white font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
+                {titleLines.map((line) => <span class="block">{line}</span>)}
+            </h2>
+            <div class="mt-8">
+                <a href={homeConfig.getInvolvedBannerCtaLink} class="btn-cta">
+                    {homeConfig.getInvolvedBannerCtaText}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .get-involved-banner {
+        min-height: 380px;
+    }
+
+    @media (min-width: 768px) {
+        .get-involved-banner {
+            min-height: 460px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .get-involved-banner {
+            min-height: 520px;
+        }
+    }
+</style>

@@ -11,6 +11,7 @@ import EventsSection from '../components/sections/EventsSection.astro';
 import ProgrammePreviewSection from '../components/sections/ProgrammePreviewSection.astro';
 import ResearchPreviewSection from '../components/sections/ResearchPreviewSection.astro';
 import SupportersHeroStrip from '../components/islands/SupportersHeroStrip.astro';
+import GetInvolvedBannerSection from '../components/sections/GetInvolvedBannerSection.astro';
 
 const { programmes } = await getProgrammesContent();
 const { research } = await getResearchContent();
@@ -119,6 +120,8 @@ const { homeConfig } = await getHomePageContent();
     homeConfig={homeConfig}
     research={research}
   />
+
+  <GetInvolvedBannerSection homeConfig={homeConfig} />
 </Layout>
 
 <script>

@@ -52,6 +52,10 @@ export interface HomePageConfig {
   researchTitle: string;
   researchSubtitle: string;
   researchViewAllText: string;
+  getInvolvedBannerTitle: string;
+  getInvolvedBannerCtaText: string;
+  getInvolvedBannerCtaLink: string;
+  getInvolvedBannerImage: string;
   [key: string]: unknown;
 }
 
@@ -124,6 +128,8 @@ export async function getHomePageContent(): Promise<{ document: any; homeConfig:
 
   validatePath(doc.heroPrimaryCtaLink, 'home.heroPrimaryCtaLink');
   validatePath(doc.heroSecondaryCtaLink, 'home.heroSecondaryCtaLink');
+  validatePath(doc.getInvolvedBannerCtaLink, 'home.getInvolvedBannerCtaLink');
+  validatePath(doc.getInvolvedBannerImage, 'home.getInvolvedBannerImage');
 
   return { document: doc, homeConfig };
 }
