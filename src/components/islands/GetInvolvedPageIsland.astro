@@ -32,15 +32,6 @@ const { featuredCards, moreCards } = Astro.props;
               <p class="text-sm leading-relaxed mb-4 flex-grow">
                 {card.description}
               </p>
-              {card.recommended_label && (
-                <div class="text-center mb-4">
-                  <span
-                    class="text-durham-purple font-semibold"
-                  >
-                    {card.recommended_label}
-                  </span>
-                </div>
-              )}
               <a
                 href={card.link_url}
                 class="btn btn-primary btn-sm mt-auto"
@@ -69,6 +60,11 @@ const { featuredCards, moreCards } = Astro.props;
         {moreCards.map((card) => (
           <div class="involvement-card card p-6 card-hover text-center flex flex-col h-full">
             <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
+            {card.badge && (
+              <span class="self-center px-2 py-0.5 mb-2 text-xs font-medium rounded-full bg-surface-muted text-body-text">
+                {card.badge}
+              </span>
+            )}
             <h4 class="text-xl font-bold mb-4">
               {card.title}
             </h4>

@@ -6,7 +6,6 @@ cards:
     link_label: View Events
     external: false
     featured: true
-    recommended_label: ✨ Recommended
   - title: Join Our Discord
     description: 'Chat with our community, ask questions, and hear about new opportunities first!'
     icon: fab fa-discord
@@ -14,7 +13,6 @@ cards:
     link_label: Join Discord
     external: true
     featured: true
-    recommended_label: ✨ Recommended
   - title: Follow Our Instagram
     description: Stay up-to-date and DM us with any questions!
     icon: fab fa-instagram
@@ -22,7 +20,6 @@ cards:
     link_label: Follow Us
     external: true
     featured: true
-    recommended_label: ✨ Recommended
   - title: Talk to Our Team
     description: Please feel free to reach out to our team via email for anything.
     icon: fas fa-envelope
@@ -37,6 +34,7 @@ cards:
     link_label: Join on SU
     external: true
     featured: false
+    badge: Durham students
   - title: Get Informed!
     description: Learn more about AI safety and why it matters for our future.
     icon: fas fa-graduation-cap
@@ -51,6 +49,7 @@ cards:
     link_label: Take Action
     external: true
     featured: false
+    badge: Take action
   - title: Get Advice
     description: Connecting with human experts can be valuable. These advisors offer free guidance calls to help you contribute to AI safety.
     icon: fas fa-comments
@@ -58,3 +57,4 @@ cards:
     link_label: Find Advisors
     external: true
     featured: false
+    badge: Take action
