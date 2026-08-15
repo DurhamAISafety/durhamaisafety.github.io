@@ -6,45 +6,22 @@
 
 /* Card styles */
 .card {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--surface-glass);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(235, 128, 253, 0.3);
+    border: 1px solid var(--surface-glass-border);
     border-radius: var(--radius-xl);
     padding: var(--card-padding);
     transition: var(--transition-default);
 }
 
-.dark .card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(157, 78, 221, 0.4);
-}
-
-.card:hover {
-    /* Disabled expensive transform on hover for performance */
-    transform: none;
-    box-shadow: none;
-}
-
-/* Bounce animation for hoverable cards */
-@keyframes hover-bounce {
-    /* Disabled */
-}
-
-/* Apply bounce on hover to elements marked as card-hover */
-.card-hover:hover {
-    animation: none;
-}
-
-
-
 /* Page-specific card helpers */
 .program-card,
 .research-card,
 .info-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--surface-glass);
     backdrop-filter: blur(10px);
     /* Use purple-accent border by default */
-    border: 1px solid rgba(235, 128, 253, 0.3);
+    border: 1px solid var(--surface-glass-border);
     border-radius: var(--radius-xl);
 }
 
@@ -101,21 +78,6 @@
     text-align: center;
 }
 
-.dark .program-card,
-.dark .research-card,
-.dark .info-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(157, 78, 221, 0.4);
-}
-
-/* Research/info/program cards inside neutral (light) sections: solid light surfaces */
-.section-neutral .program-card,
-.section-neutral .research-card,
-.section-neutral .info-card {
-    background: #ffffff;
-    border: 1px solid rgba(57, 20, 79, 0.15);
-}
-
 /* Ensure headings and body text have proper contrast on light cards */
 .section-neutral .research-card h4,
 .section-neutral .info-card h4,
@@ -127,25 +89,6 @@
 .section-neutral .info-card p,
 .section-neutral .program-card p {
     color: var(--color-body-text);
-}
-
-/* Dark mode variant for cards in neutral sections: elevated dark surfaces */
-.dark .section-neutral .program-card,
-.dark .section-neutral .research-card,
-.dark .section-neutral .info-card {
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(157, 78, 221, 0.35);
-}
-
-/* Get Involved: involvement cards surfaces */
-.section-neutral .involvement-card {
-    background: #ffffff;
-    border: 1px solid rgba(57, 20, 79, 0.15);
-}
-
-.dark .section-neutral .involvement-card {
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(157, 78, 221, 0.35);
 }
 
 /* Calendar container in neutral sections: add dark mode surface */
@@ -466,13 +409,13 @@
     color: var(--color-bright-purple) !important;
 }
 
-/* Adjust card styling in neutral sections */
+/* Adjust card styling in neutral sections (light/dark flip via --surface-elevated) */
 .section-neutral .program-card,
 .section-neutral .research-card,
 .section-neutral .info-card,
 .section-neutral .involvement-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(235, 128, 253, 0.2);
+    background: var(--surface-elevated);
+    border: 1px solid var(--surface-elevated-border);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 

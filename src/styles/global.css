@@ -32,6 +32,14 @@
   --color-heading-text: #0f172a;
   --color-muted-text: #94a3b8;
 
+  /* Component surface pairs (flip under .dark — see matching block below).
+     --surface-glass: translucent card/input on the purple page background.
+     --surface-elevated: solid card on light (section-neutral) backgrounds. */
+  --surface-glass: rgba(255, 255, 255, 0.1);
+  --surface-glass-border: rgba(235, 128, 253, 0.3);
+  --surface-elevated: rgba(255, 255, 255, 0.9);
+  --surface-elevated-border: rgba(235, 128, 253, 0.2);
+
   /* Gradients replaced with fixed solid colours */
   --gradient-primary: var(--color-bright-purple);
   --gradient-text: var(--color-bright-purple);
@@ -99,6 +107,12 @@
   --color-body-text:     #a0a0b8;
   --color-heading-text:  #e8e8f5;
   --color-muted-text:    #52526a;
+
+  /* Component surface pairs — dark values */
+  --surface-glass: rgba(0, 0, 0, 0.3);
+  --surface-glass-border: rgba(157, 78, 221, 0.4);
+  --surface-elevated: rgba(0, 0, 0, 0.35);
+  --surface-elevated-border: rgba(157, 78, 221, 0.35);
 }
 
 @theme {
@@ -145,6 +159,17 @@
   --shadow-card-hover: var(--shadow-card-hover);
 }
 
+/* While a theme switch is in flight, kill every transition so the whole page flips
+   atomically. Otherwise the translucent header transitions over 0.3s while section
+   backgrounds snap instantly, and the dark page shows through the mid-transition
+   header — a visible flash at the header/page divider. */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
 /* Base resets utilizing Tailwind v4 design tokens */
 body {
   font-family: var(--font-family-body);
@@ -165,7 +190,6 @@ h1, h2, h3, h4, h5, h6,
 @import "./layout.css";
 @import "./cards.css";
 @import "./buttons.css";
-@import "./forms.css";
 @import "./animations.css";
 @import "./utilities.css";
 

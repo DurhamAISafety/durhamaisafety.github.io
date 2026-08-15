@@ -1,9 +1,6 @@
 # Fix Notes
 
-Past bugs and their fixes worth remembering. (Earlier notes about the TinaCMS build
-wrapper, pnpm + Netlify SSR-function bundling, and masked Tina env vars were removed when
-the site moved to a pure static Astro build with Sveltia CMS — none of that plumbing exists
-anymore.)
+Past bugs and their fixes worth remembering.
 
 ---
 
