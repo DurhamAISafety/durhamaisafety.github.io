@@ -32,20 +32,32 @@ export function initializeDarkMode(): void {
   }
   updateDarkModeIcon(isDark);
 
+  // Flip the theme atomically: suppress transitions for the switch, then restore
+  // them next frame so the header doesn't lag the page and flash (see CSS
+  // .theme-switching guard).
+  function applyTheme(nowDark: boolean): void {
+    html.classList.add('theme-switching');
+    html.classList.toggle('dark', nowDark);
+    updateDarkModeIcon(nowDark);
+    void html.offsetHeight; // force the instant switch to commit
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => html.classList.remove('theme-switching'));
+    });
+  }
+
   // Wire up all toggle buttons (desktop + mobile)
   document.querySelectorAll('.dark-mode-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const nowDark = html.classList.toggle('dark');
+      const nowDark = !html.classList.contains('dark');
       storageSet('theme', nowDark ? 'dark' : 'light');
-      updateDarkModeIcon(nowDark);
+      applyTheme(nowDark);
     });
   });
 
   // Follow system preference changes if user hasn't manually set a preference.
   function onSchemeChange(e: MediaQueryListEvent): void {
     if (!storageGet('theme')) {
-      html.classList.toggle('dark', e.matches);
-      updateDarkModeIcon(e.matches);
+      applyTheme(e.matches);
     }
   }
   mq.addEventListener('change', onSchemeChange);

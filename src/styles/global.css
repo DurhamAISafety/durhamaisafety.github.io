@@ -145,6 +145,17 @@
   --shadow-card-hover: var(--shadow-card-hover);
 }
 
+/* While a theme switch is in flight, kill every transition so the whole page flips
+   atomically. Otherwise the translucent header transitions over 0.3s while section
+   backgrounds snap instantly, and the dark page shows through the mid-transition
+   header — a visible flash at the header/page divider. */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
 /* Base resets utilizing Tailwind v4 design tokens */
 body {
   font-family: var(--font-family-body);
