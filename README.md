@@ -144,8 +144,34 @@ To conserve Netlify build minutes and ensure robust builds under `pnpm` strict n
    - Pushes that only touch docs, workflows or editor config are skipped (`paths-ignore` in the workflow). Netlify meters **production deploys** as well as build minutes, so republishing identical output is a real cost — use **Run workflow** on the Actions tab if you ever need to force one.
    - This shifts all build computation to GitHub's free runners, reducing Netlify Build Minute consumption to **zero**!
    - Automatic Git triggers are disabled in the Netlify Dashboard to avoid burning minutes on CMS git saves.
-2. **GitHub Pages (Redirect Site)**:
-   - Deployed at **[durhamaisafety.github.io](https://durhamaisafety.github.io)** on every push to `main` to serve as a redirect fallback.
+2. **GitHub Pages (full site)**:
+   - The real Astro build is published at **[durhamaisafety.github.io](https://durhamaisafety.github.io)** on every push to `main` (`Deploy Astro site to GitHub Pages`). Pages is free and unmetered for public repos, so there is no per-deploy cost.
+   - It used to publish only a redirect stub pointing at the `.uk` domain.
+
+### Moving durhamaisafety.uk to GitHub Pages
+
+Netlify meters **production deploys** as well as build minutes, and deploys are currently
+blocked by exhausted account credits. Nothing here depends on a Netlify serving feature —
+`netlify.toml` sets only build options that `--no-build` ignores, there are no `_headers`
+or `_redirects`, and the `/events` + `/what-is-ai-safety` redirects are Astro's own,
+emitted as static pages into `dist/`. So the domain can move to Pages at no cost.
+
+Remaining steps, in order:
+
+1. Confirm [durhamaisafety.github.io](https://durhamaisafety.github.io) serves the current
+   site correctly.
+2. Add `public/CNAME` containing `durhamaisafety.uk` (this makes Pages claim the domain and
+   redirect the `.github.io` URL to it, so do it only when ready to cut over).
+3. Repoint DNS. The domain is registered at Porkbun with nameservers delegated to Netlify,
+   so the records live in Netlify's DNS panel — **the nameservers do not need to change**.
+   Replace the apex record with GitHub Pages' four A records (`185.199.108.153`,
+   `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and point `www` at
+   `durhamaisafety.github.io`. Netlify DNS is free and separate from deploy credits.
+4. Optionally verify the domain in GitHub org settings (`_github-pages-challenge-*` TXT
+   record) to prevent takeover of the name.
+
+Keep the Netlify site itself — Sveltia CMS authenticates through Netlify's GitHub OAuth,
+which is a separate free service and unaffected by any of this.
 
 ---
 
