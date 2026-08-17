@@ -1,22 +1,14 @@
 name: Netlify Deploy
 
+# Manual-only fallback. durhamaisafety.uk is served by GitHub Pages
+# (deploy-astro.yml) as of 2026-08-17, so running this deploys to a Netlify site
+# that nothing points at. Kept in case the site ever needs to move back.
+#
+# The push trigger was removed because Netlify meters production deploys and the
+# account's credits are exhausted: every run since 15 Aug failed with
+# `403 Account credit usage exceeded`, marking each commit on main red for no
+# reason. Do not restore it without first repointing DNS at Netlify.
 on:
-  push:
-    branches: [main]
-    # Netlify meters *production deploys* (~15 credits each), so a push that
-    # cannot change the published site must not trigger one. Between 9–15 Aug,
-    # 8 of 15 deploys republished byte-identical output off docs/CI/dev-dep
-    # commits. A push touching any non-ignored path still deploys, so a commit
-    # that changes both docs and src/ is unaffected.
-    paths-ignore:
-      - '*.md' # root docs only — src/content/**/*.md would still deploy
-      - 'docs/**'
-      - '.github/**'
-      - '.agents/**'
-      - '.vscode/**'
-      - '.editorconfig'
-      - 'LICENSE'
-      - 'skills-lock.json'
   workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
 
 # Manage concurrency: cancels running deploys if a new commit is pushed

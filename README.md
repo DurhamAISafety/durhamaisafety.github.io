@@ -1,10 +1,10 @@
 # Durham AI Safety Initiative Website
 
-[![Netlify Deploy](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml/badge.svg)](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-netlify.yml)
+[![Deploy to GitHub Pages](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-astro.yml/badge.svg)](https://github.com/DurhamAISafety/durhamaisafety.github.io/actions/workflows/deploy-astro.yml)
 [![Built with Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?logo=astro&logoColor=white)](https://astro.build)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The official website for DAISI, built with Astro and deployed with Netlify at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML/JSON files below, or via the [Sveltia CMS](https://sveltiacms.app) editor at [/admin/](https://durhamaisafety.uk/admin/).
+The official website for DAISI, built with Astro and deployed to GitHub Pages at **[durhamaisafety.uk](https://durhamaisafety.uk)**. Content can be edited directly in the YAML/JSON files below, or via the [Sveltia CMS](https://sveltiacms.app) editor at [/admin/](https://durhamaisafety.uk/admin/).
 
 ## Quick Start
 
@@ -134,44 +134,46 @@ Content is read directly from `src/content/*` at build time — there is no CMS 
 
 ## Deployment
 
-To conserve Netlify build minutes and ensure robust builds under `pnpm` strict non-hoisting, our deployment system and local workflow are fully optimized:
+The site is a pure static Astro build published by **GitHub Pages**, which is free and
+unmetered for public repos.
 
-### Decoupled Build Orchestration
+### How it goes live
 
-1. **Netlify Production Site**:
-   - Deployed at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
-   - Built and deployed via **GitHub Actions** (`Netlify Deploy` workflow) on pushes to `main` that touch site sources, or manually triggered on-demand.
-   - Pushes that only touch docs, workflows or editor config are skipped (`paths-ignore` in the workflow). Netlify meters **production deploys** as well as build minutes, so republishing identical output is a real cost — use **Run workflow** on the Actions tab if you ever need to force one.
-   - This shifts all build computation to GitHub's free runners, reducing Netlify Build Minute consumption to **zero**!
-   - Automatic Git triggers are disabled in the Netlify Dashboard to avoid burning minutes on CMS git saves.
-2. **GitHub Pages (full site)**:
-   - The real Astro build is published at **[durhamaisafety.github.io](https://durhamaisafety.github.io)** on every push to `main` (`Deploy Astro site to GitHub Pages`). Pages is free and unmetered for public repos, so there is no per-deploy cost.
-   - It used to publish only a redirect stub pointing at the `.uk` domain.
+1. **GitHub Pages (production)**:
+   - Serves **[durhamaisafety.uk](https://durhamaisafety.uk)**.
+   - `.github/workflows/deploy-astro.yml` installs, runs `pnpm build` and publishes `dist/`
+     on every push to `main`. This is the only workflow that puts changes live.
+   - The custom domain is configured in **Settings → Pages**; `public/CNAME` holds a backup
+     copy in the build artifact. `durhamaisafety.github.io` redirects to the custom domain.
+   - HTTPS is a GitHub-issued Let's Encrypt certificate with *Enforce HTTPS* on.
+2. **Netlify (fallback only)**:
+   - `.github/workflows/deploy-netlify.yml` is **manual-only** (`workflow_dispatch`). It is
+     kept in case the site ever needs to move back; it is not part of normal deploys.
+   - Netlify's PR checks (`Header rules`, `Pages changed`, `Redirect rules`) show red
+     because Deploy Previews are disabled. Expected, not a failure.
 
-### Moving durhamaisafety.uk to GitHub Pages
+### Why the site moved off Netlify (2026-08-17)
 
-Netlify meters **production deploys** as well as build minutes, and deploys are currently
-blocked by exhausted account credits. Nothing here depends on a Netlify serving feature —
-`netlify.toml` sets only build options that `--no-build` ignores, there are no `_headers`
-or `_redirects`, and the `/events` + `/what-is-ai-safety` redirects are Astro's own,
-emitted as static pages into `dist/`. So the domain can move to Pages at no cost.
+Netlify meters **production deploys** (~15 credits each) as well as build minutes. Building
+on GitHub Actions removed the build-minute cost but not the per-deploy cost, and the
+account's credits ran out on 15 Aug — every deploy failed with
+`403 Account credit usage exceeded` until the domain moved.
 
-Remaining steps, in order:
+Nothing here needed a Netlify serving feature: `netlify.toml` sets only build options that
+`--no-build` ignores, there are no `_headers` or `_redirects`, no Forms and no functions,
+and the `/events` + `/what-is-ai-safety` redirects are Astro's own, emitted as static pages
+into `dist/`. See `docs/FIX_NOTES.md` for the full analysis.
 
-1. Confirm [durhamaisafety.github.io](https://durhamaisafety.github.io) serves the current
-   site correctly.
-2. Add `public/CNAME` containing `durhamaisafety.uk` (this makes Pages claim the domain and
-   redirect the `.github.io` URL to it, so do it only when ready to cut over).
-3. Repoint DNS. The domain is registered at Porkbun with nameservers delegated to Netlify,
-   so the records live in Netlify's DNS panel — **the nameservers do not need to change**.
-   Replace the apex record with GitHub Pages' four A records (`185.199.108.153`,
-   `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and point `www` at
-   `durhamaisafety.github.io`. Netlify DNS is free and separate from deploy credits.
-4. Optionally verify the domain in GitHub org settings (`_github-pages-challenge-*` TXT
-   record) to prevent takeover of the name.
+### Do not delete the Netlify account
 
-Keep the Netlify site itself — Sveltia CMS authenticates through Netlify's GitHub OAuth,
-which is a separate free service and unaffected by any of this.
+Two free things still run there:
+
+- **Sveltia CMS auth** — `public/admin/config.yml` sets no `base_url`, so logins go through
+  Netlify's GitHub OAuth provider.
+- **DNS** — the domain is registered at Porkbun with nameservers delegated to Netlify, so
+  the records live in Netlify's DNS panel: apex A records to `185.199.108.153`,
+  `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and `www` CNAMEd to
+  `durhamaisafety.github.io`.
 
 ---
 
