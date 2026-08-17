@@ -1,8 +1,22 @@
 name: Deploy Astro site to GitHub Pages
 
+# Publishes the real site to GitHub Pages, which is free and unmetered for
+# public repos — unlike Netlify, which meters production deploys (~15 credits
+# each). Nothing in this repo uses a Netlify serving feature: netlify.toml sets
+# only build options that `--no-build` ignores, there are no _headers or
+# _redirects, and the two site redirects are Astro's own (emitted as static
+# pages into dist/).
+#
+# Until durhamaisafety.uk's DNS is repointed at GitHub Pages, this publishes to
+# durhamaisafety.github.io and the .uk domain is still served by Netlify. See
+# README §Deployment for the remaining cut-over steps.
+#
+# No paths-ignore here, unlike deploy-netlify.yml: Pages deploys cost nothing,
+# so it is simpler to keep the published site in step with main.
+
 on:
   push:
-    branches: [main, astro-2]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,28 +30,37 @@ concurrency:
 
 jobs:
   build:
+    name: Build Astro site
     runs-on: ubuntu-latest
     steps:
-      - name: Create redirect site
-        run: |
-          mkdir -p dist
-          # Both index.html and 404.html use the same redirect so that
-          # any path (e.g. /events) is forwarded to the matching path on .uk
-          cat > dist/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <meta charset="utf-8">
-              <meta http-equiv="refresh" content="0; url=https://durhamaisafety.uk">
-              <link rel="canonical" href="https://durhamaisafety.uk">
-              <script>location.replace("https://durhamaisafety.uk" + location.pathname + location.search)</script>
-            </head>
-            <body>
-              <p>Redirecting to <a href="https://durhamaisafety.uk">durhamaisafety.uk</a>…</p>
-            </body>
-          </html>
-          EOF
-          cp dist/index.html dist/404.html
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: 'package.json'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Get pnpm Store Directory
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm Cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Site
+        run: pnpm build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
@@ -45,6 +68,7 @@ jobs:
           path: ./dist
 
   deploy:
+    name: Deploy to GitHub Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
