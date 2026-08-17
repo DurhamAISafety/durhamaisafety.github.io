@@ -140,7 +140,8 @@ To conserve Netlify build minutes and ensure robust builds under `pnpm` strict n
 
 1. **Netlify Production Site**:
    - Deployed at **[durhamaisafety.uk](https://durhamaisafety.uk)**.
-   - Built and deployed via **GitHub Actions** (`Netlify Deploy` workflow) on every push to `main`, or manually triggered on-demand.
+   - Built and deployed via **GitHub Actions** (`Netlify Deploy` workflow) on pushes to `main` that touch site sources, or manually triggered on-demand.
+   - Pushes that only touch docs, workflows or editor config are skipped (`paths-ignore` in the workflow). Netlify meters **production deploys** as well as build minutes, so republishing identical output is a real cost — use **Run workflow** on the Actions tab if you ever need to force one.
    - This shifts all build computation to GitHub's free runners, reducing Netlify Build Minute consumption to **zero**!
    - Automatic Git triggers are disabled in the Netlify Dashboard to avoid burning minutes on CMS git saves.
 2. **GitHub Pages (Redirect Site)**:
