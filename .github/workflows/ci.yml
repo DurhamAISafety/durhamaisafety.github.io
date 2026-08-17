@@ -25,5 +25,6 @@ jobs:
           node-version-file: 'package.json'
       - uses: pnpm/action-setup@v6
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
       - run: pnpm check
       - run: pnpm build

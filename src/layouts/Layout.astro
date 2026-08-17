@@ -90,9 +90,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <!-- Apply theme before first paint to prevent flash of wrong theme -->
   <script is:inline>
     (function () {
-      var stored = null;
+      let stored = null;
       try { stored = localStorage.getItem('theme'); } catch (_) {}
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (stored === 'dark' || (!stored && prefersDark)) {
         document.documentElement.classList.add('dark');
       }
