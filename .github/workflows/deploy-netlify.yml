@@ -3,6 +3,20 @@ name: Netlify Deploy
 on:
   push:
     branches: [main]
+    # Netlify meters *production deploys* (~15 credits each), so a push that
+    # cannot change the published site must not trigger one. Between 9–15 Aug,
+    # 8 of 15 deploys republished byte-identical output off docs/CI/dev-dep
+    # commits. A push touching any non-ignored path still deploys, so a commit
+    # that changes both docs and src/ is unaffected.
+    paths-ignore:
+      - '*.md' # root docs only — src/content/**/*.md would still deploy
+      - 'docs/**'
+      - '.github/**'
+      - '.agents/**'
+      - '.vscode/**'
+      - '.editorconfig'
+      - 'LICENSE'
+      - 'skills-lock.json'
   workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
 
 # Manage concurrency: cancels running deploys if a new commit is pushed

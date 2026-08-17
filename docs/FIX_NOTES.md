@@ -69,6 +69,37 @@ Response status code does not indicate success: 429 (Too Many Requests)
 
 ---
 
+## Netlify credits burned on no-op deploys
+
+### The issue
+
+360 credits across 24 production deploys (~15 credits each). The `Netlify Deploy`
+workflow fired on *every* push to `main`, regardless of whether the push could change
+the published site.
+
+Of the 15 successful deploys between 9–15 Aug, **8 published byte-identical output**:
+`958cafa` (.github only), `326a85e` (CLAUDE.md), `2e2dc76` (README + dependabot config),
+`c6b7c40` (TODO.md), `5d78833` (skills files), `0cc4dcd` (CI workflow), plus two dev-only
+dependency bumps (`30a67e6` @types/node, `eb00c8a` esbuild pin). Roughly 120 credits.
+
+They also clustered — six deploys in the 29 minutes around 2026-08-15 00:00, four of
+them docs and Dependabot chores.
+
+- **Cause**: `on.push.branches: [main]` with no path filter. Note the existing
+  "Check for New Commits Since Last Successful Deploy" step does *not* help: it only
+  skips when the last deployed SHA equals `GITHUB_SHA`, which is never true for a new
+  commit, however trivial.
+- **Correction**: `paths-ignore` on the push trigger for docs, `.github/`, `.agents/`
+  and editor config. A push touching any non-ignored path still deploys, so a mixed
+  docs + `src/` commit is unaffected. `*.md` is deliberately root-scoped rather than
+  `**/*.md`, so Markdown content under `src/content/` would still deploy if it is ever
+  added.
+- **Lesson**: Netlify meters production *deploys*, not just build minutes. Building on
+  GitHub Actions removes the build-minute cost but not the per-deploy cost — the only
+  way to spend less is to deploy less often.
+
+---
+
 ## CI signal on main
 
 `.github/workflows/ci.yml` runs on pushes to `main` as well as on PRs, so `main` has a
