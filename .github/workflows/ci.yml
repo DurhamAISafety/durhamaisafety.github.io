@@ -2,8 +2,15 @@ name: CI
 
 # Build gate for PRs (incl. Dependabot). Live deploy only runs on push to main,
 # so a red build here keeps a bad dependency bump off durhamaisafety.uk.
+#
+# Also runs on push to main so main itself carries a pass/fail signal that does
+# not depend on the Netlify deploy succeeding. Make "Type-check and build" a
+# required status check in the branch protection rule for main, otherwise a red
+# PR can still be merged (Settings → Branches → main → Require status checks).
 on:
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
   workflow_dispatch:
 
