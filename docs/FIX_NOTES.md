@@ -100,6 +100,24 @@ them docs and Dependabot chores.
 
 ---
 
+## Outcome: the site moved to GitHub Pages (2026-08-17)
+
+Rather than wait out the credit block, `durhamaisafety.uk` was repointed at GitHub Pages,
+which is free and unmetered for public repos. Nothing needed changing in the site itself:
+no `_headers`, no `_redirects`, no Forms, no functions, and the two redirects are Astro's
+own static pages.
+
+What changed: `deploy-astro.yml` builds and publishes the real site instead of a redirect
+stub; `public/CNAME` plus **Settings → Pages** claim the domain; the apex A records in
+Netlify's DNS panel now point at `185.199.10{8,9,10,11}.153` with `www` CNAMEd to
+`durhamaisafety.github.io`; `deploy-netlify.yml` is manual-only.
+
+Nameservers were **not** moved — the domain stays registered at Porkbun, delegated to
+Netlify DNS. The Netlify account is still needed for that DNS zone and for Sveltia CMS's
+OAuth provider, both free.
+
+---
+
 ## CI signal on main
 
 `.github/workflows/ci.yml` runs on pushes to `main` as well as on PRs, so `main` has a
