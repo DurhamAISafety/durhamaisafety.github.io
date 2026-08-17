@@ -11,3 +11,9 @@ home:
   researchTitle: "Research"
   researchSubtitle: "Latest Publications & Projects"
   researchViewAllText: "View All Research"
+  getInvolvedBannerTitle: |-
+    Get involved.
+    Make a difference.
+  getInvolvedBannerCtaText: "Find out how"
+  getInvolvedBannerCtaLink: "/get-involved/"
+  getInvolvedBannerImage: "/images/community/durham-cathedral.webp"
