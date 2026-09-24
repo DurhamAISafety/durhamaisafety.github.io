@@ -233,6 +233,33 @@ singletons:
           - { name: featured, label: Featured (shown at top)?, widget: boolean, default: false }
           - { name: recommended_label, label: Recommended badge text, widget: string, required: false }
 
+  - name: faq
+    label: FAQ
+    file: src/content/faq.yml
+    icon: quiz
+    description: Questions and answers on the FAQ page (/faq/).
+    fields:
+      - name: faqs
+        label: Questions
+        label_singular: Question
+        widget: list
+        summary: '{{fields.question}}'
+        fields:
+          - { name: question, label: Question, widget: string }
+          - { name: answer, label: Answer, widget: markdown, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Paragraphs, bold, italic and links only — the site only renders those.' }
+
+  - name: announcement
+    label: Announcement banner
+    file: src/content/announcement.yml
+    icon: campaign
+    description: Optional slim bar shown above the header on every page.
+    fields:
+      - { name: enabled, label: Show banner, widget: boolean, default: false, hint: 'Untick to hide the banner without deleting the message.' }
+      - { name: message, label: Message, widget: markdown, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Keep it to one short line. Bold, italic and links only.' }
+      - { name: link_url, label: Button link, widget: string, required: false, pattern: *url_pattern, hint: 'Optional. Shown after the message together with the button text below.' }
+      - { name: link_label, label: Button text, widget: string, required: false, hint: 'Optional, e.g. "Sign up". Needs a link above to show.' }
+      - { name: expires, label: Hide after, widget: datetime, type: date, format: 'YYYY-MM-DD', required: false, hint: 'Optional. The banner stops showing after this date. Checked when the site rebuilds (on every published change), so it may stay up until the next change goes live.' }
+
   - name: home_page
     label: Home page
     file: src/content/pages/home.yml

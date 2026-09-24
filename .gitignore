@@ -140,3 +140,6 @@ dist
 
 # Astro
 .astro
+
+# Claude Code agent worktrees
+.claude/worktrees/

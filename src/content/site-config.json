@@ -46,6 +46,10 @@
       {
         "title": "News",
         "url": "/news/"
+      },
+      {
+        "title": "FAQ",
+        "url": "/faq/"
       }
     ],
     "cta": {

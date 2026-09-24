@@ -461,13 +461,13 @@
 
 /* Adjust links in neutral sections */
 .section-neutral a {
-    color: #8b5cf6;
-    /* Violet for links */
+    color: #7c3aed;
+    /* Violet-600: ~5.4:1 on #f8fafc (violet-500 #8b5cf6 was ~4.0:1, failing AA) */
 }
 
 .section-neutral a:hover {
-    color: #a78bfa;
-    /* Lighter violet on hover */
+    color: #6d28d9;
+    /* Darker violet on hover, so hovered links stay readable too */
 }
 
 .dark .section-neutral a {

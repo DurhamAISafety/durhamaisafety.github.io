@@ -3,7 +3,7 @@
 **CRITICAL** For netlify, use the `.agents/skills/netlify-deploy` skill - it details how to use the CLI to interact with netlify.
 
 ## Project Snapshot
-Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is a pure static Astro 7 build (no adapter — `astro.config.mjs` is just sitemap + the Tailwind Vite plugin), with Tailwind CSS v4 and TypeScript. Content lives in YAML/JSON files under `src/content/` and is read directly at build time; three collections are also editable via Sveltia CMS at `/admin/`.
+Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is a pure static Astro 7 build (no adapter — `astro.config.mjs` is just sitemap + the Tailwind Vite plugin), with Tailwind CSS v4 and TypeScript. Content lives in YAML/JSON files under `src/content/` and is read directly at build time; most of them are also editable via Sveltia CMS at `/admin/`.
 
 ## Build & Validation
 ```bash
@@ -48,7 +48,7 @@ src/content/*.yml / *.json
 - `netlify.toml` - Netlify deploy configuration.
 
 ## Content
-Content is read directly from `src/content/*` at build time via the readers in `src/data/content.ts`; there is no CMS runtime or API. Most content is code-edited in the files. Sveltia CMS (`/admin/`) covers only three collections — People / Committee, Research papers, and Supporters — committing edits as pull requests against `main`.
+Content is read directly from `src/content/*` at build time via the readers in `src/data/content.ts`; there is no CMS runtime or API. Most content is code-edited in the files. Sveltia CMS (`/admin/`) has one singleton per content file (see `public/admin/config.yml`), committing edits as pull requests against `main`.
 
 YAML root wrappers must not be removed:
 - `people.yml` -> `people:` (members and alumni in one list, split by `type: member` / `type: alumnus`)
@@ -56,6 +56,7 @@ YAML root wrappers must not be removed:
 - `supporters.yml` -> `supporters:`
 - `get-involved.yml` -> `cards:`
 - `programmes.yml` -> `programmes:`
+- `faq.yml` -> `faqs:`
 - `site-config.json` has no YAML wrapper; it controls site title, email, OG image, social links, navigation, and footer tagline.
 
 Image paths must use leading `/` public paths:
@@ -91,12 +92,10 @@ Important cascade pitfall: CSS loaded from `public/css/*.css` is unlayered and c
 ## Content Editing (Sveltia CMS)
 Non-technical maintainers edit content via [Sveltia CMS](https://sveltiacms.app) at `/admin/` — a Git-based editor with no SaaS backend. It's hosted: `public/admin/index.html` loads Sveltia from a CDN and reads `public/admin/config.yml`. There is no local CMS process to run and no credentials are needed to build the site. Each save opens a pull request against `main` (editorial workflow) for review before publish. Auth is GitHub OAuth via Netlify (already configured).
 
-The CMS exposes three collections only:
-- People / Committee -> `src/content/people.yml`
-- Research papers -> `src/content/research-papers.yml`
-- Supporters -> `src/content/supporters.yml`
+The CMS exposes one singleton per content file — Announcement banner, People / Committee, Research papers, Supporters, Site config, Get Involved cards, FAQ, Home page, About page, Programmes and Research page. `public/admin/config.yml` is the source of truth; README §Content Management (CMS) has the file mapping.
 
-Everything else — home, research page, programmes, get-involved, and site config — is code-edited under `src/content/`. The About page is intentionally NOT in the CMS (its copy contains hand-written HTML links); edit it in `src/content/pages/about.yml`.
+- `announcement.yml` -> banner above the header on every page (`src/data/announcement.ts`, rendered in `Layout.astro`); `expires` is evaluated at build time.
+- `faq.yml` -> `faqs:` list of `{question, answer}` rendered at `/faq/` with FAQPage JSON-LD.
 
 Content is read directly from the files at build time via `src/data/content.ts`; no CMS runtime client, GraphQL, or editing-preview markup is involved. Page-specific copy is loaded via `src/data/config.ts` (`getHomePageContent()`, `getAboutPageContent()`, `getResearchPageContent()`). Prefer extending content files over adding hardcoded page copy that maintainers may need to edit.
 

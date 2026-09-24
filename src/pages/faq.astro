@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { getFaqContent } from '../data/faq';
+import { getSiteConfigContent } from '../data/config';
+
+const { faqs } = getFaqContent();
+const { siteConfig } = await getSiteConfigContent();
+---
+
+<Layout
+  title="FAQ"
+  description="Frequently asked questions about joining the Durham AI Safety Initiative (DAISI): who can join, what it costs, and how to hear about events."
+>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answerText },
+      })),
+    })}
+  />
+
+  <section class="section section-neutral">
+    <div class="site-container text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+      <div class="w-24 h-1 bg-gradient-to-r from-bright-purple to-light-purple mx-auto rounded-full mb-6"></div>
+      <p class="text-lg text-body-text max-w-2xl mx-auto">
+        Can't find your answer? Email us at <a href={`mailto:${siteConfig.email}`} class="text-durham-purple hover:text-bright-purple underline">{siteConfig.email}</a>.
+      </p>
+    </div>
+    <!-- .site-container sets margin/max-width unlayered, so the spacing lives on an inner div. -->
+    <div class="site-container">
+      <div class="max-w-3xl mx-auto mt-12 space-y-4">
+        {faqs.map((faq) => (
+          <details class="faq-item card involvement-card">
+            <summary class="faq-summary">
+              <h2 class="text-lg font-bold">{faq.question}</h2>
+              <Icon name="fas fa-chevron-down" class="faq-chevron text-durham-purple shrink-0" />
+            </summary>
+            <div class="faq-answer text-body-text" set:html={faq.answerHtml} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faq-item {
+    padding: 0;
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    border-radius: inherit;
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-summary:focus-visible {
+    outline: 3px solid var(--color-bright-purple);
+    outline-offset: 2px;
+  }
+
+  .faq-chevron {
+    transition: transform 0.2s ease;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-chevron {
+      transition: none;
+    }
+  }
+</style>

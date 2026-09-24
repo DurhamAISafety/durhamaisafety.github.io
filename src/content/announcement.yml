@@ -1,0 +1,8 @@
+# Site-wide announcement bar shown above the header on every page.
+# Edit via the CMS ("Announcement banner") or here. Keep the message to one short line.
+enabled: false
+message: '**Example announcement:** replace this text, then tick "Show banner" to publish it.'
+link_url: /#events
+link_label: See events
+# Optional YYYY-MM-DD. The banner stops showing after this date (checked when the site builds).
+expires: ''
