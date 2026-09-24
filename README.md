@@ -24,23 +24,25 @@ No credentials or `.env` are needed for local development — the site builds an
 
 ## Content Updates (Quick Reference)
 
-All content below is edited directly in the file. Three collections — People, Research papers, and Supporters — can also be edited via the hosted CMS at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin); everything else is file-only.
+All content below can be edited directly in the file, or via the hosted CMS at [durhamaisafety.uk/admin](https://durhamaisafety.uk/admin) using the CMS section listed.
 
 | To update... | Edit this file | CMS section |
 |---|---|---|
-| Home page text & headers | `src/content/pages/home.yml` | — |
-| About page intro & impact | `src/content/pages/about.yml` | — |
-| Research opportunities & areas | `src/content/pages/research.yml` | — |
+| Announcement banner (top of every page) | `src/content/announcement.yml` | **Announcement banner** |
+| FAQ page (`/faq/`) | `src/content/faq.yml` | **FAQ** |
+| Home page text & headers | `src/content/pages/home.yml` | **Home page** |
+| About page intro & impact | `src/content/pages/about.yml` | **About page** |
+| Research opportunities & areas | `src/content/pages/research.yml` | **Research page** |
 | Team members | `src/content/people.yml` + photo to `public/images/people/` | **People / Committee** |
 | Alumni | `src/content/people.yml` + photo to `public/images/people/` | **People / Committee** |
 | Supporters | `src/content/supporters.yml` + logo to `public/images/supporters/` | **Supporters** |
 | Research papers | `src/content/research-papers.yml` | **Research papers** |
-| Programmes | `src/content/programmes.yml` | — |
-| Get Involved cards | `src/content/get-involved.yml` | — |
-| Navigation links | `src/content/site-config.json` | — |
-| Social links | `src/content/site-config.json` | — |
-| Site title, email, OG image | `src/content/site-config.json` | — |
-| Footer tagline | `src/content/site-config.json` | — |
+| Programmes | `src/content/programmes.yml` | **Programmes** |
+| Get Involved cards | `src/content/get-involved.yml` | **Get Involved cards** |
+| Navigation links | `src/content/site-config.json` | **Site config** |
+| Social links | `src/content/site-config.json` | **Site config** |
+| Site title, email, OG image | `src/content/site-config.json` | **Site config** |
+| Footer tagline | `src/content/site-config.json` | **Site config** |
 
 ### Adding a Team Member
 
@@ -118,15 +120,25 @@ The site uses [Sveltia CMS](https://sveltiacms.app) — a lightweight, Git-based
 
 Sveltia commits edits to GitHub through an **editorial workflow**: each save opens a pull request against `main` that a maintainer reviews and merges before it goes live. Login uses **GitHub OAuth via Netlify** (OAuth app + Netlify provider, already configured). Anyone editing needs write access to the repo.
 
-The CMS exposes three collections:
+The CMS exposes one section (a "singleton") per content file:
 
 | CMS Section | File edited |
 |---|---|
+| Announcement banner | `src/content/announcement.yml` |
 | People / Committee | `src/content/people.yml` |
 | Research papers | `src/content/research-papers.yml` |
 | Supporters | `src/content/supporters.yml` |
+| Site config | `src/content/site-config.json` |
+| Get Involved cards | `src/content/get-involved.yml` |
+| FAQ | `src/content/faq.yml` |
+| Home page | `src/content/pages/home.yml` |
+| About page | `src/content/pages/about.yml` |
+| Programmes | `src/content/programmes.yml` |
+| Research page | `src/content/pages/research.yml` |
 
-Everything else — home, about, research page, programmes, get-involved, and site config — is edited directly in the files under `src/content/`. The **About page is intentionally not in the CMS**: its text contains hand-written HTML links, so it's edited in code at `src/content/pages/about.yml`.
+**Announcement banner:** tick *Show banner* to put a slim bar above the header on every page; untick it to hide it again. The optional *Hide after* date is checked when the site is built, and the site only rebuilds when a change is published to `main`, so an expired banner stays up until the next published change.
+
+Rich-text fields (About text, programme descriptions, FAQ answers, the banner message) render bold, italic and links only.
 
 Content is read directly from `src/content/*` at build time — there is no CMS runtime or API. The `src/data/*.ts` modules parse the YAML/JSON via the `readYaml` / `readJson` helpers in [src/data/content.ts](./src/data/content.ts). Keep the data boundary intact: pages and components import typed helpers from `src/data`, not the raw content files. The Sveltia config (backend, collections, fields) lives in [public/admin/config.yml](./public/admin/config.yml).
 

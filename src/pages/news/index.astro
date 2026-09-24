@@ -1,6 +1,10 @@
 ---
 import Icon from '../../components/Icon.astro';
 import Layout from '../../layouts/Layout.astro';
+import { getSiteConfigContent } from '../../data/config';
+
+const { siteConfig } = await getSiteConfigContent();
+const instagramUrl = siteConfig.socialLinks.find((s) => s.name === 'Instagram')?.url;
 ---
 
 <Layout
@@ -13,7 +17,7 @@ import Layout from '../../layouts/Layout.astro';
       <h1 class="text-4xl md:text-5xl font-bold mb-4">News</h1>
       <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
       <p class="max-w-2xl mx-auto text-lg text-body-text leading-relaxed">
-        Follow <a href="https://www.instagram.com/ais_durham" target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:underline font-semibold">@ais_durham<Icon name="fas fa-external-link-alt" class="ml-1 text-xs" /></a> on Instagram for our latest news and announcements.
+        Follow <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="text-durham-purple hover:underline font-semibold">@ais_durham<Icon name="fas fa-external-link-alt" class="ml-1 text-xs" /></a> on Instagram for our latest news and announcements.
       </p>
     </div>
   </section>

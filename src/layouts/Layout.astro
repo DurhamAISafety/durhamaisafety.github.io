@@ -1,7 +1,10 @@
 ---
+import { toJsonLd } from '../data/content';
 import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { getActiveAnnouncement } from '../data/announcement';
 import { getSiteConfigContent } from '../data/config';
 import '../styles/global.css';
 
@@ -15,6 +18,7 @@ export interface Props {
 const { title, description, heroImage } = Astro.props;
 
 const { siteConfig } = await getSiteConfigContent();
+const announcement = getActiveAnnouncement();
 
 const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
 const pageDescription = description || siteConfig.description;
@@ -31,7 +35,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonicalURL}>
     
     <!-- Organization Schema -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={toJsonLd({
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": `${siteConfig.url}/#org`,
@@ -111,6 +115,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </a>
   <!-- Anchor target for footer's Back to top link -->
   <div id="top" aria-hidden="true"></div>
+    {announcement && (
+      <aside class="announcement-bar no-print" aria-label="Announcement">
+        <div class="site-container">
+          <Icon name="fas fa-bullhorn" class="mr-2" />
+          <span set:html={announcement.messageHtml} />
+          {announcement.link_url && announcement.link_label && (
+            <a
+              href={announcement.link_url}
+              class="ml-2 font-semibold whitespace-nowrap"
+              {...(announcement.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {announcement.link_label}
+              <Icon name={announcement.external ? 'fas fa-external-link-alt' : 'fas fa-arrow-right'} class="ml-1 text-xs" />
+            </a>
+          )}
+        </div>
+      </aside>
+    )}
     <Header />
     
     <main id="main-content">

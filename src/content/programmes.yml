@@ -86,7 +86,7 @@ programmes:
     long_description: |
       These events offer a unique opportunity to explore emerging topics in the field, engage directly with speakers, and connect with others who share your interest in ensuring AI development benefits humanity.
 
-      To get involved and hear about upcoming speaker events, please join our [Discord server](https://forms.office.com/pages/responsepage.aspx?id=i9hQcmhLKUW-RNWaLYpvlEQMKT_SiZBCt87btAf__xhUQlRIVUdZSk5MUEJYSEFLQ0lUMFI1Wk41Ty4u).
+      To get involved and hear about upcoming speaker events, please join our [Discord server](social:discord).
     tags:
       - icon: fas fa-door-open
         label: Open to all

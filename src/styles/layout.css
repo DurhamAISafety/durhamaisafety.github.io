@@ -66,6 +66,50 @@
     border-bottom: none;
 }
 
+/* Site-wide announcement bar (src/content/announcement.yml), rendered above the header.
+   Durham purple is not overridden in dark mode, so white text stays ~10:1 in both themes. */
+.announcement-bar {
+    background: var(--color-durham-purple);
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.announcement-bar .site-container {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Beats renderInlineMarkdown's text-durham-purple (and its .dark override), which would be
+   purple-on-purple here. */
+.announcement-bar a,
+.dark .announcement-bar a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.announcement-bar a:hover {
+    text-decoration-thickness: 2px;
+}
+
+/* With a banner above it, the home page's absolute header sits at its static position (just below
+   the banner) instead of the page top; once scrolled it is fixed to the viewport top as before. */
+.announcement-bar ~ .header--transparent {
+    top: auto;
+}
+
+.announcement-bar ~ .header--transparent.header--scrolled {
+    top: 0;
+}
+
+/* ponytail: the header can sit a banner's height lower when the mobile menu opens, so push the
+   menu links down by roughly a two-line banner. A longer banner would need measuring in JS. */
+.announcement-bar ~ .mobile-nav .mobile-nav-content {
+    padding-top: calc(clamp(6.5rem, 18vh, 8rem) + 3.5rem);
+}
+
 /* When scrolled, add background to transparent header */
 .header--transparent.header--scrolled {
     position: fixed;
