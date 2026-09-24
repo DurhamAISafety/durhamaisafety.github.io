@@ -567,28 +567,6 @@
 }
 
 /* -------------------------------------------
-   Fixes for Programmes page: Research Support
-   - Improve contrast and brand color mapping
--------------------------------------------- */
-/* Headings darker for strong contrast */
-.section-neutral #research-projects .bg-gradient-to-br h5 {
-    color: #0f172a !important;
-    /* Slate 900 */
-}
-
-/* Body text to slate for readability */
-.section-neutral #research-projects .bg-gradient-to-br p {
-    color: #334155 !important;
-    /* Slate 700 */
-}
-
-/* Icons should be brand purple */
-.section-neutral #research-projects .bg-gradient-to-br i {
-    color: #7c3aed !important;
-    /* Purple */
-}
-
-/* -------------------------------------------
    Fixes for Supporters Grid:
    - Ensure logo cards have white background for contrast (e.g. black SVGs)
 -------------------------------------------- */

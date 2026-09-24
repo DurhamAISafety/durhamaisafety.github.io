@@ -176,6 +176,11 @@ html.theme-switching *::after {
   color: var(--color-light-purple);
 }
 
+/* Keep in-page anchor targets clear of the sticky header. */
+[id] {
+  scroll-margin-top: 8rem;
+}
+
 /* Base resets utilizing Tailwind v4 design tokens */
 body {
   font-family: var(--font-family-body);
