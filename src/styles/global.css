@@ -31,6 +31,7 @@
   --color-body-text: #475569;
   --color-heading-text: #0f172a;
   --color-muted-text: #64748b; /* slate-500: 4.8:1 on white (slate-400 failed AA) */
+  --color-alert: #e5484d; /* warning red, same in both themes */
 
   /* Component surface pairs (flip under .dark — see matching block below).
      --surface-glass: translucent card/input on the purple page background.

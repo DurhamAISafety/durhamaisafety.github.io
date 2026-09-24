@@ -102,7 +102,8 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
 
 <script is:inline>
   const variants = document.querySelectorAll('[data-variant]');
-  const v = Number(new URLSearchParams(location.search).get('v'));
+  // parseInt gives NaN for a missing or blank ?v (Number(null) would be 0), so those fall through to random.
+  const v = parseInt(new URLSearchParams(location.search).get('v'), 10);
   const pick = v >= 0 && v < variants.length ? v : Math.floor(Math.random() * variants.length);
   variants.forEach(function (el, i) { el.hidden = i !== pick; });
   document.querySelectorAll('[data-path]').forEach(function (el) { el.textContent = location.pathname; });
@@ -140,7 +141,7 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
   .nf-plot text { fill: var(--color-muted-text); font-size: 11px; }
   .nf-cluster { fill: var(--color-bright-purple); opacity: 0.12; }
   .nf-dot { fill: var(--color-bright-purple); }
-  .nf-you { fill: #e5484d; }
+  .nf-you { fill: var(--color-alert); }
   .nf-clip { color: var(--color-bright-purple); }
   [data-victim] { text-align: left; min-height: 5.5rem; }
   .nf-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; max-width: 28rem; margin-inline: auto; }
