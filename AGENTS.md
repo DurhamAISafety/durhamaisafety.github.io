@@ -1,9 +1,9 @@
 # Project Guidelines
 
-**CRITICAL** For netlify, use the `.agents/skills/netlify-deploy` skill - it details how to use the CLI to interact with netlify.
+**CRITICAL** Production is GitHub Pages (see `CLAUDE.md`). Netlify is kept only for Sveltia CMS auth and DNS; if you must touch it, use the `.agents/skills/netlify-deploy` skill.
 
 ## Project Snapshot
-Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via Netlify. The site is a pure static Astro 7 build (no adapter — `astro.config.mjs` is just sitemap + the Tailwind Vite plugin), with Tailwind CSS v4 and TypeScript. Content lives in YAML/JSON files under `src/content/` and is read directly at build time; most of them are also editable via Sveltia CMS at `/admin/`.
+Static website for Durham AI Safety (DAISI), deployed to https://durhamaisafety.uk via GitHub Pages (`.github/workflows/deploy-astro.yml` on push to `main`). The site is a pure static Astro 7 build (no adapter — `astro.config.mjs` is just sitemap + the Tailwind Vite plugin), with Tailwind CSS v4 and TypeScript. Content lives in YAML/JSON files under `src/content/` and is read directly at build time; most of them are also editable via Sveltia CMS at `/admin/`.
 
 ## Build & Validation
 ```bash

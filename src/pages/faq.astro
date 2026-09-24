@@ -1,4 +1,5 @@
 ---
+import { toJsonLd } from '../data/content';
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { getFaqContent } from '../data/faq';
@@ -16,7 +17,7 @@ const { siteConfig } = await getSiteConfigContent();
     is:inline
     slot="head"
     type="application/ld+json"
-    set:html={JSON.stringify({
+    set:html={toJsonLd({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       mainEntity: faqs.map((f) => ({

@@ -28,3 +28,12 @@ export function readJson<T>(relPath: string): T {
     });
   }
 }
+
+/**
+ * Serialises structured data for a <script type="application/ld+json"> via set:html.
+ * JSON.stringify leaves `<` alone, so CMS text containing `</script>` could close the
+ * tag and inject markup; escaping `<` as \u003c keeps the JSON valid and inert.
+ */
+export function toJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, '\\u003c');
+}

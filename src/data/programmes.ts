@@ -1,3 +1,4 @@
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { readYaml } from './content';
 
 export interface ProgrammeTag {
@@ -40,6 +41,13 @@ export async function getProgrammesContent(): Promise<{ programmes: Programme[] 
   return { programmes };
 }
 
+// Trailing icon for external links (site convention; see AGENTS.md). Same markup as Icon.astro,
+// built once as a string because the renderer returns HTML rather than components.
+const EXTERNAL_LINK_ICON = (() => {
+  const [w, h, , , d] = faUpRightFromSquare.icon;
+  return `<svg class="fa-icon ml-1 text-xs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w / h}em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="${Array.isArray(d) ? d.join(' ') : d}"/></svg>`;
+})();
+
 /**
  * Renders inline Markdown to HTML — **bold**, _italic_, [label](url) — with no
  * paragraph wrapping, so it is safe to drop inside an existing <h1>/<p>.
@@ -71,7 +79,8 @@ export function renderInlineMarkdown(input: string): string {
       const external = /^https?:\/\//.test(url);
       const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
       const safeUrl = url.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-      links.push(`<a href="${safeUrl}" class="text-durham-purple hover:text-bright-purple underline transition-colors"${attrs}>${emphasis(label)}</a>`);
+      const icon = external ? EXTERNAL_LINK_ICON : '';
+      links.push(`<a href="${safeUrl}" class="text-durham-purple hover:text-bright-purple underline transition-colors"${attrs}>${emphasis(label)}${icon}</a>`);
       return `\uE000${links.length - 1}\uE000`;
     }
   );
