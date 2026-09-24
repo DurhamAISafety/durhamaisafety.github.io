@@ -30,7 +30,7 @@
   --color-surface-muted: #f8fafc;
   --color-body-text: #475569;
   --color-heading-text: #0f172a;
-  --color-muted-text: #94a3b8;
+  --color-muted-text: #64748b; /* slate-500: 4.8:1 on white (slate-400 failed AA) */
 
   /* Component surface pairs (flip under .dark — see matching block below).
      --surface-glass: translucent card/input on the purple page background.
@@ -104,9 +104,9 @@
   /* Semantic surface/text tokens */
   --color-surface:       #111118;
   --color-surface-muted: #1c1c28;
-  --color-body-text:     #a0a0b8;
+  --color-body-text:     #c2c2d6;
   --color-heading-text:  #e8e8f5;
-  --color-muted-text:    #52526a;
+  --color-muted-text:    #9a9ab4; /* was #52526a, ~2.5:1 on dark cards */
 
   /* Component surface pairs — dark values */
   --surface-glass: rgba(0, 0, 0, 0.3);
@@ -168,6 +168,12 @@ html.theme-switching *,
 html.theme-switching *::before,
 html.theme-switching *::after {
   transition: none !important;
+}
+
+/* Durham purple (#68246D) is ~1.8:1 on dark surfaces; lift it for text/icons only
+   (bg-durham-purple buttons keep the brand colour). */
+.dark .text-durham-purple {
+  color: var(--color-light-purple);
 }
 
 /* Base resets utilizing Tailwind v4 design tokens */
