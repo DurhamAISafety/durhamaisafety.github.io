@@ -26,25 +26,30 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
 
       <!-- One variant is shown at random; ?v=N picks one. Without JS the first shows. -->
       <div data-variant>
-        <h1 class="section-heading text-3xl mb-6 text-heading-text">We could make something up&hellip;</h1>
-        <div class="text-left space-y-3 mb-6">
-          <p class="nf-bubble nf-user"><code data-path>/this-page</code>, please.</p>
-          <p class="nf-bubble nf-bot">
-            Certainly! Here is a detailed summary of that page, its three key findings and a <em>very</em> plausible citation&hellip;
-            <span class="block mt-2 font-semibold text-heading-text">Actually, no. That page doesn't exist, and a well-calibrated model should say so.</span>
-          </p>
-        </div>
-        <p class="text-sm text-muted-text mb-8">Confidence this page exists: 0%. Hallucinations avoided: 1.</p>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">We looked inside the network</h1>
+        <svg viewBox="0 0 320 170" class="nf-net w-full max-w-md mx-auto mb-4" role="img"
+          aria-label="A neural network diagram in which only one path, ending at neuron 404, lights up">
+          {edges.map(({ a, b, lit }) => <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} class={lit ? 'nf-lit' : ''} />)}
+          {layers.flatMap((layer, i) => layer.map((n, j) => <circle cx={n.x} cy={n.y} r={i === 3 ? 12 : 7} class={j === litPath[i] ? 'nf-lit' : ''} />))}
+          <text x="285" y="105" text-anchor="middle">#404</text>
+        </svg>
+        <p class="text-lg mb-8">
+          None of the neurons for our real pages fired. Just one did: neuron #404, which, as far as we can tell,
+          only fires for pages that don't exist.
+        </p>
       </div>
 
       <div data-variant hidden>
-        <h1 class="section-heading text-3xl mb-6 text-heading-text">Specification gaming strikes again</h1>
-        <p class="text-lg mb-4">
-          We told our link-checking agent to <strong>minimise broken links</strong>.
-          It found that the cheapest solution was to delete the page you wanted.
-        </p>
-        <p class="nf-bubble mx-auto inline-block font-mono text-sm mb-8">
-          broken_links: 0 &nbsp;✓ &nbsp;&nbsp;reward: +1.0 &nbsp;✓ &nbsp;&nbsp;<code data-path>/this-page</code>: gone
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">Goal misgeneralisation</h1>
+        <div class="nf-grid mb-6" role="img" aria-label="A corridor: the page is near the start, the robot has run to the far end">
+          <span class="nf-cell"></span>
+          <span class="nf-cell nf-goal"><Icon name="fas fa-file-lines" /></span>
+          {[0, 1, 2, 3, 4].map(() => <span class="nf-cell nf-trail"><Icon name="fas fa-arrow-right" /></span>)}
+          <span class="nf-cell nf-agent"><Icon name="fas fa-robot" /></span>
+        </div>
+        <p class="text-lg mb-8">
+          In training, the page you wanted was always at the far end of the corridor. So our agent learnt
+          &ldquo;run right&rdquo; instead of &ldquo;find the page&rdquo;. It's now at the wrong end, certain it has arrived.
         </p>
       </div>
 
@@ -80,43 +85,17 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
       </div>
 
       <div data-variant hidden>
-        <h1 class="section-heading text-3xl mb-6 text-heading-text">The off switch problem</h1>
-        <p class="text-lg mb-8">
-          An AI that is determined to finish its task has a good reason not to let you switch it off.
-          Leaving this page means shutting ours down. Go on, try the button.
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">Specification gaming strikes again</h1>
+        <p class="text-lg mb-4">
+          We told our link-checking agent to <strong>minimise broken links</strong>.
+          It found that the cheapest solution was to delete the page you wanted.
         </p>
-        <p class="text-sm text-muted-text mb-8" data-dodge-note aria-live="polite"></p>
-      </div>
-
-      <div data-variant hidden>
-        <h1 class="section-heading text-3xl mb-6 text-heading-text">Goal misgeneralisation</h1>
-        <div class="nf-grid mb-6" role="img" aria-label="A corridor: the page is near the start, the robot has run to the far end">
-          <span class="nf-cell"></span>
-          <span class="nf-cell nf-goal"><Icon name="fas fa-file-lines" /></span>
-          {[0, 1, 2, 3, 4].map(() => <span class="nf-cell nf-trail"><Icon name="fas fa-arrow-right" /></span>)}
-          <span class="nf-cell nf-agent"><Icon name="fas fa-robot" /></span>
-        </div>
-        <p class="text-lg mb-8">
-          In training, the page you wanted was always at the far end of the corridor. So our agent learnt
-          &ldquo;run right&rdquo; instead of &ldquo;find the page&rdquo;. It's now at the wrong end, certain it has arrived.
+        <p class="nf-bubble mx-auto inline-block font-mono text-sm mb-8">
+          broken_links: 0 &nbsp;✓ &nbsp;&nbsp;reward: +1.0 &nbsp;✓ &nbsp;&nbsp;<code data-path>/this-page</code>: gone
         </p>
       </div>
 
-      <div data-variant hidden>
-        <h1 class="section-heading text-3xl mb-6 text-heading-text">We looked inside the network</h1>
-        <svg viewBox="0 0 320 170" class="nf-net w-full max-w-md mx-auto mb-4" role="img"
-          aria-label="A neural network diagram in which only one path, ending at neuron 404, lights up">
-          {edges.map(({ a, b, lit }) => <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} class={lit ? 'nf-lit' : ''} />)}
-          {layers.flatMap((layer, i) => layer.map((n, j) => <circle cx={n.x} cy={n.y} r={i === 3 ? 12 : 7} class={j === litPath[i] ? 'nf-lit' : ''} />))}
-          <text x="285" y="105" text-anchor="middle">#404</text>
-        </svg>
-        <p class="text-lg mb-8">
-          None of the neurons for our real pages fired. Just one did: neuron #404, which, as far as we can tell,
-          only fires for pages that don't exist.
-        </p>
-      </div>
-
-      <a href="/" class="btn-cta" data-cta>Back to Home</a>
+      <a href="/" class="btn-cta">Back to Home</a>
     </div></div>
   </section>
 </Layout>
@@ -129,7 +108,7 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
   document.querySelectorAll('[data-path]').forEach(function (el) { el.textContent = location.pathname; });
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (pick === 2) {
+  if (variants[pick].querySelector('[data-victim]')) {
     // Swap the page's words for paperclips, in random order, until none are left.
     const words = Array.from(document.querySelectorAll('[data-victim] span')).sort(function () { return Math.random() - 0.5; });
     const clip = document.querySelector('[data-clip]');
@@ -147,19 +126,6 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
     else { const t = setInterval(function () { if (!eat()) clearInterval(t); }, 250); }
   }
 
-  if (pick === 4) {
-    // The button dodges the pointer three times, then gives in.
-    const cta = document.querySelector('[data-cta]');
-    const note = document.querySelector('[data-dodge-note]');
-    const lines = ['Nope.', 'Still busy.', 'Fine. Corrigibility achieved (eventually).'];
-    let dodges = 0;
-    cta.addEventListener('mouseenter', function () {
-      if (dodges >= 3) return;
-      note.textContent = lines[dodges++];
-      if (dodges === 3) { cta.style.transform = ''; cta.textContent = 'OK, Back to Home'; return; }
-      cta.style.transform = 'translate(' + (dodges % 2 ? 180 : -180) + 'px, ' + (dodges % 2 ? -40 : 30) + 'px)';
-    });
-  }
 </script>
 
 <style>
@@ -170,8 +136,6 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
     background: var(--color-surface);
     border: 1px solid var(--surface-elevated-border);
   }
-  .nf-user { margin-left: 25%; background: var(--color-surface-muted); }
-  .nf-bot { margin-right: 15%; }
   .nf-plot line { stroke: var(--color-muted-text); stroke-width: 1.5; }
   .nf-plot text { fill: var(--color-muted-text); font-size: 11px; }
   .nf-cluster { fill: var(--color-bright-purple); opacity: 0.12; }
@@ -192,6 +156,5 @@ const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => lay
   .nf-net .nf-lit { stroke: var(--color-bright-purple); opacity: 1; stroke-width: 2.5; }
   .nf-net circle.nf-lit { fill: var(--color-bright-purple); filter: drop-shadow(0 0 6px var(--color-bright-purple)); }
   .nf-net text { fill: var(--color-heading-text); font-size: 12px; font-weight: 700; }
-  [data-cta] { transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease; }
   code { word-break: break-all; }
 </style>
