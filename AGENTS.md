@@ -82,6 +82,8 @@ Image paths must use leading `/` public paths:
 - Research thumbnails: `/images/research/...`
 - Supporter logos: `/images/supporters/...`
 
+Social links (Discord, Instagram, LinkedIn, Linktree) and the contact email are defined once in `site-config.json`. In YAML content, link to them as `social:discord`, `social:instagram`, `social:linkedin`, `social:linktree` or `social:email`, either as a link field or inside a Markdown link (`[join our Discord](social:discord)`). `readYaml` in `src/data/content.ts` resolves them at build time, and an unknown name fails the build. Never paste those URLs into content files.
+
 Long programme descriptions support basic Markdown such as `**bold**`, `_italic_`, and `[link text](url)`.
 
 ## Frontend Conventions

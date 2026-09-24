@@ -76,7 +76,7 @@ singletons:
               config:
                 transformations:
                   raster_image: { format: webp, quality: 82, width: 800 }
-          - { name: linkedin, label: LinkedIn URL, widget: string, required: false, pattern: &url_pattern ['^(https:\/\/\S+|mailto:\S+@\S+\.\S+|\/\S*)$', 'Enter a full https:// link, a mailto: address, or a site-relative path starting with /'] }
+          - { name: linkedin, label: LinkedIn URL, widget: string, required: false, pattern: &url_pattern ['^(https:\/\/\S+|mailto:\S+@\S+\.\S+|\/\S*|social:[a-z0-9-]+)$', 'Enter a full https:// link, a mailto: address, a site-relative path starting with /, or social:discord / social:instagram / social:linkedin / social:linktree / social:email'] }
           - { name: durham-staff-link, label: Durham staff page URL, widget: string, required: false, pattern: *url_pattern }
           - { name: link, label: Personal website URL, widget: string, required: false, pattern: *url_pattern }
           - { name: description, label: Short description, widget: text, required: false }
