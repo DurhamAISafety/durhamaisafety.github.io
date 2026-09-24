@@ -5,8 +5,8 @@
 
 :root {
   /* Brand fonts */
-  --font-family-body: "Raleway", sans-serif;
-  --font-family-headings: "Merriweather", serif;
+  --font-family-body: var(--font-raleway);
+  --font-family-headings: var(--font-merriweather);
 
   /* Fixed highlight colors (equivalent to dark mode vibrant purples, used globally across light/dark modes) */
   --color-fixed-bright-purple: #b06be8;
@@ -53,7 +53,7 @@
   /* Background colors */
   --bg-primary: var(--color-deep-purple);
   --bg-secondary: var(--color-navy);
-  --bg-card: rgba(57, 20, 79, 0.5);
+  --bg-card: rgba(57, 20, 79, 0.92); /* header/toggle; at 0.5 white nav text was ~3:1 on light pages */
 
   /* Spacing */
   --section-padding: 5rem 0;
@@ -194,6 +194,16 @@ h1, h2, h3, h4, h5, h6,
 /* Custom override to keep hero emphasis text always the fixed dark-mode bright purple */
 .hero-heading em {
   color: var(--color-fixed-bright-purple) !important;
+}
+
+/* Inline Font Awesome SVGs (src/components/Icon.astro): sit on the text baseline like the old
+   webfont glyphs. In the base layer so utilities such as `block` still win over preflight. */
+@layer base {
+  .fa-icon {
+    display: inline-block;
+    vertical-align: -0.125em;
+    overflow: visible;
+  }
 }
 
 /* Centralized imports for component styles and legacy layouts */

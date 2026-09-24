@@ -1,0 +1,55 @@
+---
+/**
+ * Build-time Font Awesome icon: renders the SVG inline, so no FA CSS/webfont is shipped.
+ *
+ * @prop {string} name - FA class string, e.g. "fas fa-envelope", "fa-brands fa-github"
+ *   (also accepts content YAML `icon:` values). Unknown icons fail the build.
+ * @prop {string} [class] - Extra classes (Tailwind size/colour/spacing) for the <svg>
+ *
+ * Sized like the FA webfont: 1em tall, natural width, so `text-*` classes set size and colour.
+ */
+import { fas, type IconDefinition, type IconPack } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+interface Props {
+  name: string;
+  class?: string;
+  [attr: string]: unknown;
+}
+
+const packs: Record<string, IconPack> = { solid: fas, brands: fab };
+const prefixes: Record<string, keyof typeof packs> = {
+  fas: 'solid', 'fa-solid': 'solid', fab: 'brands', 'fa-brands': 'brands',
+};
+
+// Index each pack by icon name plus FA's own aliases (e.g. "external-link-alt").
+const index = new Map<string, IconDefinition>();
+for (const [style, pack] of Object.entries(packs)) {
+  for (const def of Object.values(pack)) {
+    for (const n of [def.iconName, ...def.icon[2]]) {
+      if (typeof n === 'string') index.set(`${style}:${n}`, def);
+    }
+  }
+}
+
+const { name, class: className, ...rest } = Astro.props;
+const tokens = name.trim().split(/\s+/);
+const style = prefixes[tokens.find((t) => t in prefixes) ?? 'fas'];
+const iconName = tokens.find((t) => t.startsWith('fa-') && !(t in prefixes))?.slice(3);
+const def = iconName && index.get(`${style}:${iconName}`);
+if (!def) {
+  throw new Error(`Icon: unknown Font Awesome icon "${name}" (resolved as ${style}:${iconName})`);
+}
+const [w, h, , , path] = def.icon;
+---
+<svg
+  class:list={['fa-icon', className]}
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={`0 0 ${w} ${h}`}
+  width={`${w / h}em`}
+  height="1em"
+  fill="currentColor"
+  aria-hidden="true"
+  focusable="false"
+  {...rest}
+><path d={Array.isArray(path) ? path.join(' ') : path} /></svg>

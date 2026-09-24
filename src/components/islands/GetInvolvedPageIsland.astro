@@ -1,4 +1,5 @@
 ---
+import Icon from '../Icon.astro';
 import type { GetInvolvedCard } from "../../data/get-involved";
 
 interface Props {
@@ -25,11 +26,11 @@ const { featuredCards, moreCards } = Astro.props;
           const borderClass = borderClasses[i % borderClasses.length];
           return (
             <div class={`involvement-card card p-6 card-hover text-center border-strong flex flex-col h-full ${borderClass}`}>
-              <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
-              <h4 class="text-xl font-bold mb-4">
+              <Icon name={card.icon} class="text-5xl text-durham-purple mb-4 self-center" />
+              <h2 class="text-xl font-bold mb-4">
                 {card.title}
-              </h4>
-              <p class="text-sm leading-relaxed mb-4 flex-grow">
+              </h2>
+              <p class="text-base leading-relaxed mb-4 flex-grow">
                 {card.description}
               </p>
               <a
@@ -38,7 +39,7 @@ const { featuredCards, moreCards } = Astro.props;
                 {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 {card.link_label}
-                {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
+                {card.external && <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />}
               </a>
             </div>
           );
@@ -53,22 +54,22 @@ const { featuredCards, moreCards } = Astro.props;
   <section class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-8">
-        <h4 class="text-2xl font-bold mb-4">More Ways to Get Involved</h4>
+        <h2 class="text-2xl font-bold mb-4">More Ways to Get Involved</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {moreCards.map((card) => (
           <div class="involvement-card card p-6 card-hover text-center flex flex-col h-full">
-            <i class={`${card.icon} text-5xl text-durham-purple mb-4`} aria-hidden="true"></i>
+            <Icon name={card.icon} class="text-5xl text-durham-purple mb-4 self-center" />
             {card.badge && (
               <span class="self-center px-2 py-0.5 mb-2 text-xs font-medium rounded-full bg-surface-muted text-body-text">
                 {card.badge}
               </span>
             )}
-            <h4 class="text-xl font-bold mb-4">
+            <h3 class="text-xl font-bold mb-4">
               {card.title}
-            </h4>
-            <p class="text-sm leading-relaxed mb-4 flex-grow">
+            </h3>
+            <p class="text-base leading-relaxed mb-4 flex-grow">
               {card.description}
             </p>
             <a
@@ -77,7 +78,7 @@ const { featuredCards, moreCards } = Astro.props;
               {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {card.link_label}
-              {card.external && <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>}
+              {card.external && <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />}
             </a>
           </div>
         ))}

@@ -1,4 +1,5 @@
 ---
+import Icon from '../Icon.astro';
 import type { SiteConfig, HomePageConfig } from '../../data/config';
 
 interface Props {
@@ -58,7 +59,7 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
                     rel="noopener noreferrer"
                     class="cal-sync-btn"
                     aria-label="Add to Google Calendar">
-                        <img src="/images/icons/google.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <img src="/images/icons/google.svg" alt="" class="cal-icon" width="28" height="28" loading="lazy" decoding="async" aria-hidden="true" />
                         <span class="cal-label">Google Calendar</span>
                     </a>
 
@@ -68,7 +69,7 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
                     rel="noopener noreferrer"
                     class="cal-sync-btn"
                     aria-label="Add to Outlook Calendar">
-                        <img src="/images/icons/outlook.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <img src="/images/icons/outlook.svg" alt="" class="cal-icon" width="28" height="28" loading="lazy" decoding="async" aria-hidden="true" />
                         <span class="cal-label">Outlook Calendar</span>
                     </a>
 
@@ -76,7 +77,7 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
                     <a href={`webcal://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
                     class="cal-sync-btn"
                     aria-label="Add to Apple Calendar">
-                        <img src="/images/icons/apple.svg" alt="" class="cal-icon" aria-hidden="true" />
+                        <img src="/images/icons/apple.svg" alt="" class="cal-icon" width="28" height="28" loading="lazy" decoding="async" aria-hidden="true" />
                         <span class="cal-label">Apple Calendar</span>
                     </a>
 
@@ -87,7 +88,7 @@ const { homeConfig, siteConfig, hideHeading = false } = Astro.props;
                         aria-label="Copy calendar URL to clipboard"
                         data-url={`https://api2.luma.com/ics/get?entity=calendar&id=${siteConfig.calendar.lumaCalendarId}`}
                     >
-                        <i class="fa-solid fa-link cal-icon text-body-text" aria-hidden="true"></i>
+                        <span class="cal-icon text-body-text"><Icon name="fa-solid fa-link" /></span>
                         <span class="cal-label" id="copy-cal-label">Copy URL</span>
                     </button>
                 </div>
@@ -145,7 +146,7 @@ img.cal-icon {
     object-fit: contain;
 }
 
-i.cal-icon {
+span.cal-icon {
     width: 1.75rem;
     height: 1.75rem;
     display: inline-flex;

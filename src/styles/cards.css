@@ -69,9 +69,7 @@
 }
 
 /* Force all icons in icon containers to be consistent size */
-.icon-box i,
 .icon-box svg,
-.w-16.h-16>i,
 .w-16.h-16>svg {
     /* Fixed width like FA's fa-fw class */
     width: 1em;
@@ -79,9 +77,9 @@
 }
 
 /* Ensure headings and body text have proper contrast on light cards */
-.section-neutral .research-card h4,
+.section-neutral .research-card :is(h3, h4),
 .section-neutral .info-card h4,
-.section-neutral .program-card h4 {
+.section-neutral .program-card :is(h2, h4) {
     color: var(--color-heading-text);
 }
 
@@ -172,92 +170,6 @@
 
 /* Grid utilities removed (use Tailwind's grid classes) */
 
-/* Button styles */
-.btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    border-radius: 9999px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: var(--transition-default);
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.btn-primary {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-
-.btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-light-purple), var(--color-lavender));
-    /* Remove transform to avoid layout thrash */
-    /* transform: scale(1.05); */
-    /* box-shadow: var(--shadow-card); */
-}
-
-/* Secondary button (used on light / neutral backgrounds) */
-.btn-secondary {
-    background: transparent;
-    color: var(--color-deep-purple);
-    border: 2px solid var(--color-bright-purple);
-    font-weight: 600;
-}
-
-.dark .btn-secondary {
-    color: var(--color-bright-purple);
-}
-
-.btn-secondary:hover {
-    background: var(--gradient-primary);
-    color: #ffffff;
-}
-
-/* Small button size utility */
-.btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-}
-
-/* Primary CTA button — matches the hero pill style.
-   Use for top-level calls to action: Get Involved, Back to Home, etc. */
-.btn-cta {
-    display: inline-block;
-    padding: 1rem 3rem;
-    background-color: var(--color-durham-purple);
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1.125rem;
-    border-radius: 9999px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    text-decoration: none;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.btn-cta:hover {
-    background-color: var(--color-durham-purple-hover);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05);
-    color: #ffffff;
-}
-
-.btn-cta-white {
-    background-color: #ffffff;
-    color: var(--color-durham-purple);
-    border-color: rgba(255, 255, 255, 0.6);
-}
-
-.btn-cta-white:hover {
-    background-color: #f0e8f1;
-    color: var(--color-durham-purple);
-}
-
-.dark .btn-cta {
-    border-color: rgba(255, 255, 255, 0.15);
-}
 
 
 /* Viewport height utilities for stable hero sizing across mobile browsers */
@@ -317,10 +229,10 @@
    Reason: Avoid affecting smaller icons inside gradient content boxes
 -------------------------------------------- */
 /* Only force white on the big header squares */
-.section-neutral .w-16.h-16.bg-gradient-to-br>i,
-.section-neutral .w-20.h-20.bg-gradient-to-br>i,
-.section-neutral .w-16.h-16.bg-gradient-to-r>i,
-.section-neutral .w-20.h-20.bg-gradient-to-r>i {
+.section-neutral .w-16.h-16.bg-gradient-to-br>svg,
+.section-neutral .w-20.h-20.bg-gradient-to-br>svg,
+.section-neutral .w-16.h-16.bg-gradient-to-r>svg,
+.section-neutral .w-20.h-20.bg-gradient-to-r>svg {
     color: var(--color-pure-white) !important;
 }
 
@@ -346,20 +258,20 @@
 /* Restrict white icons to only large header squares (handled above). */
 
 /* Make smaller list icons inside "Who's this for?" gradient cards darker for contrast */
-.section-neutral .bg-gradient-to-br .flex.items-start>i,
-.section-neutral .bg-gradient-to-r .flex.items-start>i {
+.section-neutral .bg-gradient-to-br .flex.items-start>svg,
+.section-neutral .bg-gradient-to-r .flex.items-start>svg {
     color: var(--color-deep-purple) !important;
 }
 
 /* In dark mode, those icons should be light for contrast */
-.dark .section-neutral .bg-gradient-to-br .flex.items-start>i,
-.dark .section-neutral .bg-gradient-to-r .flex.items-start>i {
+.dark .section-neutral .bg-gradient-to-br .flex.items-start>svg,
+.dark .section-neutral .bg-gradient-to-r .flex.items-start>svg {
     color: #ffffff !important;
 }
 
 /* In dark mode, deep-purple icons on gradient cards need to be lighter */
-.dark .section-neutral .bg-gradient-to-br i.text-deep-purple,
-.dark .section-neutral .bg-gradient-to-r i.text-deep-purple {
+.dark .section-neutral .bg-gradient-to-br svg.text-deep-purple,
+.dark .section-neutral .bg-gradient-to-r svg.text-deep-purple {
     color: var(--color-light-purple) !important;
 }
 
@@ -380,7 +292,7 @@
 }
 
 /* Get Involved cards: ensure readable headings & paragraphs */
-.section-neutral .involvement-card h4 {
+.section-neutral .involvement-card :is(h2, h3, h4) {
     color: var(--color-heading-text);
 }
 
@@ -419,9 +331,9 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.section-neutral .program-card h4,
+.section-neutral .program-card :is(h2, h4),
 .section-neutral .info-card h3,
-.section-neutral .involvement-card h4 {
+.section-neutral .involvement-card :is(h2, h3, h4) {
     color: var(--color-heading-text);
 }
 
@@ -434,16 +346,16 @@
 
 /* Icons in program/research cards now use Tailwind classes (e.g., text-durham-purple).
    Dark mode: icons without explicit color classes will be light for contrast. */
-.dark .section-neutral .program-card i,
-.dark .section-neutral .research-card i,
-.dark .section-neutral .info-card i {
+.dark .section-neutral .program-card svg,
+.dark .section-neutral .research-card svg,
+.dark .section-neutral .info-card svg {
     color: var(--color-light-purple);
 }
 
 /* Override dark mode for icons with specific legacy colors (what-is-ai-safety page) */
-.dark .section-neutral .info-card i.text-teal,
-.dark .section-neutral .info-card i.text-emerald,
-.dark .section-neutral .info-card i.text-ocean-blue {
+.dark .section-neutral .info-card svg.text-teal,
+.dark .section-neutral .info-card svg.text-emerald,
+.dark .section-neutral .info-card svg.text-ocean-blue {
     color: var(--color-light-purple);
 }
 
@@ -455,7 +367,7 @@
 
 /* Home page (#events) specific: make ONLY the large leading icon inside the 64px (w-16 h-16) square white.
    Keeps generic rule for other icons (e.g., list/detail icons) intact. */
-#events.section-neutral .program-card .w-16.h-16>i {
+#events.section-neutral .program-card .w-16.h-16>svg {
     color: #ffffff !important;
 }
 
@@ -496,7 +408,7 @@
 }
 
 /* Icons inside links should match the link color */
-.section-neutral a i {
+.section-neutral a svg {
     color: currentColor !important;
 }
 
@@ -504,8 +416,8 @@
    Icons now use Tailwind classes (e.g., text-durham-purple) or inherit color naturally. */
 
 /* Keep large header icons (inside gradient squares) white for contrast */
-.section-neutral .program-card .bg-gradient-to-br i,
-.section-neutral .program-card .bg-gradient-to-r i {
+.section-neutral .program-card .bg-gradient-to-br svg,
+.section-neutral .program-card .bg-gradient-to-r svg {
     color: #ffffff !important;
 }
 
@@ -522,7 +434,7 @@
    Goal: Ensure sufficient contrast against gradient squares
 -------------------------------------------- */
 /* Bright-purple square: keep icon white, add subtle shadow for definition */
-.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-bright-purple.to-bright-purple>i {
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-bright-purple.to-bright-purple>svg {
     color: #ffffff !important;
     /* Slight shadow improves visibility on gradients */
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
@@ -530,7 +442,7 @@
 
 /* Light-purple square: switch icon to deep purple for contrast */
 /* Light-purple square: make icon white for consistency and add subtle shadow for definition */
-.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-light-purple.to-light-purple>i {
+.section-neutral .research-card .w-12.h-12.bg-gradient-to-br.from-light-purple.to-light-purple>svg {
     color: #ffffff !important;
     /* Slight shadow improves visibility on light gradients */
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));

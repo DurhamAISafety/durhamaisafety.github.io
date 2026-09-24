@@ -1,12 +1,16 @@
 ---
+import Icon from '../Icon.astro';
 import type { AlumniMember, Person, TeamMember } from '../../data/people';
 
 interface Props {
   people: Array<Person | TeamMember | AlumniMember>;
   emptyMessage?: string;
+  /** Heading level for each person's name: 3 under a section h2, 2 directly under the page h1. */
+  headingLevel?: 2 | 3;
 }
 
-const { people, emptyMessage = 'No people listed yet.' } = Astro.props;
+const { people, emptyMessage = 'No people listed yet.', headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as const;
 
 const durhamLogoPath = '/images/durham-logo.png';
 
@@ -36,15 +40,15 @@ const getDefaultDescription = (person: Person): string => {
               style="width:100%; height:100%; object-fit: cover;"
             />
           ) : (
-            <i class="fas fa-user text-3xl text-white"></i>
+            <Icon name="fas fa-user" class="text-3xl text-white" />
           )}
           <div class="fallback-icon hidden" style="display:none; align-items:center; justify-content:center; width:100%; height:100%;">
-            <i class="fas fa-user text-3xl text-white"></i>
+            <Icon name="fas fa-user" class="text-3xl text-white" />
           </div>
         </div>
-        <h4 class="text-xl font-bold mb-2">
+        <Heading class="text-xl font-bold mb-2">
           {person.name}
-        </h4>
+        </Heading>
         {(person.linkedin || person['durham-staff-link'] || person.link) && (
           <div class="flex items-center justify-center gap-3 mb-2">
             {person.linkedin && (
@@ -55,7 +59,7 @@ const getDefaultDescription = (person: Person): string => {
                 class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:text-bright-purple transition-colors"
                 aria-label={`${person.name} on LinkedIn`}
               >
-                <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+                <Icon name="fab fa-linkedin" class="text-xl" />
               </a>
             )}
             {person['durham-staff-link'] && (
@@ -66,7 +70,7 @@ const getDefaultDescription = (person: Person): string => {
                 class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:opacity-70 transition-opacity"
                 aria-label={`${person.name} Durham staff page`}
               >
-                <img src={durhamLogoPath} alt="Durham University" class="w-5 h-5 object-contain" />
+                <img src={durhamLogoPath} alt="Durham University" class="w-5 h-5 object-contain" width="20" height="20" loading="lazy" decoding="async" />
               </a>
             )}
             {person.link && (
@@ -77,7 +81,7 @@ const getDefaultDescription = (person: Person): string => {
                 class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:text-bright-purple transition-colors"
                 aria-label={`${person.name} website`}
               >
-                <i class="fas fa-external-link-alt text-base" aria-hidden="true"></i>
+                <Icon name="fas fa-external-link-alt" class="text-base" />
               </a>
             )}
           </div>

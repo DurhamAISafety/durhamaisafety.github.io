@@ -1,19 +1,23 @@
 ---
+import Icon from './Icon.astro';
 /**
  * ResearchCard component - Displays a single research paper
  * 
  * Props:
  * - paper: ResearchPaper object
  * - thumbnailImage: Optional image path from public/images/research/
+ * - headingLevel: Heading level for the paper title (default 3); pass 4 under an h3
  */
 import type { ResearchPaper } from '../data/research';
 
 export interface Props {
   paper: ResearchPaper;
   thumbnailImage?: string;
+  headingLevel?: 3 | 4;
 }
 
-const { paper, thumbnailImage } = Astro.props;
+const { paper, thumbnailImage, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as const;
 ---
 
 <a 
@@ -34,7 +38,7 @@ const { paper, thumbnailImage } = Astro.props;
       />
     ) : (
       <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-muted to-surface">
-        <i class="fas fa-file-pdf text-5xl text-muted-text" aria-hidden="true"></i>
+        <Icon name="fas fa-file-pdf" class="text-5xl text-muted-text" />
       </div>
     )}
   </div>
@@ -42,11 +46,11 @@ const { paper, thumbnailImage } = Astro.props;
   {/* Content */}
   <div class="p-4">
     {/* Title */}
-    <h4
+    <Heading
       class="font-bold text-sm leading-tight mb-2 text-heading-text line-clamp-2 group-hover:text-bright-purple"
     >
       {paper.title}
-    </h4>
+    </Heading>
     
     {/* Authors (if present) */}
     {paper.authors && paper.authors.length > 0 && (

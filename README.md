@@ -84,7 +84,7 @@ papers:
 
 Edit `src/content/programmes.yml`. Each programme supports:
 
-- `title`, `icon` (Font Awesome class), `short_description` — shown on the homepage card
+- `title`, `icon` (Font Awesome 6 class, rendered by `Icon.astro`), `short_description` — shown on the homepage card
 - `long_description` — shown on the Programmes page; supports basic Markdown (`**bold**`, `_italic_`, `[link](url)`)
 - `tags` — up to 3 icon+label pairs shown on the homepage card
 - `whos_this_for` — bullet points shown in the right column on the Programmes page
@@ -96,7 +96,7 @@ The order of programmes in the file determines their order on the site and in th
 
 Edit `src/content/get-involved.yml`. Each card has:
 
-- `title`, `description`, `icon` (Font Awesome class)
+- `title`, `description`, `icon` (Font Awesome 6 class, rendered by `Icon.astro`)
 - `link_url`, `link_label`, `external` (opens in new tab if true)
 - `featured` — featured cards appear in the top highlighted row; non-featured appear in the "More Ways to Get Involved" section below
 - `recommended_label` — optional label on featured cards (e.g. `✨ Recommended`); leave blank to hide

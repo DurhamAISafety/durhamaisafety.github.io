@@ -1,4 +1,5 @@
 ---
+import Icon from '../../components/Icon.astro';
 import Layout from '../../layouts/Layout.astro';
 import { getProgrammesContent, programmeSlug, renderMarkdown } from '../../data/programmes';
 import { getSiteConfigContent } from '../../data/config';
@@ -48,7 +49,7 @@ const boxGridClass = boxCount === 1
         href="/#programmes"
         class="absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-sm text-white/90 hover:text-white font-semibold bg-black/30 backdrop-blur px-3 py-1.5 rounded-full transition-colors duration-200"
       >
-        <i class="fa-solid fa-arrow-left text-xs"></i> Back to What we do
+        <Icon name="fa-solid fa-arrow-left" class="text-xs" /> Back to What we do
       </a>
 
       <div class="site-container mx-auto px-6 relative z-10 w-full text-center pt-24 pb-12">
@@ -59,7 +60,7 @@ const boxGridClass = boxCount === 1
           <div class="flex flex-wrap items-center justify-center gap-3 reveal">
             {programme.tags.map(tag => (
               <div class="flex items-center gap-1.5 bg-white/15 border border-white/25 backdrop-blur px-3 py-1 rounded-full text-sm">
-                <i class={`${tag.icon} text-white`} aria-hidden="true"></i>
+                <Icon name={tag.icon} class="text-white" />
                 <span class="font-semibold text-white">{tag.label}</span>
               </div>
             ))}
@@ -72,10 +73,10 @@ const boxGridClass = boxCount === 1
       <div class="absolute -right-40 -top-40 w-96 h-96 bg-bright-purple/10 rounded-full blur-3xl pointer-events-none"></div>
       <div class="site-container mx-auto px-6 text-center relative z-10">
         <a href="/#programmes" class="inline-flex items-center gap-2 text-sm text-durham-purple hover:text-bright-purple font-semibold mb-8 transition-colors duration-200">
-          <i class="fa-solid fa-arrow-left text-xs"></i> Back to What we do
+          <Icon name="fa-solid fa-arrow-left" class="text-xs" /> Back to What we do
         </a>
         <div class="mb-6 reveal">
-          <i class={`${programme.icon} text-6xl text-durham-purple`} aria-hidden="true"></i>
+          <Icon name={programme.icon} class="text-6xl text-durham-purple" />
         </div>
         <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">{programme.title}</h1>
         <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full mb-6"></div>
@@ -84,7 +85,7 @@ const boxGridClass = boxCount === 1
           <div class="flex flex-wrap items-center justify-center gap-3 mt-4 reveal">
             {programme.tags.map(tag => (
               <div class="flex items-center gap-1.5 bg-bright-purple/15 border border-bright-purple/30 px-3 py-1 rounded-full text-sm">
-                <i class={`${tag.icon} text-durham-purple`} aria-hidden="true"></i>
+                <Icon name={tag.icon} class="text-durham-purple" />
                 <span class="font-semibold text-body-text">{tag.label}</span>
               </div>
             ))}
@@ -112,15 +113,12 @@ const boxGridClass = boxCount === 1
           {hasWhos && (
             <div class="bg-white/5 border border-bright-purple/20 backdrop-blur rounded-2xl p-8 reveal" style="--reveal-delay: 150ms">
               <h2 class="text-xl font-bold text-heading-text mb-6 flex items-center gap-2">
-                <i class="fa-solid fa-users text-durham-purple"></i> Who is this for?
+                <Icon name="fa-solid fa-users" class="text-durham-purple" /> Who is this for?
               </h2>
               <ul class="space-y-4">
                 {programme.whos_this_for!.map(item => (
                   <li class="flex items-start gap-3 text-body-text">
-                    <i
-                      class={`${item.icon || 'fas fa-check'} text-durham-purple mt-1 flex-shrink-0 text-sm`}
-                      aria-hidden="true"
-                    ></i>
+                    <Icon name={item.icon || 'fas fa-check'} class="text-durham-purple mt-1 flex-shrink-0 text-sm" />
                     <span>{item.text}</span>
                   </li>
                 ))}
@@ -151,7 +149,7 @@ const boxGridClass = boxCount === 1
                 class="bg-white/5 backdrop-blur rounded-xl p-6 text-center border border-white/10 hover:border-bright-purple/20 shadow-md transition-all duration-300 reveal flex flex-col h-full"
                 style={`--reveal-delay: ${i * 100}ms`}
               >
-                <i class={`${box.icon} text-3xl text-durham-purple mb-4 block`} aria-hidden="true"></i>
+                <Icon name={box.icon} class="text-3xl text-durham-purple mb-4 block" />
                 <h3
                   class="text-lg font-bold mb-3 text-heading-text"
                 >
@@ -171,10 +169,10 @@ const boxGridClass = boxCount === 1
                   >
                     {box.link_label ?? 'Learn more'}
                     {box.link.startsWith('http') && (
-                      <i class="fas fa-external-link-alt text-xs" aria-hidden="true"></i>
+                      <Icon name="fas fa-external-link-alt" class="text-xs" />
                     )}
                     {!box.link.startsWith('http') && (
-                      <i class="fas fa-file-pdf text-xs" aria-hidden="true"></i>
+                      <Icon name="fas fa-file-pdf" class="text-xs" />
                     )}
                   </a>
                 )}
@@ -199,7 +197,7 @@ const boxGridClass = boxCount === 1
             href={`mailto:${siteConfig.email}`}
             class="inline-flex items-center gap-2 px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200"
           >
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email us
+            <Icon name="fa-solid fa-envelope" /> Email us
           </a>
         </>
       ) : (
@@ -213,7 +211,7 @@ const boxGridClass = boxCount === 1
               href="/news/"
               class="inline-flex items-center gap-2 px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-[#7a2d80] transition-colors duration-200"
             >
-              <i class="fa-solid fa-newspaper" aria-hidden="true"></i> Follow our news
+              <Icon name="fa-solid fa-newspaper" /> Follow our news
             </a>
             <a
               href={`https://luma.com/${siteConfig.calendar.lumaCalendarSlug}`}
@@ -221,7 +219,7 @@ const boxGridClass = boxCount === 1
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-heading-text font-medium rounded-lg hover:bg-white/5 transition-colors duration-200"
             >
-              <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> Subscribe to calendar
+              <Icon name="fa-solid fa-calendar-plus" /> Subscribe to calendar
             </a>
           </div>
         </>

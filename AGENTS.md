@@ -72,10 +72,11 @@ Long programme descriptions support basic Markdown such as `**bold**`, `_italic_
 - Use semantic Tailwind/CSS tokens such as `surface`, `surface-muted`, `body-text`, `heading-text`, and `muted-text` for surfaces and text where possible.
 - Scroll animations use `.reveal` with `style="--reveal-delay: Xms"` for stagger.
 - Keep the `html.js-enabled` contract intact for reveal animations in `Layout.astro` and `main.js`.
-- External links must have `target="_blank"` when opening a new tab, `rel="noopener noreferrer"`, and a trailing Font Awesome icon:
-  ```html
-  <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+- External links must have `target="_blank"` when opening a new tab, `rel="noopener noreferrer"`, and a trailing icon:
+  ```astro
+  <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
   ```
+- Icons are Font Awesome 6 SVGs inlined at build time by `src/components/Icon.astro` (no icon font or CDN). An unknown icon name fails the build.
 - **Jump Navigation**: For long, multi-section pages (e.g. consolidated hubs or resource indices), include a premium, sleek horizontal jump navigation bar (e.g. pill layout with smooth-scrolling anchors and icons) at the top of the content area to improve scannability and user engagement.
 
 ## Styling
@@ -112,7 +113,7 @@ PR validation runs dependency install, `pnpm exec astro check`, `pnpm build`, an
 ## Pitfalls
 - YAML indentation is 2 spaces, never tabs.
 - Inline `onerror` image handlers in `.astro` files must use `var`, not `const` or `let`, to avoid Astro TypeScript redeclaration errors.
-- Font Awesome display rules can beat Tailwind `block` on `<i>` elements. Centre icons using a wrapper element when needed.
+- Icon SVGs don't stretch in a flex column like the old `<i>` did; add `self-center` (or a wrapper) to centre them.
 - Brand SVG/image icons with black fills can become invisible in dark mode. Existing `.cal-icon` CSS handles calendar icons.
 - Keep image paths absolute from `public/`, with a leading `/`.
 - Keep navigation and social links in `src/content/site-config.json`.

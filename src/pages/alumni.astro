@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import { getPeopleContent } from '../data/people';
 import AlumniPageIsland from '../components/islands/AlumniPageIsland.astro';
@@ -27,7 +28,7 @@ const { alumni } = await getPeopleContent();
   <section class="section section-neutral">
     <div class="site-container text-center">
       <a href="/about/" class="inline-flex items-center text-bright-purple hover:text-light-purple font-semibold transition-colors">
-        <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+        <Icon name="fas fa-arrow-left" class="mr-2" />
         Back to About Us
       </a>
     </div>

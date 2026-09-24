@@ -25,7 +25,11 @@ const { supporters } = Astro.props;
           <img
             src={supporter.logo}
             alt="Supporter Logo"
-            class="supporter-logo h-7 md:h-8 max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
+            class="supporter-logo h-7 md:h-8 w-auto max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
+            width={supporter.width}
+            height={supporter.height}
+            loading="lazy"
+            decoding="async"
           />
         </a>
       ))}

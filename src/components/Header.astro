@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 /**
  * Header component - Site navigation header
  *
@@ -32,7 +33,7 @@ const allSocials = siteConfig.socialLinks;
     <div class="site-container">
         <nav class="nav">
             <a href="/" class="nav-brand">
-                <img src={logoPath} alt="DAISI Logo" class="h-8 w-auto md:h-10" loading="lazy" decoding="async" />
+                <img src={logoPath} alt="DAISI Logo" class="h-8 w-auto md:h-10" width="593" height="484" />
                 <div>
                     <div class="nav-title font-headings">
                         <span>Durham</span>
@@ -88,7 +89,7 @@ const allSocials = siteConfig.socialLinks;
                 ))}
 
                 <button type="button" class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <Icon name="fas fa-moon" class="dark:hidden" /><Icon name="fas fa-sun" class="hidden dark:inline-block" />
                 </button>
             </div>
         </nav>
@@ -126,7 +127,7 @@ const allSocials = siteConfig.socialLinks;
             </div>
 
             <button type="button" class="dark-mode-toggle" id="darkModeToggleMobile" aria-label="Toggle dark mode">
-                <i class="fas fa-moon" aria-hidden="true"></i>
+                <Icon name="fas fa-moon" class="dark:hidden" /><Icon name="fas fa-sun" class="hidden dark:inline-block" />
             </button>
         </div>
     </div>
