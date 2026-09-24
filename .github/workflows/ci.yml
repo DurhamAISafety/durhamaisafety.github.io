@@ -14,17 +14,35 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Cancel a stale run when a PR gets new commits, so runners aren't wasted checking
+# code that's already been superseded. Not applied to push (main should keep every
+# commit's result), so the group name includes the ref only for pull_request runs.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     name: Type-check and build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      # pnpm must be on PATH before setup-node's `cache: pnpm` runs, or it can't find
+      # the pnpm store to cache.
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v7
         with:
           node-version-file: 'package.json'
-      - uses: pnpm/action-setup@v6
+          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm check
       - run: pnpm build
+      # Offline dead-link/#anchor check of dist/. --index-files lets /#events resolve
+      # to dist/index.html so its fragments are checked. See docs/FIX_NOTES.md.
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: >-
+            --offline --include-fragments --root-dir "${{ github.workspace }}/dist"
+            --index-files index.html ./dist
+          fail: true

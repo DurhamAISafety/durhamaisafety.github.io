@@ -10,7 +10,7 @@ const { supporters } = Astro.props;
 
 <section class="w-full bg-surface-muted dark:bg-[#141428] border-y border-slate-200 dark:border-white/5 py-8 reveal">
   <div class="site-container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-    <p class="text-muted-text dark:text-white/40 text-xs uppercase tracking-widest font-semibold text-center md:text-left flex-shrink-0">
+    <p class="text-muted-text text-xs uppercase tracking-widest font-semibold text-center md:text-left flex-shrink-0">
       Proudly supported by
     </p>
     <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
@@ -25,7 +25,11 @@ const { supporters } = Astro.props;
           <img
             src={supporter.logo}
             alt="Supporter Logo"
-            class="supporter-logo h-7 md:h-8 max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
+            class="supporter-logo h-7 md:h-8 w-auto max-w-[110px] md:max-w-[130px] object-contain flex-shrink-0"
+            width={supporter.width}
+            height={supporter.height}
+            loading="lazy"
+            decoding="async"
           />
         </a>
       ))}

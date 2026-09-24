@@ -1,4 +1,5 @@
 ---
+import Icon from '../Icon.astro';
 import type { AlumniMember, TeamMember } from '../../data/people';
 import PeopleGrid from './PeopleGrid.astro';
 
@@ -23,7 +24,7 @@ const { team, alumni } = Astro.props;
       <div class="text-center mt-10">
         <a href="/alumni/" class="inline-flex items-center gap-2 text-durham-purple hover:text-bright-purple font-medium transition-colors text-base">
           See alumni &amp; past exec
-          <i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
+          <Icon name="fas fa-arrow-right" class="text-sm" />
         </a>
       </div>
     )}

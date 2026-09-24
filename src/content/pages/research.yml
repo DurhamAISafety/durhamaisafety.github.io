@@ -10,7 +10,7 @@ research:
       title: "Faculty"
       description: "We can signpost promising research directions and funding opportunities, and support you throughout."
   opportunitiesCtaText: "I'm Interested"
-  opportunitiesCtaLink: "/programmes/#research-projects"
+  opportunitiesCtaLink: "/events/research-project-support/"
   areasTitle: "Research Areas"
   researchAreas:
     - icon: "fas fa-search"

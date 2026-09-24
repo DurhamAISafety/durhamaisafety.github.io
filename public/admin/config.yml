@@ -17,6 +17,25 @@ publish_mode: editorial_workflow
 media_folder: public/images
 public_folder: /images
 
+# Shown in the editor UI (e.g. "View site" / preview links) and used to resolve relative URLs.
+site_url: https://durhamaisafety.uk
+
+# Convert uploaded raster images (jpg/png/etc.) to WebP and cap them at 1600px wide, so large
+# camera/phone photos don't get committed at full resolution. Vector logos (svg) are left alone,
+# just losslessly optimised. Per-field overrides (e.g. people photos) can set a smaller width.
+# Confirmed from the Sveltia CMS source (src/lib/types/public.js: RasterImageTransformationOptions,
+# SharedMediaLibraryOptions.transformations, VectorImageTransformationOptions) — see FIX_NOTES.
+media_library:
+  name: default
+  config:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 82
+        width: 1600
+      svg:
+        optimize: true
+
 # Each entry below maps to one existing content file. Fields mirror that file's
 # structure, so nothing outside these fields is touched on save.
 singletons:
@@ -43,10 +62,23 @@ singletons:
             }
           - { name: start_year, label: Start year, widget: number, value_type: int, required: false }
           - { name: years_active, label: Years active (e.g. 2024-2026), widget: string, required: false }
-          - { name: photo, label: Photo, widget: image, required: false, media_folder: '/public/images/people', public_folder: '/images/people' }
-          - { name: linkedin, label: LinkedIn URL, widget: string, required: false }
-          - { name: durham-staff-link, label: Durham staff page URL, widget: string, required: false }
-          - { name: link, label: Personal website URL, widget: string, required: false }
+          - name: photo
+            label: Photo
+            widget: image
+            required: false
+            media_folder: '/public/images/people'
+            public_folder: '/images/people'
+            hint: 'Resized to a max width of 800px and converted to WebP on upload.'
+            # People photos are portraits, so a smaller cap than the site-wide 1600px default is
+            # plenty and keeps the repo smaller.
+            media_library:
+              name: default
+              config:
+                transformations:
+                  raster_image: { format: webp, quality: 82, width: 800 }
+          - { name: linkedin, label: LinkedIn URL, widget: string, required: false, pattern: &url_pattern ['^(https:\/\/\S+|mailto:\S+@\S+\.\S+|\/\S*)$', 'Enter a full https:// link, a mailto: address, or a site-relative path starting with /'] }
+          - { name: durham-staff-link, label: Durham staff page URL, widget: string, required: false, pattern: *url_pattern }
+          - { name: link, label: Personal website URL, widget: string, required: false, pattern: *url_pattern }
           - { name: description, label: Short description, widget: text, required: false }
 
   - name: research
@@ -62,7 +94,7 @@ singletons:
         summary: '{{fields.title}} ({{fields.year}})'
         fields:
           - { name: title, label: Title, widget: string }
-          - { name: url, label: URL, widget: string }
+          - { name: url, label: URL, widget: string, pattern: *url_pattern }
           - { name: thumbnail, label: Thumbnail image, widget: image, required: false, media_folder: '/public/images/research', public_folder: '/images/research' }
           - name: authors
             label: Authors
@@ -93,9 +125,10 @@ singletons:
         label: Supporters
         label_singular: Supporter
         widget: list
+        summary: '{{fields.link}}'
         fields:
           - { name: logo, label: Logo image, widget: image, media_folder: '/public/images/supporters', public_folder: '/images/supporters' }
-          - { name: link, label: Website URL, widget: string }
+          - { name: link, label: Website URL, widget: string, pattern: *url_pattern }
 
   - name: site_config
     label: Site config
@@ -114,7 +147,7 @@ singletons:
         summary: '{{fields.name}}'
         fields:
           - { name: name, label: Name, widget: string }
-          - { name: url, label: URL, widget: string }
+          - { name: url, label: URL, widget: string, pattern: *url_pattern }
           - { name: icon, label: Icon (SVG), widget: image, media_folder: '/public/images/icons', public_folder: '/images/icons' }
           - { name: inHeader, label: Show in header?, widget: boolean, default: true }
       - name: navigation
@@ -128,13 +161,13 @@ singletons:
             summary: '{{fields.title}}'
             fields:
               - { name: title, label: Label, widget: string }
-              - { name: url, label: URL, widget: string }
+              - { name: url, label: URL, widget: string, pattern: *url_pattern }
           - name: cta
             label: Call-to-action button
             widget: object
             fields:
               - { name: title, label: Label, widget: string }
-              - { name: url, label: URL, widget: string }
+              - { name: url, label: URL, widget: string, pattern: *url_pattern }
       - { name: footerTagline, label: Footer tagline, widget: text, required: false }
       - name: calendar
         label: Luma calendar
@@ -194,7 +227,7 @@ singletons:
               - { label: Tools, value: 'fas fa-tools' }
               - { label: University, value: 'fas fa-university' }
               - { label: 'User shield', value: 'fas fa-user-shield' }
-          - { name: link_url, label: Link URL, widget: string }
+          - { name: link_url, label: Link URL, widget: string, pattern: *url_pattern }
           - { name: link_label, label: Link label, widget: string }
           - { name: external, label: Opens an external site?, widget: boolean, default: false }
           - { name: featured, label: Featured (shown at top)?, widget: boolean, default: false }
@@ -214,9 +247,9 @@ singletons:
           - { name: heroSubtitleHighlight, label: Hero subtitle (highlighted part), widget: string }
           - { name: heroSubtitleMain, label: Hero subtitle (rest), widget: string }
           - { name: heroPrimaryCtaText, label: Primary button text, widget: string }
-          - { name: heroPrimaryCtaLink, label: Primary button link, widget: string }
+          - { name: heroPrimaryCtaLink, label: Primary button link, widget: string, pattern: *url_pattern }
           - { name: heroSecondaryCtaText, label: Secondary button text, widget: string }
-          - { name: heroSecondaryCtaLink, label: Secondary button link, widget: string }
+          - { name: heroSecondaryCtaLink, label: Secondary button link, widget: string, pattern: *url_pattern }
           - { name: eventsTitle, label: Events section title, widget: string }
           - { name: programmesTitle, label: Programmes section title, widget: string }
           - { name: researchTitle, label: Research section title, widget: string }
@@ -224,7 +257,7 @@ singletons:
           - { name: researchViewAllText, label: 'Research "view all" button text', widget: string }
           - { name: getInvolvedBannerTitle, label: Get Involved banner heading, widget: text, hint: 'One line per line of the heading.' }
           - { name: getInvolvedBannerCtaText, label: Get Involved banner button text, widget: string }
-          - { name: getInvolvedBannerCtaLink, label: Get Involved banner button link, widget: string }
+          - { name: getInvolvedBannerCtaLink, label: Get Involved banner button link, widget: string, pattern: *url_pattern }
           - { name: getInvolvedBannerImage, label: Get Involved banner background image, widget: image }
 
   - name: about_page
@@ -237,7 +270,7 @@ singletons:
         label: About page
         widget: object
         fields:
-          - { name: introText, label: Intro text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
+          - { name: introText, label: Intro text, widget: markdown, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Bold, italic and links only — the site only renders those, so other formatting (headings, lists) would show up as literal markdown text.' }
           - name: missionCards
             label: Mission cards
             label_singular: Card
@@ -249,9 +282,9 @@ singletons:
               - { name: description, label: Description, widget: text }
           - { name: impactTitle, label: Impact section title, widget: string }
           - { name: impactIcon, label: Impact icon, widget: select, options: *fa_icons }
-          - { name: impactText, label: Impact text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
+          - { name: impactText, label: Impact text, widget: markdown, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Bold, italic and links only — the site only renders those.' }
           - { name: joinTitle, label: Join section title, widget: string }
-          - { name: joinText, label: Join text, widget: text, hint: 'Markdown supported: **bold**, _italic_, [links](https://example.com).' }
+          - { name: joinText, label: Join text, widget: markdown, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Bold, italic and links only — the site only renders those.' }
 
   - name: programmes
     label: Programmes
@@ -269,7 +302,7 @@ singletons:
           - { name: icon, label: Icon, widget: select, options: *fa_icons }
           - { name: image, label: Banner image, widget: image, required: false, media_folder: '/public/images/programmes', public_folder: '/images/programmes' }
           - { name: short_description, label: Short description, widget: text }
-          - { name: long_description, label: Full description, widget: text, required: false, hint: 'Markdown supported: paragraphs, **bold**, _italic_, [links](https://example.com).' }
+          - { name: long_description, label: Full description, widget: markdown, required: false, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Paragraphs, bold, italic and links only — the site only renders those.' }
           - { name: cta, label: Call-to-action style, widget: select, required: false, options: [{ label: 'Community (news + calendar)', value: community }, { label: 'Email (direct contact)', value: email }] }
           - name: tags
             label: Tags
@@ -299,11 +332,12 @@ singletons:
                 label: Items
                 label_singular: Item
                 widget: list
+                summary: '{{fields.title}}'
                 fields:
                   - { name: icon, label: Icon, widget: select, options: *fa_icons }
                   - { name: title, label: Title, widget: string }
                   - { name: description, label: Description, widget: text }
-                  - { name: link, label: Link URL, widget: string, required: false }
+                  - { name: link, label: Link URL, widget: string, required: false, pattern: *url_pattern }
                   - { name: link_label, label: Link label, widget: string, required: false }
 
   - name: research_page
@@ -338,7 +372,7 @@ singletons:
               - { name: title, label: Title, widget: string }
               - { name: description, label: Description, widget: text }
           - { name: opportunitiesCtaText, label: Opportunities button text, widget: string }
-          - { name: opportunitiesCtaLink, label: Opportunities button link, widget: string }
+          - { name: opportunitiesCtaLink, label: Opportunities button link, widget: string, pattern: *url_pattern }
           - { name: areasTitle, label: Research areas title, widget: string }
           - name: researchAreas
             label: Research areas
@@ -350,4 +384,4 @@ singletons:
               - { name: iconColor, label: Icon colour, widget: select, options: *fa_colours }
               - { name: title, label: Title, widget: string }
               - { name: description, label: Description, widget: text }
-              - { name: linkUrl, label: Link URL, widget: string }
+              - { name: linkUrl, label: Link URL, widget: string, pattern: *url_pattern }

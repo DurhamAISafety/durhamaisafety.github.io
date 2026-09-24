@@ -10,7 +10,7 @@ people:
     link: ''
   - name: Sam
     type: member
-    role: Incoming Treasurer
+    role: Treasurer
     start_year: 2026
     years_active: ''
     photo: /images/people/sam.webp
@@ -19,7 +19,7 @@ people:
     link: ''
   - name: Toby
     type: member
-    role: Incoming Secretary
+    role: Secretary
     start_year: 2026
     years_active: ''
     photo: /images/people/toby.webp
@@ -28,23 +28,32 @@ people:
     link: ''
   - name: Theo
     type: member
-    role: Co-organiser & Co-founder
+    role: Co-founder & Advisor
     start_year: 2023
     years_active: 2023-2026
     photo: /images/people/theo.jpeg
     linkedin: 'https://www.linkedin.com/in/theofarrell/'
     durham-staff-link: ''
     link: 'https://theosdoor.github.io/'
-    description: DAISI founder. Doing LASR Labs (lasrlabs.org) in Summer 2026.
+    description: DAISI founder. LASR Labs Fellow (lasrlabs.org), Summer 2026.
   - name: Leonie
     type: member
     role: Advisor (AI & Law)
     start_year: 2024
     years_active: ''
-    photo: /images/people/leonie.png
+    photo: /images/people/leonie.webp
     linkedin: ''
     durham-staff-link: 'https://www.durham.ac.uk/staff/leonie-a-stuessi/'
     link: ''
+  - name: Patrick
+    type: member
+    role: Advisor (Technical AI Safety)
+    start_year: 2024
+    years_active: 2024-2026
+    photo: /images/people/patrick.jpeg
+    linkedin: ''
+    durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
+    link: 'https://linktr.ee/patrickleask'
   - name: Eve
     type: alumnus
     role: Co-organiser & Treasurer
@@ -54,15 +63,6 @@ people:
     linkedin: 'https://www.linkedin.com/in/eve-sherratt/'
     durham-staff-link: ''
     link: ''
-  - name: Patrick
-    type: alumnus
-    role: Advisor (Technical AI Safety)
-    start_year: 2024
-    years_active: 2024-2026
-    photo: /images/people/patrick.jpeg
-    linkedin: ''
-    durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
-    link: 'https://linktr.ee/patrickleask'
   - name: Quinn
     type: alumnus
     role: Co-organiser & Secretary

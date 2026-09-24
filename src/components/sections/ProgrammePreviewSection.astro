@@ -1,4 +1,5 @@
 ---
+import Icon from '../Icon.astro';
 import { programmeSlug } from '../../data/programmes';
 import type { Programme } from '../../data/programmes';
 import type { HomePageConfig } from '../../data/config';
@@ -48,7 +49,7 @@ const { homeConfig, programmes } = Astro.props;
                     </p>
                     <span class="learn-more mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-colors">
                         Learn More
-                        <i class="fa-solid fa-arrow-right transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
+                        <Icon name="fa-solid fa-arrow-right" class="transition-transform duration-200 group-hover:translate-x-1" />
                     </span>
                 </a>
                 );

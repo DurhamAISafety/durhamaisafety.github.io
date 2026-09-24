@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 /**
  * ResearchCarousel component - Horizontal scrolling carousel with navigation arrows
  * 
@@ -22,7 +23,7 @@ const showArrows = papers.length > 4;
 
 <div class="research-carousel-section mb-12">
   <div class="flex items-center justify-between mb-6">
-    <h4 class="text-2xl font-bold">{title}</h4>
+    <h3 class="text-2xl font-bold">{title}</h3>
     
     {showArrows && (
       <div class="flex gap-2">
@@ -32,7 +33,7 @@ const showArrows = papers.length > 4;
           data-direction="prev"
           aria-label="Previous papers"
         >
-          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          <Icon name="fas fa-chevron-left" />
         </button>
         <button 
           class="carousel-arrow carousel-next p-2 rounded-full bg-surface-muted hover:bg-bright-purple hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
@@ -40,7 +41,7 @@ const showArrows = papers.length > 4;
           data-direction="next"
           aria-label="Next papers"
         >
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          <Icon name="fas fa-chevron-right" />
         </button>
       </div>
     )}
@@ -54,6 +55,7 @@ const showArrows = papers.length > 4;
       {papers.map(paper => (
         <div class="carousel-item flex-shrink-0 w-72 snap-start">
           <ResearchCard 
+            headingLevel={4}
             paper={paper} 
             thumbnailImage={paper.thumbnail}
           />

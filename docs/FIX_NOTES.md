@@ -125,3 +125,34 @@ OAuth provider, both free.
 to actually be *unmergeable*, that check must be marked **required** in the branch
 protection rule for `main` (Settings → Branches → main → Require status checks to pass) —
 the workflow alone cannot enforce it.
+
+---
+
+## CI now fails on dead internal links/anchors (2026-09-24)
+
+We'd shipped two broken internal references straight to production — a skip-link
+pointing at a `#main` that didn't exist, and a Get Involved CTA pointing at a `#`
+anchor a later edit had removed. `pnpm build` and `pnpm check` don't catch either: both
+are just plain HTML the browser silently no-ops on.
+
+- **Correction**: `ci.yml`'s `Type-check and build` job now runs
+  [`lychee`](https://github.com/lycheeverse/lychee) (pinned to `lychee-action@v2.9.0`,
+  lychee `v0.24.2`) against the built `dist/` after `pnpm build`, with
+  `--offline --include-fragments --root-dir "$GITHUB_WORKSPACE/dist" --index-files
+  index.html ./dist`. `--offline` keeps it local-only (no external HTTP checks, no
+  flakiness from third-party sites). `--root-dir` resolves site-root-relative links
+  (e.g. `/about/`) against `dist/`, since this site has no Astro `base` path.
+  `--index-files index.html` is load-bearing: without it, lychee resolves `/#events` to
+  the `dist` directory itself rather than `dist/index.html`, and fails every `#anchor`
+  check on every page (confirmed by testing both ways against a real build — see below).
+- **Also added**: `concurrency` with `cancel-in-progress` for `pull_request` runs (not
+  `push`, so `main` keeps a result for every commit), and pnpm's cache wired into
+  `actions/setup-node` (`cache: pnpm`) — `pnpm/action-setup` had to move *before*
+  `actions/setup-node` for the cache step to find pnpm on `PATH`.
+- **Verified locally**: downloaded the `lychee` v0.24.2 Linux binary directly (the
+  `lycheeverse/lychee-action` `action.yml` on its `master`/`v2` branch names this as the
+  action's own default version) and ran it against a fresh `pnpm build` output: `0
+  errors` (943 links checked, 665 unique/OK). Deliberately renamed one `id="events"` in
+  the built HTML and reran: 28 errors reported, confirming the check actually catches a
+  dead anchor. The job name `Type-check and build` is unchanged (branch protection may
+  require it by that name).

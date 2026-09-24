@@ -56,7 +56,6 @@ export interface HomePageConfig {
   getInvolvedBannerCtaText: string;
   getInvolvedBannerCtaLink: string;
   getInvolvedBannerImage: string;
-  [key: string]: unknown;
 }
 
 export interface AboutMissionCard {
@@ -76,7 +75,6 @@ export interface AboutPageConfig {
   joinTitle: string;
   joinText: string;
   joinTextHtml: string;
-  [key: string]: unknown;
 }
 
 export interface ResearchOpportunity {
@@ -101,7 +99,6 @@ export interface ResearchPageConfig {
   opportunitiesCtaLink: string;
   areasTitle: string;
   researchAreas: ResearchArea[];
-  [key: string]: unknown;
 }
 
 // Custom validation helper
@@ -116,8 +113,8 @@ function validatePath(path: string, fieldName: string) {
   }
 }
 
-export async function getHomePageContent(): Promise<{ document: any; homeConfig: HomePageConfig }> {
-  const { home: doc } = readYaml<{ home?: any }>('pages/home.yml');
+export async function getHomePageContent(): Promise<{ homeConfig: HomePageConfig }> {
+  const { home: doc } = readYaml<{ home?: Omit<HomePageConfig, 'heroTitleHtml'> }>('pages/home.yml');
   if (!doc) {
     throw new Error('Validation Error: Missing home page configuration object.');
   }
@@ -131,11 +128,15 @@ export async function getHomePageContent(): Promise<{ document: any; homeConfig:
   validatePath(doc.getInvolvedBannerCtaLink, 'home.getInvolvedBannerCtaLink');
   validatePath(doc.getInvolvedBannerImage, 'home.getInvolvedBannerImage');
 
-  return { document: doc, homeConfig };
+  return { homeConfig };
 }
 
-export async function getAboutPageContent(): Promise<{ document: any; aboutConfig: AboutPageConfig }> {
-  const { about: doc } = readYaml<{ about?: any }>('pages/about.yml');
+type RawAboutPage = Omit<AboutPageConfig, 'introTextHtml' | 'impactTextHtml' | 'joinTextHtml' | 'missionCards'> & {
+  missionCards?: AboutMissionCard[];
+};
+
+export async function getAboutPageContent(): Promise<{ aboutConfig: AboutPageConfig }> {
+  const { about: doc } = readYaml<{ about?: RawAboutPage }>('pages/about.yml');
   if (!doc) {
     throw new Error('Validation Error: Missing about page configuration object.');
   }
@@ -147,11 +148,16 @@ export async function getAboutPageContent(): Promise<{ document: any; aboutConfi
     joinTextHtml: renderInlineMarkdown(doc.joinText),
   };
 
-  return { document: doc, aboutConfig };
+  return { aboutConfig };
 }
 
-export async function getResearchPageContent(): Promise<{ document: any; researchConfig: ResearchPageConfig }> {
-  const { research: doc } = readYaml<{ research?: any }>('pages/research.yml');
+type RawResearchPage = Omit<ResearchPageConfig, 'opportunities' | 'researchAreas'> & {
+  opportunities?: ResearchOpportunity[];
+  researchAreas?: ResearchArea[];
+};
+
+export async function getResearchPageContent(): Promise<{ researchConfig: ResearchPageConfig }> {
+  const { research: doc } = readYaml<{ research?: RawResearchPage }>('pages/research.yml');
   if (!doc) {
     throw new Error('Validation Error: Missing research page configuration object.');
   }
@@ -166,11 +172,23 @@ export async function getResearchPageContent(): Promise<{ document: any; researc
     validatePath(area.linkUrl, `research.researchAreas.${idx}.linkUrl`);
   });
 
-  return { document: doc, researchConfig };
+  return { researchConfig };
 }
 
-export async function getSiteConfigContent(): Promise<{ document: any; siteConfig: SiteConfig }> {
-  const document = readJson<any>('site-config.json');
+/** Shape of `src/content/site-config.json` before normalisation/validation. */
+interface RawSiteConfig {
+  title: string;
+  description: string;
+  email: string;
+  ogImage?: string;
+  footerTagline?: string;
+  socialLinks?: { name: string; url: string; icon: string; inHeader?: boolean }[];
+  navigation?: { main?: NavigationItem[]; cta?: NavigationItem };
+  calendar?: CalendarConfig;
+}
+
+export async function getSiteConfigContent(): Promise<{ siteConfig: SiteConfig }> {
+  const document = readJson<RawSiteConfig>('site-config.json');
 
   const normalizePublicPath = (value: string): string => {
     if (!value) return value;
@@ -178,7 +196,7 @@ export async function getSiteConfigContent(): Promise<{ document: any; siteConfi
     return value.startsWith('/') ? value : `/${value}`;
   };
 
-  const socialLinks: SocialLink[] = (document.socialLinks ?? []).map((link: any, idx: number) => {
+  const socialLinks: SocialLink[] = (document.socialLinks ?? []).map((link, idx) => {
     const url = link.url;
     const icon = normalizePublicPath(link.icon);
     validatePath(url, `siteConfig.socialLinks.${idx}.url`);
@@ -192,7 +210,7 @@ export async function getSiteConfigContent(): Promise<{ document: any; siteConfi
     };
   });
 
-  const mainNavigation: NavigationItem[] = (document.navigation?.main ?? []).map((item: any, idx: number) => {
+  const mainNavigation: NavigationItem[] = (document.navigation?.main ?? []).map((item, idx) => {
     const url = item.url;
     validatePath(url, `siteConfig.navigation.main.${idx}.url`);
     return { title: item.title, url };
@@ -233,5 +251,5 @@ export async function getSiteConfigContent(): Promise<{ document: any; siteConfi
     googleSiteVerification: 'BD22yCN98mhUEUuWtahSEQ18Jsti83oPb6WgG3LuCCw',
   };
 
-  return { document, siteConfig: config };
+  return { siteConfig: config };
 }

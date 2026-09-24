@@ -118,7 +118,7 @@
     transform: scale(0.95);
 }
 
-.dark-mode-toggle i {
+.dark-mode-toggle svg {
     font-size: 1.125rem;
     /* Fixed width so the sun/moon glyph swap doesn't resize the button and reflow the navbar */
     width: 1.25rem;
@@ -481,11 +481,11 @@
     cursor: pointer;
 }
 
-.dropdown-toggle i {
+.dropdown-toggle svg {
     transition: var(--transition-default);
 }
 
-.dropdown:hover .dropdown-toggle i {
+.dropdown:hover .dropdown-toggle svg {
     transform: rotate(180deg);
 }
 

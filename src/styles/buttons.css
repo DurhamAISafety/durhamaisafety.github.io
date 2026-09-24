@@ -17,17 +17,14 @@
     font-size: 1rem;
 }
 
+/* Durham purple, not bright purple: white on #EB80FD / #b06be8 was only 2.2-3.4:1. */
 .btn-primary {
-    background: var(--gradient-primary);
+    background: var(--color-durham-purple);
     color: white;
 }
 
-
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--color-light-purple), var(--color-lavender));
-    /* Remove transform to avoid layout thrash */
-    /* transform: scale(1.05); */
-    /* box-shadow: var(--shadow-card); */
+    background: var(--color-durham-purple-hover);
 }
 
 /* Secondary button (used on light / neutral backgrounds) */

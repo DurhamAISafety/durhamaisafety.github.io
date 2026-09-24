@@ -48,26 +48,35 @@ export async function getProgrammesContent(): Promise<{ programmes: Programme[] 
 export function renderInlineMarkdown(input: string): string {
   if (!input) return '';
 
-  return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+  const emphasis = (text: string) => text
     // Bold **text**
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // Italic _text_
-    .replace(/_(.+?)_/g, '<em>$1</em>')
-    // Links [label](url) — url may be http(s), or an internal /, #, or mailto: target.
-    // Quote/angle chars are excluded from the url and the remaining "/' are escaped
-    // for attribute context, so a url can't break out of the href attribute.
-    .replace(
-      /\[([^\]]+)\]\((https?:\/\/[^\s)"'<>]+|(?:mailto:|[/#])[^\s)"'<>]*)\)/g,
-      (_match, label: string, url: string) => {
-        const external = /^https?:\/\//.test(url);
-        const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
-        const safeUrl = url.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-        return `<a href="${safeUrl}" class="text-durham-purple hover:text-bright-purple underline transition-colors"${attrs}>${label}</a>`;
-      }
-    );
+    // Italic _text_ or *text* (underscores inside words, e.g. snake_case, are left alone)
+    .replace(/(^|[^\w])_(.+?)_(?!\w)/g, '$1<em>$2</em>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  const escaped = input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  // Links [label](url) are pulled out before emphasis runs, so underscores in a URL
+  // can't be turned into <em> and break the link. url may be http(s), or an internal
+  // /, #, or mailto: target. Quote/angle chars are excluded from the url and the
+  // remaining "/' are escaped for attribute context, so a url can't break out of href.
+  const links: string[] = [];
+  const withPlaceholders = escaped.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)"'<>]+|(?:mailto:|[/#])[^\s)"'<>]*)\)/g,
+    (_match, label: string, url: string) => {
+      const external = /^https?:\/\//.test(url);
+      const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+      const safeUrl = url.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      links.push(`<a href="${safeUrl}" class="text-durham-purple hover:text-bright-purple underline transition-colors"${attrs}>${emphasis(label)}</a>`);
+      return `\uE000${links.length - 1}\uE000`;
+    }
+  );
+
+  return emphasis(withPlaceholders).replace(/\uE000(\d+)\uE000/g, (_m, i: string) => links[Number(i)]);
 }
 
 /**

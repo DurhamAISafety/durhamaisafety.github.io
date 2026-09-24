@@ -9,7 +9,7 @@ import { parse as parseYaml } from 'yaml';
  */
 const contentDir = path.join(process.cwd(), 'src', 'content');
 
-export function readYaml<T = any>(relPath: string): T {
+export function readYaml<T>(relPath: string): T {
   try {
     return parseYaml(readFileSync(path.join(contentDir, relPath), 'utf-8')) as T;
   } catch (e) {
@@ -19,7 +19,7 @@ export function readYaml<T = any>(relPath: string): T {
   }
 }
 
-export function readJson<T = any>(relPath: string): T {
+export function readJson<T>(relPath: string): T {
   try {
     return JSON.parse(readFileSync(path.join(contentDir, relPath), 'utf-8')) as T;
   } catch (e) {

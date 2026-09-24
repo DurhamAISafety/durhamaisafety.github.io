@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from "../layouts/Layout.astro";
 import { getResearchContent } from "../data/research";
 import { getResearchPageContent } from "../data/config";
@@ -34,7 +35,7 @@ const page = {
   <section id="opportunities" class="section section-neutral">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">{researchConfig.opportunitiesTitle}</h3>
+        <h2 class="section-heading text-3xl md:text-4xl mb-6">{researchConfig.opportunitiesTitle}</h2>
         <div class="section-divider"></div>
       </div>
       <div class="max-w-4xl mx-auto">
@@ -42,8 +43,8 @@ const page = {
           {researchConfig.opportunities.map((opp) => (
             <div class="research-card rounded-2xl p-6 card-hover">
               <div class="flex items-center mb-4">
-                <i class={`${opp.icon} text-3xl ${opp.iconColor} mr-4`} aria-hidden="true"></i>
-                <h4 class="text-lg font-bold">{opp.title}</h4>
+                <Icon name={opp.icon} class={`text-3xl ${opp.iconColor} mr-4`} />
+                <h3 class="text-lg font-bold">{opp.title}</h3>
               </div>
               <p class="text-sm leading-relaxed">{opp.description}</p>
             </div>
@@ -60,7 +61,7 @@ const page = {
   <section id="research-areas" class="section section-light">
     <div class="site-container">
       <div class="text-center mb-12">
-        <h3 class="section-heading text-3xl md:text-4xl mb-6">{researchConfig.areasTitle}</h3>
+        <h2 class="section-heading text-3xl md:text-4xl mb-6">{researchConfig.areasTitle}</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -68,13 +69,13 @@ const page = {
         {researchConfig.researchAreas.map((area) => (
           <div class="research-card rounded-2xl p-6 card-hover">
             <div class="text-center mb-4">
-              <i class={`${area.icon} text-5xl ${area.iconColor}`} aria-hidden="true"></i>
+              <Icon name={area.icon} class={`text-5xl ${area.iconColor}`} />
             </div>
-            <h4 class="text-xl font-bold text-center mb-4">{area.title}</h4>
+            <h3 class="text-xl font-bold text-center mb-4">{area.title}</h3>
             <p class="text-center text-sm leading-relaxed">{area.description}</p>
             <div class="text-center mt-3">
               <a href={area.linkUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-bright-purple hover:underline inline-flex items-center">
-                Learn more <i class="fas fa-external-link-alt ml-1 text-xs" aria-hidden="true"></i>
+                Learn more <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
               </a>
             </div>
           </div>

@@ -30,7 +30,6 @@ export function initializeDarkMode(): void {
   } else {
     html.classList.remove('dark');
   }
-  updateDarkModeIcon(isDark);
 
   // Flip the theme atomically: suppress transitions for the switch, then restore
   // them next frame so the header doesn't lag the page and flash (see CSS
@@ -38,7 +37,6 @@ export function initializeDarkMode(): void {
   function applyTheme(nowDark: boolean): void {
     html.classList.add('theme-switching');
     html.classList.toggle('dark', nowDark);
-    updateDarkModeIcon(nowDark);
     void html.offsetHeight; // force the instant switch to commit
     requestAnimationFrame(() => {
       requestAnimationFrame(() => html.classList.remove('theme-switching'));
@@ -61,10 +59,4 @@ export function initializeDarkMode(): void {
     }
   }
   mq.addEventListener('change', onSchemeChange);
-}
-
-function updateDarkModeIcon(isDark: boolean): void {
-  document.querySelectorAll('.dark-mode-toggle i').forEach((icon) => {
-    icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-  });
 }
