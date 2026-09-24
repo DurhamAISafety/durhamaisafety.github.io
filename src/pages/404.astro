@@ -4,6 +4,16 @@ import Icon from '../components/Icon.astro';
 
 // Known pages, plotted as the "training distribution" in the out-of-distribution variant.
 const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104, 64], [76, 110], [110, 92]];
+
+// The page text the paperclip maximiser eats, one word at a time.
+const victim = 'This was the page you were looking for. It had everything you needed: clear headings, useful links and a friendly tone.'.split(' ');
+
+// Interpretability variant: a small network where one path lights up the "404" neuron.
+const layers = [4, 6, 6, 1].map((size, i) =>
+  Array.from({ length: size }, (_, j) => ({ x: 30 + i * 85, y: 80 + (j - (size - 1) / 2) * 24 })));
+const litPath = [1, 3, 2, 0];
+const edges = layers.slice(1).flatMap((layer, i) => layer.flatMap((b, bj) => layers[i].map((a, aj) =>
+  ({ a, b, lit: aj === litPath[i] && bj === litPath[i + 1] }))));
 ---
 
 <Layout
@@ -14,7 +24,7 @@ const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104,
     <div class="site-container text-center"><div class="max-w-2xl mx-auto">
       <p class="nf-404 font-headings text-7xl font-bold mb-2" aria-hidden="true">404</p>
 
-      <!-- One variant is shown at random; ?v=0..3 picks one. Without JS the first shows. -->
+      <!-- One variant is shown at random; ?v=N picks one. Without JS the first shows. -->
       <div data-variant>
         <h1 class="section-heading text-3xl mb-6 text-heading-text">We could make something up&hellip;</h1>
         <div class="text-left space-y-3 mb-6">
@@ -39,12 +49,20 @@ const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104,
       </div>
 
       <div data-variant hidden>
-        <h1 class="section-heading text-3xl mb-6 text-heading-text">This page has been converted into paperclips</h1>
-        <p class="text-lg mb-4">A misaligned optimiser got here first. So far it has made:</p>
-        <p class="text-4xl font-bold text-heading-text mb-4">
-          <Icon name="fas fa-paperclip" class="text-bright-purple mr-2" /><span data-clips>1,024</span>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">This page is being turned into paperclips</h1>
+        <p class="text-lg mb-4">
+          We asked an AI to make as many paperclips as possible. We forgot to say where it could get the metal from,
+          so it started with the nearest thing to hand: this page.
         </p>
-        <p class="mb-8">Good news: this website is corrigible. The off switch below still works.</p>
+        <p class="nf-bubble text-lg mb-4" data-victim>
+          {victim.map((w) => <span>{w} </span>)}
+        </p>
+        <p class="flex flex-wrap justify-center gap-x-6 font-semibold text-heading-text mb-2">
+          <span><Icon name="fas fa-paperclip" class="nf-clip mr-1" />Paperclips made: <span data-clips>0</span></span>
+          <span>Page remaining: <span data-left>100</span>%</span>
+        </p>
+        <p class="mb-8">Head home quickly, before it gets there too.</p>
+        <template data-clip><Icon name="fas fa-paperclip" class="nf-clip" /></template>
       </div>
 
       <div data-variant hidden>
@@ -61,7 +79,44 @@ const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104,
         <p class="text-lg mb-8">Nothing we were trained on looks like <code data-path>/this-page</code>. Rather than extrapolate wildly, we'll hand you back to somewhere familiar.</p>
       </div>
 
-      <a href="/" class="btn-cta">Back to Home</a>
+      <div data-variant hidden>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">The off switch problem</h1>
+        <p class="text-lg mb-8">
+          An AI that is determined to finish its task has a good reason not to let you switch it off.
+          Leaving this page means shutting ours down. Go on, try the button.
+        </p>
+        <p class="text-sm text-muted-text mb-8" data-dodge-note aria-live="polite"></p>
+      </div>
+
+      <div data-variant hidden>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">Goal misgeneralisation</h1>
+        <div class="nf-grid mb-6" role="img" aria-label="A corridor: the page is near the start, the robot has run to the far end">
+          <span class="nf-cell"></span>
+          <span class="nf-cell nf-goal"><Icon name="fas fa-file-lines" /></span>
+          {[0, 1, 2, 3, 4].map(() => <span class="nf-cell nf-trail"><Icon name="fas fa-arrow-right" /></span>)}
+          <span class="nf-cell nf-agent"><Icon name="fas fa-robot" /></span>
+        </div>
+        <p class="text-lg mb-8">
+          In training, the page you wanted was always at the far end of the corridor. So our agent learnt
+          &ldquo;run right&rdquo; instead of &ldquo;find the page&rdquo;. It's now at the wrong end, certain it has arrived.
+        </p>
+      </div>
+
+      <div data-variant hidden>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">We looked inside the network</h1>
+        <svg viewBox="0 0 320 170" class="nf-net w-full max-w-md mx-auto mb-4" role="img"
+          aria-label="A neural network diagram in which only one path, ending at neuron 404, lights up">
+          {edges.map(({ a, b, lit }) => <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} class={lit ? 'nf-lit' : ''} />)}
+          {layers.flatMap((layer, i) => layer.map((n, j) => <circle cx={n.x} cy={n.y} r={i === 3 ? 12 : 7} class={j === litPath[i] ? 'nf-lit' : ''} />))}
+          <text x="285" y="105" text-anchor="middle">#404</text>
+        </svg>
+        <p class="text-lg mb-8">
+          None of the neurons for our real pages fired. Just one did: neuron #404, which, as far as we can tell,
+          only fires for pages that don't exist.
+        </p>
+      </div>
+
+      <a href="/" class="btn-cta" data-cta>Back to Home</a>
     </div></div>
   </section>
 </Layout>
@@ -72,10 +127,38 @@ const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104,
   const pick = v >= 0 && v < variants.length ? v : Math.floor(Math.random() * variants.length);
   variants.forEach(function (el, i) { el.hidden = i !== pick; });
   document.querySelectorAll('[data-path]').forEach(function (el) { el.textContent = location.pathname; });
-  const clips = document.querySelector('[data-clips]');
-  let n = 1024;
-  if (pick === 2 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    setInterval(function () { n = Math.round(n * 1.07) + 3; clips.textContent = n.toLocaleString('en-GB'); }, 120);
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (pick === 2) {
+    // Swap the page's words for paperclips, in random order, until none are left.
+    const words = Array.from(document.querySelectorAll('[data-victim] span')).sort(function () { return Math.random() - 0.5; });
+    const clip = document.querySelector('[data-clip]');
+    let eaten = 0;
+    let made = 0;
+    const eat = function () {
+      const w = words[eaten++];
+      made += w.textContent.length * 137;
+      w.replaceChildren(clip.content.cloneNode(true), ' ');
+      document.querySelector('[data-clips]').textContent = made.toLocaleString('en-GB');
+      document.querySelector('[data-left]').textContent = Math.round(100 * (1 - eaten / words.length));
+      return eaten < words.length;
+    };
+    if (reduceMotion) { while (eat()); }
+    else { const t = setInterval(function () { if (!eat()) clearInterval(t); }, 250); }
+  }
+
+  if (pick === 4) {
+    // The button dodges the pointer three times, then gives in.
+    const cta = document.querySelector('[data-cta]');
+    const note = document.querySelector('[data-dodge-note]');
+    const lines = ['Nope.', 'Still busy.', 'Fine. Corrigibility achieved (eventually).'];
+    let dodges = 0;
+    cta.addEventListener('mouseenter', function () {
+      if (dodges >= 3) return;
+      note.textContent = lines[dodges++];
+      if (dodges === 3) { cta.style.transform = ''; cta.textContent = 'OK, Back to Home'; return; }
+      cta.style.transform = 'translate(' + (dodges % 2 ? 180 : -180) + 'px, ' + (dodges % 2 ? -40 : 30) + 'px)';
+    });
   }
 </script>
 
@@ -94,5 +177,21 @@ const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104,
   .nf-cluster { fill: var(--color-bright-purple); opacity: 0.12; }
   .nf-dot { fill: var(--color-bright-purple); }
   .nf-you { fill: #e5484d; }
+  .nf-clip { color: var(--color-bright-purple); }
+  [data-victim] { text-align: left; min-height: 5.5rem; }
+  .nf-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; max-width: 28rem; margin-inline: auto; }
+  .nf-cell {
+    aspect-ratio: 1; display: grid; place-items: center; font-size: 1.25rem;
+    border-radius: var(--radius-sm); background: var(--color-surface); border: 1px solid var(--surface-elevated-border);
+  }
+  .nf-goal { color: var(--color-bright-purple); font-size: 1.5rem; }
+  .nf-trail { color: var(--color-muted-text); opacity: 0.4; font-size: 0.875rem; }
+  .nf-agent { color: var(--color-heading-text); font-size: 1.5rem; }
+  .nf-net line { stroke: var(--color-muted-text); stroke-width: 1; opacity: 0.25; }
+  .nf-net circle { fill: var(--color-surface); stroke: var(--color-muted-text); stroke-width: 1.5; }
+  .nf-net .nf-lit { stroke: var(--color-bright-purple); opacity: 1; stroke-width: 2.5; }
+  .nf-net circle.nf-lit { fill: var(--color-bright-purple); filter: drop-shadow(0 0 6px var(--color-bright-purple)); }
+  .nf-net text { fill: var(--color-heading-text); font-size: 12px; font-weight: 700; }
+  [data-cta] { transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease; }
   code { word-break: break-all; }
 </style>
