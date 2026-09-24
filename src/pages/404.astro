@@ -1,16 +1,98 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+// Known pages, plotted as the "training distribution" in the out-of-distribution variant.
+const dots = [[62, 70], [80, 58], [70, 88], [95, 76], [55, 95], [88, 100], [104, 64], [76, 110], [110, 92]];
 ---
 
-<Layout 
+<Layout
   title="404 - Page Not Found"
   description="The page you're looking for doesn't exist."
 >
   <section class="section section-neutral">
-    <div class="site-container text-center">
-      <h1 class="section-heading text-4xl mb-4">404 - Page not found</h1>
-      <p class="text-lg mb-8">Sorry, we couldn't find the page you're looking for.</p>
+    <div class="site-container text-center"><div class="max-w-2xl mx-auto">
+      <p class="nf-404 font-headings text-7xl font-bold mb-2" aria-hidden="true">404</p>
+
+      <!-- One variant is shown at random; ?v=0..3 picks one. Without JS the first shows. -->
+      <div data-variant>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">We could make something up&hellip;</h1>
+        <div class="text-left space-y-3 mb-6">
+          <p class="nf-bubble nf-user"><code data-path>/this-page</code>, please.</p>
+          <p class="nf-bubble nf-bot">
+            Certainly! Here is a detailed summary of that page, its three key findings and a <em>very</em> plausible citation&hellip;
+            <span class="block mt-2 font-semibold text-heading-text">Actually, no. That page doesn't exist, and a well-calibrated model should say so.</span>
+          </p>
+        </div>
+        <p class="text-sm text-muted-text mb-8">Confidence this page exists: 0%. Hallucinations avoided: 1.</p>
+      </div>
+
+      <div data-variant hidden>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">Specification gaming strikes again</h1>
+        <p class="text-lg mb-4">
+          We told our link-checking agent to <strong>minimise broken links</strong>.
+          It found that the cheapest solution was to delete the page you wanted.
+        </p>
+        <p class="nf-bubble mx-auto inline-block font-mono text-sm mb-8">
+          broken_links: 0 &nbsp;✓ &nbsp;&nbsp;reward: +1.0 &nbsp;✓ &nbsp;&nbsp;<code data-path>/this-page</code>: gone
+        </p>
+      </div>
+
+      <div data-variant hidden>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">This page has been converted into paperclips</h1>
+        <p class="text-lg mb-4">A misaligned optimiser got here first. So far it has made:</p>
+        <p class="text-4xl font-bold text-heading-text mb-4">
+          <Icon name="fas fa-paperclip" class="text-bright-purple mr-2" /><span data-clips>1,024</span>
+        </p>
+        <p class="mb-8">Good news: this website is corrigible. The off switch below still works.</p>
+      </div>
+
+      <div data-variant hidden>
+        <h1 class="section-heading text-3xl mb-6 text-heading-text">Your request is out of distribution</h1>
+        <svg viewBox="0 0 320 160" class="nf-plot w-full max-w-md mx-auto mb-4" role="img"
+          aria-label="Scatter plot: known pages cluster together, your request sits far away on its own">
+          <line x1="20" y1="145" x2="310" y2="145" /><line x1="20" y1="145" x2="20" y2="10" />
+          <ellipse cx="83" cy="84" rx="48" ry="42" class="nf-cluster" />
+          {dots.map(([x, y]) => <circle cx={x} cy={y} r="5" class="nf-dot" />)}
+          <circle cx="268" cy="36" r="7" class="nf-you" />
+          <text x="268" y="62" text-anchor="middle">you are here</text>
+          <text x="83" y="140" text-anchor="middle">pages that exist</text>
+        </svg>
+        <p class="text-lg mb-8">Nothing we were trained on looks like <code data-path>/this-page</code>. Rather than extrapolate wildly, we'll hand you back to somewhere familiar.</p>
+      </div>
+
       <a href="/" class="btn-cta">Back to Home</a>
-    </div>
+    </div></div>
   </section>
 </Layout>
+
+<script is:inline>
+  const variants = document.querySelectorAll('[data-variant]');
+  const v = Number(new URLSearchParams(location.search).get('v'));
+  const pick = v >= 0 && v < variants.length ? v : Math.floor(Math.random() * variants.length);
+  variants.forEach(function (el, i) { el.hidden = i !== pick; });
+  document.querySelectorAll('[data-path]').forEach(function (el) { el.textContent = location.pathname; });
+  const clips = document.querySelector('[data-clips]');
+  let n = 1024;
+  if (pick === 2 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setInterval(function () { n = Math.round(n * 1.07) + 3; clips.textContent = n.toLocaleString('en-GB'); }, 120);
+  }
+</script>
+
+<style>
+  .nf-404 { color: var(--color-bright-purple); }
+  .nf-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--surface-elevated-border);
+  }
+  .nf-user { margin-left: 25%; background: var(--color-surface-muted); }
+  .nf-bot { margin-right: 15%; }
+  .nf-plot line { stroke: var(--color-muted-text); stroke-width: 1.5; }
+  .nf-plot text { fill: var(--color-muted-text); font-size: 11px; }
+  .nf-cluster { fill: var(--color-bright-purple); opacity: 0.12; }
+  .nf-dot { fill: var(--color-bright-purple); }
+  .nf-you { fill: #e5484d; }
+  code { word-break: break-all; }
+</style>
