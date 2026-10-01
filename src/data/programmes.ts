@@ -24,6 +24,13 @@ export interface FeatureBoxes {
   items: FeatureBoxItem[];
 }
 
+export interface ProgrammeHomepageFeature {
+  eyebrow: string;
+  description: string;
+  highlights: string[];
+  application_label: string;
+}
+
 export interface Programme {
   title: string;
   icon: string;
@@ -33,6 +40,8 @@ export interface Programme {
   tags?: ProgrammeTag[];
   whos_this_for?: WhosThisFor[];
   feature_boxes?: FeatureBoxes;
+  application_url?: string;
+  homepage_feature?: ProgrammeHomepageFeature;
   cta?: 'email' | 'community'; // 'email' = direct contact; default 'community' (news + calendar)
 }
 
@@ -105,8 +114,8 @@ export function renderMarkdown(input: string): string {
 
 /**
  * Generates a URL-safe anchor slug from a programme title.
- * e.g. "In-Depth Reading Groups" → "reading-groups"
- * Matches the id attributes used in programmes.astro.
+ * e.g. "Intro Fellowship" → "intro-fellowship"
+ * Used by the home page cards and programme detail routes.
  */
 export function programmeSlug(title: string): string {
   return title

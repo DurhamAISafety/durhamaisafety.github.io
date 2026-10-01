@@ -1,46 +1,61 @@
 programmes:
-  - title: AIS101
+  - title: Intro Fellowship
     icon: fas fa-chalkboard-teacher
     image: /images/programmes/ais101.webp
-    short_description: 'Regular sessions exploring core AI safety concepts in an accessible, interactive format.'
+    application_url: https://forms.gle/ynSsCWdxRMfdH5VG9
+    homepage_feature:
+      eyebrow: Your starting point in AI safety
+      description: 'Build your understanding of AI safety with a welcoming group of curious people. Explore the big ideas, ask questions and discover how you could help shape the future of AI.'
+      highlights:
+        - Get to grips with AI alignment and governance
+        - Work through the big questions in group discussions
+        - Join a community that shares your curiosity
+      application_label: Apply for the fellowship
+    short_description: 'An accessible introduction to AI safety, exploring core ideas in alignment and governance through group discussion. No technical background needed.'
     long_description: |
-      Our intro AIS101 sessions are designed to make AI safety accessible to all backgrounds and studies.
-      We cover key concepts for AI alignment and governance in a low-pressure environment, with opportunity for group discussion.
+      Our Intro Fellowship is designed to make AI safety accessible to people from all backgrounds and areas of study.
+      We explore core ideas in AI alignment and governance in a welcoming environment, with plenty of space for questions and group discussion.
 
-      Each session is a presentation with significant breaks for questions and group discussion. We encourage 'silly' questions!
+      No technical background or prior knowledge is needed — just curiosity about AI and how we can help it go well.
     tags:
       - icon: fas fa-users
         label: No technical background needed
     whos_this_for:
       - icon: fas fa-graduation-cap
         text: No technical background or prior knowledge required. Open to anyone interested in learning more about AI safety.
-    feature_boxes:
-      heading: Recent Topics
-      items:
-        - icon: fas fa-clipboard-check
-          title: Evals
-          description: Figuring out what models are capable of.
-        - icon: fas fa-search
-          title: Mechanistic Interpretability
-          description: Figuring out what and how models think.
-        - icon: fas fa-globe-asia
-          title: The Deepseek Revolution
-          description: Intro to AI's role in the US-China relationship.
-  - title: In-Depth Reading Groups
-    icon: fas fa-book-open
+  - title: Viewing Sessions and Discussions
+    icon: fas fa-comments
     image: /images/programmes/reading-groups.avif
-    short_description: Deeper discussion on AI safety papers with PhD students specialising in the areas. Open to anyone — aimed at those wanting to get into the nitty-gritty technical details of alignment or policy.
+    short_description: 'Watch AI videos and documentaries together, then discuss the ideas, questions and implications for society. Everyone welcome.'
     long_description: |
-      These provide an opportunity to engage deeply with seminal and/or recent AI safety work.
-      In the past we've covered both technical research and AI governance/policy/law papers.
+      Join us to watch videos and documentaries about AI, then discuss what they mean for us and the wider world.
+      These sessions are a chance to ask questions, hear different perspectives and explore AI safety together.
 
-      Anyone can suggest and briefly present a paper, before the group discusses it together.
+      Explore the AI in Context videos and The AI Doc trailer below for a taste of the topics we can discuss. No technical background or preparation is needed.
     tags:
-      - icon: fas fa-laptop-code
-        label: Some prior knowledge useful
+      - icon: fas fa-users
+        label: Everyone welcome
     whos_this_for:
       - icon: fas fa-graduation-cap
-        text: 'People from any background, preferably with some prior knowledge and understanding, who are interested in diving deep into the technical details of a niche field within AI safety research.'
+        text: 'Anyone curious about AI and its impact on society. Come along to watch, ask questions and share your perspective — no prior knowledge required.'
+    feature_boxes:
+      heading: Watch and Discuss
+      items:
+        - icon: fas fa-play
+          title: We're Not Ready for Superintelligence
+          description: AI in Context explores the AI 2027 scenario and what rapid AI progress could mean for our future.
+          link: https://www.youtube.com/watch?v=5KVDDfAkRgc
+          link_label: Watch on YouTube
+        - icon: fas fa-play
+          title: If Anyone Builds It, Everyone Dies
+          description: AI in Context discusses the book's arguments about the risks of superintelligent AI.
+          link: https://www.youtube.com/watch?v=Nl7-bRFSZBs&t=443s
+          link_label: Watch on YouTube
+        - icon: fas fa-film
+          title: The AI Doc
+          description: 'Watch the trailer for The AI Doc: Or How I Became an Apocaloptimist, a documentary exploring the promise and risks of AI.'
+          link: https://www.youtube.com/watch?v=xkPbV3IRe4Y
+          link_label: Watch the trailer
   - title: Research Project Support
     icon: fas fa-terminal
     image: /images/programmes/research-support.webp

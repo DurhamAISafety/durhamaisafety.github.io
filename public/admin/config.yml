@@ -204,6 +204,7 @@ singletons:
               - { label: Discord, value: 'fab fa-discord' }
               - { label: 'Dollar sign', value: 'fas fa-dollar-sign' }
               - { label: Envelope, value: 'fas fa-envelope' }
+              - { label: Film, value: 'fas fa-film' }
               - { label: 'Food / utensils', value: 'fas fa-utensils' }
               - { label: Gavel, value: 'fas fa-gavel' }
               - { label: Globe, value: 'fas fa-globe-asia' }
@@ -218,6 +219,7 @@ singletons:
               - { label: 'Open book', value: 'fas fa-book-open' }
               - { label: 'Open door', value: 'fas fa-door-open' }
               - { label: People, value: 'fas fa-users' }
+              - { label: Play, value: 'fas fa-play' }
               - { label: Robot, value: 'fas fa-robot' }
               - { label: Shield, value: 'fas fa-shield-alt' }
               - { label: Smile, value: 'fas fa-smile' }
@@ -331,6 +333,18 @@ singletons:
           - { name: short_description, label: Short description, widget: text }
           - { name: long_description, label: Full description, widget: markdown, required: false, minimal: true, buttons: [bold, italic, link], editor_components: [], hint: 'Paragraphs, bold, italic and links only — the site only renders those.' }
           - { name: cta, label: Call-to-action style, widget: select, required: false, options: [{ label: 'Community (news + calendar)', value: community }, { label: 'Email (direct contact)', value: email }] }
+          - { name: application_url, label: Application form URL, widget: string, required: false, pattern: ['^https://\S+$', 'Enter a full https:// link'], hint: 'Adds an Apply now link to the home page card and replaces the detail page call to action.' }
+          - name: homepage_feature
+            label: Homepage feature
+            widget: object
+            required: false
+            collapsed: true
+            hint: 'Promotes this programme into a full-width feature above the other programme cards. Remove this object to return it to the card grid.'
+            fields:
+              - { name: eyebrow, label: Introductory label, widget: string }
+              - { name: description, label: Introduction, widget: text }
+              - { name: highlights, label: Highlights, widget: list, field: { name: highlight, label: Highlight, widget: string } }
+              - { name: application_label, label: Application button text, widget: string }
           - name: tags
             label: Tags
             label_singular: Tag

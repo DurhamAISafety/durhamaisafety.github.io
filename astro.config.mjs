@@ -29,12 +29,14 @@ function fontsourceVariants(slug, weights) {
 }
 
 // https://astro.build/config
-// Pure static site (no adapter needed); Netlify serves the built `dist/` directly.
+// Pure static site (no adapter needed); GitHub Pages serves the built `dist/` directly.
 export default defineConfig({
   site: "https://durhamaisafety.uk/",
   redirects: {
     '/events': '/#events',
     '/what-is-ai-safety': '/#what-is-ai-safety',
+    '/events/ais101': '/events/intro-fellowship/',
+    '/events/in-depth-reading-groups': '/events/viewing-sessions-and-discussions/',
   },
   integrations: [sitemap()],
   // Self-hosted via Astro's Fonts API, fed from the @fontsource-variable packages (byte-identical
