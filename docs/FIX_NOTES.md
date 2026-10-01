@@ -4,6 +4,31 @@ Past bugs and their fixes worth remembering.
 
 ---
 
+## Programme renames and application links (2026-10-01)
+
+- Programme detail URLs are generated from their titles. Renaming AIS101 to Intro
+  Fellowship and In-Depth Reading Groups to Viewing Sessions and Discussions changes
+  those URLs, so `astro.config.mjs` now redirects the old paths to the new pages.
+  Astro emits static redirect pages that work on GitHub Pages.
+- Programmes can now have an optional `application_url`, editable in Sveltia CMS.
+  It adds an application link alongside the home page card's detail link and takes
+  precedence over the usual community/email call to action on the detail page.
+  The two home page links are siblings to avoid nesting anchors.
+- The Intro Fellowship now uses the optional CMS-editable `homepage_feature` for a
+  full-width promotion above the other four programme cards. Featured programmes
+  appear once, with the same application URL and detail-page link as their normal
+  cards. The home hero links to `/#intro-fellowship`, and What we do now precedes
+  the events calendar so the fellowship is easier to find.
+- Local validation requires Node 24+ and the pnpm version pinned in `package.json`.
+  If the shell defaults to an older version, run commands with
+  `npm exec --yes --package=node@24 --package=pnpm@11.2.2 -- pnpm …`.
+- Headless Chromium in this WSL environment also needs `libasound.so.2`. For browser
+  checks, extract the Ubuntu `libasound2t64` package into a temporary directory and
+  add its `usr/lib/x86_64-linux-gnu` directory to the browser process's
+  `LD_LIBRARY_PATH`.
+
+---
+
 ## Mobile menu breakpoint mismatch
 
 ### The issue

@@ -1,5 +1,6 @@
 ---
 import Icon from '../Icon.astro';
+import FeaturedProgramme from './FeaturedProgramme.astro';
 import { programmeSlug } from '../../data/programmes';
 import type { Programme } from '../../data/programmes';
 import type { HomePageConfig } from '../../data/config';
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const { homeConfig, programmes } = Astro.props;
+const featuredProgrammes = programmes.filter(programme => programme.homepage_feature);
+const otherProgrammes = programmes.filter(programme => !programme.homepage_feature);
 ---
 
 <section id="programmes" class="py-16 section-light">
@@ -19,39 +22,62 @@ const { homeConfig, programmes } = Astro.props;
             <div class="w-24 h-1 bg-bright-purple mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-6 gap-y-12">
-            {programmes.map((programme, i) => {
+        {featuredProgrammes.length > 0 && (
+            <div class="space-y-8 mb-14 md:mb-20">
+                {featuredProgrammes.map(programme => (
+                    <FeaturedProgramme programme={programme} feature={programme.homepage_feature!} />
+                ))}
+            </div>
+        )}
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+            {otherProgrammes.map((programme, i) => {
                 const slug = programmeSlug(programme.title);
                 return (
-                <a
-                    href={`/events/${slug}/`}
-                    class="group block text-left no-underline reveal"
+                <div
+                    class="reveal"
                     style={`--reveal-delay: ${i * 100}ms`}
                 >
-                    {programme.image && (
-                        <div class="overflow-hidden rounded-2xl mb-5">
-                            <img
-                                src={programme.image}
-                                alt={`${programme.title} at DAISI`}
-                                class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
-                                style={`view-transition-name: prog-${slug}`}
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </div>
+                    <a
+                        href={`/events/${slug}/`}
+                        class="group block text-left no-underline"
+                    >
+                        {programme.image && (
+                            <div class="overflow-hidden rounded-2xl mb-5">
+                                <img
+                                    src={programme.image}
+                                    alt={`${programme.title} at DAISI`}
+                                    class="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-105"
+                                    style={`view-transition-name: prog-${slug}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                        )}
+                        {programme.tags && programme.tags.length > 0 && (
+                            <span class="program-badge">{programme.tags[0].label}</span>
+                        )}
+                        <h3 class="text-xl font-bold mt-3 mb-2">{programme.title}</h3>
+                        <p class="text-sm leading-relaxed text-body-text">
+                            {programme.short_description}
+                        </p>
+                        <span class="learn-more mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-colors">
+                            Learn More
+                            <Icon name="fa-solid fa-arrow-right" class="transition-transform duration-200 group-hover:translate-x-1" />
+                        </span>
+                    </a>
+                    {programme.application_url && (
+                        <a
+                            href={programme.application_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-durham-purple hover:underline"
+                        >
+                            Apply now
+                            <Icon name="fas fa-external-link-alt" class="text-xs" />
+                        </a>
                     )}
-                    {programme.tags && programme.tags.length > 0 && (
-                        <span class="program-badge">{programme.tags[0].label}</span>
-                    )}
-                    <h3 class="text-xl font-bold mt-3 mb-2">{programme.title}</h3>
-                    <p class="text-sm leading-relaxed text-body-text">
-                        {programme.short_description}
-                    </p>
-                    <span class="learn-more mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-colors">
-                        Learn More
-                        <Icon name="fa-solid fa-arrow-right" class="transition-transform duration-200 group-hover:translate-x-1" />
-                    </span>
-                </a>
+                </div>
                 );
             })}
         </div>

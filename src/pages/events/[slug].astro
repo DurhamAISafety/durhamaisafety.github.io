@@ -149,7 +149,7 @@ const boxGridClass = boxCount === 1
                 class="bg-white/5 backdrop-blur rounded-xl p-6 text-center border border-white/10 hover:border-bright-purple/20 shadow-md transition-all duration-300 reveal flex flex-col h-full"
                 style={`--reveal-delay: ${i * 100}ms`}
               >
-                <Icon name={box.icon} class="text-3xl text-durham-purple mb-4 block" />
+                <Icon name={box.icon} class="text-3xl text-durham-purple mb-4 block self-center" />
                 <h3
                   class="text-lg font-bold mb-3 text-heading-text"
                 >
@@ -187,7 +187,19 @@ const boxGridClass = boxCount === 1
   <!-- Programme CTA -->
   <section class="py-16 section-neutral border-b border-white/5 text-center">
     <div class="site-container mx-auto px-6 max-w-2xl reveal">
-      {programme.cta === 'email' ? (
+      {programme.application_url ? (
+        <>
+          <h2 class="text-2xl md:text-3xl font-bold mb-8">Apply for {programme.title}</h2>
+          <a
+            href={programme.application_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-durham-purple text-white font-medium rounded-lg hover:bg-bright-purple transition-colors duration-200"
+          >
+            Apply now <Icon name="fas fa-external-link-alt" class="text-xs" />
+          </a>
+        </>
+      ) : programme.cta === 'email' ? (
         <>
           <h2 class="text-2xl md:text-3xl font-bold mb-4">Want to get involved?</h2>
           <p class="text-body-text mb-8">

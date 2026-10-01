@@ -85,11 +85,6 @@ const { homeConfig } = await getHomePageContent();
     </div>
   </section>
 
-  <EventsSection
-    homeConfig={homeConfig}
-    siteConfig={siteConfig}
-  />
-
   <ProgrammePreviewSection
     homeConfig={homeConfig}
     programmes={programmes}
@@ -116,6 +111,11 @@ const { homeConfig } = await getHomePageContent();
       </div>
     </div>
   </section>
+
+  <EventsSection
+    homeConfig={homeConfig}
+    siteConfig={siteConfig}
+  />
 
   <ResearchPreviewSection
     homeConfig={homeConfig}

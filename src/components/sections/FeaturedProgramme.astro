@@ -1,0 +1,78 @@
+---
+import Icon from '../Icon.astro';
+import { programmeSlug, type Programme, type ProgrammeHomepageFeature } from '../../data/programmes';
+
+interface Props {
+  programme: Programme;
+  feature: ProgrammeHomepageFeature;
+}
+
+const { programme, feature } = Astro.props;
+const slug = programmeSlug(programme.title);
+---
+
+<article
+  id={slug}
+  aria-labelledby={`${slug}-title`}
+  class="overflow-hidden rounded-3xl border border-durham-purple/20 bg-surface reveal"
+>
+  <div class:list={['grid', programme.image && 'lg:grid-cols-[1.15fr_1fr]']}>
+    <div class="p-6 sm:p-10 xl:p-14">
+      <p class="text-sm font-bold uppercase tracking-widest text-durham-purple mb-5">{feature.eyebrow}</p>
+      <h3 id={`${slug}-title`} class="section-heading text-4xl sm:text-5xl xl:text-6xl mb-6">{programme.title}</h3>
+      <p class="text-lg sm:text-xl leading-relaxed text-body-text max-w-xl">{feature.description}</p>
+
+      <ul class="my-8 space-y-3">
+        {feature.highlights.map(highlight => (
+          <li class="flex items-start gap-3 text-body-text">
+            <Icon name="fas fa-check" class="text-durham-purple mt-1 shrink-0" />
+            <span>{highlight}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="flex flex-col sm:items-start gap-5">
+        {programme.application_url && (
+          <a
+            href={programme.application_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-3 rounded-full bg-durham-purple px-6 py-4 text-base sm:text-lg font-bold text-white text-center hover:bg-durham-purple-hover transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-durham-purple"
+          >
+            {feature.application_label}
+            <Icon name="fas fa-external-link-alt" class="text-xs shrink-0" />
+          </a>
+        )}
+        <a
+          href={`/events/${slug}/`}
+          class="inline-flex items-center justify-center gap-2 font-semibold text-durham-purple hover:underline"
+        >
+          Explore the programme <Icon name="fas fa-arrow-right" class="text-sm" />
+        </a>
+      </div>
+    </div>
+
+    {programme.image && (
+      <div class="relative min-h-72 sm:min-h-96 lg:min-h-full">
+        <img
+          src={programme.image}
+          alt={`${programme.title} at DAISI`}
+          class="absolute inset-0 h-full w-full object-cover object-[center_70%]"
+          style={`view-transition-name: prog-${slug}`}
+          loading="lazy"
+          decoding="async"
+        />
+        {programme.tags && programme.tags.length > 0 && (
+          <div class="absolute bottom-6 inset-x-6 flex flex-wrap gap-2">
+            {programme.tags.map(tag => (
+              <span class="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-semibold text-heading-text shadow-sm">
+                <Icon name={tag.icon} class="text-durham-purple" />
+                {tag.label}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</article>
