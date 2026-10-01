@@ -1,6 +1,6 @@
 cards:
   - title: Come to Our Events
-    description: 'Join our reading groups, workshops, and speaker events.'
+    description: 'Join our Intro Fellowship, viewing sessions and speaker events.'
     icon: fas fa-calendar-alt
     link_url: /#events
     link_label: View Events
