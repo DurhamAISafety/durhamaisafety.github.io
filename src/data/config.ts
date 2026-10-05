@@ -49,6 +49,11 @@ export interface HomePageConfig {
   heroSecondaryCtaLink: string;
   eventsTitle: string;
   programmesTitle: string;
+  // Optional "Book a 1-1" callout under the What we do cards; hidden unless all four are set.
+  oneToOneTitle?: string;
+  oneToOneText?: string;
+  oneToOneCtaText?: string;
+  oneToOneLink?: string;
   researchTitle: string;
   researchSubtitle: string;
   researchViewAllText: string;
@@ -127,6 +132,7 @@ export async function getHomePageContent(): Promise<{ homeConfig: HomePageConfig
   validatePath(doc.heroSecondaryCtaLink, 'home.heroSecondaryCtaLink');
   validatePath(doc.getInvolvedBannerCtaLink, 'home.getInvolvedBannerCtaLink');
   validatePath(doc.getInvolvedBannerImage, 'home.getInvolvedBannerImage');
+  if (doc.oneToOneLink) validatePath(doc.oneToOneLink, 'home.oneToOneLink');
 
   return { homeConfig };
 }

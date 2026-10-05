@@ -281,6 +281,10 @@ singletons:
           - { name: heroSecondaryCtaLink, label: Secondary button link, widget: string, pattern: *url_pattern }
           - { name: eventsTitle, label: Events section title, widget: string }
           - { name: programmesTitle, label: Programmes section title, widget: string }
+          - { name: oneToOneTitle, label: 1-1 chat heading, widget: string, required: false, hint: 'Callout under the What we do cards. Leave all four 1-1 fields empty to hide it.' }
+          - { name: oneToOneText, label: 1-1 chat text, widget: text, required: false }
+          - { name: oneToOneCtaText, label: 1-1 chat button text, widget: string, required: false }
+          - { name: oneToOneLink, label: 1-1 chat booking link, widget: string, required: false, pattern: *url_pattern }
           - { name: researchTitle, label: Research section title, widget: string }
           - { name: researchSubtitle, label: Research section subtitle, widget: string }
           - { name: researchViewAllText, label: 'Research "view all" button text', widget: string }
