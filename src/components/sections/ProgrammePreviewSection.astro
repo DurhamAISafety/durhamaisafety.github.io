@@ -81,5 +81,22 @@ const otherProgrammes = programmes.filter(programme => !programme.homepage_featu
                 );
             })}
         </div>
+
+        {homeConfig.oneToOneTitle && homeConfig.oneToOneText && homeConfig.oneToOneCtaText && homeConfig.oneToOneLink && (
+            <div id="book-a-chat" class="mt-14 md:mt-20 max-w-3xl mx-auto rounded-2xl border border-durham-purple/20 bg-surface-muted p-8 md:p-10 text-center reveal">
+                <Icon name="fas fa-calendar-alt" class="block mx-auto text-3xl text-durham-purple dark:text-bright-purple mb-4" />
+                <h3 class="text-2xl font-bold mb-3">{homeConfig.oneToOneTitle}</h3>
+                <p class="text-body-text leading-relaxed mb-6">{homeConfig.oneToOneText}</p>
+                <a
+                    href={homeConfig.oneToOneLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-cta"
+                >
+                    {homeConfig.oneToOneCtaText}
+                    <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
+                </a>
+            </div>
+        )}
     </div>
 </section>
