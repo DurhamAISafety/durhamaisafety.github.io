@@ -17,7 +17,7 @@ const { supporters } = await getSupportersContent();
 const impactStats = [
 	foundedYear && { value: String(foundedYear), label: 'Running since', href: undefined },
 	paperCount > 0 && { value: String(paperCount), label: 'Papers & projects by members', href: '/research/' },
-	venues.length > 0 && { value: venues.join(' · '), label: 'Where members have published', href: '/research/' },
+	venues.length > 0 && { value: venues.join(' · '), label: 'Main-conference papers at', href: '/research/' },
 ].filter((stat): stat is { value: string; label: string; href: string | undefined } => Boolean(stat));
 ---
 
@@ -70,7 +70,7 @@ const impactStats = [
 									const Tag = stat.href ? 'a' : 'div';
 									return (
 										<li>
-											<Tag href={stat.href} class="block h-full rounded-xl bg-surface-muted px-4 py-5 no-underline transition-colors hover:bg-durham-purple/10">
+											<Tag href={stat.href} class:list={['block h-full rounded-xl bg-surface-muted px-4 py-5 no-underline', stat.href && 'transition-colors hover:bg-durham-purple/10']}>
 												<strong class="block text-2xl font-bold text-durham-purple dark:text-bright-purple">{stat.value}</strong>
 												<small class="block text-sm text-muted-text mt-1">{stat.label}</small>
 											</Tag>
