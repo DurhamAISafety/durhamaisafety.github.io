@@ -181,3 +181,7 @@ are just plain HTML the browser silently no-ops on.
   the built HTML and reran: 28 errors reported, confirming the check actually catches a
   dead anchor. The job name `Type-check and build` is unchanged (branch protection may
   require it by that name).
+
+## 2026-10-05: Desktop nav breakpoint lowered to 1024px
+
+The header only showed its page links at ≥1300px, so 1280px laptops got the hamburger menu and had to open it to find any page. `src/styles/layout.css` now shows the links, Get Involved button and dark-mode toggle from 1024px (burger and mobile overlay hidden from 1024px too); the social icons stay hidden until 1300px, where there is room for them, and remain in the footer and mobile menu. Checked at 1024, 1150, 1280 and 1440px in both themes with no horizontal overflow.

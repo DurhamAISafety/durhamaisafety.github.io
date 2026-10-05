@@ -10,6 +10,8 @@ interface RawPerson {
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
+  /** Booking link (e.g. zcal, Calendly) shown as a "Book a chat" button. */
+  calendar?: string;
   description?: string;
 }
 
@@ -23,6 +25,8 @@ export interface Person {
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
+  /** Booking link (e.g. zcal, Calendly) shown as a "Book a chat" button. */
+  calendar?: string;
   description?: string;
 }
 
@@ -31,10 +35,17 @@ export type AlumniMember = Person & { type: 'alumnus' };
 
 export async function getPeopleContent(): Promise<{
   people: Person[];
+  /** Earliest start_year in people.yml, i.e. when DAISI started. */
+  foundedYear?: number;
   team: TeamMember[];
   alumni: AlumniMember[];
 }> {
   const { people: rawPeople = [] } = readYaml<{ people?: RawPerson[] }>('people.yml');
+  for (const person of rawPeople) {
+    if (person.calendar && !/^https:\/\/\S+$/.test(person.calendar)) {
+      throw new Error(`people.yml: calendar for "${person.name}" must be a full https:// booking link, got "${person.calendar}".`);
+    }
+  }
   const people: Person[] = rawPeople.map((person) => ({
     name: person.name,
     role: person.role,
@@ -45,11 +56,15 @@ export async function getPeopleContent(): Promise<{
     linkedin: person.linkedin || undefined,
     'durham-staff-link': person['durham-staff-link'] || undefined,
     link: person.link || undefined,
+    calendar: person.calendar || undefined,
     description: person.description || undefined,
   }));
 
+  const startYears = people.flatMap((person) => (person.start_year ? [person.start_year] : []));
+
   return {
     people,
+    foundedYear: startYears.length > 0 ? Math.min(...startYears) : undefined,
     team: people.filter((person): person is TeamMember => person.type === 'member'),
     alumni: people.filter((person): person is AlumniMember => person.type === 'alumnus'),
   };

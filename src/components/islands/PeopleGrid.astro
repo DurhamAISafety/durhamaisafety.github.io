@@ -13,15 +13,6 @@ const { people, emptyMessage = 'No people listed yet.', headingLevel = 3 } = Ast
 const Heading = `h${headingLevel}` as const;
 
 const durhamLogoPath = '/images/durham-logo.png';
-
-const getDefaultDescription = (person: Person): string => {
-  const prefix = 'Member of DAISI';
-  if (person.type === 'member') {
-    return person.start_year ? `${prefix} ${person.start_year}–present` : prefix;
-  } else {
-    return person.years_active ? `${prefix} ${person.years_active}` : prefix;
-  }
-};
 ---
 
 {people.length > 0 ? (
@@ -70,7 +61,7 @@ const getDefaultDescription = (person: Person): string => {
                 class="inline-flex items-center justify-center w-7 h-7 text-durham-purple hover:opacity-70 transition-opacity"
                 aria-label={`${person.name} Durham staff page`}
               >
-                <img src={durhamLogoPath} alt="Durham University" class="w-5 h-5 object-contain" width="20" height="20" loading="lazy" decoding="async" />
+                <img src={durhamLogoPath} alt="Durham University" class="w-5 h-5 object-contain dark:brightness-0 dark:invert" width="20" height="20" loading="lazy" decoding="async" />
               </a>
             )}
             {person.link && (
@@ -86,7 +77,7 @@ const getDefaultDescription = (person: Person): string => {
             )}
           </div>
         )}
-        <p class="font-semibold mb-2 text-sm text-violet-600">
+        <p class="font-semibold mb-2 text-sm text-violet-600 dark:text-violet-400">
           {person.role}
         </p>
         {person.type === 'member' && person.start_year && (
@@ -99,9 +90,24 @@ const getDefaultDescription = (person: Person): string => {
             {person.years_active}
           </p>
         )}
-        <p class="text-xs md:text-sm text-muted-text mb-3 px-2 leading-relaxed min-h-[2.5rem]">
-          {person.description || getDefaultDescription(person)}
-        </p>
+        {person.description && (
+          <p class="text-xs md:text-sm text-muted-text mb-3 px-2 leading-relaxed">
+            {person.description}
+          </p>
+        )}
+        {person.calendar && (
+          <a
+            href={person.calendar}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 mt-1 px-3 py-1.5 rounded-full text-xs font-semibold border border-durham-purple/40 text-durham-purple hover:bg-durham-purple hover:text-white dark:border-bright-purple/50 dark:text-bright-purple dark:hover:bg-bright-purple dark:hover:text-white transition-colors"
+            aria-label={`Book a chat with ${person.name} (opens in a new tab)`}
+          >
+            <Icon name="fas fa-calendar-alt" class="text-xs" />
+            Book a chat
+            <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
+          </a>
+        )}
       </div>
     ))}
   </div>

@@ -12,6 +12,8 @@ home:
   oneToOneText: "Want to talk about AI safety, our programmes or how you could get involved? Book a free 1-1 chat with Toby, our Secretary."
   oneToOneCtaText: "Book a 1-1 with Toby"
   oneToOneLink: "https://zcal.co/tobypullan"
+  oneToOneSecondaryText: "Or book a chat with someone else on the team"
+  oneToOneSecondaryLink: "/about/#team"
   researchTitle: "Research"
   researchSubtitle: "Latest Publications & Projects"
   researchViewAllText: "View All Research"

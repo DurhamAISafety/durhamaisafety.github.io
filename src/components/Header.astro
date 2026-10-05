@@ -192,6 +192,14 @@ const allSocials = siteConfig.socialLinks;
         }
     });
 
+    // Close the menu if the viewport grows into the desktop layout (matches the 1024px
+    // breakpoint in layout.css); otherwise the hidden overlay leaves body scroll locked.
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+        if (e.matches && mobileNav?.classList.contains('mobile-nav--active')) {
+            closeMobileMenu();
+        }
+    });
+
     // Transparent header scroll effect
     if (siteHeader?.classList.contains('header--transparent')) {
         let ticking = false;

@@ -49,3 +49,14 @@ export async function getResearchContent(): Promise<{
     nonAcademicPapers: research.filter((paper) => paper.type === 'non-academic'),
   };
 }
+
+/** Headline numbers for the About page, derived from research-papers.yml so they stay current. */
+export async function getResearchStats(): Promise<{ paperCount: number; venues: string[] }> {
+  const { research, academicPapers } = await getResearchContent();
+  // Main-conference venues only ("ICML 2025" -> "ICML"); workshops, preprints and anything
+  // not shaped "<NAME> <YEAR>" are left out so the list never overstates. Oldest first.
+  const venues = [...new Set(
+    [...academicPapers].reverse().flatMap((paper) => paper.venue.match(/^([A-Za-z]+) \d{4}$/)?.[1] ?? []),
+  )];
+  return { paperCount: research.length, venues };
+}

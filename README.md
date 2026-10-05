@@ -58,6 +58,7 @@ All content below can be edited directly in the file, or via the hosted CMS at [
        linkedin: https://www.linkedin.com/in/alice-smith/        # optional
        durham-staff-link: https://www.durham.ac.uk/staff/alice/  # optional
        link: https://example.com                                 # optional (generic)
+       calendar: https://zcal.co/alice/30min                     # optional: adds a "Book a chat" button
    ```
 
 Alumni live in the same file — use `type: alumnus` instead of `type: member`, and optionally add a `years_active` field (e.g. `"2023-2024"`).

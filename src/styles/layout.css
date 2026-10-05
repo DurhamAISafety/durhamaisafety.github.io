@@ -264,6 +264,14 @@
     transform: scale(1.1);
 }
 
+/* Between 1024px and 1300px there's room for the page links but not the social icons too;
+   they're still in the footer and the mobile menu. */
+@media (max-width: 1299px) {
+    .nav-social {
+        display: none;
+    }
+}
+
 .nav-social svg {
     width: 1.25rem;
     height: 1.25rem;
@@ -392,7 +400,7 @@
 }
 
 /* Hide hamburger on desktop */
-@media (min-width: 1300px) {
+@media (min-width: 1024px) {
     .burger {
         display: none;
     }
@@ -403,7 +411,7 @@
     display: none;
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1024px) {
     .nav-menu-desktop {
         display: flex;
         gap: 2rem;
@@ -506,7 +514,7 @@
 }
 
 /* Hide mobile nav on desktop */
-@media (min-width: 1300px) {
+@media (min-width: 1024px) {
     .mobile-nav {
         display: none;
     }

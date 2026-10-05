@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { team, alumni } = Astro.props;
+const hasBookable = team.some((person) => person.calendar);
 ---
 
 <section id="team" class="section section-light">
@@ -16,6 +17,11 @@ const { team, alumni } = Astro.props;
     <div class="text-center mb-12">
       <h2 class="section-heading text-3xl md:text-4xl mb-6">Our Team</h2>
       <div class="section-divider"></div>
+      {hasBookable && (
+        <p class="-mt-2 text-lg text-body-text max-w-2xl mx-auto">
+          Questions about AI safety or DAISI? Use <strong>Book a chat</strong> below to grab a free 1-1 with one of us.
+        </p>
+      )}
     </div>
 
     <PeopleGrid people={team} />
