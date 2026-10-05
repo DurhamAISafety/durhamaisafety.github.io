@@ -23,7 +23,7 @@ const { aboutConfig } = await getAboutPageContent();
 				</div>
 				<p class="text-lg md:text-xl leading-relaxed mb-10 font-medium text-center max-w-3xl mx-auto" set:html={aboutConfig.introTextHtml} />
 
-				<div class="grid md:grid-cols-3 gap-6 mb-12">
+				<div class="grid md:grid-cols-3 gap-6">
 					{aboutConfig.missionCards.map((card) => (
 						<div class="program-card group rounded-2xl p-6 border border-durham-purple/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-durham-purple/50">
 							<div class="text-center mb-4">
@@ -35,6 +35,16 @@ const { aboutConfig } = await getAboutPageContent();
 					))}
 				</div>
 
+			</div>
+		</div>
+	</section>
+
+	<AboutTeamIsland team={team} alumni={alumni} />
+
+	<!-- Impact Section -->
+	<section id="impact" class="section section-neutral">
+		<div class="site-container">
+			<div class="max-w-5xl mx-auto">
 				<div class="program-card rounded-2xl p-8 border border-durham-purple/30 shadow-lg mb-8">
 					<div class="text-center">
 						<div class="mb-4">
@@ -45,7 +55,7 @@ const { aboutConfig } = await getAboutPageContent();
 					</div>
 				</div>
 
-				<div class="mb-12 rounded-2xl overflow-hidden shadow-lg border border-durham-purple/20">
+				<div class="rounded-2xl overflow-hidden shadow-lg border border-durham-purple/20">
 					<img
 						src="/images/community/freshers-fair.webp"
 						alt="The DAISI stall at the Durham Freshers' Fair, with flyers, stickers and books"
@@ -61,10 +71,8 @@ const { aboutConfig } = await getAboutPageContent();
 		</div>
 	</section>
 
-	<AboutTeamIsland team={team} alumni={alumni} />
-
 	<!-- Join Section -->
-	<section class="section section-neutral">
+	<section id="join" class="section section-light">
 		<div class="site-container text-center">
 			<h2 class="section-heading text-3xl md:text-4xl mb-6">{aboutConfig.joinTitle}</h2>
 			<p class="text-xl max-w-3xl mx-auto mb-8 leading-relaxed" set:html={aboutConfig.joinTextHtml} />

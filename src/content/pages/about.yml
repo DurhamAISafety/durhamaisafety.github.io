@@ -6,10 +6,10 @@ about:
       description: 'Through discussion groups, seminars and speaker events.'
     - icon: fas fa-tools
       title: Upskilling Members
-      description: In safety techniques through workshops and 1-1 support
+      description: In safety techniques through workshops and 1-1 support.
     - icon: fas fa-users
       title: Fostering Community
-      description: 'For high-quality discussion, support and connections to the wider field of AI safety'
+      description: 'For high-quality discussion, support and connections to the wider field of AI safety.'
   impactTitle: Our Impact
   impactIcon: fas fa-chart-line
   impactText: 'Our members have published in top AI and law conferences, participated in [MATS](https://www.matsprogram.org/), [LASR Labs](https://www.lasrlabs.org/), and gone on to study AI ethics at Cambridge.'

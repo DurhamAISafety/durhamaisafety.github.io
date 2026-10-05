@@ -10,6 +10,8 @@ interface RawPerson {
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
+  /** Booking link (e.g. zcal, Calendly) shown as a "Book a chat" button. */
+  calendar?: string;
   description?: string;
 }
 
@@ -23,6 +25,8 @@ export interface Person {
   linkedin?: string;
   'durham-staff-link'?: string;
   link?: string;
+  /** Booking link (e.g. zcal, Calendly) shown as a "Book a chat" button. */
+  calendar?: string;
   description?: string;
 }
 
@@ -45,6 +49,7 @@ export async function getPeopleContent(): Promise<{
     linkedin: person.linkedin || undefined,
     'durham-staff-link': person['durham-staff-link'] || undefined,
     link: person.link || undefined,
+    calendar: person.calendar || undefined,
     description: person.description || undefined,
   }));
 

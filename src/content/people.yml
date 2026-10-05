@@ -8,6 +8,7 @@ people:
     linkedin: 'https://www.linkedin.com/in/isabella-towers-8937b4381/'
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Sam
     type: member
     role: Treasurer
@@ -17,6 +18,7 @@ people:
     linkedin: ''
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Toby
     type: member
     role: Secretary
@@ -26,6 +28,7 @@ people:
     linkedin: ''
     durham-staff-link: ''
     link: ''
+    calendar: 'https://zcal.co/tobypullan'
   - name: Theo
     type: member
     role: Co-founder & Advisor
@@ -35,6 +38,7 @@ people:
     linkedin: 'https://www.linkedin.com/in/theofarrell/'
     durham-staff-link: ''
     link: 'https://theosdoor.github.io/'
+    calendar: 'https://zcal.co/theofarrell/30min'
     description: DAISI founder. LASR Labs Fellow (lasrlabs.org), Summer 2026.
   - name: Leonie
     type: member
@@ -45,6 +49,7 @@ people:
     linkedin: ''
     durham-staff-link: 'https://www.durham.ac.uk/staff/leonie-a-stuessi/'
     link: ''
+    calendar: ''
   - name: Patrick
     type: member
     role: Advisor (Technical AI Safety)
@@ -54,6 +59,7 @@ people:
     linkedin: ''
     durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
     link: 'https://linktr.ee/patrickleask'
+    calendar: ''
   - name: Eve
     type: alumnus
     role: Co-organiser & Treasurer
@@ -63,6 +69,7 @@ people:
     linkedin: 'https://www.linkedin.com/in/eve-sherratt/'
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Quinn
     type: alumnus
     role: Co-organiser & Secretary
@@ -72,6 +79,7 @@ people:
     linkedin: 'https://www.linkedin.com/in/quinn-dines-154b71234/'
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Ben Kehoe
     type: alumnus
     role: Co-founder
@@ -81,6 +89,7 @@ people:
     linkedin: 'https://www.linkedin.com/in/ben-kehoe/'
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Raja Ikhlaq
     type: alumnus
     role: Co-founder
@@ -89,6 +98,7 @@ people:
     linkedin: ''
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Adriana Tihan
     type: alumnus
     role: Co-founder
@@ -97,6 +107,7 @@ people:
     linkedin: ''
     durham-staff-link: ''
     link: ''
+    calendar: ''
   - name: Elias Schmied
     type: alumnus
     role: Co-founder

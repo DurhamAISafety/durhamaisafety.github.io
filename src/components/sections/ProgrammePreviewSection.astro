@@ -96,6 +96,14 @@ const otherProgrammes = programmes.filter(programme => !programme.homepage_featu
                     {homeConfig.oneToOneCtaText}
                     <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
                 </a>
+                {homeConfig.oneToOneSecondaryText && homeConfig.oneToOneSecondaryLink && (
+                    <p class="mt-5 text-sm">
+                        <a href={homeConfig.oneToOneSecondaryLink} class="inline-flex items-center gap-2 font-semibold text-durham-purple dark:text-bright-purple hover:underline">
+                            {homeConfig.oneToOneSecondaryText}
+                            <Icon name="fas fa-arrow-right" class="text-xs" />
+                        </a>
+                    </p>
+                )}
             </div>
         )}
     </div>

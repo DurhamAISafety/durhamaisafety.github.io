@@ -54,6 +54,9 @@ export interface HomePageConfig {
   oneToOneText?: string;
   oneToOneCtaText?: string;
   oneToOneLink?: string;
+  // Optional internal link under the 1-1 button (e.g. to everyone on the team with a booking link).
+  oneToOneSecondaryText?: string;
+  oneToOneSecondaryLink?: string;
   researchTitle: string;
   researchSubtitle: string;
   researchViewAllText: string;
@@ -133,6 +136,7 @@ export async function getHomePageContent(): Promise<{ homeConfig: HomePageConfig
   validatePath(doc.getInvolvedBannerCtaLink, 'home.getInvolvedBannerCtaLink');
   validatePath(doc.getInvolvedBannerImage, 'home.getInvolvedBannerImage');
   if (doc.oneToOneLink) validatePath(doc.oneToOneLink, 'home.oneToOneLink');
+  if (doc.oneToOneSecondaryLink) validatePath(doc.oneToOneSecondaryLink, 'home.oneToOneSecondaryLink');
 
   return { homeConfig };
 }
