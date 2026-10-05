@@ -39,6 +39,11 @@ export async function getPeopleContent(): Promise<{
   alumni: AlumniMember[];
 }> {
   const { people: rawPeople = [] } = readYaml<{ people?: RawPerson[] }>('people.yml');
+  for (const person of rawPeople) {
+    if (person.calendar && !/^https:\/\/\S+$/.test(person.calendar)) {
+      throw new Error(`people.yml: calendar for "${person.name}" must be a full https:// booking link, got "${person.calendar}".`);
+    }
+  }
   const people: Person[] = rawPeople.map((person) => ({
     name: person.name,
     role: person.role,
