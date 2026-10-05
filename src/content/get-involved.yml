@@ -7,7 +7,7 @@ cards:
     external: false
     featured: true
   - title: Book a 1-1 Chat
-    description: 'Not sure where to start? Grab a free chat with one of our team about AI safety, our programmes or careers.'
+    description: 'Not sure where to start? Grab a chat with one of our team about AI safety, our programmes or careers.'
     icon: fas fa-coffee
     link_url: /about/#team
     link_label: Pick someone to chat to
