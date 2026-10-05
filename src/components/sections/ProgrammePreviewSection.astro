@@ -82,20 +82,24 @@ const otherProgrammes = programmes.filter(programme => !programme.homepage_featu
             })}
         </div>
 
-        {homeConfig.oneToOneTitle && homeConfig.oneToOneText && homeConfig.oneToOneCtaText && homeConfig.oneToOneLink && (
+        {homeConfig.oneToOneTitle && homeConfig.oneToOneText && (homeConfig.oneToOneLinks?.length ?? 0) > 0 && (
             <div id="book-a-chat" class="mt-14 md:mt-20 max-w-3xl mx-auto rounded-2xl border border-durham-purple/20 bg-surface-muted p-8 md:p-10 text-center reveal">
                 <Icon name="fas fa-calendar-alt" class="block mx-auto text-3xl text-durham-purple dark:text-bright-purple mb-4" />
                 <h3 class="text-2xl font-bold mb-3">{homeConfig.oneToOneTitle}</h3>
                 <p class="text-body-text leading-relaxed mb-6">{homeConfig.oneToOneText}</p>
-                <a
-                    href={homeConfig.oneToOneLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn-cta"
-                >
-                    {homeConfig.oneToOneCtaText}
-                    <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
-                </a>
+                <div class="flex flex-wrap justify-center gap-4">
+                    {homeConfig.oneToOneLinks!.map(link => (
+                        <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-cta"
+                        >
+                            {link.label}
+                            <Icon name="fas fa-external-link-alt" class="ml-1 text-xs" />
+                        </a>
+                    ))}
+                </div>
                 {homeConfig.oneToOneSecondaryText && homeConfig.oneToOneSecondaryLink && (
                     <p class="mt-5 text-sm">
                         <a href={homeConfig.oneToOneSecondaryLink} class="inline-flex items-center gap-2 font-semibold text-durham-purple dark:text-bright-purple hover:underline">

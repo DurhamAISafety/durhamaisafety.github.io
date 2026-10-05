@@ -38,6 +38,11 @@ export interface SiteConfig {
   googleSiteVerification: string;
 }
 
+export interface OneToOneLink {
+  label: string;
+  url: string;
+}
+
 export interface HomePageConfig {
   heroTitle: string;
   heroTitleHtml: string;
@@ -49,11 +54,10 @@ export interface HomePageConfig {
   heroSecondaryCtaLink: string;
   eventsTitle: string;
   programmesTitle: string;
-  // Optional "Book a 1-1" callout under the What we do cards; hidden unless all four are set.
+  // Optional "Book a 1-1" callout under the What we do cards; hidden unless title, text and at least one link are set.
   oneToOneTitle?: string;
   oneToOneText?: string;
-  oneToOneCtaText?: string;
-  oneToOneLink?: string;
+  oneToOneLinks?: OneToOneLink[];
   // Optional internal link under the 1-1 button (e.g. to everyone on the team with a booking link).
   oneToOneSecondaryText?: string;
   oneToOneSecondaryLink?: string;
@@ -135,7 +139,7 @@ export async function getHomePageContent(): Promise<{ homeConfig: HomePageConfig
   validatePath(doc.heroSecondaryCtaLink, 'home.heroSecondaryCtaLink');
   validatePath(doc.getInvolvedBannerCtaLink, 'home.getInvolvedBannerCtaLink');
   validatePath(doc.getInvolvedBannerImage, 'home.getInvolvedBannerImage');
-  if (doc.oneToOneLink) validatePath(doc.oneToOneLink, 'home.oneToOneLink');
+  doc.oneToOneLinks?.forEach((link, i) => validatePath(link.url, `home.oneToOneLinks[${i}].url`));
   if (doc.oneToOneSecondaryLink) validatePath(doc.oneToOneSecondaryLink, 'home.oneToOneSecondaryLink');
 
   return { homeConfig };
