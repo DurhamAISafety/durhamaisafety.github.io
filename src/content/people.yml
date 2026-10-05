@@ -1,115 +1,133 @@
 people:
   - name: Bella
-    type: member
     role: Lead Organiser & Publicity
+    type: member
     start_year: 2025
     years_active: 2025-2026
     photo: /images/people/bella-pic.jpg
-    linkedin: 'https://www.linkedin.com/in/isabella-towers-8937b4381/'
+    linkedin: https://www.linkedin.com/in/isabella-towers-8937b4381/
     durham-staff-link: ''
     link: ''
     calendar: ''
+    description: ''
   - name: Sam
-    type: member
     role: Treasurer
+    type: member
     start_year: 2026
     years_active: ''
     photo: /images/people/sam.webp
     linkedin: ''
     durham-staff-link: ''
     link: ''
-    calendar: 'https://calendly.com/sam-ogden427'
+    calendar: https://calendly.com/sam-ogden427
+    description: ''
   - name: Toby
-    type: member
     role: Secretary
+    type: member
     start_year: 2026
     years_active: ''
     photo: /images/people/toby.webp
     linkedin: ''
     durham-staff-link: ''
     link: ''
-    calendar: 'https://zcal.co/tobypullan'
+    calendar: https://zcal.co/tobypullan
+    description: ''
   - name: Theo
-    type: member
     role: Co-founder & Advisor
+    type: member
     start_year: 2023
     years_active: 2023-2026
     photo: /images/people/theo.jpeg
-    linkedin: 'https://www.linkedin.com/in/theofarrell/'
+    linkedin: https://www.linkedin.com/in/theofarrell/
     durham-staff-link: ''
-    link: 'https://theosdoor.github.io/'
-    calendar: 'https://zcal.co/theofarrell/30min'
-    description: DAISI founder. LASR Labs Fellow (lasrlabs.org), Summer 2026.
+    link: https://theosdoor.github.io/
+    calendar: https://zcal.co/theofarrell/30min
+    description: ''
   - name: Leonie
-    type: member
     role: Advisor (AI & Law)
+    type: member
     start_year: 2024
     years_active: ''
     photo: /images/people/leonie.webp
     linkedin: ''
-    durham-staff-link: 'https://www.durham.ac.uk/staff/leonie-a-stuessi/'
+    durham-staff-link: https://www.durham.ac.uk/staff/leonie-a-stuessi/
     link: ''
     calendar: ''
+    description: ''
   - name: Patrick
-    type: member
     role: Advisor (Technical AI Safety)
+    type: member
     start_year: 2024
     years_active: 2024-2026
     photo: /images/people/patrick.jpeg
     linkedin: ''
-    durham-staff-link: 'https://www.durham.ac.uk/staff/patrick-leask/'
-    link: 'https://linktr.ee/patrickleask'
+    durham-staff-link: https://www.durham.ac.uk/staff/patrick-leask/
+    link: https://linktr.ee/patrickleask
     calendar: ''
+    description: ''
   - name: Eve
-    type: alumnus
     role: Co-organiser & Treasurer
+    type: alumnus
     start_year: 2025
     years_active: 2025-2026
     photo: /images/people/eve.jpeg
-    linkedin: 'https://www.linkedin.com/in/eve-sherratt/'
+    linkedin: https://www.linkedin.com/in/eve-sherratt/
     durham-staff-link: ''
     link: ''
     calendar: ''
+    description: ''
   - name: Quinn
-    type: alumnus
     role: Co-organiser & Secretary
+    type: alumnus
     start_year: 2025
     years_active: '2025'
     photo: /images/people/quinn.jpeg
-    linkedin: 'https://www.linkedin.com/in/quinn-dines-154b71234/'
+    linkedin: https://www.linkedin.com/in/quinn-dines-154b71234/
     durham-staff-link: ''
     link: ''
     calendar: ''
+    description: ''
   - name: Ben Kehoe
-    type: alumnus
     role: Co-founder
+    type: alumnus
     start_year: null
     years_active: 2024-2025
     photo: /images/people/Ben_Kehoe-Augustyniak.jpeg
-    linkedin: 'https://www.linkedin.com/in/ben-kehoe/'
+    linkedin: https://www.linkedin.com/in/ben-kehoe/
     durham-staff-link: ''
     link: ''
     calendar: ''
+    description: ''
   - name: Raja Ikhlaq
-    type: alumnus
     role: Co-founder
+    type: alumnus
     start_year: null
     years_active: 2023-2024
+    photo: ''
     linkedin: ''
     durham-staff-link: ''
     link: ''
     calendar: ''
+    description: ''
   - name: Adriana Tihan
-    type: alumnus
     role: Co-founder
+    type: alumnus
     start_year: null
     years_active: 2023-2024
+    photo: ''
     linkedin: ''
     durham-staff-link: ''
     link: ''
     calendar: ''
+    description: ''
   - name: Elias Schmied
-    type: alumnus
     role: Co-founder
+    type: alumnus
     start_year: null
     years_active: 2023-2024
+    photo: ''
+    linkedin: ''
+    durham-staff-link: ''
+    link: ''
+    calendar: ''
+    description: ''
