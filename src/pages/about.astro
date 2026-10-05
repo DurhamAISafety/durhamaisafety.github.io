@@ -3,10 +3,22 @@ import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import { getPeopleContent } from '../data/people';
 import { getAboutPageContent } from '../data/config';
+import { getResearchStats } from '../data/research';
+import { getSupportersContent } from '../data/supporters';
 import AboutTeamIsland from '../components/islands/AboutTeamIsland.astro';
+import SupportersHeroStrip from '../components/islands/SupportersHeroStrip.astro';
 
-const { team, alumni } = await getPeopleContent();
+const { team, alumni, foundedYear } = await getPeopleContent();
 const { aboutConfig } = await getAboutPageContent();
+const { paperCount, venues } = await getResearchStats();
+const { supporters } = await getSupportersContent();
+
+// Headline numbers under the impact text; each one is derived from a content file.
+const impactStats = [
+	foundedYear && { value: String(foundedYear), label: 'Running since', href: undefined },
+	paperCount > 0 && { value: String(paperCount), label: 'Papers & projects by members', href: '/research/' },
+	venues.length > 0 && { value: venues.join(' · '), label: 'Where members have published', href: '/research/' },
+].filter((stat): stat is { value: string; label: string; href: string | undefined } => Boolean(stat));
 ---
 
 <Layout 
@@ -41,7 +53,7 @@ const { aboutConfig } = await getAboutPageContent();
 
 	<AboutTeamIsland team={team} alumni={alumni} />
 
-	<!-- Impact Section -->
+	<!-- Impact Section (stats use strong/small: the unlayered `.section-neutral span` rule would beat their colour utilities) -->
 	<section id="impact" class="section section-neutral">
 		<div class="site-container">
 			<div class="max-w-5xl mx-auto">
@@ -52,6 +64,21 @@ const { aboutConfig } = await getAboutPageContent();
 						</div>
 						<h2 class="text-2xl font-bold mb-4">{aboutConfig.impactTitle}</h2>
 						<p class="text-lg leading-relaxed font-medium max-w-3xl mx-auto" set:html={aboutConfig.impactTextHtml} />
+						{impactStats.length > 0 && (
+							<ul class="mt-8 grid gap-4 sm:grid-cols-3">
+								{impactStats.map((stat) => {
+									const Tag = stat.href ? 'a' : 'div';
+									return (
+										<li>
+											<Tag href={stat.href} class="block h-full rounded-xl bg-surface-muted px-4 py-5 no-underline transition-colors hover:bg-durham-purple/10">
+												<strong class="block text-2xl font-bold text-durham-purple dark:text-bright-purple">{stat.value}</strong>
+												<small class="block text-sm text-muted-text mt-1">{stat.label}</small>
+											</Tag>
+										</li>
+									);
+								})}
+							</ul>
+						)}
 					</div>
 				</div>
 
@@ -70,6 +97,8 @@ const { aboutConfig } = await getAboutPageContent();
 			</div>
 		</div>
 	</section>
+
+	<SupportersHeroStrip supporters={supporters} />
 
 	<!-- Join Section -->
 	<section id="join" class="section section-light">

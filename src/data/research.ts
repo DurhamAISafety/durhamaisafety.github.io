@@ -49,3 +49,11 @@ export async function getResearchContent(): Promise<{
     nonAcademicPapers: research.filter((paper) => paper.type === 'non-academic'),
   };
 }
+
+/** Headline numbers for the About page, derived from research-papers.yml so they stay current. */
+export async function getResearchStats(): Promise<{ paperCount: number; venues: string[] }> {
+  const { research, academicPapers } = await getResearchContent();
+  // "NeurIPS 2025 Workshop" -> "NeurIPS"; oldest first, de-duplicated.
+  const venues = [...new Set([...academicPapers].reverse().map((paper) => paper.venue.split(' ')[0]))];
+  return { paperCount: research.length, venues };
+}

@@ -35,6 +35,8 @@ export type AlumniMember = Person & { type: 'alumnus' };
 
 export async function getPeopleContent(): Promise<{
   people: Person[];
+  /** Earliest start_year in people.yml, i.e. when DAISI started. */
+  foundedYear?: number;
   team: TeamMember[];
   alumni: AlumniMember[];
 }> {
@@ -58,8 +60,11 @@ export async function getPeopleContent(): Promise<{
     description: person.description || undefined,
   }));
 
+  const startYears = people.flatMap((person) => (person.start_year ? [person.start_year] : []));
+
   return {
     people,
+    foundedYear: startYears.length > 0 ? Math.min(...startYears) : undefined,
     team: people.filter((person): person is TeamMember => person.type === 'member'),
     alumni: people.filter((person): person is AlumniMember => person.type === 'alumnus'),
   };
