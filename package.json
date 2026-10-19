@@ -21,7 +21,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.8",
+    "astro": "^7.4.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "yaml": "^2.9.1"
@@ -36,6 +36,6 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.13.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.1"
+    "typescript-eslint": "^8.71.2"
   }
 }
